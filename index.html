@@ -758,6 +758,62 @@
       opacity: 1;
       visibility: visible;
     }
+
+    /* Subjective Recommendations Toggle */
+    .legend-toggle-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      width: 100%;
+    }
+
+    .legend-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .subjective-toggle {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 0.75rem;
+      background: var(--bg-card);
+      border-radius: 20px;
+      border: 1px solid var(--border-color);
+      white-space: nowrap;
+      margin-left: auto;
+    }
+
+    .subjective-toggle .toggle-switch.active {
+      background: var(--rating-great);
+      border-color: var(--rating-great-border);
+    }
+
+    .subjective-toggle .toggle-switch.active::after {
+      background: rgba(59, 130, 246, 0.8);
+    }
+
+    /* Hide subjective when toggle is off */
+    .rating-great {
+      transition: background 0.3s ease, border-left-color 0.3s ease;
+    }
+
+    .hide-subjective .rating-great {
+      background: transparent;
+      border-left-color: transparent;
+    }
+
+    .legend-subjective {
+      transition: opacity 0.3s ease;
+    }
+
+    .hide-subjective .legend-subjective {
+      opacity: 0;
+      pointer-events: none;
+    }
   </style>
 </head>
 
@@ -936,7 +992,7 @@
               <td colspan="3" class="separator">No</td>
               <td>15GB<span class="annotation"
                   data-tooltip="Free accounts use the Google account's free 15GB storage.">⁹</span></td>
-              <td>200GB</td>
+              <td class="rating-great">200GB</td>
               <td class="rating-excellent">2TB</td>
             </tr>
             <tr>
@@ -951,8 +1007,16 @@
 
       <!-- Legend -->
       <div class="legend">
-        <div class="legend-item"><span class="legend-color legend-excellent"></span> Best option</div>
-        <div class="legend-item"><span class="legend-color legend-great"></span> Sufficient (subjectively)
+        <div class="legend-toggle-wrapper">
+          <div class="legend-items">
+            <div class="legend-item"><span class="legend-color legend-excellent"></span> Best option</div>
+            <div class="legend-item legend-subjective"><span class="legend-color legend-great"></span> Sufficient option
+              (subjectively)</div>
+          </div>
+          <div class="subjective-toggle">
+            <span class="toggle-label">Subjective recommendations</span>
+            <div class="toggle-switch active" onclick="toggleSubjective()"></div>
+          </div>
         </div>
       </div>
 
@@ -1414,6 +1478,14 @@
       }
     });
 
+    // Toggle function for subjective recommendations
+    function toggleSubjective() {
+      const toggle = document.querySelector('.subjective-toggle .toggle-switch');
+      const tabContent = document.getElementById('tab-specs');
+      toggle.classList.toggle('active');
+      tabContent.classList.toggle('hide-subjective');
+    }
+
     // Toggle function for Claude models - syncs all toggles
     function toggleClaudeModels() {
       showClaudeModels = !showClaudeModels;
@@ -1423,17 +1495,23 @@
         toggle.classList.toggle('active', showClaudeModels);
       });
 
+      // Animation config for smooth transitions
+      const animationConfig = {
+        duration: 750,
+        easing: 'easeInOutQuart'
+      };
+
       // Update Omniscience chart
       const omniscienceData = getOmniscienceData();
       omniscienceChart.data.labels = omniscienceData.labels;
       omniscienceChart.data.datasets[0].data = omniscienceData.correct;
       omniscienceChart.data.datasets[1].data = omniscienceData.abstention;
       omniscienceChart.data.datasets[2].data = omniscienceData.hallucination;
-      omniscienceChart.update();
+      omniscienceChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
 
       // Update MRCR chart
       mrcrChart.data.datasets = getMrcrDatasets();
-      mrcrChart.update();
+      mrcrChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
     }
   </script>
 
