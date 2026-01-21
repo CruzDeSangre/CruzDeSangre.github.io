@@ -10,6 +10,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+
   <style>
     * {
       margin: 0;
@@ -35,6 +40,9 @@
       --gemini-primary: #f34d65;
       --gemini-bg: rgba(243, 77, 101, 0.08);
       --gemini-border: rgba(243, 77, 101, 0.2);
+      --claude-primary: #f97316;
+      --claude-bg: rgba(249, 115, 22, 0.08);
+      --claude-border: rgba(249, 115, 22, 0.2);
 
       /* Rating Colors */
       --rating-excellent: rgba(34, 197, 94, 0.15);
@@ -378,6 +386,52 @@
       margin-bottom: 1rem;
     }
 
+    /* Collapsible notes */
+    .notes.collapsible .notes-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      user-select: none;
+      margin-bottom: 0;
+      transition: margin-bottom 0.3s ease;
+    }
+
+    .notes.collapsible .notes-header:hover .notes-title {
+      color: var(--text-secondary);
+    }
+
+    .notes.collapsible .notes-header .notes-title {
+      margin-bottom: 0;
+      transition: color 0.2s ease;
+    }
+
+    .notes.collapsible.expanded .notes-header {
+      margin-bottom: 1rem;
+    }
+
+    .notes-toggle {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      transition: transform 0.3s ease;
+    }
+
+    .notes.collapsible.expanded .notes-toggle {
+      transform: rotate(180deg);
+    }
+
+    .notes-content {
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      transition: max-height 0.3s ease, opacity 0.3s ease;
+    }
+
+    .notes.collapsible.expanded .notes-content {
+      max-height: 500px;
+      opacity: 1;
+    }
+
     .notes-list {
       list-style: none;
       font-size: 0.8rem;
@@ -573,6 +627,69 @@
       font-style: italic;
     }
 
+    /* Toggle Switch - Inline version next to section titles */
+    .section-title-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-title-wrapper .section-title {
+      margin-bottom: 0;
+    }
+
+    .toggle-inline {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 0.75rem;
+      background: var(--bg-card);
+      border-radius: 20px;
+      border: 1px solid var(--border-color);
+      white-space: nowrap;
+    }
+
+    .toggle-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .toggle-switch {
+      position: relative;
+      width: 36px;
+      height: 18px;
+      background: var(--bg-hover);
+      border-radius: 18px;
+      border: 1px solid var(--border-color);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    .toggle-switch.active {
+      background: var(--claude-bg);
+      border-color: var(--claude-border);
+    }
+
+    .toggle-switch::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 12px;
+      height: 12px;
+      background: var(--text-muted);
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+
+    .toggle-switch.active::after {
+      left: 20px;
+      background: var(--claude-primary);
+    }
+
     /* Annotation Tooltips */
     .annotation {
       cursor: help;
@@ -721,7 +838,9 @@
               <td>Memories</td>
               <td>Memories</td>
               <td class="rating-excellent">Memories, history, search</td>
-              <td colspan="3" class="rating-great">Memories, chat history</td>
+              <td colspan="3" class="rating-great">Memories, chat history<span class="annotation"
+                  data-tooltip="While Gemini has a memory feature, it sometimes calls memory when not needed, or decides not to call it when actually needed; which sometimes provokes inconsistent outputs.">⁶</span>
+              </td>
             </tr>
             <tr>
               <td>Image generation</td>
@@ -736,7 +855,7 @@
                   class="detail">[GPT Image 1.5]</span></td>
               <td>3+100<span class="detail">[Nanobanana Pro + Nanobanana]</span></td>
               <td>30+300?<span class="annotation"
-                  data-tooltip="Estimated based on Plus reasoning model limits being ~1/3 of Pro limits.">⁶</span><span
+                  data-tooltip="Estimated based on Plus reasoning model limits being ~1/3 of Pro limits.">⁷</span><span
                   class="detail">[Nanobanana Pro + Nanobanana]</span></td>
               <td class="rating-excellent">100+1000<span class="detail">[Nanobanana Pro + Nanobanana]</span></td>
             </tr>
@@ -757,7 +876,7 @@
               <td>Folder organization</td>
               <td colspan="3" class="rating-excellent">Yes<span class="detail">[Projects]</span></td>
               <td colspan="3">No<span class="annotation"
-                  data-tooltip="NotebookLM differs from Projects. It can only be linked with Gemini chats on the web, not in the app; and is less creative due to an anti-hallucination tuning.">⁷</span>
+                  data-tooltip="NotebookLM differs from Projects. While it can be linked with Gemini chats, it lacks a folder structure when used inside Gemini; and when used on the NotebookLM site it is less creative due to an anti-hallucination tuning.">⁸</span>
               </td>
             </tr>
             <tr>
@@ -815,7 +934,7 @@
               <td>Cloud storage included</td>
               <td colspan="3" class="separator">No</td>
               <td>15GB<span class="annotation"
-                  data-tooltip="Free accounts use the Google account's free 15GB storage.">⁸</span></td>
+                  data-tooltip="Free accounts use the Google account's free 15GB storage.">⁹</span></td>
               <td>200GB</td>
               <td class="rating-excellent">2TB</td>
             </tr>
@@ -838,7 +957,7 @@
 
       <!-- Notes -->
       <div class="notes">
-        <p class="notes-title">Notes</p>
+        <p class="notes-title">Footnotes</p>
         <ul class="notes-list">
           <li data-num="1.">Free and Go accounts don't have access to GPT 5.2 Thinking, so it's likely they use GPT 5
             Thinking Mini instead.</li>
@@ -848,11 +967,14 @@
           <li data-num="4.">Open AI has only reported that deep research uses a thinking model, it is safe to assume
             it's the latest one.</li>
           <li data-num="5.">Ads only in the USA, for now.</li>
-          <li data-num="6.">Estimated based on Plus reasoning model limits being ~1/3 of Pro limits.</li>
-          <li data-num="7.">NotebookLM differs from Projects. It can only be linked with Gemini chats on the web,
-            not in the app; and is less creative due to an anti-hallucination tuning.
+          <li data-num="6.">While Gemini has a memory feature, it sometimes calls memory when not needed, or decides not
+            to call it when actually needed; which sometimes provokes inconsistent outputs.</li>
+          <li data-num="7.">Estimated based on Plus reasoning model limits being ~1/3 of Pro limits.</li>
+          <li data-num="8.">NotebookLM differs from Projects. While it can be linked with Gemini chats, it lacks a
+            folder structure when used insideGemini; and when used on the NotebookLM site it is
+            less creative due to an anti-hallucination tuning.
           </li>
-          <li data-num="8.">Free accounts use the Google account's free 15GB storage.</li>
+          <li data-num="9.">Free accounts use the Google account's free 15GB storage.</li>
         </ul>
       </div>
     </section>
@@ -861,29 +983,83 @@
     <section id="tab-benchmarks" class="tab-content">
 
       <!-- AA-Omniscience -->
-      <h2 class="section-title">Response Accuracy — AA-Omniscience Benchmark</h2>
+      <div class="section-title-wrapper">
+        <h2 class="section-title">General Accuracy — AA-Omniscience Benchmark</h2>
+        <div class="toggle-inline">
+          <span class="toggle-label">Claude models</span>
+          <div class="toggle-switch claude-toggle active" onclick="toggleClaudeModels()"></div>
+        </div>
+      </div>
       <div class="chart-container">
         <canvas id="omniscienceChart"></canvas>
       </div>
       <p class="chart-note">Higher is better for Correct & Abstention. Lower is better for Hallucination.</p>
 
+      <!-- Notes for first chart -->
+      <div class="notes collapsible expanded" style="margin-top: 1rem;">
+        <div class="notes-header" onclick="toggleNotes(this)">
+          <p class="notes-title">AA-Omniscience Notes</p>
+          <span class="notes-toggle">▼</span>
+        </div>
+        <div class="notes-content">
+          <ul class="notes-list">
+            <li>• <strong>Correct</strong> answers were calculated with <em>Correct = A</em>.</li>
+            <li>• <strong>Abstention</strong> answers were calculated with <em>Abstention = (1−A)⋅(1−H)</em>.</li>
+            <li>• <strong>Hallucinations</strong> answers were calculated with <em>Hallucination = (1−A)⋅H</em>.</li>
+            <li>• <em>(Where "A" is the percentage scored on the "AA-Omnisicence Accuracy" benchmark, "H" is the
+                percentage scored on
+                the "AA-Omnisicence Hallucination Rate" benchmark.)</em></li>
+            <li>• Claude models included due to them being available for Gemini users through the Antigravity app.</li>
+          </ul>
+        </div>
+      </div>
+
       <!-- MRCR v2 -->
-      <h2 class="section-title" style="margin-top: 3rem;">Response Accuracy — MRCR v2 8-Needle Benchmark</h2>
+      <div class="section-title-wrapper" style="margin-top: 3rem;">
+        <h2 class="section-title">Long Context Accuracy — MRCR v2 8-Needle Benchmark</h2>
+        <div class="toggle-inline">
+          <span class="toggle-label">Claude models</span>
+          <div class="toggle-switch claude-toggle active" onclick="toggleClaudeModels()"></div>
+        </div>
+      </div>
       <div class="chart-container">
         <canvas id="mrcrChart"></canvas>
       </div>
-      <p class="chart-note">Shows how accuracy degrades as context length increases. ChatGPT models don't support 1M
-        tokens.</p>
+      <p class="chart-note">Shows how accuracy degrades as context length increases.</p>
+
+      <!-- Notes for second chart -->
+      <div class="notes collapsible expanded" style="margin-top: 1rem;">
+        <div class="notes-header" onclick="toggleNotes(this)">
+          <p class="notes-title">MRCR v2 8-Needle Notes</p>
+          <span class="notes-toggle">▼</span>
+        </div>
+        <div class="notes-content">
+          <ul class="notes-list">
+            <li>• There's no benchmark for 196k tokens, the next available one is 256k, which is not supported
+              by ChatGPT on the web and app.</li>
+            <li>• Maximum context window of <strong>GPT 5.2 Thinking</strong> is 196k tokens.</li>
+            <li>• Maximum context window of <strong>GPT 5.2 Instant</strong> is 16k/32k tokens (Free/Plus & Go).</li>
+            <li>• Maximum context window of <strong>Gemini 3 Pro, Gemini 3 Flash Thinking and Gemini 3 Flash</strong> is
+              32k/128k/1M tokens (Free/Plus/Pro).</li>
+            <li>• Maximum context window of <strong>Claude Opus 4.5 and Claude Sonnet 4.5</strong> is 200k tokens.</li>
+          </ul>
+        </div>
+      </div>
 
       <!-- Notes -->
       <div class="notes" style="margin-top: 2rem;">
         <p class="notes-title">Notes</p>
         <ul class="notes-list">
-          <li data-num="1.">GPT-5.2:medium used in the graph, as GPT-5.2:xhigh is not available on Plus nor Go accounts.
+          <li>• For "<strong>GPT 5.2 Thinking</strong>", "<em>GPT-5.2:medium</em>" was used in the graph; as
+            GPT-5.2:xhigh is not available on the web.</li>
+          <li>• For "<strong>GPT 5.2 Instant</strong>", "<em>GPT-5.2</em>" was used in the graph.</li>
+          <li>• For "<strong>Gemini 3 Pro</strong>", "<em>Gemini-3-pro-preview:high</em>" was used in the
+            graph.</li>
+          <li>• For "<strong>Gemini 3 Flash Thinking</strong>",
+            "<em>Gemini-3-flash-preview:thinking:high</em>" was used in the graph.
           </li>
-          <li data-num="2.">Gemini-3-flash-preview:high</li>
-          <li data-num="3.">There's no 196k tokens benchmark, and the next available one is 256k, which is not supported
-            by ChatGPT on the web and app.</li>
+          <li>• For "<strong>Gemini 3 Flash</strong>", "<em>Gemini-3-flash-preview</em>" was used in the
+            graph.</li>
         </ul>
       </div>
     </section>
@@ -898,9 +1074,10 @@
             <h2 class="benefit-title">ChatGPT</h2>
           </div>
           <ul class="benefit-list">
+            <li>Web search thinks significantly longer (can easily take 7-10 min vs Gemini's 1-3 min)</li>
             <li>Easy switching between different personalities</li>
-            <li>Web search thinks significantly longer (7-10 min vs Gemini's 1-3 min)</li>
             <li>Can connect to a limited selection of sites, though tool calls can be inconsistent</li>
+            <li>Offers integration with Github, through the Codex site and the Visual Studio Code extension</li>
           </ul>
         </div>
 
@@ -914,8 +1091,8 @@
             <li>Deep research produces longer, more detailed investigations</li>
             <li>Nanobanana Pro offers faster image generation than GPT Image 1.5. Its images also appear more realistic
               (subjectively)</li>
-            <li>Native Android integration (iOS coming soon, confirmed), though it can be over-eager with tool calls
-            <li>Includes uses of Claude Opus 4.5 and Claude Sonnet 4.5 through Antigravity
+            <li>Native Android integration (iOS confirmed to come soon), though it can be over-eager with tool calls
+            <li>Offers uses of Claude Opus 4.5 and Claude Sonnet 4.5 through the Antigravity app
             </li>
           </ul>
         </div>
@@ -933,6 +1110,12 @@
       document.getElementById('btn-' + tabId).classList.add('active');
     }
 
+    // Toggle collapsible notes
+    function toggleNotes(header) {
+      const notes = header.parentElement;
+      notes.classList.toggle('expanded');
+    }
+
     // Chart.js configuration
     Chart.defaults.color = '#b3a385';
     Chart.defaults.borderColor = 'rgba(255, 255, 255, 0.08)';
@@ -943,17 +1126,50 @@
     const chatgptColorLight = 'rgba(16, 163, 127, 0.7)';
     const geminiColor = '#f34d65';
     const geminiColorLight = 'rgba(243, 77, 101, 0.7)';
+    const claudeColor = '#f97316';
+    const claudeColorLight = 'rgba(249, 115, 22, 0.7)';
+
+    // Track Claude visibility
+    let showClaudeModels = true;
+    let omniscienceChart, mrcrChart;
+
+    // Base data for AA-Omniscience
+    const omniscienceBaseLabels = ['GPT 5.2 Thinking', 'GPT 5.2 Instant', 'Gemini 3 Pro', 'Gemini 3 Flash Thinking', 'Gemini 3 Flash'];
+    const omniscienceClaudeLabels = ['Claude 4.5 Opus Thinking', 'Claude 4.5 Sonnet Thinking'];
+    const omniscienceBaseCorrect = [36.0, 28.0, 54.0, 54.0, 47.0];
+    const omniscienceClaudeCorrect = [43.0, 31.0];
+    const omniscienceBaseAbstention = [26.2, 28.8, 5.5, 4.3, 4.8];
+    const omniscienceClaudeAbstention = [23.9, 35.9];
+    const omniscienceBaseHallucination = [37.8, 43.2, 40.5, 43.7, 48.2];
+    const omniscienceClaudeHallucination = [33.1, 33.1];
+
+    function getOmniscienceData() {
+      const labels = showClaudeModels
+        ? [...omniscienceBaseLabels, ...omniscienceClaudeLabels]
+        : omniscienceBaseLabels;
+      const correct = showClaudeModels
+        ? [...omniscienceBaseCorrect, ...omniscienceClaudeCorrect]
+        : omniscienceBaseCorrect;
+      const abstention = showClaudeModels
+        ? [...omniscienceBaseAbstention, ...omniscienceClaudeAbstention]
+        : omniscienceBaseAbstention;
+      const hallucination = showClaudeModels
+        ? [...omniscienceBaseHallucination, ...omniscienceClaudeHallucination]
+        : omniscienceBaseHallucination;
+      return { labels, correct, abstention, hallucination };
+    }
 
     // AA-Omniscience Benchmark - Grouped Bar Chart
     const omniscienceCtx = document.getElementById('omniscienceChart').getContext('2d');
-    new Chart(omniscienceCtx, {
+    const omniscienceData = getOmniscienceData();
+    omniscienceChart = new Chart(omniscienceCtx, {
       type: 'bar',
       data: {
-        labels: ['GPT 5.2 Thinking¹', 'GPT 5.2 Instant', 'Gemini 3 Pro', 'Gemini 3 Flash Thinking²', 'Gemini 3 Flash'],
+        labels: omniscienceData.labels,
         datasets: [
           {
             label: 'Correct ↑',
-            data: [36.0, 28.0, 54.0, 54.0, 47.0],
+            data: omniscienceData.correct,
             backgroundColor: 'rgba(34, 197, 94, 0.7)',
             borderColor: 'rgba(34, 197, 94, 1)',
             borderWidth: 1,
@@ -961,7 +1177,7 @@
           },
           {
             label: 'Abstention ↑',
-            data: [26.2, 28.8, 5.5, 4.3, 4.8],
+            data: omniscienceData.abstention,
             backgroundColor: 'rgba(139, 92, 246, 0.7)',
             borderColor: 'rgba(139, 92, 246, 1)',
             borderWidth: 1,
@@ -969,7 +1185,7 @@
           },
           {
             label: 'Hallucination ↓',
-            data: [37.8, 43.2, 40.5, 43.7, 48.2],
+            data: omniscienceData.hallucination,
             backgroundColor: 'rgba(239, 68, 68, 0.7)',
             borderColor: 'rgba(239, 68, 68, 1)',
             borderWidth: 1,
@@ -1028,73 +1244,110 @@
       }
     });
 
+    // Base datasets for MRCR
+    const mrcrBaseDatasets = [
+      {
+        label: 'GPT 5.2 Thinking',
+        data: [87.9, 78.2, 75.7, 66.7, 63.1, null],
+        borderColor: chatgptColor,
+        backgroundColor: chatgptColorLight,
+        borderWidth: 3,
+        tension: 0.3,
+        pointRadius: 6,
+        pointHoverRadius: 8,
+        pointBackgroundColor: chatgptColor,
+        spanGaps: false
+      },
+      {
+        label: 'GPT 5.2 Instant',
+        data: [49.4, 45.1, 50.4, 41.5, 31.9, null],
+        borderColor: 'rgba(16, 163, 127, 0.5)',
+        backgroundColor: 'rgba(16, 163, 127, 0.3)',
+        borderWidth: 2,
+        borderDash: [5, 5],
+        tension: 0.3,
+        pointRadius: 5,
+        pointHoverRadius: 7,
+        pointBackgroundColor: 'rgba(16, 163, 127, 0.5)',
+        spanGaps: false
+      },
+      {
+        label: 'Gemini 3 Pro',
+        data: [98.0, 91.3, 86.6, 72.1, 54.2, 24.5],
+        borderColor: geminiColor,
+        backgroundColor: geminiColorLight,
+        borderWidth: 3,
+        tension: 0.3,
+        pointRadius: 6,
+        pointHoverRadius: 8,
+        pointBackgroundColor: geminiColor
+      },
+      {
+        label: 'Gemini 3 Flash Thinking',
+        data: [96.7, 85.3, 84.9, 72.9, 51.5, 32.6],
+        borderColor: 'rgba(243, 77, 101, 0.7)',
+        backgroundColor: 'rgba(243, 77, 101, 0.5)',
+        borderWidth: 2,
+        tension: 0.3,
+        pointRadius: 5,
+        pointHoverRadius: 7,
+        pointBackgroundColor: 'rgba(243, 77, 101, 0.7)'
+      },
+      {
+        label: 'Gemini 3 Flash',
+        data: [75.5, 46.2, 39.0, 36.9, 25.4, 25.7],
+        borderColor: 'rgba(243, 77, 101, 0.4)',
+        backgroundColor: 'rgba(243, 77, 101, 0.2)',
+        borderWidth: 2,
+        borderDash: [5, 5],
+        tension: 0.3,
+        pointRadius: 5,
+        pointHoverRadius: 7,
+        pointBackgroundColor: 'rgba(243, 77, 101, 0.4)'
+      }
+    ];
+
+    const mrcrClaudeDatasets = [
+      {
+        label: 'Claude 4.5 Opus Thinking',
+        data: [78.0, 56.2, 46.7, 35.3, 27.1, null],
+        borderColor: claudeColor,
+        backgroundColor: claudeColorLight,
+        borderWidth: 3,
+        tension: 0.3,
+        pointRadius: 6,
+        pointHoverRadius: 8,
+        pointBackgroundColor: claudeColor,
+        spanGaps: false
+      },
+      {
+        label: 'Claude 4.5 Sonnet Thinking',
+        data: [48.9, 42.4, 32.8, 26.0, 16.6, null],
+        borderColor: 'rgba(249, 115, 22, 0.6)',
+        backgroundColor: 'rgba(249, 115, 22, 0.4)',
+        borderWidth: 2,
+        borderDash: [5, 5],
+        tension: 0.3,
+        pointRadius: 5,
+        pointHoverRadius: 7,
+        pointBackgroundColor: 'rgba(249, 115, 22, 0.6)',
+        spanGaps: false
+      }
+    ];
+
+    function getMrcrDatasets() {
+      return showClaudeModels
+        ? [...mrcrBaseDatasets, ...mrcrClaudeDatasets]
+        : mrcrBaseDatasets;
+    }
+
     // MRCR v2 8-Needle Benchmark - Line Chart
     const mrcrCtx = document.getElementById('mrcrChart').getContext('2d');
-    new Chart(mrcrCtx, {
+    mrcrChart = new Chart(mrcrCtx, {
       type: 'line',
       data: {
         labels: ['8k', '16k', '32k', '64k', '128k', '1M'],
-        datasets: [
-          {
-            label: 'GPT 5.2 Thinking¹',
-            data: [87.9, 78.2, 75.7, 66.7, 63.1, null],
-            borderColor: chatgptColor,
-            backgroundColor: chatgptColorLight,
-            borderWidth: 3,
-            tension: 0.3,
-            pointRadius: 6,
-            pointHoverRadius: 8,
-            pointBackgroundColor: chatgptColor,
-            spanGaps: false
-          },
-          {
-            label: 'GPT 5.2 Instant',
-            data: [49.4, 45.1, 50.4, 41.5, 31.9, null],
-            borderColor: 'rgba(16, 163, 127, 0.5)',
-            backgroundColor: 'rgba(16, 163, 127, 0.3)',
-            borderWidth: 2,
-            borderDash: [5, 5],
-            tension: 0.3,
-            pointRadius: 5,
-            pointHoverRadius: 7,
-            pointBackgroundColor: 'rgba(16, 163, 127, 0.5)',
-            spanGaps: false
-          },
-          {
-            label: 'Gemini 3 Pro',
-            data: [98.0, 91.3, 86.6, 72.1, 54.2, 24.5],
-            borderColor: geminiColor,
-            backgroundColor: geminiColorLight,
-            borderWidth: 3,
-            tension: 0.3,
-            pointRadius: 6,
-            pointHoverRadius: 8,
-            pointBackgroundColor: geminiColor
-          },
-          {
-            label: 'Gemini 3 Flash Thinking²',
-            data: [96.7, 85.3, 84.9, 72.9, 51.5, 32.6],
-            borderColor: 'rgba(243, 77, 101, 0.7)',
-            backgroundColor: 'rgba(243, 77, 101, 0.5)',
-            borderWidth: 2,
-            tension: 0.3,
-            pointRadius: 5,
-            pointHoverRadius: 7,
-            pointBackgroundColor: 'rgba(243, 77, 101, 0.7)'
-          },
-          {
-            label: 'Gemini 3 Flash',
-            data: [75.5, 46.2, 39.0, 36.9, 25.4, 25.7],
-            borderColor: 'rgba(243, 77, 101, 0.4)',
-            backgroundColor: 'rgba(243, 77, 101, 0.2)',
-            borderWidth: 2,
-            borderDash: [5, 5],
-            tension: 0.3,
-            pointRadius: 5,
-            pointHoverRadius: 7,
-            pointBackgroundColor: 'rgba(243, 77, 101, 0.4)'
-          }
-        ]
+        datasets: getMrcrDatasets()
       },
       options: {
         responsive: true,
@@ -1155,6 +1408,28 @@
         }
       }
     });
+
+    // Toggle function for Claude models - syncs all toggles
+    function toggleClaudeModels() {
+      showClaudeModels = !showClaudeModels;
+
+      // Sync all Claude toggles
+      document.querySelectorAll('.claude-toggle').forEach(toggle => {
+        toggle.classList.toggle('active', showClaudeModels);
+      });
+
+      // Update Omniscience chart
+      const omniscienceData = getOmniscienceData();
+      omniscienceChart.data.labels = omniscienceData.labels;
+      omniscienceChart.data.datasets[0].data = omniscienceData.correct;
+      omniscienceChart.data.datasets[1].data = omniscienceData.abstention;
+      omniscienceChart.data.datasets[2].data = omniscienceData.hallucination;
+      omniscienceChart.update();
+
+      // Update MRCR chart
+      mrcrChart.data.datasets = getMrcrDatasets();
+      mrcrChart.update();
+    }
   </script>
 </body>
 
