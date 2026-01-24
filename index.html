@@ -511,7 +511,11 @@
       margin-bottom: 1.5rem;
       color: var(--text-primary);
       padding-left: 0.5rem;
-      border-left: 3px solid var(--gemini-primary);
+      border-left: 3px solid rgba(139, 92, 246, 1);
+    }
+
+    .section-title.section-title-blue {
+      border-left-color: rgb(59, 130, 246);
     }
 
     .section-title+.section-title,
@@ -739,6 +743,30 @@
     .toggle-switch.active::after {
       left: 20px;
       background: var(--claude-primary);
+    }
+
+    /* Coding toggle styling */
+    .coding-toggle .toggle-switch.active {
+      background: var(--rating-great);
+      border-color: var(--rating-great-border);
+    }
+
+    .coding-toggle .toggle-switch.active::after {
+      background: rgba(59, 130, 246, 0.8);
+    }
+
+    /* Coding benchmarks visibility */
+    .coding-benchmark-section {
+      transition: opacity 0.3s ease, max-height 0.4s ease;
+      overflow: hidden;
+    }
+
+    .hide-coding-benchmarks .coding-benchmark-section {
+      opacity: 0;
+      max-height: 0;
+      margin: 0;
+      padding: 0;
+      pointer-events: none;
     }
 
     /* Annotation Tooltips */
@@ -1664,20 +1692,26 @@
     </section>
 
     <!-- TAB 2: BENCHMARKS -->
-    <section id="tab-benchmarks" class="tab-content">
+    <!-- TAB 2: BENCHMARKS -->
+    <section id="tab-benchmarks" class="tab-content hide-coding-benchmarks">
 
       <!-- AA-Omniscience -->
       <div class="section-title-wrapper">
-        <h2 class="section-title">General Accuracy — AA-Omniscience Benchmark</h2>
+        <h2 class="section-title">Knowledge Accuracy — AA-Omniscience Benchmark</h2>
         <div class="toggle-inline">
           <span class="toggle-label">Claude models</span>
           <div class="toggle-switch claude-toggle active" onclick="toggleClaudeModels()"></div>
+        </div>
+        <div class="toggle-inline coding-toggle" style="margin-left: auto;">
+          <span class="toggle-label">Coding benchmarks</span>
+          <div class="toggle-switch coding-bench-toggle" onclick="toggleCodingBenchmarks()"></div>
         </div>
       </div>
       <div class="chart-container">
         <canvas id="omniscienceChart"></canvas>
       </div>
-      <p class="chart-note">Higher is better for Correct & Abstention. Lower is better for Hallucination.</p>
+      <p class="chart-note">Shows how often the model is right or wrong when answering. Higher is better for Correct &
+        Abstention. Lower is better for Hallucination.</p>
 
       <!-- Notes for first chart -->
       <div class="notes collapsible expanded" style="margin-top: 1rem;">
@@ -1708,7 +1742,8 @@
       <div class="chart-container">
         <canvas id="mrcrChart"></canvas>
       </div>
-      <p class="chart-note">Shows how accuracy degrades as context length increases.</p>
+      <p class="chart-note">Shows how accuracy at locating specific details in context degrades as context length
+        increases. Ranges from 8k to 1048k (1M) tokens. Higher is better.</p>
 
       <!-- Notes for second chart -->
       <div class="notes collapsible expanded" style="margin-top: 1rem;">
@@ -1718,21 +1753,91 @@
         </div>
         <div class="notes-content">
           <ul class="notes-list">
+            <li>• Differs greatly from the next benchmark. While AA-LCR revolves around comprehending really long
+              texts, MRCR v2 8-Needle evaluates the model capability to find specific information in those texts.</li>
             <li>• There's no benchmark for 196k tokens, the next available one is 256k, which is not supported
               by ChatGPT on the web and app.</li>
             <li>• Maximum context window of <strong>GPT 5.2 Thinking</strong> is 196k tokens.</li>
-            <li>• Maximum context window of <strong>GPT 5.2 Instant</strong> is 16k/32k tokens (Free/Plus & Go).</li>
+            <li>• Maximum context window of <strong>GPT 5.2 Instant</strong> is 16k/32k/128k tokens (Free/Plus &
+              Go/Pro).</li>
             <li>• Maximum context window of <strong>Gemini 3 Pro, Gemini 3 Flash Thinking and Gemini 3 Flash</strong> is
-              32k/128k/1M tokens (Free/Plus/Pro).</li>
+              32k/128k/1048k tokens (Free/Plus/Pro & Ultra).</li>
             <li>• Maximum context window of <strong>Claude Opus 4.5 and Claude Sonnet 4.5</strong> is 200k tokens.</li>
           </ul>
         </div>
+      </div>
+
+      <!-- Long Context Reasoning - AA-LCR -->
+      <div class="section-title-wrapper" style="margin-top: 3rem;">
+        <h2 class="section-title">Long Context Reasoning — AA-LCR</h2>
+        <div class="toggle-inline">
+          <span class="toggle-label">Claude models</span>
+          <div class="toggle-switch claude-toggle active" onclick="toggleClaudeModels()"></div>
+        </div>
+      </div>
+      <div class="chart-container">
+        <canvas id="lcrChart"></canvas>
+      </div>
+      <p class="chart-note">Shows extraction, comprehension and synthesizing of information on texts ranging from 10k to
+        100k tokens. Higher is better.</p>
+
+      <!-- Notes for LCR chart -->
+      <div class="notes collapsible expanded" style="margin-top: 1rem;">
+        <div class="notes-header" onclick="toggleNotes(this)">
+          <p class="notes-title">AA-LCR Notes</p>
+          <span class="notes-toggle">▼</span>
+        </div>
+        <div class="notes-content">
+          <ul class="notes-list">
+            <li>• Differs greatly from the previous benchmark. While AA-LCR revolves around comprehending really long
+              texts, MRCR v2 8-Needle evaluates the model capability to find specific information in those texts.</li>
+            <li>• Maximum context window of <strong>GPT 5.2 Thinking</strong> is 196k tokens.</li>
+            <li>• Maximum context window of <strong>GPT 5.2 Instant</strong> is 16k/32k/128k tokens (Free/Plus &
+              Go/Pro).</li>
+            <li>• Maximum context window of <strong>Gemini 3 Pro, Gemini 3 Flash Thinking and Gemini 3 Flash</strong> is
+              32k/128k/1048k tokens (Free/Plus/Pro & Ultra).</li>
+            <li>• Maximum context window of <strong>Claude Opus 4.5 and Claude Sonnet 4.5</strong> is 200k tokens.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Terminal-Bench Hard -->
+      <div class="coding-benchmark-section">
+        <div class="section-title-wrapper" style="margin-top: 3rem;">
+          <h2 class="section-title section-title-blue">Agentic Coding — Terminal-Bench Hard</h2>
+          <div class="toggle-inline">
+            <span class="toggle-label">Claude models</span>
+            <div class="toggle-switch claude-toggle active" onclick="toggleClaudeModels()"></div>
+          </div>
+        </div>
+        <div class="chart-container">
+          <canvas id="terminalBenchChart"></canvas>
+        </div>
+        <p class="chart-note">Shows capabilities in terminal environments. Higher is better.</p>
+      </div>
+
+      <!-- τ²-Bench Telecom -->
+      <div class="coding-benchmark-section">
+        <div class="section-title-wrapper" style="margin-top: 3rem;">
+          <h2 class="section-title section-title-blue">Agentic Tool Use — τ²-Bench Telecom</h2>
+          <div class="toggle-inline">
+            <span class="toggle-label">Claude models</span>
+            <div class="toggle-switch claude-toggle active" onclick="toggleClaudeModels()"></div>
+          </div>
+        </div>
+        <div class="chart-container">
+          <canvas id="tau2BenchChart"></canvas>
+        </div>
+        <p class="chart-note">Shows performance guiding a user through technical troubleshooting. Higher is better.</p>
       </div>
 
       <!-- Notes -->
       <div class="notes" style="margin-top: 2rem;">
         <p class="notes-title">Notes</p>
         <ul class="notes-list">
+          <li>• For "<strong>GPT 5.2 Codex</strong>", "<em>gpt-5.2-codex:xhigh</em>" was used in the graph. This model
+            is only
+            available on Codex and Visual Studio Code, not the web or the app.</li>
           <li>• For "<strong>GPT 5.2 Thinking</strong>", "<em>gpt-5.2:medium</em>" was used in the graph; as
             GPT-5.2:xhigh is not available on the web.</li>
           <li>• For "<strong>GPT 5.2 Instant</strong>", "<em>gpt-5.2</em>" was used in the graph.</li>
@@ -1817,33 +1922,50 @@
     const claudeColor = '#fa812d';
     const claudeColorLight = 'rgba(250, 129, 45, 0.7)';
 
-    // Track Claude visibility
+    // Track Claude and Coding visibility
     let showClaudeModels = true;
+    let showCodingBenchmarks = false;
     let omniscienceChart, mrcrChart;
 
     // Base data for AA-Omniscience
+    const omniscienceCodingLabels = ['GPT 5.2 Codex'];
     const omniscienceBaseLabels = ['GPT 5.2 Thinking', 'GPT 5.2 Instant', 'Gemini 3 Pro', 'Gemini 3 Flash Thinking', 'Gemini 3 Flash'];
     const omniscienceClaudeLabels = ['Claude 4.5 Opus Thinking', 'Claude 4.5 Sonnet Thinking'];
-    const omniscienceBaseCorrect = [36.0, 28.0, 54.0, 54.0, 47.0];
-    const omniscienceClaudeCorrect = [43.0, 31.0];
-    const omniscienceBaseAbstention = [26.2, 28.8, 5.5, 4.3, 4.8];
-    const omniscienceClaudeAbstention = [23.9, 35.9];
-    const omniscienceBaseHallucination = [37.8, 43.2, 40.5, 43.7, 48.2];
-    const omniscienceClaudeHallucination = [33.1, 33.1];
+
+    const omniscienceCodingCorrect = [38.45];
+    const omniscienceBaseCorrect = [35.53, 27.95, 53.65, 51.87, 47.15];
+    const omniscienceClaudeCorrect = [43.12, 30.90];
+
+    const omniscienceCodingAbstention = [17.55];
+    const omniscienceBaseAbstention = [25.68, 29.32, 4.20, 4.50, 6.35];
+    const omniscienceClaudeAbstention = [24.00, 36.12];
+
+    const omniscienceCodingHallucination = [44.0];
+    const omniscienceBaseHallucination = [38.79, 42.73, 42.16, 43.63, 46.50];
+    const omniscienceClaudeHallucination = [32.88, 32.98];
 
     function getOmniscienceData() {
-      const labels = showClaudeModels
-        ? [...omniscienceBaseLabels, ...omniscienceClaudeLabels]
-        : omniscienceBaseLabels;
-      const correct = showClaudeModels
-        ? [...omniscienceBaseCorrect, ...omniscienceClaudeCorrect]
-        : omniscienceBaseCorrect;
-      const abstention = showClaudeModels
-        ? [...omniscienceBaseAbstention, ...omniscienceClaudeAbstention]
-        : omniscienceBaseAbstention;
-      const hallucination = showClaudeModels
-        ? [...omniscienceBaseHallucination, ...omniscienceClaudeHallucination]
-        : omniscienceBaseHallucination;
+      let labels = [...omniscienceBaseLabels];
+      let correct = [...omniscienceBaseCorrect];
+      let abstention = [...omniscienceBaseAbstention];
+      let hallucination = [...omniscienceBaseHallucination];
+
+      // Add Codex at the beginning if coding benchmarks are visible
+      if (showCodingBenchmarks) {
+        labels = [...omniscienceCodingLabels, ...labels];
+        correct = [...omniscienceCodingCorrect, ...correct];
+        abstention = [...omniscienceCodingAbstention, ...abstention];
+        hallucination = [...omniscienceCodingHallucination, ...hallucination];
+      }
+
+      // Add Claude at the end if visible
+      if (showClaudeModels) {
+        labels = [...labels, ...omniscienceClaudeLabels];
+        correct = [...correct, ...omniscienceClaudeCorrect];
+        abstention = [...abstention, ...omniscienceClaudeAbstention];
+        hallucination = [...hallucination, ...omniscienceClaudeHallucination];
+      }
+
       return { labels, correct, abstention, hallucination };
     }
 
@@ -1931,6 +2053,21 @@
         }
       }
     });
+
+    // Codex dataset for MRCR
+    const mrcrCodexDataset = {
+      label: 'GPT 5.2 Codex',
+      data: [75.7, 75.7, 75.7, 75.7, 75.7, null],
+      borderColor: 'rgba(16, 163, 127, 0.85)',
+      backgroundColor: 'rgba(16, 163, 127, 0.6)',
+      borderWidth: 3,
+      borderDash: [10, 5],
+      tension: 0.3,
+      pointRadius: 6,
+      pointHoverRadius: 8,
+      pointBackgroundColor: 'rgba(16, 163, 127, 0.85)',
+      spanGaps: false
+    };
 
     // Base datasets for MRCR
     const mrcrBaseDatasets = [
@@ -2024,9 +2161,19 @@
     ];
 
     function getMrcrDatasets() {
-      return showClaudeModels
-        ? [...mrcrBaseDatasets, ...mrcrClaudeDatasets]
-        : mrcrBaseDatasets;
+      let datasets = [...mrcrBaseDatasets];
+
+      // Add Codex at the beginning if coding benchmarks are visible
+      if (showCodingBenchmarks) {
+        datasets = [mrcrCodexDataset, ...datasets];
+      }
+
+      // Add Claude at the end if visible
+      if (showClaudeModels) {
+        datasets = [...datasets, ...mrcrClaudeDatasets];
+      }
+
+      return datasets;
     }
 
     // MRCR v2 8-Needle Benchmark - Line Chart
@@ -2091,6 +2238,270 @@
               display: true,
               text: 'Context Length (tokens)',
               color: '#8a7d65'
+            }
+          }
+        }
+      }
+    });
+
+    // Long Context Reasoning - AA-LCR - Horizontal Bar Chart
+    let lcrChart;
+    const lcrCodingLabels = ['GPT 5.2 Codex'];
+    const lcrBaseLabels = ['GPT 5.2 Thinking', 'GPT 5.2 Instant', 'Gemini 3 Pro', 'Gemini 3 Flash Thinking', 'Gemini 3 Flash'];
+    const lcrClaudeLabels = ['Claude Opus 4.5 Thinking', 'Claude 4.5 Sonnet Thinking'];
+    const lcrCodingData = [75.7];
+    const lcrBaseData = [63.3, 38.0, 70.7, 66.3, 48.0];
+    const lcrClaudeData = [74.0, 65.7];
+
+    function getLcrData() {
+      let labels = [...lcrBaseLabels];
+      let data = [...lcrBaseData];
+
+      // Add Codex at the beginning if coding benchmarks are visible
+      if (showCodingBenchmarks) {
+        labels = [...lcrCodingLabels, ...labels];
+        data = [...lcrCodingData, ...data];
+      }
+
+      // Add Claude at the end if visible
+      if (showClaudeModels) {
+        labels = [...labels, ...lcrClaudeLabels];
+        data = [...data, ...lcrClaudeData];
+      }
+
+      return { labels, data };
+    }
+
+    const lcrCtx = document.getElementById('lcrChart').getContext('2d');
+    const lcrInitData = getLcrData();
+    lcrChart = new Chart(lcrCtx, {
+      type: 'bar',
+      data: {
+        labels: lcrInitData.labels,
+        datasets: [{
+          label: 'Score ↑',
+          data: lcrInitData.data,
+          backgroundColor: 'rgba(139, 92, 246, 0.7)',
+          borderColor: 'rgba(139, 92, 246, 1)',
+          borderWidth: 1,
+          borderRadius: 4
+        }]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false
+          },
+          tooltip: {
+            backgroundColor: 'rgba(18, 18, 26, 0.95)',
+            titleColor: '#d9c5a2',
+            bodyColor: '#b3a385',
+            borderColor: 'rgba(255, 255, 255, 0.1)',
+            borderWidth: 1,
+            padding: 12,
+            cornerRadius: 8,
+            callbacks: {
+              label: function (context) {
+                return context.parsed.x + '%';
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            beginAtZero: true,
+            max: 100,
+            ticks: {
+              callback: function (value) {
+                return value + '%';
+              }
+            },
+            grid: {
+              color: 'rgba(255, 255, 255, 0.05)'
+            }
+          },
+          y: {
+            grid: {
+              display: false
+            }
+          }
+        }
+      }
+    });
+
+    // Terminal-Bench Hard - Horizontal Bar Chart
+    let terminalBenchChart;
+    const terminalBenchCodingLabels = ['GPT 5.2 Codex'];
+    const terminalBenchBaseLabels = ['GPT 5.2 Thinking', 'GPT 5.2 Instant', 'Gemini 3 Pro', 'Gemini 3 Flash Thinking', 'Gemini 3 Flash'];
+    const terminalBenchClaudeLabels = ['Claude Opus 4.5 Thinking', 'Claude 4.5 Sonnet Thinking'];
+    const terminalBenchCodingData = [37.1];
+    const terminalBenchBaseData = [43.2, 31.8, 41.7, 38.6, 31.8];
+    const terminalBenchClaudeData = [47.0, 35.6];
+
+    function getTerminalBenchData() {
+      let labels = [...terminalBenchBaseLabels];
+      let data = [...terminalBenchBaseData];
+
+      // Add Codex at the beginning (always shown in this chart when visible)
+      if (showCodingBenchmarks) {
+        labels = [...terminalBenchCodingLabels, ...labels];
+        data = [...terminalBenchCodingData, ...data];
+      }
+
+      // Add Claude at the end if visible
+      if (showClaudeModels) {
+        labels = [...labels, ...terminalBenchClaudeLabels];
+        data = [...data, ...terminalBenchClaudeData];
+      }
+
+      return { labels, data };
+    }
+
+    const terminalBenchCtx = document.getElementById('terminalBenchChart').getContext('2d');
+    const terminalBenchInitData = getTerminalBenchData();
+    terminalBenchChart = new Chart(terminalBenchCtx, {
+      type: 'bar',
+      data: {
+        labels: terminalBenchInitData.labels,
+        datasets: [{
+          label: 'Score ↑',
+          data: terminalBenchInitData.data,
+          backgroundColor: 'rgba(59, 130, 246, 0.7)',
+          borderColor: 'rgba(59, 130, 246, 1)',
+          borderWidth: 1,
+          borderRadius: 4
+        }]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false
+          },
+          tooltip: {
+            backgroundColor: 'rgba(18, 18, 26, 0.95)',
+            titleColor: '#d9c5a2',
+            bodyColor: '#b3a385',
+            borderColor: 'rgba(255, 255, 255, 0.1)',
+            borderWidth: 1,
+            padding: 12,
+            cornerRadius: 8,
+            callbacks: {
+              label: function (context) {
+                return context.parsed.x + '%';
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            beginAtZero: true,
+            max: 100,
+            ticks: {
+              callback: function (value) {
+                return value + '%';
+              }
+            },
+            grid: {
+              color: 'rgba(255, 255, 255, 0.05)'
+            }
+          },
+          y: {
+            grid: {
+              display: false
+            }
+          }
+        }
+      }
+    });
+
+    // τ²-Bench Telecom - Horizontal Bar Chart
+    let tau2BenchChart;
+    const tau2BenchCodingLabels = ['GPT 5.2 Codex'];
+    const tau2BenchBaseLabels = ['GPT 5.2 Thinking', 'GPT 5.2 Instant', 'Gemini 3 Pro', 'Gemini 3 Flash Thinking', 'Gemini 3 Flash'];
+    const tau2BenchClaudeLabels = ['Claude Opus 4.5 Thinking', 'Claude 4.5 Sonnet Thinking'];
+    const tau2BenchCodingData = [92.1];
+    const tau2BenchBaseData = [74.3, 46.5, 87.1, 80.4, 43.3];
+    const tau2BenchClaudeData = [89.5, 78.1];
+
+    function getTau2BenchData() {
+      let labels = [...tau2BenchBaseLabels];
+      let data = [...tau2BenchBaseData];
+
+      // Add Codex at the beginning (always shown in this chart when visible)
+      if (showCodingBenchmarks) {
+        labels = [...tau2BenchCodingLabels, ...labels];
+        data = [...tau2BenchCodingData, ...data];
+      }
+
+      // Add Claude at the end if visible
+      if (showClaudeModels) {
+        labels = [...labels, ...tau2BenchClaudeLabels];
+        data = [...data, ...tau2BenchClaudeData];
+      }
+
+      return { labels, data };
+    }
+
+    const tau2BenchCtx = document.getElementById('tau2BenchChart').getContext('2d');
+    const tau2BenchInitData = getTau2BenchData();
+    tau2BenchChart = new Chart(tau2BenchCtx, {
+      type: 'bar',
+      data: {
+        labels: tau2BenchInitData.labels,
+        datasets: [{
+          label: 'Score ↑',
+          data: tau2BenchInitData.data,
+          backgroundColor: 'rgba(59, 130, 246, 0.7)',
+          borderColor: 'rgba(59, 130, 246, 1)',
+          borderWidth: 1,
+          borderRadius: 4
+        }]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false
+          },
+          tooltip: {
+            backgroundColor: 'rgba(18, 18, 26, 0.95)',
+            titleColor: '#d9c5a2',
+            bodyColor: '#b3a385',
+            borderColor: 'rgba(255, 255, 255, 0.1)',
+            borderWidth: 1,
+            padding: 12,
+            cornerRadius: 8,
+            callbacks: {
+              label: function (context) {
+                return context.parsed.x + '%';
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            beginAtZero: true,
+            max: 100,
+            ticks: {
+              callback: function (value) {
+                return value + '%';
+              }
+            },
+            grid: {
+              color: 'rgba(255, 255, 255, 0.05)'
+            }
+          },
+          y: {
+            grid: {
+              display: false
             }
           }
         }
@@ -2232,12 +2643,94 @@
       // Update MRCR chart
       mrcrChart.data.datasets = getMrcrDatasets();
       mrcrChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
+
+      // Update LCR chart
+      const lcrData = getLcrData();
+      lcrChart.data.labels = lcrData.labels;
+      lcrChart.data.datasets[0].data = lcrData.data;
+      lcrChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
+
+      // Update Terminal-Bench chart
+      const terminalBenchData = getTerminalBenchData();
+      terminalBenchChart.data.labels = terminalBenchData.labels;
+      terminalBenchChart.data.datasets[0].data = terminalBenchData.data;
+      terminalBenchChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
+
+      // Update τ²-Bench chart
+      const tau2BenchData = getTau2BenchData();
+      tau2BenchChart.data.labels = tau2BenchData.labels;
+      tau2BenchChart.data.datasets[0].data = tau2BenchData.data;
+      tau2BenchChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
+
       // Save state to localStorage
       localStorage.setItem('claudeModelsVisible', showClaudeModels);
     }
 
+    // Toggle function for Coding benchmarks - hides coding charts and GPT 5.2 Codex
+    function toggleCodingBenchmarks() {
+      showCodingBenchmarks = !showCodingBenchmarks;
+
+      // Sync all Coding toggles
+      document.querySelectorAll('.coding-bench-toggle').forEach(toggle => {
+        toggle.classList.toggle('active', showCodingBenchmarks);
+      });
+
+      // Toggle visibility of coding benchmark sections
+      const benchmarksTab = document.getElementById('tab-benchmarks');
+      benchmarksTab.classList.toggle('hide-coding-benchmarks', !showCodingBenchmarks);
+
+      // Animation config for smooth transitions
+      const animationConfig = {
+        duration: 750,
+        easing: 'easeInOutQuart'
+      };
+
+      // Update all charts to show/hide GPT 5.2 Codex
+      const omniscienceData = getOmniscienceData();
+      omniscienceChart.data.labels = omniscienceData.labels;
+      omniscienceChart.data.datasets[0].data = omniscienceData.correct;
+      omniscienceChart.data.datasets[1].data = omniscienceData.abstention;
+      omniscienceChart.data.datasets[2].data = omniscienceData.hallucination;
+      omniscienceChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
+
+      mrcrChart.data.datasets = getMrcrDatasets();
+      mrcrChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
+
+      const lcrData = getLcrData();
+      lcrChart.data.labels = lcrData.labels;
+      lcrChart.data.datasets[0].data = lcrData.data;
+      lcrChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
+
+      const terminalBenchData = getTerminalBenchData();
+      terminalBenchChart.data.labels = terminalBenchData.labels;
+      terminalBenchChart.data.datasets[0].data = terminalBenchData.data;
+      terminalBenchChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
+
+      const tau2BenchData = getTau2BenchData();
+      tau2BenchChart.data.labels = tau2BenchData.labels;
+      tau2BenchChart.data.datasets[0].data = tau2BenchData.data;
+      tau2BenchChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
+
+      // Save state to localStorage
+      localStorage.setItem('codingBenchmarksVisible', showCodingBenchmarks);
+    }
+
     // Initialize saved toggle states from localStorage on page load
     function initializeSavedStates() {
+      let needsChartUpdate = false;
+
+      // Restore Coding benchmarks toggle state
+      const savedCoding = localStorage.getItem('codingBenchmarksVisible');
+      if (savedCoding === 'true') {
+        showCodingBenchmarks = true;
+        document.querySelectorAll('.coding-bench-toggle').forEach(toggle => {
+          toggle.classList.add('active');
+        });
+        const benchmarksTab = document.getElementById('tab-benchmarks');
+        benchmarksTab.classList.remove('hide-coding-benchmarks');
+        needsChartUpdate = true;
+      }
+
       // Restore Claude models toggle state
       const savedClaude = localStorage.getItem('claudeModelsVisible');
       if (savedClaude === 'false') {
@@ -2246,6 +2739,11 @@
         document.querySelectorAll('.claude-toggle').forEach(toggle => {
           toggle.classList.remove('active');
         });
+        needsChartUpdate = true;
+      }
+
+      // Update charts if state changed from default
+      if (needsChartUpdate) {
         // Update charts without animation (instant)
         const omniscienceData = getOmniscienceData();
         omniscienceChart.data.labels = omniscienceData.labels;
@@ -2255,6 +2753,18 @@
         omniscienceChart.update('none');
         mrcrChart.data.datasets = getMrcrDatasets();
         mrcrChart.update('none');
+        const lcrData = getLcrData();
+        lcrChart.data.labels = lcrData.labels;
+        lcrChart.data.datasets[0].data = lcrData.data;
+        lcrChart.update('none');
+        const terminalBenchData = getTerminalBenchData();
+        terminalBenchChart.data.labels = terminalBenchData.labels;
+        terminalBenchChart.data.datasets[0].data = terminalBenchData.data;
+        terminalBenchChart.update('none');
+        const tau2BenchData = getTau2BenchData();
+        tau2BenchChart.data.labels = tau2BenchData.labels;
+        tau2BenchChart.data.datasets[0].data = tau2BenchData.data;
+        tau2BenchChart.update('none');
       }
 
       // Restore subjective toggle state
