@@ -1334,8 +1334,7 @@
             </tr>
             <tr>
               <td>Memory features</td>
-              <td>Memories</td>
-              <td>Memories</td>
+              <td colspan="2">Memories</td>
               <td id="memory-chatgpt-plus" class="rating-great">Memories, chat history, chat search</td>
               <td colspan="2">Memories, chat history<span class="annotation"
                   data-tooltip="While Gemini has a memory feature, it sometimes calls memory when not needed, or decides not to call it when actually needed; which sometimes provokes inconsistent outputs.">⁶</span>
@@ -1407,8 +1406,7 @@
             </tr>
             <tr>
               <td>Agent mode uses per month</td>
-              <td>No</td>
-              <td>No</td>
+              <td colspan="2">No</td>
               <td class="rating-excellent">40</td>
               <td colspan="3">No</td>
             </tr>
@@ -1757,6 +1755,7 @@
               texts, MRCR v2 8-Needle evaluates the model capability to find specific information in those texts.</li>
             <li>• There's no benchmark for 196k tokens, the next available one is 256k, which is not supported
               by ChatGPT on the web and app.</li>
+            <li>• This benchmark currently does not provide support for GPT-5.2 Codex.</li>
             <li>• Maximum context window of <strong>GPT 5.2 Thinking</strong> is 196k tokens.</li>
             <li>• Maximum context window of <strong>GPT 5.2 Instant</strong> is 16k/32k/128k tokens (Free/Plus &
               Go/Pro).</li>
@@ -1914,6 +1913,37 @@
     Chart.defaults.borderColor = 'rgba(255, 255, 255, 0.08)';
     Chart.defaults.font.family = "'Inter', sans-serif";
 
+    // Function to create striped pattern for non-reasoning models
+    function createStripedPattern(baseColor, stripeColor = 'rgba(0, 0, 0, 0.15)') {
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      const size = 10;
+      canvas.width = size;
+      canvas.height = size;
+
+      // Fill with base color
+      ctx.fillStyle = baseColor;
+      ctx.fillRect(0, 0, size, size);
+
+      // Draw diagonal stripes
+      ctx.strokeStyle = stripeColor;
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(0, size);
+      ctx.lineTo(size, 0);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(-size / 2, size / 2);
+      ctx.lineTo(size / 2, -size / 2);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(size / 2, size + size / 2);
+      ctx.lineTo(size + size / 2, size / 2);
+      ctx.stroke();
+
+      return ctx.createPattern(canvas, 'repeat');
+    }
+
     // Colors
     const chatgptColor = '#10a37f';
     const chatgptColorLight = 'rgba(16, 163, 127, 0.7)';
@@ -1926,6 +1956,12 @@
     let showClaudeModels = true;
     let showCodingBenchmarks = false;
     let omniscienceChart, mrcrChart;
+
+    // DISABLED: Striped patterns for non-reasoning models (GPT 5.2 Instant, Gemini 3 Flash)
+    // Set to true to enable diagonal striped patterns on bar charts for non-reasoning models.
+    // The createStripedPattern() function and pattern logic in getData functions are ready to use.
+    // Currently disabled - will revisit when a better visual approach is found.
+    const useStripedPatternsForNonReasoning = false;
 
     // Base data for AA-Omniscience
     const omniscienceCodingLabels = ['GPT 5.2 Codex'];
@@ -1966,7 +2002,34 @@
         hallucination = [...hallucination, ...omniscienceClaudeHallucination];
       }
 
-      return { labels, correct, abstention, hallucination };
+      // Create background colors arrays with striped pattern for non-reasoning models
+      const correctColor = 'rgba(34, 197, 94, 0.7)';
+      const abstentionColor = 'rgba(139, 92, 246, 0.7)';
+      const hallucinationColor = 'rgba(239, 68, 68, 0.7)';
+
+      let correctBgColors, abstentionBgColors, hallucinationBgColors;
+
+      if (useStripedPatternsForNonReasoning) {
+        const correctStriped = createStripedPattern(correctColor);
+        const abstentionStriped = createStripedPattern(abstentionColor);
+        const hallucinationStriped = createStripedPattern(hallucinationColor);
+
+        correctBgColors = labels.map(label =>
+          (label === 'GPT 5.2 Instant' || label === 'Gemini 3 Flash') ? correctStriped : correctColor
+        );
+        abstentionBgColors = labels.map(label =>
+          (label === 'GPT 5.2 Instant' || label === 'Gemini 3 Flash') ? abstentionStriped : abstentionColor
+        );
+        hallucinationBgColors = labels.map(label =>
+          (label === 'GPT 5.2 Instant' || label === 'Gemini 3 Flash') ? hallucinationStriped : hallucinationColor
+        );
+      } else {
+        correctBgColors = correctColor;
+        abstentionBgColors = abstentionColor;
+        hallucinationBgColors = hallucinationColor;
+      }
+
+      return { labels, correct, abstention, hallucination, correctBgColors, abstentionBgColors, hallucinationBgColors };
     }
 
     // AA-Omniscience Benchmark - Grouped Bar Chart
@@ -1980,7 +2043,7 @@
           {
             label: 'Correct ↑',
             data: omniscienceData.correct,
-            backgroundColor: 'rgba(34, 197, 94, 0.7)',
+            backgroundColor: omniscienceData.correctBgColors,
             borderColor: 'rgba(34, 197, 94, 1)',
             borderWidth: 1,
             borderRadius: 4
@@ -1988,7 +2051,7 @@
           {
             label: 'Abstention ↑',
             data: omniscienceData.abstention,
-            backgroundColor: 'rgba(139, 92, 246, 0.7)',
+            backgroundColor: omniscienceData.abstentionBgColors,
             borderColor: 'rgba(139, 92, 246, 1)',
             borderWidth: 1,
             borderRadius: 4
@@ -1996,7 +2059,7 @@
           {
             label: 'Hallucination ↓',
             data: omniscienceData.hallucination,
-            backgroundColor: 'rgba(239, 68, 68, 0.7)',
+            backgroundColor: omniscienceData.hallucinationBgColors,
             borderColor: 'rgba(239, 68, 68, 1)',
             borderWidth: 1,
             borderRadius: 4
@@ -2053,21 +2116,6 @@
         }
       }
     });
-
-    // Codex dataset for MRCR
-    const mrcrCodexDataset = {
-      label: 'GPT 5.2 Codex',
-      data: [75.7, 75.7, 75.7, 75.7, 75.7, null],
-      borderColor: 'rgba(16, 163, 127, 0.85)',
-      backgroundColor: 'rgba(16, 163, 127, 0.6)',
-      borderWidth: 3,
-      borderDash: [10, 5],
-      tension: 0.3,
-      pointRadius: 6,
-      pointHoverRadius: 8,
-      pointBackgroundColor: 'rgba(16, 163, 127, 0.85)',
-      spanGaps: false
-    };
 
     // Base datasets for MRCR
     const mrcrBaseDatasets = [
@@ -2148,14 +2196,13 @@
       {
         label: 'Claude 4.5 Sonnet Thinking',
         data: [48.9, 42.4, 32.8, 26.0, 16.6, null],
-        borderColor: 'rgba(249, 115, 22, 0.6)',
-        backgroundColor: 'rgba(249, 115, 22, 0.4)',
+        borderColor: 'rgba(250, 129, 45, 0.7)',
+        backgroundColor: 'rgba(250, 129, 45, 0.5)',
         borderWidth: 2,
-        borderDash: [5, 5],
         tension: 0.3,
         pointRadius: 5,
         pointHoverRadius: 7,
-        pointBackgroundColor: 'rgba(249, 115, 22, 0.6)',
+        pointBackgroundColor: 'rgba(250, 129, 45, 0.7)',
         spanGaps: false
       }
     ];
@@ -2163,10 +2210,7 @@
     function getMrcrDatasets() {
       let datasets = [...mrcrBaseDatasets];
 
-      // Add Codex at the beginning if coding benchmarks are visible
-      if (showCodingBenchmarks) {
-        datasets = [mrcrCodexDataset, ...datasets];
-      }
+      // Note: GPT 5.2 Codex has no data for MRCR v2 8-Needle, so it's not included here
 
       // Add Claude at the end if visible
       if (showClaudeModels) {
@@ -2269,7 +2313,25 @@
         data = [...data, ...lcrClaudeData];
       }
 
-      return { labels, data };
+      // Create background colors array with striped pattern for non-reasoning models
+      const baseColor = 'rgba(139, 92, 246, 0.7)';
+      const borderColor = 'rgba(139, 92, 246, 1)';
+
+      let backgroundColors;
+      if (useStripedPatternsForNonReasoning) {
+        const stripedPattern = createStripedPattern(baseColor);
+        backgroundColors = labels.map(label => {
+          // Non-reasoning models get striped pattern
+          if (label === 'GPT 5.2 Instant' || label === 'Gemini 3 Flash') {
+            return stripedPattern;
+          }
+          return baseColor;
+        });
+      } else {
+        backgroundColors = baseColor;
+      }
+
+      return { labels, data, backgroundColors, borderColor };
     }
 
     const lcrCtx = document.getElementById('lcrChart').getContext('2d');
@@ -2281,8 +2343,8 @@
         datasets: [{
           label: 'Score ↑',
           data: lcrInitData.data,
-          backgroundColor: 'rgba(139, 92, 246, 0.7)',
-          borderColor: 'rgba(139, 92, 246, 1)',
+          backgroundColor: lcrInitData.backgroundColors,
+          borderColor: lcrInitData.borderColor,
           borderWidth: 1,
           borderRadius: 4
         }]
@@ -2357,7 +2419,24 @@
         data = [...data, ...terminalBenchClaudeData];
       }
 
-      return { labels, data };
+      // Create background colors array with striped pattern for non-reasoning models
+      const baseColor = 'rgba(59, 130, 246, 0.7)';
+      const borderColor = 'rgba(59, 130, 246, 1)';
+
+      let backgroundColors;
+      if (useStripedPatternsForNonReasoning) {
+        const stripedPattern = createStripedPattern(baseColor);
+        backgroundColors = labels.map(label => {
+          if (label === 'GPT 5.2 Instant' || label === 'Gemini 3 Flash') {
+            return stripedPattern;
+          }
+          return baseColor;
+        });
+      } else {
+        backgroundColors = baseColor;
+      }
+
+      return { labels, data, backgroundColors, borderColor };
     }
 
     const terminalBenchCtx = document.getElementById('terminalBenchChart').getContext('2d');
@@ -2369,8 +2448,8 @@
         datasets: [{
           label: 'Score ↑',
           data: terminalBenchInitData.data,
-          backgroundColor: 'rgba(59, 130, 246, 0.7)',
-          borderColor: 'rgba(59, 130, 246, 1)',
+          backgroundColor: terminalBenchInitData.backgroundColors,
+          borderColor: terminalBenchInitData.borderColor,
           borderWidth: 1,
           borderRadius: 4
         }]
@@ -2445,7 +2524,24 @@
         data = [...data, ...tau2BenchClaudeData];
       }
 
-      return { labels, data };
+      // Create background colors array with striped pattern for non-reasoning models
+      const baseColor = 'rgba(59, 130, 246, 0.7)';
+      const borderColor = 'rgba(59, 130, 246, 1)';
+
+      let backgroundColors;
+      if (useStripedPatternsForNonReasoning) {
+        const stripedPattern = createStripedPattern(baseColor);
+        backgroundColors = labels.map(label => {
+          if (label === 'GPT 5.2 Instant' || label === 'Gemini 3 Flash') {
+            return stripedPattern;
+          }
+          return baseColor;
+        });
+      } else {
+        backgroundColors = baseColor;
+      }
+
+      return { labels, data, backgroundColors, borderColor };
     }
 
     const tau2BenchCtx = document.getElementById('tau2BenchChart').getContext('2d');
@@ -2457,8 +2553,8 @@
         datasets: [{
           label: 'Score ↑',
           data: tau2BenchInitData.data,
-          backgroundColor: 'rgba(59, 130, 246, 0.7)',
-          borderColor: 'rgba(59, 130, 246, 1)',
+          backgroundColor: tau2BenchInitData.backgroundColors,
+          borderColor: tau2BenchInitData.borderColor,
           borderWidth: 1,
           borderRadius: 4
         }]
@@ -2636,8 +2732,11 @@
       const omniscienceData = getOmniscienceData();
       omniscienceChart.data.labels = omniscienceData.labels;
       omniscienceChart.data.datasets[0].data = omniscienceData.correct;
+      omniscienceChart.data.datasets[0].backgroundColor = omniscienceData.correctBgColors;
       omniscienceChart.data.datasets[1].data = omniscienceData.abstention;
+      omniscienceChart.data.datasets[1].backgroundColor = omniscienceData.abstentionBgColors;
       omniscienceChart.data.datasets[2].data = omniscienceData.hallucination;
+      omniscienceChart.data.datasets[2].backgroundColor = omniscienceData.hallucinationBgColors;
       omniscienceChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
 
       // Update MRCR chart
@@ -2648,18 +2747,21 @@
       const lcrData = getLcrData();
       lcrChart.data.labels = lcrData.labels;
       lcrChart.data.datasets[0].data = lcrData.data;
+      lcrChart.data.datasets[0].backgroundColor = lcrData.backgroundColors;
       lcrChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
 
       // Update Terminal-Bench chart
       const terminalBenchData = getTerminalBenchData();
       terminalBenchChart.data.labels = terminalBenchData.labels;
       terminalBenchChart.data.datasets[0].data = terminalBenchData.data;
+      terminalBenchChart.data.datasets[0].backgroundColor = terminalBenchData.backgroundColors;
       terminalBenchChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
 
       // Update τ²-Bench chart
       const tau2BenchData = getTau2BenchData();
       tau2BenchChart.data.labels = tau2BenchData.labels;
       tau2BenchChart.data.datasets[0].data = tau2BenchData.data;
+      tau2BenchChart.data.datasets[0].backgroundColor = tau2BenchData.backgroundColors;
       tau2BenchChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
 
       // Save state to localStorage
@@ -2689,8 +2791,11 @@
       const omniscienceData = getOmniscienceData();
       omniscienceChart.data.labels = omniscienceData.labels;
       omniscienceChart.data.datasets[0].data = omniscienceData.correct;
+      omniscienceChart.data.datasets[0].backgroundColor = omniscienceData.correctBgColors;
       omniscienceChart.data.datasets[1].data = omniscienceData.abstention;
+      omniscienceChart.data.datasets[1].backgroundColor = omniscienceData.abstentionBgColors;
       omniscienceChart.data.datasets[2].data = omniscienceData.hallucination;
+      omniscienceChart.data.datasets[2].backgroundColor = omniscienceData.hallucinationBgColors;
       omniscienceChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
 
       mrcrChart.data.datasets = getMrcrDatasets();
@@ -2699,16 +2804,19 @@
       const lcrData = getLcrData();
       lcrChart.data.labels = lcrData.labels;
       lcrChart.data.datasets[0].data = lcrData.data;
+      lcrChart.data.datasets[0].backgroundColor = lcrData.backgroundColors;
       lcrChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
 
       const terminalBenchData = getTerminalBenchData();
       terminalBenchChart.data.labels = terminalBenchData.labels;
       terminalBenchChart.data.datasets[0].data = terminalBenchData.data;
+      terminalBenchChart.data.datasets[0].backgroundColor = terminalBenchData.backgroundColors;
       terminalBenchChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
 
       const tau2BenchData = getTau2BenchData();
       tau2BenchChart.data.labels = tau2BenchData.labels;
       tau2BenchChart.data.datasets[0].data = tau2BenchData.data;
+      tau2BenchChart.data.datasets[0].backgroundColor = tau2BenchData.backgroundColors;
       tau2BenchChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
 
       // Save state to localStorage
@@ -2748,22 +2856,28 @@
         const omniscienceData = getOmniscienceData();
         omniscienceChart.data.labels = omniscienceData.labels;
         omniscienceChart.data.datasets[0].data = omniscienceData.correct;
+        omniscienceChart.data.datasets[0].backgroundColor = omniscienceData.correctBgColors;
         omniscienceChart.data.datasets[1].data = omniscienceData.abstention;
+        omniscienceChart.data.datasets[1].backgroundColor = omniscienceData.abstentionBgColors;
         omniscienceChart.data.datasets[2].data = omniscienceData.hallucination;
+        omniscienceChart.data.datasets[2].backgroundColor = omniscienceData.hallucinationBgColors;
         omniscienceChart.update('none');
         mrcrChart.data.datasets = getMrcrDatasets();
         mrcrChart.update('none');
         const lcrData = getLcrData();
         lcrChart.data.labels = lcrData.labels;
         lcrChart.data.datasets[0].data = lcrData.data;
+        lcrChart.data.datasets[0].backgroundColor = lcrData.backgroundColors;
         lcrChart.update('none');
         const terminalBenchData = getTerminalBenchData();
         terminalBenchChart.data.labels = terminalBenchData.labels;
         terminalBenchChart.data.datasets[0].data = terminalBenchData.data;
+        terminalBenchChart.data.datasets[0].backgroundColor = terminalBenchData.backgroundColors;
         terminalBenchChart.update('none');
         const tau2BenchData = getTau2BenchData();
         tau2BenchChart.data.labels = tau2BenchData.labels;
         tau2BenchChart.data.datasets[0].data = tau2BenchData.data;
+        tau2BenchChart.data.datasets[0].backgroundColor = tau2BenchData.backgroundColors;
         tau2BenchChart.update('none');
       }
 
