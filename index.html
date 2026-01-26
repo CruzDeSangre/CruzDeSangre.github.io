@@ -755,6 +755,16 @@
       background: rgba(59, 130, 246, 0.8);
     }
 
+    /* Instant models toggle styling */
+    .instant-toggle .toggle-switch.active {
+      background: rgba(139, 92, 246, 0.15);
+      border-color: rgba(139, 92, 246, 0.3);
+    }
+
+    .instant-toggle .toggle-switch.active::after {
+      background: rgba(139, 92, 246, 0.8);
+    }
+
     /* Coding benchmarks visibility */
     .coding-benchmark-section {
       transition: opacity 0.3s ease, max-height 0.4s ease;
@@ -1700,6 +1710,10 @@
           <span class="toggle-label">Claude models</span>
           <div class="toggle-switch claude-toggle active" onclick="toggleClaudeModels()"></div>
         </div>
+        <div class="toggle-inline instant-toggle">
+          <span class="toggle-label">Non-reasoning models</span>
+          <div class="toggle-switch instant-model-toggle active" onclick="toggleInstantModels()"></div>
+        </div>
         <div class="toggle-inline coding-toggle" style="margin-left: auto;">
           <span class="toggle-label">Coding benchmarks</span>
           <div class="toggle-switch coding-bench-toggle" onclick="toggleCodingBenchmarks()"></div>
@@ -1735,6 +1749,10 @@
         <div class="toggle-inline">
           <span class="toggle-label">Claude models</span>
           <div class="toggle-switch claude-toggle active" onclick="toggleClaudeModels()"></div>
+        </div>
+        <div class="toggle-inline instant-toggle">
+          <span class="toggle-label">Non-reasoning models</span>
+          <div class="toggle-switch instant-model-toggle active" onclick="toggleInstantModels()"></div>
         </div>
       </div>
       <div class="chart-container">
@@ -1773,6 +1791,10 @@
           <span class="toggle-label">Claude models</span>
           <div class="toggle-switch claude-toggle active" onclick="toggleClaudeModels()"></div>
         </div>
+        <div class="toggle-inline instant-toggle">
+          <span class="toggle-label">Non-reasoning models</span>
+          <div class="toggle-switch instant-model-toggle active" onclick="toggleInstantModels()"></div>
+        </div>
       </div>
       <div class="chart-container">
         <canvas id="lcrChart"></canvas>
@@ -1808,6 +1830,10 @@
             <span class="toggle-label">Claude models</span>
             <div class="toggle-switch claude-toggle active" onclick="toggleClaudeModels()"></div>
           </div>
+          <div class="toggle-inline instant-toggle">
+            <span class="toggle-label">Non-reasoning models</span>
+            <div class="toggle-switch instant-model-toggle active" onclick="toggleInstantModels()"></div>
+          </div>
         </div>
         <div class="chart-container">
           <canvas id="terminalBenchChart"></canvas>
@@ -1822,6 +1848,10 @@
           <div class="toggle-inline">
             <span class="toggle-label">Claude models</span>
             <div class="toggle-switch claude-toggle active" onclick="toggleClaudeModels()"></div>
+          </div>
+          <div class="toggle-inline instant-toggle">
+            <span class="toggle-label">Non-reasoning models</span>
+            <div class="toggle-switch instant-model-toggle active" onclick="toggleInstantModels()"></div>
           </div>
         </div>
         <div class="chart-container">
@@ -1952,8 +1982,9 @@
     const claudeColor = '#fa812d';
     const claudeColorLight = 'rgba(250, 129, 45, 0.7)';
 
-    // Track Claude and Coding visibility
+    // Track Claude, Instant, and Coding visibility
     let showClaudeModels = true;
+    let showInstantModels = true;
     let showCodingBenchmarks = false;
     let omniscienceChart, mrcrChart;
 
@@ -1963,28 +1994,32 @@
     // Currently disabled - will revisit when a better visual approach is found.
     const useStripedPatternsForNonReasoning = false;
 
-    // Base data for AA-Omniscience
+    // Base data for AA-Omniscience (split into reasoning and instant models)
     const omniscienceCodingLabels = ['GPT 5.2 Codex'];
-    const omniscienceBaseLabels = ['GPT 5.2 Thinking', 'GPT 5.2 Instant', 'Gemini 3 Pro', 'Gemini 3 Flash Thinking', 'Gemini 3 Flash'];
+    const omniscienceReasoningLabels = ['GPT 5.2 Thinking', 'Gemini 3 Pro', 'Gemini 3 Flash Thinking'];
+    const omniscienceInstantLabels = ['GPT 5.2 Instant', 'Gemini 3 Flash'];
     const omniscienceClaudeLabels = ['Claude 4.5 Opus Thinking', 'Claude 4.5 Sonnet Thinking'];
 
     const omniscienceCodingCorrect = [38.45];
-    const omniscienceBaseCorrect = [35.53, 27.95, 53.65, 51.87, 47.15];
+    const omniscienceReasoningCorrect = [35.53, 53.65, 51.87];
+    const omniscienceInstantCorrect = [27.95, 47.15];
     const omniscienceClaudeCorrect = [43.12, 30.90];
 
     const omniscienceCodingAbstention = [17.55];
-    const omniscienceBaseAbstention = [25.68, 29.32, 4.20, 4.50, 6.35];
+    const omniscienceReasoningAbstention = [25.68, 4.20, 4.50];
+    const omniscienceInstantAbstention = [29.32, 6.35];
     const omniscienceClaudeAbstention = [24.00, 36.12];
 
     const omniscienceCodingHallucination = [44.0];
-    const omniscienceBaseHallucination = [38.79, 42.73, 42.16, 43.63, 46.50];
+    const omniscienceReasoningHallucination = [38.79, 42.16, 43.63];
+    const omniscienceInstantHallucination = [42.73, 46.50];
     const omniscienceClaudeHallucination = [32.88, 32.98];
 
     function getOmniscienceData() {
-      let labels = [...omniscienceBaseLabels];
-      let correct = [...omniscienceBaseCorrect];
-      let abstention = [...omniscienceBaseAbstention];
-      let hallucination = [...omniscienceBaseHallucination];
+      let labels = [...omniscienceReasoningLabels];
+      let correct = [...omniscienceReasoningCorrect];
+      let abstention = [...omniscienceReasoningAbstention];
+      let hallucination = [...omniscienceReasoningHallucination];
 
       // Add Codex at the beginning if coding benchmarks are visible
       if (showCodingBenchmarks) {
@@ -1992,6 +2027,14 @@
         correct = [...omniscienceCodingCorrect, ...correct];
         abstention = [...omniscienceCodingAbstention, ...abstention];
         hallucination = [...omniscienceCodingHallucination, ...hallucination];
+      }
+
+      // Add Instant models if visible
+      if (showInstantModels) {
+        labels = [...labels, ...omniscienceInstantLabels];
+        correct = [...correct, ...omniscienceInstantCorrect];
+        abstention = [...abstention, ...omniscienceInstantAbstention];
+        hallucination = [...hallucination, ...omniscienceInstantHallucination];
       }
 
       // Add Claude at the end if visible
@@ -2117,8 +2160,8 @@
       }
     });
 
-    // Base datasets for MRCR
-    const mrcrBaseDatasets = [
+    // Base datasets for MRCR (split into reasoning and instant)
+    const mrcrReasoningDatasets = [
       {
         label: 'GPT 5.2 Thinking',
         data: [87.9, 78.2, 75.7, 66.7, 63.1, null],
@@ -2129,19 +2172,6 @@
         pointRadius: 6,
         pointHoverRadius: 8,
         pointBackgroundColor: chatgptColor,
-        spanGaps: false
-      },
-      {
-        label: 'GPT 5.2 Instant',
-        data: [49.4, 45.1, 50.4, 41.5, 31.9, null],
-        borderColor: 'rgba(16, 163, 127, 0.5)',
-        backgroundColor: 'rgba(16, 163, 127, 0.3)',
-        borderWidth: 2,
-        borderDash: [5, 5],
-        tension: 0.3,
-        pointRadius: 5,
-        pointHoverRadius: 7,
-        pointBackgroundColor: 'rgba(16, 163, 127, 0.5)',
         spanGaps: false
       },
       {
@@ -2165,6 +2195,22 @@
         pointRadius: 5,
         pointHoverRadius: 7,
         pointBackgroundColor: 'rgba(243, 77, 101, 0.7)'
+      }
+    ];
+
+    const mrcrInstantDatasets = [
+      {
+        label: 'GPT 5.2 Instant',
+        data: [49.4, 45.1, 50.4, 41.5, 31.9, null],
+        borderColor: 'rgba(16, 163, 127, 0.5)',
+        backgroundColor: 'rgba(16, 163, 127, 0.3)',
+        borderWidth: 2,
+        borderDash: [5, 5],
+        tension: 0.3,
+        pointRadius: 5,
+        pointHoverRadius: 7,
+        pointBackgroundColor: 'rgba(16, 163, 127, 0.5)',
+        spanGaps: false
       },
       {
         label: 'Gemini 3 Flash',
@@ -2208,9 +2254,14 @@
     ];
 
     function getMrcrDatasets() {
-      let datasets = [...mrcrBaseDatasets];
+      let datasets = [...mrcrReasoningDatasets];
 
       // Note: GPT 5.2 Codex has no data for MRCR v2 8-Needle, so it's not included here
+
+      // Add Instant models if visible
+      if (showInstantModels) {
+        datasets = [...datasets, ...mrcrInstantDatasets];
+      }
 
       // Add Claude at the end if visible
       if (showClaudeModels) {
@@ -2291,20 +2342,28 @@
     // Long Context Reasoning - AA-LCR - Horizontal Bar Chart
     let lcrChart;
     const lcrCodingLabels = ['GPT 5.2 Codex'];
-    const lcrBaseLabels = ['GPT 5.2 Thinking', 'GPT 5.2 Instant', 'Gemini 3 Pro', 'Gemini 3 Flash Thinking', 'Gemini 3 Flash'];
+    const lcrReasoningLabels = ['GPT 5.2 Thinking', 'Gemini 3 Pro', 'Gemini 3 Flash Thinking'];
+    const lcrInstantLabels = ['GPT 5.2 Instant', 'Gemini 3 Flash'];
     const lcrClaudeLabels = ['Claude Opus 4.5 Thinking', 'Claude 4.5 Sonnet Thinking'];
     const lcrCodingData = [75.7];
-    const lcrBaseData = [63.3, 38.0, 70.7, 66.3, 48.0];
+    const lcrReasoningData = [63.3, 70.7, 66.3];
+    const lcrInstantData = [38.0, 48.0];
     const lcrClaudeData = [74.0, 65.7];
 
     function getLcrData() {
-      let labels = [...lcrBaseLabels];
-      let data = [...lcrBaseData];
+      let labels = [...lcrReasoningLabels];
+      let data = [...lcrReasoningData];
 
       // Add Codex at the beginning if coding benchmarks are visible
       if (showCodingBenchmarks) {
         labels = [...lcrCodingLabels, ...labels];
         data = [...lcrCodingData, ...data];
+      }
+
+      // Add Instant models if visible
+      if (showInstantModels) {
+        labels = [...labels, ...lcrInstantLabels];
+        data = [...data, ...lcrInstantData];
       }
 
       // Add Claude at the end if visible
@@ -2397,20 +2456,28 @@
     // Terminal-Bench Hard - Horizontal Bar Chart
     let terminalBenchChart;
     const terminalBenchCodingLabels = ['GPT 5.2 Codex'];
-    const terminalBenchBaseLabels = ['GPT 5.2 Thinking', 'GPT 5.2 Instant', 'Gemini 3 Pro', 'Gemini 3 Flash Thinking', 'Gemini 3 Flash'];
+    const terminalBenchReasoningLabels = ['GPT 5.2 Thinking', 'Gemini 3 Pro', 'Gemini 3 Flash Thinking'];
+    const terminalBenchInstantLabels = ['GPT 5.2 Instant', 'Gemini 3 Flash'];
     const terminalBenchClaudeLabels = ['Claude Opus 4.5 Thinking', 'Claude 4.5 Sonnet Thinking'];
     const terminalBenchCodingData = [37.1];
-    const terminalBenchBaseData = [43.2, 31.8, 41.7, 38.6, 31.8];
+    const terminalBenchReasoningData = [43.2, 41.7, 38.6];
+    const terminalBenchInstantData = [31.8, 31.8];
     const terminalBenchClaudeData = [47.0, 35.6];
 
     function getTerminalBenchData() {
-      let labels = [...terminalBenchBaseLabels];
-      let data = [...terminalBenchBaseData];
+      let labels = [...terminalBenchReasoningLabels];
+      let data = [...terminalBenchReasoningData];
 
       // Add Codex at the beginning (always shown in this chart when visible)
       if (showCodingBenchmarks) {
         labels = [...terminalBenchCodingLabels, ...labels];
         data = [...terminalBenchCodingData, ...data];
+      }
+
+      // Add Instant models if visible
+      if (showInstantModels) {
+        labels = [...labels, ...terminalBenchInstantLabels];
+        data = [...data, ...terminalBenchInstantData];
       }
 
       // Add Claude at the end if visible
@@ -2502,20 +2569,28 @@
     // τ²-Bench Telecom - Horizontal Bar Chart
     let tau2BenchChart;
     const tau2BenchCodingLabels = ['GPT 5.2 Codex'];
-    const tau2BenchBaseLabels = ['GPT 5.2 Thinking', 'GPT 5.2 Instant', 'Gemini 3 Pro', 'Gemini 3 Flash Thinking', 'Gemini 3 Flash'];
+    const tau2BenchReasoningLabels = ['GPT 5.2 Thinking', 'Gemini 3 Pro', 'Gemini 3 Flash Thinking'];
+    const tau2BenchInstantLabels = ['GPT 5.2 Instant', 'Gemini 3 Flash'];
     const tau2BenchClaudeLabels = ['Claude Opus 4.5 Thinking', 'Claude 4.5 Sonnet Thinking'];
     const tau2BenchCodingData = [92.1];
-    const tau2BenchBaseData = [74.3, 46.5, 87.1, 80.4, 43.3];
+    const tau2BenchReasoningData = [74.3, 87.1, 80.4];
+    const tau2BenchInstantData = [46.5, 43.3];
     const tau2BenchClaudeData = [89.5, 78.1];
 
     function getTau2BenchData() {
-      let labels = [...tau2BenchBaseLabels];
-      let data = [...tau2BenchBaseData];
+      let labels = [...tau2BenchReasoningLabels];
+      let data = [...tau2BenchReasoningData];
 
       // Add Codex at the beginning (always shown in this chart when visible)
       if (showCodingBenchmarks) {
         labels = [...tau2BenchCodingLabels, ...labels];
         data = [...tau2BenchCodingData, ...data];
+      }
+
+      // Add Instant models if visible
+      if (showInstantModels) {
+        labels = [...labels, ...tau2BenchInstantLabels];
+        data = [...data, ...tau2BenchInstantData];
       }
 
       // Add Claude at the end if visible
@@ -2768,6 +2843,61 @@
       localStorage.setItem('claudeModelsVisible', showClaudeModels);
     }
 
+    // Toggle function for Instant models - syncs all toggles
+    function toggleInstantModels() {
+      showInstantModels = !showInstantModels;
+
+      // Sync all Instant toggles
+      document.querySelectorAll('.instant-model-toggle').forEach(toggle => {
+        toggle.classList.toggle('active', showInstantModels);
+      });
+
+      // Animation config for smooth transitions
+      const animationConfig = {
+        duration: 750,
+        easing: 'easeInOutQuart'
+      };
+
+      // Update Omniscience chart
+      const omniscienceData = getOmniscienceData();
+      omniscienceChart.data.labels = omniscienceData.labels;
+      omniscienceChart.data.datasets[0].data = omniscienceData.correct;
+      omniscienceChart.data.datasets[0].backgroundColor = omniscienceData.correctBgColors;
+      omniscienceChart.data.datasets[1].data = omniscienceData.abstention;
+      omniscienceChart.data.datasets[1].backgroundColor = omniscienceData.abstentionBgColors;
+      omniscienceChart.data.datasets[2].data = omniscienceData.hallucination;
+      omniscienceChart.data.datasets[2].backgroundColor = omniscienceData.hallucinationBgColors;
+      omniscienceChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
+
+      // Update MRCR chart
+      mrcrChart.data.datasets = getMrcrDatasets();
+      mrcrChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
+
+      // Update LCR chart
+      const lcrData = getLcrData();
+      lcrChart.data.labels = lcrData.labels;
+      lcrChart.data.datasets[0].data = lcrData.data;
+      lcrChart.data.datasets[0].backgroundColor = lcrData.backgroundColors;
+      lcrChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
+
+      // Update Terminal-Bench chart
+      const terminalBenchData = getTerminalBenchData();
+      terminalBenchChart.data.labels = terminalBenchData.labels;
+      terminalBenchChart.data.datasets[0].data = terminalBenchData.data;
+      terminalBenchChart.data.datasets[0].backgroundColor = terminalBenchData.backgroundColors;
+      terminalBenchChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
+
+      // Update τ²-Bench chart
+      const tau2BenchData = getTau2BenchData();
+      tau2BenchChart.data.labels = tau2BenchData.labels;
+      tau2BenchChart.data.datasets[0].data = tau2BenchData.data;
+      tau2BenchChart.data.datasets[0].backgroundColor = tau2BenchData.backgroundColors;
+      tau2BenchChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
+
+      // Save state to localStorage
+      localStorage.setItem('instantModelsVisible', showInstantModels);
+    }
+
     // Toggle function for Coding benchmarks - hides coding charts and GPT 5.2 Codex
     function toggleCodingBenchmarks() {
       showCodingBenchmarks = !showCodingBenchmarks;
@@ -2963,7 +3093,7 @@
     style="text-align: center; padding: 2rem 1rem; margin-top: 3rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.8rem;">
     Made by <strong> u/Pasto_Shouwa</strong>
     <br>
-    <em>Last updated on 23/01/2026</em>
+    <em>Last updated on 26/01/2026</em>
   </footer>
 </body>
 
