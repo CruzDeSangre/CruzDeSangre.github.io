@@ -765,6 +765,16 @@
       background: rgba(139, 92, 246, 0.8);
     }
 
+    /* ChatGPT Pro toggle styling (green like ChatGPT) */
+    .chatgpt-pro-toggle .toggle-switch.active {
+      background: rgba(16, 163, 127, 0.15);
+      border-color: rgba(16, 163, 127, 0.3);
+    }
+
+    .chatgpt-pro-toggle .toggle-switch.active::after {
+      background: rgba(16, 163, 127, 0.8);
+    }
+
     /* Coding benchmarks visibility */
     .coding-benchmark-section {
       transition: opacity 0.3s ease, max-height 0.4s ease;
@@ -1714,6 +1724,10 @@
           <span class="toggle-label">Non-reasoning models</span>
           <div class="toggle-switch instant-model-toggle active" onclick="toggleInstantModels()"></div>
         </div>
+        <div class="toggle-inline chatgpt-pro-toggle">
+          <span class="toggle-label">ChatGPT Pro-only models</span>
+          <div class="toggle-switch chatgpt-pro-model-toggle" onclick="toggleChatGPTProModels()"></div>
+        </div>
         <div class="toggle-inline coding-toggle" style="margin-left: auto;">
           <span class="toggle-label">Coding benchmarks</span>
           <div class="toggle-switch coding-bench-toggle" onclick="toggleCodingBenchmarks()"></div>
@@ -1754,6 +1768,10 @@
           <span class="toggle-label">Non-reasoning models</span>
           <div class="toggle-switch instant-model-toggle active" onclick="toggleInstantModels()"></div>
         </div>
+        <div class="toggle-inline chatgpt-pro-toggle">
+          <span class="toggle-label">ChatGPT Pro-only models</span>
+          <div class="toggle-switch chatgpt-pro-model-toggle active" onclick="toggleChatGPTProModels()"></div>
+        </div>
       </div>
       <div class="chart-container">
         <canvas id="mrcrChart"></canvas>
@@ -1774,7 +1792,8 @@
             <li>• There's no benchmark for 196k tokens, the next available one is 256k, which is not supported
               by ChatGPT on the web and app.</li>
             <li>• This benchmark currently does not provide support for GPT-5.2 Codex.</li>
-            <li>• Maximum context window of <strong>GPT 5.2 Thinking</strong> is 196k tokens.</li>
+            <li>• Maximum context window of <strong>GPT 5.2 Thinking and GPT 5.2 Thinking xhigh</strong> is 196k tokens.
+            </li>
             <li>• Maximum context window of <strong>GPT 5.2 Instant</strong> is 16k/32k/128k tokens (Free/Plus &
               Go/Pro).</li>
             <li>• Maximum context window of <strong>Gemini 3 Pro, Gemini 3 Flash Thinking and Gemini 3 Flash</strong> is
@@ -1795,6 +1814,10 @@
           <span class="toggle-label">Non-reasoning models</span>
           <div class="toggle-switch instant-model-toggle active" onclick="toggleInstantModels()"></div>
         </div>
+        <div class="toggle-inline chatgpt-pro-toggle">
+          <span class="toggle-label">ChatGPT Pro-only models</span>
+          <div class="toggle-switch chatgpt-pro-model-toggle active" onclick="toggleChatGPTProModels()"></div>
+        </div>
       </div>
       <div class="chart-container">
         <canvas id="lcrChart"></canvas>
@@ -1812,7 +1835,8 @@
           <ul class="notes-list">
             <li>• Differs greatly from the previous benchmark. While AA-LCR revolves around comprehending really long
               texts, MRCR v2 8-Needle evaluates the model capability to find specific information in those texts.</li>
-            <li>• Maximum context window of <strong>GPT 5.2 Thinking</strong> is 196k tokens.</li>
+            <li>• Maximum context window of <strong>GPT 5.2 Thinking and GPT 5.2 Thinking xhigh</strong> is 196k tokens.
+            </li>
             <li>• Maximum context window of <strong>GPT 5.2 Instant</strong> is 16k/32k/128k tokens (Free/Plus &
               Go/Pro).</li>
             <li>• Maximum context window of <strong>Gemini 3 Pro, Gemini 3 Flash Thinking and Gemini 3 Flash</strong> is
@@ -1834,6 +1858,10 @@
             <span class="toggle-label">Non-reasoning models</span>
             <div class="toggle-switch instant-model-toggle active" onclick="toggleInstantModels()"></div>
           </div>
+          <div class="toggle-inline chatgpt-pro-toggle">
+            <span class="toggle-label">ChatGPT Pro-only models</span>
+            <div class="toggle-switch chatgpt-pro-model-toggle active" onclick="toggleChatGPTProModels()"></div>
+          </div>
         </div>
         <div class="chart-container">
           <canvas id="terminalBenchChart"></canvas>
@@ -1853,6 +1881,10 @@
             <span class="toggle-label">Non-reasoning models</span>
             <div class="toggle-switch instant-model-toggle active" onclick="toggleInstantModels()"></div>
           </div>
+          <div class="toggle-inline chatgpt-pro-toggle">
+            <span class="toggle-label">ChatGPT Pro-only models</span>
+            <div class="toggle-switch chatgpt-pro-model-toggle active" onclick="toggleChatGPTProModels()"></div>
+          </div>
         </div>
         <div class="chart-container">
           <canvas id="tau2BenchChart"></canvas>
@@ -1867,21 +1899,29 @@
           <li>• For "<strong>GPT 5.2 Codex</strong>", "<em>gpt-5.2-codex:xhigh</em>" was used in the graph. This model
             is only
             available on Codex and Visual Studio Code, not the web or the app.</li>
-          <li>• For "<strong>GPT 5.2 Thinking</strong>", "<em>gpt-5.2:medium</em>" was used in the graph; as
-            GPT-5.2:xhigh is not available on the web.</li>
+          <li>• For "<strong>GPT 5.2 Thinking xhigh</strong>", "<em>gpt-5.2:xhigh</em>" was used in the graph.
+            A weaker (33.33% lower reasoning time) version of this model is available only for ChatGPT Pro accounts, by
+            selecting "heavy" as the thinking effort with 5.2 Thinking or "standard" as the thinking effort with 5.2
+            Pro.
+            The actual model is available only when selecting "extended" as the thinking effort with 5.2 Pro.
+          </li>
+          <li>• For "<strong>GPT 5.2 Thinking</strong>", "<em>gpt-5.2:medium</em>" was used in the graph.</li>
           <li>• For "<strong>GPT 5.2 Instant</strong>", "<em>gpt-5.2</em>" was used in the graph.</li>
           <li>• For "<strong>Gemini 3 Pro</strong>", "<em>gemini-3-pro-preview:high</em>" was used in the
             graph.</li>
-          <li>• For "<strong>Gemini 3 Flash Thinking</strong>",
-            "<em>gemini-3-flash-preview:thinking:high</em>" was used in the graph.
+          <li>• For "<strong>Gemini 3 Flash Thinking</strong>", "<em>gemini-3-flash-preview:thinking:high</em>" was used
+            in the graph.
           </li>
           <li>• For "<strong>Gemini 3 Flash</strong>", "<em>gemini-3-flash-preview</em>" was used in the
             graph.</li>
-          <li>• For "<strong>Claude Opus 4.5 Thinking</strong>", "<em>claude-opus-4.5:thinking</em>" was used in the
-            graph.</li>
-          <li>• For "<strong>Claude Sonnet 4.5 Thinking</strong>", "<em>claude-sonnet-4.5:thinking</em>" was used in the
-            graph.</li>
-          <li>• Claude models included due to them being available for Gemini users through the Antigravity app.</li>
+          <li>• For "<strong>Claude Opus 4.5 Thinking</strong>", "<em>claude-opus-4.5:thinking:high</em>" was used in
+            the graph.</li>
+          <li>• For "<strong>Claude Sonnet 4.5 Thinking</strong>", "<em>claude-sonnet-4.5:thinking:high</em>" was used
+            in the graph.</li>
+          <li>• For "<strong>Claude Haiku 4.5 Thinking</strong>", "<em>claude-haiku-4.5:thinking:high</em>" was used in
+            the graph.</li>
+          <li>• Claude Opus 4.5 Thinking and Claude Sonnet 4.5 Thinking are available for Gemini users through the
+            Antigravity app.</li>
         </ul>
       </div>
     </section>
@@ -1892,7 +1932,7 @@
         <!-- ChatGPT -->
         <div class="benefit-card chatgpt">
           <div class="benefit-header">
-            <div class="benefit-icon">◆</div>
+            <div class="benefit-icon">⌘</div>
             <h2 class="benefit-title">ChatGPT</h2>
           </div>
           <ul class="benefit-list">
@@ -1982,9 +2022,10 @@
     const claudeColor = '#fa812d';
     const claudeColorLight = 'rgba(250, 129, 45, 0.7)';
 
-    // Track Claude, Instant, and Coding visibility
+    // Track Claude, Instant, ChatGPT Pro, and Coding visibility
     let showClaudeModels = true;
     let showInstantModels = true;
+    let showChatGPTProModels = false;
     let showCodingBenchmarks = false;
     let omniscienceChart, mrcrChart;
 
@@ -1994,56 +2035,76 @@
     // Currently disabled - will revisit when a better visual approach is found.
     const useStripedPatternsForNonReasoning = false;
 
-    // Base data for AA-Omniscience (split into reasoning and instant models)
-    const omniscienceCodingLabels = ['GPT 5.2 Codex'];
-    const omniscienceReasoningLabels = ['GPT 5.2 Thinking', 'Gemini 3 Pro', 'Gemini 3 Flash Thinking'];
-    const omniscienceInstantLabels = ['GPT 5.2 Instant', 'Gemini 3 Flash'];
-    const omniscienceClaudeLabels = ['Claude 4.5 Opus Thinking', 'Claude 4.5 Sonnet Thinking'];
+    // ============================================================================
+    // MODEL ORDERING SYSTEM (FUTURE-PROOF)
+    // ============================================================================
+    // Each model has a sortOrder value. Lower numbers appear first.
+    // Use gaps of 10 to allow inserting new models between existing ones.
+    // Example: To add a model between GPT Codex (10) and GPT Thinking (20), use 15.
+    //
+    // Current order:
+    //   10: ⌘ GPT 5.2 Codex (coding toggle)
+    //   15: ⌘ GPT 5.2 Thinking xhigh
+    //   20: ⌘ GPT 5.2 Thinking
+    //   30: ⌘ GPT 5.2 Instant (instant toggle)
+    //   40: ✦ Gemini 3 Pro
+    //   50: ✦ Gemini 3 Flash Thinking
+    //   60: ✦ Gemini 3 Flash (instant toggle)
+    //   70: ❋ Claude 4.5 Opus Thinking (claude toggle)
+    //   80: ❋ Claude 4.5 Sonnet Thinking (claude toggle)
+    //   90: ❋ Claude 4.5 Haiku Thinking (claude toggle)
+    // ============================================================================
 
-    const omniscienceCodingCorrect = [38.45];
-    const omniscienceReasoningCorrect = [35.53, 53.65, 51.87];
-    const omniscienceInstantCorrect = [27.95, 47.15];
-    const omniscienceClaudeCorrect = [43.12, 30.90];
-
-    const omniscienceCodingAbstention = [17.55];
-    const omniscienceReasoningAbstention = [25.68, 4.20, 4.50];
-    const omniscienceInstantAbstention = [29.32, 6.35];
-    const omniscienceClaudeAbstention = [24.00, 36.12];
-
-    const omniscienceCodingHallucination = [44.0];
-    const omniscienceReasoningHallucination = [38.79, 42.16, 43.63];
-    const omniscienceInstantHallucination = [42.73, 46.50];
-    const omniscienceClaudeHallucination = [32.88, 32.98];
+    // Base data for AA-Omniscience using object structure with sortOrder
+    const omniscienceCodingModels = [
+      { label: '⌘ GPT 5.2 Codex', correct: 38.45, abstention: 17.55, hallucination: 44.0, sortOrder: 10 }
+    ];
+    const omniscienceReasoningModels = [
+      { label: '⌘ GPT 5.2 Thinking', correct: 35.53, abstention: 25.68, hallucination: 38.79, sortOrder: 20 },
+      { label: '✦ Gemini 3 Pro', correct: 53.65, abstention: 4.20, hallucination: 42.16, sortOrder: 40 },
+      { label: '✦ Gemini 3 Flash Thinking', correct: 51.87, abstention: 4.50, hallucination: 43.63, sortOrder: 50 }
+    ];
+    const omniscienceChatGPTProModels = [
+      { label: '⌘ GPT 5.2 Thinking xhigh', correct: 41.35, abstention: 12.99, hallucination: 45.66, sortOrder: 15 }
+    ];
+    const omniscienceInstantModels = [
+      { label: '⌘ GPT 5.2 Instant', correct: 27.95, abstention: 29.32, hallucination: 42.73, sortOrder: 30 },
+      { label: '✦ Gemini 3 Flash', correct: 47.15, abstention: 6.35, hallucination: 46.50, sortOrder: 60 }
+    ];
+    const omniscienceClaudeModels = [
+      { label: '❋ Claude 4.5 Opus Thinking', correct: 43.12, abstention: 24.00, hallucination: 32.88, sortOrder: 70 },
+      { label: '❋ Claude 4.5 Sonnet Thinking', correct: 30.90, abstention: 36.12, hallucination: 32.98, sortOrder: 80 },
+      { label: '❋ Claude 4.5 Haiku Thinking', correct: 16.18, abstention: 61.97, hallucination: 21.85, sortOrder: 90 }
+    ];
 
     function getOmniscienceData() {
-      let labels = [...omniscienceReasoningLabels];
-      let correct = [...omniscienceReasoningCorrect];
-      let abstention = [...omniscienceReasoningAbstention];
-      let hallucination = [...omniscienceReasoningHallucination];
+      // Collect all visible models
+      let models = [...omniscienceReasoningModels];
 
-      // Add Codex at the beginning if coding benchmarks are visible
       if (showCodingBenchmarks) {
-        labels = [...omniscienceCodingLabels, ...labels];
-        correct = [...omniscienceCodingCorrect, ...correct];
-        abstention = [...omniscienceCodingAbstention, ...abstention];
-        hallucination = [...omniscienceCodingHallucination, ...hallucination];
+        models = [...models, ...omniscienceCodingModels];
       }
 
-      // Add Instant models if visible
+      if (showChatGPTProModels) {
+        models = [...models, ...omniscienceChatGPTProModels];
+      }
+
       if (showInstantModels) {
-        labels = [...labels, ...omniscienceInstantLabels];
-        correct = [...correct, ...omniscienceInstantCorrect];
-        abstention = [...abstention, ...omniscienceInstantAbstention];
-        hallucination = [...hallucination, ...omniscienceInstantHallucination];
+        models = [...models, ...omniscienceInstantModels];
       }
 
-      // Add Claude at the end if visible
       if (showClaudeModels) {
-        labels = [...labels, ...omniscienceClaudeLabels];
-        correct = [...correct, ...omniscienceClaudeCorrect];
-        abstention = [...abstention, ...omniscienceClaudeAbstention];
-        hallucination = [...hallucination, ...omniscienceClaudeHallucination];
+        models = [...models, ...omniscienceClaudeModels];
       }
+
+      // Sort by sortOrder to maintain family grouping
+      models.sort((a, b) => a.sortOrder - b.sortOrder);
+
+      // Extract arrays for Chart.js
+      const labels = models.map(m => m.label);
+      const correct = models.map(m => m.correct);
+      const abstention = models.map(m => m.abstention);
+      const hallucination = models.map(m => m.hallucination);
 
       // Create background colors arrays with striped pattern for non-reasoning models
       const correctColor = 'rgba(34, 197, 94, 0.7)';
@@ -2160,19 +2221,21 @@
       }
     });
 
-    // Base datasets for MRCR (split into reasoning and instant)
+    // Base datasets for MRCR (split into reasoning and instant) - with sortOrder for family grouping
+    // Don't add "⌘ ✦ ❋" to the labels in this benchmark
     const mrcrReasoningDatasets = [
       {
         label: 'GPT 5.2 Thinking',
         data: [87.9, 78.2, 75.7, 66.7, 63.1, null],
-        borderColor: chatgptColor,
-        backgroundColor: chatgptColorLight,
-        borderWidth: 3,
+        borderColor: 'rgba(16, 163, 127, 0.7)',
+        backgroundColor: 'rgba(16, 163, 127, 0.5)',
+        borderWidth: 2,
         tension: 0.3,
-        pointRadius: 6,
-        pointHoverRadius: 8,
-        pointBackgroundColor: chatgptColor,
-        spanGaps: false
+        pointRadius: 5,
+        pointHoverRadius: 7,
+        pointBackgroundColor: 'rgba(16, 163, 127, 0.7)',
+        spanGaps: false,
+        sortOrder: 20
       },
       {
         label: 'Gemini 3 Pro',
@@ -2183,7 +2246,8 @@
         tension: 0.3,
         pointRadius: 6,
         pointHoverRadius: 8,
-        pointBackgroundColor: geminiColor
+        pointBackgroundColor: geminiColor,
+        sortOrder: 40
       },
       {
         label: 'Gemini 3 Flash Thinking',
@@ -2194,7 +2258,24 @@
         tension: 0.3,
         pointRadius: 5,
         pointHoverRadius: 7,
-        pointBackgroundColor: 'rgba(243, 77, 101, 0.7)'
+        pointBackgroundColor: 'rgba(243, 77, 101, 0.7)',
+        sortOrder: 50
+      }
+    ];
+
+    const mrcrChatGPTProDatasets = [
+      {
+        label: 'GPT 5.2 Thinking xhigh',
+        data: [95.4, 87.9, 93.1, 88.2, 75.7, null],
+        borderColor: chatgptColor,
+        backgroundColor: chatgptColorLight,
+        borderWidth: 3,
+        tension: 0.3,
+        pointRadius: 6,
+        pointHoverRadius: 8,
+        pointBackgroundColor: chatgptColor,
+        spanGaps: false,
+        sortOrder: 15
       }
     ];
 
@@ -2210,7 +2291,8 @@
         pointRadius: 5,
         pointHoverRadius: 7,
         pointBackgroundColor: 'rgba(16, 163, 127, 0.5)',
-        spanGaps: false
+        spanGaps: false,
+        sortOrder: 30
       },
       {
         label: 'Gemini 3 Flash',
@@ -2222,7 +2304,8 @@
         tension: 0.3,
         pointRadius: 5,
         pointHoverRadius: 7,
-        pointBackgroundColor: 'rgba(243, 77, 101, 0.4)'
+        pointBackgroundColor: 'rgba(243, 77, 101, 0.4)',
+        sortOrder: 60
       }
     ];
 
@@ -2237,7 +2320,8 @@
         pointRadius: 6,
         pointHoverRadius: 8,
         pointBackgroundColor: claudeColor,
-        spanGaps: false
+        spanGaps: false,
+        sortOrder: 70
       },
       {
         label: 'Claude 4.5 Sonnet Thinking',
@@ -2249,14 +2333,35 @@
         pointRadius: 5,
         pointHoverRadius: 7,
         pointBackgroundColor: 'rgba(250, 129, 45, 0.7)',
-        spanGaps: false
+        spanGaps: false,
+        sortOrder: 80
+      },
+      {
+        label: 'Claude 4.5 Haiku Thinking',
+        data: [52.9, 38.6, 29.0, 23.3, 14.1, null],
+        borderColor: 'rgba(250, 129, 45, 0.5)',
+        backgroundColor: 'rgba(250, 129, 45, 0.3)',
+        borderWidth: 2,
+        borderDash: [5, 5],
+        tension: 0.3,
+        pointRadius: 5,
+        pointHoverRadius: 7,
+        pointBackgroundColor: 'rgba(250, 129, 45, 0.5)',
+        spanGaps: false,
+        sortOrder: 90
       }
     ];
 
     function getMrcrDatasets() {
+      // Collect all visible datasets
       let datasets = [...mrcrReasoningDatasets];
 
       // Note: GPT 5.2 Codex has no data for MRCR v2 8-Needle, so it's not included here
+
+      // Add ChatGPT Pro models if visible
+      if (showChatGPTProModels) {
+        datasets = [...datasets, ...mrcrChatGPTProDatasets];
+      }
 
       // Add Instant models if visible
       if (showInstantModels) {
@@ -2267,6 +2372,9 @@
       if (showClaudeModels) {
         datasets = [...datasets, ...mrcrClaudeDatasets];
       }
+
+      // Sort by sortOrder to maintain family grouping in legend
+      datasets.sort((a, b) => a.sortOrder - b.sortOrder);
 
       return datasets;
     }
@@ -2341,36 +2449,53 @@
 
     // Long Context Reasoning - AA-LCR - Horizontal Bar Chart
     let lcrChart;
-    const lcrCodingLabels = ['GPT 5.2 Codex'];
-    const lcrReasoningLabels = ['GPT 5.2 Thinking', 'Gemini 3 Pro', 'Gemini 3 Flash Thinking'];
-    const lcrInstantLabels = ['GPT 5.2 Instant', 'Gemini 3 Flash'];
-    const lcrClaudeLabels = ['Claude Opus 4.5 Thinking', 'Claude 4.5 Sonnet Thinking'];
-    const lcrCodingData = [75.7];
-    const lcrReasoningData = [63.3, 70.7, 66.3];
-    const lcrInstantData = [38.0, 48.0];
-    const lcrClaudeData = [74.0, 65.7];
+    const lcrCodingModels = [
+      { label: '⌘ GPT 5.2 Codex', score: 75.7, sortOrder: 10 }
+    ];
+    const lcrReasoningModels = [
+      { label: '⌘ GPT 5.2 Thinking', score: 63.3, sortOrder: 20 },
+      { label: '✦ Gemini 3 Pro', score: 70.7, sortOrder: 40 },
+      { label: '✦ Gemini 3 Flash Thinking', score: 66.3, sortOrder: 50 }
+    ];
+    const lcrChatGPTProModels = [
+      { label: '⌘ GPT 5.2 Thinking xhigh', score: 72.7, sortOrder: 15 }
+    ];
+    const lcrInstantModels = [
+      { label: '⌘ GPT 5.2 Instant', score: 38.0, sortOrder: 30 },
+      { label: '✦ Gemini 3 Flash', score: 48.0, sortOrder: 60 }
+    ];
+    const lcrClaudeModels = [
+      { label: '❋ Claude Opus 4.5 Thinking', score: 74.0, sortOrder: 70 },
+      { label: '❋ Claude 4.5 Sonnet Thinking', score: 65.7, sortOrder: 80 },
+      { label: '❋ Claude 4.5 Haiku Thinking', score: 70.3, sortOrder: 90 }
+    ];
 
     function getLcrData() {
-      let labels = [...lcrReasoningLabels];
-      let data = [...lcrReasoningData];
+      // Collect all visible models
+      let models = [...lcrReasoningModels];
 
-      // Add Codex at the beginning if coding benchmarks are visible
       if (showCodingBenchmarks) {
-        labels = [...lcrCodingLabels, ...labels];
-        data = [...lcrCodingData, ...data];
+        models = [...models, ...lcrCodingModels];
       }
 
-      // Add Instant models if visible
+      if (showChatGPTProModels) {
+        models = [...models, ...lcrChatGPTProModels];
+      }
+
       if (showInstantModels) {
-        labels = [...labels, ...lcrInstantLabels];
-        data = [...data, ...lcrInstantData];
+        models = [...models, ...lcrInstantModels];
       }
 
-      // Add Claude at the end if visible
       if (showClaudeModels) {
-        labels = [...labels, ...lcrClaudeLabels];
-        data = [...data, ...lcrClaudeData];
+        models = [...models, ...lcrClaudeModels];
       }
+
+      // Sort by sortOrder to maintain family grouping
+      models.sort((a, b) => a.sortOrder - b.sortOrder);
+
+      // Extract arrays for Chart.js
+      const labels = models.map(m => m.label);
+      const data = models.map(m => m.score);
 
       // Create background colors array with striped pattern for non-reasoning models
       const baseColor = 'rgba(139, 92, 246, 0.7)';
@@ -2455,36 +2580,53 @@
 
     // Terminal-Bench Hard - Horizontal Bar Chart
     let terminalBenchChart;
-    const terminalBenchCodingLabels = ['GPT 5.2 Codex'];
-    const terminalBenchReasoningLabels = ['GPT 5.2 Thinking', 'Gemini 3 Pro', 'Gemini 3 Flash Thinking'];
-    const terminalBenchInstantLabels = ['GPT 5.2 Instant', 'Gemini 3 Flash'];
-    const terminalBenchClaudeLabels = ['Claude Opus 4.5 Thinking', 'Claude 4.5 Sonnet Thinking'];
-    const terminalBenchCodingData = [37.1];
-    const terminalBenchReasoningData = [43.2, 41.7, 38.6];
-    const terminalBenchInstantData = [31.8, 31.8];
-    const terminalBenchClaudeData = [47.0, 35.6];
+    const terminalBenchCodingModels = [
+      { label: '⌘ GPT 5.2 Codex', score: 37.1, sortOrder: 10 }
+    ];
+    const terminalBenchReasoningModels = [
+      { label: '⌘ GPT 5.2 Thinking', score: 43.2, sortOrder: 20 },
+      { label: '✦ Gemini 3 Pro', score: 41.7, sortOrder: 40 },
+      { label: '✦ Gemini 3 Flash Thinking', score: 38.6, sortOrder: 50 }
+    ];
+    const terminalBenchChatGPTProModels = [
+      { label: '⌘ GPT 5.2 Thinking xhigh', score: 47.0, sortOrder: 15 }
+    ];
+    const terminalBenchInstantModels = [
+      { label: '⌘ GPT 5.2 Instant', score: 31.8, sortOrder: 30 },
+      { label: '✦ Gemini 3 Flash', score: 31.8, sortOrder: 60 }
+    ];
+    const terminalBenchClaudeModels = [
+      { label: '❋ Claude Opus 4.5 Thinking', score: 47.0, sortOrder: 70 },
+      { label: '❋ Claude 4.5 Sonnet Thinking', score: 35.6, sortOrder: 80 },
+      { label: '❋ Claude 4.5 Haiku Thinking', score: 27.3, sortOrder: 90 }
+    ];
 
     function getTerminalBenchData() {
-      let labels = [...terminalBenchReasoningLabels];
-      let data = [...terminalBenchReasoningData];
+      // Collect all visible models
+      let models = [...terminalBenchReasoningModels];
 
-      // Add Codex at the beginning (always shown in this chart when visible)
       if (showCodingBenchmarks) {
-        labels = [...terminalBenchCodingLabels, ...labels];
-        data = [...terminalBenchCodingData, ...data];
+        models = [...models, ...terminalBenchCodingModels];
       }
 
-      // Add Instant models if visible
+      if (showChatGPTProModels) {
+        models = [...models, ...terminalBenchChatGPTProModels];
+      }
+
       if (showInstantModels) {
-        labels = [...labels, ...terminalBenchInstantLabels];
-        data = [...data, ...terminalBenchInstantData];
+        models = [...models, ...terminalBenchInstantModels];
       }
 
-      // Add Claude at the end if visible
       if (showClaudeModels) {
-        labels = [...labels, ...terminalBenchClaudeLabels];
-        data = [...data, ...terminalBenchClaudeData];
+        models = [...models, ...terminalBenchClaudeModels];
       }
+
+      // Sort by sortOrder to maintain family grouping
+      models.sort((a, b) => a.sortOrder - b.sortOrder);
+
+      // Extract arrays for Chart.js
+      const labels = models.map(m => m.label);
+      const data = models.map(m => m.score);
 
       // Create background colors array with striped pattern for non-reasoning models
       const baseColor = 'rgba(59, 130, 246, 0.7)';
@@ -2568,36 +2710,53 @@
 
     // τ²-Bench Telecom - Horizontal Bar Chart
     let tau2BenchChart;
-    const tau2BenchCodingLabels = ['GPT 5.2 Codex'];
-    const tau2BenchReasoningLabels = ['GPT 5.2 Thinking', 'Gemini 3 Pro', 'Gemini 3 Flash Thinking'];
-    const tau2BenchInstantLabels = ['GPT 5.2 Instant', 'Gemini 3 Flash'];
-    const tau2BenchClaudeLabels = ['Claude Opus 4.5 Thinking', 'Claude 4.5 Sonnet Thinking'];
-    const tau2BenchCodingData = [92.1];
-    const tau2BenchReasoningData = [74.3, 87.1, 80.4];
-    const tau2BenchInstantData = [46.5, 43.3];
-    const tau2BenchClaudeData = [89.5, 78.1];
+    const tau2BenchCodingModels = [
+      { label: '⌘ GPT 5.2 Codex', score: 92.1, sortOrder: 10 }
+    ];
+    const tau2BenchReasoningModels = [
+      { label: '⌘ GPT 5.2 Thinking', score: 74.3, sortOrder: 20 },
+      { label: '✦ Gemini 3 Pro', score: 87.1, sortOrder: 40 },
+      { label: '✦ Gemini 3 Flash Thinking', score: 80.4, sortOrder: 50 }
+    ];
+    const tau2BenchChatGPTProModels = [
+      { label: '⌘ GPT 5.2 Thinking xhigh', score: 84.8, sortOrder: 15 }
+    ];
+    const tau2BenchInstantModels = [
+      { label: '⌘ GPT 5.2 Instant', score: 46.5, sortOrder: 30 },
+      { label: '✦ Gemini 3 Flash', score: 43.3, sortOrder: 60 }
+    ];
+    const tau2BenchClaudeModels = [
+      { label: '❋ Claude Opus 4.5 Thinking', score: 89.5, sortOrder: 70 },
+      { label: '❋ Claude 4.5 Sonnet Thinking', score: 78.1, sortOrder: 80 },
+      { label: '❋ Claude 4.5 Haiku Thinking', score: 54.7, sortOrder: 90 }
+    ];
 
     function getTau2BenchData() {
-      let labels = [...tau2BenchReasoningLabels];
-      let data = [...tau2BenchReasoningData];
+      // Collect all visible models
+      let models = [...tau2BenchReasoningModels];
 
-      // Add Codex at the beginning (always shown in this chart when visible)
       if (showCodingBenchmarks) {
-        labels = [...tau2BenchCodingLabels, ...labels];
-        data = [...tau2BenchCodingData, ...data];
+        models = [...models, ...tau2BenchCodingModels];
       }
 
-      // Add Instant models if visible
+      if (showChatGPTProModels) {
+        models = [...models, ...tau2BenchChatGPTProModels];
+      }
+
       if (showInstantModels) {
-        labels = [...labels, ...tau2BenchInstantLabels];
-        data = [...data, ...tau2BenchInstantData];
+        models = [...models, ...tau2BenchInstantModels];
       }
 
-      // Add Claude at the end if visible
       if (showClaudeModels) {
-        labels = [...labels, ...tau2BenchClaudeLabels];
-        data = [...data, ...tau2BenchClaudeData];
+        models = [...models, ...tau2BenchClaudeModels];
       }
+
+      // Sort by sortOrder to maintain family grouping
+      models.sort((a, b) => a.sortOrder - b.sortOrder);
+
+      // Extract arrays for Chart.js
+      const labels = models.map(m => m.label);
+      const data = models.map(m => m.score);
 
       // Create background colors array with striped pattern for non-reasoning models
       const baseColor = 'rgba(59, 130, 246, 0.7)';
@@ -2898,6 +3057,61 @@
       localStorage.setItem('instantModelsVisible', showInstantModels);
     }
 
+    // Toggle function for ChatGPT Pro models - syncs all toggles
+    function toggleChatGPTProModels() {
+      showChatGPTProModels = !showChatGPTProModels;
+
+      // Sync all ChatGPT Pro toggles
+      document.querySelectorAll('.chatgpt-pro-model-toggle').forEach(toggle => {
+        toggle.classList.toggle('active', showChatGPTProModels);
+      });
+
+      // Animation config for smooth transitions
+      const animationConfig = {
+        duration: 750,
+        easing: 'easeInOutQuart'
+      };
+
+      // Update Omniscience chart
+      const omniscienceData = getOmniscienceData();
+      omniscienceChart.data.labels = omniscienceData.labels;
+      omniscienceChart.data.datasets[0].data = omniscienceData.correct;
+      omniscienceChart.data.datasets[0].backgroundColor = omniscienceData.correctBgColors;
+      omniscienceChart.data.datasets[1].data = omniscienceData.abstention;
+      omniscienceChart.data.datasets[1].backgroundColor = omniscienceData.abstentionBgColors;
+      omniscienceChart.data.datasets[2].data = omniscienceData.hallucination;
+      omniscienceChart.data.datasets[2].backgroundColor = omniscienceData.hallucinationBgColors;
+      omniscienceChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
+
+      // Update MRCR chart
+      mrcrChart.data.datasets = getMrcrDatasets();
+      mrcrChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
+
+      // Update LCR chart
+      const lcrData = getLcrData();
+      lcrChart.data.labels = lcrData.labels;
+      lcrChart.data.datasets[0].data = lcrData.data;
+      lcrChart.data.datasets[0].backgroundColor = lcrData.backgroundColors;
+      lcrChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
+
+      // Update Terminal-Bench chart
+      const terminalBenchData = getTerminalBenchData();
+      terminalBenchChart.data.labels = terminalBenchData.labels;
+      terminalBenchChart.data.datasets[0].data = terminalBenchData.data;
+      terminalBenchChart.data.datasets[0].backgroundColor = terminalBenchData.backgroundColors;
+      terminalBenchChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
+
+      // Update τ²-Bench chart
+      const tau2BenchData = getTau2BenchData();
+      tau2BenchChart.data.labels = tau2BenchData.labels;
+      tau2BenchChart.data.datasets[0].data = tau2BenchData.data;
+      tau2BenchChart.data.datasets[0].backgroundColor = tau2BenchData.backgroundColors;
+      tau2BenchChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
+
+      // Save state to localStorage
+      localStorage.setItem('chatgptProModelsVisible', showChatGPTProModels);
+    }
+
     // Toggle function for Coding benchmarks - hides coding charts and GPT 5.2 Codex
     function toggleCodingBenchmarks() {
       showCodingBenchmarks = !showCodingBenchmarks;
@@ -2976,6 +3190,17 @@
         showClaudeModels = false;
         document.querySelectorAll('.claude-toggle').forEach(toggle => {
           toggle.classList.remove('active');
+        });
+        needsChartUpdate = true;
+      }
+
+      // Restore ChatGPT Pro models toggle state
+      const savedChatGPTPro = localStorage.getItem('chatgptProModelsVisible');
+      if (savedChatGPTPro === 'true') {
+        // Default is hidden (false), so show them
+        showChatGPTProModels = true;
+        document.querySelectorAll('.chatgpt-pro-model-toggle').forEach(toggle => {
+          toggle.classList.add('active');
         });
         needsChartUpdate = true;
       }
