@@ -757,12 +757,12 @@
 
     /* Instant models toggle styling */
     .instant-toggle .toggle-switch.active {
-      background: rgba(139, 92, 246, 0.15);
-      border-color: rgba(139, 92, 246, 0.3);
+      background: rgba(199, 91, 245, 0.15);
+      border-color: rgba(199, 91, 245, 0.3);
     }
 
     .instant-toggle .toggle-switch.active::after {
-      background: rgba(139, 92, 246, 0.8);
+      background: rgba(199, 91, 245, 0.8);
     }
 
     /* ChatGPT Pro toggle styling (green like ChatGPT) */
@@ -1132,6 +1132,156 @@
       max-width: 500px;
       pointer-events: auto;
       overflow: visible;
+    }
+
+    /* Model Filters Panel */
+    .model-filters-panel {
+      background: var(--bg-card);
+      border-radius: 16px;
+      border: 1px solid var(--border-color);
+      margin-bottom: 2rem;
+      overflow: hidden;
+    }
+
+    .model-filters-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.5rem;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .model-filters-header:hover {
+      background: var(--bg-hover);
+    }
+
+    .model-filters-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .model-filters-toggle {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      transition: transform 0.3s ease;
+    }
+
+    .model-filters-panel.expanded .model-filters-toggle {
+      transform: rotate(180deg);
+    }
+
+    .model-filters-content {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease;
+      padding: 0 1.5rem;
+    }
+
+    .model-filters-panel.expanded .model-filters-content {
+      max-height: 1000px;
+      opacity: 1;
+      padding: 0 1.5rem 1.5rem;
+    }
+
+    .filter-group {
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .filter-group:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .filter-group-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .filter-group-name {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+
+    .model-dots-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      padding-left: 0.25rem;
+    }
+
+    .model-dot {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 12px;
+      background: var(--bg-hover);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
+    }
+
+    .model-dot:hover {
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .model-dot.inactive {
+      opacity: 0.4;
+    }
+
+    .model-dot.inactive:hover {
+      opacity: 0.6;
+    }
+
+    .model-dot-indicator {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .model-dot-label {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      white-space: nowrap;
+    }
+
+    /* Brand colors for dots */
+    .dot-gpt {
+      background: var(--chatgpt-primary);
+    }
+
+    .dot-gemini {
+      background: var(--gemini-primary);
+    }
+
+    .dot-claude {
+      background: var(--claude-primary);
+    }
+
+    /* Blue dot for coding benchmarks */
+    .dot-coding {
+      background: rgba(59, 130, 246, 0.9);
+    }
+
+    /* Thinking models toggle styling */
+    .reasoning-toggle .toggle-switch.active {
+      background: rgba(139, 92, 246, 0.15);
+      border-color: rgba(139, 92, 246, 0.3);
+    }
+
+    .reasoning-toggle .toggle-switch.active::after {
+      background: rgba(139, 92, 246, 0.8);
     }
   </style>
 </head>
@@ -1737,12 +1887,195 @@
     <!-- TAB 2: BENCHMARKS -->
     <section id="tab-benchmarks" class="tab-content hide-coding-benchmarks">
 
+      <!-- Model Filters Panel -->
+      <div class="model-filters-panel" id="modelFiltersPanel">
+        <div class="model-filters-header" onclick="toggleFiltersPanel()">
+          <span class="model-filters-title">Model Filters</span>
+          <span class="model-filters-toggle">▼</span>
+        </div>
+        <div class="model-filters-content">
+          <!-- Claude models -->
+          <div class="filter-group">
+            <div class="filter-group-header">
+              <span class="filter-group-name">Claude models</span>
+              <div class="toggle-switch claude-toggle active" onclick="event.stopPropagation(); toggleClaudeModels()">
+              </div>
+            </div>
+            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
+              <div class="model-dot" data-model="claude-opus" onclick="toggleIndividualModel('claude-opus')">
+                <span class="model-dot-indicator dot-claude"></span>
+                <span class="model-dot-label">Claude 4.5 Opus Thinking</span>
+              </div>
+              <div class="model-dot" data-model="claude-sonnet" onclick="toggleIndividualModel('claude-sonnet')">
+                <span class="model-dot-indicator dot-claude"></span>
+                <span class="model-dot-label">Claude 4.5 Sonnet Thinking</span>
+              </div>
+              <div class="model-dot inactive" data-model="claude-haiku" onclick="toggleIndividualModel('claude-haiku')">
+                <span class="model-dot-indicator dot-claude"></span>
+                <span class="model-dot-label">Claude 4.5 Haiku Thinking</span>
+              </div>
+            </div>
+            <div class="model-dots-row">
+              <div class="model-dot inactive" data-model="claude-opus-nr"
+                onclick="toggleIndividualModel('claude-opus-nr')">
+                <span class="model-dot-indicator dot-claude"></span>
+                <span class="model-dot-label">Claude 4.5 Opus</span>
+              </div>
+              <div class="model-dot inactive" data-model="claude-sonnet-nr"
+                onclick="toggleIndividualModel('claude-sonnet-nr')">
+                <span class="model-dot-indicator dot-claude"></span>
+                <span class="model-dot-label">Claude 4.5 Sonnet</span>
+              </div>
+              <div class="model-dot inactive" data-model="claude-haiku-nr"
+                onclick="toggleIndividualModel('claude-haiku-nr')">
+                <span class="model-dot-indicator dot-claude"></span>
+                <span class="model-dot-label">Claude 4.5 Haiku</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Reasoning models -->
+          <div class="filter-group">
+            <div class="filter-group-header">
+              <span class="filter-group-name">Reasoning models</span>
+              <div class="toggle-inline reasoning-toggle">
+                <div class="toggle-switch reasoning-model-toggle active"
+                  onclick="event.stopPropagation(); toggleReasoningModels()"></div>
+              </div>
+            </div>
+            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
+              <div class="model-dot" data-model="gpt-codex" onclick="toggleIndividualModel('gpt-codex')">
+                <span class="model-dot-indicator dot-gpt"></span>
+                <span class="model-dot-label">GPT 5.2 Codex</span>
+              </div>
+              <div class="model-dot" data-model="gpt-xhigh" onclick="toggleIndividualModel('gpt-xhigh')">
+                <span class="model-dot-indicator dot-gpt"></span>
+                <span class="model-dot-label">GPT 5.2 Thinking xhigh</span>
+              </div>
+              <div class="model-dot" data-model="gpt-thinking" onclick="toggleIndividualModel('gpt-thinking')">
+                <span class="model-dot-indicator dot-gpt"></span>
+                <span class="model-dot-label">GPT 5.2 Thinking</span>
+              </div>
+            </div>
+            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
+              <div class="model-dot" data-model="gemini-pro" onclick="toggleIndividualModel('gemini-pro')">
+                <span class="model-dot-indicator dot-gemini"></span>
+                <span class="model-dot-label">Gemini 3 Pro</span>
+              </div>
+              <div class="model-dot" data-model="gemini-flash-thinking"
+                onclick="toggleIndividualModel('gemini-flash-thinking')">
+                <span class="model-dot-indicator dot-gemini"></span>
+                <span class="model-dot-label">Gemini 3 Flash Thinking</span>
+              </div>
+            </div>
+            <div class="model-dots-row">
+              <div class="model-dot" data-model="claude-opus" onclick="toggleIndividualModel('claude-opus')">
+                <span class="model-dot-indicator dot-claude"></span>
+                <span class="model-dot-label">Claude 4.5 Opus Thinking</span>
+              </div>
+              <div class="model-dot" data-model="claude-sonnet" onclick="toggleIndividualModel('claude-sonnet')">
+                <span class="model-dot-indicator dot-claude"></span>
+                <span class="model-dot-label">Claude 4.5 Sonnet Thinking</span>
+              </div>
+              <div class="model-dot" data-model="claude-haiku" onclick="toggleIndividualModel('claude-haiku')">
+                <span class="model-dot-indicator dot-claude"></span>
+                <span class="model-dot-label">Claude 4.5 Haiku Thinking</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Non-reasoning models -->
+          <div class="filter-group">
+            <div class="filter-group-header">
+              <span class="filter-group-name">Non-reasoning models</span>
+              <div class="toggle-inline instant-toggle">
+                <div class="toggle-switch instant-model-toggle active"
+                  onclick="event.stopPropagation(); toggleInstantModels()"></div>
+              </div>
+            </div>
+            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
+              <div class="model-dot" data-model="gpt-instant" onclick="toggleIndividualModel('gpt-instant')">
+                <span class="model-dot-indicator dot-gpt"></span>
+                <span class="model-dot-label">GPT 5.2 Instant</span>
+              </div>
+            </div>
+            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
+              <div class="model-dot" data-model="gemini-flash" onclick="toggleIndividualModel('gemini-flash')">
+                <span class="model-dot-indicator dot-gemini"></span>
+                <span class="model-dot-label">Gemini 3 Flash</span>
+              </div>
+            </div>
+            <div class="model-dots-row">
+              <div class="model-dot inactive" data-model="claude-opus-nr"
+                onclick="toggleIndividualModel('claude-opus-nr')">
+                <span class="model-dot-indicator dot-claude"></span>
+                <span class="model-dot-label">Claude 4.5 Opus</span>
+              </div>
+              <div class="model-dot inactive" data-model="claude-sonnet-nr"
+                onclick="toggleIndividualModel('claude-sonnet-nr')">
+                <span class="model-dot-indicator dot-claude"></span>
+                <span class="model-dot-label">Claude 4.5 Sonnet</span>
+              </div>
+              <div class="model-dot inactive" data-model="claude-haiku-nr"
+                onclick="toggleIndividualModel('claude-haiku-nr')">
+                <span class="model-dot-indicator dot-claude"></span>
+                <span class="model-dot-label">Claude 4.5 Haiku</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- ChatGPT Pro-only models -->
+          <div class="filter-group">
+            <div class="filter-group-header">
+              <span class="filter-group-name">ChatGPT Pro-only models</span>
+              <div class="toggle-inline chatgpt-pro-toggle">
+                <div class="toggle-switch chatgpt-pro-model-toggle"
+                  onclick="event.stopPropagation(); toggleChatGPTProModels()"></div>
+              </div>
+            </div>
+            <div class="model-dots-row">
+              <div class="model-dot" data-model="gpt-xhigh" onclick="toggleIndividualModel('gpt-xhigh')">
+                <span class="model-dot-indicator dot-gpt"></span>
+                <span class="model-dot-label">GPT 5.2 Thinking xhigh</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Coding benchmarks and models -->
+          <div class="filter-group">
+            <div class="filter-group-header">
+              <span class="filter-group-name">Coding benchmarks and models</span>
+              <div class="toggle-inline coding-toggle">
+                <div class="toggle-switch coding-bench-toggle"
+                  onclick="event.stopPropagation(); toggleCodingBenchmarks()"></div>
+              </div>
+            </div>
+            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
+              <div class="model-dot" data-model="coding-benchmarks" onclick="toggleCodingSection()">
+                <span class="model-dot-indicator dot-coding"></span>
+                <span class="model-dot-label">Coding benchmarks</span>
+              </div>
+            </div>
+            <div class="model-dots-row">
+              <div class="model-dot" data-model="gpt-codex" onclick="toggleIndividualModel('gpt-codex')">
+                <span class="model-dot-indicator dot-gpt"></span>
+                <span class="model-dot-label">GPT 5.2 Codex</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- AA-Omniscience -->
       <div class="section-title-wrapper">
         <h2 class="section-title">Knowledge Accuracy — AA-Omniscience Benchmark</h2>
         <div class="toggle-inline">
           <span class="toggle-label">Claude models</span>
           <div class="toggle-switch claude-toggle active" onclick="toggleClaudeModels()"></div>
+        </div>
+        <div class="toggle-inline reasoning-toggle">
+          <span class="toggle-label">Reasoning models</span>
+          <div class="toggle-switch reasoning-model-toggle active" onclick="toggleReasoningModels()"></div>
         </div>
         <div class="toggle-inline instant-toggle">
           <span class="toggle-label">Non-reasoning models</span>
@@ -1751,10 +2084,6 @@
         <div class="toggle-inline chatgpt-pro-toggle">
           <span class="toggle-label">ChatGPT Pro-only models</span>
           <div class="toggle-switch chatgpt-pro-model-toggle" onclick="toggleChatGPTProModels()"></div>
-        </div>
-        <div class="toggle-inline coding-toggle" style="margin-left: auto;">
-          <span class="toggle-label">Coding benchmarks</span>
-          <div class="toggle-switch coding-bench-toggle" onclick="toggleCodingBenchmarks()"></div>
         </div>
       </div>
       <div class="chart-container">
@@ -1788,6 +2117,10 @@
           <span class="toggle-label">Claude models</span>
           <div class="toggle-switch claude-toggle active" onclick="toggleClaudeModels()"></div>
         </div>
+        <div class="toggle-inline reasoning-toggle">
+          <span class="toggle-label">Reasoning models</span>
+          <div class="toggle-switch reasoning-model-toggle active" onclick="toggleReasoningModels()"></div>
+        </div>
         <div class="toggle-inline instant-toggle">
           <span class="toggle-label">Non-reasoning models</span>
           <div class="toggle-switch instant-model-toggle active" onclick="toggleInstantModels()"></div>
@@ -1815,15 +2148,15 @@
               texts, MRCR v2 8-Needle evaluates the model capability to find specific information in those texts.</li>
             <li>• There's no benchmark for 196k tokens, the next available one is 256k, which is not supported
               by ChatGPT on the web and app.</li>
-            <li>• This benchmark currently does not provide support for GPT-5.2 Codex.</li>
+            <li>• This benchmark currently does not provide support for GPT-5.2 Codex and non-reasoning Claude models.
+            </li>
             <li>• Maximum context window of <strong>GPT 5.2 Thinking and GPT 5.2 Thinking xhigh</strong> is 196k tokens.
             </li>
             <li>• Maximum context window of <strong>GPT 5.2 Instant</strong> is 16k/32k/128k tokens (Free/Plus &
               Go/Pro).</li>
-            <li>• Maximum context window of <strong>Gemini 3 Pro, Gemini 3 Flash Thinking and Gemini 3 Flash</strong> is
+            <li>• Maximum context window of all <strong>Gemini</strong> models is
               32k/128k/1M tokens (Free/Plus/Pro & Ultra).</li>
-            <li>• Maximum context window of <strong>Claude Opus 4.5, Claude Sonnet 4.5 and Claude Haiku 4.5
-                Thinking</strong> is 200k tokens.</li>
+            <li>• Maximum context window of all <strong>Claude</strong> models is 200k tokens.</li>
             <li>• 1M tokens equals 1048k tokens.</li>
           </ul>
         </div>
@@ -1835,6 +2168,10 @@
         <div class="toggle-inline">
           <span class="toggle-label">Claude models</span>
           <div class="toggle-switch claude-toggle active" onclick="toggleClaudeModels()"></div>
+        </div>
+        <div class="toggle-inline reasoning-toggle">
+          <span class="toggle-label">Reasoning models</span>
+          <div class="toggle-switch reasoning-model-toggle active" onclick="toggleReasoningModels()"></div>
         </div>
         <div class="toggle-inline instant-toggle">
           <span class="toggle-label">Non-reasoning models</span>
@@ -1868,10 +2205,9 @@
             </li>
             <li>• Maximum context window of <strong>GPT 5.2 Instant</strong> is 16k/32k/128k tokens (Free/Plus &
               Go/Pro).</li>
-            <li>• Maximum context window of <strong>Gemini 3 Pro, Gemini 3 Flash Thinking and Gemini 3 Flash</strong> is
+            <li>• Maximum context window of all <strong>Gemini</strong> models is
               32k/128k/1M tokens (Free/Plus/Pro & Ultra).</li>
-            <li>• Maximum context window of <strong>Claude Opus 4.5, Claude Sonnet 4.5 and Claude Haiku 4.5
-                Thinking</strong> is 200k tokens.</li>
+            <li>• Maximum context window of all <strong>Claude</strong> models is 200k tokens.</li>
             <li>• 1M tokens equals 1048k tokens.</li>
           </ul>
         </div>
@@ -1883,6 +2219,10 @@
         <div class="toggle-inline">
           <span class="toggle-label">Claude models</span>
           <div class="toggle-switch claude-toggle active" onclick="toggleClaudeModels()"></div>
+        </div>
+        <div class="toggle-inline reasoning-toggle">
+          <span class="toggle-label">Reasoning models</span>
+          <div class="toggle-switch reasoning-model-toggle active" onclick="toggleReasoningModels()"></div>
         </div>
         <div class="toggle-inline instant-toggle">
           <span class="toggle-label">Non-reasoning models</span>
@@ -1907,6 +2247,10 @@
             <span class="toggle-label">Claude models</span>
             <div class="toggle-switch claude-toggle active" onclick="toggleClaudeModels()"></div>
           </div>
+          <div class="toggle-inline reasoning-toggle">
+            <span class="toggle-label">Reasoning models</span>
+            <div class="toggle-switch reasoning-model-toggle active" onclick="toggleReasoningModels()"></div>
+          </div>
           <div class="toggle-inline instant-toggle">
             <span class="toggle-label">Non-reasoning models</span>
             <div class="toggle-switch instant-model-toggle active" onclick="toggleInstantModels()"></div>
@@ -1929,6 +2273,10 @@
           <div class="toggle-inline">
             <span class="toggle-label">Claude models</span>
             <div class="toggle-switch claude-toggle active" onclick="toggleClaudeModels()"></div>
+          </div>
+          <div class="toggle-inline reasoning-toggle">
+            <span class="toggle-label">Reasoning models</span>
+            <div class="toggle-switch reasoning-model-toggle active" onclick="toggleReasoningModels()"></div>
           </div>
           <div class="toggle-inline instant-toggle">
             <span class="toggle-label">Non-reasoning models</span>
@@ -1972,14 +2320,20 @@
           </li>
           <li>• For "<strong>Gemini 3 Flash</strong>", "<em>gemini-3-flash-preview</em>" was used in the
             graph.</li>
-          <li>• For "<strong>Claude Opus 4.5 Thinking</strong>", "<em>claude-opus-4.5:thinking:high</em>" was used in
+          <li>• For "<strong>Claude Opus 4.5 Thinking</strong>", "<em>claude-opus-4.5:high</em>" was used in
             the graph.</li>
-          <li>• For "<strong>Claude Sonnet 4.5 Thinking</strong>", "<em>claude-sonnet-4.5:thinking:high</em>" was used
+          <li>• For "<strong>Claude Sonnet 4.5 Thinking</strong>", "<em>claude-sonnet-4.5:high</em>" was used
             in the graph.</li>
-          <li>• For "<strong>Claude Haiku 4.5 Thinking</strong>", "<em>claude-haiku-4.5:thinking:high</em>" was used in
+          <li>• For "<strong>Claude Haiku 4.5 Thinking</strong>", "<em>claude-haiku-4.5:high</em>" was used in
             the graph.</li>
-          <li>• Claude Opus 4.5 Thinking and Claude Sonnet 4.5 Thinking are available for Gemini users through the
-            Antigravity app.</li>
+          <li>• For "<strong>Claude Opus 4.5</strong>", "<em>claude-opus-4.5</em>" was used in
+            the graph.</li>
+          <li>• For "<strong>Claude Sonnet 4.5</strong>", "<em>claude-sonnet-4.5</em>" was used
+            in the graph.</li>
+          <li>• For "<strong>Claude Haiku 4.5</strong>", "<em>claude-haiku-4.5</em>" was used in
+            the graph.</li>
+          <li>• Claude Opus 4.5 Thinking and Claude Sonnet 4.5 Thinking are available for free to Gemini users
+            through the Antigravity app, with limits that reset depending on demand (usually every 5 hours).</li>
         </ul>
       </div>
     </section>
@@ -2083,12 +2437,274 @@
     const claudeColor = '#fa812d';
     const claudeColorLight = 'rgba(250, 129, 45, 0.7)';
 
-    // Track Claude, Instant, ChatGPT Pro, and Coding visibility
+    // Track Claude, Instant, ChatGPT Pro, and Coding visibility (legacy flags for compatibility)
     let showClaudeModels = true;
     let showInstantModels = true;
     let showChatGPTProModels = false;
     let showCodingBenchmarks = false;
+    let showReasoningModels = true;
     let omniscienceChart, mrcrChart;
+
+    // Individual model visibility
+    const modelVisibility = {
+      'gpt-codex': false,      // Starts hidden (coding toggle off)
+      'gpt-xhigh': false,      // Starts hidden (ChatGPT Pro toggle off)
+      'gpt-thinking': true,
+      'gpt-instant': true,
+      'gemini-pro': true,
+      'gemini-flash-thinking': true,
+      'gemini-flash': true,
+      'claude-opus': true,
+      'claude-sonnet': true,
+      'claude-haiku': false,   // Starts hidden by default
+      'claude-opus-nr': false,    // Non-reasoning, starts hidden
+      'claude-sonnet-nr': false,  // Non-reasoning, starts hidden
+      'claude-haiku-nr': false    // Non-reasoning, starts hidden
+    };
+
+    // Track which models were EXPLICITLY disabled by the user clicking the dot
+    // When a group toggle is turned ON, models that were explicitly disabled stay disabled
+    // When a group toggle is turned OFF, all models in group are disabled (not marked as explicit)
+    const modelExplicitlyDisabled = {
+      'gpt-codex': false,
+      'gpt-xhigh': false,
+      'gpt-thinking': false,
+      'gpt-instant': false,
+      'gemini-pro': false,
+      'gemini-flash-thinking': false,
+      'gemini-flash': false,
+      'claude-opus': false,
+      'claude-sonnet': false,
+      'claude-haiku': true,    // Starts explicitly disabled
+      'claude-opus-nr': true,     // Starts explicitly disabled
+      'claude-sonnet-nr': true,   // Starts explicitly disabled  
+      'claude-haiku-nr': true     // Starts explicitly disabled
+    };
+
+    // Model groups for group toggles
+    const modelGroups = {
+      'claude': ['claude-opus', 'claude-sonnet', 'claude-haiku', 'claude-opus-nr', 'claude-sonnet-nr', 'claude-haiku-nr'],
+      'reasoning': ['gpt-codex', 'gpt-xhigh', 'gpt-thinking', 'gemini-pro', 'gemini-flash-thinking', 'claude-opus', 'claude-sonnet', 'claude-haiku'],
+      'instant': ['gpt-instant', 'gemini-flash', 'claude-opus-nr', 'claude-sonnet-nr', 'claude-haiku-nr'],
+      'chatgpt-pro': ['gpt-xhigh'],
+      'coding': ['gpt-codex']
+    };
+
+    // Model constraints: which group toggles must ALL be active for a model to be visible
+    // When a group is turned ON, models are only activated if all their other constraints are met
+    const modelConstraints = {
+      'gpt-codex': ['reasoning', 'coding'],           // Needs both Reasoning AND Coding to be on
+      'gpt-xhigh': ['reasoning', 'chatgpt-pro'],      // Needs both Reasoning AND ChatGPT Pro to be on
+      'gpt-thinking': ['reasoning'],                   // Only needs Reasoning
+      'gpt-instant': ['instant'],                      // Only needs Non-reasoning
+      'gemini-pro': ['reasoning'],                     // Only needs Reasoning
+      'gemini-flash-thinking': ['reasoning'],          // Only needs Reasoning
+      'gemini-flash': ['instant'],                     // Only needs Non-reasoning
+      'claude-opus': ['claude', 'reasoning'],          // Needs both Claude AND Reasoning to be on
+      'claude-sonnet': ['claude', 'reasoning'],        // Needs both Claude AND Reasoning to be on
+      'claude-haiku': ['claude', 'reasoning'],         // Needs both Claude AND Reasoning to be on
+      'claude-opus-nr': ['claude', 'instant'],         // Needs both Claude AND Non-reasoning to be on
+      'claude-sonnet-nr': ['claude', 'instant'],       // Needs both Claude AND Non-reasoning to be on
+      'claude-haiku-nr': ['claude', 'instant']         // Needs both Claude AND Non-reasoning to be on
+    };
+
+    // Get the current state of a group toggle
+    function isGroupEnabled(groupName) {
+      switch (groupName) {
+        case 'claude': return showClaudeModels;
+        case 'reasoning': return showReasoningModels;
+        case 'instant': return showInstantModels;
+        case 'chatgpt-pro': return showChatGPTProModels;
+        case 'coding': return showCodingBenchmarks;
+        default: return true;
+      }
+    }
+
+    // Check if a model should be visible based on all its constraints AND explicit disable state
+    function shouldModelBeVisible(modelId) {
+      // If user explicitly disabled this model, don't show it
+      if (modelExplicitlyDisabled[modelId]) {
+        return false;
+      }
+      // Otherwise, check all group constraints
+      const constraints = modelConstraints[modelId] || [];
+      return constraints.every(group => isGroupEnabled(group));
+    }
+
+    // Toggle filters panel
+    function toggleFiltersPanel() {
+      const panel = document.getElementById('modelFiltersPanel');
+      panel.classList.toggle('expanded');
+      localStorage.setItem('filtersPanelExpanded', panel.classList.contains('expanded'));
+    }
+
+    // Update all model dots to reflect current visibility
+    function updateModelDotsUI() {
+      document.querySelectorAll('.model-dot').forEach(dot => {
+        const modelId = dot.getAttribute('data-model');
+        if (modelVisibility[modelId]) {
+          dot.classList.remove('inactive');
+        } else {
+          dot.classList.add('inactive');
+        }
+      });
+    }
+
+    // Toggle individual model visibility
+    function toggleIndividualModel(modelId) {
+      modelVisibility[modelId] = !modelVisibility[modelId];
+
+      // Track explicit disable: if user clicks to disable, mark as explicit
+      // If user clicks to enable, clear the explicit flag
+      modelExplicitlyDisabled[modelId] = !modelVisibility[modelId];
+
+      // Update UI
+      updateModelDotsUI();
+      syncGroupToggles();
+
+      // Update legacy flags based on model states
+      updateLegacyFlags();
+
+      // Update all charts
+      updateAllCharts();
+
+      // Save state (including explicit disable tracking)
+      localStorage.setItem('modelVisibility', JSON.stringify(modelVisibility));
+      localStorage.setItem('modelExplicitlyDisabled', JSON.stringify(modelExplicitlyDisabled));
+    }
+
+    // Sync group toggle UI based on individual model states
+    function syncGroupToggles() {
+      // Claude group
+      const allClaudeVisible = modelGroups.claude.every(m => modelVisibility[m]);
+      const someClaudeVisible = modelGroups.claude.some(m => modelVisibility[m]);
+      document.querySelectorAll('.claude-toggle').forEach(toggle => {
+        toggle.classList.toggle('active', someClaudeVisible);
+      });
+
+      // Reasoning group
+      const allReasoningVisible = modelGroups.reasoning.every(m => modelVisibility[m]);
+      const someReasoningVisible = modelGroups.reasoning.some(m => modelVisibility[m]);
+      document.querySelectorAll('.reasoning-model-toggle').forEach(toggle => {
+        toggle.classList.toggle('active', someReasoningVisible);
+      });
+
+      // Instant group
+      const allInstantVisible = modelGroups.instant.every(m => modelVisibility[m]);
+      const someInstantVisible = modelGroups.instant.some(m => modelVisibility[m]);
+      document.querySelectorAll('.instant-model-toggle').forEach(toggle => {
+        toggle.classList.toggle('active', someInstantVisible);
+      });
+
+      // ChatGPT Pro group
+      const someChatGPTProVisible = modelGroups['chatgpt-pro'].some(m => modelVisibility[m]);
+      document.querySelectorAll('.chatgpt-pro-model-toggle').forEach(toggle => {
+        toggle.classList.toggle('active', someChatGPTProVisible);
+      });
+
+      // Coding group - active if either section is visible OR codex model is visible
+      const someCodingVisible = modelGroups.coding.some(m => modelVisibility[m]);
+      document.querySelectorAll('.coding-bench-toggle').forEach(toggle => {
+        toggle.classList.toggle('active', showCodingBenchmarks || someCodingVisible);
+      });
+
+      // Update coding section dot
+      const codingDot = document.querySelector('[data-model="coding-benchmarks"]');
+      if (codingDot) {
+        codingDot.classList.toggle('inactive', !showCodingBenchmarks);
+      }
+    }
+
+    // Update legacy flags - NO LONGER derives group states from model visibility
+    // Group toggle states (showClaudeModels, etc.) are now independent and only change when user clicks the toggle
+    // This allows the constraint system to work correctly
+    function updateLegacyFlags() {
+      // Intentionally empty - group toggle states are now managed independently
+      // They only change when the user explicitly clicks a group toggle
+      // This enables the smart constraint system to work correctly
+    }
+
+    // Toggle reasoning models group
+    function toggleReasoningModels() {
+      showReasoningModels = !showReasoningModels;
+
+      // Update modelVisibility for reasoning models respecting constraints
+      modelGroups.reasoning.forEach(modelId => {
+        if (showReasoningModels) {
+          // When turning ON: only activate if ALL constraints are met
+          modelVisibility[modelId] = shouldModelBeVisible(modelId);
+        } else {
+          // When turning OFF: always disable
+          modelVisibility[modelId] = false;
+        }
+      });
+
+      // Sync all reasoning toggles
+      document.querySelectorAll('.reasoning-model-toggle').forEach(toggle => {
+        toggle.classList.toggle('active', showReasoningModels);
+      });
+
+      // Update UI
+      updateModelDotsUI();
+      syncGroupToggles();
+      updateLegacyFlags();
+      updateAllCharts();
+
+      // Save state
+      localStorage.setItem('modelVisibility', JSON.stringify(modelVisibility));
+      localStorage.setItem('reasoningModelsVisible', showReasoningModels);
+    }
+
+    // Update all charts with animation
+    function updateAllCharts() {
+      const animationConfig = {
+        duration: 750,
+        easing: 'easeInOutQuart'
+      };
+
+      // Update Omniscience chart
+      const omniscienceData = getOmniscienceData();
+      omniscienceChart.data.labels = omniscienceData.labels;
+      omniscienceChart.data.datasets[0].data = omniscienceData.correct;
+      omniscienceChart.data.datasets[0].backgroundColor = omniscienceData.correctBgColors;
+      omniscienceChart.data.datasets[1].data = omniscienceData.abstention;
+      omniscienceChart.data.datasets[1].backgroundColor = omniscienceData.abstentionBgColors;
+      omniscienceChart.data.datasets[2].data = omniscienceData.hallucination;
+      omniscienceChart.data.datasets[2].backgroundColor = omniscienceData.hallucinationBgColors;
+      omniscienceChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
+
+      // Update MRCR chart
+      mrcrChart.data.datasets = getMrcrDatasets();
+      mrcrChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
+
+      // Update LCR chart
+      const lcrData = getLcrData();
+      lcrChart.data.labels = lcrData.labels;
+      lcrChart.data.datasets[0].data = lcrData.data;
+      lcrChart.data.datasets[0].backgroundColor = lcrData.backgroundColors;
+      lcrChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
+
+      // Update MMMU-Pro chart
+      const mmmuProData = getMmmuProData();
+      mmmuProChart.data.labels = mmmuProData.labels;
+      mmmuProChart.data.datasets[0].data = mmmuProData.data;
+      mmmuProChart.data.datasets[0].backgroundColor = mmmuProData.backgroundColors;
+      mmmuProChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
+
+      // Update Terminal-Bench chart
+      const terminalBenchData = getTerminalBenchData();
+      terminalBenchChart.data.labels = terminalBenchData.labels;
+      terminalBenchChart.data.datasets[0].data = terminalBenchData.data;
+      terminalBenchChart.data.datasets[0].backgroundColor = terminalBenchData.backgroundColors;
+      terminalBenchChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
+
+      // Update τ²-Bench chart
+      const tau2BenchData = getTau2BenchData();
+      tau2BenchChart.data.labels = tau2BenchData.labels;
+      tau2BenchChart.data.datasets[0].data = tau2BenchData.data;
+      tau2BenchChart.data.datasets[0].backgroundColor = tau2BenchData.backgroundColors;
+      tau2BenchChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
+    }
 
     // DISABLED: Striped patterns for non-reasoning models (GPT 5.2 Instant, Gemini 3 Flash)
     // Set to true to enable diagonal striped patterns on bar charts for non-reasoning models.
@@ -2116,47 +2732,26 @@
     //   90: ❋ Claude 4.5 Haiku Thinking (claude toggle)
     // ============================================================================
 
-    // Base data for AA-Omniscience using object structure with sortOrder
-    const omniscienceCodingModels = [
-      { label: '⌘ GPT 5.2 Codex', correct: 38.45, abstention: 17.55, hallucination: 44.0, sortOrder: 10 }
-    ];
-    const omniscienceReasoningModels = [
-      { label: '⌘ GPT 5.2 Thinking', correct: 35.53, abstention: 25.68, hallucination: 38.79, sortOrder: 20 },
-      { label: '✦ Gemini 3 Pro', correct: 53.65, abstention: 4.20, hallucination: 42.16, sortOrder: 40 },
-      { label: '✦ Gemini 3 Flash Thinking', correct: 51.87, abstention: 4.50, hallucination: 43.63, sortOrder: 50 }
-    ];
-    const omniscienceChatGPTProModels = [
-      { label: '⌘ GPT 5.2 Thinking xhigh', correct: 41.35, abstention: 12.99, hallucination: 45.66, sortOrder: 15 }
-    ];
-    const omniscienceInstantModels = [
-      { label: '⌘ GPT 5.2 Instant', correct: 27.95, abstention: 29.32, hallucination: 42.73, sortOrder: 30 },
-      { label: '✦ Gemini 3 Flash', correct: 47.15, abstention: 6.35, hallucination: 46.50, sortOrder: 60 }
-    ];
-    const omniscienceClaudeModels = [
-      { label: '❋ Claude 4.5 Opus Thinking', correct: 43.12, abstention: 24.00, hallucination: 32.88, sortOrder: 70 },
-      { label: '❋ Claude 4.5 Sonnet Thinking', correct: 30.90, abstention: 36.12, hallucination: 32.98, sortOrder: 80 },
-      { label: '❋ Claude 4.5 Haiku Thinking', correct: 16.18, abstention: 61.97, hallucination: 21.85, sortOrder: 90 }
+    // Base data for AA-Omniscience using object structure with sortOrder and modelId
+    const omniscienceAllModels = [
+      { modelId: 'gpt-codex', label: '⌘ GPT 5.2 Codex', correct: 38.45, abstention: 17.55, hallucination: 44.0, sortOrder: 10 },
+      { modelId: 'gpt-xhigh', label: '⌘ GPT 5.2 Thinking xhigh', correct: 41.35, abstention: 12.99, hallucination: 45.66, sortOrder: 15 },
+      { modelId: 'gpt-thinking', label: '⌘ GPT 5.2 Thinking', correct: 35.53, abstention: 25.68, hallucination: 38.79, sortOrder: 20 },
+      { modelId: 'gpt-instant', label: '⌘ GPT 5.2 Instant', correct: 27.95, abstention: 29.32, hallucination: 42.73, sortOrder: 30 },
+      { modelId: 'gemini-pro', label: '✦ Gemini 3 Pro', correct: 53.65, abstention: 4.20, hallucination: 42.16, sortOrder: 40 },
+      { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', correct: 51.87, abstention: 4.50, hallucination: 43.63, sortOrder: 50 },
+      { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', correct: 47.15, abstention: 6.35, hallucination: 46.50, sortOrder: 60 },
+      { modelId: 'claude-opus', label: '❋ Claude 4.5 Opus Thinking', correct: 43.12, abstention: 24.00, hallucination: 32.88, sortOrder: 70 },
+      { modelId: 'claude-opus-nr', label: '❋ Claude 4.5 Opus', correct: 38.90, abstention: 15.75, hallucination: 45.35, sortOrder: 75 },
+      { modelId: 'claude-sonnet', label: '❋ Claude 4.5 Sonnet Thinking', correct: 30.90, abstention: 36.12, hallucination: 32.98, sortOrder: 80 },
+      { modelId: 'claude-sonnet-nr', label: '❋ Claude 4.5 Sonnet', correct: 26.93, abstention: 35.48, hallucination: 37.59, sortOrder: 85 },
+      { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Thinking', correct: 16.18, abstention: 61.97, hallucination: 21.85, sortOrder: 90 },
+      { modelId: 'claude-haiku-nr', label: '❋ Claude 4.5 Haiku', correct: 13.42, abstention: 65.21, hallucination: 21.37, sortOrder: 95 }
     ];
 
     function getOmniscienceData() {
-      // Collect all visible models
-      let models = [...omniscienceReasoningModels];
-
-      if (showCodingBenchmarks) {
-        models = [...models, ...omniscienceCodingModels];
-      }
-
-      if (showChatGPTProModels) {
-        models = [...models, ...omniscienceChatGPTProModels];
-      }
-
-      if (showInstantModels) {
-        models = [...models, ...omniscienceInstantModels];
-      }
-
-      if (showClaudeModels) {
-        models = [...models, ...omniscienceClaudeModels];
-      }
+      // Filter models based on modelVisibility
+      let models = omniscienceAllModels.filter(m => modelVisibility[m.modelId]);
 
       // Sort by sortOrder to maintain family grouping
       models.sort((a, b) => a.sortOrder - b.sortOrder);
@@ -2282,10 +2877,25 @@
       }
     });
 
-    // Base datasets for MRCR (split into reasoning and instant) - with sortOrder for family grouping
-    // Don't add "⌘ ✦ ❋" to the labels in this benchmark
-    const mrcrReasoningDatasets = [
+    // Base datasets for MRCR - with modelId for filtering and sortOrder for ordering
+    // Note: GPT 5.2 Codex has no data for MRCR v2 8-Needle, so it's not included here
+    const mrcrAllDatasets = [
       {
+        modelId: 'gpt-xhigh',
+        label: 'GPT 5.2 Thinking xhigh',
+        data: [95.4, 87.9, 93.1, 88.2, 75.7, null],
+        borderColor: chatgptColor,
+        backgroundColor: chatgptColorLight,
+        borderWidth: 3,
+        tension: 0.3,
+        pointRadius: 6,
+        pointHoverRadius: 8,
+        pointBackgroundColor: chatgptColor,
+        spanGaps: false,
+        sortOrder: 15
+      },
+      {
+        modelId: 'gpt-thinking',
         label: 'GPT 5.2 Thinking',
         data: [87.9, 78.2, 75.7, 66.7, 63.1, null],
         borderColor: 'rgba(16, 163, 127, 0.7)',
@@ -2299,49 +2909,7 @@
         sortOrder: 20
       },
       {
-        label: 'Gemini 3 Pro',
-        data: [98.0, 91.3, 86.6, 72.1, 54.2, 24.5],
-        borderColor: geminiColor,
-        backgroundColor: geminiColorLight,
-        borderWidth: 3,
-        tension: 0.3,
-        pointRadius: 6,
-        pointHoverRadius: 8,
-        pointBackgroundColor: geminiColor,
-        sortOrder: 40
-      },
-      {
-        label: 'Gemini 3 Flash Thinking',
-        data: [96.7, 85.3, 84.9, 72.9, 51.5, 32.6],
-        borderColor: 'rgba(243, 77, 101, 0.7)',
-        backgroundColor: 'rgba(243, 77, 101, 0.5)',
-        borderWidth: 2,
-        tension: 0.3,
-        pointRadius: 5,
-        pointHoverRadius: 7,
-        pointBackgroundColor: 'rgba(243, 77, 101, 0.7)',
-        sortOrder: 50
-      }
-    ];
-
-    const mrcrChatGPTProDatasets = [
-      {
-        label: 'GPT 5.2 Thinking xhigh',
-        data: [95.4, 87.9, 93.1, 88.2, 75.7, null],
-        borderColor: chatgptColor,
-        backgroundColor: chatgptColorLight,
-        borderWidth: 3,
-        tension: 0.3,
-        pointRadius: 6,
-        pointHoverRadius: 8,
-        pointBackgroundColor: chatgptColor,
-        spanGaps: false,
-        sortOrder: 15
-      }
-    ];
-
-    const mrcrInstantDatasets = [
-      {
+        modelId: 'gpt-instant',
         label: 'GPT 5.2 Instant',
         data: [49.4, 45.1, 50.4, 41.5, 31.9, null],
         borderColor: 'rgba(16, 163, 127, 0.5)',
@@ -2356,6 +2924,33 @@
         sortOrder: 30
       },
       {
+        modelId: 'gemini-pro',
+        label: 'Gemini 3 Pro',
+        data: [98.0, 91.3, 86.6, 72.1, 54.2, 24.5],
+        borderColor: geminiColor,
+        backgroundColor: geminiColorLight,
+        borderWidth: 3,
+        tension: 0.3,
+        pointRadius: 6,
+        pointHoverRadius: 8,
+        pointBackgroundColor: geminiColor,
+        sortOrder: 40
+      },
+      {
+        modelId: 'gemini-flash-thinking',
+        label: 'Gemini 3 Flash Thinking',
+        data: [96.7, 85.3, 84.9, 72.9, 51.5, 32.6],
+        borderColor: 'rgba(243, 77, 101, 0.7)',
+        backgroundColor: 'rgba(243, 77, 101, 0.5)',
+        borderWidth: 2,
+        tension: 0.3,
+        pointRadius: 5,
+        pointHoverRadius: 7,
+        pointBackgroundColor: 'rgba(243, 77, 101, 0.7)',
+        sortOrder: 50
+      },
+      {
+        modelId: 'gemini-flash',
         label: 'Gemini 3 Flash',
         data: [75.5, 46.2, 39.0, 36.9, 25.4, 25.7],
         borderColor: 'rgba(243, 77, 101, 0.4)',
@@ -2367,11 +2962,9 @@
         pointHoverRadius: 7,
         pointBackgroundColor: 'rgba(243, 77, 101, 0.4)',
         sortOrder: 60
-      }
-    ];
-
-    const mrcrClaudeDatasets = [
+      },
       {
+        modelId: 'claude-opus',
         label: 'Claude 4.5 Opus Thinking',
         data: [78.0, 56.2, 46.7, 35.3, 27.1, null],
         borderColor: claudeColor,
@@ -2385,6 +2978,7 @@
         sortOrder: 70
       },
       {
+        modelId: 'claude-sonnet',
         label: 'Claude 4.5 Sonnet Thinking',
         data: [48.9, 42.4, 32.8, 26.0, 16.6, null],
         borderColor: 'rgba(250, 129, 45, 0.7)',
@@ -2398,6 +2992,7 @@
         sortOrder: 80
       },
       {
+        modelId: 'claude-haiku',
         label: 'Claude 4.5 Haiku Thinking',
         data: [52.9, 38.6, 29.0, 23.3, 14.1, null],
         borderColor: 'rgba(250, 129, 45, 0.5)',
@@ -2414,25 +3009,8 @@
     ];
 
     function getMrcrDatasets() {
-      // Collect all visible datasets
-      let datasets = [...mrcrReasoningDatasets];
-
-      // Note: GPT 5.2 Codex has no data for MRCR v2 8-Needle, so it's not included here
-
-      // Add ChatGPT Pro models if visible
-      if (showChatGPTProModels) {
-        datasets = [...datasets, ...mrcrChatGPTProDatasets];
-      }
-
-      // Add Instant models if visible
-      if (showInstantModels) {
-        datasets = [...datasets, ...mrcrInstantDatasets];
-      }
-
-      // Add Claude at the end if visible
-      if (showClaudeModels) {
-        datasets = [...datasets, ...mrcrClaudeDatasets];
-      }
+      // Filter datasets based on modelVisibility
+      let datasets = mrcrAllDatasets.filter(ds => modelVisibility[ds.modelId]);
 
       // Sort by sortOrder to maintain family grouping in legend
       datasets.sort((a, b) => a.sortOrder - b.sortOrder);
@@ -2510,46 +3088,25 @@
 
     // Long Context Reasoning - AA-LCR - Horizontal Bar Chart
     let lcrChart;
-    const lcrCodingModels = [
-      { label: '⌘ GPT 5.2 Codex', score: 75.7, sortOrder: 10 }
-    ];
-    const lcrReasoningModels = [
-      { label: '⌘ GPT 5.2 Thinking', score: 63.3, sortOrder: 20 },
-      { label: '✦ Gemini 3 Pro', score: 70.7, sortOrder: 40 },
-      { label: '✦ Gemini 3 Flash Thinking', score: 66.3, sortOrder: 50 }
-    ];
-    const lcrChatGPTProModels = [
-      { label: '⌘ GPT 5.2 Thinking xhigh', score: 72.7, sortOrder: 15 }
-    ];
-    const lcrInstantModels = [
-      { label: '⌘ GPT 5.2 Instant', score: 38.0, sortOrder: 30 },
-      { label: '✦ Gemini 3 Flash', score: 48.0, sortOrder: 60 }
-    ];
-    const lcrClaudeModels = [
-      { label: '❋ Claude Opus 4.5 Thinking', score: 74.0, sortOrder: 70 },
-      { label: '❋ Claude 4.5 Sonnet Thinking', score: 65.7, sortOrder: 80 },
-      { label: '❋ Claude 4.5 Haiku Thinking', score: 70.3, sortOrder: 90 }
+    const lcrAllModels = [
+      { modelId: 'gpt-codex', label: '⌘ GPT 5.2 Codex', score: 75.7, sortOrder: 10 },
+      { modelId: 'gpt-xhigh', label: '⌘ GPT 5.2 Thinking xhigh', score: 72.7, sortOrder: 15 },
+      { modelId: 'gpt-thinking', label: '⌘ GPT 5.2 Thinking', score: 63.3, sortOrder: 20 },
+      { modelId: 'gpt-instant', label: '⌘ GPT 5.2 Instant', score: 38.0, sortOrder: 30 },
+      { modelId: 'gemini-pro', label: '✦ Gemini 3 Pro', score: 70.7, sortOrder: 40 },
+      { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', score: 66.3, sortOrder: 50 },
+      { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', score: 48.0, sortOrder: 60 },
+      { modelId: 'claude-opus', label: '❋ Claude Opus 4.5 Thinking', score: 74.0, sortOrder: 70 },
+      { modelId: 'claude-opus-nr', label: '❋ Claude Opus 4.5', score: 65.3, sortOrder: 75 },
+      { modelId: 'claude-sonnet', label: '❋ Claude 4.5 Sonnet Thinking', score: 65.7, sortOrder: 80 },
+      { modelId: 'claude-sonnet-nr', label: '❋ Claude 4.5 Sonnet', score: 51.3, sortOrder: 85 },
+      { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Thinking', score: 70.3, sortOrder: 90 },
+      { modelId: 'claude-haiku-nr', label: '❋ Claude 4.5 Haiku', score: 43.7, sortOrder: 95 }
     ];
 
     function getLcrData() {
-      // Collect all visible models
-      let models = [...lcrReasoningModels];
-
-      if (showCodingBenchmarks) {
-        models = [...models, ...lcrCodingModels];
-      }
-
-      if (showChatGPTProModels) {
-        models = [...models, ...lcrChatGPTProModels];
-      }
-
-      if (showInstantModels) {
-        models = [...models, ...lcrInstantModels];
-      }
-
-      if (showClaudeModels) {
-        models = [...models, ...lcrClaudeModels];
-      }
+      // Filter models based on modelVisibility
+      let models = lcrAllModels.filter(m => modelVisibility[m.modelId]);
 
       // Sort by sortOrder to maintain family grouping
       models.sort((a, b) => a.sortOrder - b.sortOrder);
@@ -2641,46 +3198,25 @@
 
     // Visual Reasoning - MMMU-Pro - Horizontal Bar Chart
     let mmmuProChart;
-    const mmmuProCodingModels = [
-      { label: '⌘ GPT 5.2 Codex', score: 76, sortOrder: 10 }
-    ];
-    const mmmuProReasoningModels = [
-      { label: '⌘ GPT 5.2 Thinking', score: 75, sortOrder: 20 },
-      { label: '✦ Gemini 3 Pro', score: 80, sortOrder: 40 },
-      { label: '✦ Gemini 3 Flash Thinking', score: 80, sortOrder: 50 }
-    ];
-    const mmmuProChatGPTProModels = [
-      { label: '⌘ GPT 5.2 Thinking xhigh', score: 79, sortOrder: 15 }
-    ];
-    const mmmuProInstantModels = [
-      { label: '⌘ GPT 5.2 Instant', score: 66, sortOrder: 30 },
-      { label: '✦ Gemini 3 Flash', score: 79, sortOrder: 60 }
-    ];
-    const mmmuProClaudeModels = [
-      { label: '❋ Claude Opus 4.5 Thinking', score: 74, sortOrder: 70 },
-      { label: '❋ Claude 4.5 Sonnet Thinking', score: 69, sortOrder: 80 },
-      { label: '❋ Claude 4.5 Haiku Thinking', score: 58, sortOrder: 90 }
+    const mmmuProAllModels = [
+      { modelId: 'gpt-codex', label: '⌘ GPT 5.2 Codex', score: 76, sortOrder: 10 },
+      { modelId: 'gpt-xhigh', label: '⌘ GPT 5.2 Thinking xhigh', score: 79, sortOrder: 15 },
+      { modelId: 'gpt-thinking', label: '⌘ GPT 5.2 Thinking', score: 75, sortOrder: 20 },
+      { modelId: 'gpt-instant', label: '⌘ GPT 5.2 Instant', score: 66, sortOrder: 30 },
+      { modelId: 'gemini-pro', label: '✦ Gemini 3 Pro', score: 80, sortOrder: 40 },
+      { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', score: 80, sortOrder: 50 },
+      { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', score: 79, sortOrder: 60 },
+      { modelId: 'claude-opus', label: '❋ Claude Opus 4.5 Thinking', score: 74, sortOrder: 70 },
+      { modelId: 'claude-opus-nr', label: '❋ Claude Opus 4.5', score: 71, sortOrder: 75 },
+      { modelId: 'claude-sonnet', label: '❋ Claude 4.5 Sonnet Thinking', score: 69, sortOrder: 80 },
+      { modelId: 'claude-sonnet-nr', label: '❋ Claude 4.5 Sonnet', score: 65, sortOrder: 85 },
+      { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Thinking', score: 58, sortOrder: 90 },
+      { modelId: 'claude-haiku-nr', label: '❋ Claude 4.5 Haiku', score: 55, sortOrder: 95 }
     ];
 
     function getMmmuProData() {
-      // Collect all visible models
-      let models = [...mmmuProReasoningModels];
-
-      if (showCodingBenchmarks) {
-        models = [...models, ...mmmuProCodingModels];
-      }
-
-      if (showChatGPTProModels) {
-        models = [...models, ...mmmuProChatGPTProModels];
-      }
-
-      if (showInstantModels) {
-        models = [...models, ...mmmuProInstantModels];
-      }
-
-      if (showClaudeModels) {
-        models = [...models, ...mmmuProClaudeModels];
-      }
+      // Filter models based on modelVisibility
+      let models = mmmuProAllModels.filter(m => modelVisibility[m.modelId]);
 
       // Sort by sortOrder to maintain family grouping
       models.sort((a, b) => a.sortOrder - b.sortOrder);
@@ -2772,46 +3308,25 @@
 
     // Terminal-Bench Hard - Horizontal Bar Chart
     let terminalBenchChart;
-    const terminalBenchCodingModels = [
-      { label: '⌘ GPT 5.2 Codex', score: 37.1, sortOrder: 10 }
-    ];
-    const terminalBenchReasoningModels = [
-      { label: '⌘ GPT 5.2 Thinking', score: 43.2, sortOrder: 20 },
-      { label: '✦ Gemini 3 Pro', score: 41.7, sortOrder: 40 },
-      { label: '✦ Gemini 3 Flash Thinking', score: 38.6, sortOrder: 50 }
-    ];
-    const terminalBenchChatGPTProModels = [
-      { label: '⌘ GPT 5.2 Thinking xhigh', score: 47.0, sortOrder: 15 }
-    ];
-    const terminalBenchInstantModels = [
-      { label: '⌘ GPT 5.2 Instant', score: 31.8, sortOrder: 30 },
-      { label: '✦ Gemini 3 Flash', score: 31.8, sortOrder: 60 }
-    ];
-    const terminalBenchClaudeModels = [
-      { label: '❋ Claude Opus 4.5 Thinking', score: 47.0, sortOrder: 70 },
-      { label: '❋ Claude 4.5 Sonnet Thinking', score: 35.6, sortOrder: 80 },
-      { label: '❋ Claude 4.5 Haiku Thinking', score: 27.3, sortOrder: 90 }
+    const terminalBenchAllModels = [
+      { modelId: 'gpt-codex', label: '⌘ GPT 5.2 Codex', score: 37.1, sortOrder: 10 },
+      { modelId: 'gpt-xhigh', label: '⌘ GPT 5.2 Thinking xhigh', score: 47.0, sortOrder: 15 },
+      { modelId: 'gpt-thinking', label: '⌘ GPT 5.2 Thinking', score: 43.2, sortOrder: 20 },
+      { modelId: 'gpt-instant', label: '⌘ GPT 5.2 Instant', score: 31.8, sortOrder: 30 },
+      { modelId: 'gemini-pro', label: '✦ Gemini 3 Pro', score: 41.7, sortOrder: 40 },
+      { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', score: 38.6, sortOrder: 50 },
+      { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', score: 31.8, sortOrder: 60 },
+      { modelId: 'claude-opus', label: '❋ Claude Opus 4.5 Thinking', score: 47.0, sortOrder: 70 },
+      { modelId: 'claude-opus-nr', label: '❋ Claude Opus 4.5', score: 40.9, sortOrder: 75 },
+      { modelId: 'claude-sonnet', label: '❋ Claude 4.5 Sonnet Thinking', score: 35.6, sortOrder: 80 },
+      { modelId: 'claude-sonnet-nr', label: '❋ Claude 4.5 Sonnet', score: 28.8, sortOrder: 85 },
+      { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Thinking', score: 27.3, sortOrder: 90 },
+      { modelId: 'claude-haiku-nr', label: '❋ Claude 4.5 Haiku', score: 27.3, sortOrder: 95 }
     ];
 
     function getTerminalBenchData() {
-      // Collect all visible models
-      let models = [...terminalBenchReasoningModels];
-
-      if (showCodingBenchmarks) {
-        models = [...models, ...terminalBenchCodingModels];
-      }
-
-      if (showChatGPTProModels) {
-        models = [...models, ...terminalBenchChatGPTProModels];
-      }
-
-      if (showInstantModels) {
-        models = [...models, ...terminalBenchInstantModels];
-      }
-
-      if (showClaudeModels) {
-        models = [...models, ...terminalBenchClaudeModels];
-      }
+      // Filter models based on modelVisibility
+      let models = terminalBenchAllModels.filter(m => modelVisibility[m.modelId]);
 
       // Sort by sortOrder to maintain family grouping
       models.sort((a, b) => a.sortOrder - b.sortOrder);
@@ -2902,46 +3417,25 @@
 
     // τ²-Bench Telecom - Horizontal Bar Chart
     let tau2BenchChart;
-    const tau2BenchCodingModels = [
-      { label: '⌘ GPT 5.2 Codex', score: 92.1, sortOrder: 10 }
-    ];
-    const tau2BenchReasoningModels = [
-      { label: '⌘ GPT 5.2 Thinking', score: 74.3, sortOrder: 20 },
-      { label: '✦ Gemini 3 Pro', score: 87.1, sortOrder: 40 },
-      { label: '✦ Gemini 3 Flash Thinking', score: 80.4, sortOrder: 50 }
-    ];
-    const tau2BenchChatGPTProModels = [
-      { label: '⌘ GPT 5.2 Thinking xhigh', score: 84.8, sortOrder: 15 }
-    ];
-    const tau2BenchInstantModels = [
-      { label: '⌘ GPT 5.2 Instant', score: 46.5, sortOrder: 30 },
-      { label: '✦ Gemini 3 Flash', score: 43.3, sortOrder: 60 }
-    ];
-    const tau2BenchClaudeModels = [
-      { label: '❋ Claude Opus 4.5 Thinking', score: 89.5, sortOrder: 70 },
-      { label: '❋ Claude 4.5 Sonnet Thinking', score: 78.1, sortOrder: 80 },
-      { label: '❋ Claude 4.5 Haiku Thinking', score: 54.7, sortOrder: 90 }
+    const tau2BenchAllModels = [
+      { modelId: 'gpt-codex', label: '⌘ GPT 5.2 Codex', score: 92.1, sortOrder: 10 },
+      { modelId: 'gpt-xhigh', label: '⌘ GPT 5.2 Thinking xhigh', score: 84.8, sortOrder: 15 },
+      { modelId: 'gpt-thinking', label: '⌘ GPT 5.2 Thinking', score: 74.3, sortOrder: 20 },
+      { modelId: 'gpt-instant', label: '⌘ GPT 5.2 Instant', score: 46.5, sortOrder: 30 },
+      { modelId: 'gemini-pro', label: '✦ Gemini 3 Pro', score: 87.1, sortOrder: 40 },
+      { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', score: 80.4, sortOrder: 50 },
+      { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', score: 43.3, sortOrder: 60 },
+      { modelId: 'claude-opus', label: '❋ Claude Opus 4.5 Thinking', score: 89.5, sortOrder: 70 },
+      { modelId: 'claude-opus-nr', label: '❋ Claude Opus 4.5', score: 86.3, sortOrder: 75 },
+      { modelId: 'claude-sonnet', label: '❋ Claude 4.5 Sonnet Thinking', score: 78.1, sortOrder: 80 },
+      { modelId: 'claude-sonnet-nr', label: '❋ Claude 4.5 Sonnet', score: 70.5, sortOrder: 85 },
+      { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Thinking', score: 54.7, sortOrder: 90 },
+      { modelId: 'claude-haiku-nr', label: '❋ Claude 4.5 Haiku', score: 32.5, sortOrder: 95 }
     ];
 
     function getTau2BenchData() {
-      // Collect all visible models
-      let models = [...tau2BenchReasoningModels];
-
-      if (showCodingBenchmarks) {
-        models = [...models, ...tau2BenchCodingModels];
-      }
-
-      if (showChatGPTProModels) {
-        models = [...models, ...tau2BenchChatGPTProModels];
-      }
-
-      if (showInstantModels) {
-        models = [...models, ...tau2BenchInstantModels];
-      }
-
-      if (showClaudeModels) {
-        models = [...models, ...tau2BenchClaudeModels];
-      }
+      // Filter models based on modelVisibility
+      let models = tau2BenchAllModels.filter(m => modelVisibility[m.modelId]);
 
       // Sort by sortOrder to maintain family grouping
       models.sort((a, b) => a.sortOrder - b.sortOrder);
@@ -3143,61 +3637,30 @@
     function toggleClaudeModels() {
       showClaudeModels = !showClaudeModels;
 
+      // Update modelVisibility for Claude models respecting constraints
+      modelGroups.claude.forEach(modelId => {
+        if (showClaudeModels) {
+          // When turning ON: only activate if ALL constraints are met
+          modelVisibility[modelId] = shouldModelBeVisible(modelId);
+        } else {
+          // When turning OFF: always disable
+          modelVisibility[modelId] = false;
+        }
+      });
+
       // Sync all Claude toggles
       document.querySelectorAll('.claude-toggle').forEach(toggle => {
         toggle.classList.toggle('active', showClaudeModels);
       });
 
-      // Animation config for smooth transitions
-      const animationConfig = {
-        duration: 750,
-        easing: 'easeInOutQuart'
-      };
-
-      // Update Omniscience chart
-      const omniscienceData = getOmniscienceData();
-      omniscienceChart.data.labels = omniscienceData.labels;
-      omniscienceChart.data.datasets[0].data = omniscienceData.correct;
-      omniscienceChart.data.datasets[0].backgroundColor = omniscienceData.correctBgColors;
-      omniscienceChart.data.datasets[1].data = omniscienceData.abstention;
-      omniscienceChart.data.datasets[1].backgroundColor = omniscienceData.abstentionBgColors;
-      omniscienceChart.data.datasets[2].data = omniscienceData.hallucination;
-      omniscienceChart.data.datasets[2].backgroundColor = omniscienceData.hallucinationBgColors;
-      omniscienceChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
-
-      // Update MRCR chart
-      mrcrChart.data.datasets = getMrcrDatasets();
-      mrcrChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
-
-      // Update LCR chart
-      const lcrData = getLcrData();
-      lcrChart.data.labels = lcrData.labels;
-      lcrChart.data.datasets[0].data = lcrData.data;
-      lcrChart.data.datasets[0].backgroundColor = lcrData.backgroundColors;
-      lcrChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
-
-      // Update MMMU-Pro chart
-      const mmmuProData = getMmmuProData();
-      mmmuProChart.data.labels = mmmuProData.labels;
-      mmmuProChart.data.datasets[0].data = mmmuProData.data;
-      mmmuProChart.data.datasets[0].backgroundColor = mmmuProData.backgroundColors;
-      mmmuProChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
-
-      // Update Terminal-Bench chart
-      const terminalBenchData = getTerminalBenchData();
-      terminalBenchChart.data.labels = terminalBenchData.labels;
-      terminalBenchChart.data.datasets[0].data = terminalBenchData.data;
-      terminalBenchChart.data.datasets[0].backgroundColor = terminalBenchData.backgroundColors;
-      terminalBenchChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
-
-      // Update τ²-Bench chart
-      const tau2BenchData = getTau2BenchData();
-      tau2BenchChart.data.labels = tau2BenchData.labels;
-      tau2BenchChart.data.datasets[0].data = tau2BenchData.data;
-      tau2BenchChart.data.datasets[0].backgroundColor = tau2BenchData.backgroundColors;
-      tau2BenchChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
+      // Update UI and charts
+      updateModelDotsUI();
+      syncGroupToggles();
+      updateLegacyFlags();
+      updateAllCharts();
 
       // Save state to localStorage
+      localStorage.setItem('modelVisibility', JSON.stringify(modelVisibility));
       localStorage.setItem('claudeModelsVisible', showClaudeModels);
     }
 
@@ -3205,61 +3668,30 @@
     function toggleInstantModels() {
       showInstantModels = !showInstantModels;
 
+      // Update modelVisibility for instant models respecting constraints
+      modelGroups.instant.forEach(modelId => {
+        if (showInstantModels) {
+          // When turning ON: only activate if ALL constraints are met
+          modelVisibility[modelId] = shouldModelBeVisible(modelId);
+        } else {
+          // When turning OFF: always disable
+          modelVisibility[modelId] = false;
+        }
+      });
+
       // Sync all Instant toggles
       document.querySelectorAll('.instant-model-toggle').forEach(toggle => {
         toggle.classList.toggle('active', showInstantModels);
       });
 
-      // Animation config for smooth transitions
-      const animationConfig = {
-        duration: 750,
-        easing: 'easeInOutQuart'
-      };
-
-      // Update Omniscience chart
-      const omniscienceData = getOmniscienceData();
-      omniscienceChart.data.labels = omniscienceData.labels;
-      omniscienceChart.data.datasets[0].data = omniscienceData.correct;
-      omniscienceChart.data.datasets[0].backgroundColor = omniscienceData.correctBgColors;
-      omniscienceChart.data.datasets[1].data = omniscienceData.abstention;
-      omniscienceChart.data.datasets[1].backgroundColor = omniscienceData.abstentionBgColors;
-      omniscienceChart.data.datasets[2].data = omniscienceData.hallucination;
-      omniscienceChart.data.datasets[2].backgroundColor = omniscienceData.hallucinationBgColors;
-      omniscienceChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
-
-      // Update MRCR chart
-      mrcrChart.data.datasets = getMrcrDatasets();
-      mrcrChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
-
-      // Update LCR chart
-      const lcrData = getLcrData();
-      lcrChart.data.labels = lcrData.labels;
-      lcrChart.data.datasets[0].data = lcrData.data;
-      lcrChart.data.datasets[0].backgroundColor = lcrData.backgroundColors;
-      lcrChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
-
-      // Update MMMU-Pro chart
-      const mmmuProData = getMmmuProData();
-      mmmuProChart.data.labels = mmmuProData.labels;
-      mmmuProChart.data.datasets[0].data = mmmuProData.data;
-      mmmuProChart.data.datasets[0].backgroundColor = mmmuProData.backgroundColors;
-      mmmuProChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
-
-      // Update Terminal-Bench chart
-      const terminalBenchData = getTerminalBenchData();
-      terminalBenchChart.data.labels = terminalBenchData.labels;
-      terminalBenchChart.data.datasets[0].data = terminalBenchData.data;
-      terminalBenchChart.data.datasets[0].backgroundColor = terminalBenchData.backgroundColors;
-      terminalBenchChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
-
-      // Update τ²-Bench chart
-      const tau2BenchData = getTau2BenchData();
-      tau2BenchChart.data.labels = tau2BenchData.labels;
-      tau2BenchChart.data.datasets[0].data = tau2BenchData.data;
-      tau2BenchChart.data.datasets[0].backgroundColor = tau2BenchData.backgroundColors;
-      tau2BenchChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
+      // Update UI and charts
+      updateModelDotsUI();
+      syncGroupToggles();
+      updateLegacyFlags();
+      updateAllCharts();
 
       // Save state to localStorage
+      localStorage.setItem('modelVisibility', JSON.stringify(modelVisibility));
       localStorage.setItem('instantModelsVisible', showInstantModels);
     }
 
@@ -3267,122 +3699,98 @@
     function toggleChatGPTProModels() {
       showChatGPTProModels = !showChatGPTProModels;
 
+      // Update modelVisibility for ChatGPT Pro models respecting constraints
+      modelGroups['chatgpt-pro'].forEach(modelId => {
+        if (showChatGPTProModels) {
+          // When turning ON: only activate if ALL constraints are met
+          modelVisibility[modelId] = shouldModelBeVisible(modelId);
+        } else {
+          // When turning OFF: always disable
+          modelVisibility[modelId] = false;
+        }
+      });
+
       // Sync all ChatGPT Pro toggles
       document.querySelectorAll('.chatgpt-pro-model-toggle').forEach(toggle => {
         toggle.classList.toggle('active', showChatGPTProModels);
       });
 
-      // Animation config for smooth transitions
-      const animationConfig = {
-        duration: 750,
-        easing: 'easeInOutQuart'
-      };
-
-      // Update Omniscience chart
-      const omniscienceData = getOmniscienceData();
-      omniscienceChart.data.labels = omniscienceData.labels;
-      omniscienceChart.data.datasets[0].data = omniscienceData.correct;
-      omniscienceChart.data.datasets[0].backgroundColor = omniscienceData.correctBgColors;
-      omniscienceChart.data.datasets[1].data = omniscienceData.abstention;
-      omniscienceChart.data.datasets[1].backgroundColor = omniscienceData.abstentionBgColors;
-      omniscienceChart.data.datasets[2].data = omniscienceData.hallucination;
-      omniscienceChart.data.datasets[2].backgroundColor = omniscienceData.hallucinationBgColors;
-      omniscienceChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
-
-      // Update MRCR chart
-      mrcrChart.data.datasets = getMrcrDatasets();
-      mrcrChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
-
-      // Update LCR chart
-      const lcrData = getLcrData();
-      lcrChart.data.labels = lcrData.labels;
-      lcrChart.data.datasets[0].data = lcrData.data;
-      lcrChart.data.datasets[0].backgroundColor = lcrData.backgroundColors;
-      lcrChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
-
-      // Update MMMU-Pro chart
-      const mmmuProData = getMmmuProData();
-      mmmuProChart.data.labels = mmmuProData.labels;
-      mmmuProChart.data.datasets[0].data = mmmuProData.data;
-      mmmuProChart.data.datasets[0].backgroundColor = mmmuProData.backgroundColors;
-      mmmuProChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
-
-      // Update Terminal-Bench chart
-      const terminalBenchData = getTerminalBenchData();
-      terminalBenchChart.data.labels = terminalBenchData.labels;
-      terminalBenchChart.data.datasets[0].data = terminalBenchData.data;
-      terminalBenchChart.data.datasets[0].backgroundColor = terminalBenchData.backgroundColors;
-      terminalBenchChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
-
-      // Update τ²-Bench chart
-      const tau2BenchData = getTau2BenchData();
-      tau2BenchChart.data.labels = tau2BenchData.labels;
-      tau2BenchChart.data.datasets[0].data = tau2BenchData.data;
-      tau2BenchChart.data.datasets[0].backgroundColor = tau2BenchData.backgroundColors;
-      tau2BenchChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
+      // Update UI and charts
+      updateModelDotsUI();
+      syncGroupToggles();
+      updateLegacyFlags();
+      updateAllCharts();
 
       // Save state to localStorage
+      localStorage.setItem('modelVisibility', JSON.stringify(modelVisibility));
       localStorage.setItem('chatgptProModelsVisible', showChatGPTProModels);
     }
 
-    // Toggle function for Coding benchmarks - hides coding charts and GPT 5.2 Codex
-    function toggleCodingBenchmarks() {
+    // Toggle function for Coding benchmarks section only (not the Codex model)
+    function toggleCodingSection() {
       showCodingBenchmarks = !showCodingBenchmarks;
+
+      // Toggle visibility of coding benchmark sections
+      const benchmarksTab = document.getElementById('tab-benchmarks');
+      benchmarksTab.classList.toggle('hide-coding-benchmarks', !showCodingBenchmarks);
+
+      // Update the coding section dot
+      const codingDot = document.querySelector('[data-model="coding-benchmarks"]');
+      if (codingDot) {
+        codingDot.classList.toggle('inactive', !showCodingBenchmarks);
+      }
+
+      // Sync coding group toggle
+      document.querySelectorAll('.coding-bench-toggle').forEach(toggle => {
+        // Toggle is active if either benchmarks OR codex model is active
+        const codexVisible = modelVisibility['gpt-codex'];
+        toggle.classList.toggle('active', showCodingBenchmarks || codexVisible);
+      });
+
+      // Save state
+      localStorage.setItem('codingBenchmarksVisible', showCodingBenchmarks);
+    }
+
+    // Toggle function for Coding benchmarks group - controls both section and Codex model together
+    function toggleCodingBenchmarks() {
+      // Determine new state based on whether both are currently on
+      const bothOn = showCodingBenchmarks && modelVisibility['gpt-codex'];
+      const newState = !bothOn;
+
+      showCodingBenchmarks = newState;
+
+      // Update Codex model visibility respecting constraints
+      if (newState) {
+        // When turning ON: only activate if ALL constraints are met
+        modelVisibility['gpt-codex'] = shouldModelBeVisible('gpt-codex');
+      } else {
+        // When turning OFF: always disable
+        modelVisibility['gpt-codex'] = false;
+      }
 
       // Sync all Coding toggles
       document.querySelectorAll('.coding-bench-toggle').forEach(toggle => {
-        toggle.classList.toggle('active', showCodingBenchmarks);
+        toggle.classList.toggle('active', newState);
       });
 
       // Toggle visibility of coding benchmark sections
       const benchmarksTab = document.getElementById('tab-benchmarks');
       benchmarksTab.classList.toggle('hide-coding-benchmarks', !showCodingBenchmarks);
 
-      // Animation config for smooth transitions
-      const animationConfig = {
-        duration: 750,
-        easing: 'easeInOutQuart'
-      };
+      // Update UI and charts
+      updateModelDotsUI();
+      syncGroupToggles();
+      updateLegacyFlags();
+      updateAllCharts();
 
-      // Update all charts to show/hide GPT 5.2 Codex
-      const omniscienceData = getOmniscienceData();
-      omniscienceChart.data.labels = omniscienceData.labels;
-      omniscienceChart.data.datasets[0].data = omniscienceData.correct;
-      omniscienceChart.data.datasets[0].backgroundColor = omniscienceData.correctBgColors;
-      omniscienceChart.data.datasets[1].data = omniscienceData.abstention;
-      omniscienceChart.data.datasets[1].backgroundColor = omniscienceData.abstentionBgColors;
-      omniscienceChart.data.datasets[2].data = omniscienceData.hallucination;
-      omniscienceChart.data.datasets[2].backgroundColor = omniscienceData.hallucinationBgColors;
-      omniscienceChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
-
-      mrcrChart.data.datasets = getMrcrDatasets();
-      mrcrChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
-
-      const lcrData = getLcrData();
-      lcrChart.data.labels = lcrData.labels;
-      lcrChart.data.datasets[0].data = lcrData.data;
-      lcrChart.data.datasets[0].backgroundColor = lcrData.backgroundColors;
-      lcrChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
-
-      const mmmuProData = getMmmuProData();
-      mmmuProChart.data.labels = mmmuProData.labels;
-      mmmuProChart.data.datasets[0].data = mmmuProData.data;
-      mmmuProChart.data.datasets[0].backgroundColor = mmmuProData.backgroundColors;
-      mmmuProChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
-
-      const terminalBenchData = getTerminalBenchData();
-      terminalBenchChart.data.labels = terminalBenchData.labels;
-      terminalBenchChart.data.datasets[0].data = terminalBenchData.data;
-      terminalBenchChart.data.datasets[0].backgroundColor = terminalBenchData.backgroundColors;
-      terminalBenchChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
-
-      const tau2BenchData = getTau2BenchData();
-      tau2BenchChart.data.labels = tau2BenchData.labels;
-      tau2BenchChart.data.datasets[0].data = tau2BenchData.data;
-      tau2BenchChart.data.datasets[0].backgroundColor = tau2BenchData.backgroundColors;
-      tau2BenchChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
+      // Update the coding section dot
+      const codingDot = document.querySelector('[data-model="coding-benchmarks"]');
+      if (codingDot) {
+        codingDot.classList.toggle('inactive', !showCodingBenchmarks);
+      }
 
       // Save state to localStorage
+      localStorage.setItem('modelVisibility', JSON.stringify(modelVisibility));
       localStorage.setItem('codingBenchmarksVisible', showCodingBenchmarks);
     }
 
@@ -3390,46 +3798,77 @@
     function initializeSavedStates() {
       let needsChartUpdate = false;
 
-      // Restore Coding benchmarks toggle state
-      const savedCoding = localStorage.getItem('codingBenchmarksVisible');
-      if (savedCoding === 'true') {
-        showCodingBenchmarks = true;
-        document.querySelectorAll('.coding-bench-toggle').forEach(toggle => {
-          toggle.classList.add('active');
-        });
-        const benchmarksTab = document.getElementById('tab-benchmarks');
-        benchmarksTab.classList.remove('hide-coding-benchmarks');
-        needsChartUpdate = true;
+      // Restore modelVisibility from localStorage
+      const savedModelVisibility = localStorage.getItem('modelVisibility');
+      if (savedModelVisibility) {
+        try {
+          const parsedVisibility = JSON.parse(savedModelVisibility);
+          // Merge saved visibility with defaults (in case new models were added)
+          Object.keys(parsedVisibility).forEach(key => {
+            if (key in modelVisibility) {
+              modelVisibility[key] = parsedVisibility[key];
+            }
+          });
+          needsChartUpdate = true;
+        } catch (e) {
+          console.error('Failed to parse saved modelVisibility:', e);
+        }
       }
 
-      // Restore Claude models toggle state
-      const savedClaude = localStorage.getItem('claudeModelsVisible');
-      if (savedClaude === 'false') {
-        // Default is visible (true), so hide them
-        showClaudeModels = false;
-        document.querySelectorAll('.claude-toggle').forEach(toggle => {
-          toggle.classList.remove('active');
-        });
-        needsChartUpdate = true;
+      // Restore modelExplicitlyDisabled from localStorage
+      const savedExplicitlyDisabled = localStorage.getItem('modelExplicitlyDisabled');
+      if (savedExplicitlyDisabled) {
+        try {
+          const parsedExplicit = JSON.parse(savedExplicitlyDisabled);
+          // Merge saved explicit state with defaults (in case new models were added)
+          Object.keys(parsedExplicit).forEach(key => {
+            if (key in modelExplicitlyDisabled) {
+              modelExplicitlyDisabled[key] = parsedExplicit[key];
+            }
+          });
+        } catch (e) {
+          console.error('Failed to parse saved modelExplicitlyDisabled:', e);
+        }
       }
 
-      // Restore ChatGPT Pro models toggle state
-      const savedChatGPTPro = localStorage.getItem('chatgptProModelsVisible');
-      if (savedChatGPTPro === 'true') {
-        // Default is hidden (false), so show them
-        showChatGPTProModels = true;
-        document.querySelectorAll('.chatgpt-pro-model-toggle').forEach(toggle => {
-          toggle.classList.add('active');
-        });
-        needsChartUpdate = true;
-      } else if (savedChatGPTPro === 'false') {
-        // Ensure toggle is off (remove active class from any toggles that may have it in HTML)
-        showChatGPTProModels = false;
-        document.querySelectorAll('.chatgpt-pro-model-toggle').forEach(toggle => {
-          toggle.classList.remove('active');
-        });
-        needsChartUpdate = true;
+      // Restore filters panel state
+      const savedFiltersPanel = localStorage.getItem('filtersPanelExpanded');
+      if (savedFiltersPanel === 'true') {
+        document.getElementById('modelFiltersPanel').classList.add('expanded');
       }
+
+      // Restore coding benchmarks section visibility (separate from Codex model)
+      const savedCodingBenchmarks = localStorage.getItem('codingBenchmarksVisible');
+      if (savedCodingBenchmarks !== null) {
+        showCodingBenchmarks = savedCodingBenchmarks === 'true';
+      }
+
+      // Restore group toggle states from localStorage (or derive from model visibility for backward compat)
+      const savedClaudeModels = localStorage.getItem('claudeModelsVisible');
+      showClaudeModels = savedClaudeModels !== null ? savedClaudeModels === 'true' : modelGroups.claude.some(m => modelVisibility[m]);
+
+      const savedInstantModels = localStorage.getItem('instantModelsVisible');
+      showInstantModels = savedInstantModels !== null ? savedInstantModels === 'true' : modelGroups.instant.some(m => modelVisibility[m]);
+
+      const savedChatGPTProModels = localStorage.getItem('chatgptProModelsVisible');
+      showChatGPTProModels = savedChatGPTProModels !== null ? savedChatGPTProModels === 'true' : modelGroups['chatgpt-pro'].some(m => modelVisibility[m]);
+
+      const savedReasoningModels = localStorage.getItem('reasoningModelsVisible');
+      showReasoningModels = savedReasoningModels !== null ? savedReasoningModels === 'true' : modelGroups.reasoning.some(m => modelVisibility[m]);
+
+      // Update coding benchmarks section visibility
+      const benchmarksTab = document.getElementById('tab-benchmarks');
+      benchmarksTab.classList.toggle('hide-coding-benchmarks', !showCodingBenchmarks);
+
+      // Update coding section dot
+      const codingDot = document.querySelector('[data-model="coding-benchmarks"]');
+      if (codingDot) {
+        codingDot.classList.toggle('inactive', !showCodingBenchmarks);
+      }
+
+      // Update all toggle UIs
+      syncGroupToggles();
+      updateModelDotsUI();
 
       // Update charts if state changed from default
       if (needsChartUpdate) {
@@ -3549,7 +3988,7 @@
     style="text-align: center; padding: 2rem 1rem; margin-top: 3rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.8rem;">
     Made by <strong> u/Pasto_Shouwa</strong>
     <br>
-    <em>Last updated on 30/01/2026</em>
+    <em>Last updated on <strong>04/02/2026</strong> (dd/mm/yyyy)</em>
   </footer>
 </body>
 
