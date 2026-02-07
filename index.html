@@ -1905,7 +1905,7 @@
               <div class="model-dot inactive" data-model="claude-46-opus"
                 onclick="toggleIndividualModel('claude-46-opus')">
                 <span class="model-dot-indicator dot-claude"></span>
-                <span class="model-dot-label">Claude 4.6 Opus Thinking</span>
+                <span class="model-dot-label">Claude 4.6 Opus Extended</span>
               </div>
               <div class="model-dot inactive" data-model="claude-46-opus-nr"
                 onclick="toggleIndividualModel('claude-46-opus-nr')">
@@ -1916,15 +1916,15 @@
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot" data-model="claude-opus" onclick="toggleIndividualModel('claude-opus')">
                 <span class="model-dot-indicator dot-claude"></span>
-                <span class="model-dot-label">Claude 4.5 Opus Thinking</span>
+                <span class="model-dot-label">Claude 4.5 Opus Extended</span>
               </div>
               <div class="model-dot" data-model="claude-sonnet" onclick="toggleIndividualModel('claude-sonnet')">
                 <span class="model-dot-indicator dot-claude"></span>
-                <span class="model-dot-label">Claude 4.5 Sonnet Thinking</span>
+                <span class="model-dot-label">Claude 4.5 Sonnet Extended</span>
               </div>
               <div class="model-dot inactive" data-model="claude-haiku" onclick="toggleIndividualModel('claude-haiku')">
                 <span class="model-dot-indicator dot-claude"></span>
-                <span class="model-dot-label">Claude 4.5 Haiku Thinking</span>
+                <span class="model-dot-label">Claude 4.5 Haiku Extended</span>
               </div>
             </div>
             <div class="model-dots-row">
@@ -1984,21 +1984,21 @@
               <div class="model-dot inactive" data-model="claude-46-opus"
                 onclick="toggleIndividualModel('claude-46-opus')">
                 <span class="model-dot-indicator dot-claude"></span>
-                <span class="model-dot-label">Claude 4.6 Opus Thinking</span>
+                <span class="model-dot-label">Claude 4.6 Opus Extended</span>
               </div>
             </div>
             <div class="model-dots-row">
               <div class="model-dot" data-model="claude-opus" onclick="toggleIndividualModel('claude-opus')">
                 <span class="model-dot-indicator dot-claude"></span>
-                <span class="model-dot-label">Claude 4.5 Opus Thinking</span>
+                <span class="model-dot-label">Claude 4.5 Opus Extended</span>
               </div>
               <div class="model-dot" data-model="claude-sonnet" onclick="toggleIndividualModel('claude-sonnet')">
                 <span class="model-dot-indicator dot-claude"></span>
-                <span class="model-dot-label">Claude 4.5 Sonnet Thinking</span>
+                <span class="model-dot-label">Claude 4.5 Sonnet Extended</span>
               </div>
               <div class="model-dot" data-model="claude-haiku" onclick="toggleIndividualModel('claude-haiku')">
                 <span class="model-dot-indicator dot-claude"></span>
-                <span class="model-dot-label">Claude 4.5 Haiku Thinking</span>
+                <span class="model-dot-label">Claude 4.5 Haiku Extended</span>
               </div>
             </div>
           </div>
@@ -2360,19 +2360,23 @@
           </li>
           <li>• For "<strong>Gemini 3 Flash</strong>", "<em>gemini-3-flash-preview</em>" was used in the
             graph.</li>
-          <li>• For "<strong>Claude Opus 4.5 Thinking</strong>", "<em>claude-opus-4.5:high</em>" was used in
+          <li>• For "<strong>Claude Opus 4.6 Extended</strong>", "<em>claude-opus-4.6:high</em>" was used in
             the graph.</li>
-          <li>• For "<strong>Claude Sonnet 4.5 Thinking</strong>", "<em>claude-sonnet-4.5:high</em>" was used
-            in the graph.</li>
-          <li>• For "<strong>Claude Haiku 4.5 Thinking</strong>", "<em>claude-haiku-4.5:high</em>" was used in
+          <li>• For "<strong>Claude Opus 4.6</strong>", "<em>claude-opus-4.6</em>" was used in
+            the graph.</li>
+          <li>• For "<strong>Claude Opus 4.5 Extended</strong>", "<em>claude-opus-4.5:high</em>" was used in
             the graph.</li>
           <li>• For "<strong>Claude Opus 4.5</strong>", "<em>claude-opus-4.5</em>" was used in
             the graph.</li>
+          <li>• For "<strong>Claude Sonnet 4.5 Extended</strong>", "<em>claude-sonnet-4.5:high</em>" was used
+            in the graph.</li>
           <li>• For "<strong>Claude Sonnet 4.5</strong>", "<em>claude-sonnet-4.5</em>" was used
             in the graph.</li>
+          <li>• For "<strong>Claude Haiku 4.5 Extended</strong>", "<em>claude-haiku-4.5:high</em>" was used in
+            the graph.</li>
           <li>• For "<strong>Claude Haiku 4.5</strong>", "<em>claude-haiku-4.5</em>" was used in
             the graph.</li>
-          <li>• Claude Opus 4.5 Thinking and Claude Sonnet 4.5 Thinking are available for free to Gemini users
+          <li>• Claude Opus 4.5 Extended and Claude Sonnet 4.5 Thinking are available for free to Gemini users
             through the Antigravity app, with limits that reset depending on demand (usually every 5 hours).</li>
         </ul>
       </div>
@@ -2797,9 +2801,9 @@
     //   40: ✦ Gemini 3 Pro
     //   50: ✦ Gemini 3 Flash Thinking
     //   60: ✦ Gemini 3 Flash (instant toggle)
-    //   70: ❋ Claude 4.5 Opus Thinking (claude toggle)
-    //   80: ❋ Claude 4.5 Sonnet Thinking (claude toggle)
-    //   90: ❋ Claude 4.5 Haiku Thinking (claude toggle)
+    //   70: ❋ Claude 4.5 Opus Extended (claude toggle)
+    //   80: ❋ Claude 4.5 Sonnet Extended (claude toggle)
+    //   90: ❋ Claude 4.5 Haiku Extended (claude toggle)
     // ============================================================================
 
     // Base data for AA-Omniscience using object structure with sortOrder and modelId
@@ -2811,13 +2815,13 @@
       { modelId: 'gemini-pro', label: '✦ Gemini 3 Pro', correct: 53.65, abstention: 4.20, hallucination: 42.16, sortOrder: 40 },
       { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', correct: 51.87, abstention: 4.50, hallucination: 43.63, sortOrder: 50 },
       { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', correct: 47.15, abstention: 6.35, hallucination: 46.50, sortOrder: 60 },
-      { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Thinking', correct: 44.32, abstention: 22.30, hallucination: 33.38, sortOrder: 65 },
+      { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Extended', correct: 44.32, abstention: 22.30, hallucination: 33.38, sortOrder: 65 },
       { modelId: 'claude-46-opus-nr', label: '❋ Claude 4.6 Opus', correct: 43.77, abstention: 13.66, hallucination: 42.57, sortOrder: 66 },
-      { modelId: 'claude-opus', label: '❋ Claude 4.5 Opus Thinking', correct: 43.12, abstention: 24.00, hallucination: 32.88, sortOrder: 70 },
+      { modelId: 'claude-opus', label: '❋ Claude 4.5 Opus Extended', correct: 43.12, abstention: 24.00, hallucination: 32.88, sortOrder: 70 },
       { modelId: 'claude-opus-nr', label: '❋ Claude 4.5 Opus', correct: 38.90, abstention: 15.75, hallucination: 45.35, sortOrder: 75 },
-      { modelId: 'claude-sonnet', label: '❋ Claude 4.5 Sonnet Thinking', correct: 30.90, abstention: 36.12, hallucination: 32.98, sortOrder: 80 },
+      { modelId: 'claude-sonnet', label: '❋ Claude 4.5 Sonnet Extended', correct: 30.90, abstention: 36.12, hallucination: 32.98, sortOrder: 80 },
       { modelId: 'claude-sonnet-nr', label: '❋ Claude 4.5 Sonnet', correct: 26.93, abstention: 35.48, hallucination: 37.59, sortOrder: 85 },
-      { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Thinking', correct: 16.18, abstention: 61.97, hallucination: 21.85, sortOrder: 90 },
+      { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', correct: 16.18, abstention: 61.97, hallucination: 21.85, sortOrder: 90 },
       { modelId: 'claude-haiku-nr', label: '❋ Claude 4.5 Haiku', correct: 13.42, abstention: 65.21, hallucination: 21.37, sortOrder: 95 }
     ];
 
@@ -3037,7 +3041,7 @@
       },
       {
         modelId: 'claude-opus',
-        label: 'Claude 4.5 Opus Thinking',
+        label: 'Claude 4.5 Opus Extended',
         data: [78.0, 56.2, 46.7, 35.3, 27.1, null],
         borderColor: claudeColor,
         backgroundColor: claudeColorLight,
@@ -3051,7 +3055,7 @@
       },
       {
         modelId: 'claude-sonnet',
-        label: 'Claude 4.5 Sonnet Thinking',
+        label: 'Claude 4.5 Sonnet Extended',
         data: [48.9, 42.4, 32.8, 26.0, 16.6, null],
         borderColor: 'rgba(249, 115, 22, 0.7)',
         backgroundColor: 'rgba(249, 115, 22, 0.5)',
@@ -3065,7 +3069,7 @@
       },
       {
         modelId: 'claude-haiku',
-        label: 'Claude 4.5 Haiku Thinking',
+        label: 'Claude 4.5 Haiku Extended',
         data: [52.9, 38.6, 29.0, 23.3, 14.1, null],
         borderColor: 'rgba(249, 115, 22, 0.5)',
         backgroundColor: 'rgba(249, 115, 22, 0.3)',
@@ -3168,13 +3172,13 @@
       { modelId: 'gemini-pro', label: '✦ Gemini 3 Pro', score: 70.7, sortOrder: 40 },
       { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', score: 66.3, sortOrder: 50 },
       { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', score: 48.0, sortOrder: 60 },
-      { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Thinking', score: 70.7, sortOrder: 65 },
+      { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Extended', score: 70.7, sortOrder: 65 },
       { modelId: 'claude-46-opus-nr', label: '❋ Claude 4.6 Opus', score: 58.3, sortOrder: 66 },
-      { modelId: 'claude-opus', label: '❋ Claude Opus 4.5 Thinking', score: 74.0, sortOrder: 70 },
+      { modelId: 'claude-opus', label: '❋ Claude Opus 4.5 Extended', score: 74.0, sortOrder: 70 },
       { modelId: 'claude-opus-nr', label: '❋ Claude Opus 4.5', score: 65.3, sortOrder: 75 },
-      { modelId: 'claude-sonnet', label: '❋ Claude 4.5 Sonnet Thinking', score: 65.7, sortOrder: 80 },
+      { modelId: 'claude-sonnet', label: '❋ Claude 4.5 Sonnet Extended', score: 65.7, sortOrder: 80 },
       { modelId: 'claude-sonnet-nr', label: '❋ Claude 4.5 Sonnet', score: 51.3, sortOrder: 85 },
-      { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Thinking', score: 70.3, sortOrder: 90 },
+      { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', score: 70.3, sortOrder: 90 },
       { modelId: 'claude-haiku-nr', label: '❋ Claude 4.5 Haiku', score: 43.7, sortOrder: 95 }
     ];
 
@@ -3280,13 +3284,13 @@
       { modelId: 'gemini-pro', label: '✦ Gemini 3 Pro', score: 80, sortOrder: 40 },
       { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', score: 80, sortOrder: 50 },
       { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', score: 79, sortOrder: 60 },
-      { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Thinking', score: 75, sortOrder: 65 },
+      { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Extended', score: 75, sortOrder: 65 },
       { modelId: 'claude-46-opus-nr', label: '❋ Claude 4.6 Opus', score: 73, sortOrder: 66 },
-      { modelId: 'claude-opus', label: '❋ Claude Opus 4.5 Thinking', score: 74, sortOrder: 70 },
+      { modelId: 'claude-opus', label: '❋ Claude Opus 4.5 Extended', score: 74, sortOrder: 70 },
       { modelId: 'claude-opus-nr', label: '❋ Claude Opus 4.5', score: 71, sortOrder: 75 },
-      { modelId: 'claude-sonnet', label: '❋ Claude 4.5 Sonnet Thinking', score: 69, sortOrder: 80 },
+      { modelId: 'claude-sonnet', label: '❋ Claude 4.5 Sonnet Extended', score: 69, sortOrder: 80 },
       { modelId: 'claude-sonnet-nr', label: '❋ Claude 4.5 Sonnet', score: 65, sortOrder: 85 },
-      { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Thinking', score: 58, sortOrder: 90 },
+      { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', score: 58, sortOrder: 90 },
       { modelId: 'claude-haiku-nr', label: '❋ Claude 4.5 Haiku', score: 55, sortOrder: 95 }
     ];
 
@@ -3392,13 +3396,13 @@
       { modelId: 'gemini-pro', label: '✦ Gemini 3 Pro', score: 41.7, sortOrder: 40 },
       { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', score: 38.6, sortOrder: 50 },
       { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', score: 31.8, sortOrder: 60 },
-      { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Thinking', score: 42.4, sortOrder: 65 },
+      { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Extended', score: 42.4, sortOrder: 65 },
       { modelId: 'claude-46-opus-nr', label: '❋ Claude 4.6 Opus', score: 48.5, sortOrder: 66 },
-      { modelId: 'claude-opus', label: '❋ Claude Opus 4.5 Thinking', score: 47.0, sortOrder: 70 },
+      { modelId: 'claude-opus', label: '❋ Claude Opus 4.5 Extended', score: 47.0, sortOrder: 70 },
       { modelId: 'claude-opus-nr', label: '❋ Claude Opus 4.5', score: 40.9, sortOrder: 75 },
-      { modelId: 'claude-sonnet', label: '❋ Claude 4.5 Sonnet Thinking', score: 35.6, sortOrder: 80 },
+      { modelId: 'claude-sonnet', label: '❋ Claude 4.5 Sonnet Extended', score: 35.6, sortOrder: 80 },
       { modelId: 'claude-sonnet-nr', label: '❋ Claude 4.5 Sonnet', score: 28.8, sortOrder: 85 },
-      { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Thinking', score: 27.3, sortOrder: 90 },
+      { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', score: 27.3, sortOrder: 90 },
       { modelId: 'claude-haiku-nr', label: '❋ Claude 4.5 Haiku', score: 27.3, sortOrder: 95 }
     ];
 
@@ -3503,13 +3507,13 @@
       { modelId: 'gemini-pro', label: '✦ Gemini 3 Pro', score: 87.1, sortOrder: 40 },
       { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', score: 80.4, sortOrder: 50 },
       { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', score: 43.3, sortOrder: 60 },
-      { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Thinking', score: 92.1, sortOrder: 65 },
+      { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Extended', score: 92.1, sortOrder: 65 },
       { modelId: 'claude-46-opus-nr', label: '❋ Claude 4.6 Opus', score: 84.8, sortOrder: 66 },
-      { modelId: 'claude-opus', label: '❋ Claude Opus 4.5 Thinking', score: 89.5, sortOrder: 70 },
+      { modelId: 'claude-opus', label: '❋ Claude Opus 4.5 Extended', score: 89.5, sortOrder: 70 },
       { modelId: 'claude-opus-nr', label: '❋ Claude Opus 4.5', score: 86.3, sortOrder: 75 },
-      { modelId: 'claude-sonnet', label: '❋ Claude 4.5 Sonnet Thinking', score: 78.1, sortOrder: 80 },
+      { modelId: 'claude-sonnet', label: '❋ Claude 4.5 Sonnet Extended', score: 78.1, sortOrder: 80 },
       { modelId: 'claude-sonnet-nr', label: '❋ Claude 4.5 Sonnet', score: 70.5, sortOrder: 85 },
-      { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Thinking', score: 54.7, sortOrder: 90 },
+      { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', score: 54.7, sortOrder: 90 },
       { modelId: 'claude-haiku-nr', label: '❋ Claude 4.5 Haiku', score: 32.5, sortOrder: 95 }
     ];
 
@@ -4140,7 +4144,7 @@
     style="text-align: center; padding: 2rem 1rem; margin-top: 3rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.8rem;">
     Made by <strong> u/Pasto_Shouwa</strong>
     <br>
-    <em>Last updated on <strong>06/02/2026</strong> (dd/mm/yyyy)</em>
+    <em>Last updated on <strong>07/02/2026</strong> (dd/mm/yyyy)</em>
   </footer>
 </body>
 
