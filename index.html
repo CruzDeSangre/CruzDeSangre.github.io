@@ -70,9 +70,9 @@
       --gemini-primary: #f34d65;
       --gemini-bg: rgba(243, 77, 101, 0.08);
       --gemini-border: rgba(243, 77, 101, 0.2);
-      --claude-primary: #f97316;
-      --claude-bg: rgba(249, 115, 22, 0.08);
-      --claude-border: rgba(249, 115, 22, 0.2);
+      --claude-primary: #ff7e21;
+      --claude-bg: rgba(255, 126, 33, 0.08);
+      --claude-border: rgba(255, 126, 33, 0.2);
 
       /* Rating Colors */
       --rating-excellent: rgba(34, 197, 94, 0.15);
@@ -1890,7 +1890,7 @@
       <!-- Model Filters Panel -->
       <div class="model-filters-panel" id="modelFiltersPanel">
         <div class="model-filters-header" onclick="toggleFiltersPanel()">
-          <span class="model-filters-title">Model Filters</span>
+          <span class="model-filters-title">Model Filters + Extra Benchmarks</span>
           <span class="model-filters-toggle">▼</span>
         </div>
         <div class="model-filters-content">
@@ -1899,6 +1899,18 @@
             <div class="filter-group-header">
               <span class="filter-group-name">Claude models</span>
               <div class="toggle-switch claude-toggle active" onclick="event.stopPropagation(); toggleClaudeModels()">
+              </div>
+            </div>
+            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
+              <div class="model-dot inactive" data-model="claude-46-opus"
+                onclick="toggleIndividualModel('claude-46-opus')">
+                <span class="model-dot-indicator dot-claude"></span>
+                <span class="model-dot-label">Claude 4.6 Opus Thinking</span>
+              </div>
+              <div class="model-dot inactive" data-model="claude-46-opus-nr"
+                onclick="toggleIndividualModel('claude-46-opus-nr')">
+                <span class="model-dot-indicator dot-claude"></span>
+                <span class="model-dot-label">Claude 4.6 Opus</span>
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
@@ -1968,6 +1980,13 @@
                 <span class="model-dot-label">Gemini 3 Flash Thinking</span>
               </div>
             </div>
+            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
+              <div class="model-dot inactive" data-model="claude-46-opus"
+                onclick="toggleIndividualModel('claude-46-opus')">
+                <span class="model-dot-indicator dot-claude"></span>
+                <span class="model-dot-label">Claude 4.6 Opus Thinking</span>
+              </div>
+            </div>
             <div class="model-dots-row">
               <div class="model-dot" data-model="claude-opus" onclick="toggleIndividualModel('claude-opus')">
                 <span class="model-dot-indicator dot-claude"></span>
@@ -2003,6 +2022,13 @@
               <div class="model-dot" data-model="gemini-flash" onclick="toggleIndividualModel('gemini-flash')">
                 <span class="model-dot-indicator dot-gemini"></span>
                 <span class="model-dot-label">Gemini 3 Flash</span>
+              </div>
+            </div>
+            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
+              <div class="model-dot inactive" data-model="claude-46-opus-nr"
+                onclick="toggleIndividualModel('claude-46-opus-nr')">
+                <span class="model-dot-indicator dot-claude"></span>
+                <span class="model-dot-label">Claude 4.6 Opus</span>
               </div>
             </div>
             <div class="model-dots-row">
@@ -2148,7 +2174,8 @@
               texts, MRCR v2 8-Needle evaluates the model capability to find specific information in those texts.</li>
             <li>• There's no benchmark for 196k tokens, the next available one is 256k, which is not supported
               by ChatGPT on the web and app.</li>
-            <li>• This benchmark currently does not provide support for GPT-5.2 Codex and non-reasoning Claude models.
+            <li>• This benchmark currently does not provide support for GPT-5.2 Codex, non-reasoning Claude models and
+              their 4.6 models.
             </li>
             <li>• Maximum context window of <strong>GPT 5.2 Thinking and GPT 5.2 Thinking xhigh</strong> is 196k tokens.
             </li>
@@ -2200,7 +2227,6 @@
               texts, MRCR v2 8-Needle evaluates the model capability to find specific information in those texts.</li>
             <li>• There's no benchmark for 196k tokens, the next available one is 256k, which is not supported
               by ChatGPT on the web and app.</li>
-            <li>• This benchmark currently does not provide support for GPT-5.2 Codex.</li>
             <li>• Maximum context window of <strong>GPT 5.2 Thinking and GPT 5.2 Thinking xhigh</strong> is 196k tokens.
             </li>
             <li>• Maximum context window of <strong>GPT 5.2 Instant</strong> is 16k/32k/128k tokens (Free/Plus &
@@ -2238,6 +2264,20 @@
       </div>
       <p class="chart-note">Shows performance processing visual and textual information at the same time. Higher is
         better.</p>
+
+      <!-- Notes for MMMU-Pro chart -->
+      <div class="notes collapsible expanded" style="margin-top: 1rem; display: none;">
+        <div class="notes-header" onclick="toggleNotes(this)">
+          <p class="notes-title">MMMU-Pro Notes</p>
+          <span class="notes-toggle">▼</span>
+        </div>
+        <div class="notes-content">
+          <ul class="notes-list">
+            <li>• Lorem ipsum delenda est.
+            </li>
+          </ul>
+        </div>
+      </div>
 
       <!-- Terminal-Bench Hard -->
       <div class="coding-benchmark-section">
@@ -2385,6 +2425,21 @@
       document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
       document.getElementById('tab-' + tabId).classList.add('active');
       document.getElementById('btn-' + tabId).classList.add('active');
+      // Save active tab to localStorage
+      localStorage.setItem('activeMainTab', tabId);
+
+      // Fix for Chart.js timing issues: when switching to benchmarks tab,
+      // trigger a resize on all charts after a short delay to ensure proper rendering
+      if (tabId === 'benchmarks') {
+        setTimeout(() => {
+          if (typeof omniscienceChart !== 'undefined') omniscienceChart.resize();
+          if (typeof mrcrChart !== 'undefined') mrcrChart.resize();
+          if (typeof lcrChart !== 'undefined') lcrChart.resize();
+          if (typeof mmmuProChart !== 'undefined') mmmuProChart.resize();
+          if (typeof terminalBenchChart !== 'undefined') terminalBenchChart.resize();
+          if (typeof tau2BenchChart !== 'undefined') tau2BenchChart.resize();
+        }, 50);
+      }
     }
 
     // Toggle collapsible notes
@@ -2434,8 +2489,8 @@
     const chatgptColorLight = 'rgba(16, 163, 127, 0.7)';
     const geminiColor = '#f34d65';
     const geminiColorLight = 'rgba(243, 77, 101, 0.7)';
-    const claudeColor = '#fa812d';
-    const claudeColorLight = 'rgba(250, 129, 45, 0.7)';
+    const claudeColor = '#ff7e21';
+    const claudeColorLight = 'rgba(255, 126, 33, 0.7)';
 
     // Track Claude, Instant, ChatGPT Pro, and Coding visibility (legacy flags for compatibility)
     let showClaudeModels = true;
@@ -2457,6 +2512,8 @@
       'claude-opus': true,
       'claude-sonnet': true,
       'claude-haiku': false,   // Starts hidden by default
+      'claude-46-opus': false,    // Starts hidden by default
+      'claude-46-opus-nr': false, // Starts hidden by default
       'claude-opus-nr': false,    // Non-reasoning, starts hidden
       'claude-sonnet-nr': false,  // Non-reasoning, starts hidden
       'claude-haiku-nr': false    // Non-reasoning, starts hidden
@@ -2476,6 +2533,8 @@
       'claude-opus': false,
       'claude-sonnet': false,
       'claude-haiku': true,    // Starts explicitly disabled
+      'claude-46-opus': true,     // Starts explicitly disabled
+      'claude-46-opus-nr': true,  // Starts explicitly disabled
       'claude-opus-nr': true,     // Starts explicitly disabled
       'claude-sonnet-nr': true,   // Starts explicitly disabled  
       'claude-haiku-nr': true     // Starts explicitly disabled
@@ -2483,9 +2542,9 @@
 
     // Model groups for group toggles
     const modelGroups = {
-      'claude': ['claude-opus', 'claude-sonnet', 'claude-haiku', 'claude-opus-nr', 'claude-sonnet-nr', 'claude-haiku-nr'],
-      'reasoning': ['gpt-codex', 'gpt-xhigh', 'gpt-thinking', 'gemini-pro', 'gemini-flash-thinking', 'claude-opus', 'claude-sonnet', 'claude-haiku'],
-      'instant': ['gpt-instant', 'gemini-flash', 'claude-opus-nr', 'claude-sonnet-nr', 'claude-haiku-nr'],
+      'claude': ['claude-opus', 'claude-sonnet', 'claude-haiku', 'claude-46-opus', 'claude-46-opus-nr', 'claude-opus-nr', 'claude-sonnet-nr', 'claude-haiku-nr'],
+      'reasoning': ['gpt-codex', 'gpt-xhigh', 'gpt-thinking', 'gemini-pro', 'gemini-flash-thinking', 'claude-opus', 'claude-sonnet', 'claude-haiku', 'claude-46-opus'],
+      'instant': ['gpt-instant', 'gemini-flash', 'claude-46-opus-nr', 'claude-opus-nr', 'claude-sonnet-nr', 'claude-haiku-nr'],
       'chatgpt-pro': ['gpt-xhigh'],
       'coding': ['gpt-codex']
     };
@@ -2503,6 +2562,8 @@
       'claude-opus': ['claude', 'reasoning'],          // Needs both Claude AND Reasoning to be on
       'claude-sonnet': ['claude', 'reasoning'],        // Needs both Claude AND Reasoning to be on
       'claude-haiku': ['claude', 'reasoning'],         // Needs both Claude AND Reasoning to be on
+      'claude-46-opus': ['claude', 'reasoning'],       // Needs both Claude AND Reasoning to be on
+      'claude-46-opus-nr': ['claude', 'instant'],      // Needs both Claude AND Non-reasoning to be on
       'claude-opus-nr': ['claude', 'instant'],         // Needs both Claude AND Non-reasoning to be on
       'claude-sonnet-nr': ['claude', 'instant'],       // Needs both Claude AND Non-reasoning to be on
       'claude-haiku-nr': ['claude', 'instant']         // Needs both Claude AND Non-reasoning to be on
@@ -2628,6 +2689,14 @@
     function toggleReasoningModels() {
       showReasoningModels = !showReasoningModels;
 
+      // If turning ON and all models are explicitly disabled, reset explicit flags
+      if (showReasoningModels) {
+        const allExplicitlyDisabled = modelGroups.reasoning.every(m => modelExplicitlyDisabled[m]);
+        if (allExplicitlyDisabled) {
+          modelGroups.reasoning.forEach(m => { modelExplicitlyDisabled[m] = false; });
+        }
+      }
+
       // Update modelVisibility for reasoning models respecting constraints
       modelGroups.reasoning.forEach(modelId => {
         if (showReasoningModels) {
@@ -2652,6 +2721,7 @@
 
       // Save state
       localStorage.setItem('modelVisibility', JSON.stringify(modelVisibility));
+      localStorage.setItem('modelExplicitlyDisabled', JSON.stringify(modelExplicitlyDisabled));
       localStorage.setItem('reasoningModelsVisible', showReasoningModels);
     }
 
@@ -2741,6 +2811,8 @@
       { modelId: 'gemini-pro', label: '✦ Gemini 3 Pro', correct: 53.65, abstention: 4.20, hallucination: 42.16, sortOrder: 40 },
       { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', correct: 51.87, abstention: 4.50, hallucination: 43.63, sortOrder: 50 },
       { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', correct: 47.15, abstention: 6.35, hallucination: 46.50, sortOrder: 60 },
+      { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Thinking', correct: 44.32, abstention: 22.30, hallucination: 33.38, sortOrder: 65 },
+      { modelId: 'claude-46-opus-nr', label: '❋ Claude 4.6 Opus', correct: 43.77, abstention: 13.66, hallucination: 42.57, sortOrder: 66 },
       { modelId: 'claude-opus', label: '❋ Claude 4.5 Opus Thinking', correct: 43.12, abstention: 24.00, hallucination: 32.88, sortOrder: 70 },
       { modelId: 'claude-opus-nr', label: '❋ Claude 4.5 Opus', correct: 38.90, abstention: 15.75, hallucination: 45.35, sortOrder: 75 },
       { modelId: 'claude-sonnet', label: '❋ Claude 4.5 Sonnet Thinking', correct: 30.90, abstention: 36.12, hallucination: 32.98, sortOrder: 80 },
@@ -2981,13 +3053,13 @@
         modelId: 'claude-sonnet',
         label: 'Claude 4.5 Sonnet Thinking',
         data: [48.9, 42.4, 32.8, 26.0, 16.6, null],
-        borderColor: 'rgba(250, 129, 45, 0.7)',
-        backgroundColor: 'rgba(250, 129, 45, 0.5)',
+        borderColor: 'rgba(249, 115, 22, 0.7)',
+        backgroundColor: 'rgba(249, 115, 22, 0.5)',
         borderWidth: 2,
         tension: 0.3,
         pointRadius: 5,
         pointHoverRadius: 7,
-        pointBackgroundColor: 'rgba(250, 129, 45, 0.7)',
+        pointBackgroundColor: 'rgba(249, 115, 22, 0.7)',
         spanGaps: false,
         sortOrder: 80
       },
@@ -2995,14 +3067,14 @@
         modelId: 'claude-haiku',
         label: 'Claude 4.5 Haiku Thinking',
         data: [52.9, 38.6, 29.0, 23.3, 14.1, null],
-        borderColor: 'rgba(250, 129, 45, 0.5)',
-        backgroundColor: 'rgba(250, 129, 45, 0.3)',
+        borderColor: 'rgba(249, 115, 22, 0.5)',
+        backgroundColor: 'rgba(249, 115, 22, 0.3)',
         borderWidth: 2,
         borderDash: [5, 5],
         tension: 0.3,
         pointRadius: 5,
         pointHoverRadius: 7,
-        pointBackgroundColor: 'rgba(250, 129, 45, 0.5)',
+        pointBackgroundColor: 'rgba(249, 115, 22, 0.5)',
         spanGaps: false,
         sortOrder: 90
       }
@@ -3096,6 +3168,8 @@
       { modelId: 'gemini-pro', label: '✦ Gemini 3 Pro', score: 70.7, sortOrder: 40 },
       { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', score: 66.3, sortOrder: 50 },
       { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', score: 48.0, sortOrder: 60 },
+      { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Thinking', score: 70.7, sortOrder: 65 },
+      { modelId: 'claude-46-opus-nr', label: '❋ Claude 4.6 Opus', score: 58.3, sortOrder: 66 },
       { modelId: 'claude-opus', label: '❋ Claude Opus 4.5 Thinking', score: 74.0, sortOrder: 70 },
       { modelId: 'claude-opus-nr', label: '❋ Claude Opus 4.5', score: 65.3, sortOrder: 75 },
       { modelId: 'claude-sonnet', label: '❋ Claude 4.5 Sonnet Thinking', score: 65.7, sortOrder: 80 },
@@ -3206,6 +3280,8 @@
       { modelId: 'gemini-pro', label: '✦ Gemini 3 Pro', score: 80, sortOrder: 40 },
       { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', score: 80, sortOrder: 50 },
       { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', score: 79, sortOrder: 60 },
+      { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Thinking', score: 75, sortOrder: 65 },
+      { modelId: 'claude-46-opus-nr', label: '❋ Claude 4.6 Opus', score: 73, sortOrder: 66 },
       { modelId: 'claude-opus', label: '❋ Claude Opus 4.5 Thinking', score: 74, sortOrder: 70 },
       { modelId: 'claude-opus-nr', label: '❋ Claude Opus 4.5', score: 71, sortOrder: 75 },
       { modelId: 'claude-sonnet', label: '❋ Claude 4.5 Sonnet Thinking', score: 69, sortOrder: 80 },
@@ -3316,6 +3392,8 @@
       { modelId: 'gemini-pro', label: '✦ Gemini 3 Pro', score: 41.7, sortOrder: 40 },
       { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', score: 38.6, sortOrder: 50 },
       { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', score: 31.8, sortOrder: 60 },
+      { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Thinking', score: 42.4, sortOrder: 65 },
+      { modelId: 'claude-46-opus-nr', label: '❋ Claude 4.6 Opus', score: 48.5, sortOrder: 66 },
       { modelId: 'claude-opus', label: '❋ Claude Opus 4.5 Thinking', score: 47.0, sortOrder: 70 },
       { modelId: 'claude-opus-nr', label: '❋ Claude Opus 4.5', score: 40.9, sortOrder: 75 },
       { modelId: 'claude-sonnet', label: '❋ Claude 4.5 Sonnet Thinking', score: 35.6, sortOrder: 80 },
@@ -3425,6 +3503,8 @@
       { modelId: 'gemini-pro', label: '✦ Gemini 3 Pro', score: 87.1, sortOrder: 40 },
       { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', score: 80.4, sortOrder: 50 },
       { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', score: 43.3, sortOrder: 60 },
+      { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Thinking', score: 92.1, sortOrder: 65 },
+      { modelId: 'claude-46-opus-nr', label: '❋ Claude 4.6 Opus', score: 84.8, sortOrder: 66 },
       { modelId: 'claude-opus', label: '❋ Claude Opus 4.5 Thinking', score: 89.5, sortOrder: 70 },
       { modelId: 'claude-opus-nr', label: '❋ Claude Opus 4.5', score: 86.3, sortOrder: 75 },
       { modelId: 'claude-sonnet', label: '❋ Claude 4.5 Sonnet Thinking', score: 78.1, sortOrder: 80 },
@@ -3637,6 +3717,14 @@
     function toggleClaudeModels() {
       showClaudeModels = !showClaudeModels;
 
+      // If turning ON and all models are explicitly disabled, reset explicit flags
+      if (showClaudeModels) {
+        const allExplicitlyDisabled = modelGroups.claude.every(m => modelExplicitlyDisabled[m]);
+        if (allExplicitlyDisabled) {
+          modelGroups.claude.forEach(m => { modelExplicitlyDisabled[m] = false; });
+        }
+      }
+
       // Update modelVisibility for Claude models respecting constraints
       modelGroups.claude.forEach(modelId => {
         if (showClaudeModels) {
@@ -3661,12 +3749,21 @@
 
       // Save state to localStorage
       localStorage.setItem('modelVisibility', JSON.stringify(modelVisibility));
+      localStorage.setItem('modelExplicitlyDisabled', JSON.stringify(modelExplicitlyDisabled));
       localStorage.setItem('claudeModelsVisible', showClaudeModels);
     }
 
     // Toggle function for Instant models - syncs all toggles
     function toggleInstantModels() {
       showInstantModels = !showInstantModels;
+
+      // If turning ON and all models are explicitly disabled, reset explicit flags
+      if (showInstantModels) {
+        const allExplicitlyDisabled = modelGroups.instant.every(m => modelExplicitlyDisabled[m]);
+        if (allExplicitlyDisabled) {
+          modelGroups.instant.forEach(m => { modelExplicitlyDisabled[m] = false; });
+        }
+      }
 
       // Update modelVisibility for instant models respecting constraints
       modelGroups.instant.forEach(modelId => {
@@ -3692,12 +3789,21 @@
 
       // Save state to localStorage
       localStorage.setItem('modelVisibility', JSON.stringify(modelVisibility));
+      localStorage.setItem('modelExplicitlyDisabled', JSON.stringify(modelExplicitlyDisabled));
       localStorage.setItem('instantModelsVisible', showInstantModels);
     }
 
     // Toggle function for ChatGPT Pro models - syncs all toggles
     function toggleChatGPTProModels() {
       showChatGPTProModels = !showChatGPTProModels;
+
+      // If turning ON and all models are explicitly disabled, reset explicit flags
+      if (showChatGPTProModels) {
+        const allExplicitlyDisabled = modelGroups['chatgpt-pro'].every(m => modelExplicitlyDisabled[m]);
+        if (allExplicitlyDisabled) {
+          modelGroups['chatgpt-pro'].forEach(m => { modelExplicitlyDisabled[m] = false; });
+        }
+      }
 
       // Update modelVisibility for ChatGPT Pro models respecting constraints
       modelGroups['chatgpt-pro'].forEach(modelId => {
@@ -3723,6 +3829,7 @@
 
       // Save state to localStorage
       localStorage.setItem('modelVisibility', JSON.stringify(modelVisibility));
+      localStorage.setItem('modelExplicitlyDisabled', JSON.stringify(modelExplicitlyDisabled));
       localStorage.setItem('chatgptProModelsVisible', showChatGPTProModels);
     }
 
@@ -3759,6 +3866,14 @@
 
       showCodingBenchmarks = newState;
 
+      // If turning ON and all models are explicitly disabled, reset explicit flags
+      if (newState) {
+        const allExplicitlyDisabled = modelGroups.coding.every(m => modelExplicitlyDisabled[m]);
+        if (allExplicitlyDisabled) {
+          modelGroups.coding.forEach(m => { modelExplicitlyDisabled[m] = false; });
+        }
+      }
+
       // Update Codex model visibility respecting constraints
       if (newState) {
         // When turning ON: only activate if ALL constraints are met
@@ -3791,6 +3906,7 @@
 
       // Save state to localStorage
       localStorage.setItem('modelVisibility', JSON.stringify(modelVisibility));
+      localStorage.setItem('modelExplicitlyDisabled', JSON.stringify(modelExplicitlyDisabled));
       localStorage.setItem('codingBenchmarksVisible', showCodingBenchmarks);
     }
 
@@ -3978,6 +4094,42 @@
           }
         }
       }
+
+      // Restore main tab selection
+      const savedMainTab = localStorage.getItem('activeMainTab');
+      if (savedMainTab && savedMainTab !== 'specs') {
+        // Default is 'specs', so only switch if different
+        const specsBtn = document.getElementById('btn-specs');
+        const benchmarksBtn = document.getElementById('btn-benchmarks');
+        const benefitsBtn = document.getElementById('btn-benefits');
+        const specsTab = document.getElementById('tab-specs');
+        const benchmarksTab = document.getElementById('tab-benchmarks');
+        const benefitsTab = document.getElementById('tab-benefits');
+
+        if (specsBtn && benchmarksBtn && benefitsBtn && specsTab && benchmarksTab && benefitsTab) {
+          // Remove active from all buttons and tabs
+          [specsBtn, benchmarksBtn, benefitsBtn].forEach(btn => btn.classList.remove('active'));
+          [specsTab, benchmarksTab, benefitsTab].forEach(tab => tab.classList.remove('active'));
+
+          // Activate the saved tab
+          if (savedMainTab === 'benchmarks') {
+            benchmarksBtn.classList.add('active');
+            benchmarksTab.classList.add('active');
+            // Fix for Chart.js timing issues: trigger resize after tab is visible
+            setTimeout(() => {
+              if (typeof omniscienceChart !== 'undefined') omniscienceChart.resize();
+              if (typeof mrcrChart !== 'undefined') mrcrChart.resize();
+              if (typeof lcrChart !== 'undefined') lcrChart.resize();
+              if (typeof mmmuProChart !== 'undefined') mmmuProChart.resize();
+              if (typeof terminalBenchChart !== 'undefined') terminalBenchChart.resize();
+              if (typeof tau2BenchChart !== 'undefined') tau2BenchChart.resize();
+            }, 50);
+          } else if (savedMainTab === 'benefits') {
+            benefitsBtn.classList.add('active');
+            benefitsTab.classList.add('active');
+          }
+        }
+      }
     }
 
     // Initialize states when DOM is ready
@@ -3988,7 +4140,7 @@
     style="text-align: center; padding: 2rem 1rem; margin-top: 3rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.8rem;">
     Made by <strong> u/Pasto_Shouwa</strong>
     <br>
-    <em>Last updated on <strong>05/02/2026</strong> (dd/mm/yyyy)</em>
+    <em>Last updated on <strong>06/02/2026</strong> (dd/mm/yyyy)</em>
   </footer>
 </body>
 
