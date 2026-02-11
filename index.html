@@ -682,6 +682,66 @@
       font-style: italic;
     }
 
+    /* Sort selector for benchmarks */
+    .sort-selector {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+
+    .sort-selector-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .sort-selector-buttons {
+      display: inline-flex;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+    }
+
+    .sort-btn {
+      background: transparent;
+      border: none;
+      padding: 0.3rem 0.75rem;
+      font-family: inherit;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.25s ease;
+      position: relative;
+    }
+
+    .sort-btn:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 25%;
+      height: 50%;
+      width: 1px;
+      background: var(--border-color);
+    }
+
+    .sort-btn:hover {
+      color: var(--text-secondary);
+      background: var(--bg-hover);
+    }
+
+    .sort-btn.active {
+      color: var(--text-primary);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .sort-btn.active:not(:last-child)::after {
+      opacity: 0;
+    }
+
     /* Toggle Switch - Inline version next to section titles */
     .section-title-wrapper {
       display: flex;
@@ -2115,6 +2175,17 @@
       </div>
       <p class="chart-note">Shows how often the model is right or wrong when answering. Higher is better for Correct &
         Abstention. Lower is better for Hallucination.</p>
+      <div class="sort-selector">
+        <span class="sort-selector-label"><strong>Sort by</strong></span>
+        <div class="sort-selector-buttons">
+          <button class="sort-btn active" onclick="setOmniscienceSort('brand')" id="omniscienceSortBrand">✦
+            Brand</button>
+          <button class="sort-btn" onclick="setOmniscienceSort('hallucination')" id="omniscienceSortHallucination">↓
+            Hallucination</button>
+          <button class="sort-btn" onclick="setOmniscienceSort('correct')" id="omniscienceSortCorrect">↑
+            Correct</button>
+        </div>
+      </div>
 
       <!-- Notes for first chart -->
       <div class="notes collapsible expanded" style="margin-top: 1rem;">
@@ -2126,7 +2197,7 @@
           <ul class="notes-list">
             <li>• <strong>Correct</strong> answers were calculated with <em>Correct = A</em>.</li>
             <li>• <strong>Abstention</strong> answers were calculated with <em>Abstention = (1−A)⋅(1−H)</em>.</li>
-            <li>• <strong>Hallucinations</strong> answers were calculated with <em>Hallucination = (1−A)⋅H</em>.</li>
+            <li>• <strong>Hallucination</strong> answers were calculated with <em>Hallucination = (1−A)⋅H</em>.</li>
             <li>• <em>(Where "A" is the percentage scored on the "AA-Omnisicence Accuracy" benchmark, "H" is the
                 percentage scored on
                 the "AA-Omnisicence Hallucination Rate" benchmark.)</em></li>
@@ -2842,12 +2913,43 @@
       { modelId: 'claude-haiku-nr', label: '❋ Claude 4.5 Haiku', correct: 13.42, abstention: 65.21, hallucination: 21.37, sortOrder: 95 }
     ];
 
+    // Current sort mode for omniscience: 'brand', 'hallucination', 'correct'
+    let omniscienceSortMode = 'brand';
+
+    function setOmniscienceSort(mode) {
+      omniscienceSortMode = mode;
+      // Update button UI
+      document.querySelectorAll('.sort-selector .sort-btn').forEach(btn => btn.classList.remove('active'));
+      if (mode === 'brand') document.getElementById('omniscienceSortBrand').classList.add('active');
+      else if (mode === 'hallucination') document.getElementById('omniscienceSortHallucination').classList.add('active');
+      else if (mode === 'correct') document.getElementById('omniscienceSortCorrect').classList.add('active');
+      // Refresh chart
+      const omniscienceData = getOmniscienceData();
+      omniscienceChart.data.labels = omniscienceData.labels;
+      omniscienceChart.data.datasets[0].data = omniscienceData.correct;
+      omniscienceChart.data.datasets[0].backgroundColor = omniscienceData.correctBgColors;
+      omniscienceChart.data.datasets[1].data = omniscienceData.abstention;
+      omniscienceChart.data.datasets[1].backgroundColor = omniscienceData.abstentionBgColors;
+      omniscienceChart.data.datasets[2].data = omniscienceData.hallucination;
+      omniscienceChart.data.datasets[2].backgroundColor = omniscienceData.hallucinationBgColors;
+      omniscienceChart.update({ duration: 750, easing: 'easeInOutQuart' });
+    }
+
     function getOmniscienceData() {
       // Filter models based on modelVisibility
       let models = omniscienceAllModels.filter(m => modelVisibility[m.modelId]);
 
-      // Sort by sortOrder to maintain family grouping
-      models.sort((a, b) => a.sortOrder - b.sortOrder);
+      // Sort based on current sort mode
+      if (omniscienceSortMode === 'hallucination') {
+        // Lower hallucination is better → ascending order
+        models.sort((a, b) => a.hallucination - b.hallucination);
+      } else if (omniscienceSortMode === 'correct') {
+        // Higher correct is better → descending order
+        models.sort((a, b) => b.correct - a.correct);
+      } else {
+        // Default: sort by brand/family grouping
+        models.sort((a, b) => a.sortOrder - b.sortOrder);
+      }
 
       // Extract arrays for Chart.js
       const labels = models.map(m => m.label);
