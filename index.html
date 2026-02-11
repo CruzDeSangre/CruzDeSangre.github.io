@@ -1961,6 +1961,11 @@
                 <span class="model-dot-indicator dot-gpt"></span>
                 <span class="model-dot-label">GPT 5.2 Thinking</span>
               </div>
+              <div class="model-dot" data-model="gpt-thinking-mini"
+                onclick="toggleIndividualModel('gpt-thinking-mini')">
+                <span class="model-dot-indicator dot-gpt"></span>
+                <span class="model-dot-label">GPT 5 Thinking Mini</span>
+              </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot" data-model="gemini-pro" onclick="toggleIndividualModel('gemini-pro')">
@@ -2349,6 +2354,7 @@
             There are unfortunately no benchmarks for those two exact models.
           </li>
           <li>• For "<strong>GPT 5.2 Instant</strong>", "<em>gpt-5.2</em>" was used in the graph.</li>
+          <li>• For "<strong>GPT 5 Thinking Mini</strong>", "<em>gpt-5-mini:medium</em>" was used in the graph.</li>
           <li>• For "<strong>Gemini 3 Pro</strong>", "<em>gemini-3-pro-preview:high</em>" was used in the
             graph.</li>
           <li>• For "<strong>Gemini 3 Flash Thinking</strong>", "<em>gemini-3-flash-preview:thinking:high</em>" was used
@@ -2494,6 +2500,14 @@
     const claudeColor = '#ff7e21';
     const claudeColorLight = 'rgba(255, 126, 33, 0.7)';
 
+    // Legacy (older model) colors — desaturated and muted
+    const chatgptLegacyColor = 'rgba(100, 150, 135, 0.55)';
+    const chatgptLegacyColorLight = 'rgba(100, 150, 135, 0.3)';
+    const claudeLegacyColor = 'rgba(180, 140, 100, 0.55)';
+    const claudeLegacyColorLight = 'rgba(180, 140, 100, 0.3)';
+    const geminiLegacyColor = 'rgba(180, 110, 120, 0.55)';
+    const geminiLegacyColorLight = 'rgba(180, 110, 120, 0.3)';
+
     // Track Claude, Instant, ChatGPT Pro, and Coding visibility (legacy flags for compatibility)
     let showClaudeModels = true;
     let showInstantModels = true;
@@ -2507,6 +2521,7 @@
       'gpt-codex': false,      // Starts hidden (coding toggle off)
       'gpt-xhigh': false,      // Starts hidden (ChatGPT Pro toggle off)
       'gpt-thinking': true,
+      'gpt-thinking-mini': true,
       'gpt-instant': true,
       'gemini-pro': true,
       'gemini-flash-thinking': true,
@@ -2528,6 +2543,7 @@
       'gpt-codex': false,
       'gpt-xhigh': false,
       'gpt-thinking': false,
+      'gpt-thinking-mini': false,
       'gpt-instant': false,
       'gemini-pro': false,
       'gemini-flash-thinking': false,
@@ -2545,7 +2561,7 @@
     // Model groups for group toggles
     const modelGroups = {
       'claude': ['claude-opus', 'claude-sonnet', 'claude-haiku', 'claude-46-opus', 'claude-46-opus-nr', 'claude-opus-nr', 'claude-sonnet-nr', 'claude-haiku-nr'],
-      'reasoning': ['gpt-codex', 'gpt-xhigh', 'gpt-thinking', 'gemini-pro', 'gemini-flash-thinking', 'claude-opus', 'claude-sonnet', 'claude-haiku', 'claude-46-opus'],
+      'reasoning': ['gpt-codex', 'gpt-xhigh', 'gpt-thinking', 'gpt-thinking-mini', 'gemini-pro', 'gemini-flash-thinking', 'claude-opus', 'claude-sonnet', 'claude-haiku', 'claude-46-opus'],
       'instant': ['gpt-instant', 'gemini-flash', 'claude-46-opus-nr', 'claude-opus-nr', 'claude-sonnet-nr', 'claude-haiku-nr'],
       'chatgpt-pro': ['gpt-xhigh'],
       'coding': ['gpt-codex']
@@ -2557,6 +2573,7 @@
       'gpt-codex': ['reasoning', 'coding'],           // Needs both Reasoning AND Coding to be on
       'gpt-xhigh': ['reasoning', 'chatgpt-pro'],      // Needs both Reasoning AND ChatGPT Pro to be on
       'gpt-thinking': ['reasoning'],                   // Only needs Reasoning
+      'gpt-thinking-mini': ['reasoning'],               // Only needs Reasoning
       'gpt-instant': ['instant'],                      // Only needs Non-reasoning
       'gemini-pro': ['reasoning'],                     // Only needs Reasoning
       'gemini-flash-thinking': ['reasoning'],          // Only needs Reasoning
@@ -2795,6 +2812,7 @@
     //   10: ⌘ GPT 5.2 Codex (coding toggle)
     //   15: ⌘ GPT 5.2 Thinking xhigh
     //   20: ⌘ GPT 5.2 Thinking
+    //   25: ⌘ GPT 5 Thinking Mini
     //   30: ⌘ GPT 5.2 Instant (instant toggle)
     //   40: ✦ Gemini 3 Pro
     //   50: ✦ Gemini 3 Flash Thinking
@@ -2809,6 +2827,7 @@
       { modelId: 'gpt-codex', label: '⌘ GPT 5.2 Codex', correct: 38.45, abstention: 17.55, hallucination: 44.0, sortOrder: 10 },
       { modelId: 'gpt-xhigh', label: '⌘ GPT 5.2 Thinking xhigh', correct: 41.35, abstention: 12.99, hallucination: 45.66, sortOrder: 15 },
       { modelId: 'gpt-thinking', label: '⌘ GPT 5.2 Thinking', correct: 35.53, abstention: 25.68, hallucination: 38.79, sortOrder: 20 },
+      { modelId: 'gpt-thinking-mini', label: '⌘ GPT 5 Thinking Mini', correct: 27.22, abstention: 41.21, hallucination: 31.57, sortOrder: 25 },
       { modelId: 'gpt-instant', label: '⌘ GPT 5.2 Instant', correct: 27.95, abstention: 29.32, hallucination: 42.73, sortOrder: 30 },
       { modelId: 'gemini-pro', label: '✦ Gemini 3 Pro', correct: 53.65, abstention: 4.20, hallucination: 42.16, sortOrder: 40 },
       { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', correct: 51.87, abstention: 4.50, hallucination: 43.63, sortOrder: 50 },
@@ -2983,6 +3002,20 @@
         sortOrder: 20
       },
       {
+        modelId: 'gpt-thinking-mini',
+        label: 'GPT 5 Thinking Mini',
+        data: [76.3, 57.1, 55, 42.3, 31.9, null],
+        borderColor: chatgptLegacyColor,
+        backgroundColor: chatgptLegacyColorLight,
+        borderWidth: 2,
+        tension: 0.3,
+        pointRadius: 5,
+        pointHoverRadius: 7,
+        pointBackgroundColor: chatgptLegacyColor,
+        spanGaps: false,
+        sortOrder: 25
+      },
+      {
         modelId: 'gpt-instant',
         label: 'GPT 5.2 Instant',
         data: [49.4, 45.1, 50.4, 41.5, 31.9, null],
@@ -3072,13 +3105,13 @@
         modelId: 'claude-opus',
         label: 'Claude 4.5 Opus Extended',
         data: [78.0, 56.2, 46.7, 35.3, 27.1, null],
-        borderColor: claudeColor,
-        backgroundColor: claudeColorLight,
-        borderWidth: 3,
+        borderColor: claudeLegacyColor,
+        backgroundColor: claudeLegacyColorLight,
+        borderWidth: 2,
         tension: 0.3,
-        pointRadius: 6,
-        pointHoverRadius: 8,
-        pointBackgroundColor: claudeColor,
+        pointRadius: 5,
+        pointHoverRadius: 7,
+        pointBackgroundColor: claudeLegacyColor,
         spanGaps: false,
         sortOrder: 70
       },
@@ -3103,7 +3136,6 @@
         borderColor: 'rgba(249, 115, 22, 0.5)',
         backgroundColor: 'rgba(249, 115, 22, 0.3)',
         borderWidth: 2,
-        borderDash: [5, 5],
         tension: 0.3,
         pointRadius: 5,
         pointHoverRadius: 7,
@@ -3206,6 +3238,7 @@
       { modelId: 'gpt-codex', label: '⌘ GPT 5.2 Codex', score: 75.7, sortOrder: 10 },
       { modelId: 'gpt-xhigh', label: '⌘ GPT 5.2 Thinking xhigh', score: 72.7, sortOrder: 15 },
       { modelId: 'gpt-thinking', label: '⌘ GPT 5.2 Thinking', score: 63.3, sortOrder: 20 },
+      { modelId: 'gpt-thinking-mini', label: '⌘ GPT 5 Thinking Mini', score: 66, sortOrder: 25 },
       { modelId: 'gpt-instant', label: '⌘ GPT 5.2 Instant', score: 38.0, sortOrder: 30 },
       { modelId: 'gemini-pro', label: '✦ Gemini 3 Pro', score: 70.7, sortOrder: 40 },
       { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', score: 66.3, sortOrder: 50 },
@@ -3318,6 +3351,7 @@
       { modelId: 'gpt-codex', label: '⌘ GPT 5.2 Codex', score: 76, sortOrder: 10 },
       { modelId: 'gpt-xhigh', label: '⌘ GPT 5.2 Thinking xhigh', score: 79, sortOrder: 15 },
       { modelId: 'gpt-thinking', label: '⌘ GPT 5.2 Thinking', score: 75, sortOrder: 20 },
+      { modelId: 'gpt-thinking-mini', label: '⌘ GPT 5 Thinking Mini', score: 69, sortOrder: 25 },
       { modelId: 'gpt-instant', label: '⌘ GPT 5.2 Instant', score: 66, sortOrder: 30 },
       { modelId: 'gemini-pro', label: '✦ Gemini 3 Pro', score: 80, sortOrder: 40 },
       { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', score: 80, sortOrder: 50 },
@@ -3430,6 +3464,7 @@
       { modelId: 'gpt-codex', label: '⌘ GPT 5.2 Codex', score: 37.1, sortOrder: 10 },
       { modelId: 'gpt-xhigh', label: '⌘ GPT 5.2 Thinking xhigh', score: 47.0, sortOrder: 15 },
       { modelId: 'gpt-thinking', label: '⌘ GPT 5.2 Thinking', score: 43.2, sortOrder: 20 },
+      { modelId: 'gpt-thinking-mini', label: '⌘ GPT 5 Thinking Mini', score: 28.8, sortOrder: 25 },
       { modelId: 'gpt-instant', label: '⌘ GPT 5.2 Instant', score: 31.8, sortOrder: 30 },
       { modelId: 'gemini-pro', label: '✦ Gemini 3 Pro', score: 41.7, sortOrder: 40 },
       { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', score: 38.6, sortOrder: 50 },
@@ -3541,6 +3576,7 @@
       { modelId: 'gpt-codex', label: '⌘ GPT 5.2 Codex', score: 92.1, sortOrder: 10 },
       { modelId: 'gpt-xhigh', label: '⌘ GPT 5.2 Thinking xhigh', score: 84.8, sortOrder: 15 },
       { modelId: 'gpt-thinking', label: '⌘ GPT 5.2 Thinking', score: 74.3, sortOrder: 20 },
+      { modelId: 'gpt-thinking-mini', label: '⌘ GPT 5 Thinking Mini', score: 71.1, sortOrder: 25 },
       { modelId: 'gpt-instant', label: '⌘ GPT 5.2 Instant', score: 46.5, sortOrder: 30 },
       { modelId: 'gemini-pro', label: '✦ Gemini 3 Pro', score: 87.1, sortOrder: 40 },
       { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', score: 80.4, sortOrder: 50 },
