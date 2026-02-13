@@ -3,6 +3,15 @@
   ╔════════════════════════════════════════════════════════════════════════════╗
   ║                           DEVELOPER REMINDER                               ║
   ╠════════════════════════════════════════════════════════════════════════════╣
+  ║  ANNOTATION SYSTEM:                                                        ║
+  ║  Annotations auto-number themselves from the FOOTNOTES registry in JS.     ║
+  ║  To add a new annotation:                                                  ║
+  ║  1. Add an entry to the FOOTNOTES object with a unique semantic ID         ║
+  ║  2. Use <span class="annotation" data-note="your-id"></span> in HTML      ║
+  ║  Numbers, tooltips, and the footnotes list are generated automatically.    ║
+  ║  Order is based on first appearance in the DOM (across all 3 tables).      ║
+  ║                                                                            ║
+  ╠════════════════════════════════════════════════════════════════════════════╣
   ║  USA-EXCLUSIVE FEATURES TOGGLE:                                            ║
   ║  When adding new USA-exclusive content to tables, use these classes:       ║
   ║                                                                            ║
@@ -1393,7 +1402,7 @@
             <tr>
               <td>Reasoning model limit per day</td>
               <td>1<span class="detail">[GPT 5 Thinking Mini]<span class="annotation"
-                    data-tooltip="Free and Go accounts don't have access to GPT 5.2 Thinking, so it's likely they use GPT 5 Thinking Mini instead.">¹</span></span>
+                    data-note="gpt5-mini-free"></span></span>
               </td>
               <td class="rating-excellent">3+9<span class="detail">[Gemini 3 Pro + Gemini 3 Flash Thinking]</span></td>
             </tr>
@@ -1415,23 +1424,21 @@
             <tr>
               <td>Memory features</td>
               <td>Memories</td>
-              <td class="rating-excellent">Memories, chat history<span class="annotation"
-                  data-tooltip="While Gemini has a memory feature, it sometimes calls memory when not needed, or decides not to call it when actually needed; which sometimes provokes inconsistent outputs.">⁶</span>
+              <td class="rating-excellent">Memories<span class="annotation" data-note="gemini-memory">
+                </span>, chat history
               </td>
             </tr>
             <tr>
               <td>Image generation per day</td>
-              <td>5<span class="annotation"
-                  data-tooltip="According to user reports. The actual limits are not public.">³</span><span
-                  class="detail">[GPT Image 1.5]</span></td>
-              <td class="rating-excellent">3+100<span class="detail">[Nanobanana Pro + Nanobanana]</span></td>
+              <td>5<span class="annotation" data-note="user-reports"></span><span class="detail">[GPT Image 1.5]</span>
+              </td>
+              <td class="rating-excellent">3+100<span class="detail">[Nano Banana Pro + Nano Banana]</span></td>
             </tr>
             <tr>
               <td>Image resolution (1:1)</td>
               <td>1024×1024 (1K)<span class="detail">[GPT Image 1.5]</span></td>
-              <td class="rating-excellent">2048×2048 (2K) / 1024×1024 (1K)<span class="detail">[Nanobanana
-                  Pro /
-                  Nanobanana]</span></td>
+              <td class="rating-excellent">2048×2048 (2K) / 1024×1024 (1K)<span class="detail">
+                  [Nano Banana Pro / Nano Banana]</span></td>
             </tr>
             <tr>
               <td>Custom model creation</td>
@@ -1441,8 +1448,7 @@
             <tr>
               <td>Folder organization</td>
               <td class="rating-excellent">Yes<span class="detail">[Projects]</span></td>
-              <td>No<span class="annotation"
-                  data-tooltip="NotebookLM differs from Projects. While it can be linked with Gemini chats, it lacks a folder structure when used inside Gemini; and when used on the NotebookLM site it is less creative due to an anti-hallucination tuning.">⁸</span>
+              <td>No<span class="annotation" data-note="notebooklm"></span>
               </td>
             </tr>
             <tr>
@@ -1459,7 +1465,7 @@
 
             <tr class="usa-ad-row">
               <td>Advertisements</td>
-              <td class="usa-restricted">Yes<span class="annotation" data-tooltip="Only in the USA, for now.">⁴</span>
+              <td class="usa-restricted">Yes<span class="annotation" data-note="usa-only"></span>
               </td>
               <td class="rating-excellent">No</td>
             </tr>
@@ -1481,26 +1487,19 @@
             <tr>
               <td>Cloud storage included</td>
               <td>No</td>
-              <td class="rating-excellent">15GB<span class="annotation"
-                  data-tooltip="Free accounts use the Google account's free 15GB storage.">⁹</span></td>
+              <td class="rating-excellent">15GB<span class="annotation" data-note="free-15gb"></span></td>
             </tr>
             <tr>
               <td>Age estimation and verification method</td>
-              <td>AI-based<span class="annotation"
-                  data-tooltip="AI-based age estimation can be unreliable, sometimes flagging an account as underage based on the user's preferences.">¹⁰</span><span
-                  class="detail">Verification only with ID, through a
+              <td>AI-based<span class="annotation" data-note="age-ai"></span><span class="detail">Verification only with
+                  ID, through a
                   third-party
-                  (Persona Identities)<span class="annotation"
-                    data-tooltip="Which age verification method is better depends on whether you're more comfortable sharing
-            proof of a credit card (or an ID if you don't have one) with Google, or sharing your ID with Persona Identities.">¹¹</span></span>
+                  (Persona Identities)<span class="annotation" data-note="age-verification"></span></span>
               </td>
               <td class="rating-great">Birth date based (prioritized), AI-based<span class="annotation"
-                  data-tooltip="AI-based age estimation can be unreliable, sometimes flagging an account as underage based on the user's preferences.">¹⁰</span><span
-                  class="detail">Verification with ID or
+                  data-note="age-ai"></span><span class="detail">Verification with ID or
                   credit card, sent
-                  directly to Google<span class="annotation"
-                    data-tooltip="Which age verification method is better depends on whether you're more comfortable sharing
-            proof of a credit card (or an ID if you don't have one) with Google, or sharing your ID with Persona Identities.">¹¹</span></span>
+                  directly to Google<span class="annotation" data-note="age-verification"></span></span>
               </td>
             </tr>
           </tbody>
@@ -1529,10 +1528,10 @@
             <tr>
               <td>Reasoning model limit per day</td>
               <td>1<span class="detail">[GPT 5 Thinking Mini]<span class="annotation"
-                    data-tooltip="Free and Go accounts don't have access to GPT 5.2 Thinking, so it's likely they use GPT 5 Thinking Mini instead.">¹</span></span>
+                    data-note="gpt5-mini-free"></span></span>
               </td>
               <td>10<span class="detail">[GPT 5 Thinking Mini]<span class="annotation"
-                    data-tooltip="Free and Go accounts don't have access to GPT 5.2 Thinking, so it's likely they use GPT 5 Thinking Mini instead.">¹</span></span>
+                    data-note="gpt5-mini-free"></span></span>
               </td>
               <td class="rating-excellent">428<span class="detail">(3000/week)<span class="detail">[GPT 5.2
                     Thinking]</span></td>
@@ -1553,7 +1552,7 @@
               </td>
               <td>32k</td>
               <td class="rating-great">128k</td>
-              <td class="rating-excellent">1M<span class="annotation" data-tooltip="Exactly 1048k tokens.">⁵</span></td>
+              <td class="rating-excellent">1M<span class="annotation" data-note="1m-tokens"></span></td>
             </tr>
             <tr>
               <td>File uploads per day</td>
@@ -1566,40 +1565,35 @@
               <td>Memory features</td>
               <td colspan="2">Memories</td>
               <td id="memory-chatgpt-plus" class="rating-great">Memories, chat history, chat search</td>
-              <td colspan="2">Memories, chat history<span class="annotation"
-                  data-tooltip="While Gemini has a memory feature, it sometimes calls memory when not needed, or decides not to call it when actually needed; which sometimes provokes inconsistent outputs.">⁶</span>
+              <td colspan="2">Memories<span class="annotation" data-note="gemini-memory">
+                </span>, chat history
               </td>
-              <td id="memory-gemini-pro" class="rating-great usa-restricted">Memories, chat history<span
-                  class="annotation"
-                  data-tooltip="While Gemini has a memory feature, it sometimes calls memory when not needed, or decides not to call it when actually needed; which sometimes provokes inconsistent outputs.">⁶</span><span
-                  class="usa-only">, ecosystem memory<span class="annotation" data-tooltip="Gemini can use your connected Google services (such as Gmail; Google Drive; Google
-                  Photos; Google, Maps, and YouTube search history and other Google Workspace services) through Gemini Personal Intelligence to help you
-                  find information, personalize answers and more.
-                  Of course, only if toggled by the user, since the option is off by default.">⁷</span><span
-                    class="annotation" data-tooltip="Only in the USA, for now.">⁴</span></span>
+              <td id="memory-gemini-pro" class="rating-great usa-restricted">Memories<span class="annotation"
+                  data-note="gemini-memory"></span>, chat history<span class="usa-only">ecosystem memory<span
+                    class="annotation" data-note="ecosystem-memory"></span><span class="annotation"
+                    data-note="usa-only"></span></span>
               </td>
             </tr>
             <tr>
               <td>Image generation per day</td>
-              <td>5<span class="annotation"
-                  data-tooltip="According to user reports. The actual limits are not public.">³</span><span
-                  class="detail">[GPT Image 1.5]</span></td>
-              <td>>5?<span class="annotation"
-                  data-tooltip="GPT Image 1.5 limits are unknown. GPT Image 1 limits were 50/day for Plus, 5/day for Free.">²</span><span
-                  class="detail">[GPT Image 1.5]</span></td>
-              <td>50?<span class="annotation"
-                  data-tooltip="GPT Image 1.5 limits are unknown. GPT Image 1 limits were 50/day for Plus, 5/day for Free.">²</span><span
-                  class="detail">[GPT Image 1.5]</span></td>
-              <td>3+100<span class="detail">[Nanobanana Pro + Nanobanana]</span></td>
-              <td class="rating-great">50+1000<span class="detail">[Nanobanana Pro + Nanobanana]</span></td>
-              <td class="rating-excellent">100+1000<span class="detail">[Nanobanana Pro + Nanobanana]</span></td>
+              <td>5<span class="annotation" data-note="user-reports"></span><span class="detail">[GPT Image 1.5]</span>
+              </td>
+              <td>>5?<span class="annotation" data-note="gpt-image-unknown"></span><span class="detail">[GPT Image
+                  1.5]</span></td>
+              <td>50?<span class="annotation" data-note="gpt-image-unknown"></span><span class="detail">[GPT Image
+                  1.5]</span></td>
+              <td class="rating-excellent">3+100<span class="detail">[Nano Banana Pro + Nano Banana]</span></td>
+              <td class="rating-great">50+1000<span class="detail">[Nano Banana Pro<span class="annotation"
+                    data-note="nano-banana-pro-throttle"></span> + Nano Banana]</span></td>
+              <td class="rating-excellent">100+1000<span class="detail">[Nano Banana Pro<span class="annotation"
+                    data-note="nano-banana-pro-throttle"></span> + Nano Banana]</span></td>
             </tr>
             <tr>
               <td>Image resolution (1:1)</td>
               <td colspan="3">1024×1024 (1K)<span class="detail">[GPT Image 1.5]</span></td>
-              <td colspan="3" class="rating-excellent">2048×2048 (2K) / 1024×1024 (1K)<span class="detail">[Nanobanana
-                  Pro /
-                  Nanobanana]</span></td>
+              <td colspan="3" class="rating-excellent">2048×2048 (2K) / 1024×1024 (1K)<span class="detail">[Nano Banana
+                  Pro<span class="annotation" data-note="nano-banana-pro-throttle"></span> /
+                  Nano Banana]</span></td>
             </tr>
             <tr>
               <td>Custom model creation</td>
@@ -1610,8 +1604,7 @@
             <tr>
               <td>Folder organization</td>
               <td colspan="3" class="rating-excellent">Yes<span class="detail">[Projects]</span></td>
-              <td colspan="3">No<span class="annotation"
-                  data-tooltip="NotebookLM differs from Projects. While it can be linked with Gemini chats, it lacks a folder structure when used inside Gemini; and when used on the NotebookLM site it is less creative due to an anti-hallucination tuning.">⁸</span>
+              <td colspan="3">No<span class="annotation" data-note="notebooklm"></span>
               </td>
             </tr>
             <tr>
@@ -1624,9 +1617,8 @@
               <td>Deep research uses per month</td>
               <td>5<span class="detail">[GPT 5.2 Thinking]</span>
               </td>
-              <td>5<span class="annotation"
-                  data-tooltip="According to user reports. The actual limits are not public.">³</span><span
-                  class="detail">[GPT 5.2 Thinking]</span>
+              <td>5<span class="annotation" data-note="user-reports"></span><span class="detail">[GPT 5.2
+                  Thinking]</span>
               </td>
               <td>25<span class="detail">[GPT 5.2 Thinking]</span>
               </td>
@@ -1644,8 +1636,7 @@
 
             <tr class="usa-ad-row">
               <td>Advertisements</td>
-              <td colspan="2" class="usa-restricted">Yes<span class="annotation"
-                  data-tooltip="Only in the USA, for now.">⁴</span>
+              <td colspan="2" class="usa-restricted">Yes<span class="annotation" data-note="usa-only"></span>
               </td>
               <td class="rating-excellent separator">No</td>
               <td colspan="3" class="rating-excellent">No</td>
@@ -1672,8 +1663,7 @@
             <tr>
               <td>Cloud storage included</td>
               <td colspan="3" class="separator">No</td>
-              <td>15GB<span class="annotation"
-                  data-tooltip="Free accounts use the Google account's free 15GB storage.">⁹</span></td>
+              <td>15GB<span class="annotation" data-note="free-15gb"></span></td>
               <td class="rating-great">200GB</td>
               <td class="rating-excellent">2TB</td>
             </tr>
@@ -1691,21 +1681,15 @@
             </tr>
             <tr>
               <td>Age estimation and verification method</td>
-              <td colspan="3" class="separator">AI-based<span class="annotation"
-                  data-tooltip="AI-based age estimation can be unreliable, sometimes flagging an account as underage based on the user's preferences.">¹⁰</span><span
+              <td colspan="3" class="separator">AI-based<span class="annotation" data-note="age-ai"></span><span
                   class="detail">Verification only with ID, through a
                   third-party
-                  (Persona Identities)<span class="annotation"
-                    data-tooltip="Which age verification method is better depends on whether you're more comfortable sharing
-            proof of a credit card (or an ID if you don't have one) with Google, or sharing your ID with Persona Identities.">¹¹</span></span>
+                  (Persona Identities)<span class="annotation" data-note="age-verification"></span></span>
               </td>
               <td colspan="3" class="rating-great">Birth date based (prioritized), AI-based<span class="annotation"
-                  data-tooltip="AI-based age estimation can be unreliable, sometimes flagging an account as underage based on the user's preferences.">¹⁰</span><span
-                  class="detail">Verification with ID or
+                  data-note="age-ai"></span><span class="detail">Verification with ID or
                   credit card, sent
-                  directly to Google<span class="annotation"
-                    data-tooltip="Which age verification method is better depends on whether you're more comfortable sharing
-            proof of a credit card (or an ID if you don't have one) with Google, or sharing your ID with Persona Identities.">¹¹</span></span>
+                  directly to Google<span class="annotation" data-note="age-verification"></span></span>
               </td>
             </tr>
           </tbody>
@@ -1732,9 +1716,9 @@
               <td class="rating-excellent">Unlimited<span class="detail">[ChatGPT 5.2 Pro + ChatGPT 5.2 Thinking]</span>
               </td>
               <td class="rating-great usa-restricted"><span class="usa-main"><span class="usa-only"></span>10<span
-                    class="annotation" data-tooltip="Only in the USA, for now.">⁴</span>+</span>500+1500<span
-                  class="detail">[<span class="usa-only">Gemini 3 Deep
-                    Think<span class="annotation" data-tooltip="Only in the USA, for now.">⁴</span> +
+                    class="annotation" data-note="usa-only"></span>+</span>500+1500<span class="detail">[<span
+                    class="usa-only">Gemini 3 Deep
+                    Think<span class="annotation" data-note="usa-only"></span> +
                   </span>Gemini 3 Pro + Gemini 3 Flash Thinking]</td>
             </tr>
             <tr>
@@ -1746,10 +1730,9 @@
               <td>Context window limit</td>
               <td class="rating-great">128k / 196k<span class="detail">(Non-reasoning / Reasoning)</span></td>
               <td class="rating-excellent usa-restricted"><span class="usa-main"><span class="usa-only">192k<span
-                      class="annotation" data-tooltip="Only in the USA, for now.">⁴</span> / </span></span> 1M<span
-                  class="annotation" data-tooltip="Exactly 1048k tokens.">⁵</span><span class="detail"><span
-                    class="usa-only">(Gemini 3 Deep Think<span class="annotation"
-                      data-tooltip="Only in the USA, for now.">⁴</span> / Other models)</span></span>
+                      class="annotation" data-note="usa-only"></span> / </span></span> 1M<span class="annotation"
+                  data-note="1m-tokens"></span><span class="detail"><span class="usa-only">(Gemini 3 Deep Think<span
+                      class="annotation" data-note="usa-only"></span> / Other models)</span></span>
               </td>
             </tr>
             <tr>
@@ -1760,30 +1743,26 @@
             <tr>
               <td>Memory features</td>
               <td id="memory-chatgpt-pro" class="rating-great">Memories, chat history, chat search, proactive
-                research<span class="annotation"
-                  data-tooltip="ChatGPT can proactively research topics and present them as a briefing, unprompted, through ChatGPT Pulse.">¹²</span>
+                research<span class="annotation" data-note="chatgpt-pulse"></span>
               </td>
-              <td id="memory-gemini-ultra" class="rating-great usa-restricted">Memories, chat history<span
-                  class="annotation"
-                  data-tooltip="While Gemini has a memory feature, it sometimes calls memory when not needed, or decides not to call it when actually needed; which sometimes provokes inconsistent outputs.">⁶</span><span
-                  class="usa-only">, ecosystem memory<span class="annotation" data-tooltip="Gemini can use your connected Google services (such as Gmail; Google Drive; Google
-                  Photos; Google, Maps, and YouTube search history and other Google Workspace services) through Gemini Personal Intelligence to help you
-                  find information, personalize answers and more.
-                  Of course, only if toggled by the user, since the option is off by default.">⁷</span><span
-                    class="annotation" data-tooltip="Only in the USA, for now.">⁴</span></span>
+              <td id="memory-gemini-ultra" class="rating-great usa-restricted">Memories<span class="annotation"
+                  data-note="gemini-memory"></span>, chat history<span class="usa-only">, ecosystem memory<span
+                    class="annotation" data-note="ecosystem-memory"></span><span class="annotation"
+                    data-note="usa-only"></span></span>
               </td>
             </tr>
             <tr>
               <td>Image generation per day</td>
               <td class="rating-excellent">Unlimited<span class="detail">[GPT Image 1.5]</span></td>
-              <td class="rating-great">1000+1000<span class="detail">[Nanobanana Pro + Nanobanana]</span></td>
+              <td class="rating-great">1000+1000<span class="detail">[Nano Banana Pro<span class="annotation"
+                    data-note="nano-banana-pro-throttle"></span> + Nano Banana]</span></td>
             </tr>
             <tr>
               <td>Image resolution (1:1)</td>
               <td>1024×1024 (1K)<span class="detail">[GPT Image 1.5]</span></td>
-              <td class="rating-excellent">2048×2048 (2K) / 1024×1024 (1K)<span class="detail">[Nanobanana
-                  Pro /
-                  Nanobanana]</span></td>
+              <td class="rating-excellent">2048×2048 (2K) / 1024×1024 (1K)<span class="detail">[Nano Banana
+                  Pro<span class="annotation" data-note="nano-banana-pro-throttle"></span> /
+                  Nano Banana]</span></td>
             </tr>
             <tr>
               <td>Custom model creation</td>
@@ -1793,8 +1772,7 @@
             <tr>
               <td>Folder organization</td>
               <td class="rating-excellent">Yes<span class="detail">[Projects]</span></td>
-              <td>No<span class="annotation"
-                  data-tooltip="NotebookLM differs from Projects. While it can be linked with Gemini chats, it lacks a folder structure when used inside Gemini; and when used on the NotebookLM site it is less creative due to an anti-hallucination tuning.">⁸</span>
+              <td>No<span class="annotation" data-note="notebooklm"></span>
               </td>
             </tr>
             <tr>
@@ -1813,8 +1791,8 @@
               <td>Agent mode uses per month</td>
               <td id="agent-chatgpt-pro" class="rating-great">400</td>
               <td id="agent-gemini-ultra" class="rating-excellent usa-restricted">
-                <span class="usa-main">6000<span class="annotation"
-                    data-tooltip="Only in the USA, for now.">⁴</span></span><span class="usa-alt">No</span>
+                <span class="usa-main">6000<span class="annotation" data-note="usa-only"></span></span><span
+                  class="usa-alt">No</span>
                 <span class="detail"><span class="usa-only">(200/day)</span></span>
               </td>
             </tr>
@@ -1856,21 +1834,15 @@
             </tr>
             <tr>
               <td>Age estimation and verification method</td>
-              <td>AI-based<span class="annotation"
-                  data-tooltip="AI-based age estimation can be unreliable, sometimes flagging an account as underage based on the user's preferences.">¹⁰</span><span
-                  class="detail">Verification only with ID, through a
+              <td>AI-based<span class="annotation" data-note="age-ai"></span><span class="detail">Verification only with
+                  ID, through a
                   third-party
-                  (Persona Identities)<span class="annotation"
-                    data-tooltip="Which age verification method is better depends on whether you're more comfortable sharing
-            proof of a credit card (or an ID if you don't have one) with Google, or sharing your ID with Persona Identities.">¹¹</span></span>
+                  (Persona Identities)<span class="annotation" data-note="age-verification"></span></span>
               </td>
               <td class="rating-great">Birth date based (prioritized), AI-based<span class="annotation"
-                  data-tooltip="AI-based age estimation can be unreliable, sometimes flagging an account as underage based on the user's preferences.">¹⁰</span><span
-                  class="detail">Verification with ID or
+                  data-note="age-ai"></span><span class="detail">Verification with ID or
                   credit card, sent
-                  directly to Google<span class="annotation"
-                    data-tooltip="Which age verification method is better depends on whether you're more comfortable sharing
-            proof of a credit card (or an ID if you don't have one) with Google, or sharing your ID with Persona Identities.">¹¹</span></span>
+                  directly to Google<span class="annotation" data-note="age-verification"></span></span>
               </td>
             </tr>
           </tbody>
@@ -1905,33 +1877,8 @@
       <!-- Notes -->
       <div class="notes">
         <p class="notes-title">Footnotes</p>
-        <ul class="notes-list">
-          <li data-num="1.">Free and Go accounts don't have access to GPT 5.2 Thinking, so it's likely they use GPT 5
-            Thinking Mini instead.</li>
-          <li data-num="2.">GPT Image 1.5 limits are unknown. GPT Image 1 limits were 50/day for Plus, 5/day for
-            Free.</li>
-          <li data-num="3.">According to user reports. The actual limits are not public.</li>
-          <li data-num="4.">Only in the USA, for now.</li>
-          <li data-num="5.">Exactly 1048k tokens.</li>
-          <li data-num="6.">While Gemini has a memory feature, it sometimes calls memory when not needed, or decides not
-            to call it when actually needed; which sometimes provokes inconsistent outputs.</li>
-          <li data-num="7.">Gemini can use your connected Google services (such as Gmail; Google Drive; Google
-            Photos; Google, Maps, and YouTube search history and other Google Workspace services) through Gemini
-            Personal Intelligence to help you
-            find information, personalize answers and more.
-            Of course, only if toggled by the user, since the option is off by default.</li>
-          <li data-num="8.">NotebookLM differs from Projects. While it can be linked with Gemini chats, it lacks a
-            folder structure when used inside Gemini; and when used on the NotebookLM site it is
-            less creative due to an anti-hallucination tuning.
-          </li>
-          <li data-num="9.">Free accounts use the Google account's free 15GB storage.</li>
-          <li data-num="10.">AI-based age estimation can be unreliable, sometimes flagging an account as
-            underage based on the user's preferences.</li>
-          <li data-num="11.">Which age verification method is better depends on whether you're more comfortable sharing
-            proof of a credit card (or an ID if you don't have one) with Google, or sharing your ID with Persona
-            Identities.</li>
-          <li data-num="12.">ChatGPT can proactively research topics and present them as a briefing, unprompted, through
-            ChatGPT Pulse.</li>
+        <ul class="notes-list" id="footnotes-list">
+          <!-- Auto-generated by initAnnotations() -->
         </ul>
       </div>
     </section>
@@ -2483,9 +2430,8 @@
           </div>
           <ul class="benefit-list">
             <li>Deep research produces longer, more detailed investigations</li>
-            <li>Nanobanana Pro offers faster image generation than GPT Image 1.5. Its images also appear more realistic
-              (subjectively). However, it must be taken into consideration that Google tends to throttle the daily limit
-              of image generation requests when a new model or AI tool is released</li>
+            <li>Nano Banana Pro offers faster image generation than GPT Image 1.5. Its images also appear more realistic
+              (subjectively).</li>
             <li>Native Android integration (iOS confirmed to come soon), though it can be over-eager with tool calls
             </li>
             <li>Offers uses of Claude Opus 4.6 Extended, Claude Sonnet 4.5 Extended and Claude Sonnet 4.5 through the
@@ -2499,6 +2445,76 @@
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
+    /*
+     * ╔══════════════════════════════════════════════════════════════════╗
+     * ║                    ANNOTATION SYSTEM                           ║
+     * ╠══════════════════════════════════════════════════════════════════╣
+     * ║  Annotations use semantic IDs instead of hardcoded numbers.    ║
+     * ║  To add a new annotation:                                      ║
+     * ║  1. Add an entry to FOOTNOTES below with a unique ID           ║
+     * ║  2. Use <span class="annotation" data-note="your-id"></span>  ║
+     * ║     in the HTML wherever the annotation should appear          ║
+     * ║  Numbers are auto-assigned based on first appearance order.    ║
+     * ╚══════════════════════════════════════════════════════════════════╝
+     */
+    const FOOTNOTES = {
+      'gpt5-mini-free': "Free and Go accounts don't have access to GPT 5.2 Thinking, and GPT 5 Thinking Mini won't be removed unlike the other GPT 5 models, which makes it likely that this is the model used.",
+      'gpt-image-unknown': "GPT Image 1.5 limits are unknown. GPT Image 1 limits were 50/day for Plus, 5/day for Free.",
+      'user-reports': "According to user reports. The actual limits are not public.",
+      'usa-only': "Only in the USA, for now.",
+      'nano-banana-pro-throttle': "Google tends to throttle the daily limit of image generation when a new model or AI tool is released.",
+      '1m-tokens': "Exactly 1048k tokens.",
+      'gemini-memory': "While Gemini has a memory feature, it sometimes calls memory when not needed, or decides not to call it when actually needed; which sometimes provokes inconsistent outputs.",
+      'ecosystem-memory': "Gemini can use your connected Google services (such as Gmail; Google Drive; Google Photos; Google, Maps, and YouTube search history and other Google Workspace services) through Gemini Personal Intelligence to help you find information, personalize answers and more. Of course, only if toggled by the user, since the option is off by default.",
+      'notebooklm': "NotebookLM differs from Projects. While it can be linked with Gemini chats, it lacks a folder structure when used inside Gemini; and when used on the NotebookLM site it is less creative due to an anti-hallucination tuning.",
+      'free-15gb': "Free accounts use the Google account's free 15GB storage.",
+      'age-ai': "AI-based age estimation can be unreliable, sometimes flagging an account as underage based on the user's preferences.",
+      'age-verification': "Which age verification method is better depends on whether you're more comfortable sharing proof of a credit card (or an ID if you don't have one) with Google, or sharing your ID with Persona Identities.",
+      'chatgpt-pulse': "ChatGPT can proactively research topics and present them as a briefing, unprompted, through ChatGPT Pulse.",
+    };
+
+    function toSuperscript(num) {
+      const superDigits = '⁰¹²³⁴⁵⁶⁷⁸⁹';
+      return String(num).split('').map(d => superDigits[parseInt(d)]).join('');
+    }
+
+    function initAnnotations() {
+      const annotations = document.querySelectorAll('.annotation[data-note]');
+      const footnotesList = document.getElementById('footnotes-list');
+      const idToNumber = {};
+      let counter = 1;
+
+      // First pass: assign numbers in order of first appearance
+      annotations.forEach(el => {
+        const noteId = el.getAttribute('data-note');
+        if (!idToNumber[noteId]) {
+          idToNumber[noteId] = counter++;
+        }
+      });
+
+      // Second pass: set text content and tooltip
+      annotations.forEach(el => {
+        const noteId = el.getAttribute('data-note');
+        const num = idToNumber[noteId];
+        el.textContent = toSuperscript(num);
+        el.setAttribute('data-tooltip', FOOTNOTES[noteId] || '(Missing footnote)');
+      });
+
+      // Generate footnotes list
+      if (footnotesList) {
+        footnotesList.innerHTML = '';
+        for (const [id, num] of Object.entries(idToNumber)) {
+          const li = document.createElement('li');
+          li.setAttribute('data-num', num + '.');
+          li.textContent = FOOTNOTES[id] || '(Missing footnote)';
+          footnotesList.appendChild(li);
+        }
+      }
+    }
+
+    // Run annotation system as early as possible
+    initAnnotations();
+
     function switchTab(tabId) {
       document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
       document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
@@ -4320,7 +4336,7 @@
     style="text-align: center; padding: 2rem 1rem; margin-top: 3rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.8rem;">
     Made by <strong> u/Pasto_Shouwa</strong>
     <br>
-    <em>Last updated on <strong>11/02/2026</strong> (dd/mm/yyyy)</em>
+    <em>Last updated on <strong>12/02/2026</strong> (dd/mm/yyyy)</em>
   </footer>
 </body>
 
