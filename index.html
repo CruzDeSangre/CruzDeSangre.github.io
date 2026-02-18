@@ -83,6 +83,10 @@
       --claude-bg: rgba(255, 126, 33, 0.08);
       --claude-border: rgba(255, 126, 33, 0.2);
 
+      --chatgpt-primary-legacy: #649687;
+      --gemini-primary-legacy: #b46e78;
+      --claude-primary-legacy: #b48c64;
+
       /* Rating Colors */
       --rating-excellent: rgba(34, 197, 94, 0.15);
       --rating-excellent-border: rgba(34, 197, 94, 0.3);
@@ -854,6 +858,16 @@
       background: rgba(140, 140, 150, 0.8);
     }
 
+    /* Legacy models toggle styling (beige) */
+    .legacy-toggle .toggle-switch.active {
+      background: rgba(180, 140, 100, 0.15);
+      border-color: rgba(180, 140, 100, 0.3);
+    }
+
+    .legacy-toggle .toggle-switch.active::after {
+      background: rgba(180, 140, 100, 0.8);
+    }
+
     /* Coding benchmarks visibility */
     .coding-benchmark-section {
       transition: opacity 0.3s ease, max-height 0.4s ease;
@@ -1263,7 +1277,7 @@
     }
 
     .model-filters-panel.expanded .model-filters-content {
-      max-height: 1015px;
+      max-height: 1175px;
       opacity: 1;
       padding: 0 1.5rem 3rem;
     }
@@ -1350,6 +1364,14 @@
 
     .dot-other {
       background: rgba(100, 100, 110, 0.85);
+    }
+
+    .dot-gpt-legacy {
+      background: var(--chatgpt-primary-legacy);
+    }
+
+    .dot-claude-legacy {
+      background: var(--claude-primary-legacy);
     }
 
     /* Blue dot for coding benchmarks */
@@ -1936,41 +1958,53 @@
                 <span class="model-dot-indicator dot-claude"></span>
                 <span class="model-dot-label">Claude 4.6 Opus Extended</span>
               </div>
-              <div class="model-dot inactive" data-model="claude-46-opus-nr"
-                onclick="toggleIndividualModel('claude-46-opus-nr')">
+              <div class="model-dot inactive" data-model="claude-46-sonnet"
+                onclick="toggleIndividualModel('claude-46-sonnet')">
                 <span class="model-dot-indicator dot-claude"></span>
-                <span class="model-dot-label">Claude 4.6 Opus</span>
-              </div>
-            </div>
-            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
-              <div class="model-dot" data-model="claude-opus" onclick="toggleIndividualModel('claude-opus')">
-                <span class="model-dot-indicator dot-claude"></span>
-                <span class="model-dot-label">Claude 4.5 Opus Extended</span>
-              </div>
-              <div class="model-dot" data-model="claude-sonnet" onclick="toggleIndividualModel('claude-sonnet')">
-                <span class="model-dot-indicator dot-claude"></span>
-                <span class="model-dot-label">Claude 4.5 Sonnet Extended</span>
+                <span class="model-dot-label">Claude 4.6 Sonnet Extended</span>
               </div>
               <div class="model-dot inactive" data-model="claude-haiku" onclick="toggleIndividualModel('claude-haiku')">
                 <span class="model-dot-indicator dot-claude"></span>
                 <span class="model-dot-label">Claude 4.5 Haiku Extended</span>
               </div>
             </div>
-            <div class="model-dots-row">
-              <div class="model-dot inactive" data-model="claude-opus-nr"
-                onclick="toggleIndividualModel('claude-opus-nr')">
+            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
+              <div class="model-dot inactive" data-model="claude-46-opus-nr"
+                onclick="toggleIndividualModel('claude-46-opus-nr')">
                 <span class="model-dot-indicator dot-claude"></span>
-                <span class="model-dot-label">Claude 4.5 Opus</span>
+                <span class="model-dot-label">Claude 4.6 Opus</span>
               </div>
-              <div class="model-dot inactive" data-model="claude-sonnet-nr"
-                onclick="toggleIndividualModel('claude-sonnet-nr')">
+              <div class="model-dot inactive" data-model="claude-46-sonnet-nr"
+                onclick="toggleIndividualModel('claude-46-sonnet-nr')">
                 <span class="model-dot-indicator dot-claude"></span>
-                <span class="model-dot-label">Claude 4.5 Sonnet</span>
+                <span class="model-dot-label">Claude 4.6 Sonnet</span>
               </div>
               <div class="model-dot inactive" data-model="claude-haiku-nr"
                 onclick="toggleIndividualModel('claude-haiku-nr')">
                 <span class="model-dot-indicator dot-claude"></span>
                 <span class="model-dot-label">Claude 4.5 Haiku</span>
+              </div>
+            </div>
+            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
+              <div class="model-dot" data-model="claude-opus" onclick="toggleIndividualModel('claude-opus')">
+                <span class="model-dot-indicator dot-claude-legacy"></span>
+                <span class="model-dot-label">Claude 4.5 Opus Extended</span>
+              </div>
+              <div class="model-dot" data-model="claude-sonnet" onclick="toggleIndividualModel('claude-sonnet')">
+                <span class="model-dot-indicator dot-claude-legacy"></span>
+                <span class="model-dot-label">Claude 4.5 Sonnet Extended</span>
+              </div>
+            </div>
+            <div class="model-dots-row">
+              <div class="model-dot inactive" data-model="claude-opus-nr"
+                onclick="toggleIndividualModel('claude-opus-nr')">
+                <span class="model-dot-indicator dot-claude-legacy"></span>
+                <span class="model-dot-label">Claude 4.5 Opus</span>
+              </div>
+              <div class="model-dot inactive" data-model="claude-sonnet-nr"
+                onclick="toggleIndividualModel('claude-sonnet-nr')">
+                <span class="model-dot-indicator dot-claude-legacy"></span>
+                <span class="model-dot-label">Claude 4.5 Sonnet</span>
               </div>
             </div>
           </div>
@@ -1997,9 +2031,11 @@
                 <span class="model-dot-indicator dot-gpt"></span>
                 <span class="model-dot-label">GPT 5.2 Thinking</span>
               </div>
+            </div>
+            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot" data-model="gpt-thinking-mini"
                 onclick="toggleIndividualModel('gpt-thinking-mini')">
-                <span class="model-dot-indicator dot-gpt"></span>
+                <span class="model-dot-indicator dot-gpt-legacy"></span>
                 <span class="model-dot-label">GPT 5 Thinking Mini</span>
               </div>
             </div>
@@ -2020,19 +2056,24 @@
                 <span class="model-dot-indicator dot-claude"></span>
                 <span class="model-dot-label">Claude 4.6 Opus Extended</span>
               </div>
+              <div class="model-dot inactive" data-model="claude-46-sonnet"
+                onclick="toggleIndividualModel('claude-46-sonnet')">
+                <span class="model-dot-indicator dot-claude"></span>
+                <span class="model-dot-label">Claude 4.6 Sonnet Extended</span>
+              </div>
+              <div class="model-dot inactive" data-model="claude-haiku" onclick="toggleIndividualModel('claude-haiku')">
+                <span class="model-dot-indicator dot-claude"></span>
+                <span class="model-dot-label">Claude 4.5 Haiku Extended</span>
+              </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot" data-model="claude-opus" onclick="toggleIndividualModel('claude-opus')">
-                <span class="model-dot-indicator dot-claude"></span>
+                <span class="model-dot-indicator dot-claude-legacy"></span>
                 <span class="model-dot-label">Claude 4.5 Opus Extended</span>
               </div>
               <div class="model-dot" data-model="claude-sonnet" onclick="toggleIndividualModel('claude-sonnet')">
-                <span class="model-dot-indicator dot-claude"></span>
+                <span class="model-dot-indicator dot-claude-legacy"></span>
                 <span class="model-dot-label">Claude 4.5 Sonnet Extended</span>
-              </div>
-              <div class="model-dot" data-model="claude-haiku" onclick="toggleIndividualModel('claude-haiku')">
-                <span class="model-dot-indicator dot-claude"></span>
-                <span class="model-dot-label">Claude 4.5 Haiku Extended</span>
               </div>
             </div>
             <div class="model-dots-row">
@@ -2071,22 +2112,27 @@
                 <span class="model-dot-indicator dot-claude"></span>
                 <span class="model-dot-label">Claude 4.6 Opus</span>
               </div>
-            </div>
-            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
-              <div class="model-dot inactive" data-model="claude-opus-nr"
-                onclick="toggleIndividualModel('claude-opus-nr')">
+              <div class="model-dot inactive" data-model="claude-46-sonnet-nr"
+                onclick="toggleIndividualModel('claude-46-sonnet-nr')">
                 <span class="model-dot-indicator dot-claude"></span>
-                <span class="model-dot-label">Claude 4.5 Opus</span>
-              </div>
-              <div class="model-dot inactive" data-model="claude-sonnet-nr"
-                onclick="toggleIndividualModel('claude-sonnet-nr')">
-                <span class="model-dot-indicator dot-claude"></span>
-                <span class="model-dot-label">Claude 4.5 Sonnet</span>
+                <span class="model-dot-label">Claude 4.6 Sonnet</span>
               </div>
               <div class="model-dot inactive" data-model="claude-haiku-nr"
                 onclick="toggleIndividualModel('claude-haiku-nr')">
                 <span class="model-dot-indicator dot-claude"></span>
                 <span class="model-dot-label">Claude 4.5 Haiku</span>
+              </div>
+            </div>
+            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
+              <div class="model-dot inactive" data-model="claude-opus-nr"
+                onclick="toggleIndividualModel('claude-opus-nr')">
+                <span class="model-dot-indicator dot-claude-legacy"></span>
+                <span class="model-dot-label">Claude 4.5 Opus</span>
+              </div>
+              <div class="model-dot inactive" data-model="claude-sonnet-nr"
+                onclick="toggleIndividualModel('claude-sonnet-nr')">
+                <span class="model-dot-indicator dot-claude-legacy"></span>
+                <span class="model-dot-label">Claude 4.5 Sonnet</span>
               </div>
             </div>
             <div class="model-dots-row">
@@ -2147,6 +2193,17 @@
               </div>
               <span style="font-style: italic; color: var(--text-muted); font-size: 0.8rem;">(Selection of reliable
                 models with a low hallucination rate).</span>
+            </div>
+          </div>
+
+          <!-- Legacy models -->
+          <div class="filter-group">
+            <div class="filter-group-header">
+              <span class="filter-group-name">Legacy models</span>
+              <div class="toggle-inline legacy-toggle">
+                <div class="toggle-switch legacy-models-toggle" onclick="event.stopPropagation(); toggleLegacyModels()">
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -2247,9 +2304,10 @@
             <li>• This benchmark currently does not provide support for GPT 5.2 Codex, non-reasoning Claude models and
               GLM models.
             </li>
-            <li>• This benchmark has not yet published the full results for the Claude Opus 4.6 models.
-              It is only known that Claude Opus 4.6 Extended performs with an accuracy of >93% on 128k tokens.
-              The remaining values were estimated by assuming a roughly linear trend on a log2 context-length scale
+            <li>• This benchmark has not yet published the full results for the Claude 4.6 models.
+              It is only known that Claude Opus 4.6 Extended performs with an accuracy of >93% on 128k tokens and
+              Claude Sonnet 4.6 Extended performs with an accuracy of >90.3% on 128k tokens.
+              The remaining values were estimated by assuming a roughly linear trend on a log2 context-length scale.
             </li>
             <li>• Maximum context window of <strong>GPT 5.2 Thinking and GPT 5.2 Thinking xhigh</strong> is 196k tokens.
             </li>
@@ -2463,9 +2521,9 @@
             the graph.</li>
           <li>• For "<strong>GLM 5</strong>", "<em>glm-5</em>" was used in
             the graph.</li>
-          <li>• Claude Opus 4.6 Extended, Claude Sonnet 4.5 Extended and Claude Sonnet 4.5 are available for free to
-            Gemini users through the Antigravity app, with limits that reset depending on demand (usually every 5
-            hours).</li>
+          <li>• Claude Opus 4.6 Extended and Claude Sonnet 4.6 are available for free to Gemini users through the
+            Antigravity app,
+            with limits that reset depending on demand (around every 2-12 hours).</li>
         </ul>
       </div>
     </section>
@@ -2499,7 +2557,7 @@
               (subjectively).</li>
             <li>Native Android integration (iOS confirmed to come soon), though it can be over-eager with tool calls
             </li>
-            <li>Offers uses of Claude Opus 4.6 Extended, Claude Sonnet 4.5 Extended and Claude Sonnet 4.5 through the
+            <li>Offers uses of Claude Opus 4.6 Extended, and Claude Sonnet 4.6 through the
               Antigravity app</li>
           </ul>
         </div>
@@ -2654,12 +2712,12 @@
     const claudeColorLight = 'rgba(255, 126, 33, 0.7)';
 
     // Legacy (older model) colors — desaturated and muted
-    const chatgptLegacyColor = 'rgba(100, 150, 135, 0.55)';
-    const chatgptLegacyColorLight = 'rgba(100, 150, 135, 0.3)';
-    const claudeLegacyColor = 'rgba(180, 140, 100, 0.55)';
-    const claudeLegacyColorLight = 'rgba(180, 140, 100, 0.3)';
-    const geminiLegacyColor = 'rgba(180, 110, 120, 0.55)';
-    const geminiLegacyColorLight = 'rgba(180, 110, 120, 0.3)';
+    const chatgptLegacyColor = 'rgba(100, 150, 135, 1)';
+    const chatgptLegacyColorLight = 'rgba(100, 150, 135, 0.7)';
+    const claudeLegacyColor = 'rgba(180, 140, 100, 1)';
+    const claudeLegacyColorLight = 'rgba(180, 140, 100, 0.7)';
+    const geminiLegacyColor = 'rgba(180, 110, 120, 1)';
+    const geminiLegacyColorLight = 'rgba(180, 110, 120, 0.7)';
 
     // Track Claude, Instant, ChatGPT Pro, and Coding visibility (legacy flags for compatibility)
     let showClaudeModels = true;
@@ -2668,6 +2726,7 @@
     let showCodingBenchmarks = false;
     let showReasoningModels = true;
     let showOtherModels = false;
+    let showLegacyModels = false;
     let omniscienceChart, mrcrChart;
 
     // Individual model visibility
@@ -2681,12 +2740,14 @@
       'gemini-flash-thinking': true,
       'gemini-flash': true,
       'claude-opus': false,    // Starts hidden by default
-      'claude-sonnet': true,
+      'claude-sonnet': false,  // Starts hidden by default
       'claude-haiku': false,   // Starts hidden by default
       'claude-46-opus': true,     // Starts visible by default
+      'claude-46-sonnet': false,  // Starts hidden by default
       'claude-46-opus-nr': false, // Starts hidden by default
-      'claude-opus-nr': false,    // Non-reasoning, starts hidden
-      'claude-sonnet-nr': false,  // Non-reasoning, starts hidden
+      'claude-46-sonnet-nr': true, // Starts visible by default
+      'claude-opus-nr': false,    // Non-reasoning, starts hidden (legacy)
+      'claude-sonnet-nr': false,  // Non-reasoning, starts hidden (legacy)
       'claude-haiku-nr': false,   // Non-reasoning, starts hidden
       'glm-deep-think': false,    // Other recommended, starts hidden
       'glm-5': false              // Other recommended, starts hidden
@@ -2705,12 +2766,14 @@
       'gemini-flash-thinking': false,
       'gemini-flash': false,
       'claude-opus': true,     // Starts explicitly disabled
-      'claude-sonnet': false,
+      'claude-sonnet': true,   // Starts explicitly disabled
       'claude-haiku': true,    // Starts explicitly disabled
       'claude-46-opus': false,    // Starts enabled by default
+      'claude-46-sonnet': true,   // Starts explicitly disabled
       'claude-46-opus-nr': true,  // Starts explicitly disabled
-      'claude-opus-nr': true,     // Starts explicitly disabled
-      'claude-sonnet-nr': true,   // Starts explicitly disabled  
+      'claude-46-sonnet-nr': false, // Starts enabled by default
+      'claude-opus-nr': true,     // Starts explicitly disabled (legacy)
+      'claude-sonnet-nr': true,   // Starts explicitly disabled (legacy)
       'claude-haiku-nr': true,    // Starts explicitly disabled
       'glm-deep-think': false,    // Other recommended
       'glm-5': false              // Other recommended
@@ -2718,12 +2781,13 @@
 
     // Model groups for group toggles
     const modelGroups = {
-      'claude': ['claude-opus', 'claude-sonnet', 'claude-haiku', 'claude-46-opus', 'claude-46-opus-nr', 'claude-opus-nr', 'claude-sonnet-nr', 'claude-haiku-nr'],
-      'reasoning': ['gpt-codex', 'gpt-xhigh', 'gpt-thinking', 'gpt-thinking-mini', 'gemini-pro', 'gemini-flash-thinking', 'claude-opus', 'claude-sonnet', 'claude-haiku', 'claude-46-opus', 'glm-deep-think'],
-      'instant': ['gpt-instant', 'gemini-flash', 'claude-46-opus-nr', 'claude-opus-nr', 'claude-sonnet-nr', 'claude-haiku-nr', 'glm-5'],
+      'claude': ['claude-opus', 'claude-sonnet', 'claude-haiku', 'claude-46-opus', 'claude-46-sonnet', 'claude-46-opus-nr', 'claude-46-sonnet-nr', 'claude-opus-nr', 'claude-sonnet-nr', 'claude-haiku-nr'],
+      'reasoning': ['gpt-codex', 'gpt-xhigh', 'gpt-thinking', 'gpt-thinking-mini', 'gemini-pro', 'gemini-flash-thinking', 'claude-opus', 'claude-sonnet', 'claude-haiku', 'claude-46-opus', 'claude-46-sonnet', 'glm-deep-think'],
+      'instant': ['gpt-instant', 'gemini-flash', 'claude-46-opus-nr', 'claude-46-sonnet-nr', 'claude-opus-nr', 'claude-sonnet-nr', 'claude-haiku-nr', 'glm-5'],
       'chatgpt-pro': ['gpt-xhigh'],
       'coding': ['gpt-codex'],
-      'other': ['glm-deep-think', 'glm-5']
+      'other': ['glm-deep-think', 'glm-5'],
+      'legacy': ['claude-opus', 'claude-sonnet', 'claude-opus-nr', 'claude-sonnet-nr']
     };
 
     // Model constraints: which group toggles must ALL be active for a model to be visible
@@ -2737,13 +2801,15 @@
       'gemini-pro': ['reasoning'],                     // Only needs Reasoning
       'gemini-flash-thinking': ['reasoning'],          // Only needs Reasoning
       'gemini-flash': ['instant'],                     // Only needs Non-reasoning
-      'claude-opus': ['claude', 'reasoning'],          // Needs both Claude AND Reasoning to be on
-      'claude-sonnet': ['claude', 'reasoning'],        // Needs both Claude AND Reasoning to be on
+      'claude-opus': ['claude', 'reasoning', 'legacy'],    // Needs Claude AND Reasoning AND Legacy
+      'claude-sonnet': ['claude', 'reasoning', 'legacy'],  // Needs Claude AND Reasoning AND Legacy
       'claude-haiku': ['claude', 'reasoning'],         // Needs both Claude AND Reasoning to be on
       'claude-46-opus': ['claude', 'reasoning'],       // Needs both Claude AND Reasoning to be on
+      'claude-46-sonnet': ['claude', 'reasoning'],     // Needs both Claude AND Reasoning to be on
       'claude-46-opus-nr': ['claude', 'instant'],      // Needs both Claude AND Non-reasoning to be on
-      'claude-opus-nr': ['claude', 'instant'],         // Needs both Claude AND Non-reasoning to be on
-      'claude-sonnet-nr': ['claude', 'instant'],       // Needs both Claude AND Non-reasoning to be on
+      'claude-46-sonnet-nr': ['claude', 'instant'],    // Needs both Claude AND Non-reasoning to be on
+      'claude-opus-nr': ['claude', 'instant', 'legacy'],   // Needs Claude AND Non-reasoning AND Legacy
+      'claude-sonnet-nr': ['claude', 'instant', 'legacy'], // Needs Claude AND Non-reasoning AND Legacy
       'claude-haiku-nr': ['claude', 'instant'],         // Needs both Claude AND Non-reasoning to be on
       'glm-deep-think': ['other', 'reasoning'],           // Needs both Other AND Reasoning to be on
       'glm-5': ['other', 'instant']                       // Needs both Other AND Non-reasoning to be on
@@ -2758,6 +2824,7 @@
         case 'chatgpt-pro': return showChatGPTProModels;
         case 'coding': return showCodingBenchmarks;
         case 'other': return showOtherModels;
+        case 'legacy': return showLegacyModels;
         default: return true;
       }
     }
@@ -2850,10 +2917,16 @@
         toggle.classList.toggle('active', showCodingBenchmarks || someCodingVisible);
       });
 
-      // Other recommended models group
+      // Other recommended models group — hides GLM models (glm-deep-think, glm-5)
       const someOtherVisible = modelGroups.other.some(m => modelVisibility[m]);
       document.querySelectorAll('.other-models-toggle').forEach(toggle => {
         toggle.classList.toggle('active', someOtherVisible);
+      });
+
+      // Legacy models group — hides Claude 4.5 Opus/Sonnet (Extended and non-Extended)
+      const someLegacyVisible = modelGroups.legacy.some(m => modelVisibility[m]);
+      document.querySelectorAll('.legacy-models-toggle').forEach(toggle => {
+        toggle.classList.toggle('active', someLegacyVisible);
       });
 
       // Update coding section dot
@@ -3002,6 +3075,8 @@
       { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', correct: 47.15, abstention: 6.35, hallucination: 46.50, sortOrder: 60 },
       { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Extended', correct: 44.32, abstention: 22.30, hallucination: 33.38, sortOrder: 65 },
       { modelId: 'claude-46-opus-nr', label: '❋ Claude 4.6 Opus', correct: 43.77, abstention: 13.66, hallucination: 42.57, sortOrder: 66 },
+      { modelId: 'claude-46-sonnet', label: '❋ Claude 4.6 Sonnet Extended', correct: 24.47, abstention: 46.99, hallucination: 28.54, sortOrder: 67 },
+      { modelId: 'claude-46-sonnet-nr', label: '❋ Claude 4.6 Sonnet', correct: 32.23, abstention: 26.44, hallucination: 41.33, sortOrder: 68 },
       { modelId: 'claude-opus', label: '❋ Claude 4.5 Opus Extended', correct: 43.12, abstention: 24.00, hallucination: 32.88, sortOrder: 70 },
       { modelId: 'claude-opus-nr', label: '❋ Claude 4.5 Opus', correct: 38.90, abstention: 15.75, hallucination: 45.35, sortOrder: 75 },
       { modelId: 'claude-sonnet', label: '❋ Claude 4.5 Sonnet Extended', correct: 30.90, abstention: 36.12, hallucination: 32.98, sortOrder: 80 },
@@ -3178,13 +3253,13 @@
         modelId: 'gpt-xhigh',
         label: 'GPT 5.2 Thinking xhigh',
         data: [95.4, 87.9, 93.1, 88.2, 75.7, null],
-        borderColor: chatgptColor,
-        backgroundColor: chatgptColorLight,
+        borderColor: 'rgba(16, 163, 127, 1)',
+        backgroundColor: 'rgba(16, 163, 127, 0.7)',
         borderWidth: 3,
         tension: 0.3,
         pointRadius: 6,
         pointHoverRadius: 8,
-        pointBackgroundColor: chatgptColor,
+        pointBackgroundColor: 'rgba(16, 163, 127, 1)',
         spanGaps: false,
         sortOrder: 15
       },
@@ -3206,13 +3281,13 @@
         modelId: 'gpt-thinking-mini',
         label: 'GPT 5 Thinking Mini',
         data: [76.3, 57.1, 55, 42.3, 31.9, null],
-        borderColor: chatgptLegacyColor,
-        backgroundColor: chatgptLegacyColorLight,
+        borderColor: 'rgba(100, 150, 135, 0.5)',
+        backgroundColor: 'rgba(100, 150, 135, 0.3)',
         borderWidth: 2,
         tension: 0.3,
         pointRadius: 5,
         pointHoverRadius: 7,
-        pointBackgroundColor: chatgptLegacyColor,
+        pointBackgroundColor: 'rgba(100, 150, 135, 0.5)',
         spanGaps: false,
         sortOrder: 25
       },
@@ -3235,13 +3310,13 @@
         modelId: 'gemini-pro',
         label: 'Gemini 3 Pro',
         data: [98.0, 91.3, 86.6, 72.1, 54.2, 24.5],
-        borderColor: geminiColor,
-        backgroundColor: geminiColorLight,
+        borderColor: 'rgba(243, 77, 101, 1)',
+        backgroundColor: 'rgba(243, 77, 101, 0.7)',
         borderWidth: 3,
         tension: 0.3,
         pointRadius: 6,
         pointHoverRadius: 8,
-        pointBackgroundColor: geminiColor,
+        pointBackgroundColor: 'rgba(243, 77, 101, 1)',
         sortOrder: 40
       },
       {
@@ -3261,28 +3336,28 @@
         modelId: 'gemini-flash',
         label: 'Gemini 3 Flash',
         data: [75.5, 46.2, 39.0, 36.9, 25.4, 25.7],
-        borderColor: 'rgba(243, 77, 101, 0.4)',
+        borderColor: 'rgba(243, 77, 101, 0.5)',
         backgroundColor: 'rgba(243, 77, 101, 0.2)',
         borderWidth: 2,
         borderDash: [5, 5],
         tension: 0.3,
         pointRadius: 5,
         pointHoverRadius: 7,
-        pointBackgroundColor: 'rgba(243, 77, 101, 0.4)',
+        pointBackgroundColor: 'rgba(243, 77, 101, 0.5)',
         sortOrder: 60
       },
       {
         modelId: 'claude-46-opus',
         label: 'Claude 4.6 Opus Extended (Estimated)',
         data: [98.5, 97.4, 96.3, 95.2, 94.1, null],
-        borderColor: 'rgba(160, 160, 175, 0.6)',
-        backgroundColor: 'rgba(160, 160, 175, 0.15)',
+        borderColor: 'rgba(249, 115, 22, 0.7)',
+        backgroundColor: 'rgba(249, 115, 22, 0.15)',
         borderWidth: 2,
-        borderDash: [4, 4],
-        tension: 0,
-        pointRadius: 0,
-        pointHoverRadius: 0,
-        fill: '+1',
+        borderDash: [3, 6],
+        tension: 0.3,
+        pointRadius: 6,
+        pointHoverRadius: 8,
+        pointBackgroundColor: 'rgba(249, 115, 22, 0.7)',
         spanGaps: false,
         sortOrder: 63,
         isEstimatedBand: true
@@ -3303,16 +3378,47 @@
         isUpperBound: true
       },
       {
-        modelId: 'claude-opus',
-        label: 'Claude 4.5 Opus Extended',
-        data: [78.0, 56.2, 46.7, 35.3, 27.1, null],
-        borderColor: claudeLegacyColor,
-        backgroundColor: claudeLegacyColorLight,
+        modelId: 'claude-46-sonnet',
+        label: 'Claude 4.6 Sonnet Extended (Estimated)',
+        data: [95.8, 94.7, 93.6, 92.5, 91.4, null],
+        borderColor: 'rgba(249, 115, 22, 0.5)',
+        backgroundColor: 'rgba(249, 115, 22, 0.1)',
         borderWidth: 2,
+        borderDash: [3, 6],
         tension: 0.3,
         pointRadius: 5,
         pointHoverRadius: 7,
-        pointBackgroundColor: claudeLegacyColor,
+        pointBackgroundColor: 'rgba(249, 115, 22, 0.5)',
+        spanGaps: false,
+        sortOrder: 63,
+        isEstimatedBand: true
+      },
+      {
+        modelId: 'claude-46-sonnet',
+        label: 'Claude 4.6 Sonnet Extended (Estimated Upper)',
+        data: [100, 100, 100, 100, 100, null],
+        borderColor: 'transparent',
+        backgroundColor: 'transparent',
+        borderWidth: 0,
+        tension: 0,
+        pointRadius: 0,
+        pointHoverRadius: 0,
+        spanGaps: false,
+        sortOrder: 64,
+        isEstimatedBand: true,
+        isUpperBound: true
+      },
+      {
+        modelId: 'claude-opus',
+        label: 'Claude 4.5 Opus Extended',
+        data: [78.0, 56.2, 46.7, 35.3, 27.1, null],
+        borderColor: 'rgba(180, 140, 100, 1)',
+        backgroundColor: 'rgba(180, 140, 100, 0.5)',
+        borderWidth: 3,
+        tension: 0.3,
+        pointRadius: 6,
+        pointHoverRadius: 8,
+        pointBackgroundColor: 'rgba(180, 140, 100, 1)',
         spanGaps: false,
         sortOrder: 70
       },
@@ -3320,13 +3426,13 @@
         modelId: 'claude-sonnet',
         label: 'Claude 4.5 Sonnet Extended',
         data: [48.9, 42.4, 32.8, 26.0, 16.6, null],
-        borderColor: 'rgba(249, 115, 22, 0.7)',
-        backgroundColor: 'rgba(249, 115, 22, 0.5)',
+        borderColor: 'rgba(180, 140, 100, 0.7)',
+        backgroundColor: 'rgba(180, 140, 100, 0.5)',
         borderWidth: 2,
         tension: 0.3,
         pointRadius: 5,
         pointHoverRadius: 7,
-        pointBackgroundColor: 'rgba(249, 115, 22, 0.7)',
+        pointBackgroundColor: 'rgba(180, 140, 100, 0.7)',
         spanGaps: false,
         sortOrder: 80
       },
@@ -3395,7 +3501,13 @@
                 if (context.dataset.isUpperBound) return null;
                 if (context.parsed.y === null) return context.dataset.label + ': Not supported';
                 // Show estimated label for the band
-                if (context.dataset.isEstimatedBand) return 'Claude 4.6 Opus: ≥93% (estimado)';
+                if (context.dataset.isEstimatedBand) {
+                  const contextLengths = ['8k', '16k', '32k', '64k', '128k', '1M'];
+                  const ctxLabel = contextLengths[context.dataIndex] || '';
+                  const labelName = context.dataset.label.replace(' (Estimated)', '');
+                  const minEstimate = context.dataset.label.includes('Opus') ? '≥93' : '≥90.3';
+                  return labelName + ': ' + context.parsed.y + '% (Estimated, ' + minEstimate + ')';
+                }
                 return context.dataset.label + ': ' + context.parsed.y + '%';
               }
             }
@@ -3446,6 +3558,8 @@
       { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', score: 48.0, sortOrder: 60 },
       { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Extended', score: 70.7, sortOrder: 65 },
       { modelId: 'claude-46-opus-nr', label: '❋ Claude 4.6 Opus', score: 58.3, sortOrder: 66 },
+      { modelId: 'claude-46-sonnet', label: '❋ Claude 4.6 Sonnet Extended', score: 70.7, sortOrder: 67 },
+      { modelId: 'claude-46-sonnet-nr', label: '❋ Claude 4.6 Sonnet', score: 57.7, sortOrder: 68 },
       { modelId: 'claude-opus', label: '❋ Claude Opus 4.5 Extended', score: 74.0, sortOrder: 70 },
       { modelId: 'claude-opus-nr', label: '❋ Claude Opus 4.5', score: 65.3, sortOrder: 75 },
       { modelId: 'claude-sonnet', label: '❋ Claude 4.5 Sonnet Extended', score: 65.7, sortOrder: 80 },
@@ -3561,6 +3675,8 @@
       { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', score: 79, sortOrder: 60 },
       { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Extended', score: 75, sortOrder: 65 },
       { modelId: 'claude-46-opus-nr', label: '❋ Claude 4.6 Opus', score: 73, sortOrder: 66 },
+      { modelId: 'claude-46-sonnet', label: '❋ Claude 4.6 Sonnet Extended', score: 73, sortOrder: 67 },
+      { modelId: 'claude-46-sonnet-nr', label: '❋ Claude 4.6 Sonnet', score: 71, sortOrder: 68 },
       { modelId: 'claude-opus', label: '❋ Claude Opus 4.5 Extended', score: 74, sortOrder: 70 },
       { modelId: 'claude-opus-nr', label: '❋ Claude Opus 4.5', score: 71, sortOrder: 75 },
       { modelId: 'claude-sonnet', label: '❋ Claude 4.5 Sonnet Extended', score: 69, sortOrder: 80 },
@@ -3676,6 +3792,8 @@
       { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', score: 31.8, sortOrder: 60 },
       { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Extended', score: 46.2, sortOrder: 65 },
       { modelId: 'claude-46-opus-nr', label: '❋ Claude 4.6 Opus', score: 48.5, sortOrder: 66 },
+      { modelId: 'claude-46-sonnet', label: '❋ Claude 4.6 Sonnet Extended', score: 53, sortOrder: 67 },
+      { modelId: 'claude-46-sonnet-nr', label: '❋ Claude 4.6 Sonnet', score: 46.2, sortOrder: 68 },
       { modelId: 'claude-opus', label: '❋ Claude Opus 4.5 Extended', score: 47.0, sortOrder: 70 },
       { modelId: 'claude-opus-nr', label: '❋ Claude Opus 4.5', score: 40.9, sortOrder: 75 },
       { modelId: 'claude-sonnet', label: '❋ Claude 4.5 Sonnet Extended', score: 35.6, sortOrder: 80 },
@@ -3790,6 +3908,8 @@
       { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', score: 43.3, sortOrder: 60 },
       { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Extended', score: 92.1, sortOrder: 65 },
       { modelId: 'claude-46-opus-nr', label: '❋ Claude 4.6 Opus', score: 84.8, sortOrder: 66 },
+      { modelId: 'claude-46-sonnet', label: '❋ Claude 4.6 Sonnet Extended', score: 75.7, sortOrder: 67 },
+      { modelId: 'claude-46-sonnet-nr', label: '❋ Claude 4.6 Sonnet', score: 79.5, sortOrder: 68 },
       { modelId: 'claude-opus', label: '❋ Claude Opus 4.5 Extended', score: 89.5, sortOrder: 70 },
       { modelId: 'claude-opus-nr', label: '❋ Claude Opus 4.5', score: 86.3, sortOrder: 75 },
       { modelId: 'claude-sonnet', label: '❋ Claude 4.5 Sonnet Extended', score: 78.1, sortOrder: 80 },
@@ -4179,6 +4299,67 @@
       localStorage.setItem('otherModelsVisible', showOtherModels);
     }
 
+    // Update visibility of Claude 4.5 Opus/Sonnet models in the filter list
+    // (hide rows completely when Legacy toggle is OFF)
+    function updateLegacyModelsListVisibility() {
+      // Legacy models: Claude 4.5 Opus and Sonnet (Extended and non-Extended)
+      const modelsToHide = ['claude-opus', 'claude-sonnet', 'claude-opus-nr', 'claude-sonnet-nr'];
+      modelsToHide.forEach(id => {
+        document.querySelectorAll(`.model-dot[data-model="${id}"]`).forEach(dot => {
+          const row = dot.closest('.model-dots-row');
+          if (row) {
+            // Only hide the row if ALL models in it are legacy models
+            const allDotsInRow = row.querySelectorAll('.model-dot');
+            const allAreLegacy = Array.from(allDotsInRow).every(d => modelsToHide.includes(d.dataset.model));
+            if (allAreLegacy) {
+              row.style.display = showLegacyModels ? '' : 'none';
+            }
+          }
+        });
+      });
+    }
+
+    // Toggle function for Legacy models — hides Claude 4.5 Opus/Sonnet (Extended + non-Extended)
+    function toggleLegacyModels() {
+      showLegacyModels = !showLegacyModels;
+
+      // If turning ON and all models are explicitly disabled, reset explicit flags
+      if (showLegacyModels) {
+        const allExplicitlyDisabled = modelGroups.legacy.every(m => modelExplicitlyDisabled[m]);
+        if (allExplicitlyDisabled) {
+          modelGroups.legacy.forEach(m => { modelExplicitlyDisabled[m] = false; });
+        }
+      }
+
+      // Update modelVisibility for Legacy models respecting constraints
+      modelGroups.legacy.forEach(modelId => {
+        if (showLegacyModels) {
+          // When turning ON: only activate if ALL constraints are met
+          modelVisibility[modelId] = shouldModelBeVisible(modelId);
+        } else {
+          // When turning OFF: always disable
+          modelVisibility[modelId] = false;
+        }
+      });
+
+      // Sync all Legacy toggles
+      document.querySelectorAll('.legacy-models-toggle').forEach(toggle => {
+        toggle.classList.toggle('active', showLegacyModels);
+      });
+
+      // Update UI and charts
+      updateModelDotsUI();
+      syncGroupToggles();
+      updateLegacyModelsListVisibility();
+      updateLegacyFlags();
+      updateAllCharts();
+
+      // Save state to localStorage
+      localStorage.setItem('modelVisibility', JSON.stringify(modelVisibility));
+      localStorage.setItem('modelExplicitlyDisabled', JSON.stringify(modelExplicitlyDisabled));
+      localStorage.setItem('legacyModelsVisible', showLegacyModels);
+    }
+
     // Toggle function for Coding benchmarks section only (not the Codex model)
     function toggleCodingSection() {
       showCodingBenchmarks = !showCodingBenchmarks;
@@ -4321,6 +4502,9 @@
       const savedOtherModels = localStorage.getItem('otherModelsVisible');
       showOtherModels = savedOtherModels !== null ? savedOtherModels === 'true' : modelGroups.other.some(m => modelVisibility[m]);
 
+      const savedLegacyModels = localStorage.getItem('legacyModelsVisible');
+      showLegacyModels = savedLegacyModels !== null ? savedLegacyModels === 'true' : modelGroups.legacy.some(m => modelVisibility[m]);
+
       // Update coding benchmarks section visibility
       const benchmarksTab = document.getElementById('tab-benchmarks');
       benchmarksTab.classList.toggle('hide-coding-benchmarks', !showCodingBenchmarks);
@@ -4335,6 +4519,7 @@
       syncGroupToggles();
       updateModelDotsUI();
       updateOtherModelsListVisibility();
+      updateLegacyModelsListVisibility();
 
       // Update charts if state changed from default
       if (needsChartUpdate) {
@@ -4490,7 +4675,7 @@
     style="text-align: center; padding: 2rem 1rem; margin-top: 3rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.8rem;">
     Made by <strong> u/Pasto_Shouwa</strong>
     <br>
-    <em>Last updated on <strong>16/02/2026</strong> (dd/mm/yyyy)</em>
+    <em>Last updated on <strong>18/02/2026</strong> (dd/mm/yyyy)</em>
   </footer>
 </body>
 
