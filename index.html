@@ -28,13 +28,6 @@
   ║                                                                            ║
   ║  4. For ENTIRE ROWS that should disappear (like Advertisements):           ║
   ║     - Add class "usa-ad-row" to the <tr>                                   ║
-  ║                                                                            ║
-  ║  Current USA-exclusive items:                                              ║
-  ║     - Advertisements (ChatGPT Free/Go) - usa-ad-row                        ║
-  ║     - Ecosystem memory (Gemini Pro/Ultra) - usa-only                       ║
-  ║     - Gemini 3 Deep Think model (Gemini Ultra) - usa-only + usa-main/alt   ║
-  ║     - Agent mode 6000 uses (Gemini Ultra) - usa-main/alt → "No"            ║
-  ║     - Context window 196k (Gemini Ultra) - usa-main/alt → "1M"             ║
   ╚════════════════════════════════════════════════════════════════════════════╝
 -->
 <html lang="en">
@@ -868,6 +861,107 @@
       background: rgba(180, 140, 100, 0.8);
     }
 
+    /* Shape legend */
+    .shape-legend {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.6rem;
+      padding: 1.5rem 0.25rem 0;
+    }
+
+    .shape-legend-item {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: rgba(139, 92, 246, 0.08);
+      border: 1px solid rgba(139, 92, 246, 0.25);
+      cursor: help;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .shape-legend-item:hover {
+      background: rgba(139, 92, 246, 0.18);
+      border-color: rgba(139, 92, 246, 0.5);
+    }
+
+    .shape-legend-item::after {
+      content: attr(title);
+      position: absolute;
+      bottom: calc(100% + 7px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(20, 18, 30, 0.97);
+      border: 1px solid rgba(139, 92, 246, 0.35);
+      color: rgba(220, 210, 255, 0.95);
+      font-size: 0.72rem;
+      white-space: nowrap;
+      padding: 0.3rem 0.6rem;
+      border-radius: 7px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.18s ease;
+      z-index: 100;
+    }
+
+    /* Adjust tooltip positioning for the first two items to shift text to the right and prevent cutoff */
+    .shape-legend-item:nth-child(1)::after,
+    .shape-legend-item:nth-child(2)::after {
+      left: 0;
+      transform: translateX(-15%);
+    }
+
+    /* Adjust tooltip positioning for the last two items to shift text to the left and prevent cutoff */
+    .shape-legend-item:nth-last-child(1)::after,
+    .shape-legend-item:nth-last-child(2)::after {
+      left: auto;
+      right: 0;
+      transform: translateX(15%);
+    }
+
+    .shape-legend-item:hover::after {
+      opacity: 1;
+    }
+
+    .shape-legend-icon {
+      display: block;
+      width: 10px;
+      height: 10px;
+      background: rgba(139, 92, 246, 0.75);
+      flex-shrink: 0;
+    }
+
+    .shape-legend-circle {
+      border-radius: 50%;
+    }
+
+    .shape-legend-square {
+      border-radius: 20%;
+      transform: scale(0.85);
+    }
+
+    .shape-legend-hexagon {
+      border-radius: 0;
+      clip-path: polygon(25% 6.7%, 75% 6.7%, 100% 50%, 75% 93.3%, 25% 93.3%, 0% 50%);
+      transform: scale(0.9);
+    }
+
+    .shape-legend-cross {
+      border-radius: 0;
+      clip-path: polygon(30% 0%, 70% 0%, 70% 30%, 100% 30%, 100% 70%, 70% 70%, 70% 100%, 30% 100%, 30% 70%, 0% 70%, 0% 30%, 30% 30%);
+      transform: scale(0.85);
+    }
+
+    .shape-legend-star {
+      border-radius: 0;
+      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+      transform: scale(0.95);
+    }
+
     /* Coding benchmarks visibility */
     .coding-benchmark-section {
       transition: opacity 0.3s ease, max-height 0.4s ease;
@@ -1277,7 +1371,8 @@
     }
 
     .model-filters-panel.expanded .model-filters-content {
-      max-height: 1175px;
+      /* Model Filters height*/
+      max-height: 1250px;
       opacity: 1;
       padding: 0 1.5rem 3rem;
     }
@@ -1316,7 +1411,7 @@
       display: flex;
       align-items: center;
       gap: 0.4rem;
-      padding: 0.3rem 0.6rem;
+      padding: 0.4rem 0.65rem;
       border-radius: 12px;
       background: var(--bg-hover);
       cursor: pointer;
@@ -1374,9 +1469,37 @@
       background: var(--claude-primary-legacy);
     }
 
+    .dot-gemini-legacy {
+      background: var(--gemini-primary-legacy);
+    }
+
     /* Blue dot for coding benchmarks */
     .dot-coding {
       background: rgba(59, 130, 246, 0.9);
+    }
+
+    /* Shape modifiers for model icons */
+    .shape-square {
+      border-radius: 20% !important;
+      transform: scale(0.85);
+    }
+
+    .shape-hexagon {
+      border-radius: 0 !important;
+      clip-path: polygon(25% 6.7%, 75% 6.7%, 100% 50%, 75% 93.3%, 25% 93.3%, 0% 50%);
+      transform: scale(0.9);
+    }
+
+    .shape-cross {
+      border-radius: 0 !important;
+      clip-path: polygon(30% 0%, 70% 0%, 70% 30%, 100% 30%, 100% 70%, 70% 70%, 70% 100%, 30% 100%, 30% 70%, 0% 70%, 0% 30%, 30% 30%);
+      transform: scale(0.85);
+    }
+
+    .shape-star {
+      border-radius: 0 !important;
+      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+      transform: scale(0.95);
     }
 
     /* Thinking models toggle styling */
@@ -1441,7 +1564,7 @@
                 <span class="detail">[GPT 5 Thinking Mini]<span class="annotation"
                     data-note="gpt5-mini-free"></span></span>
               </td>
-              <td class="rating-great">3+9<span class="detail">[Gemini 3 Pro + Gemini 3 Flash Thinking]</span></td>
+              <td class="rating-great">3+9<span class="detail">[Gemini 3.1 Pro + Gemini 3 Flash Thinking]</span></td>
             </tr>
             <tr>
               <td>Non-reasoning model limit per day</td>
@@ -1476,6 +1599,12 @@
               <td>1024×1024 (1K)<span class="detail">[GPT Image 1.5]</span></td>
               <td class="rating-excellent">2048×2048 (2K) / 1024×1024 (1K)<span class="detail">
                   [Nano Banana Pro / Nano Banana]</span></td>
+            </tr>
+            <tr>
+              <td>Music generation per day</td>
+              <td>No</td>
+              <td class="rating-excellent">10<span class="detail">(30 seconds per piece)</span><span
+                  class="detail">[Lyria 3]</span></td>
             </tr>
             <tr>
               <td>Custom model creation</td>
@@ -1575,9 +1704,10 @@
               </td>
               <td class="rating-excellent">428<span class="detail">(3000/week)<span class="detail">[GPT 5.2
                     Thinking]</span></td>
-              <td>3+9<span class="detail">[Gemini 3 Pro + Gemini 3 Flash Thinking]</span></td>
-              <td class="rating-great">30+90<span class="detail">[Gemini 3 Pro + Gemini 3 Flash Thinking]</span></td>
-              <td class="rating-great">100+300<span class="detail">[Gemini 3 Pro + Gemini 3 Flash Thinking]</span></td>
+              <td>3+9<span class="detail">[Gemini 3.1 Pro + Gemini 3 Flash Thinking]</span></td>
+              <td class="rating-great">30+90<span class="detail">[Gemini 3.1 Pro + Gemini 3 Flash Thinking]</span></td>
+              <td class="rating-great">100+300<span class="detail">[Gemini 3.1 Pro + Gemini 3 Flash Thinking]</span>
+              </td>
             </tr>
             <tr>
               <td>Non-reasoning model limit per day</td>
@@ -1638,6 +1768,33 @@
                   Nano Banana]</span></td>
             </tr>
             <tr>
+              <td>Video generation per day</td>
+              <td colspan="2">No</td>
+              <td>Unknown</span><span class="detail">[Sora 2]</span></td>
+              <td>No</td>
+              <td>2<span class="detail">[Veo 3.1 Fast]</span></td>
+              <td class="rating-excellent">3<span class="detail">[Veo 3.1 Fast]</span></td>
+            </tr>
+            <tr>
+              <td>Video resolution and length</td>
+              <td colspan="2">No</td>
+              <td class="rating-excellent">480p, 720p<span class="detail">(up to 10s)</span><span class="detail">[Sora
+                  2]</span></td>
+              <td>No</td>
+              <td colspan="2" class="rating-great">720p<span class="detail">(up to 8s)</span><span class="detail">[Veo
+                  3.1 Fast]</span></td>
+            </tr>
+            <tr>
+              <td>Music generation per day</td>
+              <td colspan="3">No</td>
+              <td class="rating-excellent">10<span class="detail">(30 seconds per piece)</span><span
+                  class="detail">[Lyria 3]</span></td>
+              <td class="rating-excellent">20<span class="detail">(30 seconds per piece)</span><span
+                  class="detail">[Lyria 3]</span></td>
+              <td class="rating-excellent">50<span class="detail">(30 seconds per piece)</span><span
+                  class="detail">[Lyria 3]</span></td>
+            </tr>
+            <tr>
               <td>Custom model creation</td>
               <td>No<span class="detail">[Custom GPTs]</span></td>
               <td colspan="2" class="rating-excellent">Yes<span class="detail">[Custom GPTs]</span></td>
@@ -1667,8 +1824,8 @@
                   Thinking]</span>
               </td>
               <td>5<span class="detail">[Gemini 3 Flash Thinking]</span></td>
-              <td class="rating-great">90<span class="detail">(3/day)<span class="detail">[Gemini 3 Pro]</span></td>
-              <td class="rating-excellent">600<span class="detail">(20/day)<span class="detail">[Gemini 3 Pro]</span>
+              <td class="rating-great">360<span class="detail">(12/day)<span class="detail">[Gemini 3.1 Pro]</span></td>
+              <td class="rating-excellent">600<span class="detail">(20/day)<span class="detail">[Gemini 3.1 Pro]</span>
               </td>
             </tr>
             <tr>
@@ -1757,26 +1914,21 @@
           <tbody>
             <tr>
               <td>Reasoning model limit per day</td>
-              <td class="rating-excellent">Unlimited<span class="detail">[ChatGPT 5.2 Pro + ChatGPT 5.2 Thinking]</span>
+              <td class="rating-excellent">Unlimited<span class="detail">[GPT 5.2 Pro + GPT 5.2 Thinking]</span>
               </td>
-              <td class="rating-great usa-restricted"><span class="usa-main"><span class="usa-only"></span>10<span
-                    class="annotation" data-note="usa-only"></span>+</span>500+1500<span class="detail">[<span
-                    class="usa-only">Gemini 3 Deep
-                    Think<span class="annotation" data-note="usa-only"></span> +
-                  </span>Gemini 3 Pro + Gemini 3 Flash Thinking]</td>
+              <td class="rating-great">10+500+1500<span class="detail">[Gemini 3.1 Deep
+                  Think + Gemini 3.1 Pro + Gemini 3 Flash Thinking]</span></td>
             </tr>
             <tr>
               <td>Non-reasoning model limit per day</td>
-              <td class="rating-excellent">Unlimited<span class="detail">[ChatGPT 5.2 Instant]</span></td>
+              <td class="rating-excellent">Unlimited<span class="detail">[GPT 5.2 Instant]</span></td>
               <td class="rating-excellent">Unlimited<span class="detail">[Gemini 3 Flash]</span></td>
             </tr>
             <tr>
               <td>Context window limit</td>
               <td class="rating-great">128k / 196k<span class="detail">(Non-reasoning / Reasoning)</span></td>
-              <td class="rating-excellent usa-restricted"><span class="usa-main"><span class="usa-only">192k<span
-                      class="annotation" data-note="usa-only"></span> / </span></span> 1M<span class="annotation"
-                  data-note="1m-tokens"></span><span class="detail"><span class="usa-only">(Gemini 3 Deep Think<span
-                      class="annotation" data-note="usa-only"></span> / Other models)</span></span>
+              <td class="rating-excellent">192k / 1M<span class="annotation" data-note="1m-tokens"></span><span
+                  class="detail">(Gemini 3.1 Deep Think / Other models)</span>
               </td>
             </tr>
             <tr>
@@ -1810,6 +1962,25 @@
               <td class="rating-excellent">2048×2048 (2K) / 1024×1024 (1K)<span class="detail">[Nano Banana
                   Pro<span class="annotation" data-note="nano-banana-pro-throttle"></span> /
                   Nano Banana]</span></td>
+            </tr>
+            <tr>
+              <td>Video generation per day</td>
+              <td>Unknown</span><span class="detail">[Sora 2]</span></td>
+              <td class="rating-excellent">5<span class="detail">[Veo 3.1]</span></td>
+            </tr>
+            <tr>
+              <td>Video resolution and length</td>
+              <td class="rating-excellent">480p, 720p, 1080p<span class="detail">(up to 20s)</span><span
+                  class="detail">[Sora
+                  2]</span></td>
+              <td class="rating-great">720p<span class="detail">(up to 8s)</span><span class="detail">[Veo
+                  3.1]</span></td>
+            </tr>
+            <tr>
+              <td>Music generation per day</td>
+              <td>No</td>
+              <td class="rating-excellent">100<span class="detail">(30 seconds per piece)</span><span
+                  class="detail">[Lyria 3]</span></td>
             </tr>
             <tr>
               <td>Custom model creation</td>
@@ -1953,13 +2124,11 @@
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
-              <div class="model-dot inactive" data-model="claude-46-opus"
-                onclick="toggleIndividualModel('claude-46-opus')">
-                <span class="model-dot-indicator dot-claude"></span>
+              <div class="model-dot" data-model="claude-46-opus" onclick="toggleIndividualModel('claude-46-opus')">
+                <span class="model-dot-indicator dot-claude shape-square"></span>
                 <span class="model-dot-label">Claude 4.6 Opus Extended</span>
               </div>
-              <div class="model-dot inactive" data-model="claude-46-sonnet"
-                onclick="toggleIndividualModel('claude-46-sonnet')">
+              <div class="model-dot" data-model="claude-46-sonnet" onclick="toggleIndividualModel('claude-46-sonnet')">
                 <span class="model-dot-indicator dot-claude"></span>
                 <span class="model-dot-label">Claude 4.6 Sonnet Extended</span>
               </div>
@@ -1971,7 +2140,7 @@
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot inactive" data-model="claude-46-opus-nr"
                 onclick="toggleIndividualModel('claude-46-opus-nr')">
-                <span class="model-dot-indicator dot-claude"></span>
+                <span class="model-dot-indicator dot-claude shape-square"></span>
                 <span class="model-dot-label">Claude 4.6 Opus</span>
               </div>
               <div class="model-dot inactive" data-model="claude-46-sonnet-nr"
@@ -1987,7 +2156,7 @@
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot" data-model="claude-opus" onclick="toggleIndividualModel('claude-opus')">
-                <span class="model-dot-indicator dot-claude-legacy"></span>
+                <span class="model-dot-indicator dot-claude-legacy shape-square"></span>
                 <span class="model-dot-label">Claude 4.5 Opus Extended</span>
               </div>
               <div class="model-dot" data-model="claude-sonnet" onclick="toggleIndividualModel('claude-sonnet')">
@@ -1998,7 +2167,7 @@
             <div class="model-dots-row">
               <div class="model-dot inactive" data-model="claude-opus-nr"
                 onclick="toggleIndividualModel('claude-opus-nr')">
-                <span class="model-dot-indicator dot-claude-legacy"></span>
+                <span class="model-dot-indicator dot-claude-legacy shape-square"></span>
                 <span class="model-dot-label">Claude 4.5 Opus</span>
               </div>
               <div class="model-dot inactive" data-model="claude-sonnet-nr"
@@ -2020,15 +2189,15 @@
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot" data-model="gpt-codex" onclick="toggleIndividualModel('gpt-codex')">
-                <span class="model-dot-indicator dot-gpt"></span>
+                <span class="model-dot-indicator dot-gpt shape-square"></span>
                 <span class="model-dot-label">GPT 5.2 Codex</span>
               </div>
               <div class="model-dot" data-model="gpt-xhigh" onclick="toggleIndividualModel('gpt-xhigh')">
-                <span class="model-dot-indicator dot-gpt"></span>
+                <span class="model-dot-indicator dot-gpt shape-hexagon"></span>
                 <span class="model-dot-label">GPT 5.2 Thinking xhigh</span>
               </div>
               <div class="model-dot" data-model="gpt-thinking" onclick="toggleIndividualModel('gpt-thinking')">
-                <span class="model-dot-indicator dot-gpt"></span>
+                <span class="model-dot-indicator dot-gpt shape-square"></span>
                 <span class="model-dot-label">GPT 5.2 Thinking</span>
               </div>
             </div>
@@ -2040,9 +2209,9 @@
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
-              <div class="model-dot" data-model="gemini-pro" onclick="toggleIndividualModel('gemini-pro')">
+              <div class="model-dot" data-model="gemini-31-pro" onclick="toggleIndividualModel('gemini-31-pro')">
                 <span class="model-dot-indicator dot-gemini"></span>
-                <span class="model-dot-label">Gemini 3 Pro</span>
+                <span class="model-dot-label">Gemini 3.1 Pro</span>
               </div>
               <div class="model-dot" data-model="gemini-flash-thinking"
                 onclick="toggleIndividualModel('gemini-flash-thinking')">
@@ -2051,9 +2220,15 @@
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
+              <div class="model-dot" data-model="gemini-pro" onclick="toggleIndividualModel('gemini-pro')">
+                <span class="model-dot-indicator dot-gemini-legacy shape-cross"></span>
+                <span class="model-dot-label">Gemini 3 Pro</span>
+              </div>
+            </div>
+            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot inactive" data-model="claude-46-opus"
                 onclick="toggleIndividualModel('claude-46-opus')">
-                <span class="model-dot-indicator dot-claude"></span>
+                <span class="model-dot-indicator dot-claude shape-square"></span>
                 <span class="model-dot-label">Claude 4.6 Opus Extended</span>
               </div>
               <div class="model-dot inactive" data-model="claude-46-sonnet"
@@ -2068,7 +2243,7 @@
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot" data-model="claude-opus" onclick="toggleIndividualModel('claude-opus')">
-                <span class="model-dot-indicator dot-claude-legacy"></span>
+                <span class="model-dot-indicator dot-claude-legacy shape-square"></span>
                 <span class="model-dot-label">Claude 4.5 Opus Extended</span>
               </div>
               <div class="model-dot" data-model="claude-sonnet" onclick="toggleIndividualModel('claude-sonnet')">
@@ -2109,7 +2284,7 @@
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot inactive" data-model="claude-46-opus-nr"
                 onclick="toggleIndividualModel('claude-46-opus-nr')">
-                <span class="model-dot-indicator dot-claude"></span>
+                <span class="model-dot-indicator dot-claude shape-square"></span>
                 <span class="model-dot-label">Claude 4.6 Opus</span>
               </div>
               <div class="model-dot inactive" data-model="claude-46-sonnet-nr"
@@ -2126,7 +2301,7 @@
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot inactive" data-model="claude-opus-nr"
                 onclick="toggleIndividualModel('claude-opus-nr')">
-                <span class="model-dot-indicator dot-claude-legacy"></span>
+                <span class="model-dot-indicator dot-claude-legacy shape-square"></span>
                 <span class="model-dot-label">Claude 4.5 Opus</span>
               </div>
               <div class="model-dot inactive" data-model="claude-sonnet-nr"
@@ -2143,23 +2318,6 @@
             </div>
           </div>
 
-          <!-- ChatGPT Pro-only models -->
-          <div class="filter-group">
-            <div class="filter-group-header">
-              <span class="filter-group-name">ChatGPT Pro-only models</span>
-              <div class="toggle-inline chatgpt-pro-toggle">
-                <div class="toggle-switch chatgpt-pro-model-toggle"
-                  onclick="event.stopPropagation(); toggleChatGPTProModels()"></div>
-              </div>
-            </div>
-            <div class="model-dots-row">
-              <div class="model-dot" data-model="gpt-xhigh" onclick="toggleIndividualModel('gpt-xhigh')">
-                <span class="model-dot-indicator dot-gpt"></span>
-                <span class="model-dot-label">GPT 5.2 Thinking xhigh</span>
-              </div>
-            </div>
-          </div>
-
           <!-- Coding benchmarks and models -->
           <div class="filter-group">
             <div class="filter-group-header">
@@ -2171,13 +2329,13 @@
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot" data-model="coding-benchmarks" onclick="toggleCodingSection()">
-                <span class="model-dot-indicator dot-coding"></span>
+                <span class="model-dot-indicator dot-coding shape-star"></span>
                 <span class="model-dot-label">Coding benchmarks</span>
               </div>
             </div>
             <div class="model-dots-row">
               <div class="model-dot" data-model="gpt-codex" onclick="toggleIndividualModel('gpt-codex')">
-                <span class="model-dot-indicator dot-gpt"></span>
+                <span class="model-dot-indicator dot-gpt shape-square"></span>
                 <span class="model-dot-label">GPT 5.2 Codex</span>
               </div>
             </div>
@@ -2206,6 +2364,25 @@
               </div>
             </div>
           </div>
+
+          <!-- Shape legend -->
+          <div class="shape-legend">
+            <div class="shape-legend-item" title="Accessible on free plans">
+              <span class="shape-legend-icon shape-legend-circle"></span>
+            </div>
+            <div class="shape-legend-item" title="Accessible only on &#8805;20 USD plans">
+              <span class="shape-legend-icon shape-legend-square"></span>
+            </div>
+            <div class="shape-legend-item" title="Accessible only on &#8805;200 USD plans">
+              <span class="shape-legend-icon shape-legend-hexagon"></span>
+            </div>
+            <div class="shape-legend-item" title="Deprecated model">
+              <span class="shape-legend-icon shape-legend-cross"></span>
+            </div>
+            <div class="shape-legend-item" title="Extra benchmark">
+              <span class="shape-legend-icon shape-legend-star"></span>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -2224,17 +2401,14 @@
           <span class="toggle-label">Non-reasoning models</span>
           <div class="toggle-switch instant-model-toggle active" onclick="toggleInstantModels()"></div>
         </div>
-        <div class="toggle-inline chatgpt-pro-toggle">
-          <span class="toggle-label">ChatGPT Pro-only models</span>
-          <div class="toggle-switch chatgpt-pro-model-toggle" onclick="toggleChatGPTProModels()"></div>
-        </div>
+
       </div>
       <div class="chart-container">
         <canvas id="omniscienceChart"></canvas>
       </div>
       <p class="chart-note">Shows how often the model is right or wrong when answering. Higher is better for Correct &
         Abstention. Lower is better for Hallucination.</p>
-      <div class="sort-selector">
+      <div class="sort-selector" id="omniscienceSortSelector">
         <span class="sort-selector-label"><strong>Sort by</strong></span>
         <div class="sort-selector-buttons">
           <button class="sort-btn active" onclick="setOmniscienceSort('brand')" id="omniscienceSortBrand">✦
@@ -2279,10 +2453,7 @@
           <span class="toggle-label">Non-reasoning models</span>
           <div class="toggle-switch instant-model-toggle active" onclick="toggleInstantModels()"></div>
         </div>
-        <div class="toggle-inline chatgpt-pro-toggle">
-          <span class="toggle-label">ChatGPT Pro-only models</span>
-          <div class="toggle-switch chatgpt-pro-model-toggle" onclick="toggleChatGPTProModels()"></div>
-        </div>
+
       </div>
       <div class="chart-container">
         <canvas id="mrcrChart"></canvas>
@@ -2308,6 +2479,15 @@
               It is only known that Claude Opus 4.6 Extended performs with an accuracy of >93% on 128k tokens and
               Claude Sonnet 4.6 Extended performs with an accuracy of >90.3% on 128k tokens.
               The remaining values were estimated by assuming a roughly linear trend on a log2 context-length scale.
+            </li>
+            <li>• This benchmark has not published the full results for Gemini 3.1 Pro. Only are known two anchor points
+              for Gemini 3.1 Pro relative to Gemini 3 Pro: a higher score at 128k tokens and parity at 1M tokens. The
+              values
+              were estimated by transforming the values provided by Google and Context Arena for both models, from
+              percentages into logit space; then computed the 128k uplift implied by Google as a constant offset in
+              logit
+              space applied from 8k up to 128k. For context lengths above 128k, the uplift was assumed to decay linearly
+              with log2, reaching zero at 1M to match Google's reported parity at 1M.
             </li>
             <li>• Maximum context window of <strong>GPT 5.2 Thinking and GPT 5.2 Thinking xhigh</strong> is 196k tokens.
             </li>
@@ -2337,16 +2517,20 @@
           <span class="toggle-label">Non-reasoning models</span>
           <div class="toggle-switch instant-model-toggle active" onclick="toggleInstantModels()"></div>
         </div>
-        <div class="toggle-inline chatgpt-pro-toggle">
-          <span class="toggle-label">ChatGPT Pro-only models</span>
-          <div class="toggle-switch chatgpt-pro-model-toggle" onclick="toggleChatGPTProModels()"></div>
-        </div>
+
       </div>
       <div class="chart-container">
         <canvas id="lcrChart"></canvas>
       </div>
       <p class="chart-note">Shows extraction, comprehension and synthesizing of information on texts ranging from 10k to
         100k tokens. Higher is better.</p>
+      <div class="sort-selector" id="lcrSortSelector">
+        <span class="sort-selector-label"><strong>Sort by</strong></span>
+        <div class="sort-selector-buttons">
+          <button class="sort-btn active" onclick="setLcrSort('brand')" id="lcrSortBrand">✦ Brand</button>
+          <button class="sort-btn" onclick="setLcrSort('highest')" id="lcrSortHighest">↑ Highest</button>
+        </div>
+      </div>
 
       <!-- Notes for LCR chart -->
       <div class="notes collapsible expanded" style="margin-top: 1rem;">
@@ -2386,16 +2570,20 @@
           <span class="toggle-label">Non-reasoning models</span>
           <div class="toggle-switch instant-model-toggle active" onclick="toggleInstantModels()"></div>
         </div>
-        <div class="toggle-inline chatgpt-pro-toggle">
-          <span class="toggle-label">ChatGPT Pro-only models</span>
-          <div class="toggle-switch chatgpt-pro-model-toggle" onclick="toggleChatGPTProModels()"></div>
-        </div>
+
       </div>
       <div class="chart-container">
         <canvas id="mmmuProChart"></canvas>
       </div>
       <p class="chart-note">Shows performance processing visual and textual information at the same time. Higher is
         better.</p>
+      <div class="sort-selector" id="mmmuProSortSelector">
+        <span class="sort-selector-label"><strong>Sort by</strong></span>
+        <div class="sort-selector-buttons">
+          <button class="sort-btn active" onclick="setMmmuProSort('brand')" id="mmmuProSortBrand">✦ Brand</button>
+          <button class="sort-btn" onclick="setMmmuProSort('highest')" id="mmmuProSortHighest">↑ Highest</button>
+        </div>
+      </div>
 
       <!-- Notes for MMMU-Pro chart -->
       <div class="notes collapsible expanded" style="margin-top: 1rem;">
@@ -2435,15 +2623,21 @@
             <span class="toggle-label">Non-reasoning models</span>
             <div class="toggle-switch instant-model-toggle active" onclick="toggleInstantModels()"></div>
           </div>
-          <div class="toggle-inline chatgpt-pro-toggle">
-            <span class="toggle-label">ChatGPT Pro-only models</span>
-            <div class="toggle-switch chatgpt-pro-model-toggle" onclick="toggleChatGPTProModels()"></div>
-          </div>
+
         </div>
         <div class="chart-container">
           <canvas id="terminalBenchChart"></canvas>
         </div>
         <p class="chart-note">Shows capabilities in terminal environments. Higher is better.</p>
+        <div class="sort-selector" id="terminalBenchSortSelector">
+          <span class="sort-selector-label"><strong>Sort by</strong></span>
+          <div class="sort-selector-buttons">
+            <button class="sort-btn active" onclick="setTerminalBenchSort('brand')" id="terminalBenchSortBrand">✦
+              Brand</button>
+            <button class="sort-btn" onclick="setTerminalBenchSort('highest')" id="terminalBenchSortHighest">↑
+              Highest</button>
+          </div>
+        </div>
       </div>
 
       <!-- τ²-Bench Telecom -->
@@ -2462,15 +2656,19 @@
             <span class="toggle-label">Non-reasoning models</span>
             <div class="toggle-switch instant-model-toggle active" onclick="toggleInstantModels()"></div>
           </div>
-          <div class="toggle-inline chatgpt-pro-toggle">
-            <span class="toggle-label">ChatGPT Pro-only models</span>
-            <div class="toggle-switch chatgpt-pro-model-toggle" onclick="toggleChatGPTProModels()"></div>
-          </div>
+
         </div>
         <div class="chart-container">
           <canvas id="tau2BenchChart"></canvas>
         </div>
         <p class="chart-note">Shows performance guiding a user through technical troubleshooting. Higher is better.</p>
+        <div class="sort-selector" id="tau2BenchSortSelector">
+          <span class="sort-selector-label"><strong>Sort by</strong></span>
+          <div class="sort-selector-buttons">
+            <button class="sort-btn active" onclick="setTau2BenchSort('brand')" id="tau2BenchSortBrand">✦ Brand</button>
+            <button class="sort-btn" onclick="setTau2BenchSort('highest')" id="tau2BenchSortHighest">↑ Highest</button>
+          </div>
+        </div>
       </div>
 
       <!-- Notes -->
@@ -2494,6 +2692,8 @@
           </li>
           <li>• For "<strong>GPT 5.2 Instant</strong>", "<em>gpt-5.2</em>" was used in the graph.</li>
           <li>• For "<strong>GPT 5 Thinking Mini</strong>", "<em>gpt-5-mini:medium</em>" was used in the graph.</li>
+          <li>• For "<strong>Gemini 3.1 Pro</strong>", "<em>gemini-3.1-pro-preview:high</em>" was used in the
+            graph.</li>
           <li>• For "<strong>Gemini 3 Pro</strong>", "<em>gemini-3-pro-preview:high</em>" was used in the
             graph.</li>
           <li>• For "<strong>Gemini 3 Flash Thinking</strong>", "<em>gemini-3-flash-preview:thinking:high</em>" was used
@@ -2521,9 +2721,8 @@
             the graph.</li>
           <li>• For "<strong>GLM 5</strong>", "<em>glm-5</em>" was used in
             the graph.</li>
-          <li>• Claude Opus 4.6 Extended and Claude Sonnet 4.6 are available for free to Gemini users through the
-            Antigravity app,
-            with limits that reset depending on demand (around every 2-12 hours).</li>
+          <li>• Claude Opus 4.6 Extended and Claude Sonnet 4.6 Extended are available for free to Gemini users through
+            the Antigravity app, with limits that reset depending on demand (around every 2-12 hours).</li>
         </ul>
       </div>
     </section>
@@ -2736,16 +2935,17 @@
       'gpt-thinking': true,
       'gpt-thinking-mini': true,
       'gpt-instant': true,
-      'gemini-pro': true,
+      'gemini-31-pro': true,
+      'gemini-pro': false,       // Starts hidden (legacy)
       'gemini-flash-thinking': true,
       'gemini-flash': true,
       'claude-opus': false,    // Starts hidden by default
       'claude-sonnet': false,  // Starts hidden by default
       'claude-haiku': false,   // Starts hidden by default
       'claude-46-opus': true,     // Starts visible by default
-      'claude-46-sonnet': false,  // Starts hidden by default
+      'claude-46-sonnet': true,   // Starts visible by default
       'claude-46-opus-nr': false, // Starts hidden by default
-      'claude-46-sonnet-nr': true, // Starts visible by default
+      'claude-46-sonnet-nr': false, // Starts hidden by default
       'claude-opus-nr': false,    // Non-reasoning, starts hidden (legacy)
       'claude-sonnet-nr': false,  // Non-reasoning, starts hidden (legacy)
       'claude-haiku-nr': false,   // Non-reasoning, starts hidden
@@ -2762,16 +2962,17 @@
       'gpt-thinking': false,
       'gpt-thinking-mini': false,
       'gpt-instant': false,
-      'gemini-pro': false,
+      'gemini-31-pro': false,
+      'gemini-pro': true,          // Starts explicitly disabled (legacy)
       'gemini-flash-thinking': false,
       'gemini-flash': false,
       'claude-opus': true,     // Starts explicitly disabled
       'claude-sonnet': true,   // Starts explicitly disabled
       'claude-haiku': true,    // Starts explicitly disabled
       'claude-46-opus': false,    // Starts enabled by default
-      'claude-46-sonnet': true,   // Starts explicitly disabled
+      'claude-46-sonnet': false,  // Starts enabled by default
       'claude-46-opus-nr': true,  // Starts explicitly disabled
-      'claude-46-sonnet-nr': false, // Starts enabled by default
+      'claude-46-sonnet-nr': true, // Starts explicitly disabled
       'claude-opus-nr': true,     // Starts explicitly disabled (legacy)
       'claude-sonnet-nr': true,   // Starts explicitly disabled (legacy)
       'claude-haiku-nr': true,    // Starts explicitly disabled
@@ -2782,12 +2983,12 @@
     // Model groups for group toggles
     const modelGroups = {
       'claude': ['claude-opus', 'claude-sonnet', 'claude-haiku', 'claude-46-opus', 'claude-46-sonnet', 'claude-46-opus-nr', 'claude-46-sonnet-nr', 'claude-opus-nr', 'claude-sonnet-nr', 'claude-haiku-nr'],
-      'reasoning': ['gpt-codex', 'gpt-xhigh', 'gpt-thinking', 'gpt-thinking-mini', 'gemini-pro', 'gemini-flash-thinking', 'claude-opus', 'claude-sonnet', 'claude-haiku', 'claude-46-opus', 'claude-46-sonnet', 'glm-deep-think'],
+      'reasoning': ['gpt-codex', 'gpt-xhigh', 'gpt-thinking', 'gpt-thinking-mini', 'gemini-31-pro', 'gemini-pro', 'gemini-flash-thinking', 'claude-opus', 'claude-sonnet', 'claude-haiku', 'claude-46-opus', 'claude-46-sonnet', 'glm-deep-think'],
       'instant': ['gpt-instant', 'gemini-flash', 'claude-46-opus-nr', 'claude-46-sonnet-nr', 'claude-opus-nr', 'claude-sonnet-nr', 'claude-haiku-nr', 'glm-5'],
       'chatgpt-pro': ['gpt-xhigh'],
       'coding': ['gpt-codex'],
       'other': ['glm-deep-think', 'glm-5'],
-      'legacy': ['claude-opus', 'claude-sonnet', 'claude-opus-nr', 'claude-sonnet-nr']
+      'legacy': ['claude-opus', 'claude-sonnet', 'claude-opus-nr', 'claude-sonnet-nr', 'gemini-pro']
     };
 
     // Model constraints: which group toggles must ALL be active for a model to be visible
@@ -2798,7 +2999,8 @@
       'gpt-thinking': ['reasoning'],                   // Only needs Reasoning
       'gpt-thinking-mini': ['reasoning'],               // Only needs Reasoning
       'gpt-instant': ['instant'],                      // Only needs Non-reasoning
-      'gemini-pro': ['reasoning'],                     // Only needs Reasoning
+      'gemini-31-pro': ['reasoning'],                   // Only needs Reasoning
+      'gemini-pro': ['reasoning', 'legacy'],             // Needs Reasoning AND Legacy
       'gemini-flash-thinking': ['reasoning'],          // Only needs Reasoning
       'gemini-flash': ['instant'],                     // Only needs Non-reasoning
       'claude-opus': ['claude', 'reasoning', 'legacy'],    // Needs Claude AND Reasoning AND Legacy
@@ -3055,6 +3257,7 @@
     //   20: ⌘ GPT 5.2 Thinking
     //   25: ⌘ GPT 5 Thinking Mini
     //   30: ⌘ GPT 5.2 Instant (instant toggle)
+    //   35: ✦ Gemini 3.1 Pro
     //   40: ✦ Gemini 3 Pro
     //   50: ✦ Gemini 3 Flash Thinking
     //   60: ✦ Gemini 3 Flash (instant toggle)
@@ -3070,6 +3273,7 @@
       { modelId: 'gpt-thinking', label: '⌘ GPT 5.2 Thinking', correct: 35.53, abstention: 25.68, hallucination: 38.79, sortOrder: 20 },
       { modelId: 'gpt-thinking-mini', label: '⌘ GPT 5 Thinking Mini', correct: 27.22, abstention: 41.21, hallucination: 31.57, sortOrder: 25 },
       { modelId: 'gpt-instant', label: '⌘ GPT 5.2 Instant', correct: 27.95, abstention: 29.32, hallucination: 42.73, sortOrder: 30 },
+      { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro', correct: 53.10, abstention: 23.58, hallucination: 23.32, sortOrder: 35 },
       { modelId: 'gemini-pro', label: '✦ Gemini 3 Pro', correct: 53.65, abstention: 4.20, hallucination: 42.16, sortOrder: 40 },
       { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', correct: 51.87, abstention: 4.50, hallucination: 43.63, sortOrder: 50 },
       { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', correct: 47.15, abstention: 6.35, hallucination: 46.50, sortOrder: 60 },
@@ -3088,12 +3292,13 @@
     ];
 
     // Current sort mode for omniscience: 'brand', 'hallucination', 'correct'
-    let omniscienceSortMode = 'brand';
+    let omniscienceSortMode = localStorage.getItem('omniscienceSortMode') || 'brand';
 
     function setOmniscienceSort(mode) {
       omniscienceSortMode = mode;
-      // Update button UI
-      document.querySelectorAll('.sort-selector .sort-btn').forEach(btn => btn.classList.remove('active'));
+      localStorage.setItem('omniscienceSortMode', mode);
+      // Update button UI (scoped to omniscience selector only)
+      document.querySelectorAll('#omniscienceSortSelector .sort-btn').forEach(btn => btn.classList.remove('active'));
       if (mode === 'brand') document.getElementById('omniscienceSortBrand').classList.add('active');
       else if (mode === 'hallucination') document.getElementById('omniscienceSortHallucination').classList.add('active');
       else if (mode === 'correct') document.getElementById('omniscienceSortCorrect').classList.add('active');
@@ -3107,6 +3312,60 @@
       omniscienceChart.data.datasets[2].data = omniscienceData.hallucination;
       omniscienceChart.data.datasets[2].backgroundColor = omniscienceData.hallucinationBgColors;
       omniscienceChart.update({ duration: 750, easing: 'easeInOutQuart' });
+    }
+
+    // Sort modes for the other benchmarks: 'brand' or 'highest'
+    let lcrSortMode = localStorage.getItem('lcrSortMode') || 'brand';
+    let mmmuProSortMode = localStorage.getItem('mmmuProSortMode') || 'brand';
+    let terminalBenchSortMode = localStorage.getItem('terminalBenchSortMode') || 'brand';
+    let tau2BenchSortMode = localStorage.getItem('tau2BenchSortMode') || 'brand';
+
+    function setLcrSort(mode) {
+      lcrSortMode = mode;
+      localStorage.setItem('lcrSortMode', mode);
+      document.querySelectorAll('#lcrSortSelector .sort-btn').forEach(btn => btn.classList.remove('active'));
+      document.getElementById(mode === 'brand' ? 'lcrSortBrand' : 'lcrSortHighest').classList.add('active');
+      const lcrData = getLcrData();
+      lcrChart.data.labels = lcrData.labels;
+      lcrChart.data.datasets[0].data = lcrData.data;
+      lcrChart.data.datasets[0].backgroundColor = lcrData.backgroundColors;
+      lcrChart.update({ duration: 750, easing: 'easeInOutQuart' });
+    }
+
+    function setMmmuProSort(mode) {
+      mmmuProSortMode = mode;
+      localStorage.setItem('mmmuProSortMode', mode);
+      document.querySelectorAll('#mmmuProSortSelector .sort-btn').forEach(btn => btn.classList.remove('active'));
+      document.getElementById(mode === 'brand' ? 'mmmuProSortBrand' : 'mmmuProSortHighest').classList.add('active');
+      const mmmuProData = getMmmuProData();
+      mmmuProChart.data.labels = mmmuProData.labels;
+      mmmuProChart.data.datasets[0].data = mmmuProData.data;
+      mmmuProChart.data.datasets[0].backgroundColor = mmmuProData.backgroundColors;
+      mmmuProChart.update({ duration: 750, easing: 'easeInOutQuart' });
+    }
+
+    function setTerminalBenchSort(mode) {
+      terminalBenchSortMode = mode;
+      localStorage.setItem('terminalBenchSortMode', mode);
+      document.querySelectorAll('#terminalBenchSortSelector .sort-btn').forEach(btn => btn.classList.remove('active'));
+      document.getElementById(mode === 'brand' ? 'terminalBenchSortBrand' : 'terminalBenchSortHighest').classList.add('active');
+      const terminalBenchData = getTerminalBenchData();
+      terminalBenchChart.data.labels = terminalBenchData.labels;
+      terminalBenchChart.data.datasets[0].data = terminalBenchData.data;
+      terminalBenchChart.data.datasets[0].backgroundColor = terminalBenchData.backgroundColors;
+      terminalBenchChart.update({ duration: 750, easing: 'easeInOutQuart' });
+    }
+
+    function setTau2BenchSort(mode) {
+      tau2BenchSortMode = mode;
+      localStorage.setItem('tau2BenchSortMode', mode);
+      document.querySelectorAll('#tau2BenchSortSelector .sort-btn').forEach(btn => btn.classList.remove('active'));
+      document.getElementById(mode === 'brand' ? 'tau2BenchSortBrand' : 'tau2BenchSortHighest').classList.add('active');
+      const tau2BenchData = getTau2BenchData();
+      tau2BenchChart.data.labels = tau2BenchData.labels;
+      tau2BenchChart.data.datasets[0].data = tau2BenchData.data;
+      tau2BenchChart.data.datasets[0].backgroundColor = tau2BenchData.backgroundColors;
+      tau2BenchChart.update({ duration: 750, easing: 'easeInOutQuart' });
     }
 
     function getOmniscienceData() {
@@ -3307,16 +3566,32 @@
         sortOrder: 30
       },
       {
-        modelId: 'gemini-pro',
-        label: 'Gemini 3 Pro',
-        data: [98.0, 91.3, 86.6, 72.1, 54.2, 24.5],
+        modelId: 'gemini-31-pro',
+        label: 'Gemini 3.1 Pro (Estimated)',
+        data: [98.8, 94.6, 91.6, 81.3, 66.7, 24.5],
         borderColor: 'rgba(243, 77, 101, 1)',
         backgroundColor: 'rgba(243, 77, 101, 0.7)',
-        borderWidth: 3,
+        borderWidth: 2,
+        borderDash: [3, 6],
         tension: 0.3,
         pointRadius: 6,
         pointHoverRadius: 8,
         pointBackgroundColor: 'rgba(243, 77, 101, 1)',
+        spanGaps: false,
+        sortOrder: 35,
+        isEstimatedBand: true
+      },
+      {
+        modelId: 'gemini-pro',
+        label: 'Gemini 3 Pro',
+        data: [98.0, 91.3, 86.6, 72.1, 54.2, 24.5],
+        borderColor: 'rgba(180, 110, 120, 1)',
+        backgroundColor: 'rgba(180, 110, 120, 0.7)',
+        borderWidth: 3,
+        tension: 0.3,
+        pointRadius: 6,
+        pointHoverRadius: 8,
+        pointBackgroundColor: 'rgba(180, 110, 120, 1)',
         sortOrder: 40
       },
       {
@@ -3350,63 +3625,33 @@
         modelId: 'claude-46-opus',
         label: 'Claude 4.6 Opus Extended (Estimated)',
         data: [98.5, 97.4, 96.3, 95.2, 94.1, null],
-        borderColor: 'rgba(249, 115, 22, 0.7)',
-        backgroundColor: 'rgba(249, 115, 22, 0.15)',
+        borderColor: 'rgba(249, 115, 22, 1)',
+        backgroundColor: 'rgba(249, 115, 22, 0.7)',
         borderWidth: 2,
         borderDash: [3, 6],
         tension: 0.3,
         pointRadius: 6,
         pointHoverRadius: 8,
-        pointBackgroundColor: 'rgba(249, 115, 22, 0.7)',
+        pointBackgroundColor: 'rgba(249, 115, 22, 1)',
         spanGaps: false,
         sortOrder: 63,
         isEstimatedBand: true
-      },
-      {
-        modelId: 'claude-46-opus',
-        label: 'Claude 4.6 Opus Extended (Estimated Upper)',
-        data: [100, 100, 100, 100, 100, null],
-        borderColor: 'transparent',
-        backgroundColor: 'transparent',
-        borderWidth: 0,
-        tension: 0,
-        pointRadius: 0,
-        pointHoverRadius: 0,
-        spanGaps: false,
-        sortOrder: 64,
-        isEstimatedBand: true,
-        isUpperBound: true
       },
       {
         modelId: 'claude-46-sonnet',
         label: 'Claude 4.6 Sonnet Extended (Estimated)',
         data: [95.8, 94.7, 93.6, 92.5, 91.4, null],
-        borderColor: 'rgba(249, 115, 22, 0.5)',
-        backgroundColor: 'rgba(249, 115, 22, 0.1)',
+        borderColor: 'rgba(249, 115, 22, 0.7)',
+        backgroundColor: 'rgba(249, 115, 22, 0.5)',
         borderWidth: 2,
         borderDash: [3, 6],
         tension: 0.3,
         pointRadius: 5,
         pointHoverRadius: 7,
-        pointBackgroundColor: 'rgba(249, 115, 22, 0.5)',
+        pointBackgroundColor: 'rgba(249, 115, 22, 0.7)',
         spanGaps: false,
         sortOrder: 63,
         isEstimatedBand: true
-      },
-      {
-        modelId: 'claude-46-sonnet',
-        label: 'Claude 4.6 Sonnet Extended (Estimated Upper)',
-        data: [100, 100, 100, 100, 100, null],
-        borderColor: 'transparent',
-        backgroundColor: 'transparent',
-        borderWidth: 0,
-        tension: 0,
-        pointRadius: 0,
-        pointHoverRadius: 0,
-        spanGaps: false,
-        sortOrder: 64,
-        isEstimatedBand: true,
-        isUpperBound: true
       },
       {
         modelId: 'claude-opus',
@@ -3502,11 +3747,8 @@
                 if (context.parsed.y === null) return context.dataset.label + ': Not supported';
                 // Show estimated label for the band
                 if (context.dataset.isEstimatedBand) {
-                  const contextLengths = ['8k', '16k', '32k', '64k', '128k', '1M'];
-                  const ctxLabel = contextLengths[context.dataIndex] || '';
                   const labelName = context.dataset.label.replace(' (Estimated)', '');
-                  const minEstimate = context.dataset.label.includes('Opus') ? '≥93' : '≥90.3';
-                  return labelName + ': ' + context.parsed.y + '% (Estimated, ' + minEstimate + ')';
+                  return labelName + ': ' + context.parsed.y + '% (Estimated!)';
                 }
                 return context.dataset.label + ': ' + context.parsed.y + '%';
               }
@@ -3553,6 +3795,7 @@
       { modelId: 'gpt-thinking', label: '⌘ GPT 5.2 Thinking', score: 63.3, sortOrder: 20 },
       { modelId: 'gpt-thinking-mini', label: '⌘ GPT 5 Thinking Mini', score: 66, sortOrder: 25 },
       { modelId: 'gpt-instant', label: '⌘ GPT 5.2 Instant', score: 38.0, sortOrder: 30 },
+      { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro', score: 72.7, sortOrder: 35 },
       { modelId: 'gemini-pro', label: '✦ Gemini 3 Pro', score: 70.7, sortOrder: 40 },
       { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', score: 66.3, sortOrder: 50 },
       { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', score: 48.0, sortOrder: 60 },
@@ -3574,8 +3817,12 @@
       // Filter models based on modelVisibility
       let models = lcrAllModels.filter(m => modelVisibility[m.modelId]);
 
-      // Sort by sortOrder to maintain family grouping
-      models.sort((a, b) => a.sortOrder - b.sortOrder);
+      // Sort based on current sort mode
+      if (lcrSortMode === 'highest') {
+        models.sort((a, b) => b.score - a.score);
+      } else {
+        models.sort((a, b) => a.sortOrder - b.sortOrder);
+      }
 
       // Extract arrays for Chart.js
       const labels = models.map(m => m.label);
@@ -3670,6 +3917,7 @@
       { modelId: 'gpt-thinking', label: '⌘ GPT 5.2 Thinking', score: 75, sortOrder: 20 },
       { modelId: 'gpt-thinking-mini', label: '⌘ GPT 5 Thinking Mini', score: 69, sortOrder: 25 },
       { modelId: 'gpt-instant', label: '⌘ GPT 5.2 Instant', score: 66, sortOrder: 30 },
+      { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro', score: 82, sortOrder: 35 },
       { modelId: 'gemini-pro', label: '✦ Gemini 3 Pro', score: 80, sortOrder: 40 },
       { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', score: 80, sortOrder: 50 },
       { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', score: 79, sortOrder: 60 },
@@ -3691,8 +3939,12 @@
       // Filter models based on modelVisibility
       let models = mmmuProAllModels.filter(m => modelVisibility[m.modelId]);
 
-      // Sort by sortOrder to maintain family grouping
-      models.sort((a, b) => a.sortOrder - b.sortOrder);
+      // Sort based on current sort mode
+      if (mmmuProSortMode === 'highest') {
+        models.sort((a, b) => b.score - a.score);
+      } else {
+        models.sort((a, b) => a.sortOrder - b.sortOrder);
+      }
 
       // Extract arrays for Chart.js
       const labels = models.map(m => m.label);
@@ -3787,6 +4039,7 @@
       { modelId: 'gpt-thinking', label: '⌘ GPT 5.2 Thinking', score: 43.2, sortOrder: 20 },
       { modelId: 'gpt-thinking-mini', label: '⌘ GPT 5 Thinking Mini', score: 28.8, sortOrder: 25 },
       { modelId: 'gpt-instant', label: '⌘ GPT 5.2 Instant', score: 31.8, sortOrder: 30 },
+      { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro', score: 53.8, sortOrder: 35 },
       { modelId: 'gemini-pro', label: '✦ Gemini 3 Pro', score: 41.7, sortOrder: 40 },
       { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', score: 38.6, sortOrder: 50 },
       { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', score: 31.8, sortOrder: 60 },
@@ -3808,8 +4061,12 @@
       // Filter models based on modelVisibility
       let models = terminalBenchAllModels.filter(m => modelVisibility[m.modelId]);
 
-      // Sort by sortOrder to maintain family grouping
-      models.sort((a, b) => a.sortOrder - b.sortOrder);
+      // Sort based on current sort mode
+      if (terminalBenchSortMode === 'highest') {
+        models.sort((a, b) => b.score - a.score);
+      } else {
+        models.sort((a, b) => a.sortOrder - b.sortOrder);
+      }
 
       // Extract arrays for Chart.js
       const labels = models.map(m => m.label);
@@ -3903,6 +4160,7 @@
       { modelId: 'gpt-thinking', label: '⌘ GPT 5.2 Thinking', score: 74.3, sortOrder: 20 },
       { modelId: 'gpt-thinking-mini', label: '⌘ GPT 5 Thinking Mini', score: 71.1, sortOrder: 25 },
       { modelId: 'gpt-instant', label: '⌘ GPT 5.2 Instant', score: 46.5, sortOrder: 30 },
+      { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro', score: 95.6, sortOrder: 35 },
       { modelId: 'gemini-pro', label: '✦ Gemini 3 Pro', score: 87.1, sortOrder: 40 },
       { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', score: 80.4, sortOrder: 50 },
       { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', score: 43.3, sortOrder: 60 },
@@ -3924,8 +4182,12 @@
       // Filter models based on modelVisibility
       let models = tau2BenchAllModels.filter(m => modelVisibility[m.modelId]);
 
-      // Sort by sortOrder to maintain family grouping
-      models.sort((a, b) => a.sortOrder - b.sortOrder);
+      // Sort based on current sort mode
+      if (tau2BenchSortMode === 'highest') {
+        models.sort((a, b) => b.score - a.score);
+      } else {
+        models.sort((a, b) => a.sortOrder - b.sortOrder);
+      }
 
       // Extract arrays for Chart.js
       const labels = models.map(m => m.label);
@@ -4303,7 +4565,7 @@
     // (hide rows completely when Legacy toggle is OFF)
     function updateLegacyModelsListVisibility() {
       // Legacy models: Claude 4.5 Opus and Sonnet (Extended and non-Extended)
-      const modelsToHide = ['claude-opus', 'claude-sonnet', 'claude-opus-nr', 'claude-sonnet-nr'];
+      const modelsToHide = ['claude-opus', 'claude-sonnet', 'claude-opus-nr', 'claude-sonnet-nr', 'gemini-pro'];
       modelsToHide.forEach(id => {
         document.querySelectorAll(`.model-dot[data-model="${id}"]`).forEach(dot => {
           const row = dot.closest('.model-dots-row');
@@ -4521,6 +4783,29 @@
       updateOtherModelsListVisibility();
       updateLegacyModelsListVisibility();
 
+      // Restore sort button UI states
+      if (omniscienceSortMode !== 'brand') {
+        document.querySelectorAll('#omniscienceSortSelector .sort-btn').forEach(btn => btn.classList.remove('active'));
+        if (omniscienceSortMode === 'hallucination') document.getElementById('omniscienceSortHallucination').classList.add('active');
+        else if (omniscienceSortMode === 'correct') document.getElementById('omniscienceSortCorrect').classList.add('active');
+      }
+      if (lcrSortMode !== 'brand') {
+        document.querySelectorAll('#lcrSortSelector .sort-btn').forEach(btn => btn.classList.remove('active'));
+        document.getElementById('lcrSortHighest').classList.add('active');
+      }
+      if (mmmuProSortMode !== 'brand') {
+        document.querySelectorAll('#mmmuProSortSelector .sort-btn').forEach(btn => btn.classList.remove('active'));
+        document.getElementById('mmmuProSortHighest').classList.add('active');
+      }
+      if (terminalBenchSortMode !== 'brand') {
+        document.querySelectorAll('#terminalBenchSortSelector .sort-btn').forEach(btn => btn.classList.remove('active'));
+        document.getElementById('terminalBenchSortHighest').classList.add('active');
+      }
+      if (tau2BenchSortMode !== 'brand') {
+        document.querySelectorAll('#tau2BenchSortSelector .sort-btn').forEach(btn => btn.classList.remove('active'));
+        document.getElementById('tau2BenchSortHighest').classList.add('active');
+      }
+
       // Update charts if state changed from default
       if (needsChartUpdate) {
         // Update charts without animation (instant)
@@ -4675,7 +4960,7 @@
     style="text-align: center; padding: 2rem 1rem; margin-top: 3rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.8rem;">
     Made by <strong> u/Pasto_Shouwa</strong>
     <br>
-    <em>Last updated on <strong>18/02/2026</strong> (dd/mm/yyyy)</em>
+    <em>Last updated on <strong>19/02/2026</strong> (dd/mm/yyyy)</em>
   </footer>
 </body>
 
