@@ -1573,7 +1573,7 @@
             </tr>
             <tr>
               <td>Context window limit</td>
-              <td>16k / 196k<span class="detail">(Non-reasoning / Reasoning)</span></td>
+              <td>16k / 256k<span class="detail">(Non-reasoning / Reasoning)</span></td>
               <td class="rating-excellent">32k</td>
             </tr>
             <tr>
@@ -1717,8 +1717,8 @@
             </tr>
             <tr>
               <td>Context window limit</td>
-              <td>16k / 196k<span class="detail">(Non-reasoning / Reasoning)</span></td>
-              <td colspan="2" class="rating-great">32k / 196k<span class="detail">(Non-reasoning / Reasoning)</span>
+              <td>16k / 256k<span class="detail">(Non-reasoning / Reasoning)</span></td>
+              <td colspan="2" class="rating-great">32k / 256k<span class="detail">(Non-reasoning / Reasoning)</span>
               </td>
               <td>32k</td>
               <td class="rating-great">128k</td>
@@ -1926,7 +1926,7 @@
             </tr>
             <tr>
               <td>Context window limit</td>
-              <td class="rating-great">128k / 196k<span class="detail">(Non-reasoning / Reasoning)</span></td>
+              <td class="rating-great">128k / 256k<span class="detail">(Non-reasoning / Reasoning)</span></td>
               <td class="rating-excellent">192k / 1M<span class="annotation" data-note="1m-tokens"></span><span
                   class="detail">(Gemini 3.1 Deep Think / Other models)</span>
               </td>
@@ -2471,7 +2471,7 @@
           <ul class="notes-list">
             <li>• Differs greatly from the next benchmark. While AA-LCR revolves around comprehending really long
               texts, MRCR v2 8-Needle evaluates the model capability to find specific information in those texts.</li>
-            <li>• There are no benchmarks for 196k or 200k tokens.</li>
+            <li>• There are no benchmarks for 200k tokens.</li>
             <li>• This benchmark currently does not provide support for GPT 5.2 Codex, non-reasoning Claude models and
               GLM models.
             </li>
@@ -2489,7 +2489,7 @@
               space applied from 8k up to 128k. For context lengths above 128k, the uplift was assumed to decay linearly
               with log2, reaching zero at 1M to match Google's reported parity at 1M.
             </li>
-            <li>• Maximum context window of <strong>GPT 5.2 Thinking and GPT 5.2 Thinking xhigh</strong> is 196k tokens.
+            <li>• Maximum context window of <strong>GPT 5.2 Thinking and GPT 5.2 Thinking xhigh</strong> is 256k tokens.
             </li>
             <li>• Maximum context window of <strong>GPT 5.2 Instant</strong> is 16k/32k/128k tokens (Free/Plus &
               Go/Pro).</li>
@@ -2542,7 +2542,7 @@
           <ul class="notes-list">
             <li>• Differs greatly from the next benchmark. While AA-LCR revolves around comprehending really long
               texts, MRCR v2 8-Needle evaluates the model capability to find specific information in those texts.</li>
-            <li>• Maximum context window of <strong>GPT 5.2 Thinking and GPT 5.2 Thinking xhigh</strong> is 196k tokens.
+            <li>• Maximum context window of <strong>GPT 5.2 Thinking and GPT 5.2 Thinking xhigh</strong> is 256k tokens.
             </li>
             <li>• Maximum context window of <strong>GPT 5.2 Instant</strong> is 16k/32k/128k tokens (Free/Plus &
               Go/Pro).</li>
@@ -3511,7 +3511,7 @@
       {
         modelId: 'gpt-xhigh',
         label: 'GPT 5.2 Thinking xhigh',
-        data: [95.4, 87.9, 93.1, 88.2, 75.7, null],
+        data: [95.4, 87.9, 93.1, 88.2, 75.7, 63.9, null],
         borderColor: 'rgba(16, 163, 127, 1)',
         backgroundColor: 'rgba(16, 163, 127, 0.7)',
         borderWidth: 3,
@@ -3525,7 +3525,7 @@
       {
         modelId: 'gpt-thinking',
         label: 'GPT 5.2 Thinking',
-        data: [87.9, 78.2, 75.7, 66.7, 63.1, null],
+        data: [87.9, 78.2, 75.7, 66.7, 63.1, 52.8, null],
         borderColor: 'rgba(16, 163, 127, 0.7)',
         backgroundColor: 'rgba(16, 163, 127, 0.5)',
         borderWidth: 2,
@@ -3539,7 +3539,7 @@
       {
         modelId: 'gpt-thinking-mini',
         label: 'GPT 5 Thinking Mini',
-        data: [76.3, 57.1, 55, 42.3, 31.9, null],
+        data: [76.3, 57.1, 55, 42.3, 31.9, 24.4, null],
         borderColor: 'rgba(100, 150, 135, 0.5)',
         backgroundColor: 'rgba(100, 150, 135, 0.3)',
         borderWidth: 2,
@@ -3553,7 +3553,7 @@
       {
         modelId: 'gpt-instant',
         label: 'GPT 5.2 Instant',
-        data: [49.4, 45.1, 50.4, 41.5, 31.9, null],
+        data: [49.4, 45.1, 50.4, 41.5, 31.9, null, null],
         borderColor: 'rgba(16, 163, 127, 0.5)',
         backgroundColor: 'rgba(16, 163, 127, 0.3)',
         borderWidth: 2,
@@ -3567,24 +3567,22 @@
       },
       {
         modelId: 'gemini-31-pro',
-        label: 'Gemini 3.1 Pro (Estimated)',
-        data: [98.8, 94.6, 91.6, 81.3, 66.7, 24.5],
+        label: 'Gemini 3.1 Pro',
+        data: [98.3, 95.6, 98.7, 90.1, 71.9, 59.1, 25.9],
         borderColor: 'rgba(243, 77, 101, 1)',
         backgroundColor: 'rgba(243, 77, 101, 0.7)',
-        borderWidth: 2,
-        borderDash: [3, 6],
+        borderWidth: 3,
         tension: 0.3,
         pointRadius: 6,
         pointHoverRadius: 8,
         pointBackgroundColor: 'rgba(243, 77, 101, 1)',
         spanGaps: false,
-        sortOrder: 35,
-        isEstimatedBand: true
+        sortOrder: 35
       },
       {
         modelId: 'gemini-pro',
         label: 'Gemini 3 Pro',
-        data: [98.0, 91.3, 86.6, 72.1, 54.2, 24.5],
+        data: [98.0, 91.3, 86.6, 72.1, 54.2, 45.4, 24.5],
         borderColor: 'rgba(180, 110, 120, 1)',
         backgroundColor: 'rgba(180, 110, 120, 0.7)',
         borderWidth: 3,
@@ -3597,7 +3595,7 @@
       {
         modelId: 'gemini-flash-thinking',
         label: 'Gemini 3 Flash Thinking',
-        data: [96.7, 85.3, 84.9, 72.9, 51.5, 32.6],
+        data: [96.7, 85.3, 84.9, 72.9, 51.5, 58.5, 32.6],
         borderColor: 'rgba(243, 77, 101, 0.7)',
         backgroundColor: 'rgba(243, 77, 101, 0.5)',
         borderWidth: 2,
@@ -3610,7 +3608,7 @@
       {
         modelId: 'gemini-flash',
         label: 'Gemini 3 Flash',
-        data: [75.5, 46.2, 39.0, 36.9, 25.4, 25.7],
+        data: [75.5, 46.2, 39.0, 36.9, 25.4, 28.7, 25.7],
         borderColor: 'rgba(243, 77, 101, 0.5)',
         backgroundColor: 'rgba(243, 77, 101, 0.2)',
         borderWidth: 2,
@@ -3624,7 +3622,7 @@
       {
         modelId: 'claude-46-opus',
         label: 'Claude 4.6 Opus Extended (Estimated)',
-        data: [98.5, 97.4, 96.3, 95.2, 94.1, null],
+        data: [98.5, 97.4, 96.3, 95.2, 94.1, null, null],
         borderColor: 'rgba(249, 115, 22, 1)',
         backgroundColor: 'rgba(249, 115, 22, 0.7)',
         borderWidth: 2,
@@ -3640,7 +3638,7 @@
       {
         modelId: 'claude-46-sonnet',
         label: 'Claude 4.6 Sonnet Extended (Estimated)',
-        data: [95.8, 94.7, 93.6, 92.5, 91.4, null],
+        data: [95.8, 94.7, 93.6, 92.5, 91.4, null, null],
         borderColor: 'rgba(249, 115, 22, 0.7)',
         backgroundColor: 'rgba(249, 115, 22, 0.5)',
         borderWidth: 2,
@@ -3656,7 +3654,7 @@
       {
         modelId: 'claude-opus',
         label: 'Claude 4.5 Opus Extended',
-        data: [78.0, 56.2, 46.7, 35.3, 27.1, null],
+        data: [78.0, 56.2, 46.7, 35.3, 27.1, null, null],
         borderColor: 'rgba(180, 140, 100, 1)',
         backgroundColor: 'rgba(180, 140, 100, 0.5)',
         borderWidth: 3,
@@ -3670,7 +3668,7 @@
       {
         modelId: 'claude-sonnet',
         label: 'Claude 4.5 Sonnet Extended',
-        data: [48.9, 42.4, 32.8, 26.0, 16.6, null],
+        data: [48.9, 42.4, 32.8, 26.0, 16.6, null, null],
         borderColor: 'rgba(180, 140, 100, 0.7)',
         backgroundColor: 'rgba(180, 140, 100, 0.5)',
         borderWidth: 2,
@@ -3684,7 +3682,7 @@
       {
         modelId: 'claude-haiku',
         label: 'Claude 4.5 Haiku Extended',
-        data: [52.9, 38.6, 29.0, 23.3, 14.1, null],
+        data: [52.9, 38.6, 29.0, 23.3, 14.1, null, null],
         borderColor: 'rgba(249, 115, 22, 0.5)',
         backgroundColor: 'rgba(249, 115, 22, 0.3)',
         borderWidth: 2,
@@ -3712,7 +3710,7 @@
     mrcrChart = new Chart(mrcrCtx, {
       type: 'line',
       data: {
-        labels: ['8k', '16k', '32k', '64k', '128k', '1M'],
+        labels: ['8k', '16k', '32k', '64k', '128k', '256k', '1M'],
         datasets: getMrcrDatasets()
       },
       options: {
@@ -4960,7 +4958,7 @@
     style="text-align: center; padding: 2rem 1rem; margin-top: 3rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.8rem;">
     Made by <strong> u/Pasto_Shouwa</strong>
     <br>
-    <em>Last updated on <strong>19/02/2026</strong> (dd/mm/yyyy)</em>
+    <em>Last updated on <strong>20/02/2026</strong> (dd/mm/yyyy)</em>
   </footer>
 </body>
 
