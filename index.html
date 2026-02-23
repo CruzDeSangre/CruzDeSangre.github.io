@@ -1511,6 +1511,50 @@
     .reasoning-toggle .toggle-switch.active::after {
       background: rgba(139, 92, 246, 0.8);
     }
+
+    /* Custom Slider */
+    .custom-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 250px;
+      height: 6px;
+      background: var(--bg-hover);
+      border-radius: 4px;
+      outline: none;
+      border: 1px solid var(--border-color);
+      margin-top: 5px;
+    }
+
+    .custom-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--text-primary);
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .custom-slider::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+    }
+
+    .custom-slider::-moz-range-thumb {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--text-primary);
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      border: none;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .custom-slider::-moz-range-thumb:hover {
+      transform: scale(1.2);
+    }
   </style>
 </head>
 
@@ -2460,6 +2504,20 @@
       </div>
       <p class="chart-note">Shows how accuracy at locating specific details in context degrades as context length
         increases. Ranges from 8k to 1048k (1M) tokens. Higher is better.</p>
+      <div class="slider-container"
+        style="display: flex; flex-direction: column; align-items: center; margin-top: 0.75rem; margin-bottom: 0.5rem; gap: 0.25rem;">
+        <span class="sort-selector-label"><strong>Max Context Length:</strong> <span id="mrcrXAxisLabel"
+            style="color: var(--text-primary);">1M</span></span>
+        <input type="range" id="mrcrXAxisSlider" class="custom-slider" min="1" max="6" value="6" step="1"
+          oninput="updateMrcrXAxisLabel(this.value)" onchange="setMrcrXAxis(this.value)">
+      </div>
+      <div class="sort-selector" id="mrcrYAxisSelector" style="margin-top: 0.5rem;">
+        <span class="sort-selector-label"><strong>Y-Axis Min</strong></span>
+        <div class="sort-selector-buttons">
+          <button class="sort-btn active" onclick="setMrcrYAxis('0')" id="mrcrYAxis0">0%</button>
+          <button class="sort-btn" onclick="setMrcrYAxis('auto')" id="mrcrYAxisAuto">Dynamic</button>
+        </div>
+      </div>
 
       <!-- Notes for second chart -->
       <div class="notes collapsible expanded" style="margin-top: 1rem;">
@@ -3207,6 +3265,7 @@
 
       // Update MRCR chart
       mrcrChart.data.datasets = getMrcrDatasets();
+      if (typeof updateMrcrYAxisOptions === 'function') updateMrcrYAxisOptions();
       mrcrChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
 
       // Update LCR chart
@@ -3319,6 +3378,57 @@
     let mmmuProSortMode = localStorage.getItem('mmmuProSortMode') || 'brand';
     let terminalBenchSortMode = localStorage.getItem('terminalBenchSortMode') || 'brand';
     let tau2BenchSortMode = localStorage.getItem('tau2BenchSortMode') || 'brand';
+
+    const mrcrXAxisLabels = ['8k', '16k', '32k', '64k', '128k', '256k', '1M'];
+    let mrcrXAxisIndex = localStorage.getItem('mrcrXAxisIndex') !== null ? parseInt(localStorage.getItem('mrcrXAxisIndex')) : 6;
+    let mrcrYAxisMode = localStorage.getItem('mrcrYAxisMode') || '0';
+
+    function updateMrcrXAxisLabel(val) {
+      document.getElementById('mrcrXAxisLabel').textContent = mrcrXAxisLabels[val];
+    }
+
+    function setMrcrXAxis(val) {
+      mrcrXAxisIndex = parseInt(val);
+      localStorage.setItem('mrcrXAxisIndex', mrcrXAxisIndex);
+      updateMrcrXAxisLabel(val);
+
+      if (mrcrChart) {
+        mrcrChart.options.scales.x.max = mrcrXAxisLabels[mrcrXAxisIndex];
+        updateMrcrYAxisOptions();
+        mrcrChart.update({ duration: 750, easing: 'easeInOutQuart' });
+      }
+    }
+
+    function updateMrcrYAxisOptions() {
+      if (!mrcrChart) return;
+      if (mrcrYAxisMode === 'auto') {
+        let minVal = 100;
+        const datasets = getMrcrDatasets();
+        datasets.forEach(ds => {
+          ds.data.slice(0, mrcrXAxisIndex + 1).forEach(val => {
+            if (val !== null && val < minVal) {
+              minVal = val;
+            }
+          });
+        });
+        let floorVal = Math.floor(minVal / 5) * 5;
+        if (floorVal >= 100) floorVal = 0;
+        mrcrChart.options.scales.y.min = floorVal;
+        mrcrChart.options.scales.y.beginAtZero = false;
+      } else {
+        mrcrChart.options.scales.y.min = 0;
+        mrcrChart.options.scales.y.beginAtZero = true;
+      }
+    }
+
+    function setMrcrYAxis(mode) {
+      mrcrYAxisMode = mode;
+      localStorage.setItem('mrcrYAxisMode', mode);
+      document.querySelectorAll('#mrcrYAxisSelector .sort-btn').forEach(btn => btn.classList.remove('active'));
+      document.getElementById(mode === '0' ? 'mrcrYAxis0' : 'mrcrYAxisAuto').classList.add('active');
+      updateMrcrYAxisOptions();
+      mrcrChart.update({ duration: 750, easing: 'easeInOutQuart' });
+    }
 
     function setLcrSort(mode) {
       lcrSortMode = mode;
@@ -3705,6 +3815,23 @@
       return datasets;
     }
 
+    let mrcrInitialMin = 0;
+    let mrcrInitialBeginAtZero = true;
+    if (localStorage.getItem('mrcrYAxisMode') === 'auto') {
+      let minVal = 100;
+      const initDatasets = getMrcrDatasets();
+      initDatasets.forEach(ds => {
+        ds.data.slice(0, mrcrXAxisIndex + 1).forEach(val => {
+          if (val !== null && val < minVal) {
+            minVal = val;
+          }
+        });
+      });
+      mrcrInitialMin = Math.floor(minVal / 5) * 5;
+      if (mrcrInitialMin >= 100) mrcrInitialMin = 0;
+      mrcrInitialBeginAtZero = false;
+    }
+
     // MRCR v2 8-Needle Benchmark - Line Chart
     const mrcrCtx = document.getElementById('mrcrChart').getContext('2d');
     mrcrChart = new Chart(mrcrCtx, {
@@ -3755,7 +3882,8 @@
         },
         scales: {
           y: {
-            beginAtZero: true,
+            min: mrcrInitialMin,
+            beginAtZero: mrcrInitialBeginAtZero,
             max: 100,
             ticks: {
               callback: function (value) {
@@ -3772,6 +3900,7 @@
             }
           },
           x: {
+            max: typeof mrcrXAxisLabels !== 'undefined' ? mrcrXAxisLabels[mrcrXAxisIndex] : '1M',
             grid: {
               color: 'rgba(255, 255, 255, 0.05)'
             },
@@ -4782,6 +4911,19 @@
       updateLegacyModelsListVisibility();
 
       // Restore sort button UI states
+      if (localStorage.getItem('mrcrXAxisIndex') !== null) {
+        const val = localStorage.getItem('mrcrXAxisIndex');
+        document.getElementById('mrcrXAxisSlider').value = val;
+        document.getElementById('mrcrXAxisLabel').textContent = mrcrXAxisLabels[val];
+      }
+      if (mrcrYAxisMode !== '0') {
+        document.querySelectorAll('#mrcrYAxisSelector .sort-btn').forEach(btn => btn.classList.remove('active'));
+        document.getElementById('mrcrYAxisAuto').classList.add('active');
+        if (typeof updateMrcrYAxisOptions === 'function') {
+          // This will be correctly handled when updateAllCharts() or resizing happens, 
+          // or we just trigger an update later if needed. The initial config takes care of it.
+        }
+      }
       if (omniscienceSortMode !== 'brand') {
         document.querySelectorAll('#omniscienceSortSelector .sort-btn').forEach(btn => btn.classList.remove('active'));
         if (omniscienceSortMode === 'hallucination') document.getElementById('omniscienceSortHallucination').classList.add('active');
@@ -4958,7 +5100,7 @@
     style="text-align: center; padding: 2rem 1rem; margin-top: 3rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.8rem;">
     Made by <strong> u/Pasto_Shouwa</strong>
     <br>
-    <em>Last updated on <strong>20/02/2026</strong> (dd/mm/yyyy)</em>
+    <em>Last updated on <strong>22/02/2026</strong> (dd/mm/yyyy)</em>
   </footer>
 </body>
 
