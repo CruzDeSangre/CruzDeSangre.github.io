@@ -1680,12 +1680,12 @@
               <td class="rating-excellent">No</td>
             </tr>
             <tr>
-              <td>Video processing per day</td>
+              <td>Video inputs per day</td>
               <td>No</td>
               <td class="rating-excellent">3<span class="detail">(Up to 5 minutes per file)</span></td>
             </tr>
             <tr>
-              <td>Audio processing per day</td>
+              <td>Audio inputs per day</td>
               <td>No</td>
               <td class="rating-excellent">3<span class="detail">(Up to 10 minutes per file)</span></td>
             </tr>
@@ -1884,14 +1884,14 @@
               <td colspan="3" class="rating-excellent">No</td>
             </tr>
             <tr>
-              <td>Video processing per day</td>
+              <td>Video inputs per day</td>
               <td colspan="3" class="separator">No</td>
               <td>3<span class="detail">(Up to 5 minutes per file)</span></td>
               <td>6<span class="detail">(Up to 5 minutes per file)</span></td>
               <td class="rating-excellent separator">20<span class="detail">(Up to 60 minutes per file)</span></td>
             </tr>
             <tr>
-              <td>Audio processing per day</td>
+              <td>Audio inputs per day</td>
               <td colspan="3" class="separator">No</td>
               <td>3<span class="detail">(Up to 10 minutes per file)</span></td>
               <td>6<span class="detail">(Up to 10 minutes per file)</span></td>
@@ -2062,12 +2062,12 @@
               <td class="rating-excellent">No</td>
             </tr>
             <tr>
-              <td>Video processing per day</td>
+              <td>Video inputs per day</td>
               <td class="separator">No</td>
               <td class="rating-excellent separator">20<span class="detail">(Up to 60 minutes per file)</span></td>
             </tr>
             <tr>
-              <td>Audio processing per day</td>
+              <td>Audio inputs per day</td>
               <td class="separator">No</td>
               <td class="rating-excellent separator">20<span class="detail">(Up to 180 minutes per file)</span></td>
             </tr>
@@ -2227,10 +2227,6 @@
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
-              <div class="model-dot" data-model="gpt-codex" onclick="toggleIndividualModel('gpt-codex')">
-                <span class="model-dot-indicator dot-gpt shape-square"></span>
-                <span class="model-dot-label">GPT 5.2 Codex</span>
-              </div>
               <div class="model-dot" data-model="gpt-xhigh" onclick="toggleIndividualModel('gpt-xhigh')">
                 <span class="model-dot-indicator dot-gpt shape-hexagon"></span>
                 <span class="model-dot-label">GPT 5.2 Thinking xhigh</span>
@@ -2372,9 +2368,15 @@
                 <span class="model-dot-label">Coding benchmarks</span>
               </div>
             </div>
+            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
+              <div class="model-dot" data-model="gpt-codex2" onclick="toggleIndividualModel('gpt-codex2')">
+                <span class="model-dot-indicator dot-gpt shape-square"></span>
+                <span class="model-dot-label">GPT 5.3 Codex</span>
+              </div>
+            </div>
             <div class="model-dots-row">
               <div class="model-dot" data-model="gpt-codex" onclick="toggleIndividualModel('gpt-codex')">
-                <span class="model-dot-indicator dot-gpt shape-square"></span>
+                <span class="model-dot-indicator dot-gpt-legacy shape-square"></span>
                 <span class="model-dot-label">GPT 5.2 Codex</span>
               </div>
             </div>
@@ -2525,7 +2527,8 @@
             <li>• Differs greatly from the next benchmark. While AA-LCR revolves around comprehending really long
               texts, MRCR v2 8-Needle evaluates the model capability to find specific information in those texts.</li>
             <li>• There are no benchmarks for 200k tokens.</li>
-            <li>• This benchmark currently does not provide support for GPT 5.2 Codex, non-reasoning Claude models and
+            <li>• This benchmark currently does not provide support for GPT Codex models, non-reasoning Claude models
+              and
               GLM models.
             </li>
             <li>• This benchmark has not yet published the full results for the Claude 4.6 models.
@@ -2728,7 +2731,7 @@
       <div class="notes" style="margin-top: 2rem;">
         <p class="notes-title">Notes</p>
         <ul class="notes-list">
-          <li>• For "<strong>GPT 5.2 Codex</strong>", "<em>gpt-5.2-codex:xhigh</em>" was used in the graph. This model
+          <li>• For "<strong>GPT 5.3 Codex</strong>", "<em>gpt-5.3-codex:xhigh</em>" was used in the graph. This model
             is only
             available on Codex and Visual Studio Code, not the web or the app.</li>
           <li>• For "<strong>GPT 5.2 Thinking xhigh</strong>", "<em>gpt-5.2:xhigh</em>" was used in the graph.
@@ -2746,8 +2749,6 @@
           <li>• For "<strong>GPT 5.2 Instant</strong>", "<em>gpt-5.2</em>" was used in the graph.</li>
           <li>• For "<strong>GPT 5 Thinking Mini</strong>", "<em>gpt-5-mini:medium</em>" was used in the graph.</li>
           <li>• For "<strong>Gemini 3.1 Pro</strong>", "<em>gemini-3.1-pro-preview:high</em>" was used in the
-            graph.</li>
-          <li>• For "<strong>Gemini 3 Pro</strong>", "<em>gemini-3-pro-preview:high</em>" was used in the
             graph.</li>
           <li>• For "<strong>Gemini 3 Flash Thinking</strong>", "<em>gemini-3-flash-preview:thinking:high</em>" was used
             in the graph.
@@ -2774,8 +2775,12 @@
             the graph.</li>
           <li>• For "<strong>GLM 5</strong>", "<em>glm-5</em>" was used in
             the graph.</li>
+          <li>• For "<strong>GPT 5.2 Codex</strong>", "<em>gpt-5.2-codex:xhigh</em>" was used in the graph. This model
+            is deprecated.</li>
+          <li>• For "<strong>Gemini 3 Pro</strong>", "<em>gemini-3-pro-preview:high</em>" was used in the
+            graph. This model is deprecated.</li>
           <li>• Claude Opus 4.6 Extended and Claude Sonnet 4.6 Extended are available for free to Gemini users through
-            the Antigravity app, with limits that reset depending on demand (around every 2-12 hours).</li>
+            the Antigravity app, with limits that reset depending on demand.</li>
         </ul>
       </div>
     </section>
@@ -2984,7 +2989,8 @@
 
     // Individual model visibility
     const modelVisibility = {
-      'gpt-codex': false,      // Starts hidden (coding toggle off)
+      'gpt-codex': false,      // Starts hidden (legacy)
+      'gpt-codex2': false,     // Starts hidden (coding toggle off)
       'gpt-xhigh': false,      // Starts hidden (ChatGPT Pro toggle off)
       'gpt-thinking': true,
       'gpt-thinking-mini': true,
@@ -3011,7 +3017,8 @@
     // When a group toggle is turned ON, models that were explicitly disabled stay disabled
     // When a group toggle is turned OFF, all models in group are disabled (not marked as explicit)
     const modelExplicitlyDisabled = {
-      'gpt-codex': false,
+      'gpt-codex': true,           // Starts explicitly disabled (legacy)
+      'gpt-codex2': false,
       'gpt-xhigh': false,
       'gpt-thinking': false,
       'gpt-thinking-mini': false,
@@ -3037,18 +3044,19 @@
     // Model groups for group toggles
     const modelGroups = {
       'claude': ['claude-opus', 'claude-sonnet', 'claude-haiku', 'claude-46-opus', 'claude-46-sonnet', 'claude-46-opus-nr', 'claude-46-sonnet-nr', 'claude-opus-nr', 'claude-sonnet-nr', 'claude-haiku-nr'],
-      'reasoning': ['gpt-codex', 'gpt-xhigh', 'gpt-thinking', 'gpt-thinking-mini', 'gemini-31-pro', 'gemini-pro', 'gemini-flash-thinking', 'claude-opus', 'claude-sonnet', 'claude-haiku', 'claude-46-opus', 'claude-46-sonnet', 'glm-deep-think'],
+      'reasoning': ['gpt-codex', 'gpt-codex2', 'gpt-xhigh', 'gpt-thinking', 'gpt-thinking-mini', 'gemini-31-pro', 'gemini-pro', 'gemini-flash-thinking', 'claude-opus', 'claude-sonnet', 'claude-haiku', 'claude-46-opus', 'claude-46-sonnet', 'glm-deep-think'],
       'instant': ['gpt-instant', 'gemini-flash', 'claude-46-opus-nr', 'claude-46-sonnet-nr', 'claude-opus-nr', 'claude-sonnet-nr', 'claude-haiku-nr', 'glm-5'],
       'chatgpt-pro': ['gpt-xhigh'],
-      'coding': ['gpt-codex'],
+      'coding': ['gpt-codex', 'gpt-codex2'],
       'other': ['glm-deep-think', 'glm-5'],
-      'legacy': ['claude-opus', 'claude-sonnet', 'claude-opus-nr', 'claude-sonnet-nr', 'gemini-pro']
+      'legacy': ['gpt-codex', 'claude-opus', 'claude-sonnet', 'claude-opus-nr', 'claude-sonnet-nr', 'gemini-pro']
     };
 
     // Model constraints: which group toggles must ALL be active for a model to be visible
     // When a group is turned ON, models are only activated if all their other constraints are met
     const modelConstraints = {
-      'gpt-codex': ['reasoning', 'coding'],           // Needs both Reasoning AND Coding to be on
+      'gpt-codex': ['reasoning', 'coding', 'legacy'],  // Needs Reasoning AND Coding AND Legacy to be on
+      'gpt-codex2': ['reasoning', 'coding'],            // Needs Reasoning AND Coding to be on
       'gpt-xhigh': ['reasoning', 'chatgpt-pro'],      // Needs both Reasoning AND ChatGPT Pro to be on
       'gpt-thinking': ['reasoning'],                   // Only needs Reasoning
       'gpt-thinking-mini': ['reasoning'],               // Only needs Reasoning
@@ -3307,7 +3315,8 @@
     // Example: To add a model between GPT Codex (10) and GPT Thinking (20), use 15.
     //
     // Current order:
-    //   10: ⌘ GPT 5.2 Codex (coding toggle)
+    //   5:  ⌘ GPT 5.3 Codex (coding toggle)
+    //   10: ⌘ GPT 5.2 Codex (coding toggle, legacy)
     //   15: ⌘ GPT 5.2 Thinking xhigh
     //   20: ⌘ GPT 5.2 Thinking
     //   25: ⌘ GPT 5 Thinking Mini
@@ -3323,6 +3332,7 @@
 
     // Base data for AA-Omniscience using object structure with sortOrder and modelId
     const omniscienceAllModels = [
+      { modelId: 'gpt-codex2', label: '⌘ GPT 5.3 Codex', correct: 51.78, abstention: 6.32, hallucination: 41.90, sortOrder: 5 },
       { modelId: 'gpt-codex', label: '⌘ GPT 5.2 Codex', correct: 38.45, abstention: 17.55, hallucination: 44.0, sortOrder: 10 },
       { modelId: 'gpt-xhigh', label: '⌘ GPT 5.2 Thinking xhigh', correct: 41.35, abstention: 12.99, hallucination: 45.66, sortOrder: 15 },
       { modelId: 'gpt-thinking', label: '⌘ GPT 5.2 Thinking', correct: 35.53, abstention: 25.68, hallucination: 38.79, sortOrder: 20 },
@@ -3913,6 +3923,7 @@
     // Long Context Reasoning - AA-LCR - Horizontal Bar Chart
     let lcrChart;
     const lcrAllModels = [
+      { modelId: 'gpt-codex2', label: '⌘ GPT 5.3 Codex', score: 74.0, sortOrder: 5 },
       { modelId: 'gpt-codex', label: '⌘ GPT 5.2 Codex', score: 75.7, sortOrder: 10 },
       { modelId: 'gpt-xhigh', label: '⌘ GPT 5.2 Thinking xhigh', score: 72.7, sortOrder: 15 },
       { modelId: 'gpt-thinking', label: '⌘ GPT 5.2 Thinking', score: 63.3, sortOrder: 20 },
@@ -4035,6 +4046,7 @@
     // Visual Reasoning - MMMU-Pro - Horizontal Bar Chart
     let mmmuProChart;
     const mmmuProAllModels = [
+      { modelId: 'gpt-codex2', label: '⌘ GPT 5.3 Codex', score: 79, sortOrder: 5 },
       { modelId: 'gpt-codex', label: '⌘ GPT 5.2 Codex', score: 76, sortOrder: 10 },
       { modelId: 'gpt-xhigh', label: '⌘ GPT 5.2 Thinking xhigh', score: 79, sortOrder: 15 },
       { modelId: 'gpt-thinking', label: '⌘ GPT 5.2 Thinking', score: 75, sortOrder: 20 },
@@ -4157,6 +4169,7 @@
     // Terminal-Bench Hard - Horizontal Bar Chart
     let terminalBenchChart;
     const terminalBenchAllModels = [
+      { modelId: 'gpt-codex2', label: '⌘ GPT 5.3 Codex', score: 53.0, sortOrder: 5 },
       { modelId: 'gpt-codex', label: '⌘ GPT 5.2 Codex', score: 37.1, sortOrder: 10 },
       { modelId: 'gpt-xhigh', label: '⌘ GPT 5.2 Thinking xhigh', score: 47.0, sortOrder: 15 },
       { modelId: 'gpt-thinking', label: '⌘ GPT 5.2 Thinking', score: 43.2, sortOrder: 20 },
@@ -4278,6 +4291,7 @@
     // τ²-Bench Telecom - Horizontal Bar Chart
     let tau2BenchChart;
     const tau2BenchAllModels = [
+      { modelId: 'gpt-codex2', label: '⌘ GPT 5.3 Codex', score: 90.9, sortOrder: 5 },
       { modelId: 'gpt-codex', label: '⌘ GPT 5.2 Codex', score: 92.1, sortOrder: 10 },
       { modelId: 'gpt-xhigh', label: '⌘ GPT 5.2 Thinking xhigh', score: 84.8, sortOrder: 15 },
       { modelId: 'gpt-thinking', label: '⌘ GPT 5.2 Thinking', score: 74.3, sortOrder: 20 },
@@ -4687,8 +4701,8 @@
     // Update visibility of Claude 4.5 Opus/Sonnet models in the filter list
     // (hide rows completely when Legacy toggle is OFF)
     function updateLegacyModelsListVisibility() {
-      // Legacy models: Claude 4.5 Opus and Sonnet (Extended and non-Extended)
-      const modelsToHide = ['claude-opus', 'claude-sonnet', 'claude-opus-nr', 'claude-sonnet-nr', 'gemini-pro'];
+      // Legacy models: Claude 4.5 Opus and Sonnet (Extended and non-Extended), GPT 5.2 Codex
+      const modelsToHide = ['gpt-codex', 'claude-opus', 'claude-sonnet', 'claude-opus-nr', 'claude-sonnet-nr', 'gemini-pro'];
       modelsToHide.forEach(id => {
         document.querySelectorAll(`.model-dot[data-model="${id}"]`).forEach(dot => {
           const row = dot.closest('.model-dots-row');
@@ -4762,7 +4776,7 @@
       // Sync coding group toggle
       document.querySelectorAll('.coding-bench-toggle').forEach(toggle => {
         // Toggle is active if either benchmarks OR codex model is active
-        const codexVisible = modelVisibility['gpt-codex'];
+        const codexVisible = modelVisibility['gpt-codex'] || modelVisibility['gpt-codex2'];
         toggle.classList.toggle('active', showCodingBenchmarks || codexVisible);
       });
 
@@ -4773,7 +4787,7 @@
     // Toggle function for Coding benchmarks group - controls both section and Codex model together
     function toggleCodingBenchmarks() {
       // Determine new state based on whether both are currently on
-      const bothOn = showCodingBenchmarks && modelVisibility['gpt-codex'];
+      const bothOn = showCodingBenchmarks && modelVisibility['gpt-codex'] && modelVisibility['gpt-codex2'];
       const newState = !bothOn;
 
       showCodingBenchmarks = newState;
@@ -4790,9 +4804,11 @@
       if (newState) {
         // When turning ON: only activate if ALL constraints are met
         modelVisibility['gpt-codex'] = shouldModelBeVisible('gpt-codex');
+        modelVisibility['gpt-codex2'] = shouldModelBeVisible('gpt-codex2');
       } else {
         // When turning OFF: always disable
         modelVisibility['gpt-codex'] = false;
+        modelVisibility['gpt-codex2'] = false;
       }
 
       // Sync all Coding toggles
@@ -5096,7 +5112,7 @@
     style="text-align: center; padding: 2rem 1rem; margin-top: 3rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.8rem;">
     Made by <strong> u/Pasto_Shouwa</strong>
     <br>
-    <em>Last updated on <strong>26/02/2026</strong> (dd/mm/yyyy)</em>
+    <em>Last updated on <strong>27/02/2026</strong> (dd/mm/yyyy)</em>
   </footer>
 </body>
 
