@@ -2304,6 +2304,10 @@
                 <span class="model-dot-indicator dot-gpt shape-hexagon"></span>
                 <span class="model-dot-label">GPT 5.4 Thinking xhigh</span>
               </div>
+              <div class="model-dot" data-model="gpt-54" onclick="toggleIndividualModel('gpt-54')">
+                <span class="model-dot-indicator dot-gpt shape-square"></span>
+                <span class="model-dot-label">GPT 5.4 Thinking</span>
+              </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot inactive" data-model="gpt-xhigh" onclick="toggleIndividualModel('gpt-xhigh')">
@@ -2809,7 +2813,9 @@
             available on Codex and Visual Studio Code, not the web or the app.</li>
           <li>• For "<strong>GPT 5.4 Thinking xhigh</strong>", "<em>gpt-5.4:xhigh</em>" was used in the graph.
           </li>
-          <li>• For "<strong>GPT 5.4 Thinking</strong>", "<em>gpt-5.4:medium</em>" was used in the graph.
+          <li>• For "<strong>GPT 5.4 Thinking</strong>", an estimation based on the performance of
+            "<em>gpt-5.4:xhigh</em>", "<em>gpt-5.2:xhigh</em>" and "<em>gpt-5.2:medium</em>" was used in the graph;
+            aiming to get as close as possible to what the performance of "<em>gpt-5.4:medium</em>" might be.
           </li>
           <li>• For "<strong>GPT 5.3 Instant</strong>", "<em>gpt-5.3</em>" was used in the graph.</li>
           <li>• For "<strong>GPT 5 Thinking Mini</strong>", "<em>gpt-5-mini:medium</em>" was used in the graph.</li>
@@ -2846,7 +2852,7 @@
       </div>
 
       <!-- Legacy Notes -->
-      <div class="notes collapsible expanded" style="margin-top: 1rem;">
+      <div class="notes collapsible" style="margin-top: 1rem;">
         <div class="notes-header" onclick="toggleNotes(this)">
           <p class="notes-title">Legacy Notes</p>
           <span class="notes-toggle">▼</span>
@@ -3085,6 +3091,7 @@
       'gpt-codex': false,      // Starts hidden (legacy)
       'gpt-codex2': false,     // Starts hidden (coding toggle off)
       'gpt-54-xhigh': true,
+      'gpt-54': true,
       'gpt-xhigh': false,      // Starts hidden (legacy)
       'gpt-thinking': false,   // Starts hidden (legacy)
       'gpt-thinking-mini': true,
@@ -3114,6 +3121,7 @@
       'gpt-codex': true,           // Starts explicitly disabled (legacy)
       'gpt-codex2': false,
       'gpt-54-xhigh': false,
+      'gpt-54': false,
       'gpt-xhigh': true,           // Starts explicitly disabled (legacy)
       'gpt-thinking': true,        // Starts explicitly disabled (legacy)
       'gpt-thinking-mini': false,
@@ -3139,7 +3147,7 @@
     // Model groups for group toggles
     const modelGroups = {
       'claude': ['claude-opus', 'claude-sonnet', 'claude-haiku', 'claude-46-opus', 'claude-46-sonnet', 'claude-46-opus-nr', 'claude-46-sonnet-nr', 'claude-opus-nr', 'claude-sonnet-nr', 'claude-haiku-nr'],
-      'reasoning': ['gpt-codex', 'gpt-codex2', 'gpt-54-xhigh', 'gpt-xhigh', 'gpt-thinking', 'gpt-thinking-mini', 'gemini-31-pro', 'gemini-pro', 'gemini-flash-thinking', 'claude-opus', 'claude-sonnet', 'claude-haiku', 'claude-46-opus', 'claude-46-sonnet', 'glm-deep-think'],
+      'reasoning': ['gpt-codex', 'gpt-codex2', 'gpt-54-xhigh', 'gpt-54', 'gpt-xhigh', 'gpt-thinking', 'gpt-thinking-mini', 'gemini-31-pro', 'gemini-pro', 'gemini-flash-thinking', 'claude-opus', 'claude-sonnet', 'claude-haiku', 'claude-46-opus', 'claude-46-sonnet', 'glm-deep-think'],
       'instant': ['gemini-flash', 'claude-46-opus-nr', 'claude-46-sonnet-nr', 'claude-opus-nr', 'claude-sonnet-nr', 'claude-haiku-nr', 'glm-5'],
       'chatgpt-pro': [],
       'coding': ['gpt-codex', 'gpt-codex2'],
@@ -3153,6 +3161,7 @@
       'gpt-codex': ['reasoning', 'coding', 'legacy'],  // Needs Reasoning AND Coding AND Legacy to be on
       'gpt-codex2': ['reasoning', 'coding'],            // Needs Reasoning AND Coding to be on
       'gpt-54-xhigh': ['reasoning'],                    // Only needs Reasoning
+      'gpt-54': ['reasoning'],                           // Only needs Reasoning
       'gpt-xhigh': ['reasoning', 'legacy'],             // Needs Reasoning AND Legacy to be on
       'gpt-thinking': ['reasoning', 'legacy'],          // Needs Reasoning AND Legacy to be on
       'gpt-thinking-mini': ['reasoning'],               // Only needs Reasoning
@@ -3408,6 +3417,7 @@
     //   5:  ⌘ GPT 5.3 Codex (coding toggle)
     //   10: ⌘ GPT 5.2 Codex (coding toggle, legacy)
     //   12: ⌘ GPT 5.4 Thinking xhigh
+    //   14: ⌘ GPT 5.4 Thinking
     //   15: ⌘ GPT 5.2 Thinking xhigh (legacy)
     //   20: ⌘ GPT 5.2 Thinking (legacy)
     //   25: ⌘ GPT 5 Thinking Mini
@@ -3426,6 +3436,7 @@
       { modelId: 'gpt-codex2', label: '⌘ GPT 5.3 Codex', correct: 51.78, abstention: 6.32, hallucination: 41.90, sortOrder: 5 },
       { modelId: 'gpt-codex', label: '⌘ GPT 5.2 Codex', correct: 38.45, abstention: 17.55, hallucination: 44.0, sortOrder: 10 },
       { modelId: 'gpt-54-xhigh', label: '⌘ GPT 5.4 Thinking xhigh', correct: 49.98, abstention: 5.68, hallucination: 44.34, sortOrder: 12 },
+      { modelId: 'gpt-54', label: '⌘ GPT 5.4 Thinking (Estimated)', correct: 44.16, abstention: 18.37, hallucination: 37.47, sortOrder: 14, estimated: true },
       { modelId: 'gpt-xhigh', label: '⌘ GPT 5.2 Thinking xhigh', correct: 41.35, abstention: 12.99, hallucination: 45.66, sortOrder: 15 },
       { modelId: 'gpt-thinking', label: '⌘ GPT 5.2 Thinking', correct: 35.53, abstention: 25.68, hallucination: 38.79, sortOrder: 20 },
       { modelId: 'gpt-thinking-mini', label: '⌘ GPT 5 Thinking Mini', correct: 27.22, abstention: 41.21, hallucination: 31.57, sortOrder: 25 },
@@ -3605,24 +3616,28 @@
 
       let correctBgColors, abstentionBgColors, hallucinationBgColors;
 
+      const correctEstimated = 'rgba(34, 197, 94, 0.3)';
+      const abstentionEstimated = 'rgba(139, 92, 246, 0.3)';
+      const hallucinationEstimated = 'rgba(239, 68, 68, 0.3)';
+
       if (useStripedPatternsForNonReasoning) {
         const correctStriped = createStripedPattern(correctColor);
         const abstentionStriped = createStripedPattern(abstentionColor);
         const hallucinationStriped = createStripedPattern(hallucinationColor);
 
-        correctBgColors = labels.map(label =>
-          (label === 'GPT 5.2 Instant' || label === 'Gemini 3 Flash') ? correctStriped : correctColor
+        correctBgColors = models.map(m =>
+          m.estimated ? correctEstimated : (m.label.includes('GPT 5.2 Instant') || m.label.includes('Gemini 3 Flash')) ? correctStriped : correctColor
         );
-        abstentionBgColors = labels.map(label =>
-          (label === 'GPT 5.2 Instant' || label === 'Gemini 3 Flash') ? abstentionStriped : abstentionColor
+        abstentionBgColors = models.map(m =>
+          m.estimated ? abstentionEstimated : (m.label.includes('GPT 5.2 Instant') || m.label.includes('Gemini 3 Flash')) ? abstentionStriped : abstentionColor
         );
-        hallucinationBgColors = labels.map(label =>
-          (label === 'GPT 5.2 Instant' || label === 'Gemini 3 Flash') ? hallucinationStriped : hallucinationColor
+        hallucinationBgColors = models.map(m =>
+          m.estimated ? hallucinationEstimated : (m.label.includes('GPT 5.2 Instant') || m.label.includes('Gemini 3 Flash')) ? hallucinationStriped : hallucinationColor
         );
       } else {
-        correctBgColors = correctColor;
-        abstentionBgColors = abstentionColor;
-        hallucinationBgColors = hallucinationColor;
+        correctBgColors = models.map(m => m.estimated ? correctEstimated : correctColor);
+        abstentionBgColors = models.map(m => m.estimated ? abstentionEstimated : abstentionColor);
+        hallucinationBgColors = models.map(m => m.estimated ? hallucinationEstimated : hallucinationColor);
       }
 
       return { labels, correct, abstention, hallucination, correctBgColors, abstentionBgColors, hallucinationBgColors };
@@ -3730,6 +3745,22 @@
         pointBackgroundColor: 'rgba(16, 163, 127, 1)',
         spanGaps: false,
         sortOrder: 12,
+        isEstimatedBand: true
+      },
+      {
+        modelId: 'gpt-54',
+        label: 'GPT 5.4 Thinking (Estimated)',
+        data: [87.0, 80.3, 77.6, 65.3, 63.5, 54.7, null],
+        borderColor: 'rgba(16, 163, 127, 0.75)',
+        backgroundColor: 'rgba(16, 163, 127, 0.4)',
+        borderWidth: 2,
+        borderDash: [3, 6],
+        tension: 0.3,
+        pointRadius: 5,
+        pointHoverRadius: 7,
+        pointBackgroundColor: 'rgba(16, 163, 127, 0.75)',
+        spanGaps: false,
+        sortOrder: 14,
         isEstimatedBand: true
       },
       {
@@ -4034,6 +4065,7 @@
       { modelId: 'gpt-codex2', label: '⌘ GPT 5.3 Codex', score: 74.0, sortOrder: 5 },
       { modelId: 'gpt-codex', label: '⌘ GPT 5.2 Codex', score: 75.7, sortOrder: 10 },
       { modelId: 'gpt-54-xhigh', label: '⌘ GPT 5.4 Thinking xhigh', score: 74.0, sortOrder: 12 },
+      { modelId: 'gpt-54', label: '⌘ GPT 5.4 Thinking (Estimated)', score: 64.6, sortOrder: 14, estimated: true },
       { modelId: 'gpt-xhigh', label: '⌘ GPT 5.2 Thinking xhigh', score: 72.7, sortOrder: 15 },
       { modelId: 'gpt-thinking', label: '⌘ GPT 5.2 Thinking', score: 63.3, sortOrder: 20 },
       { modelId: 'gpt-thinking-mini', label: '⌘ GPT 5 Thinking Mini', score: 66, sortOrder: 25 },
@@ -4073,20 +4105,19 @@
 
       // Create background colors array with striped pattern for non-reasoning models
       const baseColor = 'rgba(139, 92, 246, 0.7)';
+      const estimatedColor = 'rgba(139, 92, 246, 0.3)';
       const borderColor = 'rgba(139, 92, 246, 1)';
 
       let backgroundColors;
       if (useStripedPatternsForNonReasoning) {
         const stripedPattern = createStripedPattern(baseColor);
-        backgroundColors = labels.map(label => {
-          // Non-reasoning models get striped pattern
-          if (label === 'GPT 5.2 Instant' || label === 'Gemini 3 Flash') {
-            return stripedPattern;
-          }
+        backgroundColors = models.map(m => {
+          if (m.estimated) return estimatedColor;
+          if (m.label.includes('GPT 5.2 Instant') || m.label.includes('Gemini 3 Flash')) return stripedPattern;
           return baseColor;
         });
       } else {
-        backgroundColors = baseColor;
+        backgroundColors = models.map(m => m.estimated ? estimatedColor : baseColor);
       }
 
       return { labels, data, backgroundColors, borderColor };
@@ -4158,6 +4189,7 @@
       { modelId: 'gpt-codex2', label: '⌘ GPT 5.3 Codex', score: 79, sortOrder: 5 },
       { modelId: 'gpt-codex', label: '⌘ GPT 5.2 Codex', score: 76, sortOrder: 10 },
       { modelId: 'gpt-54-xhigh', label: '⌘ GPT 5.4 Thinking xhigh', score: 78, sortOrder: 12 },
+      { modelId: 'gpt-54', label: '⌘ GPT 5.4 Thinking (Estimated)', score: 74.0, sortOrder: 14, estimated: true },
       { modelId: 'gpt-xhigh', label: '⌘ GPT 5.2 Thinking xhigh', score: 79, sortOrder: 15 },
       { modelId: 'gpt-thinking', label: '⌘ GPT 5.2 Thinking', score: 75, sortOrder: 20 },
       { modelId: 'gpt-thinking-mini', label: '⌘ GPT 5 Thinking Mini', score: 69, sortOrder: 25 },
@@ -4197,20 +4229,19 @@
 
       // Create background colors array with striped pattern for non-reasoning models
       const baseColor = 'rgba(139, 92, 246, 0.7)';
+      const estimatedColor = 'rgba(139, 92, 246, 0.3)';
       const borderColor = 'rgba(139, 92, 246, 1)';
 
       let backgroundColors;
       if (useStripedPatternsForNonReasoning) {
         const stripedPattern = createStripedPattern(baseColor);
-        backgroundColors = labels.map(label => {
-          // Non-reasoning models get striped pattern
-          if (label === 'GPT 5.2 Instant' || label === 'Gemini 3 Flash') {
-            return stripedPattern;
-          }
+        backgroundColors = models.map(m => {
+          if (m.estimated) return estimatedColor;
+          if (m.label.includes('GPT 5.2 Instant') || m.label.includes('Gemini 3 Flash')) return stripedPattern;
           return baseColor;
         });
       } else {
-        backgroundColors = baseColor;
+        backgroundColors = models.map(m => m.estimated ? estimatedColor : baseColor);
       }
 
       return { labels, data, backgroundColors, borderColor };
@@ -4282,6 +4313,7 @@
       { modelId: 'gpt-codex2', label: '⌘ GPT 5.3 Codex', score: 53.0, sortOrder: 5 },
       { modelId: 'gpt-codex', label: '⌘ GPT 5.2 Codex', score: 37.1, sortOrder: 10 },
       { modelId: 'gpt-54-xhigh', label: '⌘ GPT 5.4 Thinking xhigh', score: 57.6, sortOrder: 12 },
+      { modelId: 'gpt-54', label: '⌘ GPT 5.4 Thinking (Estimated)', score: 53.8, sortOrder: 14, estimated: true },
       { modelId: 'gpt-xhigh', label: '⌘ GPT 5.2 Thinking xhigh', score: 47.0, sortOrder: 15 },
       { modelId: 'gpt-thinking', label: '⌘ GPT 5.2 Thinking', score: 43.2, sortOrder: 20 },
       { modelId: 'gpt-thinking-mini', label: '⌘ GPT 5 Thinking Mini', score: 28.8, sortOrder: 25 },
@@ -4321,19 +4353,19 @@
 
       // Create background colors array with striped pattern for non-reasoning models
       const baseColor = 'rgba(59, 130, 246, 0.7)';
+      const estimatedColor = 'rgba(59, 130, 246, 0.3)';
       const borderColor = 'rgba(59, 130, 246, 1)';
 
       let backgroundColors;
       if (useStripedPatternsForNonReasoning) {
         const stripedPattern = createStripedPattern(baseColor);
-        backgroundColors = labels.map(label => {
-          if (label === 'GPT 5.2 Instant' || label === 'Gemini 3 Flash') {
-            return stripedPattern;
-          }
+        backgroundColors = models.map(m => {
+          if (m.estimated) return estimatedColor;
+          if (m.label.includes('GPT 5.2 Instant') || m.label.includes('Gemini 3 Flash')) return stripedPattern;
           return baseColor;
         });
       } else {
-        backgroundColors = baseColor;
+        backgroundColors = models.map(m => m.estimated ? estimatedColor : baseColor);
       }
 
       return { labels, data, backgroundColors, borderColor };
@@ -4405,6 +4437,7 @@
       { modelId: 'gpt-codex2', label: '⌘ GPT 5.3 Codex', score: 90.9, sortOrder: 5 },
       { modelId: 'gpt-codex', label: '⌘ GPT 5.2 Codex', score: 92.1, sortOrder: 10 },
       { modelId: 'gpt-54-xhigh', label: '⌘ GPT 5.4 Thinking xhigh', score: 91.5, sortOrder: 12 },
+      { modelId: 'gpt-54', label: '⌘ GPT 5.4 Thinking (Estimated)', score: 81.0, sortOrder: 14, estimated: true },
       { modelId: 'gpt-xhigh', label: '⌘ GPT 5.2 Thinking xhigh', score: 84.8, sortOrder: 15 },
       { modelId: 'gpt-thinking', label: '⌘ GPT 5.2 Thinking', score: 74.3, sortOrder: 20 },
       { modelId: 'gpt-thinking-mini', label: '⌘ GPT 5 Thinking Mini', score: 71.1, sortOrder: 25 },
@@ -4444,19 +4477,19 @@
 
       // Create background colors array with striped pattern for non-reasoning models
       const baseColor = 'rgba(59, 130, 246, 0.7)';
+      const estimatedColor = 'rgba(59, 130, 246, 0.3)';
       const borderColor = 'rgba(59, 130, 246, 1)';
 
       let backgroundColors;
       if (useStripedPatternsForNonReasoning) {
         const stripedPattern = createStripedPattern(baseColor);
-        backgroundColors = labels.map(label => {
-          if (label === 'GPT 5.2 Instant' || label === 'Gemini 3 Flash') {
-            return stripedPattern;
-          }
+        backgroundColors = models.map(m => {
+          if (m.estimated) return estimatedColor;
+          if (m.label.includes('GPT 5.2 Instant') || m.label.includes('Gemini 3 Flash')) return stripedPattern;
           return baseColor;
         });
       } else {
-        backgroundColors = baseColor;
+        backgroundColors = models.map(m => m.estimated ? estimatedColor : baseColor);
       }
 
       return { labels, data, backgroundColors, borderColor };
@@ -5223,7 +5256,7 @@
     style="text-align: center; padding: 2rem 1rem; margin-top: 3rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.8rem;">
     Made by <strong> u/Pasto_Shouwa</strong>
     <br>
-    <em>Last updated on <strong>09/03/2026</strong> (dd/mm/yyyy)</em>
+    <em>Last updated on <strong>11/03/2026</strong> (dd/mm/yyyy)</em>
   </footer>
 </body>
 
