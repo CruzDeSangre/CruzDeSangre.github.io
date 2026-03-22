@@ -1535,11 +1535,19 @@
     }
 
     .dot-glm {
-      background: rgba(0, 0, 0, 0.85);
+      background: rgba(0, 0, 0, 1);
+    }
+
+    .dot-minimax {
+      background: rgba(230, 92, 73, 1);
+    }
+
+    .dot-mimo {
+      background: rgba(230, 143, 30, 1);
     }
 
     .dot-grok {
-      background: rgba(10, 10, 50, 0.85);
+      background: rgba(10, 10, 50, 1);
     }
 
     .dot-gpt-legacy {
@@ -2385,6 +2393,18 @@
                 <span class="model-dot-indicator dot-grok"></span>
                 <span class="model-dot-label">Grok 4.20 Expert</span>
               </div>
+              <div class="model-dot inactive" data-model="minimax-m27" onclick="toggleIndividualModel('minimax-m27')">
+                <span class="model-dot-indicator dot-minimax"></span>
+                <span class="model-dot-label">Minimax M2.7 Max</span>
+              </div>
+              <div class="model-dot inactive" data-model="mimo-v2-pro" onclick="toggleIndividualModel('mimo-v2-pro')">
+                <span class="model-dot-indicator dot-mimo"></span>
+                <span class="model-dot-label">Mimo V2 Pro</span>
+              </div>
+              <div class="model-dot inactive" data-model="mimo-v2-omni" onclick="toggleIndividualModel('mimo-v2-omni')">
+                <span class="model-dot-indicator dot-mimo"></span>
+                <span class="model-dot-label">Mimo V2 Omni</span>
+              </div>
             </div>
           </div>
 
@@ -2446,6 +2466,11 @@
               <div class="model-dot inactive" data-model="grok-42-fast" onclick="toggleIndividualModel('grok-42-fast')">
                 <span class="model-dot-indicator dot-grok"></span>
                 <span class="model-dot-label">Grok 4.20 Fast</span>
+              </div>
+              <div class="model-dot inactive" data-model="mimo-v2-flash"
+                onclick="toggleIndividualModel('mimo-v2-flash')">
+                <span class="model-dot-indicator dot-mimo"></span>
+                <span class="model-dot-label">Mimo V2 Flash</span>
               </div>
             </div>
           </div>
@@ -2624,10 +2649,10 @@
             <li>• Differs greatly from the next benchmark. While AA-LCR revolves around comprehending really long
               texts, MRCR v2 8-Needle evaluates the model capability to find specific information in those texts.</li>
             <li>• There are no benchmarks for 200k tokens.</li>
-            <li>• This benchmark currently does not provide support for GPT Codex models, non-reasoning Claude models
-              Grok models and GLM models. The newest GPT 5.4 Thinking and GPT 5.3 Instant have not been added either.
+            <li>• This benchmark doesn't support all models, thus it's likely some of the models selected do not appear
+              here.
             </li>
-            <li>• This benchmark has not yet published the full results for the Claude 4.6 models.
+            <li>• This benchmark has not published the full results for the Claude 4.6 models.
               It is only known that Claude Opus 4.6 Extended performs with an accuracy of >93% on 128k tokens and
               Claude Sonnet 4.6 Extended performs with an accuracy of >90.3% on 128k tokens.
               The remaining values were estimated by assuming a roughly linear trend on a log2 context-length scale.
@@ -2641,7 +2666,9 @@
               32k/128k/1M tokens (Free/Plus/Pro,Ultra).</li>
             <li>• Maximum context window of all <strong>Claude</strong> models is 200k tokens.</li>
             <li>• Maximum context window of all <strong>GLM</strong> models is 200k tokens.</li>
+            <li>• Maximum context window of all <strong>Minimax</strong> models is 200k tokens.</li>
             <li>• Maximum context window of all <strong>Grok</strong> models is supposed to be 2M tokens.</li>
+            <li>• Maximum context window of all <strong>Mimo</strong> models is supposed to be 1M tokens.</li>
             <li>• 1M tokens equals 1048k tokens, 2M tokens equals 2096k tokens.</li>
           </ul>
         </div>
@@ -2696,7 +2723,9 @@
               32k/128k/1M tokens (Free/Plus/Pro,Ultra).</li>
             <li>• Maximum context window of all <strong>Claude</strong> models is 200k tokens.</li>
             <li>• Maximum context window of all <strong>GLM</strong> models is 200k tokens.</li>
+            <li>• Maximum context window of all <strong>Minimax</strong> models is 200k tokens.</li>
             <li>• Maximum context window of all <strong>Grok</strong> models is supposed to be 2M tokens.</li>
+            <li>• Maximum context window of all <strong>Mimo</strong> models is supposed to be 1M tokens.</li>
             <li>• 1M tokens equals 1048k tokens, 2M tokens equals 2096k tokens.</li>
           </ul>
         </div>
@@ -2746,11 +2775,19 @@
             </li>
             <li>• <strong>Claude</strong> models are capable of understanding text and images.
             </li>
-            <li>• <strong>GLM 5 Deep Think</strong> and <strong>GLM 5</strong> are capable of understanding only text.
-              Their older model, GLM 4.6V, is capable of understanding images and video, however, it doesn't perform too
-              well.
+            <li>• <strong>GLM</strong> models are capable of understanding only text.
+              Image and video inputs are likely routed to GLM 4.6V Deep Think and GLM 4.6V respectively.
+            </li>
+            <li>• <strong>Minimax</strong> models are capable of understanding only text. Image and
+              video inputs are likely routed to Gemini 3 Pro.
             </li>
             <li>• <strong>Grok</strong> models are capable of understanding text and images.
+            </li>
+            <li>• <strong>Mimo V2 Pro</strong> and <strong>Mimo V2 Flash</strong> are capable of understanding only
+              text.
+            </li>
+            <li>• Models capable of understanding only text are usually able to understand text inside images, but
+              nothing else in them.
             </li>
           </ul>
         </div>
@@ -2854,14 +2891,24 @@
             the graph.</li>
           <li>• For "<strong>Claude Haiku 4.5</strong>", "<em>claude-haiku-4.5</em>" was used in
             the graph.</li>
-          <li>• For "<strong>GLM 5 Deep Think</strong>", "<em>glm-5:thinking</em>" was used in
-            the graph.</li>
-          <li>• For "<strong>GLM 5</strong>", "<em>glm-5</em>" was used in
-            the graph.</li>
           <li>• For "<strong>Grok 4.20 Expert</strong>", "<em>grok-4.20-beta-0309-reasoning</em>" was used in
             the graph.</li>
           <li>• For "<strong>Grok 4.20 Fast</strong>", "<em>grok-4.20-beta-0309-non-reasoning</em>" was used in
             the graph.</li>
+          <li>• For "<strong>GLM 5 Deep Think</strong>", "<em>glm-5:thinking</em>" was used in
+            the graph.</li>
+          <li>• For "<strong>GLM 5</strong>", "<em>glm-5</em>" was used in
+            the graph.</li>
+          <li>• For "<strong>Minimax M2.7 Max</strong>", "<em>minimax-m2.7:thinking</em>" was used in
+            the graph.</li>
+          <li>• For "<strong>Mimo V2 Pro</strong>", "<em>mimo-v2-pro</em>" was used in
+            the graph.</li>
+          <li>• For "<strong>Mimo V2 Omni</strong>", "<em>mimo-v2-omni</em>" was used in
+            the graph.</li>
+          <li>• For "<strong>Mimo V2 Flash</strong>", "<em>mimo-v2-flash</em>" was used in
+            the graph.</li>
+          <li>• I have not been able to find consistent graphs for the next models: GPT 5.3 Instant, GPT 5.4 Thinking,
+            Minimax M2.7 Air. I will add them immediately if I find some. </li>
           <li>• Claude Opus 4.6 Extended and Claude Sonnet 4.6 Extended are available for free to Gemini users through
             the Antigravity app, with limits that reset depending on demand.</li>
         </ul>
@@ -3137,7 +3184,11 @@
       'glm-deep-think': false,    // Other recommended, starts hidden
       'glm-5': false,             // Other recommended, starts hidden
       'grok-42-expert': false,    // Other recommended, starts hidden
-      'grok-42-fast': false       // Other recommended, starts hidden
+      'grok-42-fast': false,      // Other recommended, starts hidden
+      'minimax-m27': false,       // Other recommended, starts hidden
+      'mimo-v2-pro': false,       // Other recommended, starts hidden
+      'mimo-v2-omni': false,      // Other recommended, starts hidden
+      'mimo-v2-flash': false      // Other recommended, starts hidden
     };
 
     // Track which models were EXPLICITLY disabled by the user clicking the dot
@@ -3169,17 +3220,21 @@
       'glm-deep-think': false,    // Other recommended
       'glm-5': false,             // Other recommended
       'grok-42-expert': false,    // Other recommended
-      'grok-42-fast': false       // Other recommended
+      'grok-42-fast': false,      // Other recommended
+      'minimax-m27': false,       // Other recommended
+      'mimo-v2-pro': false,       // Other recommended
+      'mimo-v2-omni': false,      // Other recommended
+      'mimo-v2-flash': false      // Other recommended
     };
 
     // Model groups for group toggles
     const modelGroups = {
       'claude': ['claude-opus', 'claude-sonnet', 'claude-haiku', 'claude-46-opus', 'claude-46-sonnet', 'claude-46-opus-nr', 'claude-46-sonnet-nr', 'claude-opus-nr', 'claude-sonnet-nr', 'claude-haiku-nr'],
-      'reasoning': ['gpt-codex', 'gpt-codex2', 'gpt-54-xhigh', 'gpt-54', 'gpt-xhigh', 'gpt-thinking', 'gpt-thinking-mini', 'gemini-31-pro', 'gemini-pro', 'gemini-flash-thinking', 'claude-opus', 'claude-sonnet', 'claude-haiku', 'claude-46-opus', 'claude-46-sonnet', 'glm-deep-think', 'grok-42-expert'],
-      'instant': ['gemini-flash', 'claude-46-opus-nr', 'claude-46-sonnet-nr', 'claude-opus-nr', 'claude-sonnet-nr', 'claude-haiku-nr', 'glm-5', 'grok-42-fast'],
+      'reasoning': ['gpt-codex', 'gpt-codex2', 'gpt-54-xhigh', 'gpt-54', 'gpt-xhigh', 'gpt-thinking', 'gpt-thinking-mini', 'gemini-31-pro', 'gemini-pro', 'gemini-flash-thinking', 'claude-opus', 'claude-sonnet', 'claude-haiku', 'claude-46-opus', 'claude-46-sonnet', 'glm-deep-think', 'grok-42-expert', 'minimax-m27', 'mimo-v2-pro', 'mimo-v2-omni'],
+      'instant': ['gemini-flash', 'claude-46-opus-nr', 'claude-46-sonnet-nr', 'claude-opus-nr', 'claude-sonnet-nr', 'claude-haiku-nr', 'glm-5', 'grok-42-fast', 'mimo-v2-flash'],
       'chatgpt-pro': [],
       'coding': ['gpt-codex', 'gpt-codex2'],
-      'other': ['glm-deep-think', 'glm-5', 'grok-42-expert', 'grok-42-fast'],
+      'other': ['glm-deep-think', 'glm-5', 'grok-42-expert', 'grok-42-fast', 'minimax-m27', 'mimo-v2-pro', 'mimo-v2-omni', 'mimo-v2-flash'],
       'legacy': ['gpt-codex', 'gpt-xhigh', 'gpt-thinking', 'gpt-instant', 'claude-opus', 'claude-sonnet', 'claude-opus-nr', 'claude-sonnet-nr', 'gemini-pro']
     };
 
@@ -3211,7 +3266,11 @@
       'glm-deep-think': ['other', 'reasoning'],           // Needs both Other AND Reasoning to be on
       'glm-5': ['other', 'instant'],                      // Needs both Other AND Non-reasoning to be on
       'grok-42-expert': ['other', 'reasoning'],           // Needs both Other AND Reasoning to be on
-      'grok-42-fast': ['other', 'instant']                // Needs both Other AND Non-reasoning to be on
+      'grok-42-fast': ['other', 'instant'],               // Needs both Other AND Non-reasoning to be on
+      'minimax-m27': ['other', 'reasoning'],              // Needs both Other AND Reasoning to be on
+      'mimo-v2-pro': ['other', 'reasoning'],              // Needs both Other AND Reasoning to be on
+      'mimo-v2-omni': ['other', 'reasoning'],             // Needs both Other AND Reasoning to be on
+      'mimo-v2-flash': ['other', 'instant']               // Needs both Other AND Non-reasoning to be on
     };
 
     // Get the current state of a group toggle
@@ -3488,7 +3547,11 @@
       { modelId: 'glm-deep-think', label: 'Ƶ GLM 5 Deep Think', correct: 25.23, abstention: 48.98, hallucination: 25.79, sortOrder: 100 },
       { modelId: 'glm-5', label: 'Ƶ GLM 5', correct: 21.93, abstention: 43.24, hallucination: 34.83, sortOrder: 105 },
       { modelId: 'grok-42-expert', label: 'Ø Grok 4.20 Expert', correct: 28.92, abstention: 52.58, hallucination: 18.50, sortOrder: 110 },
-      { modelId: 'grok-42-fast', label: 'Ø Grok 4.20 Fast', correct: 26.02, abstention: 5.28, hallucination: 68.70, sortOrder: 115 }
+      { modelId: 'grok-42-fast', label: 'Ø Grok 4.20 Fast', correct: 26.02, abstention: 5.28, hallucination: 68.70, sortOrder: 115 },
+      { modelId: 'minimax-m27', label: '≋ Minimax M2.7 Max', correct: 26.12, abstention: 48.45, hallucination: 25.43, sortOrder: 117 },
+      { modelId: 'mimo-v2-pro', label: '⋔ Mimo V2 Pro', correct: 26.82, abstention: 51.28, hallucination: 21.90, sortOrder: 119 },
+      { modelId: 'mimo-v2-omni', label: '⋔ Mimo V2 Omni', correct: 18.68, abstention: 45.21, hallucination: 36.11, sortOrder: 121 },
+      { modelId: 'mimo-v2-flash', label: '⋔ Mimo V2 Flash', correct: 20.17, abstention: 41.20, hallucination: 38.63, sortOrder: 123 }
     ];
 
     // Current sort mode for omniscience: 'brand', 'hallucination', 'correct'
@@ -4119,7 +4182,11 @@
       { modelId: 'glm-deep-think', label: 'Ƶ GLM 5 Deep Think', score: 63.3, sortOrder: 100 },
       { modelId: 'glm-5', label: 'Ƶ GLM 5', score: 37.0, sortOrder: 105 },
       { modelId: 'grok-42-expert', label: 'Ø Grok 4.20 Expert', score: 59.0, sortOrder: 110 },
-      { modelId: 'grok-42-fast', label: 'Ø Grok 4.20 Fast', score: 18.0, sortOrder: 115 }
+      { modelId: 'grok-42-fast', label: 'Ø Grok 4.20 Fast', score: 18.0, sortOrder: 115 },
+      { modelId: 'minimax-m27', label: '≋ Minimax M2.7 Max', score: 68.7, sortOrder: 117 },
+      { modelId: 'mimo-v2-pro', label: '⋔ Mimo V2 Pro', score: 60.7, sortOrder: 119 },
+      { modelId: 'mimo-v2-omni', label: '⋔ Mimo V2 Omni', score: 66.7, sortOrder: 121 },
+      { modelId: 'mimo-v2-flash', label: '⋔ Mimo V2 Flash', score: 64.3, sortOrder: 123 }
     ];
 
     function getLcrData() {
@@ -4242,10 +4309,14 @@
       { modelId: 'claude-sonnet-nr', label: '❋ Claude 4.5 Sonnet', score: 65, sortOrder: 85 },
       { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', score: 58, sortOrder: 90 },
       { modelId: 'claude-haiku-nr', label: '❋ Claude 4.5 Haiku', score: 55, sortOrder: 95 },
-      { modelId: 'glm-deep-think', label: 'Ƶ GLM 5 Deep Think', score: 0, sortOrder: 100 },
-      { modelId: 'glm-5', label: 'Ƶ GLM 5', score: 0, sortOrder: 105 },
+      { modelId: 'glm-deep-think', label: 'Ƶ GLM 5 Deep Think (Estimated)', score: 49, sortOrder: 100, estimated: true },
+      { modelId: 'glm-5', label: 'Ƶ GLM 5 (Estimated)', score: 42, sortOrder: 105, estimated: true },
       { modelId: 'grok-42-expert', label: 'Ø Grok 4.20 Expert', score: 73, sortOrder: 110 },
-      { modelId: 'grok-42-fast', label: 'Ø Grok 4.20 Fast', score: 64, sortOrder: 115 }
+      { modelId: 'grok-42-fast', label: 'Ø Grok 4.20 Fast', score: 64, sortOrder: 115 },
+      { modelId: 'minimax-m27', label: '≋ Minimax M2.7 Max (Estimated)', score: 80, sortOrder: 117, estimated: true },
+      { modelId: 'mimo-v2-pro', label: '⋔ Mimo V2 Pro', score: 0, sortOrder: 119 },
+      { modelId: 'mimo-v2-omni', label: '⋔ Mimo V2 Omni', score: 66.7, sortOrder: 121 },
+      { modelId: 'mimo-v2-flash', label: '⋔ Mimo V2 Flash', score: 0, sortOrder: 123 }
     ];
 
     function getMmmuProData() {
@@ -4371,7 +4442,11 @@
       { modelId: 'glm-deep-think', label: 'Ƶ GLM 5 Deep Think', score: 43.2, sortOrder: 100 },
       { modelId: 'glm-5', label: 'Ƶ GLM 5', score: 39.4, sortOrder: 105 },
       { modelId: 'grok-42-expert', label: 'Ø Grok 4.20 Expert', score: 40.9, sortOrder: 110 },
-      { modelId: 'grok-42-fast', label: 'Ø Grok 4.20 Fast', score: 22.0, sortOrder: 115 }
+      { modelId: 'grok-42-fast', label: 'Ø Grok 4.20 Fast', score: 22.0, sortOrder: 115 },
+      { modelId: 'minimax-m27', label: '≋ Minimax M2.7 Max', score: 39.4, sortOrder: 117 },
+      { modelId: 'mimo-v2-pro', label: '⋔ Mimo V2 Pro', score: 40.9, sortOrder: 119 },
+      { modelId: 'mimo-v2-omni', label: '⋔ Mimo V2 Omni', score: 34.8, sortOrder: 121 },
+      { modelId: 'mimo-v2-flash', label: '⋔ Mimo V2 Flash', score: 31.1, sortOrder: 123 }
     ];
 
     function getTerminalBenchData() {
@@ -4497,7 +4572,11 @@
       { modelId: 'glm-deep-think', label: 'Ƶ GLM 5 Deep Think', score: 98.2, sortOrder: 100 },
       { modelId: 'glm-5', label: 'Ƶ GLM 5', score: 97.4, sortOrder: 105 },
       { modelId: 'grok-42-expert', label: 'Ø Grok 4.20 Expert', score: 96.5, sortOrder: 110 },
-      { modelId: 'grok-42-fast', label: 'Ø Grok 4.20 Fast', score: 69.6, sortOrder: 115 }
+      { modelId: 'grok-42-fast', label: 'Ø Grok 4.20 Fast', score: 69.6, sortOrder: 115 },
+      { modelId: 'minimax-m27', label: '≋ Minimax M2.7 Max', score: 84.8, sortOrder: 117 },
+      { modelId: 'mimo-v2-pro', label: '⋔ Mimo V2 Pro', score: 95, sortOrder: 119 },
+      { modelId: 'mimo-v2-omni', label: '⋔ Mimo V2 Omni', score: 91.2, sortOrder: 121 },
+      { modelId: 'mimo-v2-flash', label: '⋔ Mimo V2 Flash', score: 93.3, sortOrder: 123 }
     ];
 
     function getTau2BenchData() {
@@ -4833,9 +4912,9 @@
       });
     }
 
-    // Update visibility of GLM models in the list (hide rows completely if toggle is state 0)
+    // Update visibility of GLM/Minimax/Mimo models in the list (hide rows completely if toggle is state 0)
     function updateOtherModelsListVisibility() {
-      const modelsToHide = ['glm-deep-think', 'glm-5'];
+      const modelsToHide = ['glm-deep-think', 'glm-5', 'grok-42-expert', 'grok-42-fast', 'minimax-m27', 'mimo-v2-pro', 'mimo-v2-omni', 'mimo-v2-flash'];
       modelsToHide.forEach(id => {
         const dot = document.querySelector(`.model-dot[data-model="${id}"]`);
         if (dot) {
@@ -5296,7 +5375,7 @@
     style="text-align: center; padding: 2rem 1rem; margin-top: 3rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.8rem;">
     Made by <strong> u/Pasto_Shouwa</strong>
     <br>
-    <em>Last updated on <strong>14/03/2026</strong> (dd/mm/yyyy)</em>
+    <em>Last updated on <strong>22/03/2026</strong> (dd/mm/yyyy)</em>
   </footer>
 </body>
 
