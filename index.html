@@ -1833,8 +1833,12 @@
               <td class="rating-excellent">428<span class="detail">(3000/week)<span class="detail">[GPT 5.4
                     Thinking]</span></td>
               <td>3+9<span class="detail">[Gemini 3.1 Pro + Gemini 3 Flash Thinking]</span></td>
-              <td class="rating-great">30+90<span class="detail">[Gemini 3.1 Pro + Gemini 3 Flash Thinking]</span></td>
-              <td class="rating-great">100+300<span class="detail">[Gemini 3.1 Pro + Gemini 3 Flash Thinking]</span>
+              <td class="rating-great">30+90<span class="detail">(X every X hours)<span class="annotation"
+                    data-note="gemini-hourly-limits"></span><span class="detail">[Gemini 3.1 Pro +
+                    Gemini 3 Flash Thinking]</span></td>
+              <td class="rating-great">100+300<span class="detail">(X every X hours)<span class="annotation"
+                    data-note="gemini-hourly-limits"></span><span class="detail">[Gemini 3.1 Pro
+                    + Gemini 3 Flash Thinking]</span>
               </td>
             </tr>
             <tr>
@@ -2042,8 +2046,10 @@
               <td>Reasoning model limit per day</td>
               <td class="rating-excellent">Unlimited<span class="detail">[GPT 5.4 Pro + GPT 5.4 Thinking]</span>
               </td>
-              <td class="rating-great">10+500+1500<span class="detail">[Gemini 3.1 Deep
-                  Think + Gemini 3.1 Pro + Gemini 3 Flash Thinking]</span></td>
+              <td class="rating-great">10+500+1500<span class="detail">(X every X hours)<span class="annotation"
+                    data-note="gemini-hourly-limits"></span><span class="detail">[Gemini 3.1
+                    Deep
+                    Think + Gemini 3.1 Pro + Gemini 3 Flash Thinking]</span></td>
             </tr>
             <tr>
               <td>Non-reasoning model limit per day</td>
@@ -2278,28 +2284,7 @@
                 <span class="model-dot-label">Claude 4.5 Haiku</span>
               </div>
             </div>
-            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
-              <div class="model-dot" data-model="claude-opus" onclick="toggleIndividualModel('claude-opus')">
-                <span class="model-dot-indicator dot-claude-legacy shape-square"></span>
-                <span class="model-dot-label">Claude 4.5 Opus Extended</span>
-              </div>
-              <div class="model-dot" data-model="claude-sonnet" onclick="toggleIndividualModel('claude-sonnet')">
-                <span class="model-dot-indicator dot-claude-legacy"></span>
-                <span class="model-dot-label">Claude 4.5 Sonnet Extended</span>
-              </div>
-            </div>
-            <div class="model-dots-row">
-              <div class="model-dot inactive" data-model="claude-opus-nr"
-                onclick="toggleIndividualModel('claude-opus-nr')">
-                <span class="model-dot-indicator dot-claude-legacy shape-square"></span>
-                <span class="model-dot-label">Claude 4.5 Opus</span>
-              </div>
-              <div class="model-dot inactive" data-model="claude-sonnet-nr"
-                onclick="toggleIndividualModel('claude-sonnet-nr')">
-                <span class="model-dot-indicator dot-claude-legacy"></span>
-                <span class="model-dot-label">Claude 4.5 Sonnet</span>
-              </div>
-            </div>
+
           </div>
 
           <!-- Reasoning models -->
@@ -2321,16 +2306,7 @@
                 <span class="model-dot-label">GPT 5.4 Thinking</span>
               </div>
             </div>
-            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
-              <div class="model-dot inactive" data-model="gpt-xhigh" onclick="toggleIndividualModel('gpt-xhigh')">
-                <span class="model-dot-indicator dot-gpt-legacy shape-hexagon"></span>
-                <span class="model-dot-label">GPT 5.2 Thinking xhigh</span>
-              </div>
-              <div class="model-dot inactive" data-model="gpt-thinking" onclick="toggleIndividualModel('gpt-thinking')">
-                <span class="model-dot-indicator dot-gpt-legacy shape-square"></span>
-                <span class="model-dot-label">GPT 5.2 Thinking</span>
-              </div>
-            </div>
+
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot" data-model="gpt-thinking-mini"
                 onclick="toggleIndividualModel('gpt-thinking-mini')">
@@ -2349,12 +2325,7 @@
                 <span class="model-dot-label">Gemini 3 Flash Thinking</span>
               </div>
             </div>
-            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
-              <div class="model-dot" data-model="gemini-pro" onclick="toggleIndividualModel('gemini-pro')">
-                <span class="model-dot-indicator dot-gemini-legacy shape-cross"></span>
-                <span class="model-dot-label">Gemini 3 Pro</span>
-              </div>
-            </div>
+
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot inactive" data-model="claude-46-opus"
                 onclick="toggleIndividualModel('claude-46-opus')">
@@ -2371,21 +2342,22 @@
                 <span class="model-dot-label">Claude 4.5 Haiku Extended</span>
               </div>
             </div>
-            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
-              <div class="model-dot" data-model="claude-opus" onclick="toggleIndividualModel('claude-opus')">
-                <span class="model-dot-indicator dot-claude-legacy shape-square"></span>
-                <span class="model-dot-label">Claude 4.5 Opus Extended</span>
-              </div>
-              <div class="model-dot" data-model="claude-sonnet" onclick="toggleIndividualModel('claude-sonnet')">
-                <span class="model-dot-indicator dot-claude-legacy"></span>
-                <span class="model-dot-label">Claude 4.5 Sonnet Extended</span>
-              </div>
-            </div>
+
             <div class="model-dots-row">
               <div class="model-dot inactive" data-model="glm-deep-think"
                 onclick="toggleIndividualModel('glm-deep-think')">
                 <span class="model-dot-indicator dot-glm"></span>
                 <span class="model-dot-label">GLM 5 Deep Think</span>
+              </div>
+              <div class="model-dot inactive" data-model="glm-5t-deep-think"
+                onclick="toggleIndividualModel('glm-5t-deep-think')">
+                <span class="model-dot-indicator dot-glm"></span>
+                <span class="model-dot-label">GLM 5 Turbo Deep Think</span>
+              </div>
+              <div class="model-dot inactive" data-model="glm-5v-turbo-deep-think"
+                onclick="toggleIndividualModel('glm-5v-turbo-deep-think')">
+                <span class="model-dot-indicator dot-glm"></span>
+                <span class="model-dot-label">GLM 5V Turbo Deep Think</span>
               </div>
               <div class="model-dot inactive" data-model="grok-42-expert"
                 onclick="toggleIndividualModel('grok-42-expert')">
@@ -2445,18 +2417,7 @@
                 <span class="model-dot-label">Claude 4.5 Haiku</span>
               </div>
             </div>
-            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
-              <div class="model-dot inactive" data-model="claude-opus-nr"
-                onclick="toggleIndividualModel('claude-opus-nr')">
-                <span class="model-dot-indicator dot-claude-legacy shape-square"></span>
-                <span class="model-dot-label">Claude 4.5 Opus</span>
-              </div>
-              <div class="model-dot inactive" data-model="claude-sonnet-nr"
-                onclick="toggleIndividualModel('claude-sonnet-nr')">
-                <span class="model-dot-indicator dot-claude-legacy"></span>
-                <span class="model-dot-label">Claude 4.5 Sonnet</span>
-              </div>
-            </div>
+
             <div class="model-dots-row">
               <div class="model-dot inactive" data-model="glm-5" onclick="toggleIndividualModel('glm-5')">
                 <span class="model-dot-indicator dot-glm"></span>
@@ -2495,12 +2456,7 @@
                 <span class="model-dot-label">GPT 5.3 Codex</span>
               </div>
             </div>
-            <div class="model-dots-row">
-              <div class="model-dot" data-model="gpt-codex" onclick="toggleIndividualModel('gpt-codex')">
-                <span class="model-dot-indicator dot-gpt-legacy shape-square"></span>
-                <span class="model-dot-label">GPT 5.2 Codex</span>
-              </div>
-            </div>
+
           </div>
 
           <!-- Other recommended models -->
@@ -2775,13 +2731,14 @@
             <li>• <strong>Claude</strong> models are capable of understanding text and images.
             </li>
             <li>• <strong>GLM</strong> models are capable of understanding only text.
-              Image and video inputs are likely routed to GLM 4.6V Deep Think and GLM 4.6V respectively.
+              Image and video inputs are likely routed to GLM 5V Turbo Deep Think and GLM 5V Turbo respectively.
             </li>
             <li>• <strong>Minimax</strong> models are capable of understanding only text. Image and
               video inputs are likely routed to Gemini 3 Pro.
             </li>
             <li>• <strong>Grok</strong> models are capable of understanding text and images.
             </li>
+            <li>• <strong>Mimo V2 Omni</strong> is capable of understanding text, images, video and audio.
             <li>• <strong>Mimo V2 Pro</strong> and <strong>Mimo V2 Flash</strong> are capable of understanding only
               text.
             </li>
@@ -2921,33 +2878,7 @@
         </div>
         <div class="notes-content">
           <ul class="notes-list">
-            <li>• For "<strong>GPT 5.2 Thinking xhigh</strong>", "<em>gpt-5.2:xhigh</em>" was used in the graph.
-              A weaker (x0.67 maximum reasoning time) version of this model is available only for ChatGPT Pro accounts,
-              by
-              selecting "heavy" as the thinking effort with 5.2 Thinking or "standard" as the thinking effort with 5.2
-              Pro.
-              The actual model is available only when selecting "extended" as the thinking effort with 5.2 Pro.
-            </li>
-            <li>• For "<strong>GPT 5.2 Thinking</strong>", "<em>gpt-5.2:medium</em>" was used in the graph.
-              A stronger (x4 maximum reasoning time) version of this model is available for ChatGPT Plus and Pro
-              accounts,
-              by selecting "extended" as the thinking effort with 5.2 Thinking. Selecting "standard" as the thinking
-              effort actually uses a model weaker than it (x0.25 maximum reasoning time).
-              There are unfortunately no benchmarks for those two exact models.
-            </li>
             <li>• For "<strong>GPT 5.2 Instant</strong>", "<em>gpt-5.2</em>" was used in the graph.</li>
-            <li>• For "<strong>GPT 5.2 Codex</strong>", "<em>gpt-5.2-codex:xhigh</em>" was used in the graph. This model
-              is deprecated.</li>
-            <li>• For "<strong>Gemini 3 Pro</strong>", "<em>gemini-3-pro-preview:high</em>" was used in the
-              graph. This model is deprecated.</li>
-            <li>• For "<strong>Claude Opus 4.5 Extended</strong>", "<em>claude-opus-4.5:thinking</em>" was used in
-              the graph.</li>
-            <li>• For "<strong>Claude Opus 4.5</strong>", "<em>claude-opus-4.5</em>" was used in
-              the graph.</li>
-            <li>• For "<strong>Claude Sonnet 4.5 Extended</strong>", "<em>claude-sonnet-4.5:thinking</em>" was used
-              in the graph.</li>
-            <li>• For "<strong>Claude Sonnet 4.5</strong>", "<em>claude-sonnet-4.5</em>" was used
-              in the graph.</li>
           </ul>
         </div>
       </div>
@@ -3020,6 +2951,7 @@
       'age-verification': "Which age verification method is better depends on whether you're more comfortable sharing proof of a credit card (or an ID if you don't have one) with Google, or sharing your ID with Persona Identities.",
       'chatgpt-pulse': "ChatGPT can proactively research topics and present them as a briefing, unprompted, through ChatGPT Pulse.",
       'nano-banana-pro-uses': "Consumes one use of Nano Banana Pro and one use of Nano Banana 2.",
+      'gemini-hourly-limits': "While limits of the reasoning models of Gemini are supposed to be limited per day, when demand is too high, the limits may work per 1 or 2 hours. This should end up giving the user the advertised limits anyways, but limiting the speed at which the user can work.",
     };
 
     function toSuperscript(num) {
@@ -3158,118 +3090,100 @@
 
     // Individual model visibility
     const modelVisibility = {
-      'gpt-codex': false,      // Starts hidden (legacy)
       'gpt-codex2': false,     // Starts hidden (coding toggle off)
       'gpt-54-xhigh': true,
       'gpt-54': true,
-      'gpt-xhigh': false,      // Starts hidden (legacy)
-      'gpt-thinking': false,   // Starts hidden (legacy)
       'gpt-thinking-mini': true,
       'gpt-instant': false,    // Starts hidden (legacy)
       'gemini-31-pro': true,
-      'gemini-pro': false,       // Starts hidden (legacy)
       'gemini-flash-thinking': true,
       'gemini-flash': true,
-      'claude-opus': false,    // Starts hidden by default
-      'claude-sonnet': false,  // Starts hidden by default
       'claude-haiku': false,   // Starts hidden by default
       'claude-46-opus': true,     // Starts visible by default
       'claude-46-sonnet': true,   // Starts visible by default
       'claude-46-opus-nr': false, // Starts hidden by default
       'claude-46-sonnet-nr': false, // Starts hidden by default
-      'claude-opus-nr': false,    // Non-reasoning, starts hidden (legacy)
-      'claude-sonnet-nr': false,  // Non-reasoning, starts hidden (legacy)
       'claude-haiku-nr': false,   // Non-reasoning, starts hidden
-      'glm-deep-think': false,    // Other recommended, starts hidden
-      'glm-5': false,             // Other recommended, starts hidden
-      'grok-42-expert': false,    // Other recommended, starts hidden
-      'grok-42-fast': false,      // Other recommended, starts hidden
-      'minimax-m27': false,       // Other recommended, starts hidden
-      'mimo-v2-pro': false,       // Other recommended, starts hidden
-      'mimo-v2-omni': false,      // Other recommended, starts hidden
-      'mimo-v2-flash': false      // Other recommended, starts hidden
+      'glm-deep-think': false,       // Other recommended, starts hidden
+      'glm-5': false,                // Other recommended, starts hidden
+      'glm-5t-deep-think': false,    // Other recommended, starts hidden
+      'glm-5v-turbo-deep-think': false, // Other recommended, starts hidden
+      'grok-42-expert': false,       // Other recommended, starts hidden
+      'grok-42-fast': false,         // Other recommended, starts hidden
+      'minimax-m27': false,          // Other recommended, starts hidden
+      'mimo-v2-pro': false,          // Other recommended, starts hidden
+      'mimo-v2-omni': false,         // Other recommended, starts hidden
+      'mimo-v2-flash': false         // Other recommended, starts hidden
     };
 
     // Track which models were EXPLICITLY disabled by the user clicking the dot
     // When a group toggle is turned ON, models that were explicitly disabled stay disabled
     // When a group toggle is turned OFF, all models in group are disabled (not marked as explicit)
     const modelExplicitlyDisabled = {
-      'gpt-codex': true,           // Starts explicitly disabled (legacy)
       'gpt-codex2': false,
       'gpt-54-xhigh': false,
       'gpt-54': false,
-      'gpt-xhigh': true,           // Starts explicitly disabled (legacy)
-      'gpt-thinking': true,        // Starts explicitly disabled (legacy)
       'gpt-thinking-mini': false,
       'gpt-instant': true,         // Starts explicitly disabled (legacy)
       'gemini-31-pro': false,
-      'gemini-pro': true,          // Starts explicitly disabled (legacy)
       'gemini-flash-thinking': false,
       'gemini-flash': false,
-      'claude-opus': true,     // Starts explicitly disabled
-      'claude-sonnet': true,   // Starts explicitly disabled
       'claude-haiku': true,    // Starts explicitly disabled
       'claude-46-opus': false,    // Starts enabled by default
       'claude-46-sonnet': false,  // Starts enabled by default
       'claude-46-opus-nr': true,  // Starts explicitly disabled
       'claude-46-sonnet-nr': true, // Starts explicitly disabled
-      'claude-opus-nr': true,     // Starts explicitly disabled (legacy)
-      'claude-sonnet-nr': true,   // Starts explicitly disabled (legacy)
       'claude-haiku-nr': true,    // Starts explicitly disabled
-      'glm-deep-think': false,    // Other recommended
-      'glm-5': false,             // Other recommended
-      'grok-42-expert': false,    // Other recommended
-      'grok-42-fast': false,      // Other recommended
-      'minimax-m27': false,       // Other recommended
-      'mimo-v2-pro': false,       // Other recommended
-      'mimo-v2-omni': false,      // Other recommended
-      'mimo-v2-flash': false      // Other recommended
+      'glm-deep-think': false,          // Other recommended
+      'glm-5': false,                   // Other recommended
+      'glm-5t-deep-think': false,       // Other recommended
+      'glm-5v-turbo-deep-think': false, // Other recommended
+      'grok-42-expert': false,          // Other recommended
+      'grok-42-fast': false,            // Other recommended
+      'minimax-m27': false,             // Other recommended
+      'mimo-v2-pro': false,             // Other recommended
+      'mimo-v2-omni': false,            // Other recommended
+      'mimo-v2-flash': false            // Other recommended
     };
 
     // Model groups for group toggles
     const modelGroups = {
-      'claude': ['claude-opus', 'claude-sonnet', 'claude-haiku', 'claude-46-opus', 'claude-46-sonnet', 'claude-46-opus-nr', 'claude-46-sonnet-nr', 'claude-opus-nr', 'claude-sonnet-nr', 'claude-haiku-nr'],
-      'reasoning': ['gpt-codex', 'gpt-codex2', 'gpt-54-xhigh', 'gpt-54', 'gpt-xhigh', 'gpt-thinking', 'gpt-thinking-mini', 'gemini-31-pro', 'gemini-pro', 'gemini-flash-thinking', 'claude-opus', 'claude-sonnet', 'claude-haiku', 'claude-46-opus', 'claude-46-sonnet', 'glm-deep-think', 'grok-42-expert', 'minimax-m27', 'mimo-v2-pro', 'mimo-v2-omni'],
-      'instant': ['gemini-flash', 'claude-46-opus-nr', 'claude-46-sonnet-nr', 'claude-opus-nr', 'claude-sonnet-nr', 'claude-haiku-nr', 'glm-5', 'grok-42-fast', 'mimo-v2-flash'],
+      'claude': ['claude-haiku', 'claude-46-opus', 'claude-46-sonnet', 'claude-46-opus-nr', 'claude-46-sonnet-nr', 'claude-haiku-nr'],
+      'reasoning': ['gpt-codex2', 'gpt-54-xhigh', 'gpt-54', 'gpt-thinking-mini', 'gemini-31-pro', 'gemini-flash-thinking', 'claude-haiku', 'claude-46-opus', 'claude-46-sonnet', 'glm-deep-think', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-42-expert', 'minimax-m27', 'mimo-v2-pro', 'mimo-v2-omni'],
+      'instant': ['gemini-flash', 'claude-46-opus-nr', 'claude-46-sonnet-nr', 'claude-haiku-nr', 'glm-5', 'grok-42-fast', 'mimo-v2-flash'],
       'chatgpt-pro': [],
-      'coding': ['gpt-codex', 'gpt-codex2'],
-      'other': ['glm-deep-think', 'glm-5', 'grok-42-expert', 'grok-42-fast', 'minimax-m27', 'mimo-v2-pro', 'mimo-v2-omni', 'mimo-v2-flash'],
-      'legacy': ['gpt-codex', 'gpt-xhigh', 'gpt-thinking', 'gpt-instant', 'claude-opus', 'claude-sonnet', 'claude-opus-nr', 'claude-sonnet-nr', 'gemini-pro']
+      'coding': ['gpt-codex2'],
+      'other': ['glm-deep-think', 'glm-5', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-42-expert', 'grok-42-fast', 'minimax-m27', 'mimo-v2-pro', 'mimo-v2-omni', 'mimo-v2-flash'],
+      'legacy': ['gpt-instant']
     };
 
     // Model constraints: which group toggles must ALL be active for a model to be visible
     // When a group is turned ON, models are only activated if all their other constraints are met
     const modelConstraints = {
-      'gpt-codex': ['reasoning', 'coding', 'legacy'],  // Needs Reasoning AND Coding AND Legacy to be on
       'gpt-codex2': ['reasoning', 'coding'],            // Needs Reasoning AND Coding to be on
       'gpt-54-xhigh': ['reasoning'],                    // Only needs Reasoning
       'gpt-54': ['reasoning'],                           // Only needs Reasoning
-      'gpt-xhigh': ['reasoning', 'legacy'],             // Needs Reasoning AND Legacy to be on
-      'gpt-thinking': ['reasoning', 'legacy'],          // Needs Reasoning AND Legacy to be on
       'gpt-thinking-mini': ['reasoning'],               // Only needs Reasoning
       'gpt-instant': ['instant', 'legacy'],              // Needs Non-reasoning AND Legacy
       'gemini-31-pro': ['reasoning'],                   // Only needs Reasoning
-      'gemini-pro': ['reasoning', 'legacy'],             // Needs Reasoning AND Legacy
       'gemini-flash-thinking': ['reasoning'],          // Only needs Reasoning
       'gemini-flash': ['instant'],                     // Only needs Non-reasoning
-      'claude-opus': ['claude', 'reasoning', 'legacy'],    // Needs Claude AND Reasoning AND Legacy
-      'claude-sonnet': ['claude', 'reasoning', 'legacy'],  // Needs Claude AND Reasoning AND Legacy
       'claude-haiku': ['claude', 'reasoning'],         // Needs both Claude AND Reasoning to be on
       'claude-46-opus': ['claude', 'reasoning'],       // Needs both Claude AND Reasoning to be on
       'claude-46-sonnet': ['claude', 'reasoning'],     // Needs both Claude AND Reasoning to be on
       'claude-46-opus-nr': ['claude', 'instant'],      // Needs both Claude AND Non-reasoning to be on
       'claude-46-sonnet-nr': ['claude', 'instant'],    // Needs both Claude AND Non-reasoning to be on
-      'claude-opus-nr': ['claude', 'instant', 'legacy'],   // Needs Claude AND Non-reasoning AND Legacy
-      'claude-sonnet-nr': ['claude', 'instant', 'legacy'], // Needs Claude AND Non-reasoning AND Legacy
       'claude-haiku-nr': ['claude', 'instant'],         // Needs both Claude AND Non-reasoning to be on
-      'glm-deep-think': ['other', 'reasoning'],           // Needs both Other AND Reasoning to be on
-      'glm-5': ['other', 'instant'],                      // Needs both Other AND Non-reasoning to be on
-      'grok-42-expert': ['other', 'reasoning'],           // Needs both Other AND Reasoning to be on
-      'grok-42-fast': ['other', 'instant'],               // Needs both Other AND Non-reasoning to be on
-      'minimax-m27': ['other', 'reasoning'],              // Needs both Other AND Reasoning to be on
-      'mimo-v2-pro': ['other', 'reasoning'],              // Needs both Other AND Reasoning to be on
-      'mimo-v2-omni': ['other', 'reasoning'],             // Needs both Other AND Reasoning to be on
-      'mimo-v2-flash': ['other', 'instant']               // Needs both Other AND Non-reasoning to be on
+      'glm-deep-think': ['other', 'reasoning'],              // Needs both Other AND Reasoning to be on
+      'glm-5': ['other', 'instant'],                         // Needs both Other AND Non-reasoning to be on
+      'glm-5t-deep-think': ['other', 'reasoning'],           // Needs both Other AND Reasoning to be on
+      'glm-5v-turbo-deep-think': ['other', 'reasoning'],     // Needs both Other AND Reasoning to be on
+      'grok-42-expert': ['other', 'reasoning'],              // Needs both Other AND Reasoning to be on
+      'grok-42-fast': ['other', 'instant'],                  // Needs both Other AND Non-reasoning to be on
+      'minimax-m27': ['other', 'reasoning'],                 // Needs both Other AND Reasoning to be on
+      'mimo-v2-pro': ['other', 'reasoning'],                 // Needs both Other AND Reasoning to be on
+      'mimo-v2-omni': ['other', 'reasoning'],                // Needs both Other AND Reasoning to be on
+      'mimo-v2-flash': ['other', 'instant']                  // Needs both Other AND Non-reasoning to be on
     };
 
     // Get the current state of a group toggle
@@ -3503,54 +3417,44 @@
     //
     // Current order:
     //   5:  ⌘ GPT 5.3 Codex (coding toggle)
-    //   10: ⌘ GPT 5.2 Codex (coding toggle, legacy)
     //   12: ⌘ GPT 5.4 Thinking xhigh
     //   14: ⌘ GPT 5.4 Thinking
-    //   15: ⌘ GPT 5.2 Thinking xhigh (legacy)
-    //   20: ⌘ GPT 5.2 Thinking (legacy)
     //   25: ⌘ GPT 5 Thinking Mini
-    //   30: ⌘ GPT 5.2 Instant (instant toggle)
+    //   30: ⌘ GPT 5.2 Instant (instant toggle, legacy)
     //   35: ✦ Gemini 3.1 Pro
-    //   40: ✦ Gemini 3 Pro
     //   50: ✦ Gemini 3 Flash Thinking
     //   60: ✦ Gemini 3 Flash (instant toggle)
-    //   70: ❋ Claude 4.5 Opus Extended (claude toggle)
-    //   80: ❋ Claude 4.5 Sonnet Extended (claude toggle)
+    //   65: ❋ Claude 4.6 Opus Extended (claude toggle)
+    //   67: ❋ Claude 4.6 Sonnet Extended (claude toggle)
     //   90: ❋ Claude 4.5 Haiku Extended (claude toggle)
     // ============================================================================
 
     // Base data for AA-Omniscience using object structure with sortOrder and modelId
     const omniscienceAllModels = [
-      { modelId: 'gpt-codex2', label: '⌘ GPT 5.3 Codex', correct: 51.78, abstention: 6.32, hallucination: 41.90, sortOrder: 5 },
-      { modelId: 'gpt-codex', label: '⌘ GPT 5.2 Codex', correct: 38.45, abstention: 17.55, hallucination: 44.0, sortOrder: 10 },
-      { modelId: 'gpt-54-xhigh', label: '⌘ GPT 5.4 Thinking xhigh', correct: 49.98, abstention: 5.68, hallucination: 44.34, sortOrder: 12 },
-      { modelId: 'gpt-54', label: '⌘ GPT 5.4 Thinking (Estimated)', correct: 44.16, abstention: 18.37, hallucination: 37.47, sortOrder: 14, estimated: true },
-      { modelId: 'gpt-xhigh', label: '⌘ GPT 5.2 Thinking xhigh', correct: 41.35, abstention: 12.99, hallucination: 45.66, sortOrder: 15 },
-      { modelId: 'gpt-thinking', label: '⌘ GPT 5.2 Thinking', correct: 35.53, abstention: 25.68, hallucination: 38.79, sortOrder: 20 },
-      { modelId: 'gpt-thinking-mini', label: '⌘ GPT 5 Thinking Mini', correct: 27.22, abstention: 41.21, hallucination: 31.57, sortOrder: 25 },
-      { modelId: 'gpt-instant', label: '⌘ GPT 5.2 Instant', correct: 27.95, abstention: 29.32, hallucination: 42.73, sortOrder: 30 },
-      { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro', correct: 53.10, abstention: 23.58, hallucination: 23.32, sortOrder: 35 },
-      { modelId: 'gemini-pro', label: '✦ Gemini 3 Pro', correct: 53.65, abstention: 4.20, hallucination: 42.16, sortOrder: 40 },
-      { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', correct: 51.87, abstention: 4.50, hallucination: 43.63, sortOrder: 50 },
-      { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', correct: 47.15, abstention: 6.35, hallucination: 46.50, sortOrder: 60 },
-      { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Extended', correct: 46.38, abstention: 20.79, hallucination: 32.38, sortOrder: 65 },
-      { modelId: 'claude-46-opus-nr', label: '❋ Claude 4.6 Opus', correct: 45.15, abstention: 13.16, hallucination: 41.69, sortOrder: 66 },
-      { modelId: 'claude-46-sonnet', label: '❋ Claude 4.6 Sonnet Extended', correct: 40.03, abstention: 32.38, hallucination: 27.59, sortOrder: 67 },
-      { modelId: 'claude-46-sonnet-nr', label: '❋ Claude 4.6 Sonnet', correct: 37.97, abstention: 21.13, hallucination: 40.90, sortOrder: 68 },
-      { modelId: 'claude-opus', label: '❋ Claude 4.5 Opus Extended', correct: 43.12, abstention: 24.00, hallucination: 32.88, sortOrder: 70 },
-      { modelId: 'claude-opus-nr', label: '❋ Claude 4.5 Opus', correct: 38.90, abstention: 15.75, hallucination: 45.35, sortOrder: 75 },
-      { modelId: 'claude-sonnet', label: '❋ Claude 4.5 Sonnet Extended', correct: 30.90, abstention: 36.12, hallucination: 32.98, sortOrder: 80 },
-      { modelId: 'claude-sonnet-nr', label: '❋ Claude 4.5 Sonnet', correct: 26.93, abstention: 35.48, hallucination: 37.59, sortOrder: 85 },
-      { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', correct: 17.43, abstention: 60.92, hallucination: 21.65, sortOrder: 90 },
-      { modelId: 'claude-haiku-nr', label: '❋ Claude 4.5 Haiku', correct: 13.67, abstention: 64.96, hallucination: 21.37, sortOrder: 95 },
-      { modelId: 'glm-deep-think', label: 'Ƶ GLM 5 Deep Think', correct: 25.23, abstention: 48.98, hallucination: 25.79, sortOrder: 100 },
-      { modelId: 'glm-5', label: 'Ƶ GLM 5', correct: 21.93, abstention: 43.24, hallucination: 34.83, sortOrder: 105 },
-      { modelId: 'grok-42-expert', label: 'Ø Grok 4.20 Expert', correct: 28.92, abstention: 52.58, hallucination: 18.50, sortOrder: 110 },
-      { modelId: 'grok-42-fast', label: 'Ø Grok 4.20 Fast', correct: 26.02, abstention: 5.28, hallucination: 68.70, sortOrder: 115 },
-      { modelId: 'minimax-m27', label: '≋ Minimax M2.7 Max', correct: 26.12, abstention: 48.45, hallucination: 25.43, sortOrder: 117 },
-      { modelId: 'mimo-v2-pro', label: '⋔ Mimo V2 Pro', correct: 26.82, abstention: 51.28, hallucination: 21.90, sortOrder: 119 },
-      { modelId: 'mimo-v2-omni', label: '⋔ Mimo V2 Omni', correct: 18.68, abstention: 45.21, hallucination: 36.11, sortOrder: 121 },
-      { modelId: 'mimo-v2-flash', label: '⋔ Mimo V2 Flash', correct: 20.17, abstention: 41.20, hallucination: 38.63, sortOrder: 123 }
+      { modelId: 'gpt-codex2', label: '⌘ GPT 5.3 Codex', correct: 52, abstention: 6.24, hallucination: 41.76, sortOrder: 5 },
+      { modelId: 'gpt-54-xhigh', label: '⌘ GPT 5.4 Thinking xhigh', correct: 50, abstention: 5.5, hallucination: 44.5, sortOrder: 12 },
+      { modelId: 'gpt-54', label: '⌘ GPT 5.4 Thinking (Estimated)', correct: 44.18, abstention: 18.19, hallucination: 37.63, sortOrder: 14, estimated: true },
+      { modelId: 'gpt-thinking-mini', label: '⌘ GPT 5 Thinking Mini', correct: 22, abstention: 45.24, hallucination: 32.76, sortOrder: 25 },
+      { modelId: 'gpt-instant', label: '⌘ GPT 5.2 Instant', correct: 29, abstention: 27.69, hallucination: 43.31, sortOrder: 30 },
+      { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro', correct: 55, abstention: 22.5, hallucination: 22.5, sortOrder: 35 },
+      { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', correct: 54, abstention: 3.68, hallucination: 42.32, sortOrder: 50 },
+      { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', correct: 46, abstention: 5.4, hallucination: 48.6, sortOrder: 60 },
+      { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Extended', correct: 46, abstention: 21.06, hallucination: 32.94, sortOrder: 65 },
+      { modelId: 'claude-46-opus-nr', label: '❋ Claude 4.6 Opus', correct: 45, abstention: 13.2, hallucination: 41.8, sortOrder: 66 },
+      { modelId: 'claude-46-sonnet', label: '❋ Claude 4.6 Sonnet Extended', correct: 40, abstention: 32.4, hallucination: 27.6, sortOrder: 67 },
+      { modelId: 'claude-46-sonnet-nr', label: '❋ Claude 4.6 Sonnet', correct: 38, abstention: 21.08, hallucination: 40.92, sortOrder: 68 },
+      { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', correct: 17, abstention: 61.42, hallucination: 21.58, sortOrder: 90 },
+      { modelId: 'claude-haiku-nr', label: '❋ Claude 4.5 Haiku', correct: 14, abstention: 64.50, hallucination: 21.50, sortOrder: 95 },
+      { modelId: 'glm-deep-think', label: 'Ƶ GLM 5 Deep Think', correct: 27, abstention: 48.18, hallucination: 24.82, sortOrder: 100 },
+      { modelId: 'glm-5', label: 'Ƶ GLM 5', correct: 23, abstention: 43.12, hallucination: 33.88, sortOrder: 105 },
+      { modelId: 'glm-5t-deep-think', label: 'Ƶ GLM 5 Turbo Deep Think', correct: 29, abstention: 26.98, hallucination: 44.02, sortOrder: 107 },
+      { modelId: 'glm-5v-turbo-deep-think', label: 'Ƶ GLM 5V Turbo Deep Think', correct: 29, abstention: 22.72, hallucination: 48.28, sortOrder: 109 },
+      { modelId: 'grok-42-expert', label: 'Ø Grok 4.20 Expert', correct: 29, abstention: 55.38, hallucination: 15.62, sortOrder: 110 },
+      { modelId: 'grok-42-fast', label: 'Ø Grok 4.20 Fast', correct: 26, abstention: 5.18, hallucination: 68.82, sortOrder: 115 },
+      { modelId: 'minimax-m27', label: '≋ Minimax M2.7 Max', correct: 26, abstention: 48.84, hallucination: 25.16, sortOrder: 117 },
+      { modelId: 'mimo-v2-pro', label: '⋔ Mimo V2 Pro', correct: 27, abstention: 51.1, hallucination: 21.90, sortOrder: 119 },
+      { modelId: 'mimo-v2-omni', label: '⋔ Mimo V2 Omni', correct: 19, abstention: 45.36, hallucination: 35.64, sortOrder: 121 },
+      { modelId: 'mimo-v2-flash', label: '⋔ Mimo V2 Flash', correct: 20, abstention: 41.60, hallucination: 38.40, sortOrder: 123 }
     ];
 
     // Current sort mode for omniscience: 'brand', 'hallucination', 'correct'
@@ -3823,7 +3727,6 @@
     });
 
     // Base datasets for MRCR - with modelId for filtering and sortOrder for ordering
-    // Note: GPT 5.2 Codex has no data for MRCR v2 8-Needle, so it's not included here
     const mrcrAllDatasets = [
       {
         modelId: 'gpt-54-xhigh',
@@ -3857,34 +3760,7 @@
         sortOrder: 14,
         isEstimatedBand: true
       },
-      {
-        modelId: 'gpt-xhigh',
-        label: 'GPT 5.2 Thinking xhigh',
-        data: [95.4, 87.9, 93.1, 88.2, 75.7, 63.9, null],
-        borderColor: 'rgba(100, 150, 135, 1)',
-        backgroundColor: 'rgba(100, 150, 135, 0.7)',
-        borderWidth: 3,
-        tension: 0.3,
-        pointRadius: 6,
-        pointHoverRadius: 8,
-        pointBackgroundColor: 'rgba(100, 150, 135, 1)',
-        spanGaps: false,
-        sortOrder: 15
-      },
-      {
-        modelId: 'gpt-thinking',
-        label: 'GPT 5.2 Thinking',
-        data: [87.9, 78.2, 75.7, 66.7, 63.1, 52.8, null],
-        borderColor: 'rgba(100, 150, 135, 0.7)',
-        backgroundColor: 'rgba(100, 150, 135, 0.5)',
-        borderWidth: 2,
-        tension: 0.3,
-        pointRadius: 5,
-        pointHoverRadius: 7,
-        pointBackgroundColor: 'rgba(100, 150, 135, 0.7)',
-        spanGaps: false,
-        sortOrder: 20
-      },
+
       {
         modelId: 'gpt-thinking-mini',
         label: 'GPT 5 Thinking Mini',
@@ -3928,19 +3804,7 @@
         spanGaps: false,
         sortOrder: 35
       },
-      {
-        modelId: 'gemini-pro',
-        label: 'Gemini 3 Pro',
-        data: [98.0, 91.3, 86.6, 72.1, 54.2, 45.4, 24.5],
-        borderColor: 'rgba(180, 110, 120, 1)',
-        backgroundColor: 'rgba(180, 110, 120, 0.7)',
-        borderWidth: 3,
-        tension: 0.3,
-        pointRadius: 6,
-        pointHoverRadius: 8,
-        pointBackgroundColor: 'rgba(180, 110, 120, 1)',
-        sortOrder: 40
-      },
+
       {
         modelId: 'gemini-flash-thinking',
         label: 'Gemini 3 Flash Thinking',
@@ -4000,34 +3864,7 @@
         sortOrder: 63,
         isEstimatedBand: true
       },
-      {
-        modelId: 'claude-opus',
-        label: 'Claude 4.5 Opus Extended',
-        data: [78.0, 56.2, 46.7, 35.3, 27.1, null, null],
-        borderColor: 'rgba(180, 140, 100, 1)',
-        backgroundColor: 'rgba(180, 140, 100, 0.5)',
-        borderWidth: 3,
-        tension: 0.3,
-        pointRadius: 6,
-        pointHoverRadius: 8,
-        pointBackgroundColor: 'rgba(180, 140, 100, 1)',
-        spanGaps: false,
-        sortOrder: 70
-      },
-      {
-        modelId: 'claude-sonnet',
-        label: 'Claude 4.5 Sonnet Extended',
-        data: [48.9, 42.4, 32.8, 26.0, 16.6, null, null],
-        borderColor: 'rgba(180, 140, 100, 0.7)',
-        backgroundColor: 'rgba(180, 140, 100, 0.5)',
-        borderWidth: 2,
-        tension: 0.3,
-        pointRadius: 5,
-        pointHoverRadius: 7,
-        pointBackgroundColor: 'rgba(180, 140, 100, 0.7)',
-        spanGaps: false,
-        sortOrder: 80
-      },
+
       {
         modelId: 'claude-haiku',
         label: 'Claude 4.5 Haiku Extended',
@@ -4157,29 +3994,23 @@
     let lcrChart;
     const lcrAllModels = [
       { modelId: 'gpt-codex2', label: '⌘ GPT 5.3 Codex', score: 74.0, sortOrder: 5 },
-      { modelId: 'gpt-codex', label: '⌘ GPT 5.2 Codex', score: 75.7, sortOrder: 10 },
       { modelId: 'gpt-54-xhigh', label: '⌘ GPT 5.4 Thinking xhigh', score: 74.0, sortOrder: 12 },
       { modelId: 'gpt-54', label: '⌘ GPT 5.4 Thinking (Estimated)', score: 64.6, sortOrder: 14, estimated: true },
-      { modelId: 'gpt-xhigh', label: '⌘ GPT 5.2 Thinking xhigh', score: 72.7, sortOrder: 15 },
-      { modelId: 'gpt-thinking', label: '⌘ GPT 5.2 Thinking', score: 63.3, sortOrder: 20 },
       { modelId: 'gpt-thinking-mini', label: '⌘ GPT 5 Thinking Mini', score: 66, sortOrder: 25 },
       { modelId: 'gpt-instant', label: '⌘ GPT 5.2 Instant', score: 38.0, sortOrder: 30 },
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro', score: 72.7, sortOrder: 35 },
-      { modelId: 'gemini-pro', label: '✦ Gemini 3 Pro', score: 70.7, sortOrder: 40 },
       { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', score: 66.3, sortOrder: 50 },
       { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', score: 48.0, sortOrder: 60 },
       { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Extended', score: 70.7, sortOrder: 65 },
       { modelId: 'claude-46-opus-nr', label: '❋ Claude 4.6 Opus', score: 58.3, sortOrder: 66 },
       { modelId: 'claude-46-sonnet', label: '❋ Claude 4.6 Sonnet Extended', score: 70.7, sortOrder: 67 },
       { modelId: 'claude-46-sonnet-nr', label: '❋ Claude 4.6 Sonnet', score: 57.7, sortOrder: 68 },
-      { modelId: 'claude-opus', label: '❋ Claude Opus 4.5 Extended', score: 74.0, sortOrder: 70 },
-      { modelId: 'claude-opus-nr', label: '❋ Claude Opus 4.5', score: 65.3, sortOrder: 75 },
-      { modelId: 'claude-sonnet', label: '❋ Claude 4.5 Sonnet Extended', score: 65.7, sortOrder: 80 },
-      { modelId: 'claude-sonnet-nr', label: '❋ Claude 4.5 Sonnet', score: 51.3, sortOrder: 85 },
       { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', score: 70.3, sortOrder: 90 },
       { modelId: 'claude-haiku-nr', label: '❋ Claude 4.5 Haiku', score: 43.7, sortOrder: 95 },
       { modelId: 'glm-deep-think', label: 'Ƶ GLM 5 Deep Think', score: 63.3, sortOrder: 100 },
       { modelId: 'glm-5', label: 'Ƶ GLM 5', score: 37.0, sortOrder: 105 },
+      { modelId: 'glm-5t-deep-think', label: 'Ƶ GLM 5 Turbo Deep Think', score: 60.7, sortOrder: 107 },
+      { modelId: 'glm-5v-turbo-deep-think', label: 'Ƶ GLM 5V Turbo Deep Think', score: 61, sortOrder: 109 },
       { modelId: 'grok-42-expert', label: 'Ø Grok 4.20 Expert', score: 59.0, sortOrder: 110 },
       { modelId: 'grok-42-fast', label: 'Ø Grok 4.20 Fast', score: 18.0, sortOrder: 115 },
       { modelId: 'minimax-m27', label: '≋ Minimax M2.7 Max', score: 68.7, sortOrder: 117 },
@@ -4287,29 +4118,23 @@
     let mmmuProChart;
     const mmmuProAllModels = [
       { modelId: 'gpt-codex2', label: '⌘ GPT 5.3 Codex', score: 79, sortOrder: 5 },
-      { modelId: 'gpt-codex', label: '⌘ GPT 5.2 Codex', score: 76, sortOrder: 10 },
       { modelId: 'gpt-54-xhigh', label: '⌘ GPT 5.4 Thinking xhigh', score: 78, sortOrder: 12 },
       { modelId: 'gpt-54', label: '⌘ GPT 5.4 Thinking (Estimated)', score: 74.0, sortOrder: 14, estimated: true },
-      { modelId: 'gpt-xhigh', label: '⌘ GPT 5.2 Thinking xhigh', score: 79, sortOrder: 15 },
-      { modelId: 'gpt-thinking', label: '⌘ GPT 5.2 Thinking', score: 75, sortOrder: 20 },
       { modelId: 'gpt-thinking-mini', label: '⌘ GPT 5 Thinking Mini', score: 69, sortOrder: 25 },
       { modelId: 'gpt-instant', label: '⌘ GPT 5.2 Instant', score: 66, sortOrder: 30 },
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro', score: 82, sortOrder: 35 },
-      { modelId: 'gemini-pro', label: '✦ Gemini 3 Pro', score: 80, sortOrder: 40 },
       { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', score: 80, sortOrder: 50 },
       { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', score: 79, sortOrder: 60 },
       { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Extended', score: 75, sortOrder: 65 },
       { modelId: 'claude-46-opus-nr', label: '❋ Claude 4.6 Opus', score: 73, sortOrder: 66 },
       { modelId: 'claude-46-sonnet', label: '❋ Claude 4.6 Sonnet Extended', score: 73, sortOrder: 67 },
       { modelId: 'claude-46-sonnet-nr', label: '❋ Claude 4.6 Sonnet', score: 71, sortOrder: 68 },
-      { modelId: 'claude-opus', label: '❋ Claude Opus 4.5 Extended', score: 74, sortOrder: 70 },
-      { modelId: 'claude-opus-nr', label: '❋ Claude Opus 4.5', score: 71, sortOrder: 75 },
-      { modelId: 'claude-sonnet', label: '❋ Claude 4.5 Sonnet Extended', score: 69, sortOrder: 80 },
-      { modelId: 'claude-sonnet-nr', label: '❋ Claude 4.5 Sonnet', score: 65, sortOrder: 85 },
       { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', score: 58, sortOrder: 90 },
       { modelId: 'claude-haiku-nr', label: '❋ Claude 4.5 Haiku', score: 55, sortOrder: 95 },
-      { modelId: 'glm-deep-think', label: 'Ƶ GLM 5 Deep Think (Estimated)', score: 49, sortOrder: 100, estimated: true },
-      { modelId: 'glm-5', label: 'Ƶ GLM 5 (Estimated)', score: 42, sortOrder: 105, estimated: true },
+      { modelId: 'glm-deep-think', label: 'Ƶ GLM 5 Deep Think (Estimated)', score: 73, sortOrder: 100, estimated: true },
+      { modelId: 'glm-5', label: 'Ƶ GLM 5 (Estimated)', score: 63, sortOrder: 105, estimated: true },
+      { modelId: 'glm-5t-deep-think', label: 'Ƶ GLM 5 Turbo Deep Think (Estimated)', score: 73, sortOrder: 107, estimated: true },
+      { modelId: 'glm-5v-turbo-deep-think', label: 'Ƶ GLM 5V Turbo Deep Think', score: 73, sortOrder: 109 },
       { modelId: 'grok-42-expert', label: 'Ø Grok 4.20 Expert', score: 73, sortOrder: 110 },
       { modelId: 'grok-42-fast', label: 'Ø Grok 4.20 Fast', score: 64, sortOrder: 115 },
       { modelId: 'minimax-m27', label: '≋ Minimax M2.7 Max (Estimated)', score: 80, sortOrder: 117, estimated: true },
@@ -4417,29 +4242,23 @@
     let terminalBenchChart;
     const terminalBenchAllModels = [
       { modelId: 'gpt-codex2', label: '⌘ GPT 5.3 Codex', score: 53.0, sortOrder: 5 },
-      { modelId: 'gpt-codex', label: '⌘ GPT 5.2 Codex', score: 37.1, sortOrder: 10 },
       { modelId: 'gpt-54-xhigh', label: '⌘ GPT 5.4 Thinking xhigh', score: 57.6, sortOrder: 12 },
       { modelId: 'gpt-54', label: '⌘ GPT 5.4 Thinking (Estimated)', score: 53.8, sortOrder: 14, estimated: true },
-      { modelId: 'gpt-xhigh', label: '⌘ GPT 5.2 Thinking xhigh', score: 47.0, sortOrder: 15 },
-      { modelId: 'gpt-thinking', label: '⌘ GPT 5.2 Thinking', score: 43.2, sortOrder: 20 },
       { modelId: 'gpt-thinking-mini', label: '⌘ GPT 5 Thinking Mini', score: 28.8, sortOrder: 25 },
       { modelId: 'gpt-instant', label: '⌘ GPT 5.2 Instant', score: 31.8, sortOrder: 30 },
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro', score: 53.8, sortOrder: 35 },
-      { modelId: 'gemini-pro', label: '✦ Gemini 3 Pro', score: 41.7, sortOrder: 40 },
       { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', score: 38.6, sortOrder: 50 },
       { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', score: 31.8, sortOrder: 60 },
       { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Extended', score: 46.2, sortOrder: 65 },
       { modelId: 'claude-46-opus-nr', label: '❋ Claude 4.6 Opus', score: 48.5, sortOrder: 66 },
       { modelId: 'claude-46-sonnet', label: '❋ Claude 4.6 Sonnet Extended', score: 53, sortOrder: 67 },
       { modelId: 'claude-46-sonnet-nr', label: '❋ Claude 4.6 Sonnet', score: 46.2, sortOrder: 68 },
-      { modelId: 'claude-opus', label: '❋ Claude Opus 4.5 Extended', score: 47.0, sortOrder: 70 },
-      { modelId: 'claude-opus-nr', label: '❋ Claude Opus 4.5', score: 40.9, sortOrder: 75 },
-      { modelId: 'claude-sonnet', label: '❋ Claude 4.5 Sonnet Extended', score: 35.6, sortOrder: 80 },
-      { modelId: 'claude-sonnet-nr', label: '❋ Claude 4.5 Sonnet', score: 28.8, sortOrder: 85 },
       { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', score: 27.3, sortOrder: 90 },
       { modelId: 'claude-haiku-nr', label: '❋ Claude 4.5 Haiku', score: 27.3, sortOrder: 95 },
       { modelId: 'glm-deep-think', label: 'Ƶ GLM 5 Deep Think', score: 43.2, sortOrder: 100 },
       { modelId: 'glm-5', label: 'Ƶ GLM 5', score: 39.4, sortOrder: 105 },
+      { modelId: 'glm-5t-deep-think', label: 'Ƶ GLM 5 Turbo Deep Think', score: 32.6, sortOrder: 107 },
+      { modelId: 'glm-5v-turbo-deep-think', label: 'Ƶ GLM 5V Turbo Deep Think', score: 32.6, sortOrder: 109 },
       { modelId: 'grok-42-expert', label: 'Ø Grok 4.20 Expert', score: 40.9, sortOrder: 110 },
       { modelId: 'grok-42-fast', label: 'Ø Grok 4.20 Fast', score: 22.0, sortOrder: 115 },
       { modelId: 'minimax-m27', label: '≋ Minimax M2.7 Max', score: 39.4, sortOrder: 117 },
@@ -4547,29 +4366,23 @@
     let tau2BenchChart;
     const tau2BenchAllModels = [
       { modelId: 'gpt-codex2', label: '⌘ GPT 5.3 Codex', score: 90.9, sortOrder: 5 },
-      { modelId: 'gpt-codex', label: '⌘ GPT 5.2 Codex', score: 92.1, sortOrder: 10 },
       { modelId: 'gpt-54-xhigh', label: '⌘ GPT 5.4 Thinking xhigh', score: 91.5, sortOrder: 12 },
       { modelId: 'gpt-54', label: '⌘ GPT 5.4 Thinking (Estimated)', score: 81.0, sortOrder: 14, estimated: true },
-      { modelId: 'gpt-xhigh', label: '⌘ GPT 5.2 Thinking xhigh', score: 84.8, sortOrder: 15 },
-      { modelId: 'gpt-thinking', label: '⌘ GPT 5.2 Thinking', score: 74.3, sortOrder: 20 },
       { modelId: 'gpt-thinking-mini', label: '⌘ GPT 5 Thinking Mini', score: 71.1, sortOrder: 25 },
       { modelId: 'gpt-instant', label: '⌘ GPT 5.2 Instant', score: 46.5, sortOrder: 30 },
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro', score: 95.6, sortOrder: 35 },
-      { modelId: 'gemini-pro', label: '✦ Gemini 3 Pro', score: 87.1, sortOrder: 40 },
       { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', score: 80.4, sortOrder: 50 },
       { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', score: 43.3, sortOrder: 60 },
       { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Extended', score: 92.1, sortOrder: 65 },
       { modelId: 'claude-46-opus-nr', label: '❋ Claude 4.6 Opus', score: 84.8, sortOrder: 66 },
       { modelId: 'claude-46-sonnet', label: '❋ Claude 4.6 Sonnet Extended', score: 75.7, sortOrder: 67 },
       { modelId: 'claude-46-sonnet-nr', label: '❋ Claude 4.6 Sonnet', score: 79.5, sortOrder: 68 },
-      { modelId: 'claude-opus', label: '❋ Claude Opus 4.5 Extended', score: 89.5, sortOrder: 70 },
-      { modelId: 'claude-opus-nr', label: '❋ Claude Opus 4.5', score: 86.3, sortOrder: 75 },
-      { modelId: 'claude-sonnet', label: '❋ Claude 4.5 Sonnet Extended', score: 78.1, sortOrder: 80 },
-      { modelId: 'claude-sonnet-nr', label: '❋ Claude 4.5 Sonnet', score: 70.5, sortOrder: 85 },
       { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', score: 54.7, sortOrder: 90 },
       { modelId: 'claude-haiku-nr', label: '❋ Claude 4.5 Haiku', score: 32.5, sortOrder: 95 },
       { modelId: 'glm-deep-think', label: 'Ƶ GLM 5 Deep Think', score: 98.2, sortOrder: 100 },
       { modelId: 'glm-5', label: 'Ƶ GLM 5', score: 97.4, sortOrder: 105 },
+      { modelId: 'glm-5t-deep-think', label: 'Ƶ GLM 5 Turbo Deep Think', score: 98.5, sortOrder: 107 },
+      { modelId: 'glm-5v-turbo-deep-think', label: 'Ƶ GLM 5V Turbo Deep Think', score: 98.5, sortOrder: 109 },
       { modelId: 'grok-42-expert', label: 'Ø Grok 4.20 Expert', score: 96.5, sortOrder: 110 },
       { modelId: 'grok-42-fast', label: 'Ø Grok 4.20 Fast', score: 69.6, sortOrder: 115 },
       { modelId: 'minimax-m27', label: '≋ Minimax M2.7 Max', score: 84.8, sortOrder: 117 },
@@ -4965,8 +4778,8 @@
     // Update visibility of legacy model rows in the filter list
     // (state 0 = hidden, state 1 or 2 = shown)
     function updateLegacyModelsListVisibility() {
-      // Legacy models: Claude 4.5 Opus and Sonnet (Extended and non-Extended), GPT 5.2 Codex, GPT 5.2 Thinking xhigh, GPT 5.2 Thinking, GPT 5.2 Instant
-      const modelsToHide = ['gpt-codex', 'gpt-xhigh', 'gpt-thinking', 'gpt-instant', 'claude-opus', 'claude-sonnet', 'claude-opus-nr', 'claude-sonnet-nr', 'gemini-pro'];
+      // Legacy models: GPT 5.2 Instant
+      const modelsToHide = ['gpt-instant'];
       modelsToHide.forEach(id => {
         document.querySelectorAll(`.model-dot[data-model="${id}"]`).forEach(dot => {
           const row = dot.closest('.model-dots-row');
@@ -5036,7 +4849,7 @@
       // Sync coding group toggle
       document.querySelectorAll('.coding-bench-toggle').forEach(toggle => {
         // Toggle is active if either benchmarks OR codex model is active
-        const codexVisible = modelVisibility['gpt-codex'] || modelVisibility['gpt-codex2'];
+        const codexVisible = modelVisibility['gpt-codex2'];
         toggle.classList.toggle('active', showCodingBenchmarks || codexVisible);
       });
 
@@ -5047,7 +4860,7 @@
     // Toggle function for Coding benchmarks group - controls both section and Codex model together
     function toggleCodingBenchmarks() {
       // Determine new state based on whether both are currently on
-      const bothOn = showCodingBenchmarks && modelVisibility['gpt-codex'] && modelVisibility['gpt-codex2'];
+      const bothOn = showCodingBenchmarks && modelVisibility['gpt-codex2'];
       const newState = !bothOn;
 
       showCodingBenchmarks = newState;
@@ -5063,11 +4876,9 @@
       // Update Codex model visibility respecting constraints
       if (newState) {
         // When turning ON: only activate if ALL constraints are met
-        modelVisibility['gpt-codex'] = shouldModelBeVisible('gpt-codex');
         modelVisibility['gpt-codex2'] = shouldModelBeVisible('gpt-codex2');
       } else {
         // When turning OFF: always disable
-        modelVisibility['gpt-codex'] = false;
         modelVisibility['gpt-codex2'] = false;
       }
 
@@ -5374,7 +5185,7 @@
     style="text-align: center; padding: 2rem 1rem; margin-top: 3rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.8rem;">
     Made by <strong> u/Pasto_Shouwa</strong>
     <br>
-    <em>Last updated on <strong>01/04/2026</strong> (dd/mm/yyyy)</em>
+    <em>Last updated on <strong>02/04/2026</strong> (dd/mm/yyyy)</em>
   </footer>
 </body>
 
