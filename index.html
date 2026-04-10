@@ -763,6 +763,7 @@
 
     .section-title-wrapper .section-title {
       margin-bottom: 0;
+      flex: 1;
     }
 
     .toggle-inline {
@@ -1010,6 +1011,26 @@
       opacity: 0;
       max-height: 0;
       margin: 0;
+      padding: 0;
+      pointer-events: none;
+    }
+
+    /* Individual benchmark section visibility */
+    .bench-section {
+      transition: opacity 0.3s ease, max-height 0.4s ease;
+      overflow: hidden;
+    }
+
+    .hide-bench-omniscience .bench-section-omniscience,
+    .hide-bench-mrcr .bench-section-mrcr,
+    .hide-bench-aalcr .bench-section-aalcr,
+    .hide-bench-maxcontext .bench-section-maxcontext,
+    .hide-bench-mmmu .bench-section-mmmu,
+    .hide-bench-terminal .bench-section-terminal,
+    .hide-bench-tau2 .bench-section-tau2 {
+      opacity: 0;
+      max-height: 0;
+      margin: 0 !important;
       padding: 0;
       pointer-events: none;
     }
@@ -1532,6 +1553,56 @@
       background: rgba(59, 130, 246, 0.9);
     }
 
+    /* Benchmark Group Toggles */
+    .acc-toggle .toggle-switch.active {
+      background: rgba(16, 163, 127, 0.15);
+      border-color: rgba(16, 163, 127, 0.3);
+    }
+
+    .acc-toggle .toggle-switch.active::after {
+      background: rgba(16, 163, 127, 0.8);
+    }
+
+    .long-toggle .toggle-switch.active {
+      background: rgba(139, 92, 246, 0.15);
+      border-color: rgba(139, 92, 246, 0.3);
+    }
+
+    .long-toggle .toggle-switch.active::after {
+      background: rgba(139, 92, 246, 0.8);
+    }
+
+    .multi-toggle .toggle-switch.active {
+      background: rgba(239, 68, 68, 0.15);
+      border-color: rgba(239, 68, 68, 0.3);
+    }
+
+    .multi-toggle .toggle-switch.active::after {
+      background: rgba(239, 68, 68, 0.8);
+    }
+
+    .code-bench-group-toggle .toggle-switch.active {
+      background: rgba(59, 130, 246, 0.15);
+      border-color: rgba(59, 130, 246, 0.3);
+    }
+
+    .code-bench-group-toggle .toggle-switch.active::after {
+      background: rgba(59, 130, 246, 0.8);
+    }
+
+    /* Benchmark Dots */
+    .dot-acc {
+      background: rgba(16, 163, 127, 0.9);
+    }
+
+    .dot-long {
+      background: rgba(139, 92, 246, 0.9);
+    }
+
+    .dot-multi {
+      background: rgba(239, 68, 68, 0.9);
+    }
+
     /* Shape modifiers for model icons */
     .shape-square {
       border-radius: 20% !important;
@@ -1687,8 +1758,8 @@
             </tr>
             <tr>
               <td>Image generation per day</td>
-              <td>5<span class="annotation" data-note="user-reports"></span><span class="detail">[GPT Image 1.5]</span>
-              </td>
+              <td>Unknown<span class="annotation" data-note="gpt-image-unknown"></span><span class="detail">[GPT Image
+                  1.5]</span></td>
               <td class="rating-excellent">20<span class="detail">[Nano Banana 2]</span></td>
             </tr>
             <tr>
@@ -1719,9 +1790,7 @@
             </tr>
             <tr>
               <td>Deep research uses per month</td>
-              <td class="rating-excellent">5<span class="annotation" data-note="user-reports"></span><span
-                  class="detail">[GPT 5.4 Thinking]</span>
-              </td>
+              <td>Unknown<span class="detail">[GPT 5.2 Thinking / GPT o3]</span></td>
               <td class="rating-excellent">5<span class="detail">[Gemini 3 Flash Thinking]</span></td>
             </tr>
 
@@ -1843,12 +1912,8 @@
             </tr>
             <tr>
               <td>Image generation per day</td>
-              <td>5<span class="annotation" data-note="user-reports"></span><span class="detail">[GPT Image 1.5]</span>
-              </td>
-              <td>>5?<span class="annotation" data-note="gpt-image-unknown"></span><span class="detail">[GPT Image
-                  1.5]</span></td>
-              <td>50?<span class="annotation" data-note="gpt-image-unknown"></span><span class="detail">[GPT Image
-                  1.5]</span></td>
+              <td colspan="3">Unknown<span class="annotation" data-note="gpt-image-unknown"></span><span
+                  class="detail">[GPT Image 1.5]</span></td>
               <td>20<span class="detail">[Nano Banana 2]</span></td>
               <td class="rating-great">50</span>+50<span class="detail">[Nano Banana Pro<span class="annotation"
                     data-note="nano-banana-pro-uses"></span>
@@ -1907,15 +1972,7 @@
             </tr>
             <tr>
               <td>Deep research uses per month</td>
-              <td>5<span class="annotation" data-note="user-reports"></span><span class="detail">[GPT 5.2
-                  Thinking]</span>
-              </td>
-              <td>5<span class="annotation" data-note="user-reports"></span><span class="detail">[GPT 5.2
-                  Thinking]</span>
-              </td>
-              <td>25<span class="annotation" data-note="user-reports"></span><span class="detail">[GPT 5.2
-                  Thinking]</span>
-              </td>
+              <td colspan="3">Unknown<span class="detail">[GPT 5.2 Thinking / GPT o3]</span></td>
               <td>5<span class="detail">[Gemini 3 Flash Thinking]</span></td>
               <td class="rating-great">360<span class="detail">(12/day)<span class="detail">[Gemini 3.1 Pro]</span></td>
               <td class="rating-excellent">600<span class="detail">(20/day)<span class="detail">[Gemini 3.1 Pro]</span>
@@ -2000,7 +2057,7 @@
               <th class="th-gemini">Gemini</th>
             </tr>
             <tr>
-              <th class="th-chatgpt" style="text-align: center;">Pro</th>
+              <th class="th-chatgpt" style="text-align: center;">Pro x5 / x20</th>
               <th class="th-gemini" style="text-align: center;">Ultra</th>
             </tr>
           </thead>
@@ -2044,10 +2101,9 @@
             </tr>
             <tr>
               <td>Image generation per day</td>
-              <td class="rating-great">200<span class="annotation" data-note="user-reports"></span>
-                <span class="detail">[GPT Image 1.5]</span>
-              </td>
-              <td class="rating-excellent">100</span>+100<span class="detail">[Nano Banana
+              <td>Unknown<span class="annotation" data-note="gpt-image-unknown"></span><span class="detail">[GPT Image
+                  1.5]</span></td>
+              <td class="rating-excellent">1000</span>+1000<span class="detail">[Nano Banana
                   Pro<span class="annotation" data-note="nano-banana-pro-uses"></span> + Nano Banana 2 / Nano Banana 2
                   Thinking]</span></td>
             </tr>
@@ -2092,10 +2148,7 @@
             </tr>
             <tr>
               <td>Deep research uses per month</td>
-              <td class="rating-great">250<span class="annotation" data-note="user-reports"></span><span
-                  class="detail">[GPT 5.2
-                  Thinking]</span>
-              </td>
+              <td>Unknown<span class="detail">[GPT 5.2 Thinking / GPT o3]</span></td>
               <td class="rating-excellent">6000<span class="detail">(200/day)</span><span class="detail">[Gemini 3
                   Pro]</span></td>
             </tr>
@@ -2202,7 +2255,7 @@
       <!-- Model Filters Panel -->
       <div class="model-filters-panel" id="modelFiltersPanel">
         <div class="model-filters-header" onclick="toggleFiltersPanel()">
-          <span class="model-filters-title">Model Filters + Extra Benchmarks</span>
+          <span class="model-filters-title">Model Filters</span>
           <span class="model-filters-toggle">▼</span>
         </div>
         <div class="model-filters-content">
@@ -2267,9 +2320,6 @@
                 <span class="model-dot-indicator dot-gpt shape-square"></span>
                 <span class="model-dot-label">GPT 5.4 Thinking</span>
               </div>
-            </div>
-
-            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot" data-model="gpt-thinking-mini"
                 onclick="toggleIndividualModel('gpt-thinking-mini')">
                 <span class="model-dot-indicator dot-gpt-legacy"></span>
@@ -2305,12 +2355,14 @@
               </div>
             </div>
 
-            <div class="model-dots-row">
+            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot inactive" data-model="grok-42-expert"
                 onclick="toggleIndividualModel('grok-42-expert')">
                 <span class="model-dot-indicator dot-grok"></span>
                 <span class="model-dot-label">Grok 4.20 Expert</span>
               </div>
+            </div>
+            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot inactive" data-model="glm-deep-think"
                 onclick="toggleIndividualModel('glm-deep-think')">
                 <span class="model-dot-indicator dot-glm"></span>
@@ -2326,11 +2378,15 @@
                 <span class="model-dot-indicator dot-glm"></span>
                 <span class="model-dot-label">GLM 5V Turbo Deep Think</span>
               </div>
+            </div>
+            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot inactive" data-model="qwen-36-plus-think"
                 onclick="toggleIndividualModel('qwen-36-plus-think')">
                 <span class="model-dot-indicator dot-qwen"></span>
                 <span class="model-dot-label">Qwen 3.6 Plus Think</span>
               </div>
+            </div>
+            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot inactive" data-model="mimo-v2-pro" onclick="toggleIndividualModel('mimo-v2-pro')">
                 <span class="model-dot-indicator dot-mimo"></span>
                 <span class="model-dot-label">Mimo V2 Pro</span>
@@ -2339,6 +2395,8 @@
                 <span class="model-dot-indicator dot-mimo"></span>
                 <span class="model-dot-label">Mimo V2 Omni</span>
               </div>
+            </div>
+            <div class="model-dots-row">
               <div class="model-dot inactive" data-model="minimax-m27" onclick="toggleIndividualModel('minimax-m27')">
                 <span class="model-dot-indicator dot-minimax"></span>
                 <span class="model-dot-label">Minimax M2.7 Max</span>
@@ -2386,15 +2444,26 @@
             </div>
 
 
-            <div class="model-dots-row">
+            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot inactive" data-model="grok-42-fast" onclick="toggleIndividualModel('grok-42-fast')">
                 <span class="model-dot-indicator dot-grok"></span>
                 <span class="model-dot-label">Grok 4.20 Fast</span>
               </div>
+            </div>
+            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot inactive" data-model="glm-5" onclick="toggleIndividualModel('glm-5')">
                 <span class="model-dot-indicator dot-glm"></span>
                 <span class="model-dot-label">GLM 5</span>
               </div>
+            </div>
+            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
+              <div class="model-dot inactive" data-model="qwen-35-omni-plus"
+                onclick="toggleIndividualModel('qwen-35-omni-plus')">
+                <span class="model-dot-indicator dot-qwen"></span>
+                <span class="model-dot-label">Qwen 3.5 Omni Plus</span>
+              </div>
+            </div>
+            <div class="model-dots-row">
               <div class="model-dot inactive" data-model="mimo-v2-flash"
                 onclick="toggleIndividualModel('mimo-v2-flash')">
                 <span class="model-dot-indicator dot-mimo"></span>
@@ -2406,18 +2475,13 @@
           <!-- Coding benchmarks and models -->
           <div class="filter-group">
             <div class="filter-group-header">
-              <span class="filter-group-name">Coding benchmarks and models</span>
+              <span class="filter-group-name">Coding-exclusive models</span>
               <div class="toggle-inline coding-toggle">
                 <div class="toggle-switch coding-bench-toggle"
                   onclick="event.stopPropagation(); toggleCodingBenchmarks()"></div>
               </div>
             </div>
-            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
-              <div class="model-dot" data-model="coding-benchmarks" onclick="toggleCodingSection()">
-                <span class="model-dot-indicator dot-coding shape-star"></span>
-                <span class="model-dot-label">Coding benchmarks</span>
-              </div>
-            </div>
+
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot" data-model="gpt-codex2" onclick="toggleIndividualModel('gpt-codex2')">
                 <span class="model-dot-indicator dot-gpt shape-square"></span>
@@ -2469,281 +2533,428 @@
             <div class="shape-legend-item" title="Deprecated model">
               <span class="shape-legend-icon shape-legend-cross"></span>
             </div>
-            <div class="shape-legend-item" title="Extra benchmark">
-              <span class="shape-legend-icon shape-legend-star"></span>
-            </div>
           </div>
         </div>
       </div>
 
+      <!-- Benchmark Filters Panel -->
+      <div class="model-filters-panel" id="benchmarkFiltersPanel">
+        <div class="model-filters-header" onclick="toggleBenchmarkFiltersPanel()">
+          <span class="model-filters-title">Benchmark Filters</span>
+          <span class="model-filters-toggle">▼</span>
+        </div>
+        <div class="model-filters-content">
+
+          <!-- Accuracy benchmarks -->
+          <div class="filter-group">
+            <div class="filter-group-header">
+              <span class="filter-group-name">Accuracy benchmarks</span>
+              <div class="toggle-inline acc-toggle">
+                <div class="toggle-switch bench-group-toggle-accuracy active"
+                  onclick="event.stopPropagation(); toggleBenchGroup('accuracy')"></div>
+              </div>
+            </div>
+            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
+              <div class="model-dot bench-toggle-omniscience active" data-bench="omniscience"
+                onclick="toggleBenchSection('omniscience')">
+                <span class="model-dot-indicator dot-acc"></span>
+                <span class="model-dot-label">AA-Omniscience</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Long context benchmarks -->
+          <div class="filter-group">
+            <div class="filter-group-header">
+              <span class="filter-group-name">Long context benchmarks</span>
+              <div class="toggle-inline long-toggle">
+                <div class="toggle-switch bench-group-toggle-long active"
+                  onclick="event.stopPropagation(); toggleBenchGroup('long')"></div>
+              </div>
+            </div>
+            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
+              <div class="model-dot bench-toggle-mrcr active" data-bench="mrcr" onclick="toggleBenchSection('mrcr')">
+                <span class="model-dot-indicator dot-long"></span>
+                <span class="model-dot-label">MRCR v2 8-Needle</span>
+              </div>
+              <div class="model-dot bench-toggle-aalcr active" data-bench="aalcr" onclick="toggleBenchSection('aalcr')">
+                <span class="model-dot-indicator dot-long"></span>
+                <span class="model-dot-label">AA-LCR</span>
+              </div>
+              <div class="model-dot bench-toggle-maxcontext active" data-bench="maxcontext"
+                onclick="toggleBenchSection('maxcontext')">
+                <span class="model-dot-indicator dot-long"></span>
+                <span class="model-dot-label">Max Context Limit</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Multimodal benchmarks -->
+          <div class="filter-group">
+            <div class="filter-group-header">
+              <span class="filter-group-name">Multimodal benchmarks</span>
+              <div class="toggle-inline multi-toggle">
+                <div class="toggle-switch bench-group-toggle-multi active"
+                  onclick="event.stopPropagation(); toggleBenchGroup('multi')"></div>
+              </div>
+            </div>
+            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
+              <div class="model-dot bench-toggle-mmmu active" data-bench="mmmu" onclick="toggleBenchSection('mmmu')">
+                <span class="model-dot-indicator dot-multi"></span>
+                <span class="model-dot-label">MMMU-Pro</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Coding benchmarks -->
+          <div class="filter-group">
+            <div class="filter-group-header">
+              <span class="filter-group-name">Coding benchmarks</span>
+              <div class="toggle-inline code-bench-group-toggle">
+                <div class="toggle-switch bench-group-toggle-coding"
+                  onclick="event.stopPropagation(); toggleBenchGroup('coding')"></div>
+              </div>
+            </div>
+            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
+              <div class="model-dot bench-toggle-terminal inactive" data-bench="terminal"
+                onclick="toggleBenchSection('terminal')">
+                <span class="model-dot-indicator dot-coding"></span>
+                <span class="model-dot-label">Terminal-Bench Hard</span>
+              </div>
+              <div class="model-dot bench-toggle-tau2 inactive" data-bench="tau2" onclick="toggleBenchSection('tau2')">
+                <span class="model-dot-indicator dot-coding"></span>
+                <span class="model-dot-label">τ²-Bench Telecom</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
       <!-- AA-Omniscience -->
-      <div class="section-title-wrapper">
-        <h2 class="section-title">Knowledge Accuracy — AA-Omniscience Benchmark</h2>
-        <div class="toggle-inline">
-          <span class="toggle-label">Claude models</span>
-          <div class="toggle-switch claude-toggle active" onclick="toggleClaudeModels()"></div>
+      <div id="bench-section-omniscience">
+        <div class="section-title-wrapper">
+          <h2 class="section-title">Knowledge Accuracy — AA-Omniscience Benchmark</h2>
+          <div class="toggle-inline">
+            <span class="toggle-label">Claude models</span>
+            <div class="toggle-switch claude-toggle active" onclick="toggleClaudeModels()"></div>
+          </div>
+          <div class="toggle-inline reasoning-toggle">
+            <span class="toggle-label">Reasoning models</span>
+            <div class="toggle-switch reasoning-model-toggle active" onclick="toggleReasoningModels()"></div>
+          </div>
+          <div class="toggle-inline instant-toggle">
+            <span class="toggle-label">Non-reasoning models</span>
+            <div class="toggle-switch instant-model-toggle active" onclick="toggleInstantModels()"></div>
+          </div>
+          <div class="toggle-inline other-toggle">
+            <span class="toggle-label">Other recommended models</span>
+            <div class="toggle-switch other-models-toggle" onclick="toggleOtherModels()"></div>
+          </div>
+
         </div>
-        <div class="toggle-inline reasoning-toggle">
-          <span class="toggle-label">Reasoning models</span>
-          <div class="toggle-switch reasoning-model-toggle active" onclick="toggleReasoningModels()"></div>
+        <div class="chart-container">
+          <canvas id="omniscienceChart"></canvas>
         </div>
-        <div class="toggle-inline instant-toggle">
-          <span class="toggle-label">Non-reasoning models</span>
-          <div class="toggle-switch instant-model-toggle active" onclick="toggleInstantModels()"></div>
-        </div>
-        <div class="toggle-inline other-toggle">
-          <span class="toggle-label">Other recommended models</span>
-          <div class="toggle-switch other-models-toggle" onclick="toggleOtherModels()"></div>
+        <p class="chart-note">Shows how often the model is right or wrong when answering. Higher is better for Correct &
+          Abstention. Lower is better for Hallucination.</p>
+        <div class="sort-selector" id="omniscienceSortSelector">
+          <span class="sort-selector-label"><strong>Sort by</strong></span>
+          <div class="sort-selector-buttons">
+            <button class="sort-btn active" onclick="setOmniscienceSort('brand')" id="omniscienceSortBrand">✦
+              Brand</button>
+            <button class="sort-btn" onclick="setOmniscienceSort('hallucination')" id="omniscienceSortHallucination">↓
+              Hallucination</button>
+            <button class="sort-btn" onclick="setOmniscienceSort('correct')" id="omniscienceSortCorrect">↑
+              Correct</button>
+          </div>
         </div>
 
-      </div>
-      <div class="chart-container">
-        <canvas id="omniscienceChart"></canvas>
-      </div>
-      <p class="chart-note">Shows how often the model is right or wrong when answering. Higher is better for Correct &
-        Abstention. Lower is better for Hallucination.</p>
-      <div class="sort-selector" id="omniscienceSortSelector">
-        <span class="sort-selector-label"><strong>Sort by</strong></span>
-        <div class="sort-selector-buttons">
-          <button class="sort-btn active" onclick="setOmniscienceSort('brand')" id="omniscienceSortBrand">✦
-            Brand</button>
-          <button class="sort-btn" onclick="setOmniscienceSort('hallucination')" id="omniscienceSortHallucination">↓
-            Hallucination</button>
-          <button class="sort-btn" onclick="setOmniscienceSort('correct')" id="omniscienceSortCorrect">↑
-            Correct</button>
-        </div>
-      </div>
-
-      <!-- Notes for first chart -->
-      <div class="notes collapsible expanded" style="margin-top: 1rem;">
-        <div class="notes-header" onclick="toggleNotes(this)">
-          <p class="notes-title">AA-Omniscience Notes</p>
-          <span class="notes-toggle">▼</span>
-        </div>
-        <div class="notes-content">
-          <ul class="notes-list">
-            <li>• <strong>Correct</strong> answers were calculated with <em>Correct = A</em>.</li>
-            <li>• <strong>Abstention</strong> answers were calculated with <em>Abstention = (1−A)⋅(1−H)</em>.</li>
-            <li>• <strong>Hallucination</strong> answers were calculated with <em>Hallucination = (1−A)⋅H</em>.</li>
-            <li>• <em>(Where "A" is the percentage scored on the "AA-Omnisicence Accuracy" benchmark, "H" is the
-                percentage scored on
-                the "AA-Omnisicence Hallucination Rate" benchmark.)</em></li>
-          </ul>
+        <!-- Notes for first chart -->
+        <div class="notes collapsible expanded" style="margin-top: 1rem;">
+          <div class="notes-header" onclick="toggleNotes(this)">
+            <p class="notes-title">AA-Omniscience Notes</p>
+            <span class="notes-toggle">▼</span>
+          </div>
+          <div class="notes-content">
+            <ul class="notes-list">
+              <li>• <strong>Correct</strong> answers were calculated with <em>Correct = A</em>.</li>
+              <li>• <strong>Abstention</strong> answers were calculated with <em>Abstention = (1−A)⋅(1−H)</em>.</li>
+              <li>• <strong>Hallucination</strong> answers were calculated with <em>Hallucination = (1−A)⋅H</em>.</li>
+              <li>• <em>(Where "A" is the percentage scored on the "AA-Omnisicence Accuracy" benchmark, "H" is the
+                  percentage scored on
+                  the "AA-Omnisicence Hallucination Rate" benchmark.)</em></li>
+            </ul>
+          </div>
         </div>
       </div>
 
       <!-- MRCR v2 -->
-      <div class="section-title-wrapper" style="margin-top: 3rem;">
-        <h2 class="section-title">Long Context Accuracy — MRCR v2 8-Needle Benchmark</h2>
-        <div class="toggle-inline">
-          <span class="toggle-label">Claude models</span>
-          <div class="toggle-switch claude-toggle active" onclick="toggleClaudeModels()"></div>
+      <div id="bench-section-mrcr">
+        <div class="section-title-wrapper" style="margin-top: 3rem;">
+          <h2 class="section-title">Long Context Accuracy — MRCR v2 8-Needle Benchmark</h2>
+          <div class="toggle-inline">
+            <span class="toggle-label">Claude models</span>
+            <div class="toggle-switch claude-toggle active" onclick="toggleClaudeModels()"></div>
+          </div>
+          <div class="toggle-inline reasoning-toggle">
+            <span class="toggle-label">Reasoning models</span>
+            <div class="toggle-switch reasoning-model-toggle active" onclick="toggleReasoningModels()"></div>
+          </div>
+          <div class="toggle-inline instant-toggle">
+            <span class="toggle-label">Non-reasoning models</span>
+            <div class="toggle-switch instant-model-toggle active" onclick="toggleInstantModels()"></div>
+          </div>
+          <div class="toggle-inline other-toggle">
+            <span class="toggle-label">Other recommended models</span>
+            <div class="toggle-switch other-models-toggle" onclick="toggleOtherModels()"></div>
+          </div>
+
         </div>
-        <div class="toggle-inline reasoning-toggle">
-          <span class="toggle-label">Reasoning models</span>
-          <div class="toggle-switch reasoning-model-toggle active" onclick="toggleReasoningModels()"></div>
+        <div class="chart-container">
+          <canvas id="mrcrChart"></canvas>
         </div>
-        <div class="toggle-inline instant-toggle">
-          <span class="toggle-label">Non-reasoning models</span>
-          <div class="toggle-switch instant-model-toggle active" onclick="toggleInstantModels()"></div>
+        <p class="chart-note">Shows how accuracy at locating specific details in context degrades as context length
+          increases. Ranges from 8k to 1048k (1M) tokens. Higher is better.</p>
+        <div class="slider-container"
+          style="display: flex; flex-direction: column; align-items: center; margin-top: 0.75rem; margin-bottom: 0.5rem; gap: 0.25rem;">
+          <span class="sort-selector-label"><strong>Max Context Length:</strong> <span id="mrcrXAxisLabel"
+              style="color: var(--text-primary);">1M</span></span>
+          <input type="range" id="mrcrXAxisSlider" class="custom-slider" min="1" max="6" value="6" step="1"
+            oninput="updateMrcrXAxisLabel(this.value)" onchange="setMrcrXAxis(this.value)">
         </div>
-        <div class="toggle-inline other-toggle">
-          <span class="toggle-label">Other recommended models</span>
-          <div class="toggle-switch other-models-toggle" onclick="toggleOtherModels()"></div>
+        <div class="sort-selector" id="mrcrYAxisSelector" style="margin-top: 0.5rem;">
+          <span class="sort-selector-label"><strong>Y-Axis Min</strong></span>
+          <div class="sort-selector-buttons">
+            <button class="sort-btn active" onclick="setMrcrYAxis('0')" id="mrcrYAxis0">0%</button>
+            <button class="sort-btn" onclick="setMrcrYAxis('auto')" id="mrcrYAxisAuto">Dynamic</button>
+          </div>
         </div>
 
-      </div>
-      <div class="chart-container">
-        <canvas id="mrcrChart"></canvas>
-      </div>
-      <p class="chart-note">Shows how accuracy at locating specific details in context degrades as context length
-        increases. Ranges from 8k to 1048k (1M) tokens. Higher is better.</p>
-      <div class="slider-container"
-        style="display: flex; flex-direction: column; align-items: center; margin-top: 0.75rem; margin-bottom: 0.5rem; gap: 0.25rem;">
-        <span class="sort-selector-label"><strong>Max Context Length:</strong> <span id="mrcrXAxisLabel"
-            style="color: var(--text-primary);">1M</span></span>
-        <input type="range" id="mrcrXAxisSlider" class="custom-slider" min="1" max="6" value="6" step="1"
-          oninput="updateMrcrXAxisLabel(this.value)" onchange="setMrcrXAxis(this.value)">
-      </div>
-      <div class="sort-selector" id="mrcrYAxisSelector" style="margin-top: 0.5rem;">
-        <span class="sort-selector-label"><strong>Y-Axis Min</strong></span>
-        <div class="sort-selector-buttons">
-          <button class="sort-btn active" onclick="setMrcrYAxis('0')" id="mrcrYAxis0">0%</button>
-          <button class="sort-btn" onclick="setMrcrYAxis('auto')" id="mrcrYAxisAuto">Dynamic</button>
-        </div>
-      </div>
-
-      <!-- Notes for second chart -->
-      <div class="notes collapsible expanded" style="margin-top: 1rem;">
-        <div class="notes-header" onclick="toggleNotes(this)">
-          <p class="notes-title">MRCR v2 8-Needle Notes</p>
-          <span class="notes-toggle">▼</span>
-        </div>
-        <div class="notes-content">
-          <ul class="notes-list">
-            <li>• Differs greatly from the next benchmark. While AA-LCR revolves around comprehending really long
-              texts, MRCR v2 8-Needle evaluates the model capability to find specific information in those texts.</li>
-            <li>• There are no benchmarks for 200k tokens.</li>
-            <li>• This benchmark doesn't support all models, thus it's likely some of the models selected do not appear
-              here.
-            </li>
-            <li>• This benchmark has not published the full results for the Claude 4.6 models.
-              It is only known that Claude Opus 4.6 Extended performs with an accuracy of >93% on 128k tokens and
-              Claude Sonnet 4.6 Extended performs with an accuracy of >90.3% on 128k tokens.
-              The remaining values were estimated by assuming a roughly linear trend on a log2 context-length scale.
-            </li>
-            <li>• Maximum context window of <strong>GPT 5.4 Thinking xhigh</strong> and <strong>GPT 5 Thinking
-                Mini</strong> is 256k/400k (Free,Go,Plus/Pro) tokens.
-            </li>
-            <li>• Maximum context window of <strong>GPT 5.3 Instant</strong> is 27k/54k/128k tokens (Free/Plus,Go/Pro).
-            </li>
-            <li>• Maximum context window of all <strong>Gemini</strong> models is
-              32k/128k/1M tokens (Free/Plus/Pro,Ultra).</li>
-            <li>• Maximum context window of all <strong>Claude</strong> models is 200k tokens.</li>
-            <li>• Maximum context window of all <strong>Grok</strong> models is 2M tokens.</li>
-            <li>• Maximum context window of all <strong>GLM</strong> models is 200k tokens.</li>
-            <li>• Maximum context window of all <strong>Qwen</strong> models is 1M tokens.</li>
-            <li>• Maximum context window of all <strong>Mimo</strong> models is 1M tokens.</li>
-            <li>• Maximum context window of all <strong>Minimax</strong> models is 200k tokens.</li>
-            <li>• 1M tokens equals 1048k tokens, 2M tokens equals 2096k tokens.</li>
-          </ul>
+        <!-- Notes for second chart -->
+        <div class="notes collapsible expanded" style="margin-top: 1rem;">
+          <div class="notes-header" onclick="toggleNotes(this)">
+            <p class="notes-title">MRCR v2 8-Needle Notes</p>
+            <span class="notes-toggle">▼</span>
+          </div>
+          <div class="notes-content">
+            <ul class="notes-list">
+              <li>• Differs greatly from the next benchmark. While AA-LCR revolves around comprehending really long
+                texts, MRCR v2 8-Needle evaluates the model capability to find specific information in those texts.</li>
+              <li>• There are no benchmarks for 200k tokens.</li>
+              <li>• This benchmark doesn't support all models, thus it's likely some of the models selected do not
+                appear
+                here.
+              </li>
+              <li>• This benchmark has not published the full results for the Claude 4.6 models.
+                It is only known that Claude Opus 4.6 Extended performs with an accuracy of >93% on 128k tokens and
+                Claude Sonnet 4.6 Extended performs with an accuracy of >90.3% on 128k tokens.
+                The remaining values were estimated by assuming a roughly linear trend on a log2 context-length scale.
+              </li>
+              <li>• Maximum context window of <strong>GPT Thinking</strong> models is 27k/54k/128k tokens
+                (Free/Plus,Go/Pro).
+              </li>
+              <li>• Maximum context window of <strong>GPT Instant</strong> models is 256k/400k (Free,Go,Plus/Pro)
+                tokens.
+              </li>
+              <li>• Maximum context window of all <strong>Gemini</strong> models is
+                32k/128k/1M tokens (Free/Plus/Pro,Ultra).</li>
+              <li>• Maximum context window of all <strong>Claude</strong> models is 200k tokens.</li>
+              <li>• Maximum context window of all <strong>Grok</strong> models is 2M tokens.</li>
+              <li>• Maximum context window of all <strong>GLM</strong> models is 200k tokens.</li>
+              <li>• Maximum context window of <strong>Qwen Plus</strong> models is 256k tokens.
+              </li>
+              <li>• Maximum context window of <strong>Qwen Omni Plus</strong> models is 1M
+                tokens.
+              <li>• Maximum context window of <strong>Mimo Pro</strong> models is 1M tokens.</li>
+              <li>• Maximum context window of <strong>Mimo Omni and Flash</strong> models is 256k tokens.</li>
+              <li>• Maximum context window of all <strong>Minimax</strong> models is 200k tokens.</li>
+              <li>• 1M tokens equals 1048k tokens, 2M tokens equals 2096k tokens.</li>
+            </ul>
+          </div>
         </div>
       </div>
 
       <!-- Long Context Reasoning - AA-LCR -->
-      <div class="section-title-wrapper" style="margin-top: 3rem;">
-        <h2 class="section-title">Long Context Reasoning — AA-LCR</h2>
-        <div class="toggle-inline">
-          <span class="toggle-label">Claude models</span>
-          <div class="toggle-switch claude-toggle active" onclick="toggleClaudeModels()"></div>
+      <div id="bench-section-aalcr">
+        <div class="section-title-wrapper" style="margin-top: 3rem;">
+          <h2 class="section-title">Long Context Reasoning — AA-LCR</h2>
+          <div class="toggle-inline">
+            <span class="toggle-label">Claude models</span>
+            <div class="toggle-switch claude-toggle active" onclick="toggleClaudeModels()"></div>
+          </div>
+          <div class="toggle-inline reasoning-toggle">
+            <span class="toggle-label">Reasoning models</span>
+            <div class="toggle-switch reasoning-model-toggle active" onclick="toggleReasoningModels()"></div>
+          </div>
+          <div class="toggle-inline instant-toggle">
+            <span class="toggle-label">Non-reasoning models</span>
+            <div class="toggle-switch instant-model-toggle active" onclick="toggleInstantModels()"></div>
+          </div>
+          <div class="toggle-inline other-toggle">
+            <span class="toggle-label">Other recommended models</span>
+            <div class="toggle-switch other-models-toggle" onclick="toggleOtherModels()"></div>
+          </div>
+
         </div>
-        <div class="toggle-inline reasoning-toggle">
-          <span class="toggle-label">Reasoning models</span>
-          <div class="toggle-switch reasoning-model-toggle active" onclick="toggleReasoningModels()"></div>
+        <div class="chart-container">
+          <canvas id="lcrChart"></canvas>
         </div>
-        <div class="toggle-inline instant-toggle">
-          <span class="toggle-label">Non-reasoning models</span>
-          <div class="toggle-switch instant-model-toggle active" onclick="toggleInstantModels()"></div>
-        </div>
-        <div class="toggle-inline other-toggle">
-          <span class="toggle-label">Other recommended models</span>
-          <div class="toggle-switch other-models-toggle" onclick="toggleOtherModels()"></div>
+        <p class="chart-note">Shows extraction, comprehension and synthesizing of information on texts ranging from 10k
+          to
+          100k tokens. Higher is better.</p>
+        <div class="sort-selector" id="lcrSortSelector">
+          <span class="sort-selector-label"><strong>Sort by</strong></span>
+          <div class="sort-selector-buttons">
+            <button class="sort-btn active" onclick="setLcrSort('brand')" id="lcrSortBrand">✦ Brand</button>
+            <button class="sort-btn" onclick="setLcrSort('highest')" id="lcrSortHighest">↑ Highest</button>
+          </div>
         </div>
 
-      </div>
-      <div class="chart-container">
-        <canvas id="lcrChart"></canvas>
-      </div>
-      <p class="chart-note">Shows extraction, comprehension and synthesizing of information on texts ranging from 10k to
-        100k tokens. Higher is better.</p>
-      <div class="sort-selector" id="lcrSortSelector">
-        <span class="sort-selector-label"><strong>Sort by</strong></span>
-        <div class="sort-selector-buttons">
-          <button class="sort-btn active" onclick="setLcrSort('brand')" id="lcrSortBrand">✦ Brand</button>
-          <button class="sort-btn" onclick="setLcrSort('highest')" id="lcrSortHighest">↑ Highest</button>
+        <!-- Notes for LCR chart -->
+        <div class="notes collapsible expanded" style="margin-top: 1rem;">
+          <div class="notes-header" onclick="toggleNotes(this)">
+            <p class="notes-title">AA-LCR Notes</p>
+            <span class="notes-toggle">▼</span>
+          </div>
+          <div class="notes-content">
+            <ul class="notes-list">
+              <li>• Differs greatly from the next benchmark. While AA-LCR revolves around comprehending really long
+                texts, MRCR v2 8-Needle evaluates the model capability to find specific information in those texts.</li>
+              <li>• Maximum context window of <strong>GPT Thinking</strong> models is 27k/54k/128k tokens
+                (Free/Plus,Go/Pro).
+              </li>
+              <li>• Maximum context window of <strong>GPT Instant</strong> models is 256k/400k (Free,Go,Plus/Pro)
+                tokens.
+              </li>
+              <li>• Maximum context window of all <strong>Gemini</strong> models is
+                32k/128k/1M tokens (Free/Plus/Pro,Ultra).</li>
+              <li>• Maximum context window of all <strong>Claude</strong> models is 200k tokens.</li>
+              <li>• Maximum context window of all <strong>Grok</strong> models is 2M tokens.</li>
+              <li>• Maximum context window of all <strong>GLM</strong> models is 200k tokens.</li>
+              <li>• Maximum context window of <strong>Qwen Plus</strong> models is 256k tokens.
+              </li>
+              <li>• Maximum context window of <strong>Qwen Omni Plus</strong> models is 1M
+                tokens.
+              <li>• Maximum context window of <strong>Mimo Pro</strong> models is 1M tokens.</li>
+              <li>• Maximum context window of <strong>Mimo Omni and Flash</strong> models is 256k tokens.</li>
+              <li>• Maximum context window of all <strong>Minimax</strong> models is 200k tokens.</li>
+              <li>• 1M tokens equals 1048k tokens, 2M tokens equals 2096k tokens.</li>
+            </ul>
+          </div>
         </div>
       </div>
 
-      <!-- Notes for LCR chart -->
-      <div class="notes collapsible expanded" style="margin-top: 1rem;">
-        <div class="notes-header" onclick="toggleNotes(this)">
-          <p class="notes-title">AA-LCR Notes</p>
-          <span class="notes-toggle">▼</span>
+      <!-- Max Context Limit -->
+      <div id="bench-section-maxcontext" style="margin-top: 3rem;">
+        <div class="section-title-wrapper">
+          <h2 class="section-title">Max Context Limit</h2>
+          <div class="toggle-inline">
+            <span class="toggle-label">Claude models</span>
+            <div class="toggle-switch claude-toggle active" onclick="toggleClaudeModels()"></div>
+          </div>
+          <div class="toggle-inline reasoning-toggle">
+            <span class="toggle-label">Reasoning models</span>
+            <div class="toggle-switch reasoning-model-toggle active" onclick="toggleReasoningModels()"></div>
+          </div>
+          <div class="toggle-inline instant-toggle">
+            <span class="toggle-label">Non-reasoning models</span>
+            <div class="toggle-switch instant-model-toggle active" onclick="toggleInstantModels()"></div>
+          </div>
+          <div class="toggle-inline other-toggle">
+            <span class="toggle-label">Other recommended models</span>
+            <div class="toggle-switch other-models-toggle" onclick="toggleOtherModels()"></div>
+          </div>
         </div>
-        <div class="notes-content">
-          <ul class="notes-list">
-            <li>• Differs greatly from the next benchmark. While AA-LCR revolves around comprehending really long
-              texts, MRCR v2 8-Needle evaluates the model capability to find specific information in those texts.</li>
-            <li>• Maximum context window of <strong>GPT 5.4 Thinking xhigh</strong> and <strong>GPT 5 Thinking
-                Mini</strong> is 256k/400k (Free,Go,Plus/Pro) tokens.
-            </li>
-            <li>• Maximum context window of <strong>GPT 5.3 Instant</strong> is 27k/54k/128k tokens (Free/Plus,Go/Pro).
-            </li>
-            <li>• Maximum context window of all <strong>Gemini</strong> models is
-              32k/128k/1M tokens (Free/Plus/Pro,Ultra).</li>
-            <li>• Maximum context window of all <strong>Claude</strong> models is 200k tokens.</li>
-            <li>• Maximum context window of all <strong>Grok</strong> models is 2M tokens.</li>
-            <li>• Maximum context window of all <strong>GLM</strong> models is 200k tokens.</li>
-            <li>• Maximum context window of all <strong>Qwen</strong> models is 1M tokens.</li>
-            <li>• Maximum context window of all <strong>Mimo</strong> models is 1M tokens.</li>
-            <li>• Maximum context window of all <strong>Minimax</strong> models is 200k tokens.</li>
-            <li>• 1M tokens equals 1048k tokens, 2M tokens equals 2096k tokens.</li>
-          </ul>
+        <div class="chart-container" style="height: auto; min-height: 400px;">
+          <canvas id="maxContextChart"></canvas>
+        </div>
+        <p class="chart-note">Maximum context window size in tokens. Take into consideration that a higher context limit
+          doesn't always come with a good performance at high context lenghts.</p>
+        <div class="sort-selector" id="maxContextSortSelector">
+          <span class="sort-selector-label"><strong>Sort by</strong></span>
+          <div class="sort-selector-buttons">
+            <button class="sort-btn active" onclick="setMaxContextSort('brand')" id="maxContextSortBrand">✦
+              Brand</button>
+            <button class="sort-btn" onclick="setMaxContextSort('highest')" id="maxContextSortHighest">↑
+              Highest</button>
+          </div>
         </div>
       </div>
 
       <!-- Visual Reasoning - MMMU-Pro -->
-      <div class="section-title-wrapper" style="margin-top: 3rem;">
-        <h2 class="section-title">Visual Reasoning — MMMU-Pro</h2>
-        <div class="toggle-inline">
-          <span class="toggle-label">Claude models</span>
-          <div class="toggle-switch claude-toggle active" onclick="toggleClaudeModels()"></div>
+      <div id="bench-section-mmmu">
+        <div class="section-title-wrapper" style="margin-top: 3rem;">
+          <h2 class="section-title">Visual Reasoning — MMMU-Pro</h2>
+          <div class="toggle-inline">
+            <span class="toggle-label">Claude models</span>
+            <div class="toggle-switch claude-toggle active" onclick="toggleClaudeModels()"></div>
+          </div>
+          <div class="toggle-inline reasoning-toggle">
+            <span class="toggle-label">Reasoning models</span>
+            <div class="toggle-switch reasoning-model-toggle active" onclick="toggleReasoningModels()"></div>
+          </div>
+          <div class="toggle-inline instant-toggle">
+            <span class="toggle-label">Non-reasoning models</span>
+            <div class="toggle-switch instant-model-toggle active" onclick="toggleInstantModels()"></div>
+          </div>
+          <div class="toggle-inline other-toggle">
+            <span class="toggle-label">Other recommended models</span>
+            <div class="toggle-switch other-models-toggle" onclick="toggleOtherModels()"></div>
+          </div>
+
         </div>
-        <div class="toggle-inline reasoning-toggle">
-          <span class="toggle-label">Reasoning models</span>
-          <div class="toggle-switch reasoning-model-toggle active" onclick="toggleReasoningModels()"></div>
+        <div class="chart-container">
+          <canvas id="mmmuProChart"></canvas>
         </div>
-        <div class="toggle-inline instant-toggle">
-          <span class="toggle-label">Non-reasoning models</span>
-          <div class="toggle-switch instant-model-toggle active" onclick="toggleInstantModels()"></div>
-        </div>
-        <div class="toggle-inline other-toggle">
-          <span class="toggle-label">Other recommended models</span>
-          <div class="toggle-switch other-models-toggle" onclick="toggleOtherModels()"></div>
+        <p class="chart-note">Shows performance processing visual and textual information at the same time. Higher is
+          better.</p>
+        <div class="sort-selector" id="mmmuProSortSelector">
+          <span class="sort-selector-label"><strong>Sort by</strong></span>
+          <div class="sort-selector-buttons">
+            <button class="sort-btn active" onclick="setMmmuProSort('brand')" id="mmmuProSortBrand">✦ Brand</button>
+            <button class="sort-btn" onclick="setMmmuProSort('highest')" id="mmmuProSortHighest">↑ Highest</button>
+          </div>
         </div>
 
-      </div>
-      <div class="chart-container">
-        <canvas id="mmmuProChart"></canvas>
-      </div>
-      <p class="chart-note">Shows performance processing visual and textual information at the same time. Higher is
-        better.</p>
-      <div class="sort-selector" id="mmmuProSortSelector">
-        <span class="sort-selector-label"><strong>Sort by</strong></span>
-        <div class="sort-selector-buttons">
-          <button class="sort-btn active" onclick="setMmmuProSort('brand')" id="mmmuProSortBrand">✦ Brand</button>
-          <button class="sort-btn" onclick="setMmmuProSort('highest')" id="mmmuProSortHighest">↑ Highest</button>
+        <!-- Notes for MMMU-Pro chart -->
+        <div class="notes collapsible expanded" style="margin-top: 1rem;">
+          <div class="notes-header" onclick="toggleNotes(this)">
+            <p class="notes-title">MMMU-Pro Notes</p>
+            <span class="notes-toggle">▼</span>
+          </div>
+          <div class="notes-content">
+            <ul class="notes-list">
+              <li>• <strong>GPT</strong> models are capable of understanding text and images.
+              </li>
+              <li>• <strong>Gemini</strong> models are capable of understanding text, images, video and audio.
+              </li>
+              <li>• <strong>Claude</strong> models are capable of understanding text and images.
+              </li>
+              <li>• <strong>Grok</strong> models are capable of understanding text and images.
+              </li>
+              <li>• <strong>GLM</strong> models are capable of understanding only text.
+                Image and video inputs are likely routed to GLM 5V Turbo Deep Think and GLM 5V Turbo respectively.
+              </li>
+              <li>• <strong>Qwen</strong> models are capable of understanding text, images and video.
+              </li>
+              <li>• <strong>Mimo V2 Omni</strong> is capable of understanding text, images, video and audio.
+              <li>• <strong>Mimo V2 Pro</strong> and <strong>Mimo V2 Flash</strong> are capable of understanding only
+                text.
+              </li>
+              <li>• <strong>Minimax</strong> models are capable of understanding only text. Image and
+                video inputs are likely routed to Gemini 3.1 Pro.
+              </li>
+              <li>• Models capable of understanding only text are usually able to understand text inside images, but
+                nothing else in them.
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
-
-      <!-- Notes for MMMU-Pro chart -->
-      <div class="notes collapsible expanded" style="margin-top: 1rem;">
-        <div class="notes-header" onclick="toggleNotes(this)">
-          <p class="notes-title">MMMU-Pro Notes</p>
-          <span class="notes-toggle">▼</span>
-        </div>
-        <div class="notes-content">
-          <ul class="notes-list">
-            <li>• <strong>GPT</strong> models are capable of understanding text and images.
-            </li>
-            <li>• <strong>Gemini</strong> models are capable of understanding text, images, video and audio.
-            </li>
-            <li>• <strong>Claude</strong> models are capable of understanding text and images.
-            </li>
-            <li>• <strong>Grok</strong> models are capable of understanding text and images.
-            </li>
-            <li>• <strong>GLM</strong> models are capable of understanding only text.
-              Image and video inputs are likely routed to GLM 5V Turbo Deep Think and GLM 5V Turbo respectively.
-            </li>
-            <li>• <strong>Qwen</strong> models are capable of understanding text, images and video.
-            </li>
-            <li>• <strong>Mimo V2 Omni</strong> is capable of understanding text, images, video and audio.
-            <li>• <strong>Mimo V2 Pro</strong> and <strong>Mimo V2 Flash</strong> are capable of understanding only
-              text.
-            </li>
-            <li>• <strong>Minimax</strong> models are capable of understanding only text. Image and
-              video inputs are likely routed to Gemini 3.1 Pro.
-            </li>
-            <li>• Models capable of understanding only text are usually able to understand text inside images, but
-              nothing else in them.
-            </li>
-          </ul>
-        </div>
-      </div>
-
 
       <!-- Terminal-Bench Hard -->
-      <div class="coding-benchmark-section">
+      <div id="bench-section-terminal" class="coding-benchmark-section">
         <div class="section-title-wrapper" style="margin-top: 3rem;">
           <h2 class="section-title section-title-blue">Agentic Coding — Terminal-Bench Hard</h2>
           <div class="toggle-inline">
@@ -2780,7 +2991,7 @@
       </div>
 
       <!-- τ²-Bench Telecom -->
-      <div class="coding-benchmark-section">
+      <div id="bench-section-tau2" class="coding-benchmark-section">
         <div class="section-title-wrapper" style="margin-top: 3rem;">
           <h2 class="section-title section-title-blue">Agentic Tool Use — τ²-Bench Telecom</h2>
           <div class="toggle-inline">
@@ -2814,68 +3025,75 @@
         </div>
       </div>
 
+
       <!-- Notes -->
-      <div class="notes" style="margin-top: 2rem;">
-        <p class="notes-title">Notes</p>
-        <ul class="notes-list">
-          <li>• For "<strong>GPT 5.3 Codex</strong>", "<em>gpt-5.3-codex:xhigh</em>" was used in the graph. This model
-            is only
-            available on Codex and Visual Studio Code, not the web or the app.</li>
-          <li>• For "<strong>GPT 5.4 Thinking xhigh</strong>", "<em>gpt-5.4:xhigh</em>" was used in the graph.
-          </li>
-          <li>• For "<strong>GPT 5.4 Thinking</strong>", an estimation based on the performance of
-            "<em>gpt-5.4:xhigh</em>", "<em>gpt-5.2:xhigh</em>" and "<em>gpt-5.2:medium</em>" was used in the graph;
-            aiming to get as close as possible to what the performance of "<em>gpt-5.4:medium</em>" might be.
-          </li>
-          <li>• For "<strong>GPT 5 Thinking Mini</strong>", "<em>gpt-5-mini:medium</em>" was used in the graph.</li>
-          <li>• For "<strong>Gemini 3.1 Pro</strong>", "<em>gemini-3.1-pro-preview:high</em>" was used in the
-            graph.</li>
-          <li>• For "<strong>Gemini 3 Flash Thinking</strong>", "<em>gemini-3-flash-preview:high</em>" was used
-            in the graph.
-          </li>
-          <li>• For "<strong>Gemini 3 Flash</strong>", "<em>gemini-3-flash-preview:minimal</em>" was used in the
-            graph.</li>
-          <li>• For "<strong>Claude Opus 4.6 Extended</strong>", "<em>claude-opus-4.6:high</em>" was used in
-            the graph.</li>
-          <li>• For "<strong>Claude Opus 4.6</strong>", "<em>claude-opus-4.6</em>" was used in
-            the graph.</li>
-          <li>• For "<strong>Claude Sonnet 4.6 Extended</strong>", "<em>claude-sonnet-4.6:high</em>" was used
-            in the graph.</li>
-          <li>• For "<strong>Claude Sonnet 4.6</strong>", "<em>claude-sonnet-4.6</em>" was used
-            in the graph.</li>
-          <li>• For "<strong>Claude Haiku 4.5 Extended</strong>", "<em>claude-haiku-4.5:thinking</em>" was used in
-            the graph.</li>
-          <li>• For "<strong>Claude Haiku 4.5</strong>", "<em>claude-haiku-4.5</em>" was used in
-            the graph.</li>
-          <li>• For "<strong>Grok 4.20 Expert</strong>", "<em>grok-4.20-beta-0309-reasoning</em>" was used in
-            the graph.</li>
-          <li>• For "<strong>Grok 4.20 Fast</strong>", "<em>grok-4.20-beta-0309-non-reasoning</em>" was used in
-            the graph.</li>
-          <li>• For "<strong>GLM 5 Deep Think</strong>", "<em>glm-5:thinking</em>" was used in
-            the graph.</li>
-          <li>• For "<strong>GLM 5 Turbo Deep Think</strong>", "<em>glm-5-turbo:thinking</em>" was used in
-            the graph.</li>
-          <li>• For "<strong>GLM 5V Turbo Deep Think</strong>", "<em>glm-5v-turbo:thinking</em>" was used in
-            the graph.</li>
-          <li>• For "<strong>GLM 5</strong>", "<em>glm-5</em>" was used in
-            the graph.</li>
-          <li>• For "<strong>Qwen 3.6 Plus Think</strong>", "<em>qwen3.6-plus:thinking</em>" was used in
-            the graph.</li>
-          <li>• For "<strong>Mimo V2 Pro</strong>", "<em>mimo-v2-pro</em>" was used in
-            the graph.</li>
-          <li>• For "<strong>Mimo V2 Omni</strong>", "<em>mimo-v2-omni</em>" was used in
-            the graph.</li>
-          <li>• For "<strong>Mimo V2 Flash</strong>", "<em>mimo-v2-flash</em>" was used in
-            the graph.</li>
-          <li>• For "<strong>Minimax M2.7 Max</strong>", "<em>minimax-m2.7:thinking</em>" was used in
-            the graph.</li>
-          <li>• I have not been able to find consistent graphs for the following models: GPT 5.3 Instant, GPT 5.4
-            Thinking, GLM 5 Turbo, GLM 5V Turbo, Qwen 3.6 Plus Fast, Minimax M2.7 Air. I will add them immediately if I
-            find some.
-          </li>
-          <li>• Claude Opus 4.6 Extended and Claude Sonnet 4.6 Extended are available for free to Gemini users through
-            the Antigravity app, with limits that reset depending on demand.</li>
-        </ul>
+      <div class="notes collapsible expanded" style="margin-top: 2rem;">
+        <div class="notes-header" onclick="toggleNotes(this)">
+          <p class="notes-title">Notes</p>
+          <span class="notes-toggle">▼</span>
+        </div>
+        <div class="notes-content">
+          <ul class="notes-list">
+            <li>• For "<strong>GPT 5.3 Codex</strong>", "<em>gpt-5.3-codex:xhigh</em>" was used in the graph. This model
+              is only
+              available on Codex and Visual Studio Code, not the web or the app.</li>
+            <li>• For "<strong>GPT 5.4 Thinking xhigh</strong>", "<em>gpt-5.4:xhigh</em>" was used in the graph.
+            </li>
+            <li>• For "<strong>GPT 5.4 Thinking</strong>", an estimation based on the performance of
+              "<em>gpt-5.4:xhigh</em>", "<em>gpt-5.2:xhigh</em>" and "<em>gpt-5.2:medium</em>" was used in the graph;
+              aiming to get as close as possible to what the performance of "<em>gpt-5.4:medium</em>" might be.
+            </li>
+            <li>• For "<strong>GPT 5 Thinking Mini</strong>", "<em>gpt-5-mini:medium</em>" was used in the graph.</li>
+            <li>• For "<strong>Gemini 3.1 Pro</strong>", "<em>gemini-3.1-pro-preview:high</em>" was used in the
+              graph.</li>
+            <li>• For "<strong>Gemini 3 Flash Thinking</strong>", "<em>gemini-3-flash-preview:high</em>" was used
+              in the graph.
+            </li>
+            <li>• For "<strong>Gemini 3 Flash</strong>", "<em>gemini-3-flash-preview:minimal</em>" was used in the
+              graph.</li>
+            <li>• For "<strong>Claude Opus 4.6 Extended</strong>", "<em>claude-opus-4.6:high</em>" was used in
+              the graph.</li>
+            <li>• For "<strong>Claude Opus 4.6</strong>", "<em>claude-opus-4.6</em>" was used in
+              the graph.</li>
+            <li>• For "<strong>Claude Sonnet 4.6 Extended</strong>", "<em>claude-sonnet-4.6:high</em>" was used
+              in the graph.</li>
+            <li>• For "<strong>Claude Sonnet 4.6</strong>", "<em>claude-sonnet-4.6</em>" was used
+              in the graph.</li>
+            <li>• For "<strong>Claude Haiku 4.5 Extended</strong>", "<em>claude-haiku-4.5:thinking</em>" was used in
+              the graph.</li>
+            <li>• For "<strong>Claude Haiku 4.5</strong>", "<em>claude-haiku-4.5</em>" was used in
+              the graph.</li>
+            <li>• For "<strong>Grok 4.20 Expert</strong>", "<em>grok-4.20-beta-0309-reasoning</em>" was used in
+              the graph.</li>
+            <li>• For "<strong>Grok 4.20 Fast</strong>", "<em>grok-4.20-beta-0309-non-reasoning</em>" was used in
+              the graph.</li>
+            <li>• For "<strong>GLM 5 Deep Think</strong>", "<em>glm-5:thinking</em>" was used in
+              the graph.</li>
+            <li>• For "<strong>GLM 5 Turbo Deep Think</strong>", "<em>glm-5-turbo:thinking</em>" was used in
+              the graph.</li>
+            <li>• For "<strong>GLM 5V Turbo Deep Think</strong>", "<em>glm-5v-turbo:thinking</em>" was used in
+              the graph.</li>
+            <li>• For "<strong>GLM 5</strong>", "<em>glm-5</em>" was used in
+              the graph.</li>
+            <li>• For "<strong>Qwen 3.6 Plus Think</strong>", "<em>qwen3.6-plus:thinking</em>" was used in
+              the graph.</li>
+            <li>• For "<strong>Mimo V2 Pro</strong>", "<em>mimo-v2-pro</em>" was used in
+              the graph.</li>
+            <li>• For "<strong>Mimo V2 Omni</strong>", "<em>mimo-v2-omni</em>" was used in
+              the graph.</li>
+            <li>• For "<strong>Mimo V2 Flash</strong>", "<em>mimo-v2-flash</em>" was used in
+              the graph.</li>
+            <li>• For "<strong>Minimax M2.7 Max</strong>", "<em>minimax-m2.7:thinking</em>" was used in
+              the graph.</li>
+            <li>• I have not been able to find consistent graphs for the following models: GPT 5.3 Instant, GPT 5.4
+              Thinking, GLM 5 Turbo, GLM 5V Turbo, Qwen 3.6 Plus Fast, Minimax M2.7 Air. I will add them immediately if
+              I
+              find some.
+            </li>
+            <li>• Claude Opus 4.6 Extended and Claude Sonnet 4.6 Extended are available for free to Gemini users through
+              the Antigravity app, with limits that reset depending on demand.</li>
+          </ul>
+        </div>
       </div>
 
       <!-- Legacy Notes -->
@@ -2946,7 +3164,7 @@
      */
     const FOOTNOTES = {
       'gpt-free-thinking': "Used to be 1 per day for Free and 10 for Go, but was increased. The current limit is not public, nor if it is daily or weekly.",
-      'gpt-image-unknown': "GPT Image 1.5 limits are unknown. GPT Image 1 limits were 50/day for Plus, 5/day for Free.",
+      'gpt-image-unknown': "GPT Image 1.5 limits are unknown. GPT Image 1 limits were 200/day for old Pro, 50/day for Plus, 5/day for Free.",
       'user-reports': "According to user reports. The actual limits are not public.",
       'usa-only': "Only in the USA, for now.",
       'nano-banana-pro-throttle': "Google tends to throttle the daily limit of image generation when a new model or AI tool is released.",
@@ -3021,6 +3239,7 @@
           if (typeof mmmuProChart !== 'undefined') mmmuProChart.resize();
           if (typeof terminalBenchChart !== 'undefined') terminalBenchChart.resize();
           if (typeof tau2BenchChart !== 'undefined') tau2BenchChart.resize();
+          if (typeof maxContextChart !== 'undefined') maxContextChart.resize();
         }, 50);
       }
     }
@@ -3063,6 +3282,36 @@
       ctx.moveTo(size / 2, size + size / 2);
       ctx.lineTo(size + size / 2, size / 2);
       ctx.stroke();
+
+      return ctx.createPattern(canvas, 'repeat');
+    }
+
+    // Diagonal hatch pattern for "Estimated" bars.
+    // Thin lines with wide gaps give a subtle "approximate" signal
+    // while keeping the brand color clearly readable.
+    function createEstimatedPattern(rgb) {
+      const size = 16;                       // tile size (larger = more gap between lines)
+      const stripeWidth = 10;               // thin lines
+      const canvas = document.createElement('canvas');
+      canvas.width = size;
+      canvas.height = size;
+      const ctx = canvas.getContext('2d');
+
+      // Transparent background (dark chart bg shows through)
+      ctx.clearRect(0, 0, size, size);
+
+      // Draw one diagonal stripe per tile (45°)
+      ctx.strokeStyle = `rgba(${rgb}, 1)`;
+      ctx.lineWidth = stripeWidth;
+      ctx.lineCap = 'square';
+
+      // Three lines cover the tile + wrap-around
+      for (const offset of [-size, 0, size]) {
+        ctx.beginPath();
+        ctx.moveTo(0 + offset, size);
+        ctx.lineTo(size + offset, 0);
+        ctx.stroke();
+      }
 
       return ctx.createPattern(canvas, 'repeat');
     }
@@ -3155,17 +3404,18 @@
       'mimo-v2-pro': false,             // Other recommended
       'mimo-v2-omni': false,            // Other recommended
       'mimo-v2-flash': false,           // Other recommended
-      'qwen-36-plus-think': false       // Other recommended
+      'qwen-36-plus-think': false,      // Other recommended
+      'qwen-35-omni-plus': false        // Other recommended
     };
 
     // Model groups for group toggles
     const modelGroups = {
       'claude': ['claude-haiku', 'claude-46-opus', 'claude-46-sonnet', 'claude-46-opus-nr', 'claude-46-sonnet-nr', 'claude-haiku-nr'],
       'reasoning': ['gpt-codex2', 'gpt-54-xhigh', 'gpt-54', 'gpt-thinking-mini', 'gemini-31-pro', 'gemini-flash-thinking', 'claude-haiku', 'claude-46-opus', 'claude-46-sonnet', 'glm-deep-think', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-42-expert', 'minimax-m27', 'mimo-v2-pro', 'mimo-v2-omni', 'qwen-36-plus-think'],
-      'instant': ['gemini-flash', 'claude-46-opus-nr', 'claude-46-sonnet-nr', 'claude-haiku-nr', 'glm-5', 'grok-42-fast', 'mimo-v2-flash'],
+      'instant': ['gemini-flash', 'claude-46-opus-nr', 'claude-46-sonnet-nr', 'claude-haiku-nr', 'glm-5', 'grok-42-fast', 'mimo-v2-flash', 'qwen-35-omni-plus'],
       'chatgpt-pro': [],
       'coding': ['gpt-codex2'],
-      'other': ['glm-deep-think', 'glm-5', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-42-expert', 'grok-42-fast', 'minimax-m27', 'mimo-v2-pro', 'mimo-v2-omni', 'mimo-v2-flash', 'qwen-36-plus-think'],
+      'other': ['glm-deep-think', 'glm-5', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-42-expert', 'grok-42-fast', 'minimax-m27', 'mimo-v2-pro', 'mimo-v2-omni', 'mimo-v2-flash', 'qwen-36-plus-think', 'qwen-35-omni-plus'],
       'legacy': ['gpt-instant']
     };
 
@@ -3196,7 +3446,8 @@
       'mimo-v2-pro': ['other', 'reasoning'],                 // Needs both Other AND Reasoning to be on
       'mimo-v2-omni': ['other', 'reasoning'],                // Needs both Other AND Reasoning to be on
       'mimo-v2-flash': ['other', 'instant'],                 // Needs both Other AND Non-reasoning to be on
-      'qwen-36-plus-think': ['other', 'reasoning']           // Needs both Other AND Reasoning to be on
+      'qwen-36-plus-think': ['other', 'reasoning'],          // Needs both Other AND Reasoning to be on
+      'qwen-35-omni-plus': ['other', 'instant']              // Needs both Other AND Non-reasoning to be on
     };
 
     // Get the current state of a group toggle
@@ -3231,9 +3482,15 @@
       localStorage.setItem('filtersPanelExpanded', panel.classList.contains('expanded'));
     }
 
+    function toggleBenchmarkFiltersPanel() {
+      const panel = document.getElementById('benchmarkFiltersPanel');
+      panel.classList.toggle('expanded');
+      localStorage.setItem('benchmarkFiltersPanelExpanded', panel.classList.contains('expanded'));
+    }
+
     // Update all model dots to reflect current visibility
     function updateModelDotsUI() {
-      document.querySelectorAll('.model-dot').forEach(dot => {
+      document.querySelectorAll('.model-dot[data-model]').forEach(dot => {
         const modelId = dot.getAttribute('data-model');
         if (modelVisibility[modelId]) {
           dot.classList.remove('inactive');
@@ -3415,6 +3672,9 @@
       tau2BenchChart.data.datasets[0].data = tau2BenchData.data;
       tau2BenchChart.data.datasets[0].backgroundColor = tau2BenchData.backgroundColors;
       tau2BenchChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
+
+      // Update Max Context chart
+      rebuildMaxContextChart();
     }
 
     // DISABLED: Striped patterns for non-reasoning models (GPT 5.2 Instant, Gemini 3 Flash)
@@ -3422,6 +3682,45 @@
     // The createStripedPattern() function and pattern logic in getData functions are ready to use.
     // Currently disabled - will revisit when a better visual approach is found.
     const useStripedPatternsForNonReasoning = false;
+
+    // Brand color helper for bar charts — returns per-model RGBA string.
+    // Estimated models are rendered at low opacity (0.3) to look faded.
+    // Non-estimated models use 0.75 so bars look rich but not fully opaque.
+    const BRAND_RGB = {
+      'gpt-instant': '116, 171, 157',   // lighter teal  (non-reasoning GPT)
+      'gpt': '90,  150, 135',   // darker teal   (reasoning GPT)
+      'gemini': '238, 73,  82',    // red
+      'claude': '218, 119, 87',    // orange
+      'glm': '120, 120, 130',   // dark gray
+      'grok': '60,  60,  220',   // blue
+      'minimax': '223, 78,  96',    // deep red
+      'mimo': '255, 116, 0',     // orange
+      'qwen': '66,  59,  175',   // violet
+      'fallback': '139, 92,  246'    // purple
+    };
+
+    function getBrandRgb(modelId) {
+      if (modelId === 'gpt-instant') return BRAND_RGB['gpt-instant'];
+      if (modelId.startsWith('gpt-')) return BRAND_RGB['gpt'];
+      if (modelId.startsWith('gemini-')) return BRAND_RGB['gemini'];
+      if (modelId.startsWith('claude-')) return BRAND_RGB['claude'];
+      if (modelId.startsWith('glm-')) return BRAND_RGB['glm'];
+      if (modelId.startsWith('grok-')) return BRAND_RGB['grok'];
+      if (modelId.startsWith('minimax-')) return BRAND_RGB['minimax'];
+      if (modelId.startsWith('mimo-')) return BRAND_RGB['mimo'];
+      if (modelId.startsWith('qwen-')) return BRAND_RGB['qwen'];
+      return BRAND_RGB['fallback'];
+    }
+
+    function getBrandBgColor(modelId, estimated) {
+      const rgb = getBrandRgb(modelId);
+      if (estimated) return createEstimatedPattern(rgb);
+      return `rgba(${rgb}, 0.75)`;
+    }
+
+    function getBrandBorderColor(modelId) {
+      return `rgba(${getBrandRgb(modelId)}, 1)`;
+    }
 
     // ============================================================================
     // MODEL ORDERING SYSTEM (FUTURE-PROOF)
@@ -3470,7 +3769,8 @@
       { modelId: 'mimo-v2-pro', label: '⋔ Mimo V2 Pro', correct: 27, abstention: 51.1, hallucination: 21.90, sortOrder: 119 },
       { modelId: 'mimo-v2-omni', label: '⋔ Mimo V2 Omni', correct: 19, abstention: 45.36, hallucination: 35.64, sortOrder: 121 },
       { modelId: 'mimo-v2-flash', label: '⋔ Mimo V2 Flash', correct: 20, abstention: 41.60, hallucination: 38.40, sortOrder: 123 },
-      { modelId: 'qwen-36-plus-think', label: '◈ Qwen 3.6 Plus Think', correct: 26, abstention: 50.32, hallucination: 23.68, sortOrder: 125 }
+      { modelId: 'qwen-36-plus-think', label: '▽ Qwen 3.6 Plus Think', correct: 26, abstention: 50.32, hallucination: 23.68, sortOrder: 125 },
+      { modelId: 'qwen-35-omni-plus', label: '▽ Qwen 3.5 Omni Plus', correct: 17, abstention: 53.12, hallucination: 29.88, sortOrder: 126 }
     ];
 
     // Current sort mode for omniscience: 'brand', 'hallucination', 'correct'
@@ -3501,6 +3801,7 @@
     let mmmuProSortMode = localStorage.getItem('mmmuProSortMode') || 'brand';
     let terminalBenchSortMode = localStorage.getItem('terminalBenchSortMode') || 'brand';
     let tau2BenchSortMode = localStorage.getItem('tau2BenchSortMode') || 'brand';
+    let maxContextSortMode = localStorage.getItem('maxContextSortMode') || 'brand';
 
     const mrcrXAxisLabels = ['8k', '16k', '32k', '64k', '128k', '256k', '1M'];
     let mrcrXAxisIndex = localStorage.getItem('mrcrXAxisIndex') !== null ? parseInt(localStorage.getItem('mrcrXAxisIndex')) : 6;
@@ -3601,6 +3902,14 @@
       tau2BenchChart.update({ duration: 750, easing: 'easeInOutQuart' });
     }
 
+    function setMaxContextSort(mode) {
+      maxContextSortMode = mode;
+      localStorage.setItem('maxContextSortMode', mode);
+      document.querySelectorAll('#maxContextSortSelector .sort-btn').forEach(btn => btn.classList.remove('active'));
+      document.getElementById(mode === 'brand' ? 'maxContextSortBrand' : 'maxContextSortHighest').classList.add('active');
+      rebuildMaxContextChart();
+    }
+
     function getOmniscienceData() {
       // Filter models based on modelVisibility
       let models = omniscienceAllModels.filter(m => modelVisibility[m.modelId]);
@@ -3624,15 +3933,16 @@
       const hallucination = models.map(m => m.hallucination);
 
       // Create background colors arrays with striped pattern for non-reasoning models
-      const correctColor = 'rgba(34, 197, 94, 0.7)';
-      const abstentionColor = 'rgba(139, 92, 246, 0.7)';
-      const hallucinationColor = 'rgba(239, 68, 68, 0.7)';
+      // Correct: ChatGPT teal | Abstention: Qwen violet | Hallucination: Gemini red
+      const correctColor = 'rgba(125, 192, 93, 0.65)';
+      const abstentionColor = 'rgba(66, 59, 175, 0.65)';
+      const hallucinationColor = 'rgba(238, 73, 82, 0.65)';
 
       let correctBgColors, abstentionBgColors, hallucinationBgColors;
 
-      const correctEstimated = 'rgba(34, 197, 94, 0.3)';
-      const abstentionEstimated = 'rgba(139, 92, 246, 0.3)';
-      const hallucinationEstimated = 'rgba(239, 68, 68, 0.3)';
+      const correctEstimated = 'rgba(125, 192, 93, 0.35)';
+      const abstentionEstimated = 'rgba(66, 59, 175, 0.35)';
+      const hallucinationEstimated = 'rgba(238, 73, 82, 0.35)';
 
       if (useStripedPatternsForNonReasoning) {
         const correctStriped = createStripedPattern(correctColor);
@@ -3669,24 +3979,24 @@
             label: 'Correct ↑',
             data: omniscienceData.correct,
             backgroundColor: omniscienceData.correctBgColors,
-            borderColor: 'rgba(34, 197, 94, 1)',
-            borderWidth: 1,
+            borderColor: 'rgba(116, 171, 157, 0.9)',
+            borderWidth: 0,
             borderRadius: 4
           },
           {
             label: 'Abstention ↑',
             data: omniscienceData.abstention,
             backgroundColor: omniscienceData.abstentionBgColors,
-            borderColor: 'rgba(139, 92, 246, 1)',
-            borderWidth: 1,
+            borderColor: 'rgba(66, 59, 175, 0.9)',
+            borderWidth: 0,
             borderRadius: 4
           },
           {
             label: 'Hallucination ↓',
             data: omniscienceData.hallucination,
             backgroundColor: omniscienceData.hallucinationBgColors,
-            borderColor: 'rgba(239, 68, 68, 1)',
-            borderWidth: 1,
+            borderColor: 'rgba(238, 73, 82, 0.9)',
+            borderWidth: 0,
             borderRadius: 4
           }
         ]
@@ -4033,7 +4343,8 @@
       { modelId: 'mimo-v2-pro', label: '⋔ Mimo V2 Pro', score: 60.7, sortOrder: 119 },
       { modelId: 'mimo-v2-omni', label: '⋔ Mimo V2 Omni', score: 66.7, sortOrder: 121 },
       { modelId: 'mimo-v2-flash', label: '⋔ Mimo V2 Flash', score: 64.3, sortOrder: 123 },
-      { modelId: 'qwen-36-plus-think', label: '◈ Qwen 3.6 Plus Think', score: 69.7, sortOrder: 125 }
+      { modelId: 'qwen-36-plus-think', label: '▽ Qwen 3.6 Plus Think', score: 69.7, sortOrder: 125 },
+      { modelId: 'qwen-35-omni-plus', label: '▽ Qwen 3.5 Omni Plus', score: 52.7, sortOrder: 126 }
     ];
 
     function getLcrData() {
@@ -4051,24 +4362,11 @@
       const labels = models.map(m => m.label);
       const data = models.map(m => m.score);
 
-      // Create background colors array with striped pattern for non-reasoning models
-      const baseColor = 'rgba(139, 92, 246, 0.7)';
-      const estimatedColor = 'rgba(139, 92, 246, 0.3)';
-      const borderColor = 'rgba(139, 92, 246, 1)';
+      // Per-model brand colors; estimated bars are faded (0.3 opacity)
+      const backgroundColors = models.map(m => getBrandBgColor(m.modelId, m.estimated));
+      const borderColors = models.map(m => getBrandBorderColor(m.modelId));
 
-      let backgroundColors;
-      if (useStripedPatternsForNonReasoning) {
-        const stripedPattern = createStripedPattern(baseColor);
-        backgroundColors = models.map(m => {
-          if (m.estimated) return estimatedColor;
-          if (m.label.includes('GPT 5.2 Instant') || m.label.includes('Gemini 3 Flash')) return stripedPattern;
-          return baseColor;
-        });
-      } else {
-        backgroundColors = models.map(m => m.estimated ? estimatedColor : baseColor);
-      }
-
-      return { labels, data, backgroundColors, borderColor };
+      return { labels, data, backgroundColors, borderColors };
     }
 
     const lcrCtx = document.getElementById('lcrChart').getContext('2d');
@@ -4081,8 +4379,7 @@
           label: 'Score ↑',
           data: lcrInitData.data,
           backgroundColor: lcrInitData.backgroundColors,
-          borderColor: lcrInitData.borderColor,
-          borderWidth: 1,
+          borderWidth: 0,
           borderRadius: 4
         }]
       },
@@ -4158,7 +4455,8 @@
       { modelId: 'mimo-v2-pro', label: '⋔ Mimo V2 Pro', score: 0, sortOrder: 119 },
       { modelId: 'mimo-v2-omni', label: '⋔ Mimo V2 Omni', score: 66.7, sortOrder: 121 },
       { modelId: 'mimo-v2-flash', label: '⋔ Mimo V2 Flash', score: 0, sortOrder: 123 },
-      { modelId: 'qwen-36-plus-think', label: '◈ Qwen 3.6 Plus Think', score: 78, sortOrder: 125 }
+      { modelId: 'qwen-36-plus-think', label: '▽ Qwen 3.6 Plus Think', score: 78, sortOrder: 125 },
+      { modelId: 'qwen-35-omni-plus', label: '▽ Qwen 3.5 Omni Plus', score: 71, sortOrder: 126 }
     ];
 
     function getMmmuProData() {
@@ -4176,24 +4474,11 @@
       const labels = models.map(m => m.label);
       const data = models.map(m => m.score);
 
-      // Create background colors array with striped pattern for non-reasoning models
-      const baseColor = 'rgba(139, 92, 246, 0.7)';
-      const estimatedColor = 'rgba(139, 92, 246, 0.3)';
-      const borderColor = 'rgba(139, 92, 246, 1)';
+      // Per-model brand colors; estimated bars are faded (0.3 opacity)
+      const backgroundColors = models.map(m => getBrandBgColor(m.modelId, m.estimated));
+      const borderColors = models.map(m => getBrandBorderColor(m.modelId));
 
-      let backgroundColors;
-      if (useStripedPatternsForNonReasoning) {
-        const stripedPattern = createStripedPattern(baseColor);
-        backgroundColors = models.map(m => {
-          if (m.estimated) return estimatedColor;
-          if (m.label.includes('GPT 5.2 Instant') || m.label.includes('Gemini 3 Flash')) return stripedPattern;
-          return baseColor;
-        });
-      } else {
-        backgroundColors = models.map(m => m.estimated ? estimatedColor : baseColor);
-      }
-
-      return { labels, data, backgroundColors, borderColor };
+      return { labels, data, backgroundColors, borderColors };
     }
 
     const mmmuProCtx = document.getElementById('mmmuProChart').getContext('2d');
@@ -4206,8 +4491,7 @@
           label: 'Score ↑',
           data: mmmuProInitData.data,
           backgroundColor: mmmuProInitData.backgroundColors,
-          borderColor: mmmuProInitData.borderColor,
-          borderWidth: 1,
+          borderWidth: 0,
           borderRadius: 4
         }]
       },
@@ -4283,7 +4567,8 @@
       { modelId: 'mimo-v2-pro', label: '⋔ Mimo V2 Pro', score: 40.9, sortOrder: 119 },
       { modelId: 'mimo-v2-omni', label: '⋔ Mimo V2 Omni', score: 34.8, sortOrder: 121 },
       { modelId: 'mimo-v2-flash', label: '⋔ Mimo V2 Flash', score: 31.1, sortOrder: 123 },
-      { modelId: 'qwen-36-plus-think', label: '◈ Qwen 3.6 Plus Think', score: 43.9, sortOrder: 125 }
+      { modelId: 'qwen-36-plus-think', label: '▽ Qwen 3.6 Plus Think', score: 43.9, sortOrder: 125 },
+      { modelId: 'qwen-35-omni-plus', label: '▽ Qwen 3.5 Omni Plus', score: 21.2, sortOrder: 126 }
     ];
 
     function getTerminalBenchData() {
@@ -4301,24 +4586,11 @@
       const labels = models.map(m => m.label);
       const data = models.map(m => m.score);
 
-      // Create background colors array with striped pattern for non-reasoning models
-      const baseColor = 'rgba(59, 130, 246, 0.7)';
-      const estimatedColor = 'rgba(59, 130, 246, 0.3)';
-      const borderColor = 'rgba(59, 130, 246, 1)';
+      // Per-model brand colors; estimated bars are faded (0.3 opacity)
+      const backgroundColors = models.map(m => getBrandBgColor(m.modelId, m.estimated));
+      const borderColors = models.map(m => getBrandBorderColor(m.modelId));
 
-      let backgroundColors;
-      if (useStripedPatternsForNonReasoning) {
-        const stripedPattern = createStripedPattern(baseColor);
-        backgroundColors = models.map(m => {
-          if (m.estimated) return estimatedColor;
-          if (m.label.includes('GPT 5.2 Instant') || m.label.includes('Gemini 3 Flash')) return stripedPattern;
-          return baseColor;
-        });
-      } else {
-        backgroundColors = models.map(m => m.estimated ? estimatedColor : baseColor);
-      }
-
-      return { labels, data, backgroundColors, borderColor };
+      return { labels, data, backgroundColors, borderColors };
     }
 
     const terminalBenchCtx = document.getElementById('terminalBenchChart').getContext('2d');
@@ -4331,8 +4603,7 @@
           label: 'Score ↑',
           data: terminalBenchInitData.data,
           backgroundColor: terminalBenchInitData.backgroundColors,
-          borderColor: terminalBenchInitData.borderColor,
-          borderWidth: 1,
+          borderWidth: 0,
           borderRadius: 4
         }]
       },
@@ -4408,7 +4679,8 @@
       { modelId: 'mimo-v2-pro', label: '⋔ Mimo V2 Pro', score: 95, sortOrder: 119 },
       { modelId: 'mimo-v2-omni', label: '⋔ Mimo V2 Omni', score: 91.2, sortOrder: 121 },
       { modelId: 'mimo-v2-flash', label: '⋔ Mimo V2 Flash', score: 93.3, sortOrder: 123 },
-      { modelId: 'qwen-36-plus-think', label: '◈ Qwen 3.6 Plus Think', score: 97.7, sortOrder: 125 }
+      { modelId: 'qwen-36-plus-think', label: '▽ Qwen 3.6 Plus Think', score: 97.7, sortOrder: 125 },
+      { modelId: 'qwen-35-omni-plus', label: '▽ Qwen 3.5 Omni Plus', score: 88.3, sortOrder: 126 }
     ];
 
     function getTau2BenchData() {
@@ -4426,24 +4698,11 @@
       const labels = models.map(m => m.label);
       const data = models.map(m => m.score);
 
-      // Create background colors array with striped pattern for non-reasoning models
-      const baseColor = 'rgba(59, 130, 246, 0.7)';
-      const estimatedColor = 'rgba(59, 130, 246, 0.3)';
-      const borderColor = 'rgba(59, 130, 246, 1)';
+      // Per-model brand colors; estimated bars are faded (0.3 opacity)
+      const backgroundColors = models.map(m => getBrandBgColor(m.modelId, m.estimated));
+      const borderColors = models.map(m => getBrandBorderColor(m.modelId));
 
-      let backgroundColors;
-      if (useStripedPatternsForNonReasoning) {
-        const stripedPattern = createStripedPattern(baseColor);
-        backgroundColors = models.map(m => {
-          if (m.estimated) return estimatedColor;
-          if (m.label.includes('GPT 5.2 Instant') || m.label.includes('Gemini 3 Flash')) return stripedPattern;
-          return baseColor;
-        });
-      } else {
-        backgroundColors = models.map(m => m.estimated ? estimatedColor : baseColor);
-      }
-
-      return { labels, data, backgroundColors, borderColor };
+      return { labels, data, backgroundColors, borderColors };
     }
 
     const tau2BenchCtx = document.getElementById('tau2BenchChart').getContext('2d');
@@ -4456,8 +4715,7 @@
           label: 'Score ↑',
           data: tau2BenchInitData.data,
           backgroundColor: tau2BenchInitData.backgroundColors,
-          borderColor: tau2BenchInitData.borderColor,
-          borderWidth: 1,
+          borderWidth: 0,
           borderRadius: 4
         }]
       },
@@ -4505,6 +4763,386 @@
         }
       }
     });
+
+    // ============================================================
+    // Max Context Limit - Horizontal Stacked Bar Chart
+    // ============================================================
+    //
+    // Models with tiered limits use segments (one segment per tier).
+    // Each segment value = context size for that tier.
+    // Hover tooltip shows which plans have that tier.
+    //
+    // Brand colors:
+    //   GPT (non-reasoning): rgba(116, 171, 157, ...) — teal
+    //   GPT (reasoning):     rgba(90, 150, 135, ...) — darker teal
+    //   Gemini:              rgba(238, 73, 82, ...)   — red
+    //   Claude:              rgba(218, 119, 87, ...)  — orange
+    //   Grok:                rgba(70, 70, 200, ...)   — dark blue
+    //   GLM:                 rgba(100, 100, 110, ...) — dark gray
+    //   Qwen:                rgba(66, 59, 175, ...)   — violet
+    //   Mimo:                rgba(255, 116, 0, ...)   — orange
+    //   Minimax:             rgba(223, 78, 96, ...)   — deep red
+    // ============================================================
+
+    let maxContextChart;
+
+    // Each model entry:
+    //   modelId   — matches modelVisibility keys
+    //   label     — display label
+    //   sortOrder — brand-order sort key
+    //   segments  — array of { value (tokens), plans (string) }
+    //               value is cumulative width; segments[i].value is the
+    //               INCREMENTAL size for that tier (we keep them absolute
+    //               and convert to increments when building datasets).
+    //   color     — base rgba string (opacity applied per segment)
+    //
+    // GPT non-reasoning: 27k / 54k / 128k  (Free / Plus,Go / Pro)
+    // GPT reasoning:     256k / 400k        (Free,Go,Plus / Pro)
+    // Gemini:            32k / 128k / 1M    (Free / Plus / Pro,Ultra)
+    // Claude:            200k               (all plans)
+    // Grok:              2M                 (all plans)
+    // GLM:               200k               (all plans)
+    // Qwen:              1M                 (all plans)
+    // Mimo:              1M                 (all plans)
+    // Minimax:           200k               (all plans)
+
+    const maxContextAllModels = [
+      // GPT non-reasoning (instant)
+      {
+        modelId: 'gpt-instant', label: '⌘ GPT 5.2 Instant', sortOrder: 30,
+        color: 'rgba(116, 171, 157, 1)',
+        segments: [
+          { value: 27000, plans: 'Free' },
+          { value: 54000, plans: 'Plus, Go' },
+          { value: 128000, plans: 'Pro' }
+        ]
+      },
+      // GPT reasoning models (use the same tier structure)
+      {
+        modelId: 'gpt-thinking-mini', label: '⌘ GPT 5 Thinking Mini', sortOrder: 25,
+        color: 'rgba(90, 150, 135, 1)',
+        segments: [
+          { value: 256000, plans: 'Free, Go, Plus' },
+          { value: 400000, plans: 'Pro' }
+        ]
+      },
+      {
+        modelId: 'gpt-54', label: '⌘ GPT 5.4 Thinking', sortOrder: 14,
+        color: 'rgba(90, 150, 135, 1)',
+        segments: [
+          { value: 256000, plans: 'Free, Go, Plus' },
+          { value: 400000, plans: 'Pro' }
+        ]
+      },
+      {
+        modelId: 'gpt-54-xhigh', label: '⌘ GPT 5.4 Thinking xhigh', sortOrder: 12,
+        color: 'rgba(90, 150, 135, 1)',
+        segments: [
+          { value: 256000, plans: 'Free, Go, Plus' },
+          { value: 400000, plans: 'Pro' }
+        ]
+      },
+      {
+        modelId: 'gpt-codex2', label: '⌘ GPT 5.3 Codex', sortOrder: 5,
+        color: 'rgba(90, 150, 135, 1)',
+        segments: [
+          { value: 256000, plans: 'Free, Go, Plus' },
+          { value: 400000, plans: 'Pro' }
+        ]
+      },
+      // Gemini
+      {
+        modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro', sortOrder: 35,
+        color: 'rgba(238, 73, 82, 1)',
+        segments: [
+          { value: 32000, plans: 'Free' },
+          { value: 128000, plans: 'Plus' },
+          { value: 1000000, plans: 'Pro, Ultra' }
+        ]
+      },
+      {
+        modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', sortOrder: 50,
+        color: 'rgba(238, 73, 82, 1)',
+        segments: [
+          { value: 32000, plans: 'Free' },
+          { value: 128000, plans: 'Plus' },
+          { value: 1000000, plans: 'Pro, Ultra' }
+        ]
+      },
+      {
+        modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', sortOrder: 60,
+        color: 'rgba(238, 73, 82, 1)',
+        segments: [
+          { value: 32000, plans: 'Free' },
+          { value: 128000, plans: 'Plus' },
+          { value: 1000000, plans: 'Pro, Ultra' }
+        ]
+      },
+      // Claude
+      {
+        modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Extended', sortOrder: 65,
+        color: 'rgba(218, 119, 87, 1)',
+        segments: [{ value: 200000, plans: 'All plans' }]
+      },
+      {
+        modelId: 'claude-46-opus-nr', label: '❋ Claude 4.6 Opus', sortOrder: 66,
+        color: 'rgba(218, 119, 87, 1)',
+        segments: [{ value: 200000, plans: 'All plans' }]
+      },
+      {
+        modelId: 'claude-46-sonnet', label: '❋ Claude 4.6 Sonnet Extended', sortOrder: 67,
+        color: 'rgba(218, 119, 87, 1)',
+        segments: [{ value: 200000, plans: 'All plans' }]
+      },
+      {
+        modelId: 'claude-46-sonnet-nr', label: '❋ Claude 4.6 Sonnet', sortOrder: 68,
+        color: 'rgba(218, 119, 87, 1)',
+        segments: [{ value: 200000, plans: 'All plans' }]
+      },
+      {
+        modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', sortOrder: 90,
+        color: 'rgba(218, 119, 87, 1)',
+        segments: [{ value: 200000, plans: 'All plans' }]
+      },
+      {
+        modelId: 'claude-haiku-nr', label: '❋ Claude 4.5 Haiku', sortOrder: 95,
+        color: 'rgba(218, 119, 87, 1)',
+        segments: [{ value: 200000, plans: 'All plans' }]
+      },
+      // GLM
+      {
+        modelId: 'glm-deep-think', label: 'Ƶ GLM 5 Deep Think', sortOrder: 100,
+        color: 'rgba(100, 100, 110, 1)',
+        segments: [{ value: 200000, plans: 'All plans' }]
+      },
+      {
+        modelId: 'glm-5', label: 'Ƶ GLM 5', sortOrder: 105,
+        color: 'rgba(100, 100, 110, 1)',
+        segments: [{ value: 200000, plans: 'All plans' }]
+      },
+      {
+        modelId: 'glm-5t-deep-think', label: 'Ƶ GLM 5 Turbo Deep Think', sortOrder: 107,
+        color: 'rgba(100, 100, 110, 1)',
+        segments: [{ value: 200000, plans: 'All plans' }]
+      },
+      {
+        modelId: 'glm-5v-turbo-deep-think', label: 'Ƶ GLM 5V Turbo Deep Think', sortOrder: 109,
+        color: 'rgba(100, 100, 110, 1)',
+        segments: [{ value: 200000, plans: 'All plans' }]
+      },
+      // Grok
+      {
+        modelId: 'grok-42-expert', label: 'Ø Grok 4.20 Expert', sortOrder: 110,
+        color: 'rgba(60, 60, 220, 1)',
+        segments: [{ value: 2000000, plans: 'All plans' }]
+      },
+      {
+        modelId: 'grok-42-fast', label: 'Ø Grok 4.20 Fast', sortOrder: 115,
+        color: 'rgba(60, 60, 220, 1)',
+        segments: [{ value: 2000000, plans: 'All plans' }]
+      },
+      // Minimax
+      {
+        modelId: 'minimax-m27', label: '≋ Minimax M2.7 Max', sortOrder: 117,
+        color: 'rgba(223, 78, 96, 1)',
+        segments: [{ value: 200000, plans: 'All plans' }]
+      },
+      // Mimo
+      {
+        modelId: 'mimo-v2-pro', label: '⋔ Mimo V2 Pro', sortOrder: 119,
+        color: 'rgba(255, 116, 0, 1)',
+        segments: [{ value: 1000000, plans: 'All plans' }]
+      },
+      {
+        modelId: 'mimo-v2-omni', label: '⋔ Mimo V2 Omni', sortOrder: 121,
+        color: 'rgba(255, 116, 0, 1)',
+        segments: [{ value: 256000, plans: 'All plans' }]
+      },
+      {
+        modelId: 'mimo-v2-flash', label: '⋔ Mimo V2 Flash', sortOrder: 123,
+        color: 'rgba(255, 116, 0, 1)',
+        segments: [{ value: 256000, plans: 'All plans' }]
+      },
+      // Qwen
+      {
+        modelId: 'qwen-36-plus-think', label: '▽ Qwen 3.6 Plus Think', sortOrder: 125,
+        color: 'rgba(66, 59, 175, 1)',
+        segments: [{ value: 1000000, plans: 'All plans' }]
+      },
+      {
+        modelId: 'qwen-35-omni-plus', label: '▽ Qwen 3.5 Omni Plus', sortOrder: 126,
+        color: 'rgba(66, 59, 175, 1)',
+        segments: [{ value: 262000, plans: 'All plans' }]
+      }
+    ];
+
+    // Helper: format token count nicely
+    function formatTokens(n) {
+      if (n >= 1000000) return (n / 1000000).toFixed(n % 1000000 === 0 ? 0 : 1) + 'M';
+      if (n >= 1000) return (n / 1000).toFixed(n % 1000 === 0 ? 0 : 1) + 'k';
+      return String(n);
+    }
+
+    // Build Chart.js datasets from the segments of each visible model.
+    // We create one dataset per "tier slot" (index 0, 1, 2...).
+    // Each model can have up to 3 segments.
+    // Per-tier, each dataset holds the INCREMENTAL width for that model.
+    function buildMaxContextDatasets(models) {
+      // Find max number of segments
+      const maxSegs = Math.max(...models.map(m => m.segments.length));
+
+      const datasets = [];
+      for (let i = 0; i < maxSegs; i++) {
+        const data = models.map(m => {
+          if (i >= m.segments.length) return 0;
+          const prev = i > 0 ? m.segments[i - 1].value : 0;
+          return m.segments[i].value - prev;
+        });
+
+        // Metadata per bar (plans label & color)
+        const plansPerBar = models.map(m => i < m.segments.length ? m.segments[i].plans : null);
+        const absPerBar = models.map(m => i < m.segments.length ? m.segments[i].value : null);
+
+        // Background colors — darken-by-tier via opacity
+        const opacities = [0.75, 0.50, 0.30];
+        const opacity = opacities[Math.min(i, opacities.length - 1)];
+        const bgColors = models.map(m => {
+          if (i >= m.segments.length) return 'transparent';
+          // Extract rgb from "rgba(r,g,b,a)" and apply new opacity
+          const match = m.color.match(/rgba\(([\d.]+),\s*([\d.]+),\s*([\d.]+)/);
+          if (!match) return m.color;
+          return `rgba(${match[1]}, ${match[2]}, ${match[3]}, ${opacity})`;
+        });
+
+        // Per-bar borderRadius: round only on the segment that is last for each model.
+        // For horizontal bars the "far end" is topRight + bottomRight.
+        const borderRadiusArr = models.map(m => {
+          if (i !== m.segments.length - 1) return 0;
+          return { topLeft: 0, bottomLeft: 0, topRight: 4, bottomRight: 4 };
+        });
+
+        datasets.push({
+          label: i === 0 ? 'Tier 1' : i === 1 ? 'Tier 2' : 'Tier 3',
+          data,
+          backgroundColor: bgColors,
+          borderWidth: 0,          // no border → no gap between adjacent segments
+          borderRadius: borderRadiusArr,
+          borderSkipped: false,
+          // Custom metadata (not Chart.js native)
+          _plans: plansPerBar,
+          _abs: absPerBar
+        });
+      }
+      return datasets;
+    }
+
+    function getMaxContextModels() {
+      let models = maxContextAllModels.filter(m => modelVisibility[m.modelId]);
+      if (maxContextSortMode === 'highest') {
+        models.sort((a, b) => {
+          const aMax = a.segments[a.segments.length - 1].value;
+          const bMax = b.segments[b.segments.length - 1].value;
+          return bMax - aMax;
+        });
+      } else {
+        models.sort((a, b) => a.sortOrder - b.sortOrder);
+      }
+      return models;
+    }
+
+    // Returns the x-axis max: ceil(highest / 200k) × 200k.
+    // Examples: 128k → 200k, 200k → 200k, 400k → 400k, 1M → 1M, 2M → 2M.
+    function getMaxContextXMax(models) {
+      if (!models.length) return 200000;
+      const step = 200000;
+      const highest = Math.max(...models.map(m => m.segments[m.segments.length - 1].value));
+      return Math.ceil(highest / step) * step;
+    }
+
+    function rebuildMaxContextChart() {
+      if (!maxContextChart) return;
+      const models = getMaxContextModels();
+      maxContextChart.data.labels = models.map(m => m.label);
+      maxContextChart.data.datasets = buildMaxContextDatasets(models);
+      // Update x-axis max dynamically
+      maxContextChart.options.scales.x.max = getMaxContextXMax(models);
+      // Dynamically resize chart height based on number of bars
+      const barHeight = 30;
+      const padding = 100;
+      const newHeight = Math.max(400, models.length * barHeight + padding);
+      maxContextChart.canvas.parentNode.style.minHeight = newHeight + 'px';
+      maxContextChart.resize();
+      maxContextChart.update({ duration: 750, easing: 'easeInOutQuart' });
+    }
+
+    (function initMaxContextChart() {
+      const models = getMaxContextModels();
+      const labels = models.map(m => m.label);
+      const datasets = buildMaxContextDatasets(models);
+
+      const barHeight = 30;
+      const padding = 100;
+      const initHeight = Math.max(400, models.length * barHeight + padding);
+      const container = document.getElementById('maxContextChart').parentNode;
+      container.style.minHeight = initHeight + 'px';
+
+      const ctx = document.getElementById('maxContextChart').getContext('2d');
+      maxContextChart = new Chart(ctx, {
+        type: 'bar',
+        data: { labels, datasets },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              backgroundColor: 'rgba(18, 18, 26, 0.95)',
+              titleColor: '#d9c5a2',
+              bodyColor: '#b3a385',
+              borderColor: 'rgba(255, 255, 255, 0.1)',
+              borderWidth: 1,
+              padding: 12,
+              cornerRadius: 8,
+              callbacks: {
+                title: function (items) {
+                  return items[0].label;
+                },
+                label: function (context) {
+                  const ds = context.dataset;
+                  const idx = context.dataIndex;
+                  const plans = ds._plans && ds._plans[idx];
+                  const absVal = ds._abs && ds._abs[idx];
+                  if (!plans || absVal === null) return null;
+                  return plans + ': ' + formatTokens(absVal) + ' tokens';
+                }
+              }
+            }
+          },
+          scales: {
+            x: {
+              stacked: true,
+              beginAtZero: true,
+              max: getMaxContextXMax(models),
+              ticks: {
+                callback: function (value) { return formatTokens(value); },
+                maxTicksLimit: 8
+              },
+              grid: { color: 'rgba(255, 255, 255, 0.05)' },
+              title: {
+                display: true,
+                text: 'Max context window (tokens)',
+                color: '#8a7d65'
+              }
+            },
+            y: {
+              stacked: true,
+              grid: { display: false }
+            }
+          }
+        }
+      });
+    })();
 
     // Toggle function for subjective recommendations
     function toggleSubjective() {
@@ -4867,6 +5505,98 @@
       localStorage.setItem('legacyModelsHidden', legacyModelsHidden);
     }
 
+    // Toggle benchmark sections visibility
+    let benchSectionVisibility = {
+      omniscience: localStorage.getItem('bench_omniscience') !== 'false',
+      mrcr: localStorage.getItem('bench_mrcr') !== 'false',
+      aalcr: localStorage.getItem('bench_aalcr') !== 'false',
+      maxcontext: localStorage.getItem('bench_maxcontext') !== 'false',
+      mmmu: localStorage.getItem('bench_mmmu') !== 'false',
+      terminal: localStorage.getItem('bench_terminal') === 'true',
+      tau2: localStorage.getItem('bench_tau2') === 'true'
+    };
+
+    function initBenchSections() {
+      Object.keys(benchSectionVisibility).forEach(benchId => {
+        const isVisible = benchSectionVisibility[benchId];
+        const section = document.getElementById('bench-section-' + benchId);
+        if (section) section.style.display = isVisible ? '' : 'none';
+        document.querySelectorAll('.bench-toggle-' + benchId).forEach(t => t.classList.toggle('active', isVisible));
+        document.querySelectorAll('.bench-toggle-' + benchId).forEach(t => t.classList.toggle('inactive', !isVisible));
+      });
+      updateBenchGroupToggles();
+    }
+
+    function updateBenchGroupToggles() {
+      // Accuracy
+      const accActive = benchSectionVisibility['omniscience'];
+      document.querySelectorAll('.bench-group-toggle-accuracy').forEach(t => t.classList.toggle('active', accActive));
+
+      // Long context
+      const longActive = benchSectionVisibility['mrcr'] || benchSectionVisibility['aalcr'] || benchSectionVisibility['maxcontext'];
+      document.querySelectorAll('.bench-group-toggle-long').forEach(t => t.classList.toggle('active', longActive));
+
+      // Multimodal
+      const multiActive = benchSectionVisibility['mmmu'];
+      document.querySelectorAll('.bench-group-toggle-multi').forEach(t => t.classList.toggle('active', multiActive));
+
+      // Coding
+      const codingActive = benchSectionVisibility['terminal'] || benchSectionVisibility['tau2'];
+      document.querySelectorAll('.bench-group-toggle-coding').forEach(t => t.classList.toggle('active', codingActive));
+    }
+
+    function toggleBenchGroup(groupName) {
+      let groupBenches = [];
+      if (groupName === 'accuracy') groupBenches = ['omniscience'];
+      else if (groupName === 'long') groupBenches = ['mrcr', 'aalcr', 'maxcontext'];
+      else if (groupName === 'multi') groupBenches = ['mmmu'];
+      else if (groupName === 'coding') groupBenches = ['terminal', 'tau2'];
+
+      const anyInactive = groupBenches.some(benchId => !benchSectionVisibility[benchId]);
+      const newState = anyInactive;
+
+      groupBenches.forEach(benchId => {
+        if (benchSectionVisibility[benchId] !== newState) {
+          toggleBenchSection(benchId);
+        }
+      });
+    }
+
+    // Call initialization on load
+    initBenchSections();
+
+    function toggleBenchSection(benchId) {
+      benchSectionVisibility[benchId] = !benchSectionVisibility[benchId];
+      const isVisible = benchSectionVisibility[benchId];
+      localStorage.setItem('bench_' + benchId, isVisible);
+
+      const section = document.getElementById('bench-section-' + benchId);
+      if (section) {
+        section.style.display = isVisible ? '' : 'none';
+        // Trigger resize on charts within this section when making it visible again
+        if (isVisible) {
+          setTimeout(() => {
+            const canvas = section.querySelector('canvas');
+            if (canvas) {
+              const chartId = canvas.id;
+              if (chartId === 'omniscienceChart' && typeof omniscienceChart !== 'undefined') omniscienceChart.resize();
+              if (chartId === 'mrcrChart' && typeof mrcrChart !== 'undefined') mrcrChart.resize();
+              if (chartId === 'lcrChart' && typeof lcrChart !== 'undefined') lcrChart.resize();
+              if (chartId === 'maxContextChart' && typeof maxContextChart !== 'undefined') maxContextChart.resize();
+              if (chartId === 'mmmuProChart' && typeof mmmuProChart !== 'undefined') mmmuProChart.resize();
+              if (chartId === 'terminalBenchChart' && typeof terminalBenchChart !== 'undefined') terminalBenchChart.resize();
+              if (chartId === 'tau2BenchChart' && typeof tau2BenchChart !== 'undefined') tau2BenchChart.resize();
+            }
+          }, 50);
+        }
+      }
+
+      document.querySelectorAll('.bench-toggle-' + benchId).forEach(t => t.classList.toggle('active', isVisible));
+      document.querySelectorAll('.bench-toggle-' + benchId).forEach(t => t.classList.toggle('inactive', !isVisible));
+
+      updateBenchGroupToggles();
+    }
+
     // Toggle function for Coding benchmarks section only (not the Codex model)
     function toggleCodingSection() {
       showCodingBenchmarks = !showCodingBenchmarks;
@@ -4987,6 +5717,12 @@
         document.getElementById('modelFiltersPanel').classList.add('expanded');
       }
 
+      // Restore benchmark filters panel state
+      const savedBenchmarkFiltersPanel = localStorage.getItem('benchmarkFiltersPanelExpanded');
+      if (savedBenchmarkFiltersPanel === 'true') {
+        document.getElementById('benchmarkFiltersPanel').classList.add('expanded');
+      }
+
       // Restore coding benchmarks section visibility (separate from Codex model)
       const savedCodingBenchmarks = localStorage.getItem('codingBenchmarksVisible');
       if (savedCodingBenchmarks !== null) {
@@ -5090,6 +5826,10 @@
         document.querySelectorAll('#tau2BenchSortSelector .sort-btn').forEach(btn => btn.classList.remove('active'));
         document.getElementById('tau2BenchSortHighest').classList.add('active');
       }
+      if (maxContextSortMode !== 'brand') {
+        document.querySelectorAll('#maxContextSortSelector .sort-btn').forEach(btn => btn.classList.remove('active'));
+        document.getElementById('maxContextSortHighest').classList.add('active');
+      }
 
       // Update charts if state changed from default
       if (needsChartUpdate) {
@@ -5125,6 +5865,13 @@
         tau2BenchChart.data.datasets[0].data = tau2BenchData.data;
         tau2BenchChart.data.datasets[0].backgroundColor = tau2BenchData.backgroundColors;
         tau2BenchChart.update('none');
+        // Rebuild max context chart without animation
+        if (maxContextChart) {
+          const mcModels = getMaxContextModels();
+          maxContextChart.data.labels = mcModels.map(m => m.label);
+          maxContextChart.data.datasets = buildMaxContextDatasets(mcModels);
+          maxContextChart.update('none');
+        }
       }
 
       // Restore subjective toggle state
@@ -5245,7 +5992,7 @@
     style="text-align: center; padding: 2rem 1rem; margin-top: 3rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.8rem;">
     Made by <strong> u/Pasto_Shouwa</strong>
     <br>
-    <em>Last updated on <strong>09/04/2026</strong> (dd/mm/yyyy)</em>
+    <em>Last updated on <strong>10/04/2026</strong> (dd/mm/yyyy)</em>
   </footer>
 </body>
 
