@@ -1627,7 +1627,7 @@
       <div class="price-tier-toggle">
         <button onclick="switchPriceTier('free')" id="btn-tier-free" class="price-tier-btn">$0 plans</button>
         <button onclick="switchPriceTier('low')" id="btn-tier-low" class="price-tier-btn active">$0-$20 plans</button>
-        <button onclick="switchPriceTier('high')" id="btn-tier-high" class="price-tier-btn">$200-$250 plans</button>
+        <button onclick="switchPriceTier('high')" id="btn-tier-high" class="price-tier-btn">$100-$250 plans</button>
       </div>
     </div>
 
@@ -1710,8 +1710,7 @@
             <tr>
               <td>Folder organization</td>
               <td class="rating-excellent">Yes<span class="detail">[Projects]</span></td>
-              <td>No<span class="annotation" data-note="notebooklm"></span>
-              </td>
+              <td class="rating-excellent">Yes<span class="detail">[Notebooks]</span></td>
             </tr>
             <tr>
               <td>Maximum scheduled tasks</td>
@@ -1898,8 +1897,7 @@
             <tr>
               <td>Folder organization</td>
               <td colspan="3" class="rating-excellent">Yes<span class="detail">[Projects]</span></td>
-              <td colspan="3">No<span class="annotation" data-note="notebooklm"></span>
-              </td>
+              <td class="rating-excellent">Yes<span class="detail">[Notebooks]</span></td>
             </tr>
             <tr>
               <td>Maximum scheduled tasks</td>
@@ -2085,8 +2083,7 @@
             <tr>
               <td>Folder organization</td>
               <td class="rating-excellent">Yes<span class="detail">[Projects]</span></td>
-              <td>No<span class="annotation" data-note="notebooklm"></span>
-              </td>
+              <td class="rating-excellent">Yes<span class="detail">[Notebooks]</span></td>
             </tr>
             <tr>
               <td>Maximum scheduled tasks</td>
@@ -2956,7 +2953,6 @@
       '1m-tokens': "Exactly 1048k tokens.",
       'gemini-memory': "While Gemini has a memory feature, it sometimes calls memory when not needed, or decides not to call it when actually needed; which sometimes provokes inconsistent outputs.",
       'ecosystem-memory': "Gemini can use your connected Google services (such as Gmail; Google Drive; Google Photos; Google, Maps, and YouTube search history and other Google Workspace services) through Gemini Personal Intelligence to help you find information, personalize answers and more. Of course, only if toggled by the user, since the option is off by default.",
-      'notebooklm': "NotebookLM differs from Projects. While it can be linked with Gemini chats, it lacks a folder structure when used inside Gemini; and when used on the NotebookLM site it is less creative due to an anti-hallucination tuning.",
       'free-15gb': "Free accounts use the Google account's free 15GB storage.",
       'age-ai': "AI-based age estimation can be unreliable, sometimes flagging an account as underage based on the user's preferences.",
       'age-verification': "Which age verification method is better depends on whether you're more comfortable sharing proof of a credit card (or an ID if you don't have one) with Google, or sharing your ID with Persona Identities.",
@@ -4537,10 +4533,10 @@
       // $0-$20 table cells
       const memoryGeminiPro = document.getElementById('memory-gemini-pro');
       const memoryChatGPTPlus = document.getElementById('memory-chatgpt-plus');
-      // $200-$250 table cells
+      // $100-$250 table cells
       const memoryGeminiUltra = document.getElementById('memory-gemini-ultra');
       const memoryChatGPTPro = document.getElementById('memory-chatgpt-pro');
-      // Agent mode cells ($200-$250)
+      // Agent mode cells ($100-$250)
       const agentGeminiUltra = document.getElementById('agent-gemini-ultra');
       const agentChatGPTPro = document.getElementById('agent-chatgpt-pro');
 
