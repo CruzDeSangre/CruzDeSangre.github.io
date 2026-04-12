@@ -1536,6 +1536,10 @@
       background: rgba(66, 59, 175, 1);
     }
 
+    .dot-glm-legacy {
+      background: rgba(50, 50, 50, 1);
+    }
+
     .dot-gpt-legacy {
       background: var(--chatgpt-primary-legacy-new);
     }
@@ -1706,7 +1710,7 @@
     <nav class="tabs-nav">
       <button onclick="switchTab('specs')" id="btn-specs" class="tab-btn active">Subscription Plans</button>
       <button onclick="switchTab('benchmarks')" id="btn-benchmarks" class="tab-btn">Benchmarks</button>
-      <button onclick="switchTab('benefits')" id="btn-benefits" class="tab-btn">Extra Benefits</button>
+      <button onclick="switchTab('benefits')" id="btn-benefits" class="tab-btn">Other Benefits</button>
     </nav>
 
     <!-- TAB 1: SPECS -->
@@ -2363,10 +2367,10 @@
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
-              <div class="model-dot inactive" data-model="glm-deep-think"
-                onclick="toggleIndividualModel('glm-deep-think')">
+              <div class="model-dot inactive" data-model="glm-51-deep-think"
+                onclick="toggleIndividualModel('glm-51-deep-think')">
                 <span class="model-dot-indicator dot-glm"></span>
-                <span class="model-dot-label">GLM 5 Deep Think</span>
+                <span class="model-dot-label">GLM 5.1 Deep Think</span>
               </div>
               <div class="model-dot inactive" data-model="glm-5t-deep-think"
                 onclick="toggleIndividualModel('glm-5t-deep-think')">
@@ -2377,6 +2381,11 @@
                 onclick="toggleIndividualModel('glm-5v-turbo-deep-think')">
                 <span class="model-dot-indicator dot-glm"></span>
                 <span class="model-dot-label">GLM 5V Turbo Deep Think</span>
+              </div>
+              <div class="model-dot inactive" data-model="glm-deep-think"
+                onclick="toggleIndividualModel('glm-deep-think')">
+                <span class="model-dot-indicator dot-glm-legacy"></span>
+                <span class="model-dot-label">GLM 5 Deep Think</span>
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
@@ -2451,8 +2460,12 @@
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
-              <div class="model-dot inactive" data-model="glm-5" onclick="toggleIndividualModel('glm-5')">
+              <div class="model-dot inactive" data-model="glm-51" onclick="toggleIndividualModel('glm-51')">
                 <span class="model-dot-indicator dot-glm"></span>
+                <span class="model-dot-label">GLM 5.1</span>
+              </div>
+              <div class="model-dot inactive" data-model="glm-5" onclick="toggleIndividualModel('glm-5')">
+                <span class="model-dot-indicator dot-glm-legacy"></span>
                 <span class="model-dot-label">GLM 5</span>
               </div>
             </div>
@@ -3363,8 +3376,10 @@
       'claude-46-opus-nr': false, // Starts hidden by default
       'claude-46-sonnet-nr': false, // Starts hidden by default
       'claude-haiku-nr': false,   // Non-reasoning, starts hidden
-      'glm-deep-think': false,       // Other recommended, starts hidden
-      'glm-5': false,                // Other recommended, starts hidden
+      'glm-51-deep-think': false,    // Starts hidden
+      'glm-51': false,               // Starts hidden
+      'glm-deep-think': false,       // Starts hidden (legacy)
+      'glm-5': false,                // Starts hidden (legacy)
       'glm-5t-deep-think': false,    // Other recommended, starts hidden
       'glm-5v-turbo-deep-think': false, // Other recommended, starts hidden
       'grok-42-expert': false,       // Other recommended, starts hidden
@@ -3394,8 +3409,10 @@
       'claude-46-opus-nr': true,  // Starts explicitly disabled
       'claude-46-sonnet-nr': true, // Starts explicitly disabled
       'claude-haiku-nr': true,    // Starts explicitly disabled
-      'glm-deep-think': false,          // Other recommended
-      'glm-5': false,                   // Other recommended
+      'glm-51-deep-think': false,       // Other recommended
+      'glm-51': false,                  // Other recommended
+      'glm-deep-think': true,           // Starts explicitly disabled (legacy)
+      'glm-5': true,                    // Starts explicitly disabled (legacy)
       'glm-5t-deep-think': false,       // Other recommended
       'glm-5v-turbo-deep-think': false, // Other recommended
       'grok-42-expert': false,          // Other recommended
@@ -3411,12 +3428,12 @@
     // Model groups for group toggles
     const modelGroups = {
       'claude': ['claude-haiku', 'claude-46-opus', 'claude-46-sonnet', 'claude-46-opus-nr', 'claude-46-sonnet-nr', 'claude-haiku-nr'],
-      'reasoning': ['gpt-codex2', 'gpt-54-xhigh', 'gpt-54', 'gpt-thinking-mini', 'gemini-31-pro', 'gemini-flash-thinking', 'claude-haiku', 'claude-46-opus', 'claude-46-sonnet', 'glm-deep-think', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-42-expert', 'minimax-m27', 'mimo-v2-pro', 'mimo-v2-omni', 'qwen-36-plus-think'],
-      'instant': ['gemini-flash', 'claude-46-opus-nr', 'claude-46-sonnet-nr', 'claude-haiku-nr', 'glm-5', 'grok-42-fast', 'mimo-v2-flash', 'qwen-35-omni-plus'],
+      'reasoning': ['gpt-codex2', 'gpt-54-xhigh', 'gpt-54', 'gpt-thinking-mini', 'gemini-31-pro', 'gemini-flash-thinking', 'claude-haiku', 'claude-46-opus', 'claude-46-sonnet', 'glm-51-deep-think', 'glm-deep-think', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-42-expert', 'minimax-m27', 'mimo-v2-pro', 'mimo-v2-omni', 'qwen-36-plus-think'],
+      'instant': ['gemini-flash', 'claude-46-opus-nr', 'claude-46-sonnet-nr', 'claude-haiku-nr', 'glm-51', 'glm-5', 'grok-42-fast', 'mimo-v2-flash', 'qwen-35-omni-plus'],
       'chatgpt-pro': [],
       'coding': ['gpt-codex2'],
-      'other': ['glm-deep-think', 'glm-5', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-42-expert', 'grok-42-fast', 'minimax-m27', 'mimo-v2-pro', 'mimo-v2-omni', 'mimo-v2-flash', 'qwen-36-plus-think', 'qwen-35-omni-plus'],
-      'legacy': ['gpt-instant']
+      'other': ['glm-51-deep-think', 'glm-51', 'glm-deep-think', 'glm-5', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-42-expert', 'grok-42-fast', 'minimax-m27', 'mimo-v2-pro', 'mimo-v2-omni', 'mimo-v2-flash', 'qwen-36-plus-think', 'qwen-35-omni-plus'],
+      'legacy': ['gpt-instant', 'glm-deep-think', 'glm-5']
     };
 
     // Model constraints: which group toggles must ALL be active for a model to be visible
@@ -3436,8 +3453,10 @@
       'claude-46-opus-nr': ['claude', 'instant'],      // Needs both Claude AND Non-reasoning to be on
       'claude-46-sonnet-nr': ['claude', 'instant'],    // Needs both Claude AND Non-reasoning to be on
       'claude-haiku-nr': ['claude', 'instant'],         // Needs both Claude AND Non-reasoning to be on
-      'glm-deep-think': ['other', 'reasoning'],              // Needs both Other AND Reasoning to be on
-      'glm-5': ['other', 'instant'],                         // Needs both Other AND Non-reasoning to be on
+      'glm-51-deep-think': ['other', 'reasoning'],           // Needs both Other AND Reasoning to be on
+      'glm-51': ['other', 'instant'],                        // Needs both Other AND Non-reasoning to be on
+      'glm-deep-think': ['other', 'reasoning', 'legacy'],    // Needs Other, Reasoning, AND Legacy to be on
+      'glm-5': ['other', 'instant', 'legacy'],               // Needs Other, Non-reasoning, AND Legacy to be on
       'glm-5t-deep-think': ['other', 'reasoning'],           // Needs both Other AND Reasoning to be on
       'glm-5v-turbo-deep-think': ['other', 'reasoning'],     // Needs both Other AND Reasoning to be on
       'grok-42-expert': ['other', 'reasoning'],              // Needs both Other AND Reasoning to be on
@@ -3759,7 +3778,9 @@
       { modelId: 'claude-46-sonnet-nr', label: '❋ Claude 4.6 Sonnet', correct: 38, abstention: 21.08, hallucination: 40.92, sortOrder: 68 },
       { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', correct: 17, abstention: 61.42, hallucination: 21.58, sortOrder: 90 },
       { modelId: 'claude-haiku-nr', label: '❋ Claude 4.5 Haiku', correct: 14, abstention: 64.50, hallucination: 21.50, sortOrder: 95 },
+      { modelId: 'glm-51-deep-think', label: 'Ƶ GLM 5.1 Deep Think', correct: 24, abstention: 53.96, hallucination: 22.04, sortOrder: 98 },
       { modelId: 'glm-deep-think', label: 'Ƶ GLM 5 Deep Think', correct: 27, abstention: 48.18, hallucination: 24.82, sortOrder: 100 },
+      { modelId: 'glm-51', label: 'Ƶ GLM 5.1', correct: 26, abstention: 27.38, hallucination: 46.62, sortOrder: 103 },
       { modelId: 'glm-5', label: 'Ƶ GLM 5', correct: 23, abstention: 43.12, hallucination: 33.88, sortOrder: 105 },
       { modelId: 'glm-5t-deep-think', label: 'Ƶ GLM 5 Turbo Deep Think', correct: 29, abstention: 26.98, hallucination: 44.02, sortOrder: 107 },
       { modelId: 'glm-5v-turbo-deep-think', label: 'Ƶ GLM 5V Turbo Deep Think', correct: 29, abstention: 22.72, hallucination: 48.28, sortOrder: 109 },
@@ -4333,7 +4354,9 @@
       { modelId: 'claude-46-sonnet-nr', label: '❋ Claude 4.6 Sonnet', score: 57.7, sortOrder: 68 },
       { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', score: 70.3, sortOrder: 90 },
       { modelId: 'claude-haiku-nr', label: '❋ Claude 4.5 Haiku', score: 43.7, sortOrder: 95 },
+      { modelId: 'glm-51-deep-think', label: 'Ƶ GLM 5.1 Deep Think', score: 62.3, sortOrder: 98 },
       { modelId: 'glm-deep-think', label: 'Ƶ GLM 5 Deep Think', score: 63.3, sortOrder: 100 },
+      { modelId: 'glm-51', label: 'Ƶ GLM 5.1', score: 44.3, sortOrder: 103 },
       { modelId: 'glm-5', label: 'Ƶ GLM 5', score: 37.0, sortOrder: 105 },
       { modelId: 'glm-5t-deep-think', label: 'Ƶ GLM 5 Turbo Deep Think', score: 60.7, sortOrder: 107 },
       { modelId: 'glm-5v-turbo-deep-think', label: 'Ƶ GLM 5V Turbo Deep Think', score: 61, sortOrder: 109 },
@@ -4445,7 +4468,9 @@
       { modelId: 'claude-46-sonnet-nr', label: '❋ Claude 4.6 Sonnet', score: 71, sortOrder: 68 },
       { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', score: 58, sortOrder: 90 },
       { modelId: 'claude-haiku-nr', label: '❋ Claude 4.5 Haiku', score: 55, sortOrder: 95 },
+      { modelId: 'glm-51-deep-think', label: 'Ƶ GLM 5.1 Deep Think (Estimated)', score: 73, sortOrder: 98, estimated: true },
       { modelId: 'glm-deep-think', label: 'Ƶ GLM 5 Deep Think (Estimated)', score: 73, sortOrder: 100, estimated: true },
+      { modelId: 'glm-51', label: 'Ƶ GLM 5.1 (Estimated)', score: 63, sortOrder: 103, estimated: true },
       { modelId: 'glm-5', label: 'Ƶ GLM 5 (Estimated)', score: 63, sortOrder: 105, estimated: true },
       { modelId: 'glm-5t-deep-think', label: 'Ƶ GLM 5 Turbo Deep Think (Estimated)', score: 73, sortOrder: 107, estimated: true },
       { modelId: 'glm-5v-turbo-deep-think', label: 'Ƶ GLM 5V Turbo Deep Think', score: 73, sortOrder: 109 },
@@ -4557,7 +4582,9 @@
       { modelId: 'claude-46-sonnet-nr', label: '❋ Claude 4.6 Sonnet', score: 46.2, sortOrder: 68 },
       { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', score: 27.3, sortOrder: 90 },
       { modelId: 'claude-haiku-nr', label: '❋ Claude 4.5 Haiku', score: 27.3, sortOrder: 95 },
+      { modelId: 'glm-51-deep-think', label: 'Ƶ GLM 5.1 Deep Think', score: 43.2, sortOrder: 98 },
       { modelId: 'glm-deep-think', label: 'Ƶ GLM 5 Deep Think', score: 43.2, sortOrder: 100 },
+      { modelId: 'glm-51', label: 'Ƶ GLM 5.1', score: 35.6, sortOrder: 103 },
       { modelId: 'glm-5', label: 'Ƶ GLM 5', score: 39.4, sortOrder: 105 },
       { modelId: 'glm-5t-deep-think', label: 'Ƶ GLM 5 Turbo Deep Think', score: 32.6, sortOrder: 107 },
       { modelId: 'glm-5v-turbo-deep-think', label: 'Ƶ GLM 5V Turbo Deep Think', score: 32.6, sortOrder: 109 },
@@ -4669,7 +4696,9 @@
       { modelId: 'claude-46-sonnet-nr', label: '❋ Claude 4.6 Sonnet', score: 79.5, sortOrder: 68 },
       { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', score: 54.7, sortOrder: 90 },
       { modelId: 'claude-haiku-nr', label: '❋ Claude 4.5 Haiku', score: 32.5, sortOrder: 95 },
+      { modelId: 'glm-51-deep-think', label: 'Ƶ GLM 5.1 Deep Think', score: 97.7, sortOrder: 98 },
       { modelId: 'glm-deep-think', label: 'Ƶ GLM 5 Deep Think', score: 98.2, sortOrder: 100 },
+      { modelId: 'glm-51', label: 'Ƶ GLM 5.1', score: 97.1, sortOrder: 103 },
       { modelId: 'glm-5', label: 'Ƶ GLM 5', score: 97.4, sortOrder: 105 },
       { modelId: 'glm-5t-deep-think', label: 'Ƶ GLM 5 Turbo Deep Think', score: 98.5, sortOrder: 107 },
       { modelId: 'glm-5v-turbo-deep-think', label: 'Ƶ GLM 5V Turbo Deep Think', score: 98.5, sortOrder: 109 },
@@ -4911,7 +4940,17 @@
       },
       // GLM
       {
+        modelId: 'glm-51-deep-think', label: 'Ƶ GLM 5.1 Deep Think', sortOrder: 98,
+        color: 'rgba(100, 100, 110, 1)',
+        segments: [{ value: 200000, plans: 'All plans' }]
+      },
+      {
         modelId: 'glm-deep-think', label: 'Ƶ GLM 5 Deep Think', sortOrder: 100,
+        color: 'rgba(100, 100, 110, 1)',
+        segments: [{ value: 200000, plans: 'All plans' }]
+      },
+      {
+        modelId: 'glm-51', label: 'Ƶ GLM 5.1', sortOrder: 103,
         color: 'rgba(100, 100, 110, 1)',
         segments: [{ value: 200000, plans: 'All plans' }]
       },
@@ -5375,18 +5414,20 @@
 
     // (applyToggle3State removed — replaced by binary toggle + hide-btn)
 
+    // Centralized visibility updater for dynamic rows affected by multiple groups
+    function updateListRowVisibilities() {
+      document.querySelectorAll('.model-dots-row').forEach(row => {
+        const dots = Array.from(row.querySelectorAll('.model-dot'));
+        if (dots.length === 0) return;
+        const containsOther = dots.some(d => modelGroups.other.includes(d.dataset.model));
+        const allAreLegacy = dots.every(d => modelGroups.legacy.includes(d.dataset.model));
+        row.style.display = ((containsOther && otherModelsHidden) || (allAreLegacy && legacyModelsHidden)) ? 'none' : '';
+      });
+    }
+
     // Update visibility of Other model rows in the filter list
     function updateOtherModelsListVisibility() {
-      const modelsToUpdate = modelGroups.other;
-      modelsToUpdate.forEach(id => {
-        const dots = document.querySelectorAll(`.model-dot[data-model="${id}"]`);
-        dots.forEach(dot => {
-          const row = dot.closest('.model-dots-row');
-          if (row) {
-            row.style.display = otherModelsHidden ? 'none' : '';
-          }
-        });
-      });
+      updateListRowVisibilities();
     }
 
     // Toggle the chart-active state for Other recommended models
@@ -5441,19 +5482,7 @@
 
     // Update visibility of Legacy model rows in the filter list
     function updateLegacyModelsListVisibility() {
-      const modelsToUpdate = modelGroups.legacy;
-      modelsToUpdate.forEach(id => {
-        document.querySelectorAll(`.model-dot[data-model="${id}"]`).forEach(dot => {
-          const row = dot.closest('.model-dots-row');
-          if (row) {
-            const allDotsInRow = row.querySelectorAll('.model-dot');
-            const allAreLegacy = Array.from(allDotsInRow).every(d => modelsToUpdate.includes(d.dataset.model));
-            if (allAreLegacy) {
-              row.style.display = legacyModelsHidden ? 'none' : '';
-            }
-          }
-        });
-      });
+      updateListRowVisibilities();
     }
 
     // Toggle the chart-active state for Legacy models
@@ -5992,7 +6021,7 @@
     style="text-align: center; padding: 2rem 1rem; margin-top: 3rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.8rem;">
     Made by <strong> u/Pasto_Shouwa</strong>
     <br>
-    <em>Last updated on <strong>10/04/2026</strong> (dd/mm/yyyy)</em>
+    <em>Last updated on <strong>12/04/2026</strong> (dd/mm/yyyy)</em>
   </footer>
 </body>
 
