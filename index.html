@@ -1756,8 +1756,8 @@
             <tr>
               <td>Memory features</td>
               <td>Memories</td>
-              <td class="rating-excellent">Memories<span class="annotation" data-note="gemini-memory">
-                </span>, chats history
+              <td class="rating-excellent">Memories<span class="annotation" data-note="gemini-memory"></span>, chats
+                history, ecosystem memory<span class="annotation" data-note="ecosystem-memory"></span>
               </td>
             </tr>
             <tr>
@@ -1904,14 +1904,10 @@
             <tr>
               <td>Memory features</td>
               <td colspan="2">Memories</td>
-              <td id="memory-chatgpt-plus" class="rating-great">Memories, chats history, chat search</td>
-              <td colspan="2">Memories<span class="annotation" data-note="gemini-memory">
-                </span>, chats history
-              </td>
-              <td id="memory-gemini-pro" class="rating-great usa-restricted">Memories<span class="annotation"
-                  data-note="gemini-memory"></span>, chats history<span class="usa-only">ecosystem memory<span
-                    class="annotation" data-note="ecosystem-memory"></span><span class="annotation"
-                    data-note="usa-only"></span></span>
+              <td class="rating-excellent">Memories, chats history, chat search</td>
+              <td class="rating-excellent" colspan="3">Memories<span class="annotation"
+                  data-note="gemini-memory"></span>, chats
+                history, ecosystem memory<span class="annotation" data-note="ecosystem-memory"></span>
               </td>
             </tr>
             <tr>
@@ -2068,7 +2064,9 @@
           <tbody>
             <tr>
               <td>Reasoning model limit per day</td>
-              <td class="rating-excellent">Unlimited<span class="detail">[GPT 5.4 Pro + GPT 5.4 Thinking]</span>
+              <td class="rating-excellent">Unlimited<span class="annotation" data-note="gpt-pro-limits"></span> +
+                Unlimited<span class="detail">[GPT 5.4 Pro + GPT 5.4
+                  Thinking]</span>
               </td>
               <td class="rating-great">10+500+1500<span class="detail">(X every X hours)<span class="annotation"
                     data-note="gemini-hourly-limits"></span><span class="detail">[Gemini 3.1
@@ -2094,13 +2092,11 @@
             </tr>
             <tr>
               <td>Memory features</td>
-              <td id="memory-chatgpt-pro" class="rating-great">Memories, chats history, chat search, proactive
+              <td class="rating-excellent">Memories, chats history, chat search, proactive
                 research<span class="annotation" data-note="chatgpt-pulse"></span>
               </td>
-              <td id="memory-gemini-ultra" class="rating-great usa-restricted">Memories<span class="annotation"
-                  data-note="gemini-memory"></span>, chats history<span class="usa-only">, ecosystem memory<span
-                    class="annotation" data-note="ecosystem-memory"></span><span class="annotation"
-                    data-note="usa-only"></span></span>
+              <td class="rating-excellent">Memories<span class="annotation" data-note="gemini-memory"></span>, chats
+                history, ecosystem memory<span class="annotation" data-note="ecosystem-memory"></span>
               </td>
             </tr>
             <tr>
@@ -3190,6 +3186,7 @@
       'chatgpt-pulse': "ChatGPT can proactively research topics and present them as a briefing, unprompted, through ChatGPT Pulse.",
       'nano-banana-pro-uses': "Consumes one use of Nano Banana Pro and one use of Nano Banana 2.",
       'gemini-hourly-limits': "While limits of the reasoning models of Gemini are supposed to be limited per day, when demand is too high, the limits may work per 1 or 2 hours. This should end up giving the user the advertised limits anyways, but limiting the speed at which the user can work.",
+      'gpt-pro-limits': "GPT Pro x5, has a limit of around 30 uses per week of GPT 5.4 Pro. GPT Pro x20 is supossed to still have unlimited uses of it. This and the higher limits on Codex on the second plan seem to be the only difference between the two.",
     };
 
     function toSuperscript(num) {
@@ -5204,43 +5201,27 @@
       // Save state to localStorage
       localStorage.setItem('usaExclusiveToggleActive', toggle.classList.contains('active'));
 
-      // Toggle Memory features ratings based on USA-exclusive state
+      // Update Agent mode ratings based on USA-exclusive state
       const isUSAExclusiveOn = toggle.classList.contains('active');
 
-      // $0-$20 table cells
-      const memoryGeminiPro = document.getElementById('memory-gemini-pro');
-      const memoryChatGPTPlus = document.getElementById('memory-chatgpt-plus');
-      // $100-$250 table cells
-      const memoryGeminiUltra = document.getElementById('memory-gemini-ultra');
-      const memoryChatGPTPro = document.getElementById('memory-chatgpt-pro');
       // Agent mode cells ($100-$250)
       const agentGeminiUltra = document.getElementById('agent-gemini-ultra');
       const agentChatGPTPro = document.getElementById('agent-chatgpt-pro');
 
       if (isUSAExclusiveOn) {
-        // USA features ON: Gemini has ecosystem memory advantage
-        memoryGeminiPro.classList.add('rating-great');
-        memoryChatGPTPlus.classList.remove('rating-excellent');
-        memoryChatGPTPlus.classList.add('rating-great');
-        memoryGeminiUltra.classList.add('rating-great');
-        memoryChatGPTPro.classList.remove('rating-excellent');
-        memoryChatGPTPro.classList.add('rating-great');
         // Agent mode: Gemini Ultra has 6000 uses (USA only)
-        agentGeminiUltra.classList.add('rating-excellent');
-        agentChatGPTPro.classList.remove('rating-excellent');
-        agentChatGPTPro.classList.add('rating-great');
+        if (agentGeminiUltra) agentGeminiUltra.classList.add('rating-excellent');
+        if (agentChatGPTPro) {
+          agentChatGPTPro.classList.remove('rating-excellent');
+          agentChatGPTPro.classList.add('rating-great');
+        }
       } else {
-        // USA features OFF: Gemini loses ecosystem memory, ChatGPT becomes excellent
-        memoryGeminiPro.classList.remove('rating-great');
-        memoryChatGPTPlus.classList.remove('rating-great');
-        memoryChatGPTPlus.classList.add('rating-excellent');
-        memoryGeminiUltra.classList.remove('rating-great');
-        memoryChatGPTPro.classList.remove('rating-great');
-        memoryChatGPTPro.classList.add('rating-excellent');
         // Agent mode: Gemini Ultra has no agent mode without USA
-        agentGeminiUltra.classList.remove('rating-excellent');
-        agentChatGPTPro.classList.remove('rating-great');
-        agentChatGPTPro.classList.add('rating-excellent');
+        if (agentGeminiUltra) agentGeminiUltra.classList.remove('rating-excellent');
+        if (agentChatGPTPro) {
+          agentChatGPTPro.classList.remove('rating-great');
+          agentChatGPTPro.classList.add('rating-excellent');
+        }
       }
     }
 
@@ -5925,22 +5906,9 @@
           usaToggle.classList.remove('active');
           tabContent.classList.add('hide-usa-exclusive');
           // Apply the rating changes for USA OFF state
-          const memoryGeminiPro = document.getElementById('memory-gemini-pro');
-          const memoryChatGPTPlus = document.getElementById('memory-chatgpt-plus');
-          const memoryGeminiUltra = document.getElementById('memory-gemini-ultra');
-          const memoryChatGPTPro = document.getElementById('memory-chatgpt-pro');
           const agentGeminiUltra = document.getElementById('agent-gemini-ultra');
           const agentChatGPTPro = document.getElementById('agent-chatgpt-pro');
-          if (memoryGeminiPro) memoryGeminiPro.classList.remove('rating-great');
-          if (memoryChatGPTPlus) {
-            memoryChatGPTPlus.classList.remove('rating-great');
-            memoryChatGPTPlus.classList.add('rating-excellent');
-          }
-          if (memoryGeminiUltra) memoryGeminiUltra.classList.remove('rating-great');
-          if (memoryChatGPTPro) {
-            memoryChatGPTPro.classList.remove('rating-great');
-            memoryChatGPTPro.classList.add('rating-excellent');
-          }
+
           if (agentGeminiUltra) agentGeminiUltra.classList.remove('rating-excellent');
           if (agentChatGPTPro) {
             agentChatGPTPro.classList.remove('rating-great');
@@ -6021,7 +5989,7 @@
     style="text-align: center; padding: 2rem 1rem; margin-top: 3rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.8rem;">
     Made by <strong> u/Pasto_Shouwa</strong>
     <br>
-    <em>Last updated on <strong>12/04/2026</strong> (dd/mm/yyyy)</em>
+    <em>Last updated on <strong>15/04/2026</strong> (dd/mm/yyyy)</em>
   </footer>
 </body>
 
