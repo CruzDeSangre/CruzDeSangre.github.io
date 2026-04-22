@@ -1431,7 +1431,7 @@
 
     .model-filters-panel.expanded .model-filters-content {
       /* Model Filters height*/
-      max-height: 1325px;
+      max-height: 1500px;
       opacity: 1;
       padding: 0 1.5rem 3rem;
     }
@@ -1534,6 +1534,10 @@
 
     .dot-qwen {
       background: rgba(66, 59, 175, 1);
+    }
+
+    .dot-kimi {
+      background: rgba(23, 131, 255, 1);
     }
 
     .dot-glm-legacy {
@@ -1763,12 +1767,12 @@
             <tr>
               <td>Image generation per day</td>
               <td>Unknown<span class="annotation" data-note="gpt-image-unknown"></span><span class="detail">[GPT Image
-                  1.5]</span></td>
+                  2 / GPT Image 2 Thinking]</span></td>
               <td class="rating-excellent">20<span class="detail">[Nano Banana 2]</span></td>
             </tr>
             <tr>
               <td>Image resolution (1:1)</td>
-              <td>1024×1024 (1K)<span class="detail">[GPT Image 1.5]</span></td>
+              <td>1254×1254 (1.2K)<span class="detail">[All image models]</span></td>
               <td class="rating-excellent">2048×2048 (2K)<span class="detail">[All image models]</span></td>
             </tr>
             <tr>
@@ -1913,7 +1917,7 @@
             <tr>
               <td>Image generation per day</td>
               <td colspan="3">Unknown<span class="annotation" data-note="gpt-image-unknown"></span><span
-                  class="detail">[GPT Image 1.5]</span></td>
+                  class="detail">[GPT Image 2 / GPT Image 2 Thinking]</span></td>
               <td>20<span class="detail">[Nano Banana 2]</span></td>
               <td class="rating-great">50</span>+50<span class="detail">[Nano Banana Pro<span class="annotation"
                     data-note="nano-banana-pro-uses"></span>
@@ -1924,7 +1928,7 @@
             </tr>
             <tr>
               <td>Image resolution (1:1)</td>
-              <td colspan="3">1024×1024 (1K)<span class="detail">[GPT Image 1.5]</span></td>
+              <td colspan="3">1254×1254 (1.2K)<span class="detail">[All image models]</span></td>
               <td colspan="3" class="rating-excellent">2048×2048 (2K)<span class="detail">[All image models]</span></td>
             </tr>
             <tr>
@@ -1932,8 +1936,8 @@
               <td colspan="2">No</td>
               <td>Unknown</span><span class="detail">[Sora 2]</span></td>
               <td>No</td>
-              <td>2<span class="detail">[Veo 3.1 Fast]</span></td>
-              <td class="rating-excellent">3<span class="detail">[Veo 3.1 Fast]</span></td>
+              <td>2<span class="detail">[Veo 3.1 Lite]</span></td>
+              <td class="rating-excellent">3<span class="detail">[Veo 3.1 Lite]</span></td>
             </tr>
             <tr>
               <td>Video resolution and length</td>
@@ -1942,7 +1946,7 @@
                   2]</span></td>
               <td>No</td>
               <td colspan="2" class="rating-great">720p<span class="detail">(up to 8s)</span><span class="detail">[Veo
-                  3.1 Fast]</span></td>
+                  3.1 Lite]</span></td>
             </tr>
             <tr>
               <td>Music generation per day</td>
@@ -1962,7 +1966,7 @@
             <tr>
               <td>Folder organization</td>
               <td colspan="3" class="rating-excellent">Yes<span class="detail">[Projects]</span></td>
-              <td class="rating-excellent">Yes<span class="detail">[Notebooks]</span></td>
+              <td colspan="3" class="rating-excellent">Yes<span class="detail">[Notebooks]</span></td>
             </tr>
             <tr>
               <td>Maximum scheduled tasks</td>
@@ -2101,15 +2105,16 @@
             </tr>
             <tr>
               <td>Image generation per day</td>
-              <td>Unknown<span class="annotation" data-note="gpt-image-unknown"></span><span class="detail">[GPT Image
-                  1.5]</span></td>
+              <td>Unknown<span class="annotation" data-note="gpt-image-unknown"></span><span class="detail">[GPT Image 2
+                  /
+                  GPT Image 2 Thinking]</span></td>
               <td class="rating-excellent">1000</span>+1000<span class="detail">[Nano Banana
                   Pro<span class="annotation" data-note="nano-banana-pro-uses"></span> + Nano Banana 2 / Nano Banana 2
                   Thinking]</span></td>
             </tr>
             <tr>
               <td>Image resolution (1:1)</td>
-              <td>1024×1024 (1K)<span class="detail">[GPT Image 1.5]</span></td>
+              <td>1254×1254 (1.2K)<span class="detail">[All image models]</span></td>
               <td class="rating-excellent">2048×2048 (2K)<span class="detail">[All image models]</span></td>
             </tr>
             <tr>
@@ -2269,9 +2274,9 @@
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
-              <div class="model-dot" data-model="claude-46-opus" onclick="toggleIndividualModel('claude-46-opus')">
+              <div class="model-dot" data-model="claude-47-opus" onclick="toggleIndividualModel('claude-47-opus')">
                 <span class="model-dot-indicator dot-claude shape-square"></span>
-                <span class="model-dot-label">Claude 4.6 Opus Extended</span>
+                <span class="model-dot-label">Claude 4.7 Opus Extended</span>
               </div>
               <div class="model-dot" data-model="claude-46-sonnet" onclick="toggleIndividualModel('claude-46-sonnet')">
                 <span class="model-dot-indicator dot-claude"></span>
@@ -2283,11 +2288,13 @@
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
-              <div class="model-dot inactive" data-model="claude-46-opus-nr"
-                onclick="toggleIndividualModel('claude-46-opus-nr')">
-                <span class="model-dot-indicator dot-claude shape-square"></span>
-                <span class="model-dot-label">Claude 4.6 Opus</span>
+              <div class="model-dot inactive" data-model="claude-46-opus"
+                onclick="toggleIndividualModel('claude-46-opus')">
+                <span class="model-dot-indicator dot-claude-legacy shape-square"></span>
+                <span class="model-dot-label">Claude 4.6 Opus Extended</span>
               </div>
+            </div>
+            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot inactive" data-model="claude-46-sonnet-nr"
                 onclick="toggleIndividualModel('claude-46-sonnet-nr')">
                 <span class="model-dot-indicator dot-claude"></span>
@@ -2297,6 +2304,13 @@
                 onclick="toggleIndividualModel('claude-haiku-nr')">
                 <span class="model-dot-indicator dot-claude"></span>
                 <span class="model-dot-label">Claude 4.5 Haiku</span>
+              </div>
+            </div>
+            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
+              <div class="model-dot inactive" data-model="claude-46-opus-nr"
+                onclick="toggleIndividualModel('claude-46-opus-nr')">
+                <span class="model-dot-indicator dot-claude-legacy shape-square"></span>
+                <span class="model-dot-label">Claude 4.6 Opus</span>
               </div>
             </div>
 
@@ -2339,10 +2353,10 @@
             </div>
 
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
-              <div class="model-dot inactive" data-model="claude-46-opus"
-                onclick="toggleIndividualModel('claude-46-opus')">
+              <div class="model-dot inactive" data-model="claude-47-opus"
+                onclick="toggleIndividualModel('claude-47-opus')">
                 <span class="model-dot-indicator dot-claude shape-square"></span>
-                <span class="model-dot-label">Claude 4.6 Opus Extended</span>
+                <span class="model-dot-label">Claude 4.7 Opus Extended</span>
               </div>
               <div class="model-dot inactive" data-model="claude-46-sonnet"
                 onclick="toggleIndividualModel('claude-46-sonnet')">
@@ -2352,6 +2366,13 @@
               <div class="model-dot inactive" data-model="claude-haiku" onclick="toggleIndividualModel('claude-haiku')">
                 <span class="model-dot-indicator dot-claude"></span>
                 <span class="model-dot-label">Claude 4.5 Haiku Extended</span>
+              </div>
+            </div>
+            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
+              <div class="model-dot inactive" data-model="claude-46-opus"
+                onclick="toggleIndividualModel('claude-46-opus')">
+                <span class="model-dot-indicator dot-claude-legacy shape-square"></span>
+                <span class="model-dot-label">Claude 4.6 Opus Extended</span>
               </div>
             </div>
 
@@ -2389,6 +2410,13 @@
                 onclick="toggleIndividualModel('qwen-36-plus-think')">
                 <span class="model-dot-indicator dot-qwen"></span>
                 <span class="model-dot-label">Qwen 3.6 Plus Think</span>
+              </div>
+            </div>
+            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
+              <div class="model-dot inactive" data-model="kimi-k26-thinking"
+                onclick="toggleIndividualModel('kimi-k26-thinking')">
+                <span class="model-dot-indicator dot-kimi"></span>
+                <span class="model-dot-label">Kimi K2.6 Thinking</span>
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
@@ -2431,11 +2459,6 @@
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
-              <div class="model-dot inactive" data-model="claude-46-opus-nr"
-                onclick="toggleIndividualModel('claude-46-opus-nr')">
-                <span class="model-dot-indicator dot-claude shape-square"></span>
-                <span class="model-dot-label">Claude 4.6 Opus</span>
-              </div>
               <div class="model-dot inactive" data-model="claude-46-sonnet-nr"
                 onclick="toggleIndividualModel('claude-46-sonnet-nr')">
                 <span class="model-dot-indicator dot-claude"></span>
@@ -2445,6 +2468,13 @@
                 onclick="toggleIndividualModel('claude-haiku-nr')">
                 <span class="model-dot-indicator dot-claude"></span>
                 <span class="model-dot-label">Claude 4.5 Haiku</span>
+              </div>
+            </div>
+            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
+              <div class="model-dot inactive" data-model="claude-46-opus-nr"
+                onclick="toggleIndividualModel('claude-46-opus-nr')">
+                <span class="model-dot-indicator dot-claude-legacy shape-square"></span>
+                <span class="model-dot-label">Claude 4.6 Opus</span>
               </div>
             </div>
 
@@ -2755,10 +2785,11 @@
                 appear
                 here.
               </li>
-              <li>• This benchmark has not published the full results for the Claude 4.6 models.
-                It is only known that Claude Opus 4.6 Extended performs with an accuracy of >93% on 128k tokens and
-                Claude Sonnet 4.6 Extended performs with an accuracy of >90.3% on 128k tokens.
-                The remaining values were estimated by assuming a roughly linear trend on a log2 context-length scale.
+              <li>• This benchmark has not published the full results for the Claude 4.6 and 4.7 models.
+                It is only known that Claude Opus 4.6 Extended performs with an accuracy of >93% on 128k tokens,
+                Claude Sonnet 4.6 Extended has an accuracy of >90.3% on 128k tokens, and Claude Opus 4.7 Extended
+                has an accuracy of >59.2% on 128k tokens. The remaining values were estimated by assuming a
+                linear trend on a log2 context-length scale.
               </li>
               <li>• Maximum context window of <strong>GPT Thinking</strong> models is 27k/54k/128k tokens
                 (Free/Plus,Go/Pro).
@@ -2775,6 +2806,7 @@
               </li>
               <li>• Maximum context window of <strong>Qwen Omni Plus</strong> models is 1M
                 tokens.
+              <li>• Maximum context window of all <strong>Kimi</strong> models is 200k tokens.</li>
               <li>• Maximum context window of <strong>Mimo Pro</strong> models is 1M tokens.</li>
               <li>• Maximum context window of <strong>Mimo Omni and Flash</strong> models is 256k tokens.</li>
               <li>• Maximum context window of all <strong>Minimax</strong> models is 200k tokens.</li>
@@ -2845,6 +2877,7 @@
               </li>
               <li>• Maximum context window of <strong>Qwen Omni Plus</strong> models is 1M
                 tokens.
+              <li>• Maximum context window of all <strong>Kimi</strong> models is 200k tokens.</li>
               <li>• Maximum context window of <strong>Mimo Pro</strong> models is 1M tokens.</li>
               <li>• Maximum context window of <strong>Mimo Omni and Flash</strong> models is 256k tokens.</li>
               <li>• Maximum context window of all <strong>Minimax</strong> models is 200k tokens.</li>
@@ -2945,8 +2978,9 @@
               <li>• <strong>GLM</strong> models are capable of understanding only text.
                 Image and video inputs are likely routed to GLM 5V Turbo Deep Think and GLM 5V Turbo respectively.
               </li>
-              <li>• <strong>Qwen</strong> models are capable of understanding text, images and video.
-              </li>
+              <li>• <strong>Qwen 3.6 Plus Think</strong> is capable of understanding text, images and video.
+              <li>• <strong>Qwen 3.5 Omni Plus</strong> is capable of understanding text, images, video and audio.
+              <li>• <strong>Kimi</strong> models are capable of understanding text, images and video.
               <li>• <strong>Mimo V2 Omni</strong> is capable of understanding text, images, video and audio.
               <li>• <strong>Mimo V2 Pro</strong> and <strong>Mimo V2 Flash</strong> are capable of understanding only
                 text.
@@ -3044,8 +3078,7 @@
         <div class="notes-content">
           <ul class="notes-list">
             <li>• For "<strong>GPT 5.3 Codex</strong>", "<em>gpt-5.3-codex:xhigh</em>" was used in the graph. This model
-              is only
-              available on Codex and Visual Studio Code, not the web or the app.</li>
+              is only available on Codex and Visual Studio Code, not the web or the app.</li>
             <li>• For "<strong>GPT 5.4 Thinking xhigh</strong>", "<em>gpt-5.4:xhigh</em>" was used in the graph.
             </li>
             <li>• For "<strong>GPT 5.4 Thinking</strong>", an estimation based on the performance of
@@ -3053,67 +3086,13 @@
               aiming to get as close as possible to what the performance of "<em>gpt-5.4:medium</em>" might be.
             </li>
             <li>• For "<strong>GPT 5 Thinking Mini</strong>", "<em>gpt-5-mini:medium</em>" was used in the graph.</li>
-            <li>• For "<strong>Gemini 3.1 Pro</strong>", "<em>gemini-3.1-pro-preview:high</em>" was used in the
-              graph.</li>
-            <li>• For "<strong>Gemini 3 Flash Thinking</strong>", "<em>gemini-3-flash-preview:high</em>" was used
-              in the graph.
-            </li>
-            <li>• For "<strong>Gemini 3 Flash</strong>", "<em>gemini-3-flash-preview:minimal</em>" was used in the
-              graph.</li>
-            <li>• For "<strong>Claude Opus 4.6 Extended</strong>", "<em>claude-opus-4.6:high</em>" was used in
-              the graph.</li>
-            <li>• For "<strong>Claude Opus 4.6</strong>", "<em>claude-opus-4.6</em>" was used in
-              the graph.</li>
-            <li>• For "<strong>Claude Sonnet 4.6 Extended</strong>", "<em>claude-sonnet-4.6:high</em>" was used
-              in the graph.</li>
-            <li>• For "<strong>Claude Sonnet 4.6</strong>", "<em>claude-sonnet-4.6</em>" was used
-              in the graph.</li>
-            <li>• For "<strong>Claude Haiku 4.5 Extended</strong>", "<em>claude-haiku-4.5:thinking</em>" was used in
-              the graph.</li>
-            <li>• For "<strong>Claude Haiku 4.5</strong>", "<em>claude-haiku-4.5</em>" was used in
-              the graph.</li>
-            <li>• For "<strong>Grok 4.20 Expert</strong>", "<em>grok-4.20-beta-0309-reasoning</em>" was used in
-              the graph.</li>
-            <li>• For "<strong>Grok 4.20 Fast</strong>", "<em>grok-4.20-beta-0309-non-reasoning</em>" was used in
-              the graph.</li>
-            <li>• For "<strong>GLM 5 Deep Think</strong>", "<em>glm-5:thinking</em>" was used in
-              the graph.</li>
-            <li>• For "<strong>GLM 5 Turbo Deep Think</strong>", "<em>glm-5-turbo:thinking</em>" was used in
-              the graph.</li>
-            <li>• For "<strong>GLM 5V Turbo Deep Think</strong>", "<em>glm-5v-turbo:thinking</em>" was used in
-              the graph.</li>
-            <li>• For "<strong>GLM 5</strong>", "<em>glm-5</em>" was used in
-              the graph.</li>
-            <li>• For "<strong>Qwen 3.6 Plus Think</strong>", "<em>qwen3.6-plus:thinking</em>" was used in
-              the graph.</li>
-            <li>• For "<strong>Mimo V2 Pro</strong>", "<em>mimo-v2-pro</em>" was used in
-              the graph.</li>
-            <li>• For "<strong>Mimo V2 Omni</strong>", "<em>mimo-v2-omni</em>" was used in
-              the graph.</li>
-            <li>• For "<strong>Mimo V2 Flash</strong>", "<em>mimo-v2-flash</em>" was used in
-              the graph.</li>
-            <li>• For "<strong>Minimax M2.7 Max</strong>", "<em>minimax-m2.7:thinking</em>" was used in
-              the graph.</li>
+            <li>• All the other models are presented with their respective highest settings.
             <li>• I have not been able to find consistent graphs for the following models: GPT 5.3 Instant, GPT 5.4
-              Thinking, GLM 5 Turbo, GLM 5V Turbo, Qwen 3.6 Plus Fast, Minimax M2.7 Air. I will add them immediately if
-              I
-              find some.
+              Thinking, GLM 5 Turbo, GLM 5V Turbo, Qwen 3.6 Plus Fast, Kimi K2.6 Instant and Minimax M2.7 Air.
+              I will add them immediately if I find some.
             </li>
             <li>• Claude Opus 4.6 Extended and Claude Sonnet 4.6 Extended are available for free to Gemini users through
               the Antigravity app, with limits that reset depending on demand.</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Legacy Notes -->
-      <div class="notes collapsible" style="margin-top: 1rem;">
-        <div class="notes-header" onclick="toggleNotes(this)">
-          <p class="notes-title">Legacy Notes</p>
-          <span class="notes-toggle">▼</span>
-        </div>
-        <div class="notes-content">
-          <ul class="notes-list">
-            <li>• For "<strong>GPT 5.2 Instant</strong>", "<em>gpt-5.2</em>" was used in the graph.</li>
           </ul>
         </div>
       </div>
@@ -3144,8 +3123,9 @@
             <h2 class="benefit-title">Gemini</h2>
           </div>
           <ul class="benefit-list">
-            <li>Nano Banana Pro offers faster image generation than GPT Image 1.5. Its images also appear more realistic
-              (subjectively).</li>
+            <li>Nano Banana Pro offers faster and higher resolution on image generation than GPT Image 2. The images'
+              realism
+              are on par; on text GPT Image 2 seems to be better.</li>
             <li>Native Android integration (iOS confirmed to come soon), though it can be over-eager with tool calls
             </li>
             <li>Offers uses of Claude Opus 4.6 Extended, and Claude Sonnet 4.6 Extended through the
@@ -3173,7 +3153,7 @@
      */
     const FOOTNOTES = {
       'gpt-free-thinking': "Used to be 1 per day for Free and 10 for Go, but was increased. The current limit is not public, nor if it is daily or weekly.",
-      'gpt-image-unknown': "GPT Image 1.5 limits are unknown. GPT Image 1 limits were 200/day for old Pro, 50/day for Plus, 5/day for Free.",
+      'gpt-image-unknown': "GPT Image 2 limits are unknown. GPT Image 1 limits were 200/day for old Pro, 50/day for Plus, 5/day for Free.",
       'user-reports': "According to user reports. The actual limits are not public.",
       'usa-only': "Only in the USA, for now.",
       'nano-banana-pro-throttle': "Google tends to throttle the daily limit of image generation when a new model or AI tool is released.",
@@ -3368,9 +3348,10 @@
       'gemini-flash-thinking': true,
       'gemini-flash': true,
       'claude-haiku': false,   // Starts hidden by default
-      'claude-46-opus': true,     // Starts visible by default
+      'claude-47-opus': true,     // Starts visible by default
+      'claude-46-opus': false,    // Starts hidden (legacy)
       'claude-46-sonnet': true,   // Starts visible by default
-      'claude-46-opus-nr': false, // Starts hidden by default
+      'claude-46-opus-nr': false, // Starts hidden (legacy)
       'claude-46-sonnet-nr': false, // Starts hidden by default
       'claude-haiku-nr': false,   // Non-reasoning, starts hidden
       'glm-51-deep-think': false,    // Starts hidden
@@ -3385,7 +3366,8 @@
       'mimo-v2-pro': false,          // Other recommended, starts hidden
       'mimo-v2-omni': false,         // Other recommended, starts hidden
       'mimo-v2-flash': false,        // Other recommended, starts hidden
-      'qwen-36-plus-think': false    // Other recommended, starts hidden
+      'qwen-36-plus-think': false,   // Other recommended, starts hidden
+      'kimi-k26-thinking': false      // Other recommended, starts hidden
     };
 
     // Track which models were EXPLICITLY disabled by the user clicking the dot
@@ -3401,9 +3383,10 @@
       'gemini-flash-thinking': false,
       'gemini-flash': false,
       'claude-haiku': true,    // Starts explicitly disabled
-      'claude-46-opus': false,    // Starts enabled by default
+      'claude-47-opus': false,    // Starts enabled by default
+      'claude-46-opus': true,     // Starts explicitly disabled (legacy)
       'claude-46-sonnet': false,  // Starts enabled by default
-      'claude-46-opus-nr': true,  // Starts explicitly disabled
+      'claude-46-opus-nr': true,  // Starts explicitly disabled (legacy)
       'claude-46-sonnet-nr': true, // Starts explicitly disabled
       'claude-haiku-nr': true,    // Starts explicitly disabled
       'glm-51-deep-think': false,       // Other recommended
@@ -3419,18 +3402,19 @@
       'mimo-v2-omni': false,            // Other recommended
       'mimo-v2-flash': false,           // Other recommended
       'qwen-36-plus-think': false,      // Other recommended
-      'qwen-35-omni-plus': false        // Other recommended
+      'kimi-k26-thinking': false,        // Other recommended
+      'qwen-35-omni-plus': false         // Other recommended
     };
 
     // Model groups for group toggles
     const modelGroups = {
-      'claude': ['claude-haiku', 'claude-46-opus', 'claude-46-sonnet', 'claude-46-opus-nr', 'claude-46-sonnet-nr', 'claude-haiku-nr'],
-      'reasoning': ['gpt-codex2', 'gpt-54-xhigh', 'gpt-54', 'gpt-thinking-mini', 'gemini-31-pro', 'gemini-flash-thinking', 'claude-haiku', 'claude-46-opus', 'claude-46-sonnet', 'glm-51-deep-think', 'glm-deep-think', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-42-expert', 'minimax-m27', 'mimo-v2-pro', 'mimo-v2-omni', 'qwen-36-plus-think'],
+      'claude': ['claude-haiku', 'claude-47-opus', 'claude-46-sonnet', 'claude-46-sonnet-nr', 'claude-haiku-nr'],
+      'reasoning': ['gpt-codex2', 'gpt-54-xhigh', 'gpt-54', 'gpt-thinking-mini', 'gemini-31-pro', 'gemini-flash-thinking', 'claude-haiku', 'claude-47-opus', 'claude-46-opus', 'claude-46-sonnet', 'glm-51-deep-think', 'glm-deep-think', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-42-expert', 'minimax-m27', 'mimo-v2-pro', 'mimo-v2-omni', 'qwen-36-plus-think', 'kimi-k26-thinking'],
       'instant': ['gemini-flash', 'claude-46-opus-nr', 'claude-46-sonnet-nr', 'claude-haiku-nr', 'glm-51', 'glm-5', 'grok-42-fast', 'mimo-v2-flash', 'qwen-35-omni-plus'],
       'chatgpt-pro': [],
       'coding': ['gpt-codex2'],
-      'other': ['glm-51-deep-think', 'glm-51', 'glm-deep-think', 'glm-5', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-42-expert', 'grok-42-fast', 'minimax-m27', 'mimo-v2-pro', 'mimo-v2-omni', 'mimo-v2-flash', 'qwen-36-plus-think', 'qwen-35-omni-plus'],
-      'legacy': ['gpt-instant', 'glm-deep-think', 'glm-5']
+      'other': ['glm-51-deep-think', 'glm-51', 'glm-deep-think', 'glm-5', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-42-expert', 'grok-42-fast', 'minimax-m27', 'mimo-v2-pro', 'mimo-v2-omni', 'mimo-v2-flash', 'qwen-36-plus-think', 'kimi-k26-thinking', 'qwen-35-omni-plus'],
+      'legacy': ['gpt-instant', 'glm-deep-think', 'glm-5', 'claude-46-opus', 'claude-46-opus-nr']
     };
 
     // Model constraints: which group toggles must ALL be active for a model to be visible
@@ -3445,9 +3429,10 @@
       'gemini-flash-thinking': ['reasoning'],          // Only needs Reasoning
       'gemini-flash': ['instant'],                     // Only needs Non-reasoning
       'claude-haiku': ['claude', 'reasoning'],         // Needs both Claude AND Reasoning to be on
-      'claude-46-opus': ['claude', 'reasoning'],       // Needs both Claude AND Reasoning to be on
+      'claude-47-opus': ['claude', 'reasoning'],       // Needs both Claude AND Reasoning to be on
+      'claude-46-opus': ['claude', 'reasoning', 'legacy'],  // Needs Claude, Reasoning, AND Legacy to be on
       'claude-46-sonnet': ['claude', 'reasoning'],     // Needs both Claude AND Reasoning to be on
-      'claude-46-opus-nr': ['claude', 'instant'],      // Needs both Claude AND Non-reasoning to be on
+      'claude-46-opus-nr': ['claude', 'instant', 'legacy'], // Needs Claude, Non-reasoning, AND Legacy to be on
       'claude-46-sonnet-nr': ['claude', 'instant'],    // Needs both Claude AND Non-reasoning to be on
       'claude-haiku-nr': ['claude', 'instant'],         // Needs both Claude AND Non-reasoning to be on
       'glm-51-deep-think': ['other', 'reasoning'],           // Needs both Other AND Reasoning to be on
@@ -3463,6 +3448,7 @@
       'mimo-v2-omni': ['other', 'reasoning'],                // Needs both Other AND Reasoning to be on
       'mimo-v2-flash': ['other', 'instant'],                 // Needs both Other AND Non-reasoning to be on
       'qwen-36-plus-think': ['other', 'reasoning'],          // Needs both Other AND Reasoning to be on
+      'kimi-k26-thinking': ['other', 'reasoning'],            // Needs both Other AND Reasoning to be on
       'qwen-35-omni-plus': ['other', 'instant']              // Needs both Other AND Non-reasoning to be on
     };
 
@@ -3666,6 +3652,7 @@
       lcrChart.data.labels = lcrData.labels;
       lcrChart.data.datasets[0].data = lcrData.data;
       lcrChart.data.datasets[0].backgroundColor = lcrData.backgroundColors;
+      lcrChart.data.datasets[0].hoverBackgroundColor = lcrData.hoverBackgroundColors;
       lcrChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
 
       // Update MMMU-Pro chart
@@ -3673,6 +3660,7 @@
       mmmuProChart.data.labels = mmmuProData.labels;
       mmmuProChart.data.datasets[0].data = mmmuProData.data;
       mmmuProChart.data.datasets[0].backgroundColor = mmmuProData.backgroundColors;
+      mmmuProChart.data.datasets[0].hoverBackgroundColor = mmmuProData.hoverBackgroundColors;
       mmmuProChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
 
       // Update Terminal-Bench chart
@@ -3680,6 +3668,7 @@
       terminalBenchChart.data.labels = terminalBenchData.labels;
       terminalBenchChart.data.datasets[0].data = terminalBenchData.data;
       terminalBenchChart.data.datasets[0].backgroundColor = terminalBenchData.backgroundColors;
+      terminalBenchChart.data.datasets[0].hoverBackgroundColor = terminalBenchData.hoverBackgroundColors;
       terminalBenchChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
 
       // Update τ²-Bench chart
@@ -3687,6 +3676,7 @@
       tau2BenchChart.data.labels = tau2BenchData.labels;
       tau2BenchChart.data.datasets[0].data = tau2BenchData.data;
       tau2BenchChart.data.datasets[0].backgroundColor = tau2BenchData.backgroundColors;
+      tau2BenchChart.data.datasets[0].hoverBackgroundColor = tau2BenchData.hoverBackgroundColors;
       tau2BenchChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
 
       // Update Max Context chart
@@ -3712,6 +3702,7 @@
       'minimax': '223, 78,  96',    // deep red
       'mimo': '255, 116, 0',     // orange
       'qwen': '66,  59,  175',   // violet
+      'kimi': '23,  131, 255',   // blue
       'fallback': '139, 92,  246'    // purple
     };
 
@@ -3725,6 +3716,7 @@
       if (modelId.startsWith('minimax-')) return BRAND_RGB['minimax'];
       if (modelId.startsWith('mimo-')) return BRAND_RGB['mimo'];
       if (modelId.startsWith('qwen-')) return BRAND_RGB['qwen'];
+      if (modelId.startsWith('kimi-')) return BRAND_RGB['kimi'];
       return BRAND_RGB['fallback'];
     }
 
@@ -3736,6 +3728,16 @@
 
     function getBrandBorderColor(modelId) {
       return `rgba(${getBrandRgb(modelId)}, 1)`;
+    }
+
+    // Returns a darkened hover color by multiplying each RGB channel by 0.68.
+    // This gives a consistent, visible darkening effect for all brands —
+    // including greys (GLM) and already-saturated colors (Mimo orange, Kimi blue, GPT teal).
+    function getBrandHoverBgColor(modelId, estimated) {
+      if (estimated) return getBrandBgColor(modelId, estimated); // keep pattern unchanged on hover
+      const rgb = getBrandRgb(modelId);
+      const parts = rgb.split(',').map(v => Math.round(parseFloat(v.trim()) * 0.68));
+      return `rgba(${parts.join(', ')}, 0.95)`;
     }
 
     // ============================================================================
@@ -3769,6 +3771,7 @@
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro', correct: 55, abstention: 22.5, hallucination: 22.5, sortOrder: 35 },
       { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', correct: 54, abstention: 3.68, hallucination: 42.32, sortOrder: 50 },
       { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', correct: 46, abstention: 5.4, hallucination: 48.6, sortOrder: 60 },
+      { modelId: 'claude-47-opus', label: '❋ Claude 4.7 Opus Extended', correct: 46, abstention: 34.56, hallucination: 19.44, sortOrder: 64 },
       { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Extended', correct: 46, abstention: 21.06, hallucination: 32.94, sortOrder: 65 },
       { modelId: 'claude-46-opus-nr', label: '❋ Claude 4.6 Opus', correct: 45, abstention: 13.2, hallucination: 41.8, sortOrder: 66 },
       { modelId: 'claude-46-sonnet', label: '❋ Claude 4.6 Sonnet Extended', correct: 40, abstention: 32.4, hallucination: 27.6, sortOrder: 67 },
@@ -3788,6 +3791,7 @@
       { modelId: 'mimo-v2-omni', label: '⋔ Mimo V2 Omni', correct: 19, abstention: 45.36, hallucination: 35.64, sortOrder: 121 },
       { modelId: 'mimo-v2-flash', label: '⋔ Mimo V2 Flash', correct: 20, abstention: 41.60, hallucination: 38.40, sortOrder: 123 },
       { modelId: 'qwen-36-plus-think', label: '▽ Qwen 3.6 Plus Think', correct: 26, abstention: 50.32, hallucination: 23.68, sortOrder: 125 },
+      { modelId: 'kimi-k26-thinking', label: 'Ḱ Kimi K2.6 Thinking', correct: 33, abstention: 40.87, hallucination: 26.13, sortOrder: 127 },
       { modelId: 'qwen-35-omni-plus', label: '▽ Qwen 3.5 Omni Plus', correct: 17, abstention: 53.12, hallucination: 29.88, sortOrder: 126 }
     ];
 
@@ -3881,6 +3885,7 @@
       lcrChart.data.labels = lcrData.labels;
       lcrChart.data.datasets[0].data = lcrData.data;
       lcrChart.data.datasets[0].backgroundColor = lcrData.backgroundColors;
+      lcrChart.data.datasets[0].hoverBackgroundColor = lcrData.hoverBackgroundColors;
       lcrChart.update({ duration: 750, easing: 'easeInOutQuart' });
     }
 
@@ -3893,6 +3898,7 @@
       mmmuProChart.data.labels = mmmuProData.labels;
       mmmuProChart.data.datasets[0].data = mmmuProData.data;
       mmmuProChart.data.datasets[0].backgroundColor = mmmuProData.backgroundColors;
+      mmmuProChart.data.datasets[0].hoverBackgroundColor = mmmuProData.hoverBackgroundColors;
       mmmuProChart.update({ duration: 750, easing: 'easeInOutQuart' });
     }
 
@@ -3905,6 +3911,7 @@
       terminalBenchChart.data.labels = terminalBenchData.labels;
       terminalBenchChart.data.datasets[0].data = terminalBenchData.data;
       terminalBenchChart.data.datasets[0].backgroundColor = terminalBenchData.backgroundColors;
+      terminalBenchChart.data.datasets[0].hoverBackgroundColor = terminalBenchData.hoverBackgroundColors;
       terminalBenchChart.update({ duration: 750, easing: 'easeInOutQuart' });
     }
 
@@ -3917,6 +3924,7 @@
       tau2BenchChart.data.labels = tau2BenchData.labels;
       tau2BenchChart.data.datasets[0].data = tau2BenchData.data;
       tau2BenchChart.data.datasets[0].backgroundColor = tau2BenchData.backgroundColors;
+      tau2BenchChart.data.datasets[0].hoverBackgroundColor = tau2BenchData.hoverBackgroundColors;
       tau2BenchChart.update({ duration: 750, easing: 'easeInOutQuart' });
     }
 
@@ -3997,6 +4005,7 @@
             label: 'Correct ↑',
             data: omniscienceData.correct,
             backgroundColor: omniscienceData.correctBgColors,
+            hoverBackgroundColor: 'rgba(85, 131, 63, 0.95)',
             borderColor: 'rgba(116, 171, 157, 0.9)',
             borderWidth: 0,
             borderRadius: 4
@@ -4005,6 +4014,7 @@
             label: 'Abstention ↑',
             data: omniscienceData.abstention,
             backgroundColor: omniscienceData.abstentionBgColors,
+            hoverBackgroundColor: 'rgba(45, 40, 119, 0.95)',
             borderColor: 'rgba(66, 59, 175, 0.9)',
             borderWidth: 0,
             borderRadius: 4
@@ -4013,6 +4023,7 @@
             label: 'Hallucination ↓',
             data: omniscienceData.hallucination,
             backgroundColor: omniscienceData.hallucinationBgColors,
+            hoverBackgroundColor: 'rgba(162, 50, 56, 0.95)',
             borderColor: 'rgba(238, 73, 82, 0.9)',
             borderWidth: 0,
             borderRadius: 4
@@ -4177,9 +4188,9 @@
         sortOrder: 60
       },
       {
-        modelId: 'claude-46-opus',
-        label: 'Claude 4.6 Opus Extended (Estimated)',
-        data: [98.5, 97.4, 96.3, 95.2, 94.1, null, null],
+        modelId: 'claude-47-opus',
+        label: 'Claude 4.7 Opus Extended (Estimated)',
+        data: [64.7, 63.6, 62.5, 61.4, 60.3, 59.2, null],
         borderColor: 'rgba(249, 115, 22, 1)',
         backgroundColor: 'rgba(249, 115, 22, 0.7)',
         borderWidth: 2,
@@ -4188,6 +4199,22 @@
         pointRadius: 6,
         pointHoverRadius: 8,
         pointBackgroundColor: 'rgba(249, 115, 22, 1)',
+        spanGaps: false,
+        sortOrder: 64,
+        isEstimatedBand: true
+      },
+      {
+        modelId: 'claude-46-opus',
+        label: 'Claude 4.6 Opus Extended (Estimated)',
+        data: [98.5, 97.4, 96.3, 95.2, 94.1, null, null],
+        borderColor: 'rgba(180, 140, 100, 1)',
+        backgroundColor: 'rgba(180, 140, 100, 0.7)',
+        borderWidth: 2,
+        borderDash: [3, 6],
+        tension: 0.3,
+        pointRadius: 6,
+        pointHoverRadius: 8,
+        pointBackgroundColor: 'rgba(180, 140, 100, 1)',
         spanGaps: false,
         sortOrder: 63,
         isEstimatedBand: true
@@ -4345,6 +4372,7 @@
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro', score: 72.7, sortOrder: 35 },
       { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', score: 66.3, sortOrder: 50 },
       { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', score: 48.0, sortOrder: 60 },
+      { modelId: 'claude-47-opus', label: '❋ Claude 4.7 Opus Extended', score: 70.3, sortOrder: 64 },
       { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Extended', score: 70.7, sortOrder: 65 },
       { modelId: 'claude-46-opus-nr', label: '❋ Claude 4.6 Opus', score: 58.3, sortOrder: 66 },
       { modelId: 'claude-46-sonnet', label: '❋ Claude 4.6 Sonnet Extended', score: 70.7, sortOrder: 67 },
@@ -4364,6 +4392,7 @@
       { modelId: 'mimo-v2-omni', label: '⋔ Mimo V2 Omni', score: 66.7, sortOrder: 121 },
       { modelId: 'mimo-v2-flash', label: '⋔ Mimo V2 Flash', score: 64.3, sortOrder: 123 },
       { modelId: 'qwen-36-plus-think', label: '▽ Qwen 3.6 Plus Think', score: 69.7, sortOrder: 125 },
+      { modelId: 'kimi-k26-thinking', label: 'Ḱ Kimi K2.6 Thinking', score: 69.7, sortOrder: 127 },
       { modelId: 'qwen-35-omni-plus', label: '▽ Qwen 3.5 Omni Plus', score: 52.7, sortOrder: 126 }
     ];
 
@@ -4384,9 +4413,10 @@
 
       // Per-model brand colors; estimated bars are faded (0.3 opacity)
       const backgroundColors = models.map(m => getBrandBgColor(m.modelId, m.estimated));
+      const hoverBackgroundColors = models.map(m => getBrandHoverBgColor(m.modelId, m.estimated));
       const borderColors = models.map(m => getBrandBorderColor(m.modelId));
 
-      return { labels, data, backgroundColors, borderColors };
+      return { labels, data, backgroundColors, hoverBackgroundColors, borderColors };
     }
 
     const lcrCtx = document.getElementById('lcrChart').getContext('2d');
@@ -4399,6 +4429,7 @@
           label: 'Score ↑',
           data: lcrInitData.data,
           backgroundColor: lcrInitData.backgroundColors,
+          hoverBackgroundColor: lcrInitData.hoverBackgroundColors,
           borderWidth: 0,
           borderRadius: 4
         }]
@@ -4459,6 +4490,7 @@
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro', score: 82, sortOrder: 35 },
       { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', score: 80, sortOrder: 50 },
       { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', score: 79, sortOrder: 60 },
+      { modelId: 'claude-47-opus', label: '❋ Claude 4.7 Opus Extended (Estimated)', score: 76, sortOrder: 64, estimated: true },
       { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Extended', score: 75, sortOrder: 65 },
       { modelId: 'claude-46-opus-nr', label: '❋ Claude 4.6 Opus', score: 73, sortOrder: 66 },
       { modelId: 'claude-46-sonnet', label: '❋ Claude 4.6 Sonnet Extended', score: 73, sortOrder: 67 },
@@ -4478,6 +4510,7 @@
       { modelId: 'mimo-v2-omni', label: '⋔ Mimo V2 Omni', score: 66.7, sortOrder: 121 },
       { modelId: 'mimo-v2-flash', label: '⋔ Mimo V2 Flash', score: 0, sortOrder: 123 },
       { modelId: 'qwen-36-plus-think', label: '▽ Qwen 3.6 Plus Think', score: 78, sortOrder: 125 },
+      { modelId: 'kimi-k26-thinking', label: 'Ḱ Kimi K2.6 Thinking', score: 79, sortOrder: 127 },
       { modelId: 'qwen-35-omni-plus', label: '▽ Qwen 3.5 Omni Plus', score: 71, sortOrder: 126 }
     ];
 
@@ -4498,9 +4531,10 @@
 
       // Per-model brand colors; estimated bars are faded (0.3 opacity)
       const backgroundColors = models.map(m => getBrandBgColor(m.modelId, m.estimated));
+      const hoverBackgroundColors = models.map(m => getBrandHoverBgColor(m.modelId, m.estimated));
       const borderColors = models.map(m => getBrandBorderColor(m.modelId));
 
-      return { labels, data, backgroundColors, borderColors };
+      return { labels, data, backgroundColors, hoverBackgroundColors, borderColors };
     }
 
     const mmmuProCtx = document.getElementById('mmmuProChart').getContext('2d');
@@ -4513,6 +4547,7 @@
           label: 'Score ↑',
           data: mmmuProInitData.data,
           backgroundColor: mmmuProInitData.backgroundColors,
+          hoverBackgroundColor: mmmuProInitData.hoverBackgroundColors,
           borderWidth: 0,
           borderRadius: 4
         }]
@@ -4573,6 +4608,7 @@
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro', score: 53.8, sortOrder: 35 },
       { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', score: 38.6, sortOrder: 50 },
       { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', score: 31.8, sortOrder: 60 },
+      { modelId: 'claude-47-opus', label: '❋ Claude 4.7 Opus Extended', score: 51.5, sortOrder: 64 },
       { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Extended', score: 46.2, sortOrder: 65 },
       { modelId: 'claude-46-opus-nr', label: '❋ Claude 4.6 Opus', score: 48.5, sortOrder: 66 },
       { modelId: 'claude-46-sonnet', label: '❋ Claude 4.6 Sonnet Extended', score: 53, sortOrder: 67 },
@@ -4592,6 +4628,7 @@
       { modelId: 'mimo-v2-omni', label: '⋔ Mimo V2 Omni', score: 34.8, sortOrder: 121 },
       { modelId: 'mimo-v2-flash', label: '⋔ Mimo V2 Flash', score: 31.1, sortOrder: 123 },
       { modelId: 'qwen-36-plus-think', label: '▽ Qwen 3.6 Plus Think', score: 43.9, sortOrder: 125 },
+      { modelId: 'kimi-k26-thinking', label: 'Ḱ Kimi K2.6 Thinking', score: 43.9, sortOrder: 127 },
       { modelId: 'qwen-35-omni-plus', label: '▽ Qwen 3.5 Omni Plus', score: 21.2, sortOrder: 126 }
     ];
 
@@ -4612,9 +4649,10 @@
 
       // Per-model brand colors; estimated bars are faded (0.3 opacity)
       const backgroundColors = models.map(m => getBrandBgColor(m.modelId, m.estimated));
+      const hoverBackgroundColors = models.map(m => getBrandHoverBgColor(m.modelId, m.estimated));
       const borderColors = models.map(m => getBrandBorderColor(m.modelId));
 
-      return { labels, data, backgroundColors, borderColors };
+      return { labels, data, backgroundColors, hoverBackgroundColors, borderColors };
     }
 
     const terminalBenchCtx = document.getElementById('terminalBenchChart').getContext('2d');
@@ -4627,6 +4665,7 @@
           label: 'Score ↑',
           data: terminalBenchInitData.data,
           backgroundColor: terminalBenchInitData.backgroundColors,
+          hoverBackgroundColor: terminalBenchInitData.hoverBackgroundColors,
           borderWidth: 0,
           borderRadius: 4
         }]
@@ -4687,6 +4726,7 @@
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro', score: 95.6, sortOrder: 35 },
       { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', score: 80.4, sortOrder: 50 },
       { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', score: 43.3, sortOrder: 60 },
+      { modelId: 'claude-47-opus', label: '❋ Claude 4.7 Opus Extended', score: 88.6, sortOrder: 64 },
       { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Extended', score: 92.1, sortOrder: 65 },
       { modelId: 'claude-46-opus-nr', label: '❋ Claude 4.6 Opus', score: 84.8, sortOrder: 66 },
       { modelId: 'claude-46-sonnet', label: '❋ Claude 4.6 Sonnet Extended', score: 75.7, sortOrder: 67 },
@@ -4706,6 +4746,7 @@
       { modelId: 'mimo-v2-omni', label: '⋔ Mimo V2 Omni', score: 91.2, sortOrder: 121 },
       { modelId: 'mimo-v2-flash', label: '⋔ Mimo V2 Flash', score: 93.3, sortOrder: 123 },
       { modelId: 'qwen-36-plus-think', label: '▽ Qwen 3.6 Plus Think', score: 97.7, sortOrder: 125 },
+      { modelId: 'kimi-k26-thinking', label: 'Ḱ Kimi K2.6 Thinking', score: 95.9, sortOrder: 127 },
       { modelId: 'qwen-35-omni-plus', label: '▽ Qwen 3.5 Omni Plus', score: 88.3, sortOrder: 126 }
     ];
 
@@ -4726,9 +4767,10 @@
 
       // Per-model brand colors; estimated bars are faded (0.3 opacity)
       const backgroundColors = models.map(m => getBrandBgColor(m.modelId, m.estimated));
+      const hoverBackgroundColors = models.map(m => getBrandHoverBgColor(m.modelId, m.estimated));
       const borderColors = models.map(m => getBrandBorderColor(m.modelId));
 
-      return { labels, data, backgroundColors, borderColors };
+      return { labels, data, backgroundColors, hoverBackgroundColors, borderColors };
     }
 
     const tau2BenchCtx = document.getElementById('tau2BenchChart').getContext('2d');
@@ -4741,6 +4783,7 @@
           label: 'Score ↑',
           data: tau2BenchInitData.data,
           backgroundColor: tau2BenchInitData.backgroundColors,
+          hoverBackgroundColor: tau2BenchInitData.hoverBackgroundColors,
           borderWidth: 0,
           borderRadius: 4
         }]
@@ -4906,6 +4949,11 @@
       },
       // Claude
       {
+        modelId: 'claude-47-opus', label: '❋ Claude 4.7 Opus Extended', sortOrder: 64,
+        color: 'rgba(218, 119, 87, 1)',
+        segments: [{ value: 200000, plans: 'All plans' }]
+      },
+      {
         modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Extended', sortOrder: 65,
         color: 'rgba(218, 119, 87, 1)',
         segments: [{ value: 200000, plans: 'All plans' }]
@@ -5005,6 +5053,12 @@
         color: 'rgba(66, 59, 175, 1)',
         segments: [{ value: 1000000, plans: 'All plans' }]
       },
+      // Kimi
+      {
+        modelId: 'kimi-k26-thinking', label: 'Ḱ Kimi K2.6 Thinking', sortOrder: 127,
+        color: 'rgba(23, 131, 255, 1)',
+        segments: [{ value: 200000, plans: 'All plans' }]
+      },
       {
         modelId: 'qwen-35-omni-plus', label: '▽ Qwen 3.5 Omni Plus', sortOrder: 126,
         color: 'rgba(66, 59, 175, 1)',
@@ -5049,6 +5103,16 @@
           if (!match) return m.color;
           return `rgba(${match[1]}, ${match[2]}, ${match[3]}, ${opacity})`;
         });
+        // Hover colors — same rgb but darkened by 32%
+        const hoverBgColors = models.map(m => {
+          if (i >= m.segments.length) return 'transparent';
+          const match = m.color.match(/rgba\(([\d.]+),\s*([\d.]+),\s*([\d.]+)/);
+          if (!match) return m.color;
+          const r = Math.round(parseFloat(match[1]) * 0.68);
+          const g = Math.round(parseFloat(match[2]) * 0.68);
+          const b = Math.round(parseFloat(match[3]) * 0.68);
+          return `rgba(${r}, ${g}, ${b}, 0.95)`;
+        });
 
         // Per-bar borderRadius: round only on the segment that is last for each model.
         // For horizontal bars the "far end" is topRight + bottomRight.
@@ -5061,6 +5125,7 @@
           label: i === 0 ? 'Tier 1' : i === 1 ? 'Tier 2' : 'Tier 3',
           data,
           backgroundColor: bgColors,
+          hoverBackgroundColor: hoverBgColors,
           borderWidth: 0,          // no border → no gap between adjacent segments
           borderRadius: borderRadiusArr,
           borderSkipped: false,
@@ -5859,21 +5924,25 @@
         lcrChart.data.labels = lcrData.labels;
         lcrChart.data.datasets[0].data = lcrData.data;
         lcrChart.data.datasets[0].backgroundColor = lcrData.backgroundColors;
+        lcrChart.data.datasets[0].hoverBackgroundColor = lcrData.hoverBackgroundColors;
         lcrChart.update('none');
         const mmmuProData = getMmmuProData();
         mmmuProChart.data.labels = mmmuProData.labels;
         mmmuProChart.data.datasets[0].data = mmmuProData.data;
         mmmuProChart.data.datasets[0].backgroundColor = mmmuProData.backgroundColors;
+        mmmuProChart.data.datasets[0].hoverBackgroundColor = mmmuProData.hoverBackgroundColors;
         mmmuProChart.update('none');
         const terminalBenchData = getTerminalBenchData();
         terminalBenchChart.data.labels = terminalBenchData.labels;
         terminalBenchChart.data.datasets[0].data = terminalBenchData.data;
         terminalBenchChart.data.datasets[0].backgroundColor = terminalBenchData.backgroundColors;
+        terminalBenchChart.data.datasets[0].hoverBackgroundColor = terminalBenchData.hoverBackgroundColors;
         terminalBenchChart.update('none');
         const tau2BenchData = getTau2BenchData();
         tau2BenchChart.data.labels = tau2BenchData.labels;
         tau2BenchChart.data.datasets[0].data = tau2BenchData.data;
         tau2BenchChart.data.datasets[0].backgroundColor = tau2BenchData.backgroundColors;
+        tau2BenchChart.data.datasets[0].hoverBackgroundColor = tau2BenchData.hoverBackgroundColors;
         tau2BenchChart.update('none');
         // Rebuild max context chart without animation
         if (maxContextChart) {
@@ -5989,7 +6058,7 @@
     style="text-align: center; padding: 2rem 1rem; margin-top: 3rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.8rem;">
     Made by <strong> u/Pasto_Shouwa</strong>
     <br>
-    <em>Last updated on <strong>15/04/2026</strong> (dd/mm/yyyy)</em>
+    <em>Last updated on <strong>21/04/2026</strong> (dd/mm/yyyy)</em>
   </footer>
 </body>
 
