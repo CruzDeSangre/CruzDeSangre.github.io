@@ -2295,6 +2295,11 @@
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
+              <div class="model-dot inactive" data-model="claude-47-opus-nr"
+                onclick="toggleIndividualModel('claude-47-opus-nr')">
+                <span class="model-dot-indicator dot-claude shape-square"></span>
+                <span class="model-dot-label">Claude 4.7 Opus</span>
+              </div>
               <div class="model-dot inactive" data-model="claude-46-sonnet-nr"
                 onclick="toggleIndividualModel('claude-46-sonnet-nr')">
                 <span class="model-dot-indicator dot-claude"></span>
@@ -2459,6 +2464,11 @@
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
+              <div class="model-dot inactive" data-model="claude-47-opus-nr"
+                onclick="toggleIndividualModel('claude-47-opus-nr')">
+                <span class="model-dot-indicator dot-claude shape-square"></span>
+                <span class="model-dot-label">Claude 4.7 Opus</span>
+              </div>
               <div class="model-dot inactive" data-model="claude-46-sonnet-nr"
                 onclick="toggleIndividualModel('claude-46-sonnet-nr')">
                 <span class="model-dot-indicator dot-claude"></span>
@@ -2477,8 +2487,6 @@
                 <span class="model-dot-label">Claude 4.6 Opus</span>
               </div>
             </div>
-
-
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot inactive" data-model="grok-42-fast" onclick="toggleIndividualModel('grok-42-fast')">
                 <span class="model-dot-indicator dot-grok"></span>
@@ -3349,6 +3357,7 @@
       'gemini-flash': true,
       'claude-haiku': false,   // Starts hidden by default
       'claude-47-opus': true,     // Starts visible by default
+      'claude-47-opus-nr': false,   // Non-reasoning, starts hidden by default
       'claude-46-opus': false,    // Starts hidden (legacy)
       'claude-46-sonnet': true,   // Starts visible by default
       'claude-46-opus-nr': false, // Starts hidden (legacy)
@@ -3384,6 +3393,7 @@
       'gemini-flash': false,
       'claude-haiku': true,    // Starts explicitly disabled
       'claude-47-opus': false,    // Starts enabled by default
+      'claude-47-opus-nr': true,    // Starts explicitly disabled
       'claude-46-opus': true,     // Starts explicitly disabled (legacy)
       'claude-46-sonnet': false,  // Starts enabled by default
       'claude-46-opus-nr': true,  // Starts explicitly disabled (legacy)
@@ -3408,9 +3418,9 @@
 
     // Model groups for group toggles
     const modelGroups = {
-      'claude': ['claude-haiku', 'claude-47-opus', 'claude-46-sonnet', 'claude-46-sonnet-nr', 'claude-haiku-nr'],
+      'claude': ['claude-haiku', 'claude-47-opus', 'claude-47-opus-nr', 'claude-46-sonnet', 'claude-46-sonnet-nr', 'claude-haiku-nr'],
       'reasoning': ['gpt-codex2', 'gpt-54-xhigh', 'gpt-54', 'gpt-thinking-mini', 'gemini-31-pro', 'gemini-flash-thinking', 'claude-haiku', 'claude-47-opus', 'claude-46-opus', 'claude-46-sonnet', 'glm-51-deep-think', 'glm-deep-think', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-42-expert', 'minimax-m27', 'mimo-v2-pro', 'mimo-v2-omni', 'qwen-36-plus-think', 'kimi-k26-thinking'],
-      'instant': ['gemini-flash', 'claude-46-opus-nr', 'claude-46-sonnet-nr', 'claude-haiku-nr', 'glm-51', 'glm-5', 'grok-42-fast', 'mimo-v2-flash', 'qwen-35-omni-plus'],
+      'instant': ['gemini-flash', 'claude-47-opus-nr', 'claude-46-opus-nr', 'claude-46-sonnet-nr', 'claude-haiku-nr', 'glm-51', 'glm-5', 'grok-42-fast', 'mimo-v2-flash', 'qwen-35-omni-plus'],
       'chatgpt-pro': [],
       'coding': ['gpt-codex2'],
       'other': ['glm-51-deep-think', 'glm-51', 'glm-deep-think', 'glm-5', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-42-expert', 'grok-42-fast', 'minimax-m27', 'mimo-v2-pro', 'mimo-v2-omni', 'mimo-v2-flash', 'qwen-36-plus-think', 'kimi-k26-thinking', 'qwen-35-omni-plus'],
@@ -3432,6 +3442,7 @@
       'claude-47-opus': ['claude', 'reasoning'],       // Needs both Claude AND Reasoning to be on
       'claude-46-opus': ['claude', 'reasoning', 'legacy'],  // Needs Claude, Reasoning, AND Legacy to be on
       'claude-46-sonnet': ['claude', 'reasoning'],     // Needs both Claude AND Reasoning to be on
+      'claude-47-opus-nr': ['claude', 'instant'],     // Needs both Claude AND Non-reasoning to be on
       'claude-46-opus-nr': ['claude', 'instant', 'legacy'], // Needs Claude, Non-reasoning, AND Legacy to be on
       'claude-46-sonnet-nr': ['claude', 'instant'],    // Needs both Claude AND Non-reasoning to be on
       'claude-haiku-nr': ['claude', 'instant'],         // Needs both Claude AND Non-reasoning to be on
@@ -3772,7 +3783,8 @@
       { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', correct: 54, abstention: 3.68, hallucination: 42.32, sortOrder: 50 },
       { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', correct: 46, abstention: 5.4, hallucination: 48.6, sortOrder: 60 },
       { modelId: 'claude-47-opus', label: '❋ Claude 4.7 Opus Extended', correct: 46, abstention: 34.56, hallucination: 19.44, sortOrder: 64 },
-      { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Extended', correct: 46, abstention: 21.06, hallucination: 32.94, sortOrder: 65 },
+      { modelId: 'claude-47-opus-nr', label: '❋ Claude 4.7 Opus', correct: 44, abstention: 26.88, hallucination: 29.12, sortOrder: 65 },
+      { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Extended', correct: 46, abstention: 21.06, hallucination: 32.94, sortOrder: 65.2 },
       { modelId: 'claude-46-opus-nr', label: '❋ Claude 4.6 Opus', correct: 45, abstention: 13.2, hallucination: 41.8, sortOrder: 66 },
       { modelId: 'claude-46-sonnet', label: '❋ Claude 4.6 Sonnet Extended', correct: 40, abstention: 32.4, hallucination: 27.6, sortOrder: 67 },
       { modelId: 'claude-46-sonnet-nr', label: '❋ Claude 4.6 Sonnet', correct: 38, abstention: 21.08, hallucination: 40.92, sortOrder: 68 },
@@ -4373,7 +4385,8 @@
       { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', score: 66.3, sortOrder: 50 },
       { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', score: 48.0, sortOrder: 60 },
       { modelId: 'claude-47-opus', label: '❋ Claude 4.7 Opus Extended', score: 70.3, sortOrder: 64 },
-      { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Extended', score: 70.7, sortOrder: 65 },
+      { modelId: 'claude-47-opus-nr', label: '❋ Claude 4.7 Opus', score: 67, sortOrder: 65 },
+      { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Extended', score: 70.7, sortOrder: 65.2 },
       { modelId: 'claude-46-opus-nr', label: '❋ Claude 4.6 Opus', score: 58.3, sortOrder: 66 },
       { modelId: 'claude-46-sonnet', label: '❋ Claude 4.6 Sonnet Extended', score: 70.7, sortOrder: 67 },
       { modelId: 'claude-46-sonnet-nr', label: '❋ Claude 4.6 Sonnet', score: 57.7, sortOrder: 68 },
@@ -4490,8 +4503,9 @@
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro', score: 82, sortOrder: 35 },
       { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', score: 80, sortOrder: 50 },
       { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', score: 79, sortOrder: 60 },
-      { modelId: 'claude-47-opus', label: '❋ Claude 4.7 Opus Extended (Estimated)', score: 76, sortOrder: 64, estimated: true },
-      { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Extended', score: 75, sortOrder: 65 },
+      { modelId: 'claude-47-opus', label: '❋ Claude 4.7 Opus Extended (Estimated)', score: 78, sortOrder: 64, estimated: true },
+      { modelId: 'claude-47-opus-nr', label: '❋ Claude 4.7 Opus', score: 76, sortOrder: 65 },
+      { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Extended', score: 75, sortOrder: 65.2 },
       { modelId: 'claude-46-opus-nr', label: '❋ Claude 4.6 Opus', score: 73, sortOrder: 66 },
       { modelId: 'claude-46-sonnet', label: '❋ Claude 4.6 Sonnet Extended', score: 73, sortOrder: 67 },
       { modelId: 'claude-46-sonnet-nr', label: '❋ Claude 4.6 Sonnet', score: 71, sortOrder: 68 },
@@ -4609,7 +4623,8 @@
       { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', score: 38.6, sortOrder: 50 },
       { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', score: 31.8, sortOrder: 60 },
       { modelId: 'claude-47-opus', label: '❋ Claude 4.7 Opus Extended', score: 51.5, sortOrder: 64 },
-      { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Extended', score: 46.2, sortOrder: 65 },
+      { modelId: 'claude-47-opus-nr', label: '❋ Claude 4.7 Opus', score: 54.5, sortOrder: 65 },
+      { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Extended', score: 46.2, sortOrder: 65.2 },
       { modelId: 'claude-46-opus-nr', label: '❋ Claude 4.6 Opus', score: 48.5, sortOrder: 66 },
       { modelId: 'claude-46-sonnet', label: '❋ Claude 4.6 Sonnet Extended', score: 53, sortOrder: 67 },
       { modelId: 'claude-46-sonnet-nr', label: '❋ Claude 4.6 Sonnet', score: 46.2, sortOrder: 68 },
@@ -4727,7 +4742,8 @@
       { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', score: 80.4, sortOrder: 50 },
       { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', score: 43.3, sortOrder: 60 },
       { modelId: 'claude-47-opus', label: '❋ Claude 4.7 Opus Extended', score: 88.6, sortOrder: 64 },
-      { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Extended', score: 92.1, sortOrder: 65 },
+      { modelId: 'claude-47-opus-nr', label: '❋ Claude 4.7 Opus', score: 74, sortOrder: 65 },
+      { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Extended', score: 92.1, sortOrder: 65.2 },
       { modelId: 'claude-46-opus-nr', label: '❋ Claude 4.6 Opus', score: 84.8, sortOrder: 66 },
       { modelId: 'claude-46-sonnet', label: '❋ Claude 4.6 Sonnet Extended', score: 75.7, sortOrder: 67 },
       { modelId: 'claude-46-sonnet-nr', label: '❋ Claude 4.6 Sonnet', score: 79.5, sortOrder: 68 },
@@ -4954,7 +4970,12 @@
         segments: [{ value: 200000, plans: 'All plans' }]
       },
       {
-        modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Extended', sortOrder: 65,
+        modelId: 'claude-47-opus-nr', label: '❋ Claude 4.7 Opus', sortOrder: 65,
+        color: 'rgba(218, 119, 87, 1)',
+        segments: [{ value: 200000, plans: 'All plans' }]
+      },
+      {
+        modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Extended', sortOrder: 65.2,
         color: 'rgba(218, 119, 87, 1)',
         segments: [{ value: 200000, plans: 'All plans' }]
       },
@@ -6058,7 +6079,7 @@
     style="text-align: center; padding: 2rem 1rem; margin-top: 3rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.8rem;">
     Made by <strong> u/Pasto_Shouwa</strong>
     <br>
-    <em>Last updated on <strong>21/04/2026</strong> (dd/mm/yyyy)</em>
+    <em>Last updated on <strong>22/04/2026</strong> (dd/mm/yyyy)</em>
   </footer>
 </body>
 
