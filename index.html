@@ -817,16 +817,6 @@
       background: var(--claude-primary);
     }
 
-    /* Coding toggle styling */
-    .coding-toggle .toggle-switch.active {
-      background: var(--rating-great);
-      border-color: var(--rating-great-border);
-    }
-
-    .coding-toggle .toggle-switch.active::after {
-      background: rgba(59, 130, 246, 0.8);
-    }
-
     /* Instant models toggle styling */
     .instant-toggle .toggle-switch.active {
       background: rgba(199, 91, 245, 0.15);
@@ -1001,18 +991,10 @@
       transform: scale(0.95);
     }
 
-    /* Coding benchmarks visibility */
+    /* Coding benchmark sections */
     .coding-benchmark-section {
       transition: opacity 0.3s ease, max-height 0.4s ease;
       overflow: hidden;
-    }
-
-    .hide-coding-benchmarks .coding-benchmark-section {
-      opacity: 0;
-      max-height: 0;
-      margin: 0;
-      padding: 0;
-      pointer-events: none;
     }
 
     /* Individual benchmark section visibility */
@@ -1869,24 +1851,26 @@
               <td>Unknown<span class="annotation" data-note="gpt-free-thinking"></span>
                 <span class="detail">[GPT 5 Thinking Mini]</span>
               </td>
-              <td>40<span class="detail">(10 every 5h)
-                  <span class="detail">[GPT 5 Thinking Mini]</span></td>
-              <td class="rating-excellent">428<span class="detail">(3000/week)<span class="detail">[GPT 5.4
-                    Thinking]</span></td>
+              <td>40<span class="detail">(10 every 5h)</span>
+                <span class="detail">[GPT 5 Thinking Mini]</span>
+              </td>
+              <td class="rating-excellent">428<span class="detail">(3000/week)</span><span class="detail">[GPT 5.4
+                  Thinking]</span></td>
               <td>3+9<span class="detail">[Gemini 3.1 Pro + Gemini 3 Flash Thinking]</span></td>
               <td class="rating-great">30+90<span class="detail">(X every X hours)<span class="annotation"
-                    data-note="gemini-hourly-limits"></span><span class="detail">[Gemini 3.1 Pro +
-                    Gemini 3 Flash Thinking]</span></td>
+                    data-note="gemini-hourly-limits"></span></span><span class="detail">[Gemini 3.1 Pro +
+                  Gemini 3 Flash Thinking]</span></td>
               <td class="rating-great">100+300<span class="detail">(X every X hours)<span class="annotation"
-                    data-note="gemini-hourly-limits"></span><span class="detail">[Gemini 3.1 Pro
-                    + Gemini 3 Flash Thinking]</span>
+                    data-note="gemini-hourly-limits"></span></span><span class="detail">[Gemini 3.1 Pro
+                  + Gemini 3 Flash Thinking]</span>
               </td>
             </tr>
             <tr>
               <td>Non-reasoning model limit per day</td>
-              <td>40<span class="detail">(10 every 5h)<span class="detail">[GPT 5.3 Instant]</span></td>
-              <td colspan="2" class="rating-great">1280<span class="detail">(160 every 3h)<span class="detail">[GPT 5.3
-                    Instant]</span></td>
+              <td>40<span class="detail">(10 every 5h)</span><span class="detail">[GPT 5.3 Instant]</span></td>
+              <td colspan="2" class="rating-great">1280<span class="detail">(160 every 3h)</span><span
+                  class="detail">[GPT 5.3
+                  Instant]</span></td>
               <td colspan="3" class="rating-excellent">Unlimited<span class="detail">[Gemini 3 Flash]</span></td>
             </tr>
             <tr>
@@ -1919,10 +1903,10 @@
               <td colspan="3">Unknown<span class="annotation" data-note="gpt-image-unknown"></span><span
                   class="detail">[GPT Image 2 / GPT Image 2 Thinking]</span></td>
               <td>20<span class="detail">[Nano Banana 2]</span></td>
-              <td class="rating-great">50</span>+50<span class="detail">[Nano Banana Pro<span class="annotation"
+              <td class="rating-great">50+50<span class="detail">[Nano Banana Pro<span class="annotation"
                     data-note="nano-banana-pro-uses"></span>
                   + Nano Banana 2 / Nano Banana 2 Thinking]</span></td>
-              <td class="rating-excellent">100</span>+100<span class="detail">[Nano Banana
+              <td class="rating-excellent">100+100<span class="detail">[Nano Banana
                   Pro<span class="annotation" data-note="nano-banana-pro-uses"></span> + Nano Banana 2 / Nano Banana 2
                   Thinking]</span></td>
             </tr>
@@ -1934,7 +1918,7 @@
             <tr>
               <td>Video generation per day</td>
               <td colspan="2">No</td>
-              <td>Unknown</span><span class="detail">[Sora 2]</span></td>
+              <td>Unknown<span class="detail">[Sora 2]</span></td>
               <td>No</td>
               <td>2<span class="detail">[Veo 3.1 Lite]</span></td>
               <td class="rating-excellent">3<span class="detail">[Veo 3.1 Lite]</span></td>
@@ -1978,8 +1962,10 @@
               <td>Deep research uses per month</td>
               <td colspan="3">Unknown<span class="detail">[GPT 5.2 Thinking / GPT o3]</span></td>
               <td>5<span class="detail">[Gemini 3 Flash Thinking]</span></td>
-              <td class="rating-great">360<span class="detail">(12/day)<span class="detail">[Gemini 3.1 Pro]</span></td>
-              <td class="rating-excellent">600<span class="detail">(20/day)<span class="detail">[Gemini 3.1 Pro]</span>
+              <td class="rating-great">360<span class="detail">(12/day)</span><span class="detail">[Gemini 3.1
+                  Pro]</span></td>
+              <td class="rating-excellent">600<span class="detail">(20/day)</span><span class="detail">[Gemini 3.1
+                  Pro]</span>
               </td>
             </tr>
             <tr>
@@ -2073,9 +2059,9 @@
                   Thinking]</span>
               </td>
               <td class="rating-great">10+500+1500<span class="detail">(X every X hours)<span class="annotation"
-                    data-note="gemini-hourly-limits"></span><span class="detail">[Gemini 3.1
-                    Deep
-                    Think + Gemini 3.1 Pro + Gemini 3 Flash Thinking]</span></td>
+                    data-note="gemini-hourly-limits"></span></span><span class="detail">[Gemini 3.1
+                  Deep
+                  Think + Gemini 3.1 Pro + Gemini 3 Flash Thinking]</span></td>
             </tr>
             <tr>
               <td>Non-reasoning model limit per day</td>
@@ -2108,7 +2094,7 @@
               <td>Unknown<span class="annotation" data-note="gpt-image-unknown"></span><span class="detail">[GPT Image 2
                   /
                   GPT Image 2 Thinking]</span></td>
-              <td class="rating-excellent">1000</span>+1000<span class="detail">[Nano Banana
+              <td class="rating-excellent">1000+1000<span class="detail">[Nano Banana
                   Pro<span class="annotation" data-note="nano-banana-pro-uses"></span> + Nano Banana 2 / Nano Banana 2
                   Thinking]</span></td>
             </tr>
@@ -2119,7 +2105,7 @@
             </tr>
             <tr>
               <td>Video generation per day</td>
-              <td>Unknown</span><span class="detail">[Sora 2]</span></td>
+              <td>Unknown<span class="detail">[Sora 2]</span></td>
               <td class="rating-excellent">5<span class="detail">[Veo 3.1]</span></td>
             </tr>
             <tr>
@@ -2255,7 +2241,7 @@
 
     <!-- TAB 2: BENCHMARKS -->
     <!-- TAB 2: BENCHMARKS -->
-    <section id="tab-benchmarks" class="tab-content hide-coding-benchmarks">
+    <section id="tab-benchmarks" class="tab-content">
 
       <!-- Model Filters Panel -->
       <div class="model-filters-panel" id="modelFiltersPanel">
@@ -2274,7 +2260,8 @@
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
-              <div class="model-dot" data-model="claude-47-opus" onclick="toggleIndividualModel('claude-47-opus')">
+              <div class="model-dot inactive" data-model="claude-47-opus"
+                onclick="toggleIndividualModel('claude-47-opus')">
                 <span class="model-dot-indicator dot-claude shape-square"></span>
                 <span class="model-dot-label">Claude 4.7 Opus Extended</span>
               </div>
@@ -2288,8 +2275,7 @@
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
-              <div class="model-dot inactive" data-model="claude-46-opus"
-                onclick="toggleIndividualModel('claude-46-opus')">
+              <div class="model-dot" data-model="claude-46-opus" onclick="toggleIndividualModel('claude-46-opus')">
                 <span class="model-dot-indicator dot-claude-legacy shape-square"></span>
                 <span class="model-dot-label">Claude 4.6 Opus Extended</span>
               </div>
@@ -2331,18 +2317,29 @@
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
-              <div class="model-dot" data-model="gpt-54-xhigh" onclick="toggleIndividualModel('gpt-54-xhigh')">
+              <div class="model-dot inactive" data-model="gpt-55-thinking-xhigh"
+                onclick="toggleIndividualModel('gpt-55-thinking-xhigh')">
                 <span class="model-dot-indicator dot-gpt shape-hexagon"></span>
-                <span class="model-dot-label">GPT 5.4 Thinking xhigh</span>
+                <span class="model-dot-label">GPT 5.5 Thinking xhigh</span>
               </div>
-              <div class="model-dot" data-model="gpt-54" onclick="toggleIndividualModel('gpt-54')">
-                <span class="model-dot-indicator dot-gpt shape-square"></span>
-                <span class="model-dot-label">GPT 5.4 Thinking</span>
+              <div class="model-dot" data-model="gpt-55-thinking" onclick="toggleIndividualModel('gpt-55-thinking')">
+                <span class="model-dot-indicator dot-gpt"></span>
+                <span class="model-dot-label">GPT 5.5 Thinking</span>
               </div>
               <div class="model-dot" data-model="gpt-thinking-mini"
                 onclick="toggleIndividualModel('gpt-thinking-mini')">
                 <span class="model-dot-indicator dot-gpt-legacy"></span>
                 <span class="model-dot-label">GPT 5 Thinking Mini</span>
+              </div>
+            </div>
+            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
+              <div class="model-dot inactive" data-model="gpt-54-xhigh" onclick="toggleIndividualModel('gpt-54-xhigh')">
+                <span class="model-dot-indicator dot-gpt-legacy shape-hexagon"></span>
+                <span class="model-dot-label">GPT 5.4 Thinking xhigh</span>
+              </div>
+              <div class="model-dot inactive" data-model="gpt-54" onclick="toggleIndividualModel('gpt-54')">
+                <span class="model-dot-indicator dot-gpt-legacy shape-square"></span>
+                <span class="model-dot-label">GPT 5.4 Thinking</span>
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
@@ -2374,8 +2371,7 @@
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
-              <div class="model-dot inactive" data-model="claude-46-opus"
-                onclick="toggleIndividualModel('claude-46-opus')">
+              <div class="model-dot" data-model="claude-46-opus" onclick="toggleIndividualModel('claude-46-opus')">
                 <span class="model-dot-indicator dot-claude-legacy shape-square"></span>
                 <span class="model-dot-label">Claude 4.6 Opus Extended</span>
               </div>
@@ -2519,25 +2515,6 @@
             </div>
           </div>
 
-          <!-- Coding benchmarks and models -->
-          <div class="filter-group">
-            <div class="filter-group-header">
-              <span class="filter-group-name">Coding-exclusive models</span>
-              <div class="toggle-inline coding-toggle">
-                <div class="toggle-switch coding-bench-toggle"
-                  onclick="event.stopPropagation(); toggleCodingBenchmarks()"></div>
-              </div>
-            </div>
-
-            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
-              <div class="model-dot" data-model="gpt-codex2" onclick="toggleIndividualModel('gpt-codex2')">
-                <span class="model-dot-indicator dot-gpt shape-square"></span>
-                <span class="model-dot-label">GPT 5.3 Codex</span>
-              </div>
-            </div>
-
-          </div>
-
           <!-- Other recommended models -->
           <div class="filter-group">
             <div class="filter-group-header">
@@ -2558,9 +2535,10 @@
             <div class="filter-group-header">
               <span class="filter-group-name">Legacy models</span>
               <div class="toggle-inline legacy-toggle">
-                <div class="hide-btn legacy-models-hide-btn" title="Hide models"
+                <div class="hide-btn legacy-models-hide-btn visible" title="Hide models"
                   onclick="event.stopPropagation(); toggleLegacyHide()"></div>
-                <div class="toggle-switch legacy-models-toggle" onclick="event.stopPropagation(); toggleLegacyModels()">
+                <div class="toggle-switch legacy-models-toggle active"
+                  onclick="event.stopPropagation(); toggleLegacyModels()">
                 </div>
               </div>
             </div>
@@ -2767,7 +2745,7 @@
           style="display: flex; flex-direction: column; align-items: center; margin-top: 0.75rem; margin-bottom: 0.5rem; gap: 0.25rem;">
           <span class="sort-selector-label"><strong>Max Context Length:</strong> <span id="mrcrXAxisLabel"
               style="color: var(--text-primary);">1M</span></span>
-          <input type="range" id="mrcrXAxisSlider" class="custom-slider" min="1" max="6" value="6" step="1"
+          <input type="range" id="mrcrXAxisSlider" class="custom-slider" min="0" max="6" value="6" step="1"
             oninput="updateMrcrXAxisLabel(this.value)" onchange="setMrcrXAxis(this.value)">
         </div>
         <div class="sort-selector" id="mrcrYAxisSelector" style="margin-top: 0.5rem;">
@@ -3085,9 +3063,7 @@
         </div>
         <div class="notes-content">
           <ul class="notes-list">
-            <li>• For "<strong>GPT 5.3 Codex</strong>", "<em>gpt-5.3-codex:xhigh</em>" was used in the graph. This model
-              is only available on Codex and Visual Studio Code, not the web or the app.</li>
-            <li>• For "<strong>GPT 5.4 Thinking xhigh</strong>", "<em>gpt-5.4:xhigh</em>" was used in the graph.
+            <li>• For "<strong>GPT 5.5 Thinking</strong>", "<em>gpt-5.5:medium</em>" was used in the graph.
             </li>
             <li>• For "<strong>GPT 5.4 Thinking</strong>", an estimation based on the performance of
               "<em>gpt-5.4:xhigh</em>", "<em>gpt-5.2:xhigh</em>" and "<em>gpt-5.2:medium</em>" was used in the graph;
@@ -3330,16 +3306,15 @@
     const geminiLegacyColor = 'rgba(180, 110, 120, 1)';
     const geminiLegacyColorLight = 'rgba(180, 110, 120, 0.7)';
 
-    // Track Claude, Instant, ChatGPT Pro, and Coding visibility (legacy flags for compatibility)
+    // Track Claude, Instant, and ChatGPT Pro visibility (legacy flags for compatibility)
     let showClaudeModels = true;
     let showInstantModels = true;
     let showChatGPTProModels = false;
-    let showCodingBenchmarks = false;
     let showReasoningModels = true;
     let showOtherModels = false;   // whether other models are active in charts
-    let showLegacyModels = false;  // whether legacy models are active in charts
+    let showLegacyModels = true;   // whether legacy models are active in charts
     let otherModelsHidden = true;  // whether other model rows are hidden from the filter list
-    let legacyModelsHidden = true; // whether legacy model rows are hidden from the filter list
+    let legacyModelsHidden = false; // whether legacy model rows are hidden from the filter list
     // Legacy state variables kept for localStorage migration (old: 0=hidden, 1=list-only, 2=active)
     let otherModelsState = 0;      // kept for migration logic — do NOT use directly
     let legacyModelsState = 0;     // kept for migration logic — do NOT use directly
@@ -3347,18 +3322,19 @@
 
     // Individual model visibility
     const modelVisibility = {
-      'gpt-codex2': false,     // Starts hidden (coding toggle off)
-      'gpt-54-xhigh': true,
-      'gpt-54': true,
+      'gpt-54-xhigh': false,    // Starts hidden (legacy)
+      'gpt-54': false,          // Starts hidden (legacy)
+      'gpt-55-thinking-xhigh': false,
+      'gpt-55-thinking': true,
       'gpt-thinking-mini': true,
       'gpt-instant': false,    // Starts hidden (legacy)
       'gemini-31-pro': true,
       'gemini-flash-thinking': true,
       'gemini-flash': true,
       'claude-haiku': false,   // Starts hidden by default
-      'claude-47-opus': true,     // Starts visible by default
+      'claude-47-opus': false,    // Starts hidden by default
       'claude-47-opus-nr': false,   // Non-reasoning, starts hidden by default
-      'claude-46-opus': false,    // Starts hidden (legacy)
+      'claude-46-opus': true,     // Starts visible by default (legacy)
       'claude-46-sonnet': true,   // Starts visible by default
       'claude-46-opus-nr': false, // Starts hidden (legacy)
       'claude-46-sonnet-nr': false, // Starts hidden by default
@@ -3376,25 +3352,27 @@
       'mimo-v2-omni': false,         // Other recommended, starts hidden
       'mimo-v2-flash': false,        // Other recommended, starts hidden
       'qwen-36-plus-think': false,   // Other recommended, starts hidden
-      'kimi-k26-thinking': false      // Other recommended, starts hidden
+      'kimi-k26-thinking': false,     // Other recommended, starts hidden
+      'qwen-35-omni-plus': false      // Other recommended, starts hidden
     };
 
     // Track which models were EXPLICITLY disabled by the user clicking the dot
     // When a group toggle is turned ON, models that were explicitly disabled stay disabled
     // When a group toggle is turned OFF, all models in group are disabled (not marked as explicit)
     const modelExplicitlyDisabled = {
-      'gpt-codex2': false,
-      'gpt-54-xhigh': false,
-      'gpt-54': false,
+      'gpt-54-xhigh': true,        // Starts explicitly disabled (legacy)
+      'gpt-54': true,              // Starts explicitly disabled (legacy)
+      'gpt-55-thinking-xhigh': true,
+      'gpt-55-thinking': false,
       'gpt-thinking-mini': false,
       'gpt-instant': true,         // Starts explicitly disabled (legacy)
       'gemini-31-pro': false,
       'gemini-flash-thinking': false,
       'gemini-flash': false,
       'claude-haiku': true,    // Starts explicitly disabled
-      'claude-47-opus': false,    // Starts enabled by default
+      'claude-47-opus': true,     // Starts explicitly disabled
       'claude-47-opus-nr': true,    // Starts explicitly disabled
-      'claude-46-opus': true,     // Starts explicitly disabled (legacy)
+      'claude-46-opus': false,    // Starts enabled by default (legacy)
       'claude-46-sonnet': false,  // Starts enabled by default
       'claude-46-opus-nr': true,  // Starts explicitly disabled (legacy)
       'claude-46-sonnet-nr': true, // Starts explicitly disabled
@@ -3418,22 +3396,22 @@
 
     // Model groups for group toggles
     const modelGroups = {
-      'claude': ['claude-haiku', 'claude-47-opus', 'claude-47-opus-nr', 'claude-46-sonnet', 'claude-46-sonnet-nr', 'claude-haiku-nr'],
-      'reasoning': ['gpt-codex2', 'gpt-54-xhigh', 'gpt-54', 'gpt-thinking-mini', 'gemini-31-pro', 'gemini-flash-thinking', 'claude-haiku', 'claude-47-opus', 'claude-46-opus', 'claude-46-sonnet', 'glm-51-deep-think', 'glm-deep-think', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-42-expert', 'minimax-m27', 'mimo-v2-pro', 'mimo-v2-omni', 'qwen-36-plus-think', 'kimi-k26-thinking'],
-      'instant': ['gemini-flash', 'claude-47-opus-nr', 'claude-46-opus-nr', 'claude-46-sonnet-nr', 'claude-haiku-nr', 'glm-51', 'glm-5', 'grok-42-fast', 'mimo-v2-flash', 'qwen-35-omni-plus'],
+      'claude': ['claude-haiku', 'claude-47-opus', 'claude-47-opus-nr', 'claude-46-opus', 'claude-46-opus-nr', 'claude-46-sonnet', 'claude-46-sonnet-nr', 'claude-haiku-nr'],
+      'reasoning': ['gpt-54-xhigh', 'gpt-54', 'gpt-thinking-mini', 'gemini-31-pro', 'gemini-flash-thinking', 'claude-haiku', 'claude-47-opus', 'claude-46-opus', 'claude-46-sonnet', 'glm-51-deep-think', 'glm-deep-think', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-42-expert', 'minimax-m27', 'mimo-v2-pro', 'mimo-v2-omni', 'qwen-36-plus-think', 'kimi-k26-thinking'],
+      'instant': ['gpt-55-thinking-xhigh', 'gpt-55-thinking', 'gemini-flash', 'claude-47-opus-nr', 'claude-46-opus-nr', 'claude-46-sonnet-nr', 'claude-haiku-nr', 'glm-51', 'glm-5', 'grok-42-fast', 'mimo-v2-flash', 'qwen-35-omni-plus'],
       'chatgpt-pro': [],
-      'coding': ['gpt-codex2'],
       'other': ['glm-51-deep-think', 'glm-51', 'glm-deep-think', 'glm-5', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-42-expert', 'grok-42-fast', 'minimax-m27', 'mimo-v2-pro', 'mimo-v2-omni', 'mimo-v2-flash', 'qwen-36-plus-think', 'kimi-k26-thinking', 'qwen-35-omni-plus'],
-      'legacy': ['gpt-instant', 'glm-deep-think', 'glm-5', 'claude-46-opus', 'claude-46-opus-nr']
+      'legacy': ['gpt-54-xhigh', 'gpt-54', 'gpt-thinking-mini', 'gpt-instant', 'glm-deep-think', 'glm-5', 'claude-46-opus', 'claude-46-opus-nr']
     };
 
     // Model constraints: which group toggles must ALL be active for a model to be visible
     // When a group is turned ON, models are only activated if all their other constraints are met
     const modelConstraints = {
-      'gpt-codex2': ['reasoning', 'coding'],            // Needs Reasoning AND Coding to be on
-      'gpt-54-xhigh': ['reasoning'],                    // Only needs Reasoning
-      'gpt-54': ['reasoning'],                           // Only needs Reasoning
-      'gpt-thinking-mini': ['reasoning'],               // Only needs Reasoning
+      'gpt-54-xhigh': ['reasoning', 'legacy'],          // Needs Reasoning AND Legacy to be on
+      'gpt-54': ['reasoning', 'legacy'],                // Needs Reasoning AND Legacy to be on
+      'gpt-55-thinking-xhigh': ['instant'],              // Non-reasoning model
+      'gpt-55-thinking': ['instant'],                    // Non-reasoning model
+      'gpt-thinking-mini': ['reasoning', 'legacy'],     // Needs Reasoning AND Legacy
       'gpt-instant': ['instant', 'legacy'],              // Needs Non-reasoning AND Legacy
       'gemini-31-pro': ['reasoning'],                   // Only needs Reasoning
       'gemini-flash-thinking': ['reasoning'],          // Only needs Reasoning
@@ -3470,7 +3448,6 @@
         case 'reasoning': return showReasoningModels;
         case 'instant': return showInstantModels;
         case 'chatgpt-pro': return showChatGPTProModels;
-        case 'coding': return showCodingBenchmarks;
         case 'other': return showOtherModels;
         case 'legacy': return showLegacyModels;
         default: return true;
@@ -3565,12 +3542,6 @@
         toggle.classList.toggle('active', someChatGPTProVisible);
       });
 
-      // Coding group - active if either section is visible OR codex model is visible
-      const someCodingVisible = modelGroups.coding.some(m => modelVisibility[m]);
-      document.querySelectorAll('.coding-bench-toggle').forEach(toggle => {
-        toggle.classList.toggle('active', showCodingBenchmarks || someCodingVisible);
-      });
-
       // Other recommended models group — normal toggle
       document.querySelectorAll('.other-models-toggle').forEach(t => t.classList.toggle('active', showOtherModels));
       document.querySelectorAll('.other-models-hide-btn').forEach(b => b.classList.toggle('visible', !otherModelsHidden));
@@ -3579,11 +3550,6 @@
       document.querySelectorAll('.legacy-models-toggle').forEach(t => t.classList.toggle('active', showLegacyModels));
       document.querySelectorAll('.legacy-models-hide-btn').forEach(b => b.classList.toggle('visible', !legacyModelsHidden));
 
-      // Update coding section dot
-      const codingDot = document.querySelector('[data-model="coding-benchmarks"]');
-      if (codingDot) {
-        codingDot.classList.toggle('inactive', !showCodingBenchmarks);
-      }
     }
 
     // Update legacy flags - NO LONGER derives group states from model visibility
@@ -3704,7 +3670,7 @@
     // Estimated models are rendered at low opacity (0.3) to look faded.
     // Non-estimated models use 0.75 so bars look rich but not fully opaque.
     const BRAND_RGB = {
-      'gpt-instant': '116, 171, 157',   // lighter teal  (non-reasoning GPT)
+      'gpt-legacy': '100, 150, 135',   // legacy GPT (5 Thinking Mini, 5.4, 5.2 Instant)
       'gpt': '90,  150, 135',   // darker teal   (reasoning GPT)
       'gemini': '238, 73,  82',    // red
       'claude': '218, 119, 87',    // orange
@@ -3718,7 +3684,7 @@
     };
 
     function getBrandRgb(modelId) {
-      if (modelId === 'gpt-instant') return BRAND_RGB['gpt-instant'];
+      if (['gpt-54-xhigh', 'gpt-54', 'gpt-thinking-mini', 'gpt-instant'].includes(modelId)) return BRAND_RGB['gpt-legacy'];
       if (modelId.startsWith('gpt-')) return BRAND_RGB['gpt'];
       if (modelId.startsWith('gemini-')) return BRAND_RGB['gemini'];
       if (modelId.startsWith('claude-')) return BRAND_RGB['claude'];
@@ -3756,12 +3722,13 @@
     // ============================================================================
     // Each model has a sortOrder value. Lower numbers appear first.
     // Use gaps of 10 to allow inserting new models between existing ones.
-    // Example: To add a model between GPT Codex (10) and GPT Thinking (20), use 15.
+    // Example: To add a model between GPT Thinking Mini (25) and GPT 5.2 Instant (30), use 27.
     //
     // Current order:
-    //   5:  ⌘ GPT 5.3 Codex (coding toggle)
     //   12: ⌘ GPT 5.4 Thinking xhigh
     //   14: ⌘ GPT 5.4 Thinking
+    //   18: ⌘ GPT 5.5 Thinking xhigh (instant toggle)
+    //   20: ⌘ GPT 5.5 Thinking (instant toggle)
     //   25: ⌘ GPT 5 Thinking Mini
     //   30: ⌘ GPT 5.2 Instant (instant toggle, legacy)
     //   35: ✦ Gemini 3.1 Pro
@@ -3774,9 +3741,10 @@
 
     // Base data for AA-Omniscience using object structure with sortOrder and modelId
     const omniscienceAllModels = [
-      { modelId: 'gpt-codex2', label: '⌘ GPT 5.3 Codex', correct: 52, abstention: 6.24, hallucination: 41.76, sortOrder: 5 },
       { modelId: 'gpt-54-xhigh', label: '⌘ GPT 5.4 Thinking xhigh', correct: 50, abstention: 5.5, hallucination: 44.5, sortOrder: 12 },
       { modelId: 'gpt-54', label: '⌘ GPT 5.4 Thinking (Estimated)', correct: 44.18, abstention: 18.19, hallucination: 37.63, sortOrder: 14, estimated: true },
+      { modelId: 'gpt-55-thinking-xhigh', label: '⌘ GPT 5.5 Thinking xhigh', correct: 57, abstention: 6.02, hallucination: 36.98, sortOrder: 18 },
+      { modelId: 'gpt-55-thinking', label: '⌘ GPT 5.5 Thinking', correct: 56, abstention: 6.16, hallucination: 37.84, sortOrder: 20 },
       { modelId: 'gpt-thinking-mini', label: '⌘ GPT 5 Thinking Mini', correct: 22, abstention: 45.24, hallucination: 32.76, sortOrder: 25 },
       { modelId: 'gpt-instant', label: '⌘ GPT 5.2 Instant', correct: 29, abstention: 27.69, hallucination: 43.31, sortOrder: 30 },
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro', correct: 55, abstention: 22.5, hallucination: 22.5, sortOrder: 35 },
@@ -3838,17 +3806,25 @@
     let maxContextSortMode = localStorage.getItem('maxContextSortMode') || 'brand';
 
     const mrcrXAxisLabels = ['8k', '16k', '32k', '64k', '128k', '256k', '1M'];
-    let mrcrXAxisIndex = localStorage.getItem('mrcrXAxisIndex') !== null ? parseInt(localStorage.getItem('mrcrXAxisIndex')) : 6;
+
+    function normalizeMrcrXAxisIndex(val) {
+      const parsed = parseInt(val, 10);
+      if (Number.isNaN(parsed)) return mrcrXAxisLabels.length - 1;
+      return Math.min(Math.max(parsed, 0), mrcrXAxisLabels.length - 1);
+    }
+
+    let mrcrXAxisIndex = localStorage.getItem('mrcrXAxisIndex') !== null ? normalizeMrcrXAxisIndex(localStorage.getItem('mrcrXAxisIndex')) : 6;
     let mrcrYAxisMode = localStorage.getItem('mrcrYAxisMode') || '0';
 
     function updateMrcrXAxisLabel(val) {
-      document.getElementById('mrcrXAxisLabel').textContent = mrcrXAxisLabels[val];
+      document.getElementById('mrcrXAxisLabel').textContent = mrcrXAxisLabels[normalizeMrcrXAxisIndex(val)];
     }
 
     function setMrcrXAxis(val) {
-      mrcrXAxisIndex = parseInt(val);
+      mrcrXAxisIndex = normalizeMrcrXAxisIndex(val);
       localStorage.setItem('mrcrXAxisIndex', mrcrXAxisIndex);
-      updateMrcrXAxisLabel(val);
+      document.getElementById('mrcrXAxisSlider').value = mrcrXAxisIndex;
+      updateMrcrXAxisLabel(mrcrXAxisIndex);
 
       if (mrcrChart) {
         mrcrChart.options.scales.x.max = mrcrXAxisLabels[mrcrXAxisIndex];
@@ -4099,14 +4075,14 @@
         modelId: 'gpt-54-xhigh',
         label: 'GPT 5.4 Thinking xhigh (Estimated)',
         data: [94.5, 90.0, 95.0, 86.8, 76.1, 65.8, null],
-        borderColor: 'rgba(16, 163, 127, 1)',
-        backgroundColor: 'rgba(16, 163, 127, 0.7)',
+        borderColor: 'rgba(100, 150, 135, 1)',
+        backgroundColor: 'rgba(100, 150, 135, 0.7)',
         borderWidth: 3,
         borderDash: [3, 6],
         tension: 0.3,
         pointRadius: 6,
         pointHoverRadius: 8,
-        pointBackgroundColor: 'rgba(16, 163, 127, 1)',
+        pointBackgroundColor: 'rgba(100, 150, 135, 1)',
         spanGaps: false,
         sortOrder: 12,
         isEstimatedBand: true
@@ -4115,19 +4091,51 @@
         modelId: 'gpt-54',
         label: 'GPT 5.4 Thinking (Estimated)',
         data: [87.0, 80.3, 77.6, 65.3, 63.5, 54.7, null],
-        borderColor: 'rgba(16, 163, 127, 0.75)',
-        backgroundColor: 'rgba(16, 163, 127, 0.4)',
+        borderColor: 'rgba(100, 150, 135, 0.75)',
+        backgroundColor: 'rgba(100, 150, 135, 0.4)',
         borderWidth: 2,
         borderDash: [3, 6],
         tension: 0.3,
         pointRadius: 5,
         pointHoverRadius: 7,
-        pointBackgroundColor: 'rgba(16, 163, 127, 0.75)',
+        pointBackgroundColor: 'rgba(100, 150, 135, 0.75)',
         spanGaps: false,
         sortOrder: 14,
         isEstimatedBand: true
       },
 
+      {
+        modelId: 'gpt-55-thinking-xhigh',
+        label: 'GPT 5.5 Thinking xhigh (Estimated)',
+        data: [95.3, 91.6, 94.3, 86.3, 73.2, 74.0, null],
+        borderColor: 'rgba(90, 150, 135, 0.85)',
+        backgroundColor: 'rgba(90, 150, 135, 0.5)',
+        borderWidth: 2,
+        borderDash: [3, 6],
+        tension: 0.3,
+        pointRadius: 5,
+        pointHoverRadius: 7,
+        pointBackgroundColor: 'rgba(90, 150, 135, 0.85)',
+        spanGaps: false,
+        sortOrder: 18,
+        isEstimatedBand: true
+      },
+      {
+        modelId: 'gpt-55-thinking',
+        label: 'GPT 5.5 Thinking (Estimated)',
+        data: [87.8, 81.9, 76.9, 64.8, 60.6, 62.9, null],
+        borderColor: 'rgba(90, 150, 135, 0.65)',
+        backgroundColor: 'rgba(90, 150, 135, 0.35)',
+        borderWidth: 2,
+        borderDash: [3, 6],
+        tension: 0.3,
+        pointRadius: 5,
+        pointHoverRadius: 7,
+        pointBackgroundColor: 'rgba(90, 150, 135, 0.65)',
+        spanGaps: false,
+        sortOrder: 20,
+        isEstimatedBand: true
+      },
       {
         modelId: 'gpt-thinking-mini',
         label: 'GPT 5 Thinking Mini',
@@ -4146,14 +4154,14 @@
         modelId: 'gpt-instant',
         label: 'GPT 5.2 Instant',
         data: [49.4, 45.1, 50.4, 41.5, 31.9, null, null],
-        borderColor: 'rgba(16, 163, 127, 0.5)',
-        backgroundColor: 'rgba(16, 163, 127, 0.3)',
+        borderColor: 'rgba(100, 150, 135, 0.5)',
+        backgroundColor: 'rgba(100, 150, 135, 0.3)',
         borderWidth: 2,
         borderDash: [5, 5],
         tension: 0.3,
         pointRadius: 5,
         pointHoverRadius: 7,
-        pointBackgroundColor: 'rgba(16, 163, 127, 0.5)',
+        pointBackgroundColor: 'rgba(100, 150, 135, 0.5)',
         spanGaps: false,
         sortOrder: 30
       },
@@ -4376,9 +4384,10 @@
     // Long Context Reasoning - AA-LCR - Horizontal Bar Chart
     let lcrChart;
     const lcrAllModels = [
-      { modelId: 'gpt-codex2', label: '⌘ GPT 5.3 Codex', score: 74.0, sortOrder: 5 },
       { modelId: 'gpt-54-xhigh', label: '⌘ GPT 5.4 Thinking xhigh', score: 74.0, sortOrder: 12 },
       { modelId: 'gpt-54', label: '⌘ GPT 5.4 Thinking (Estimated)', score: 64.6, sortOrder: 14, estimated: true },
+      { modelId: 'gpt-55-thinking-xhigh', label: '⌘ GPT 5.5 Thinking xhigh', score: 74.3, sortOrder: 18 },
+      { modelId: 'gpt-55-thinking', label: '⌘ GPT 5.5 Thinking', score: 72.3, sortOrder: 20 },
       { modelId: 'gpt-thinking-mini', label: '⌘ GPT 5 Thinking Mini', score: 66, sortOrder: 25 },
       { modelId: 'gpt-instant', label: '⌘ GPT 5.2 Instant', score: 38.0, sortOrder: 30 },
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro', score: 72.7, sortOrder: 35 },
@@ -4495,9 +4504,10 @@
     // Visual Reasoning - MMMU-Pro - Horizontal Bar Chart
     let mmmuProChart;
     const mmmuProAllModels = [
-      { modelId: 'gpt-codex2', label: '⌘ GPT 5.3 Codex', score: 79, sortOrder: 5 },
       { modelId: 'gpt-54-xhigh', label: '⌘ GPT 5.4 Thinking xhigh', score: 78, sortOrder: 12 },
       { modelId: 'gpt-54', label: '⌘ GPT 5.4 Thinking (Estimated)', score: 74.0, sortOrder: 14, estimated: true },
+      { modelId: 'gpt-55-thinking-xhigh', label: '⌘ GPT 5.5 Thinking xhigh', score: 80, sortOrder: 18 },
+      { modelId: 'gpt-55-thinking', label: '⌘ GPT 5.5 Thinking', score: 81, sortOrder: 20 },
       { modelId: 'gpt-thinking-mini', label: '⌘ GPT 5 Thinking Mini', score: 69, sortOrder: 25 },
       { modelId: 'gpt-instant', label: '⌘ GPT 5.2 Instant', score: 66, sortOrder: 30 },
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro', score: 82, sortOrder: 35 },
@@ -4614,9 +4624,10 @@
     // Terminal-Bench Hard - Horizontal Bar Chart
     let terminalBenchChart;
     const terminalBenchAllModels = [
-      { modelId: 'gpt-codex2', label: '⌘ GPT 5.3 Codex', score: 53.0, sortOrder: 5 },
       { modelId: 'gpt-54-xhigh', label: '⌘ GPT 5.4 Thinking xhigh', score: 57.6, sortOrder: 12 },
       { modelId: 'gpt-54', label: '⌘ GPT 5.4 Thinking (Estimated)', score: 53.8, sortOrder: 14, estimated: true },
+      { modelId: 'gpt-55-thinking-xhigh', label: '⌘ GPT 5.5 Thinking xhigh', score: 60.6, sortOrder: 18 },
+      { modelId: 'gpt-55-thinking', label: '⌘ GPT 5.5 Thinking', score: 57.6, sortOrder: 20 },
       { modelId: 'gpt-thinking-mini', label: '⌘ GPT 5 Thinking Mini', score: 28.8, sortOrder: 25 },
       { modelId: 'gpt-instant', label: '⌘ GPT 5.2 Instant', score: 31.8, sortOrder: 30 },
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro', score: 53.8, sortOrder: 35 },
@@ -4733,9 +4744,10 @@
     // τ²-Bench Telecom - Horizontal Bar Chart
     let tau2BenchChart;
     const tau2BenchAllModels = [
-      { modelId: 'gpt-codex2', label: '⌘ GPT 5.3 Codex', score: 90.9, sortOrder: 5 },
       { modelId: 'gpt-54-xhigh', label: '⌘ GPT 5.4 Thinking xhigh', score: 91.5, sortOrder: 12 },
       { modelId: 'gpt-54', label: '⌘ GPT 5.4 Thinking (Estimated)', score: 81.0, sortOrder: 14, estimated: true },
+      { modelId: 'gpt-55-thinking-xhigh', label: '⌘ GPT 5.5 Thinking xhigh', score: 93.9, sortOrder: 18 },
+      { modelId: 'gpt-55-thinking', label: '⌘ GPT 5.5 Thinking', score: 91.8, sortOrder: 20 },
       { modelId: 'gpt-thinking-mini', label: '⌘ GPT 5 Thinking Mini', score: 71.1, sortOrder: 25 },
       { modelId: 'gpt-instant', label: '⌘ GPT 5.2 Instant', score: 46.5, sortOrder: 30 },
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro', score: 95.6, sortOrder: 35 },
@@ -4895,7 +4907,7 @@
       // GPT non-reasoning (instant)
       {
         modelId: 'gpt-instant', label: '⌘ GPT 5.2 Instant', sortOrder: 30,
-        color: 'rgba(116, 171, 157, 1)',
+        color: 'rgba(100, 150, 135, 1)',
         segments: [
           { value: 27000, plans: 'Free' },
           { value: 54000, plans: 'Plus, Go' },
@@ -4905,7 +4917,7 @@
       // GPT reasoning models (use the same tier structure)
       {
         modelId: 'gpt-thinking-mini', label: '⌘ GPT 5 Thinking Mini', sortOrder: 25,
-        color: 'rgba(90, 150, 135, 1)',
+        color: 'rgba(100, 150, 135, 1)',
         segments: [
           { value: 256000, plans: 'Free, Go, Plus' },
           { value: 400000, plans: 'Pro' }
@@ -4913,6 +4925,22 @@
       },
       {
         modelId: 'gpt-54', label: '⌘ GPT 5.4 Thinking', sortOrder: 14,
+        color: 'rgba(100, 150, 135, 1)',
+        segments: [
+          { value: 256000, plans: 'Free, Go, Plus' },
+          { value: 400000, plans: 'Pro' }
+        ]
+      },
+      {
+        modelId: 'gpt-55-thinking-xhigh', label: '⌘ GPT 5.5 Thinking xhigh', sortOrder: 18,
+        color: 'rgba(90, 150, 135, 1)',
+        segments: [
+          { value: 256000, plans: 'Free, Go, Plus' },
+          { value: 400000, plans: 'Pro' }
+        ]
+      },
+      {
+        modelId: 'gpt-55-thinking', label: '⌘ GPT 5.5 Thinking', sortOrder: 20,
         color: 'rgba(90, 150, 135, 1)',
         segments: [
           { value: 256000, plans: 'Free, Go, Plus' },
@@ -4921,15 +4949,7 @@
       },
       {
         modelId: 'gpt-54-xhigh', label: '⌘ GPT 5.4 Thinking xhigh', sortOrder: 12,
-        color: 'rgba(90, 150, 135, 1)',
-        segments: [
-          { value: 256000, plans: 'Free, Go, Plus' },
-          { value: 400000, plans: 'Pro' }
-        ]
-      },
-      {
-        modelId: 'gpt-codex2', label: '⌘ GPT 5.3 Codex', sortOrder: 5,
-        color: 'rgba(90, 150, 135, 1)',
+        color: 'rgba(100, 150, 135, 1)',
         segments: [
           { value: 256000, plans: 'Free, Go, Plus' },
           { value: 400000, plans: 'Pro' }
@@ -5098,6 +5118,12 @@
     // We create one dataset per "tier slot" (index 0, 1, 2...).
     // Each model can have up to 3 segments.
     // Per-tier, each dataset holds the INCREMENTAL width for that model.
+    function getMaxContextColor(m) {
+      return ['gpt-54-xhigh', 'gpt-54', 'gpt-thinking-mini', 'gpt-instant'].includes(m.modelId)
+        ? `rgba(${getBrandRgb(m.modelId)}, 1)`
+        : m.color;
+    }
+
     function buildMaxContextDatasets(models) {
       // Find max number of segments
       const maxSegs = Math.max(...models.map(m => m.segments.length));
@@ -5120,15 +5146,17 @@
         const bgColors = models.map(m => {
           if (i >= m.segments.length) return 'transparent';
           // Extract rgb from "rgba(r,g,b,a)" and apply new opacity
-          const match = m.color.match(/rgba\(([\d.]+),\s*([\d.]+),\s*([\d.]+)/);
-          if (!match) return m.color;
+          const color = getMaxContextColor(m);
+          const match = color.match(/rgba\(([\d.]+),\s*([\d.]+),\s*([\d.]+)/);
+          if (!match) return color;
           return `rgba(${match[1]}, ${match[2]}, ${match[3]}, ${opacity})`;
         });
         // Hover colors — same rgb but darkened by 32%
         const hoverBgColors = models.map(m => {
           if (i >= m.segments.length) return 'transparent';
-          const match = m.color.match(/rgba\(([\d.]+),\s*([\d.]+),\s*([\d.]+)/);
-          if (!match) return m.color;
+          const color = getMaxContextColor(m);
+          const match = color.match(/rgba\(([\d.]+),\s*([\d.]+),\s*([\d.]+)/);
+          if (!match) return color;
           const r = Math.round(parseFloat(match[1]) * 0.68);
           const g = Math.round(parseFloat(match[2]) * 0.68);
           const b = Math.round(parseFloat(match[3]) * 0.68);
@@ -5693,83 +5721,6 @@
       updateBenchGroupToggles();
     }
 
-    // Toggle function for Coding benchmarks section only (not the Codex model)
-    function toggleCodingSection() {
-      showCodingBenchmarks = !showCodingBenchmarks;
-
-      // Toggle visibility of coding benchmark sections
-      const benchmarksTab = document.getElementById('tab-benchmarks');
-      benchmarksTab.classList.toggle('hide-coding-benchmarks', !showCodingBenchmarks);
-
-      // Update the coding section dot
-      const codingDot = document.querySelector('[data-model="coding-benchmarks"]');
-      if (codingDot) {
-        codingDot.classList.toggle('inactive', !showCodingBenchmarks);
-      }
-
-      // Sync coding group toggle
-      document.querySelectorAll('.coding-bench-toggle').forEach(toggle => {
-        // Toggle is active if either benchmarks OR codex model is active
-        const codexVisible = modelVisibility['gpt-codex2'];
-        toggle.classList.toggle('active', showCodingBenchmarks || codexVisible);
-      });
-
-      // Save state
-      localStorage.setItem('codingBenchmarksVisible', showCodingBenchmarks);
-    }
-
-    // Toggle function for Coding benchmarks group - controls both section and Codex model together
-    function toggleCodingBenchmarks() {
-      // Determine new state based on whether both are currently on
-      const bothOn = showCodingBenchmarks && modelVisibility['gpt-codex2'];
-      const newState = !bothOn;
-
-      showCodingBenchmarks = newState;
-
-      // If turning ON and all models are explicitly disabled, reset explicit flags
-      if (newState) {
-        const allExplicitlyDisabled = modelGroups.coding.every(m => modelExplicitlyDisabled[m]);
-        if (allExplicitlyDisabled) {
-          modelGroups.coding.forEach(m => { modelExplicitlyDisabled[m] = false; });
-        }
-      }
-
-      // Update Codex model visibility respecting constraints
-      if (newState) {
-        // When turning ON: only activate if ALL constraints are met
-        modelVisibility['gpt-codex2'] = shouldModelBeVisible('gpt-codex2');
-      } else {
-        // When turning OFF: always disable
-        modelVisibility['gpt-codex2'] = false;
-      }
-
-      // Sync all Coding toggles
-      document.querySelectorAll('.coding-bench-toggle').forEach(toggle => {
-        toggle.classList.toggle('active', newState);
-      });
-
-      // Toggle visibility of coding benchmark sections
-      const benchmarksTab = document.getElementById('tab-benchmarks');
-      benchmarksTab.classList.toggle('hide-coding-benchmarks', !showCodingBenchmarks);
-
-      // Update UI and charts
-      updateModelDotsUI();
-      syncGroupToggles();
-      updateLegacyFlags();
-      updateAllCharts();
-
-      // Update the coding section dot
-      const codingDot = document.querySelector('[data-model="coding-benchmarks"]');
-      if (codingDot) {
-        codingDot.classList.toggle('inactive', !showCodingBenchmarks);
-      }
-
-      // Save state to localStorage
-      localStorage.setItem('modelVisibility', JSON.stringify(modelVisibility));
-      localStorage.setItem('modelExplicitlyDisabled', JSON.stringify(modelExplicitlyDisabled));
-      localStorage.setItem('codingBenchmarksVisible', showCodingBenchmarks);
-    }
-
     // Initialize saved toggle states from localStorage on page load
     function initializeSavedStates() {
       let needsChartUpdate = false;
@@ -5819,12 +5770,6 @@
         document.getElementById('benchmarkFiltersPanel').classList.add('expanded');
       }
 
-      // Restore coding benchmarks section visibility (separate from Codex model)
-      const savedCodingBenchmarks = localStorage.getItem('codingBenchmarksVisible');
-      if (savedCodingBenchmarks !== null) {
-        showCodingBenchmarks = savedCodingBenchmarks === 'true';
-      }
-
       // Restore group toggle states from localStorage (or derive from model visibility for backward compat)
       const savedClaudeModels = localStorage.getItem('claudeModelsVisible');
       showClaudeModels = savedClaudeModels !== null ? savedClaudeModels === 'true' : modelGroups.claude.some(m => modelVisibility[m]);
@@ -5867,18 +5812,8 @@
         showLegacyModels = st === 2;
         legacyModelsHidden = st === 0;
       } else {
-        showLegacyModels = false;
-        legacyModelsHidden = true;
-      }
-
-      // Update coding benchmarks section visibility
-      const benchmarksTab = document.getElementById('tab-benchmarks');
-      benchmarksTab.classList.toggle('hide-coding-benchmarks', !showCodingBenchmarks);
-
-      // Update coding section dot
-      const codingDot = document.querySelector('[data-model="coding-benchmarks"]');
-      if (codingDot) {
-        codingDot.classList.toggle('inactive', !showCodingBenchmarks);
+        showLegacyModels = true;
+        legacyModelsHidden = false;
       }
 
       // Update all toggle UIs
@@ -5889,7 +5824,8 @@
 
       // Restore sort button UI states
       if (localStorage.getItem('mrcrXAxisIndex') !== null) {
-        const val = localStorage.getItem('mrcrXAxisIndex');
+        const val = normalizeMrcrXAxisIndex(localStorage.getItem('mrcrXAxisIndex'));
+        mrcrXAxisIndex = val;
         document.getElementById('mrcrXAxisSlider').value = val;
         document.getElementById('mrcrXAxisLabel').textContent = mrcrXAxisLabels[val];
       }
@@ -6079,7 +6015,7 @@
     style="text-align: center; padding: 2rem 1rem; margin-top: 3rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.8rem;">
     Made by <strong> u/Pasto_Shouwa</strong>
     <br>
-    <em>Last updated on <strong>22/04/2026</strong> (dd/mm/yyyy)</em>
+    <em>Last updated on <strong>24/04/2026</strong> (dd/mm/yyyy)</em>
   </footer>
 </body>
 
