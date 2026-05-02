@@ -2373,10 +2373,10 @@
             </div>
 
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
-              <div class="model-dot inactive" data-model="grok-42-expert"
-                onclick="toggleIndividualModel('grok-42-expert')">
-                <span class="model-dot-indicator dot-grok"></span>
-                <span class="model-dot-label">Grok 4.20 Expert</span>
+              <div class="model-dot inactive" data-model="grok-43-expert"
+                onclick="toggleIndividualModel('grok-43-expert')">
+                <span class="model-dot-indicator dot-grok shape-square"></span>
+                <span class="model-dot-label">Grok 4.3 Expert</span>
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
@@ -2479,12 +2479,6 @@
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
-              <div class="model-dot inactive" data-model="grok-42-fast" onclick="toggleIndividualModel('grok-42-fast')">
-                <span class="model-dot-indicator dot-grok"></span>
-                <span class="model-dot-label">Grok 4.20 Fast</span>
-              </div>
-            </div>
-            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot inactive" data-model="glm-51" onclick="toggleIndividualModel('glm-51')">
                 <span class="model-dot-indicator dot-glm"></span>
                 <span class="model-dot-label">GLM 5.1</span>
@@ -2499,6 +2493,13 @@
                 onclick="toggleIndividualModel('qwen-35-omni-plus')">
                 <span class="model-dot-indicator dot-qwen"></span>
                 <span class="model-dot-label">Qwen 3.5 Omni Plus</span>
+              </div>
+            </div>
+            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
+              <div class="model-dot inactive" data-model="kimi-k26-instant"
+                onclick="toggleIndividualModel('kimi-k26-instant')">
+                <span class="model-dot-indicator dot-kimi"></span>
+                <span class="model-dot-label">Kimi K2.6 Instant</span>
               </div>
             </div>
           </div>
@@ -2691,6 +2692,8 @@
           </div>
           <div class="notes-content">
             <ul class="notes-list">
+              <li>• This benchmark evaluates the accuracy of models when answering questions without web search. Therefore, if the model has good web search
+                capability on the web or app version, it will be able to partially compensate for its hallucination rate if it's too high.</li>
               <li>• <strong>Correct</strong> answers were calculated with <em>Correct = A</em>.</li>
               <li>• <strong>Abstention</strong> answers were calculated with <em>Abstention = (1−A)⋅(1−H)</em>.</li>
               <li>• <strong>Hallucination</strong> answers were calculated with <em>Hallucination = (1−A)⋅H</em>.</li>
@@ -2768,7 +2771,7 @@
               <li>• Maximum context window of all <strong>Gemini</strong> models is
                 32k/128k/1M tokens (Free/Plus/Pro,Ultra).</li>
               <li>• Maximum context window of all <strong>Claude</strong> models is 200k tokens.</li>
-              <li>• Maximum context window of all <strong>Grok</strong> models is 2M tokens.</li>
+              <li>• Maximum context window of all <strong>Grok</strong> models is 1M tokens.</li>
               <li>• Maximum context window of all <strong>GLM</strong> models is 200k tokens.</li>
               <li>• Maximum context window of <strong>Qwen Plus</strong> models is 256k tokens.
               </li>
@@ -2777,7 +2780,7 @@
               <li>• Maximum context window of all <strong>Kimi</strong> models is 200k tokens.</li>
               <li>• Maximum context window of all <strong>Mimo</strong> models is 1M tokens.</li>
               <li>• Maximum context window of all <strong>Minimax</strong> models is 200k tokens.</li>
-              <li>• 1M tokens equals 1048k tokens, 2M tokens equals 2096k tokens.</li>
+              <li>• 1M tokens equals 1048k tokens.</li>
             </ul>
           </div>
         </div>
@@ -2838,7 +2841,7 @@
               <li>• Maximum context window of all <strong>Gemini</strong> models is
                 32k/128k/1M tokens (Free/Plus/Pro,Ultra).</li>
               <li>• Maximum context window of all <strong>Claude</strong> models is 200k tokens.</li>
-              <li>• Maximum context window of all <strong>Grok</strong> models is 2M tokens.</li>
+              <li>• Maximum context window of all <strong>Grok</strong> models is 1M tokens.</li>
               <li>• Maximum context window of all <strong>GLM</strong> models is 200k tokens.</li>
               <li>• Maximum context window of <strong>Qwen Plus</strong> models is 256k tokens.
               </li>
@@ -2847,7 +2850,7 @@
               <li>• Maximum context window of all <strong>Kimi</strong> models is 200k tokens.</li>
               <li>• Maximum context window of all <strong>Mimo</strong> models is 1M tokens.</li>
               <li>• Maximum context window of all <strong>Minimax</strong> models is 200k tokens.</li>
-              <li>• 1M tokens equals 1048k tokens, 2M tokens equals 2096k tokens.</li>
+              <li>• 1M tokens equals 1048k tokens.</li>
             </ul>
           </div>
         </div>
@@ -2952,7 +2955,7 @@
               <li>• <strong>Mimo V2.5</strong> is capable of understanding text, images, video and audio.
               </li>
               <li>• <strong>Minimax</strong> models are capable of understanding only text. Image and
-                video inputs are likely routed to Gemini 3.1 Pro.
+                video inputs are routed to another unknown model.
               </li>
               <li>• Models capable of understanding only text are usually able to understand text inside images, but
                 nothing else in them.
@@ -3051,9 +3054,8 @@
             </li>
             <li>• For "<strong>GPT 5 Thinking Mini</strong>", "<em>gpt-5-mini:medium</em>" was used in the graph.</li>
             <li>• All the other models are presented with their respective highest settings.
-            <li>• I have not been able to find consistent graphs for the following models: GPT 5.3 Instant, GLM 5 Turbo,
-              GLM 5V Turbo, Qwen 3.6 Plus Fast, Kimi K2.6 Instant and Minimax M2.7 Air.
-              I will add them immediately if I find some.
+            <li>• I have not been able to find consistent graphs for the following models: GPT 5.3 Instant, Grok 4.3 Fast,GLM 5 Turbo,
+              GLM 5V Turbo, Qwen 3.6 Plus Fast and Minimax M2.7 Air. I will add them immediately if I find some.
             </li>
             <li>• GPT 5.5 Thinking Heavy is available for Plus and Pro ChatGPT users through
               the Codex app, with limits that weekly. It's also available on the web for Pro users.</li>
@@ -3326,14 +3328,14 @@
       'glm-5': false,                // Starts hidden (legacy)
       'glm-5t-deep-think': false,    // Other recommended, starts hidden
       'glm-5v-turbo-deep-think': false, // Other recommended, starts hidden
-      'grok-42-expert': false,       // Other recommended, starts hidden
-      'grok-42-fast': false,         // Other recommended, starts hidden
+      'grok-43-expert': false,       // Other recommended, starts hidden
       'minimax-m27': false,          // Other recommended, starts hidden
       'mimo-v25-pro': false,         // Other recommended, starts hidden
       'mimo-v25': false,             // Other recommended, starts hidden
       'qwen-36-plus-think': false,   // Other recommended, starts hidden
       'kimi-k26-thinking': false,     // Other recommended, starts hidden
-      'qwen-35-omni-plus': false      // Other recommended, starts hidden
+      'qwen-35-omni-plus': false,     // Other recommended, starts hidden
+      'kimi-k26-instant': false       // Other recommended, starts hidden
     };
 
     // Track which models were EXPLICITLY disabled by the user clicking the dot
@@ -3362,23 +3364,23 @@
       'glm-5': true,                    // Starts explicitly disabled (legacy)
       'glm-5t-deep-think': false,       // Other recommended
       'glm-5v-turbo-deep-think': false, // Other recommended
-      'grok-42-expert': false,          // Other recommended
-      'grok-42-fast': false,            // Other recommended
+      'grok-43-expert': false,          // Other recommended
       'minimax-m27': false,             // Other recommended
       'mimo-v25-pro': false,            // Other recommended
       'mimo-v25': false,                // Other recommended
       'qwen-36-plus-think': false,      // Other recommended
       'kimi-k26-thinking': false,        // Other recommended
-      'qwen-35-omni-plus': false         // Other recommended
+      'qwen-35-omni-plus': false,        // Other recommended
+      'kimi-k26-instant': false          // Other recommended
     };
 
     // Model groups for group toggles
     const modelGroups = {
       'claude': ['claude-haiku', 'claude-47-opus', 'claude-47-opus-nr', 'claude-46-opus', 'claude-46-opus-nr', 'claude-46-sonnet', 'claude-46-sonnet-nr', 'claude-haiku-nr'],
-      'reasoning': ['gpt-55-thinking-xhigh', 'gpt-55-thinking', 'gpt-55-thinking-standard', 'gpt-thinking-mini', 'gemini-31-pro', 'gemini-flash-thinking', 'claude-haiku', 'claude-47-opus', 'claude-46-opus', 'claude-46-sonnet', 'glm-51-deep-think', 'glm-deep-think', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-42-expert', 'minimax-m27', 'mimo-v25-pro', 'mimo-v25', 'qwen-36-plus-think', 'kimi-k26-thinking'],
-      'instant': ['gpt-instant', 'gemini-flash', 'claude-47-opus-nr', 'claude-46-opus-nr', 'claude-46-sonnet-nr', 'claude-haiku-nr', 'glm-51', 'glm-5', 'grok-42-fast', 'qwen-35-omni-plus'],
+      'reasoning': ['gpt-55-thinking-xhigh', 'gpt-55-thinking', 'gpt-55-thinking-standard', 'gpt-thinking-mini', 'gemini-31-pro', 'gemini-flash-thinking', 'claude-haiku', 'claude-47-opus', 'claude-46-opus', 'claude-46-sonnet', 'glm-51-deep-think', 'glm-deep-think', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-43-expert', 'minimax-m27', 'mimo-v25-pro', 'mimo-v25', 'qwen-36-plus-think', 'kimi-k26-thinking'],
+      'instant': ['gpt-instant', 'gemini-flash', 'claude-47-opus-nr', 'claude-46-opus-nr', 'claude-46-sonnet-nr', 'claude-haiku-nr', 'glm-51', 'glm-5', 'qwen-35-omni-plus', 'kimi-k26-instant'],
       'chatgpt-pro': [],
-      'other': ['glm-51-deep-think', 'glm-51', 'glm-deep-think', 'glm-5', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-42-expert', 'grok-42-fast', 'minimax-m27', 'mimo-v25-pro', 'mimo-v25', 'qwen-36-plus-think', 'kimi-k26-thinking', 'qwen-35-omni-plus'],
+      'other': ['glm-51-deep-think', 'glm-51', 'glm-deep-think', 'glm-5', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-43-expert', 'minimax-m27', 'mimo-v25-pro', 'mimo-v25', 'qwen-36-plus-think', 'kimi-k26-thinking', 'qwen-35-omni-plus', 'kimi-k26-instant'],
       'legacy': ['gpt-thinking-mini', 'gpt-instant', 'glm-deep-think', 'glm-5', 'claude-46-opus', 'claude-46-opus-nr']
     };
 
@@ -3407,14 +3409,14 @@
       'glm-5': ['other', 'instant', 'legacy'],               // Needs Other, Non-reasoning, AND Legacy to be on
       'glm-5t-deep-think': ['other', 'reasoning'],           // Needs both Other AND Reasoning to be on
       'glm-5v-turbo-deep-think': ['other', 'reasoning'],     // Needs both Other AND Reasoning to be on
-      'grok-42-expert': ['other', 'reasoning'],              // Needs both Other AND Reasoning to be on
-      'grok-42-fast': ['other', 'instant'],                  // Needs both Other AND Non-reasoning to be on
+      'grok-43-expert': ['other', 'reasoning'],              // Needs both Other AND Reasoning to be on
       'minimax-m27': ['other', 'reasoning'],                 // Needs both Other AND Reasoning to be on
       'mimo-v25-pro': ['other', 'reasoning'],                // Needs both Other AND Reasoning to be on
       'mimo-v25': ['other', 'reasoning'],                    // Needs both Other AND Reasoning to be on
       'qwen-36-plus-think': ['other', 'reasoning'],          // Needs both Other AND Reasoning to be on
       'kimi-k26-thinking': ['other', 'reasoning'],            // Needs both Other AND Reasoning to be on
-      'qwen-35-omni-plus': ['other', 'instant']              // Needs both Other AND Non-reasoning to be on
+      'qwen-35-omni-plus': ['other', 'instant'],              // Needs both Other AND Non-reasoning to be on
+      'kimi-k26-instant': ['other', 'instant']                // Needs both Other AND Non-reasoning to be on
     };
 
     // Get the current state of a group toggle
@@ -3738,14 +3740,14 @@
       { modelId: 'glm-5', label: 'Ƶ GLM 5', correct: 23, abstention: 43.12, hallucination: 33.88, sortOrder: 105 },
       { modelId: 'glm-5t-deep-think', label: 'Ƶ GLM 5 Turbo Deep Think', correct: 29, abstention: 26.98, hallucination: 44.02, sortOrder: 107 },
       { modelId: 'glm-5v-turbo-deep-think', label: 'Ƶ GLM 5V Turbo Deep Think', correct: 29, abstention: 22.72, hallucination: 48.28, sortOrder: 109 },
-      { modelId: 'grok-42-expert', label: 'Ø Grok 4.20 Expert', correct: 29, abstention: 55.38, hallucination: 15.62, sortOrder: 110 },
-      { modelId: 'grok-42-fast', label: 'Ø Grok 4.20 Fast', correct: 26, abstention: 5.18, hallucination: 68.82, sortOrder: 115 },
+      { modelId: 'grok-43-expert', label: 'Ø Grok 4.3 Expert', correct: 35, abstention: 48.75, hallucination: 16.25, sortOrder: 109.5 },
       { modelId: 'minimax-m27', label: '≋ Minimax M2.7 Max', correct: 26, abstention: 48.84, hallucination: 25.16, sortOrder: 117 },
       { modelId: 'mimo-v25-pro', label: '⋔ Mimo V2.5 Pro', correct: 23, abstention: 57.75, hallucination: 19.25, sortOrder: 118 },
       { modelId: 'mimo-v25', label: '⋔ Mimo V2.5', correct: 17, abstention: 56.44, hallucination: 26.56, sortOrder: 118.5 },
       { modelId: 'qwen-36-plus-think', label: '▽ Qwen 3.6 Plus Think', correct: 26, abstention: 50.32, hallucination: 23.68, sortOrder: 125 },
       { modelId: 'kimi-k26-thinking', label: 'Ḱ Kimi K2.6 Thinking', correct: 33, abstention: 40.87, hallucination: 26.13, sortOrder: 127 },
-      { modelId: 'qwen-35-omni-plus', label: '▽ Qwen 3.5 Omni Plus', correct: 17, abstention: 53.12, hallucination: 29.88, sortOrder: 126 }
+      { modelId: 'qwen-35-omni-plus', label: '▽ Qwen 3.5 Omni Plus', correct: 17, abstention: 53.12, hallucination: 29.88, sortOrder: 126 },
+      { modelId: 'kimi-k26-instant', label: 'Ḱ Kimi K2.6 Instant', correct: 23, abstention: 43.89, hallucination: 33.11, sortOrder: 128 }
     ];
 
     // Current sort mode for omniscience: 'brand', 'hallucination', 'correct'
@@ -4304,35 +4306,6 @@
         sortOrder: 103
       },
       {
-        modelId: 'grok-42-expert',
-        label: 'Grok 4.20 Expert',
-        data: [95.2, 59.9, 61.9, 39, 19.4, 15.9, 8.2],
-        borderColor: 'rgba(60, 60, 220, 0.95)',
-        backgroundColor: 'rgba(60, 60, 220, 0.5)',
-        borderWidth: 2,
-        tension: 0.3,
-        pointRadius: 6,
-        pointHoverRadius: 7,
-        pointBackgroundColor: 'rgba(60, 60, 220, 0.95)',
-        spanGaps: false,
-        sortOrder: 110
-      },
-      {
-        modelId: 'grok-42-fast',
-        label: 'Grok 4.20 Fast',
-        data: [36.6, 24.2, 18.7, 12.6, 13.1, 10.4, 9.3],
-        borderColor: 'rgba(60, 60, 220, 0.35)',
-        backgroundColor: 'rgba(60, 60, 220, 0.3)',
-        borderWidth: 2,
-        borderDash: [5, 5],
-        tension: 0.3,
-        pointRadius: 4,
-        pointHoverRadius: 5,
-        pointBackgroundColor: 'rgba(60, 60, 220, 0.35)',
-        spanGaps: false,
-        sortOrder: 115
-      },
-      {
         modelId: 'minimax-m27',
         label: 'Minimax M2.7 Max',
         data: [63.6, 34.6, 35.5, 20, 16.8, null, null],
@@ -4389,6 +4362,21 @@
         pointBackgroundColor: 'rgba(23, 131, 255, 0.95)',
         spanGaps: false,
         sortOrder: 127
+      },
+      {
+        modelId: 'kimi-k26-instant',
+        label: 'Kimi K2.6 Instant',
+        data: [70.7, 58.7, 51.4, 43.5, 39.5, null, null],
+        borderColor: 'rgba(23, 131, 255, 0.35)',
+        backgroundColor: 'rgba(23, 131, 255, 0.3)',
+        borderWidth: 2,
+        borderDash: [5, 5],
+        tension: 0.3,
+        pointRadius: 4,
+        pointHoverRadius: 5,
+        pointBackgroundColor: 'rgba(23, 131, 255, 0.35)',
+        spanGaps: false,
+        sortOrder: 128
       }
     ];
 
@@ -4527,14 +4515,14 @@
       { modelId: 'glm-5', label: 'Ƶ GLM 5', score: 37.0, sortOrder: 105 },
       { modelId: 'glm-5t-deep-think', label: 'Ƶ GLM 5 Turbo Deep Think', score: 60.7, sortOrder: 107 },
       { modelId: 'glm-5v-turbo-deep-think', label: 'Ƶ GLM 5V Turbo Deep Think', score: 61, sortOrder: 109 },
-      { modelId: 'grok-42-expert', label: 'Ø Grok 4.20 Expert', score: 59.0, sortOrder: 110 },
-      { modelId: 'grok-42-fast', label: 'Ø Grok 4.20 Fast', score: 18.0, sortOrder: 115 },
+      { modelId: 'grok-43-expert', label: 'Ø Grok 4.3 Expert', score: 64.3, sortOrder: 109.5 },
       { modelId: 'minimax-m27', label: '≋ Minimax M2.7 Max', score: 68.7, sortOrder: 117 },
       { modelId: 'mimo-v25-pro', label: '⋔ Mimo V2.5 Pro', score: 73.3, sortOrder: 118 },
       { modelId: 'mimo-v25', label: '⋔ Mimo V2.5', score: 62.7, sortOrder: 118.5 },
       { modelId: 'qwen-36-plus-think', label: '▽ Qwen 3.6 Plus Think', score: 69.7, sortOrder: 125 },
       { modelId: 'kimi-k26-thinking', label: 'Ḱ Kimi K2.6 Thinking', score: 69.7, sortOrder: 127 },
-      { modelId: 'qwen-35-omni-plus', label: '▽ Qwen 3.5 Omni Plus', score: 52.7, sortOrder: 126 }
+      { modelId: 'qwen-35-omni-plus', label: '▽ Qwen 3.5 Omni Plus', score: 52.7, sortOrder: 126 },
+      { modelId: 'kimi-k26-instant', label: 'Ḱ Kimi K2.6 Instant', score: 57.7, sortOrder: 128 }
     ];
 
     function getLcrData() {
@@ -4631,7 +4619,7 @@
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro', score: 82, sortOrder: 35 },
       { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', score: 80, sortOrder: 50 },
       { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', score: 79, sortOrder: 60 },
-      { modelId: 'claude-47-opus', label: '❋ Claude 4.7 Opus Extended (Estimated)', score: 78, sortOrder: 64, estimated: true },
+      { modelId: 'claude-47-opus', label: '❋ Claude 4.7 Opus Extended', score: 79, sortOrder: 64 },
       { modelId: 'claude-47-opus-nr', label: '❋ Claude 4.7 Opus', score: 76, sortOrder: 65 },
       { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Extended', score: 75, sortOrder: 65.2 },
       { modelId: 'claude-46-opus-nr', label: '❋ Claude 4.6 Opus', score: 73, sortOrder: 66 },
@@ -4645,14 +4633,14 @@
       { modelId: 'glm-5', label: 'Ƶ GLM 5 (Estimated)', score: 63, sortOrder: 105, estimated: true },
       { modelId: 'glm-5t-deep-think', label: 'Ƶ GLM 5 Turbo Deep Think (Estimated)', score: 73, sortOrder: 107, estimated: true },
       { modelId: 'glm-5v-turbo-deep-think', label: 'Ƶ GLM 5V Turbo Deep Think', score: 73, sortOrder: 109 },
-      { modelId: 'grok-42-expert', label: 'Ø Grok 4.20 Expert', score: 73, sortOrder: 110 },
-      { modelId: 'grok-42-fast', label: 'Ø Grok 4.20 Fast', score: 64, sortOrder: 115 },
-      { modelId: 'minimax-m27', label: '≋ Minimax M2.7 Max (Estimated)', score: 82, sortOrder: 117, estimated: true },
+      { modelId: 'grok-43-expert', label: 'Ø Grok 4.3 Expert', score: 78, sortOrder: 109.5 },
+      { modelId: 'minimax-m27', label: '≋ Minimax M2.7 Max', score: 0, sortOrder: 117 },
       { modelId: 'mimo-v25-pro', label: '⋔ Mimo V2.5 Pro', score: 0, sortOrder: 118 },
       { modelId: 'mimo-v25', label: '⋔ Mimo V2.5', score: 75, sortOrder: 118.5 },
       { modelId: 'qwen-36-plus-think', label: '▽ Qwen 3.6 Plus Think', score: 78, sortOrder: 125 },
       { modelId: 'kimi-k26-thinking', label: 'Ḱ Kimi K2.6 Thinking', score: 79, sortOrder: 127 },
-      { modelId: 'qwen-35-omni-plus', label: '▽ Qwen 3.5 Omni Plus', score: 71, sortOrder: 126 }
+      { modelId: 'qwen-35-omni-plus', label: '▽ Qwen 3.5 Omni Plus', score: 71, sortOrder: 126 },
+      { modelId: 'kimi-k26-instant', label: 'Ḱ Kimi K2.6 Instant (Estimated)', score: 77, sortOrder: 128, estimated: true }
     ];
 
     function getMmmuProData() {
@@ -4763,14 +4751,14 @@
       { modelId: 'glm-5', label: 'Ƶ GLM 5', score: 39.4, sortOrder: 105 },
       { modelId: 'glm-5t-deep-think', label: 'Ƶ GLM 5 Turbo Deep Think', score: 32.6, sortOrder: 107 },
       { modelId: 'glm-5v-turbo-deep-think', label: 'Ƶ GLM 5V Turbo Deep Think', score: 32.6, sortOrder: 109 },
-      { modelId: 'grok-42-expert', label: 'Ø Grok 4.20 Expert', score: 40.9, sortOrder: 110 },
-      { modelId: 'grok-42-fast', label: 'Ø Grok 4.20 Fast', score: 22.0, sortOrder: 115 },
+      { modelId: 'grok-43-expert', label: 'Ø Grok 4.3 Expert', score: 37.9, sortOrder: 109.5 },
       { modelId: 'minimax-m27', label: '≋ Minimax M2.7 Max', score: 39.4, sortOrder: 117 },
       { modelId: 'mimo-v25-pro', label: '⋔ Mimo V2.5 Pro', score: 43.2, sortOrder: 118 },
       { modelId: 'mimo-v25', label: '⋔ Mimo V2.5', score: 41.7, sortOrder: 118.5 },
       { modelId: 'qwen-36-plus-think', label: '▽ Qwen 3.6 Plus Think', score: 43.9, sortOrder: 125 },
       { modelId: 'kimi-k26-thinking', label: 'Ḱ Kimi K2.6 Thinking', score: 43.9, sortOrder: 127 },
-      { modelId: 'qwen-35-omni-plus', label: '▽ Qwen 3.5 Omni Plus', score: 21.2, sortOrder: 126 }
+      { modelId: 'qwen-35-omni-plus', label: '▽ Qwen 3.5 Omni Plus', score: 21.2, sortOrder: 126 },
+      { modelId: 'kimi-k26-instant', label: 'Ḱ Kimi K2.6 Instant', score: 37.9, sortOrder: 128 }
     ];
 
     function getTerminalBenchData() {
@@ -4881,14 +4869,14 @@
       { modelId: 'glm-5', label: 'Ƶ GLM 5', score: 97.4, sortOrder: 105 },
       { modelId: 'glm-5t-deep-think', label: 'Ƶ GLM 5 Turbo Deep Think', score: 98.5, sortOrder: 107 },
       { modelId: 'glm-5v-turbo-deep-think', label: 'Ƶ GLM 5V Turbo Deep Think', score: 98.5, sortOrder: 109 },
-      { modelId: 'grok-42-expert', label: 'Ø Grok 4.20 Expert', score: 96.5, sortOrder: 110 },
-      { modelId: 'grok-42-fast', label: 'Ø Grok 4.20 Fast', score: 69.6, sortOrder: 115 },
+      { modelId: 'grok-43-expert', label: 'Ø Grok 4.3 Expert', score: 97.7, sortOrder: 109.5 },
       { modelId: 'minimax-m27', label: '≋ Minimax M2.7 Max', score: 84.8, sortOrder: 117 },
       { modelId: 'mimo-v25-pro', label: '⋔ Mimo V2.5 Pro', score: 94.2, sortOrder: 118 },
       { modelId: 'mimo-v25', label: '⋔ Mimo V2.5', score: 90.6, sortOrder: 118.5 },
       { modelId: 'qwen-36-plus-think', label: '▽ Qwen 3.6 Plus Think', score: 97.7, sortOrder: 125 },
       { modelId: 'kimi-k26-thinking', label: 'Ḱ Kimi K2.6 Thinking', score: 95.9, sortOrder: 127 },
-      { modelId: 'qwen-35-omni-plus', label: '▽ Qwen 3.5 Omni Plus', score: 88.3, sortOrder: 126 }
+      { modelId: 'qwen-35-omni-plus', label: '▽ Qwen 3.5 Omni Plus', score: 88.3, sortOrder: 126 },
+      { modelId: 'kimi-k26-instant', label: 'Ḱ Kimi K2.6 Instant', score: 93.9, sortOrder: 128 }
     ];
 
     function getTau2BenchData() {
@@ -5010,7 +4998,7 @@
     // GPT reasoning:     256k / 400k        (Free,Go,Plus / Pro)
     // Gemini:            32k / 128k / 1M    (Free / Plus / Pro,Ultra)
     // Claude:            200k               (all plans)
-    // Grok:              2M                 (all plans)
+    // Grok:              1M                 (all plans)
     // GLM:               200k               (all plans)
     // Qwen:              1M                 (all plans)
     // Mimo:              1M                 (all plans)
@@ -5162,14 +5150,9 @@
       },
       // Grok
       {
-        modelId: 'grok-42-expert', label: 'Ø Grok 4.20 Expert', sortOrder: 110,
+        modelId: 'grok-43-expert', label: 'Ø Grok 4.3 Expert', sortOrder: 109.5,
         color: 'rgba(60, 60, 220, 1)',
-        segments: [{ value: 2000000, plans: 'All plans' }]
-      },
-      {
-        modelId: 'grok-42-fast', label: 'Ø Grok 4.20 Fast', sortOrder: 115,
-        color: 'rgba(60, 60, 220, 1)',
-        segments: [{ value: 2000000, plans: 'All plans' }]
+        segments: [{ value: 1000000, plans: 'All plans' }]
       },
       // Minimax
       {
@@ -5204,6 +5187,11 @@
         modelId: 'qwen-35-omni-plus', label: '▽ Qwen 3.5 Omni Plus', sortOrder: 126,
         color: 'rgba(66, 59, 175, 1)',
         segments: [{ value: 262000, plans: 'All plans' }]
+      },
+      {
+        modelId: 'kimi-k26-instant', label: 'Ḱ Kimi K2.6 Instant', sortOrder: 128,
+        color: 'rgba(23, 131, 255, 1)',
+        segments: [{ value: 200000, plans: 'All plans' }]
       }
     ];
 
@@ -6115,7 +6103,7 @@
     style="text-align: center; padding: 2rem 1rem; margin-top: 3rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.8rem;">
     Made by <strong> u/Pasto_Shouwa</strong>
     <br>
-    <em>Last updated on <strong>28/04/2026</strong> (dd/mm/yyyy)</em>
+    <em>Last updated on <strong>02/05/2026</strong> (dd/mm/yyyy)</em>
   </footer>
 </body>
 
