@@ -1,34 +1,19 @@
 <!DOCTYPE html>
 <!--
-  ╔════════════════════════════════════════════════════════════════════════════╗
-  ║                           DEVELOPER REMINDER                               ║
-  ╠════════════════════════════════════════════════════════════════════════════╣
-  ║  ANNOTATION SYSTEM:                                                        ║
-  ║  Annotations auto-number themselves from the FOOTNOTES registry in JS.     ║
-  ║  To add a new annotation:                                                  ║
-  ║  1. Add an entry to the FOOTNOTES object with a unique semantic ID         ║
-  ║  2. Use <span class="annotation" data-note="your-id"></span> in HTML       ║
-  ║  Numbers, tooltips, and the footnotes list are generated automatically.    ║
-  ║  Order is based on first appearance in the DOM (across all 3 tables).      ║
-  ║                                                                            ║
-  ╠════════════════════════════════════════════════════════════════════════════╣
-  ║  USA-EXCLUSIVE FEATURES TOGGLE:                                            ║
-  ║  When adding new USA-exclusive content to tables, use these classes:       ║
-  ║                                                                            ║
-  ║  1. For ENTIRE CELLS with USA content:                                     ║
-  ║     - Add class "usa-restricted" to the <td> for purple border             ║
-  ║                                                                            ║
-  ║  2. For PARTIAL content (hide part, show rest):                            ║
-  ║     - Wrap USA-only text with <span class="usa-only">...</span>            ║
-  ║                                                                            ║
-  ║  3. For content that CHANGES when USA is hidden:                           ║
-  ║     - Wrap original with <span class="usa-main">...</span>                 ║
-  ║     - Add alternative with <span class="usa-alt">...</span>                ║
-  ║       (usa-alt is hidden by default, shown when toggle is off)             ║
-  ║                                                                            ║
-  ║  4. For ENTIRE ROWS that should disappear (like Advertisements):           ║
-  ║     - Add class "usa-ad-row" to the <tr>                                   ║
-  ╚════════════════════════════════════════════════════════════════════════════╝
+  Developer notes for future edits
+
+  Annotation system:
+  - Add each note to the FOOTNOTES object with a unique semantic ID.
+  - Place <span class="annotation" data-note="your-id"></span> where the note appears.
+  - Numbers, tooltips, and the footnotes list are generated automatically.
+  - Numbering follows first appearance in the DOM across all 3 tables.
+
+  USA-exclusive feature toggle:
+  - Whole USA-only cells: add class "usa-restricted" to the <td>.
+  - Partial USA-only text: wrap it with <span class="usa-only">...</span>.
+  - Content that changes when USA content is hidden:
+    use <span class="usa-main">...</span> plus <span class="usa-alt">...</span>.
+  - Whole rows hidden with USA content: add class "usa-ad-row" to the <tr>.
 -->
 <html lang="en">
 
@@ -1726,7 +1711,7 @@
             </tr>
             <tr>
               <td>Non-reasoning model limit per day</td>
-              <td>40<span class="detail">(10 every 5h)</span><span class="detail">[GPT 5.3 Instant]</span></td>
+              <td>40<span class="detail">(10 every 5h)</span><span class="detail">[GPT 5.5 Instant]</span></td>
               <td class="rating-excellent">Unlimited<span class="detail">[Gemini 3 Flash]</span></td>
             </tr>
             <tr>
@@ -1854,7 +1839,7 @@
               <td>40<span class="detail">(10 every 5h)</span>
                 <span class="detail">[GPT 5 Thinking Mini]</span>
               </td>
-              <td class="rating-excellent">428<span class="detail">(3000/week)</span><span class="detail">[GPT 5.4
+              <td class="rating-excellent">428<span class="detail">(3000/week)</span><span class="detail">[GPT 5.5
                   Thinking]</span></td>
               <td>3+9<span class="detail">[Gemini 3.1 Pro + Gemini 3 Flash Thinking]</span></td>
               <td class="rating-great">30+90<span class="detail">(X every X hours)<span class="annotation"
@@ -1867,10 +1852,9 @@
             </tr>
             <tr>
               <td>Non-reasoning model limit per day</td>
-              <td>40<span class="detail">(10 every 5h)</span><span class="detail">[GPT 5.3 Instant]</span></td>
+              <td>40<span class="detail">(10 every 5h)</span><span class="detail">[GPT 5.5 Instant]</span></td>
               <td colspan="2" class="rating-great">1280<span class="detail">(160 every 3h)</span><span
-                  class="detail">[GPT 5.3
-                  Instant]</span></td>
+                  class="detail">[GPT 5.5 Instant]</span></td>
               <td colspan="3" class="rating-excellent">Unlimited<span class="detail">[Gemini 3 Flash]</span></td>
             </tr>
             <tr>
@@ -2055,7 +2039,7 @@
             <tr>
               <td>Reasoning model limit per day</td>
               <td class="rating-excellent">Unlimited<span class="annotation" data-note="gpt-pro-limits"></span> +
-                Unlimited<span class="detail">[GPT 5.4 Pro + GPT 5.4
+                Unlimited<span class="detail">[GPT 5.5 Pro + GPT 5.5
                   Thinking]</span>
               </td>
               <td class="rating-great">10+500+1500<span class="detail">(X every X hours)<span class="annotation"
@@ -2065,7 +2049,7 @@
             </tr>
             <tr>
               <td>Non-reasoning model limit per day</td>
-              <td class="rating-excellent">Unlimited<span class="detail">[GPT 5.3 Instant]</span></td>
+              <td class="rating-excellent">Unlimited<span class="detail">[GPT 5.5 Instant]</span></td>
               <td class="rating-excellent">Unlimited<span class="detail">[Gemini 3 Flash]</span></td>
             </tr>
             <tr>
@@ -2443,9 +2427,9 @@
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
-              <div class="model-dot inactive" data-model="gpt-instant" onclick="toggleIndividualModel('gpt-instant')">
-                <span class="model-dot-indicator dot-gpt-legacy"></span>
-                <span class="model-dot-label">GPT 5.2 Instant</span>
+              <div class="model-dot" data-model="gpt-55-instant" onclick="toggleIndividualModel('gpt-55-instant')">
+                <span class="model-dot-indicator dot-gpt"></span>
+                <span class="model-dot-label">GPT 5.5 Instant</span>
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
@@ -3053,12 +3037,14 @@
             <li>• For "<strong>GPT 5.5 Thinking Standard</strong>", "<em>gpt-5.5:low</em>" was used in the graph.
             </li>
             <li>• For "<strong>GPT 5 Thinking Mini</strong>", "<em>gpt-5-mini:medium</em>" was used in the graph.</li>
+            <li>• For "<strong>GPT 5.5 Instant</strong>", "<em>gpt-5.5</em>" was used in the graph.
+            </li>
             <li>• All the other models are presented with their respective highest settings.
-            <li>• I have not been able to find consistent graphs for the following models: GPT 5.3 Instant, Grok 4.3 Fast,GLM 5 Turbo,
+            <li>• I have not been able to find consistent graphs for the following models: Grok 4.3 Fast, GLM 5 Turbo,
               GLM 5V Turbo, Qwen 3.6 Plus Fast and Minimax M2.7 Air. I will add them immediately if I find some.
             </li>
             <li>• GPT 5.5 Thinking Heavy is available for Plus and Pro ChatGPT users through
-              the Codex app, with limits that weekly. It's also available on the web for Pro users.</li>
+              the Codex app, with limits that reset weekly. It's also available on the web for Pro users.</li>
             <li>• Claude Opus 4.6 Extended and Claude Sonnet 4.6 Extended are available for free to Gemini users through
               the Antigravity app, with limits that reset depending on demand.</li>
           </ul>
@@ -3134,7 +3120,7 @@
       'chatgpt-pulse': "ChatGPT can proactively research topics and present them as a briefing, unprompted, through ChatGPT Pulse.",
       'nano-banana-pro-uses': "Consumes one use of Nano Banana Pro and one use of Nano Banana 2.",
       'gemini-hourly-limits': "While limits of the reasoning models of Gemini are supposed to be limited per day, when demand is too high, the limits may work per 1 or 2 hours. This should end up giving the user the advertised limits anyways, but limiting the speed at which the user can work.",
-      'gpt-pro-limits': "GPT Pro x5, has a limit of around 30 uses per week of GPT 5.4 Pro. GPT Pro x20 is supossed to still have unlimited uses of it. This and the higher limits on Codex on the second plan seem to be the only difference between the two.",
+      'gpt-pro-limits': "GPT Pro x5, has a limit of around 50 uses per week of GPT 5.5 Pro. GPT Pro x20 is supossed to still have unlimited uses of it. This and the higher limits on Codex on the second plan seem to be the only difference between the two.",
     };
 
     function toSuperscript(num) {
@@ -3310,7 +3296,7 @@
       'gpt-55-thinking': true,
       'gpt-55-thinking-standard': true,
       'gpt-thinking-mini': true,
-      'gpt-instant': false,    // Starts hidden (legacy)
+      'gpt-55-instant': true,
       'gemini-31-pro': true,
       'gemini-flash-thinking': true,
       'gemini-flash': true,
@@ -3346,7 +3332,7 @@
       'gpt-55-thinking': false,
       'gpt-55-thinking-standard': false,
       'gpt-thinking-mini': false,
-      'gpt-instant': true,         // Starts explicitly disabled (legacy)
+      'gpt-55-instant': false,
       'gemini-31-pro': false,
       'gemini-flash-thinking': false,
       'gemini-flash': false,
@@ -3378,10 +3364,10 @@
     const modelGroups = {
       'claude': ['claude-haiku', 'claude-47-opus', 'claude-47-opus-nr', 'claude-46-opus', 'claude-46-opus-nr', 'claude-46-sonnet', 'claude-46-sonnet-nr', 'claude-haiku-nr'],
       'reasoning': ['gpt-55-thinking-xhigh', 'gpt-55-thinking', 'gpt-55-thinking-standard', 'gpt-thinking-mini', 'gemini-31-pro', 'gemini-flash-thinking', 'claude-haiku', 'claude-47-opus', 'claude-46-opus', 'claude-46-sonnet', 'glm-51-deep-think', 'glm-deep-think', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-43-expert', 'minimax-m27', 'mimo-v25-pro', 'mimo-v25', 'qwen-36-plus-think', 'kimi-k26-thinking'],
-      'instant': ['gpt-instant', 'gemini-flash', 'claude-47-opus-nr', 'claude-46-opus-nr', 'claude-46-sonnet-nr', 'claude-haiku-nr', 'glm-51', 'glm-5', 'qwen-35-omni-plus', 'kimi-k26-instant'],
+      'instant': ['gpt-55-instant', 'gemini-flash', 'claude-47-opus-nr', 'claude-46-opus-nr', 'claude-46-sonnet-nr', 'claude-haiku-nr', 'glm-51', 'glm-5', 'qwen-35-omni-plus', 'kimi-k26-instant'],
       'chatgpt-pro': [],
       'other': ['glm-51-deep-think', 'glm-51', 'glm-deep-think', 'glm-5', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-43-expert', 'minimax-m27', 'mimo-v25-pro', 'mimo-v25', 'qwen-36-plus-think', 'kimi-k26-thinking', 'qwen-35-omni-plus', 'kimi-k26-instant'],
-      'legacy': ['gpt-thinking-mini', 'gpt-instant', 'glm-deep-think', 'glm-5', 'claude-46-opus', 'claude-46-opus-nr']
+      'legacy': ['gpt-thinking-mini', 'glm-deep-think', 'glm-5', 'claude-46-opus', 'claude-46-opus-nr']
     };
 
     // Model constraints: which group toggles must ALL be active for a model to be visible
@@ -3391,7 +3377,7 @@
       'gpt-55-thinking': ['reasoning'],                  // Reasoning model
       'gpt-55-thinking-standard': ['reasoning'],         // Reasoning model
       'gpt-thinking-mini': ['reasoning', 'legacy'],     // Needs Reasoning AND Legacy
-      'gpt-instant': ['instant', 'legacy'],              // Needs Non-reasoning AND Legacy
+      'gpt-55-instant': ['instant'],                     // Needs Non-reasoning
       'gemini-31-pro': ['reasoning'],                   // Only needs Reasoning
       'gemini-flash-thinking': ['reasoning'],          // Only needs Reasoning
       'gemini-flash': ['instant'],                     // Only needs Non-reasoning
@@ -3638,7 +3624,7 @@
       rebuildMaxContextChart();
     }
 
-    // DISABLED: Striped patterns for non-reasoning models (GPT 5.2 Instant, Gemini 3 Flash)
+    // DISABLED: Striped patterns for non-reasoning models (Gemini 3 Flash)
     // Set to true to enable diagonal striped patterns on bar charts for non-reasoning models.
     // The createStripedPattern() function and pattern logic in getData functions are ready to use.
     // Currently disabled - will revisit when a better visual approach is found.
@@ -3648,7 +3634,7 @@
     // Estimated models are rendered at low opacity (0.3) to look faded.
     // Non-estimated models use 0.75 so bars look rich but not fully opaque.
     const BRAND_RGB = {
-      'gpt-legacy': '100, 150, 135',   // legacy GPT (5 Thinking Mini, 5.4, 5.2 Instant)
+      'gpt-legacy': '100, 150, 135',   // legacy GPT (5 Thinking Mini)
       'gpt': '90,  150, 135',   // darker teal   (reasoning GPT)
       'gemini': '238, 73,  82',    // red
       'claude': '218, 119, 87',    // orange
@@ -3662,7 +3648,7 @@
     };
 
     function getBrandRgb(modelId) {
-      if (['gpt-thinking-mini', 'gpt-instant'].includes(modelId)) return BRAND_RGB['gpt-legacy'];
+      if (modelId === 'gpt-thinking-mini') return BRAND_RGB['gpt-legacy'];
       if (modelId.startsWith('gpt-')) return BRAND_RGB['gpt'];
       if (modelId.startsWith('gemini-')) return BRAND_RGB['gemini'];
       if (modelId.startsWith('claude-')) return BRAND_RGB['claude'];
@@ -3700,14 +3686,14 @@
     // ============================================================================
     // Each model has a sortOrder value. Lower numbers appear first.
     // Use gaps of 10 to allow inserting new models between existing ones.
-    // Example: To add a model between GPT Thinking Mini (25) and GPT 5.2 Instant (30), use 27.
+    // Example: To add a model between GPT Thinking Mini (25) and Gemini 3.1 Pro (35), use 27.
     //
     // Current order:
     //   18: ⌘ GPT 5.5 Thinking Heavy (reasoning toggle)
     //   20: ⌘ GPT 5.5 Thinking Extended (reasoning toggle)
     //   22: ⌘ GPT 5.5 Thinking Standard (reasoning toggle)
     //   25: ⌘ GPT 5 Thinking Mini
-    //   30: ⌘ GPT 5.2 Instant (instant toggle, legacy)
+    //   27: ⌘ GPT 5.5 Instant (instant toggle)
     //   35: ✦ Gemini 3.1 Pro
     //   50: ✦ Gemini 3 Flash Thinking
     //   60: ✦ Gemini 3 Flash (instant toggle)
@@ -3722,7 +3708,7 @@
       { modelId: 'gpt-55-thinking', label: '⌘ GPT 5.5 Thinking Extended', correct: 56, abstention: 6.16, hallucination: 37.84, sortOrder: 20 },
       { modelId: 'gpt-55-thinking-standard', label: '⌘ GPT 5.5 Thinking Standard', correct: 54, abstention: 6.44, hallucination: 39.56, sortOrder: 22 },
       { modelId: 'gpt-thinking-mini', label: '⌘ GPT 5 Thinking Mini', correct: 22, abstention: 45.24, hallucination: 32.76, sortOrder: 25 },
-      { modelId: 'gpt-instant', label: '⌘ GPT 5.2 Instant', correct: 29, abstention: 27.69, hallucination: 43.31, sortOrder: 30 },
+      { modelId: 'gpt-55-instant', label: '⌘ GPT 5.5 Instant', correct: 45, abstention: 4.95, hallucination: 50.05, sortOrder: 27 },
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro', correct: 55, abstention: 22.5, hallucination: 22.5, sortOrder: 35 },
       { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', correct: 54, abstention: 3.68, hallucination: 42.32, sortOrder: 50 },
       { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', correct: 46, abstention: 5.4, hallucination: 48.6, sortOrder: 60 },
@@ -3939,13 +3925,13 @@
         const hallucinationStriped = createStripedPattern(hallucinationColor);
 
         correctBgColors = models.map(m =>
-          m.estimated ? correctEstimated : (m.label.includes('GPT 5.2 Instant') || m.label.includes('Gemini 3 Flash')) ? correctStriped : correctColor
+          m.estimated ? correctEstimated : m.label.includes('Gemini 3 Flash') ? correctStriped : correctColor
         );
         abstentionBgColors = models.map(m =>
-          m.estimated ? abstentionEstimated : (m.label.includes('GPT 5.2 Instant') || m.label.includes('Gemini 3 Flash')) ? abstentionStriped : abstentionColor
+          m.estimated ? abstentionEstimated : m.label.includes('Gemini 3 Flash') ? abstentionStriped : abstentionColor
         );
         hallucinationBgColors = models.map(m =>
-          m.estimated ? hallucinationEstimated : (m.label.includes('GPT 5.2 Instant') || m.label.includes('Gemini 3 Flash')) ? hallucinationStriped : hallucinationColor
+          m.estimated ? hallucinationEstimated : m.label.includes('Gemini 3 Flash') ? hallucinationStriped : hallucinationColor
         );
       } else {
         correctBgColors = models.map(m => m.estimated ? correctEstimated : correctColor);
@@ -4103,19 +4089,19 @@
         sortOrder: 25
       },
       {
-        modelId: 'gpt-instant',
-        label: 'GPT 5.2 Instant',
-        data: [49.4, 45.1, 50.4, 41.5, 31.9, null, null],
-        borderColor: 'rgba(100, 150, 135, 0.35)',
-        backgroundColor: 'rgba(100, 150, 135, 0.3)',
+        modelId: 'gpt-55-instant',
+        label: 'GPT 5.5 Instant',
+        data: [66.4, 51.4, 35, 37.6, 28.3, null, null],
+        borderColor: 'rgba(90, 150, 135, 0.5)',
+        backgroundColor: 'rgba(90, 150, 135, 0.25)',
         borderWidth: 2,
         borderDash: [5, 5],
         tension: 0.3,
         pointRadius: 4,
         pointHoverRadius: 5,
-        pointBackgroundColor: 'rgba(100, 150, 135, 0.35)',
+        pointBackgroundColor: 'rgba(90, 150, 135, 0.5)',
         spanGaps: false,
-        sortOrder: 30
+        sortOrder: 27
       },
       {
         modelId: 'gemini-31-pro',
@@ -4497,7 +4483,7 @@
       { modelId: 'gpt-55-thinking', label: '⌘ GPT 5.5 Thinking Extended', score: 73.3, sortOrder: 20 },
       { modelId: 'gpt-55-thinking-standard', label: '⌘ GPT 5.5 Thinking Standard', score: 72, sortOrder: 22 },
       { modelId: 'gpt-thinking-mini', label: '⌘ GPT 5 Thinking Mini', score: 66, sortOrder: 25 },
-      { modelId: 'gpt-instant', label: '⌘ GPT 5.2 Instant', score: 38.0, sortOrder: 30 },
+      { modelId: 'gpt-55-instant', label: '⌘ GPT 5.5 Instant', score: 56.3, sortOrder: 27 },
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro', score: 72.7, sortOrder: 35 },
       { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', score: 66.3, sortOrder: 50 },
       { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', score: 48.0, sortOrder: 60 },
@@ -4615,7 +4601,7 @@
       { modelId: 'gpt-55-thinking', label: '⌘ GPT 5.5 Thinking Extended', score: 81, sortOrder: 20 },
       { modelId: 'gpt-55-thinking-standard', label: '⌘ GPT 5.5 Thinking Standard', score: 79, sortOrder: 22 },
       { modelId: 'gpt-thinking-mini', label: '⌘ GPT 5 Thinking Mini', score: 69, sortOrder: 25 },
-      { modelId: 'gpt-instant', label: '⌘ GPT 5.2 Instant', score: 66, sortOrder: 30 },
+      { modelId: 'gpt-55-instant', label: '⌘ GPT 5.5 Instant', score: 71, sortOrder: 27 },
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro', score: 82, sortOrder: 35 },
       { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', score: 80, sortOrder: 50 },
       { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', score: 79, sortOrder: 60 },
@@ -4733,7 +4719,7 @@
       { modelId: 'gpt-55-thinking', label: '⌘ GPT 5.5 Thinking Extended', score: 59.8, sortOrder: 20 },
       { modelId: 'gpt-55-thinking-standard', label: '⌘ GPT 5.5 Thinking Standard', score: 52.3, sortOrder: 22 },
       { modelId: 'gpt-thinking-mini', label: '⌘ GPT 5 Thinking Mini', score: 28.8, sortOrder: 25 },
-      { modelId: 'gpt-instant', label: '⌘ GPT 5.2 Instant', score: 31.8, sortOrder: 30 },
+      { modelId: 'gpt-55-instant', label: '⌘ GPT 5.5 Instant', score: 49.2, sortOrder: 27 },
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro', score: 53.8, sortOrder: 35 },
       { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', score: 38.6, sortOrder: 50 },
       { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', score: 31.8, sortOrder: 60 },
@@ -4851,7 +4837,7 @@
       { modelId: 'gpt-55-thinking', label: '⌘ GPT 5.5 Thinking Extended', score: 93, sortOrder: 20 },
       { modelId: 'gpt-55-thinking-standard', label: '⌘ GPT 5.5 Thinking Standard', score: 83.9, sortOrder: 22 },
       { modelId: 'gpt-thinking-mini', label: '⌘ GPT 5 Thinking Mini', score: 71.1, sortOrder: 25 },
-      { modelId: 'gpt-instant', label: '⌘ GPT 5.2 Instant', score: 46.5, sortOrder: 30 },
+      { modelId: 'gpt-55-instant', label: '⌘ GPT 5.5 Instant', score: 69.3, sortOrder: 27 },
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro', score: 95.6, sortOrder: 35 },
       { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', score: 80.4, sortOrder: 50 },
       { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', score: 43.3, sortOrder: 60 },
@@ -5007,8 +4993,8 @@
     const maxContextAllModels = [
       // GPT non-reasoning (instant)
       {
-        modelId: 'gpt-instant', label: '⌘ GPT 5.2 Instant', sortOrder: 30,
-        color: 'rgba(100, 150, 135, 1)',
+        modelId: 'gpt-55-instant', label: '⌘ GPT 5.5 Instant', sortOrder: 27,
+        color: 'rgba(90, 150, 135, 1)',
         segments: [
           { value: 27000, plans: 'Free' },
           { value: 54000, plans: 'Plus, Go' },
@@ -5207,7 +5193,7 @@
     // Each model can have up to 3 segments.
     // Per-tier, each dataset holds the INCREMENTAL width for that model.
     function getMaxContextColor(m) {
-      return ['gpt-thinking-mini', 'gpt-instant'].includes(m.modelId)
+      return m.modelId === 'gpt-thinking-mini'
         ? `rgba(${getBrandRgb(m.modelId)}, 1)`
         : m.color;
     }
@@ -6103,7 +6089,7 @@
     style="text-align: center; padding: 2rem 1rem; margin-top: 3rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.8rem;">
     Made by <strong> u/Pasto_Shouwa</strong>
     <br>
-    <em>Last updated on <strong>02/05/2026</strong> (dd/mm/yyyy)</em>
+    <em>Last updated on <strong>05/05/2026</strong> (dd/mm/yyyy)</em>
   </footer>
 </body>
 
