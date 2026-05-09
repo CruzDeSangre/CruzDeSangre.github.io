@@ -1655,6 +1655,319 @@
     .custom-slider::-moz-range-thumb:hover {
       transform: scale(1.2);
     }
+
+    /* Mobile refinements: keep comparison tables intact while preventing page-wide overflow */
+    @media (max-width: 768px) {
+
+      html,
+      body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 100%;
+        padding: 0.75rem 0.75rem 2rem;
+        overflow-x: hidden;
+      }
+
+      header {
+        padding: 1.5rem 0 2rem;
+      }
+
+      .tabs-nav,
+      .price-tier-toggle,
+      .model-filters-panel,
+      .chart-container,
+      .notes {
+        border-radius: 12px;
+      }
+
+      .tabs-nav {
+        margin-bottom: 1.5rem;
+      }
+
+      .price-tier-toggle {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .price-tier-btn {
+        flex: 1 0 auto;
+        padding: 0.65rem 0.8rem;
+      }
+
+      .table-wrapper {
+        width: calc(100% + 0.5rem);
+        max-width: calc(100% + 0.5rem);
+        margin-left: -0.25rem;
+        margin-right: -0.25rem;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        -ms-overflow-style: auto;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(217, 197, 162, 0.45) transparent;
+        box-shadow: inset -18px 0 18px -18px rgba(217, 197, 162, 0.65);
+      }
+
+      .table-wrapper::-webkit-scrollbar {
+        display: block;
+        height: 8px;
+      }
+
+      .table-wrapper::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.04);
+      }
+
+      .table-wrapper::-webkit-scrollbar-thumb {
+        background: rgba(217, 197, 162, 0.35);
+        border-radius: 999px;
+      }
+
+      table {
+        min-width: 780px;
+        font-size: 0.78rem;
+      }
+
+      #table-low-tier table {
+        min-width: 980px;
+      }
+
+      #table-free-tier table,
+      #table-high-tier table {
+        min-width: 680px;
+      }
+
+      #table-high-tier table {
+        table-layout: auto;
+      }
+
+      th,
+      td {
+        padding: 0.65rem 0.5rem;
+      }
+
+      th:first-child,
+      td:first-child,
+      #table-high-tier th:first-child,
+      #table-high-tier td:first-child {
+        width: 140px;
+        min-width: 140px;
+        max-width: 150px;
+      }
+
+      #table-high-tier th:not(:first-child),
+      #table-high-tier td:not(:first-child) {
+        width: auto;
+      }
+
+      .detail {
+        font-size: 0.64rem;
+        line-height: 1.35;
+      }
+
+      .legend,
+      .legend-toggle-wrapper,
+      .legend-items {
+        width: 100%;
+      }
+
+      .legend-toggle-wrapper {
+        align-items: flex-start;
+      }
+
+      .subjective-toggle,
+      .usa-toggle {
+        margin-left: 0;
+        white-space: normal;
+      }
+
+      .section-title {
+        font-size: 1rem;
+        line-height: 1.35;
+      }
+
+      .section-title-wrapper {
+        flex-wrap: wrap;
+        align-items: flex-start;
+        gap: 0.5rem;
+        max-width: 100%;
+        margin-bottom: 1rem;
+      }
+
+      .section-title-wrapper .section-title {
+        flex: 1 1 100%;
+        min-width: 0;
+      }
+
+      .toggle-inline {
+        min-width: 0;
+        white-space: normal;
+        border-radius: 16px;
+        padding: 0.35rem 0.6rem;
+      }
+
+      .toggle-label {
+        line-height: 1.2;
+      }
+
+      .model-filters-header {
+        padding: 0.85rem 1rem;
+      }
+
+      .model-filters-content {
+        padding: 0 1rem;
+      }
+
+      .model-filters-panel.expanded .model-filters-content {
+        max-height: 3000px;
+        padding: 0 1rem 2rem;
+      }
+
+      .filter-group {
+        padding: 0.85rem 0;
+      }
+
+      .filter-group-header {
+        flex-wrap: wrap;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+
+      .filter-group-name {
+        flex: 1 1 100%;
+      }
+
+      .filter-group-header>span[style] {
+        flex: 1 1 100%;
+        line-height: 1.35;
+      }
+
+      .model-dots-row,
+      .shape-legend {
+        width: 100%;
+        padding-left: 0;
+      }
+
+      .model-dot {
+        max-width: 100%;
+        min-width: 0;
+        padding: 0.38rem 0.55rem;
+      }
+
+      .model-dot-label {
+        white-space: normal;
+        overflow-wrap: anywhere;
+        line-height: 1.25;
+      }
+
+      .chart-container {
+        width: 100%;
+        max-width: 100%;
+        height: 320px;
+        padding: 0.75rem;
+        overflow: hidden;
+      }
+
+      .chart-note {
+        font-size: 0.72rem;
+        line-height: 1.4;
+        padding: 0 0.25rem;
+      }
+
+      .sort-selector {
+        flex-wrap: wrap;
+        max-width: 100%;
+        gap: 0.4rem;
+      }
+
+      .sort-selector-label {
+        flex: 1 1 100%;
+        text-align: center;
+      }
+
+      .sort-selector-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 100%;
+        border-radius: 14px;
+      }
+
+      .sort-btn {
+        flex: 1 1 auto;
+        min-width: 0;
+        padding: 0.4rem 0.6rem;
+        white-space: normal;
+        line-height: 1.2;
+      }
+
+      .sort-btn:not(:last-child)::after {
+        display: none;
+      }
+
+      .slider-container {
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .custom-slider {
+        width: min(250px, 100%);
+        max-width: 100%;
+      }
+
+      .notes,
+      .notes-content,
+      .notes-list,
+      .notes-list li {
+        max-width: 100%;
+        overflow-wrap: anywhere;
+      }
+
+      .annotation::after {
+        max-width: min(260px, calc(100vw - 2rem));
+      }
+    }
+
+    @media (max-width: 430px) {
+      .container {
+        padding-left: 0.6rem;
+        padding-right: 0.6rem;
+      }
+
+      .tab-btn {
+        padding: 0.75rem 1rem;
+      }
+
+      .chart-container {
+        height: 300px;
+        padding: 0.6rem;
+      }
+
+      table {
+        font-size: 0.74rem;
+      }
+
+      th,
+      td {
+        padding: 0.55rem 0.42rem;
+      }
+
+      th:first-child,
+      td:first-child,
+      #table-high-tier th:first-child,
+      #table-high-tier td:first-child {
+        width: 124px;
+        min-width: 124px;
+        max-width: 132px;
+      }
+
+      .section-title {
+        font-size: 0.95rem;
+      }
+    }
   </style>
 </head>
 
@@ -2247,11 +2560,11 @@
               <div class="model-dot inactive" data-model="claude-47-opus"
                 onclick="toggleIndividualModel('claude-47-opus')">
                 <span class="model-dot-indicator dot-claude shape-square"></span>
-                <span class="model-dot-label">Claude 4.7 Opus Extended</span>
+                <span class="model-dot-label">Claude 4.7 Opus Adaptive</span>
               </div>
               <div class="model-dot" data-model="claude-46-sonnet" onclick="toggleIndividualModel('claude-46-sonnet')">
                 <span class="model-dot-indicator dot-claude"></span>
-                <span class="model-dot-label">Claude 4.6 Sonnet Extended</span>
+                <span class="model-dot-label">Claude 4.6 Sonnet Adaptive</span>
               </div>
               <div class="model-dot inactive" data-model="claude-haiku" onclick="toggleIndividualModel('claude-haiku')">
                 <span class="model-dot-indicator dot-claude"></span>
@@ -2261,7 +2574,7 @@
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot" data-model="claude-46-opus" onclick="toggleIndividualModel('claude-46-opus')">
                 <span class="model-dot-indicator dot-claude-legacy shape-square"></span>
-                <span class="model-dot-label">Claude 4.6 Opus Extended</span>
+                <span class="model-dot-label">Claude 4.6 Opus Adaptive</span>
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
@@ -2337,12 +2650,12 @@
               <div class="model-dot inactive" data-model="claude-47-opus"
                 onclick="toggleIndividualModel('claude-47-opus')">
                 <span class="model-dot-indicator dot-claude shape-square"></span>
-                <span class="model-dot-label">Claude 4.7 Opus Extended</span>
+                <span class="model-dot-label">Claude 4.7 Opus Adaptive</span>
               </div>
               <div class="model-dot inactive" data-model="claude-46-sonnet"
                 onclick="toggleIndividualModel('claude-46-sonnet')">
                 <span class="model-dot-indicator dot-claude"></span>
-                <span class="model-dot-label">Claude 4.6 Sonnet Extended</span>
+                <span class="model-dot-label">Claude 4.6 Sonnet Adaptive</span>
               </div>
               <div class="model-dot inactive" data-model="claude-haiku" onclick="toggleIndividualModel('claude-haiku')">
                 <span class="model-dot-indicator dot-claude"></span>
@@ -2352,7 +2665,7 @@
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot" data-model="claude-46-opus" onclick="toggleIndividualModel('claude-46-opus')">
                 <span class="model-dot-indicator dot-claude-legacy shape-square"></span>
-                <span class="model-dot-label">Claude 4.6 Opus Extended</span>
+                <span class="model-dot-label">Claude 4.6 Opus Adaptive</span>
               </div>
             </div>
 
@@ -2460,6 +2773,12 @@
                 onclick="toggleIndividualModel('claude-46-opus-nr')">
                 <span class="model-dot-indicator dot-claude-legacy shape-square"></span>
                 <span class="model-dot-label">Claude 4.6 Opus</span>
+              </div>
+            </div>
+            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
+              <div class="model-dot inactive" data-model="grok-43-fast" onclick="toggleIndividualModel('grok-43-fast')">
+                <span class="model-dot-indicator dot-grok"></span>
+                <span class="model-dot-label">Grok 4.3 Fast</span>
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
@@ -2676,8 +2995,10 @@
           </div>
           <div class="notes-content">
             <ul class="notes-list">
-              <li>• This benchmark evaluates the accuracy of models when answering questions without web search. Therefore, if the model has good web search
-                capability on the web or app version, it will be able to partially compensate for its hallucination rate if it's too high.</li>
+              <li>• This benchmark evaluates the accuracy of models when answering questions without web search.
+                Therefore, if the model has good web search
+                capability on the web or app version, it will be able to partially compensate for its hallucination rate
+                if it's too high.</li>
               <li>• <strong>Correct</strong> answers were calculated with <em>Correct = A</em>.</li>
               <li>• <strong>Abstention</strong> answers were calculated with <em>Abstention = (1−A)⋅(1−H)</em>.</li>
               <li>• <strong>Hallucination</strong> answers were calculated with <em>Hallucination = (1−A)⋅H</em>.</li>
@@ -2806,6 +3127,15 @@
           </div>
         </div>
 
+        <div class="sort-selector" id="lcrAxisMinSelector" style="margin-top: 0.5rem;">
+          <span class="sort-selector-label"><strong>Axis Min</strong></span>
+          <div class="sort-selector-buttons">
+            <button class="sort-btn active" onclick="setLcrAxisMin('0')" id="lcrAxisMin0">0%</button>
+            <button class="sort-btn" onclick="setLcrAxisMin('auto')" id="lcrAxisMinAuto">Dynamic</button>
+            <button class="sort-btn" onclick="setLcrAxisMin('all')" id="lcrAxisMinAll">Dynamic (All)</button>
+          </div>
+        </div>
+
         <!-- Notes for LCR chart -->
         <div class="notes collapsible expanded" style="margin-top: 1rem;">
           <div class="notes-header" onclick="toggleNotes(this)">
@@ -2912,6 +3242,15 @@
           </div>
         </div>
 
+        <div class="sort-selector" id="mmmuProAxisMinSelector" style="margin-top: 0.5rem;">
+          <span class="sort-selector-label"><strong>Axis Min</strong></span>
+          <div class="sort-selector-buttons">
+            <button class="sort-btn active" onclick="setMmmuProAxisMin('0')" id="mmmuProAxisMin0">0%</button>
+            <button class="sort-btn" onclick="setMmmuProAxisMin('auto')" id="mmmuProAxisMinAuto">Dynamic</button>
+            <button class="sort-btn" onclick="setMmmuProAxisMin('all')" id="mmmuProAxisMinAll">Dynamic (All)</button>
+          </div>
+        </div>
+
         <!-- Notes for MMMU-Pro chart -->
         <div class="notes collapsible expanded" style="margin-top: 1rem;">
           <div class="notes-header" onclick="toggleNotes(this)">
@@ -2984,6 +3323,17 @@
               Highest</button>
           </div>
         </div>
+        <div class="sort-selector" id="terminalBenchAxisMinSelector" style="margin-top: 0.5rem;">
+          <span class="sort-selector-label"><strong>Axis Min</strong></span>
+          <div class="sort-selector-buttons">
+            <button class="sort-btn active" onclick="setTerminalBenchAxisMin('0')"
+              id="terminalBenchAxisMin0">0%</button>
+            <button class="sort-btn" onclick="setTerminalBenchAxisMin('auto')"
+              id="terminalBenchAxisMinAuto">Dynamic</button>
+            <button class="sort-btn" onclick="setTerminalBenchAxisMin('all')" id="terminalBenchAxisMinAll">Dynamic
+              (All)</button>
+          </div>
+        </div>
       </div>
 
       <!-- τ²-Bench Telecom -->
@@ -3019,6 +3369,15 @@
             <button class="sort-btn" onclick="setTau2BenchSort('highest')" id="tau2BenchSortHighest">↑ Highest</button>
           </div>
         </div>
+        <div class="sort-selector" id="tau2BenchAxisMinSelector" style="margin-top: 0.5rem;">
+          <span class="sort-selector-label"><strong>Axis Min</strong></span>
+          <div class="sort-selector-buttons">
+            <button class="sort-btn active" onclick="setTau2BenchAxisMin('0')" id="tau2BenchAxisMin0">0%</button>
+            <button class="sort-btn" onclick="setTau2BenchAxisMin('auto')" id="tau2BenchAxisMinAuto">Dynamic</button>
+            <button class="sort-btn" onclick="setTau2BenchAxisMin('all')" id="tau2BenchAxisMinAll">Dynamic
+              (All)</button>
+          </div>
+        </div>
       </div>
 
 
@@ -3040,12 +3399,12 @@
             <li>• For "<strong>GPT 5.5 Instant</strong>", "<em>gpt-5.5</em>" was used in the graph.
             </li>
             <li>• All the other models are presented with their respective highest settings.
-            <li>• I have not been able to find consistent graphs for the following models: Grok 4.3 Fast, GLM 5 Turbo,
+            <li>• I have not been able to find consistent graphs for the following models: GLM 5 Turbo,
               GLM 5V Turbo, Qwen 3.6 Plus Fast and Minimax M2.7 Air. I will add them immediately if I find some.
             </li>
             <li>• GPT 5.5 Thinking Heavy is available for Plus and Pro ChatGPT users through
               the Codex app, with limits that reset weekly. It's also available on the web for Pro users.</li>
-            <li>• Claude Opus 4.6 Extended and Claude Sonnet 4.6 Extended are available for free to Gemini users through
+            <li>• Claude Opus 4.6 Adaptive and Claude Sonnet 4.6 Adaptive are available for free to Gemini users through
               the Antigravity app, with limits that reset depending on demand.</li>
           </ul>
         </div>
@@ -3082,7 +3441,7 @@
               are on par; on text GPT Image 2 seems to be better.</li>
             <li>Native Android integration (iOS confirmed to come soon), though it can be over-eager with tool calls
             </li>
-            <li>Offers uses of Claude Opus 4.6 Extended, and Claude Sonnet 4.6 Extended through the
+            <li>Offers uses of Claude Opus 4.6 Adaptive, and Claude Sonnet 4.6 Adaptive through the
               Antigravity app</li>
           </ul>
         </div>
@@ -3315,6 +3674,7 @@
       'glm-5t-deep-think': false,    // Other recommended, starts hidden
       'glm-5v-turbo-deep-think': false, // Other recommended, starts hidden
       'grok-43-expert': false,       // Other recommended, starts hidden
+      'grok-43-fast': false,         // Other recommended, starts hidden
       'minimax-m27': false,          // Other recommended, starts hidden
       'mimo-v25-pro': false,         // Other recommended, starts hidden
       'mimo-v25': false,             // Other recommended, starts hidden
@@ -3351,6 +3711,7 @@
       'glm-5t-deep-think': false,       // Other recommended
       'glm-5v-turbo-deep-think': false, // Other recommended
       'grok-43-expert': false,          // Other recommended
+      'grok-43-fast': false,            // Other recommended
       'minimax-m27': false,             // Other recommended
       'mimo-v25-pro': false,            // Other recommended
       'mimo-v25': false,                // Other recommended
@@ -3364,9 +3725,9 @@
     const modelGroups = {
       'claude': ['claude-haiku', 'claude-47-opus', 'claude-47-opus-nr', 'claude-46-opus', 'claude-46-opus-nr', 'claude-46-sonnet', 'claude-46-sonnet-nr', 'claude-haiku-nr'],
       'reasoning': ['gpt-55-thinking-xhigh', 'gpt-55-thinking', 'gpt-55-thinking-standard', 'gpt-thinking-mini', 'gemini-31-pro', 'gemini-flash-thinking', 'claude-haiku', 'claude-47-opus', 'claude-46-opus', 'claude-46-sonnet', 'glm-51-deep-think', 'glm-deep-think', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-43-expert', 'minimax-m27', 'mimo-v25-pro', 'mimo-v25', 'qwen-36-plus-think', 'kimi-k26-thinking'],
-      'instant': ['gpt-55-instant', 'gemini-flash', 'claude-47-opus-nr', 'claude-46-opus-nr', 'claude-46-sonnet-nr', 'claude-haiku-nr', 'glm-51', 'glm-5', 'qwen-35-omni-plus', 'kimi-k26-instant'],
+      'instant': ['gpt-55-instant', 'gemini-flash', 'claude-47-opus-nr', 'claude-46-opus-nr', 'claude-46-sonnet-nr', 'claude-haiku-nr', 'grok-43-fast', 'glm-51', 'glm-5', 'qwen-35-omni-plus', 'kimi-k26-instant'],
       'chatgpt-pro': [],
-      'other': ['glm-51-deep-think', 'glm-51', 'glm-deep-think', 'glm-5', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-43-expert', 'minimax-m27', 'mimo-v25-pro', 'mimo-v25', 'qwen-36-plus-think', 'kimi-k26-thinking', 'qwen-35-omni-plus', 'kimi-k26-instant'],
+      'other': ['glm-51-deep-think', 'grok-43-fast', 'glm-51', 'glm-deep-think', 'glm-5', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-43-expert', 'minimax-m27', 'mimo-v25-pro', 'mimo-v25', 'qwen-36-plus-think', 'kimi-k26-thinking', 'qwen-35-omni-plus', 'kimi-k26-instant'],
       'legacy': ['gpt-thinking-mini', 'glm-deep-think', 'glm-5', 'claude-46-opus', 'claude-46-opus-nr']
     };
 
@@ -3396,6 +3757,7 @@
       'glm-5t-deep-think': ['other', 'reasoning'],           // Needs both Other AND Reasoning to be on
       'glm-5v-turbo-deep-think': ['other', 'reasoning'],     // Needs both Other AND Reasoning to be on
       'grok-43-expert': ['other', 'reasoning'],              // Needs both Other AND Reasoning to be on
+      'grok-43-fast': ['other', 'instant'],                  // Needs both Other AND Non-reasoning to be on
       'minimax-m27': ['other', 'reasoning'],                 // Needs both Other AND Reasoning to be on
       'mimo-v25-pro': ['other', 'reasoning'],                // Needs both Other AND Reasoning to be on
       'mimo-v25': ['other', 'reasoning'],                    // Needs both Other AND Reasoning to be on
@@ -3594,6 +3956,7 @@
       lcrChart.data.datasets[0].data = lcrData.data;
       lcrChart.data.datasets[0].backgroundColor = lcrData.backgroundColors;
       lcrChart.data.datasets[0].hoverBackgroundColor = lcrData.hoverBackgroundColors;
+      updatePercentBenchmarkAxisMin(lcrChart, lcrAxisMinMode, lcrData.data, getModelScores(lcrAllModels));
       lcrChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
 
       // Update MMMU-Pro chart
@@ -3602,6 +3965,7 @@
       mmmuProChart.data.datasets[0].data = mmmuProData.data;
       mmmuProChart.data.datasets[0].backgroundColor = mmmuProData.backgroundColors;
       mmmuProChart.data.datasets[0].hoverBackgroundColor = mmmuProData.hoverBackgroundColors;
+      updatePercentBenchmarkAxisMin(mmmuProChart, mmmuProAxisMinMode, mmmuProData.data, getModelScores(mmmuProAllModels));
       mmmuProChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
 
       // Update Terminal-Bench chart
@@ -3610,6 +3974,7 @@
       terminalBenchChart.data.datasets[0].data = terminalBenchData.data;
       terminalBenchChart.data.datasets[0].backgroundColor = terminalBenchData.backgroundColors;
       terminalBenchChart.data.datasets[0].hoverBackgroundColor = terminalBenchData.hoverBackgroundColors;
+      updatePercentBenchmarkAxisMin(terminalBenchChart, terminalBenchAxisMinMode, terminalBenchData.data, getModelScores(terminalBenchAllModels));
       terminalBenchChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
 
       // Update τ²-Bench chart
@@ -3618,6 +3983,7 @@
       tau2BenchChart.data.datasets[0].data = tau2BenchData.data;
       tau2BenchChart.data.datasets[0].backgroundColor = tau2BenchData.backgroundColors;
       tau2BenchChart.data.datasets[0].hoverBackgroundColor = tau2BenchData.hoverBackgroundColors;
+      updatePercentBenchmarkAxisMin(tau2BenchChart, tau2BenchAxisMinMode, tau2BenchData.data, getModelScores(tau2BenchAllModels));
       tau2BenchChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
 
       // Update Max Context chart
@@ -3697,8 +4063,8 @@
     //   35: ✦ Gemini 3.1 Pro
     //   50: ✦ Gemini 3 Flash Thinking
     //   60: ✦ Gemini 3 Flash (instant toggle)
-    //   65: ❋ Claude 4.6 Opus Extended (claude toggle)
-    //   67: ❋ Claude 4.6 Sonnet Extended (claude toggle)
+    //   65: ❋ Claude 4.6 Opus Adaptive (claude toggle)
+    //   67: ❋ Claude 4.6 Sonnet Adaptive (claude toggle)
     //   90: ❋ Claude 4.5 Haiku Extended (claude toggle)
     // ============================================================================
 
@@ -3712,11 +4078,11 @@
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro', correct: 55, abstention: 22.5, hallucination: 22.5, sortOrder: 35 },
       { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', correct: 54, abstention: 3.68, hallucination: 42.32, sortOrder: 50 },
       { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', correct: 46, abstention: 5.4, hallucination: 48.6, sortOrder: 60 },
-      { modelId: 'claude-47-opus', label: '❋ Claude 4.7 Opus Extended', correct: 46, abstention: 34.56, hallucination: 19.44, sortOrder: 64 },
+      { modelId: 'claude-47-opus', label: '❋ Claude 4.7 Opus Adaptive', correct: 46, abstention: 34.56, hallucination: 19.44, sortOrder: 64 },
       { modelId: 'claude-47-opus-nr', label: '❋ Claude 4.7 Opus', correct: 44, abstention: 26.88, hallucination: 29.12, sortOrder: 65 },
-      { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Extended', correct: 46, abstention: 21.06, hallucination: 32.94, sortOrder: 65.2 },
+      { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Adaptive', correct: 46, abstention: 21.06, hallucination: 32.94, sortOrder: 65.2 },
       { modelId: 'claude-46-opus-nr', label: '❋ Claude 4.6 Opus', correct: 45, abstention: 13.2, hallucination: 41.8, sortOrder: 66 },
-      { modelId: 'claude-46-sonnet', label: '❋ Claude 4.6 Sonnet Extended', correct: 40, abstention: 32.4, hallucination: 27.6, sortOrder: 67 },
+      { modelId: 'claude-46-sonnet', label: '❋ Claude 4.6 Sonnet Adaptive', correct: 40, abstention: 32.4, hallucination: 27.6, sortOrder: 67 },
       { modelId: 'claude-46-sonnet-nr', label: '❋ Claude 4.6 Sonnet', correct: 38, abstention: 21.08, hallucination: 40.92, sortOrder: 68 },
       { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', correct: 17, abstention: 61.42, hallucination: 21.58, sortOrder: 90 },
       { modelId: 'claude-haiku-nr', label: '❋ Claude 4.5 Haiku', correct: 14, abstention: 64.50, hallucination: 21.50, sortOrder: 95 },
@@ -3727,6 +4093,7 @@
       { modelId: 'glm-5t-deep-think', label: 'Ƶ GLM 5 Turbo Deep Think', correct: 29, abstention: 26.98, hallucination: 44.02, sortOrder: 107 },
       { modelId: 'glm-5v-turbo-deep-think', label: 'Ƶ GLM 5V Turbo Deep Think', correct: 29, abstention: 22.72, hallucination: 48.28, sortOrder: 109 },
       { modelId: 'grok-43-expert', label: 'Ø Grok 4.3 Expert', correct: 35, abstention: 48.75, hallucination: 16.25, sortOrder: 109.5 },
+      { modelId: 'grok-43-fast', label: 'Ø Grok 4.3 Fast', correct: 24, abstention: 19.76, hallucination: 56.24, sortOrder: 109.6 },
       { modelId: 'minimax-m27', label: '≋ Minimax M2.7 Max', correct: 26, abstention: 48.84, hallucination: 25.16, sortOrder: 117 },
       { modelId: 'mimo-v25-pro', label: '⋔ Mimo V2.5 Pro', correct: 23, abstention: 57.75, hallucination: 19.25, sortOrder: 118 },
       { modelId: 'mimo-v25', label: '⋔ Mimo V2.5', correct: 17, abstention: 56.44, hallucination: 26.56, sortOrder: 118.5 },
@@ -3765,6 +4132,43 @@
     let terminalBenchSortMode = localStorage.getItem('terminalBenchSortMode') || 'brand';
     let tau2BenchSortMode = localStorage.getItem('tau2BenchSortMode') || 'brand';
     let maxContextSortMode = localStorage.getItem('maxContextSortMode') || 'brand';
+    let lcrAxisMinMode = localStorage.getItem('lcrAxisMinMode') || '0';
+    let mmmuProAxisMinMode = localStorage.getItem('mmmuProAxisMinMode') || '0';
+    let terminalBenchAxisMinMode = localStorage.getItem('terminalBenchAxisMinMode') || '0';
+    let tau2BenchAxisMinMode = localStorage.getItem('tau2BenchAxisMinMode') || '0';
+
+    function getDynamicPercentAxisMin(data) {
+      const positiveValues = data.filter(value => typeof value === 'number' && value > 0);
+      if (!positiveValues.length) return 0;
+
+      const minVal = Math.min(...positiveValues);
+      const floorVal = Math.floor(minVal / 10) * 10;
+      if (floorVal >= 100) return 0;
+      return Math.max(0, floorVal);
+    }
+
+    function getModelScores(models) {
+      return models.map(m => m.score);
+    }
+
+    function getPercentAxisMin(mode, visibleData, allData) {
+      if (mode === 'auto') return getDynamicPercentAxisMin(visibleData);
+      if (mode === 'all') return getDynamicPercentAxisMin(allData);
+      return 0;
+    }
+
+    function updatePercentBenchmarkAxisMin(chart, mode, visibleData, allData) {
+      if (!chart) return;
+
+      chart.options.scales.x.min = getPercentAxisMin(mode, visibleData, allData);
+      chart.options.scales.x.beginAtZero = mode === '0';
+    }
+
+    function updateAxisMinSelector(selectorId, zeroButtonId, autoButtonId, allButtonId, mode) {
+      document.querySelectorAll(`#${selectorId} .sort-btn`).forEach(btn => btn.classList.remove('active'));
+      const activeButtonId = mode === '0' ? zeroButtonId : mode === 'all' ? allButtonId : autoButtonId;
+      document.getElementById(activeButtonId).classList.add('active');
+    }
 
     const mrcrXAxisLabels = ['8k', '16k', '32k', '64k', '128k', '256k', '1M'];
 
@@ -3835,6 +4239,15 @@
       lcrChart.data.datasets[0].data = lcrData.data;
       lcrChart.data.datasets[0].backgroundColor = lcrData.backgroundColors;
       lcrChart.data.datasets[0].hoverBackgroundColor = lcrData.hoverBackgroundColors;
+      updatePercentBenchmarkAxisMin(lcrChart, lcrAxisMinMode, lcrData.data, getModelScores(lcrAllModels));
+      lcrChart.update({ duration: 750, easing: 'easeInOutQuart' });
+    }
+
+    function setLcrAxisMin(mode) {
+      lcrAxisMinMode = mode;
+      localStorage.setItem('lcrAxisMinMode', mode);
+      updateAxisMinSelector('lcrAxisMinSelector', 'lcrAxisMin0', 'lcrAxisMinAuto', 'lcrAxisMinAll', mode);
+      updatePercentBenchmarkAxisMin(lcrChart, mode, lcrChart.data.datasets[0].data, getModelScores(lcrAllModels));
       lcrChart.update({ duration: 750, easing: 'easeInOutQuart' });
     }
 
@@ -3848,6 +4261,15 @@
       mmmuProChart.data.datasets[0].data = mmmuProData.data;
       mmmuProChart.data.datasets[0].backgroundColor = mmmuProData.backgroundColors;
       mmmuProChart.data.datasets[0].hoverBackgroundColor = mmmuProData.hoverBackgroundColors;
+      updatePercentBenchmarkAxisMin(mmmuProChart, mmmuProAxisMinMode, mmmuProData.data, getModelScores(mmmuProAllModels));
+      mmmuProChart.update({ duration: 750, easing: 'easeInOutQuart' });
+    }
+
+    function setMmmuProAxisMin(mode) {
+      mmmuProAxisMinMode = mode;
+      localStorage.setItem('mmmuProAxisMinMode', mode);
+      updateAxisMinSelector('mmmuProAxisMinSelector', 'mmmuProAxisMin0', 'mmmuProAxisMinAuto', 'mmmuProAxisMinAll', mode);
+      updatePercentBenchmarkAxisMin(mmmuProChart, mode, mmmuProChart.data.datasets[0].data, getModelScores(mmmuProAllModels));
       mmmuProChart.update({ duration: 750, easing: 'easeInOutQuart' });
     }
 
@@ -3861,6 +4283,15 @@
       terminalBenchChart.data.datasets[0].data = terminalBenchData.data;
       terminalBenchChart.data.datasets[0].backgroundColor = terminalBenchData.backgroundColors;
       terminalBenchChart.data.datasets[0].hoverBackgroundColor = terminalBenchData.hoverBackgroundColors;
+      updatePercentBenchmarkAxisMin(terminalBenchChart, terminalBenchAxisMinMode, terminalBenchData.data, getModelScores(terminalBenchAllModels));
+      terminalBenchChart.update({ duration: 750, easing: 'easeInOutQuart' });
+    }
+
+    function setTerminalBenchAxisMin(mode) {
+      terminalBenchAxisMinMode = mode;
+      localStorage.setItem('terminalBenchAxisMinMode', mode);
+      updateAxisMinSelector('terminalBenchAxisMinSelector', 'terminalBenchAxisMin0', 'terminalBenchAxisMinAuto', 'terminalBenchAxisMinAll', mode);
+      updatePercentBenchmarkAxisMin(terminalBenchChart, mode, terminalBenchChart.data.datasets[0].data, getModelScores(terminalBenchAllModels));
       terminalBenchChart.update({ duration: 750, easing: 'easeInOutQuart' });
     }
 
@@ -3874,6 +4305,15 @@
       tau2BenchChart.data.datasets[0].data = tau2BenchData.data;
       tau2BenchChart.data.datasets[0].backgroundColor = tau2BenchData.backgroundColors;
       tau2BenchChart.data.datasets[0].hoverBackgroundColor = tau2BenchData.hoverBackgroundColors;
+      updatePercentBenchmarkAxisMin(tau2BenchChart, tau2BenchAxisMinMode, tau2BenchData.data, getModelScores(tau2BenchAllModels));
+      tau2BenchChart.update({ duration: 750, easing: 'easeInOutQuart' });
+    }
+
+    function setTau2BenchAxisMin(mode) {
+      tau2BenchAxisMinMode = mode;
+      localStorage.setItem('tau2BenchAxisMinMode', mode);
+      updateAxisMinSelector('tau2BenchAxisMinSelector', 'tau2BenchAxisMin0', 'tau2BenchAxisMinAuto', 'tau2BenchAxisMinAll', mode);
+      updatePercentBenchmarkAxisMin(tau2BenchChart, mode, tau2BenchChart.data.datasets[0].data, getModelScores(tau2BenchAllModels));
       tau2BenchChart.update({ duration: 750, easing: 'easeInOutQuart' });
     }
 
@@ -4147,7 +4587,7 @@
       },
       {
         modelId: 'claude-47-opus',
-        label: 'Claude 4.7 Opus Extended',
+        label: 'Claude 4.7 Opus Adaptive',
         data: [89, 84, 46.3, 23.9, 0.8, null, null],
         borderColor: 'rgba(218, 119, 87, 0.95)',
         backgroundColor: 'rgba(218, 119, 87, 0.7)',
@@ -4176,7 +4616,7 @@
       },
       {
         modelId: 'claude-46-opus',
-        label: 'Claude 4.6 Opus Extended',
+        label: 'Claude 4.6 Opus Adaptive',
         data: [98.2, 84.4, 86.2, 74.3, 68.1, null, null],
         borderColor: 'rgba(180, 140, 100, 0.95)',
         backgroundColor: 'rgba(180, 140, 100, 0.7)',
@@ -4205,7 +4645,7 @@
       },
       {
         modelId: 'claude-46-sonnet',
-        label: 'Claude 4.6 Sonnet Extended',
+        label: 'Claude 4.6 Sonnet Adaptive',
         data: [96.7, 82, 85.2, 79.4, 72.4, null, null],
         borderColor: 'rgba(218, 119, 87, 0.8)',
         backgroundColor: 'rgba(218, 119, 87, 0.5)',
@@ -4487,11 +4927,11 @@
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro', score: 72.7, sortOrder: 35 },
       { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', score: 66.3, sortOrder: 50 },
       { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', score: 48.0, sortOrder: 60 },
-      { modelId: 'claude-47-opus', label: '❋ Claude 4.7 Opus Extended', score: 70.3, sortOrder: 64 },
+      { modelId: 'claude-47-opus', label: '❋ Claude 4.7 Opus Adaptive', score: 70.3, sortOrder: 64 },
       { modelId: 'claude-47-opus-nr', label: '❋ Claude 4.7 Opus', score: 67, sortOrder: 65 },
-      { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Extended', score: 70.7, sortOrder: 65.2 },
+      { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Adaptive', score: 70.7, sortOrder: 65.2 },
       { modelId: 'claude-46-opus-nr', label: '❋ Claude 4.6 Opus', score: 58.3, sortOrder: 66 },
-      { modelId: 'claude-46-sonnet', label: '❋ Claude 4.6 Sonnet Extended', score: 70.7, sortOrder: 67 },
+      { modelId: 'claude-46-sonnet', label: '❋ Claude 4.6 Sonnet Adaptive', score: 70.7, sortOrder: 67 },
       { modelId: 'claude-46-sonnet-nr', label: '❋ Claude 4.6 Sonnet', score: 57.7, sortOrder: 68 },
       { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', score: 70.3, sortOrder: 90 },
       { modelId: 'claude-haiku-nr', label: '❋ Claude 4.5 Haiku', score: 43.7, sortOrder: 95 },
@@ -4502,6 +4942,7 @@
       { modelId: 'glm-5t-deep-think', label: 'Ƶ GLM 5 Turbo Deep Think', score: 60.7, sortOrder: 107 },
       { modelId: 'glm-5v-turbo-deep-think', label: 'Ƶ GLM 5V Turbo Deep Think', score: 61, sortOrder: 109 },
       { modelId: 'grok-43-expert', label: 'Ø Grok 4.3 Expert', score: 64.3, sortOrder: 109.5 },
+      { modelId: 'grok-43-fast', label: 'Ø Grok 4.3 Fast', score: 24.7, sortOrder: 109.6 },
       { modelId: 'minimax-m27', label: '≋ Minimax M2.7 Max', score: 68.7, sortOrder: 117 },
       { modelId: 'mimo-v25-pro', label: '⋔ Mimo V2.5 Pro', score: 73.3, sortOrder: 118 },
       { modelId: 'mimo-v25', label: '⋔ Mimo V2.5', score: 62.7, sortOrder: 118.5 },
@@ -4574,7 +5015,8 @@
         },
         scales: {
           x: {
-            beginAtZero: true,
+            beginAtZero: lcrAxisMinMode === '0',
+            min: getPercentAxisMin(lcrAxisMinMode, lcrInitData.data, getModelScores(lcrAllModels)),
             max: 100,
             ticks: {
               callback: function (value) {
@@ -4605,11 +5047,11 @@
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro', score: 82, sortOrder: 35 },
       { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', score: 80, sortOrder: 50 },
       { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', score: 79, sortOrder: 60 },
-      { modelId: 'claude-47-opus', label: '❋ Claude 4.7 Opus Extended', score: 79, sortOrder: 64 },
+      { modelId: 'claude-47-opus', label: '❋ Claude 4.7 Opus Adaptive', score: 79, sortOrder: 64 },
       { modelId: 'claude-47-opus-nr', label: '❋ Claude 4.7 Opus', score: 76, sortOrder: 65 },
-      { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Extended', score: 75, sortOrder: 65.2 },
+      { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Adaptive', score: 75, sortOrder: 65.2 },
       { modelId: 'claude-46-opus-nr', label: '❋ Claude 4.6 Opus', score: 73, sortOrder: 66 },
-      { modelId: 'claude-46-sonnet', label: '❋ Claude 4.6 Sonnet Extended', score: 73, sortOrder: 67 },
+      { modelId: 'claude-46-sonnet', label: '❋ Claude 4.6 Sonnet Adaptive', score: 73, sortOrder: 67 },
       { modelId: 'claude-46-sonnet-nr', label: '❋ Claude 4.6 Sonnet', score: 71, sortOrder: 68 },
       { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', score: 58, sortOrder: 90 },
       { modelId: 'claude-haiku-nr', label: '❋ Claude 4.5 Haiku', score: 55, sortOrder: 95 },
@@ -4620,6 +5062,7 @@
       { modelId: 'glm-5t-deep-think', label: 'Ƶ GLM 5 Turbo Deep Think (Estimated)', score: 73, sortOrder: 107, estimated: true },
       { modelId: 'glm-5v-turbo-deep-think', label: 'Ƶ GLM 5V Turbo Deep Think', score: 73, sortOrder: 109 },
       { modelId: 'grok-43-expert', label: 'Ø Grok 4.3 Expert', score: 78, sortOrder: 109.5 },
+      { modelId: 'grok-43-fast', label: 'Ø Grok 4.3 Fast', score: 65, sortOrder: 109.6 },
       { modelId: 'minimax-m27', label: '≋ Minimax M2.7 Max', score: 0, sortOrder: 117 },
       { modelId: 'mimo-v25-pro', label: '⋔ Mimo V2.5 Pro', score: 0, sortOrder: 118 },
       { modelId: 'mimo-v25', label: '⋔ Mimo V2.5', score: 75, sortOrder: 118.5 },
@@ -4692,7 +5135,8 @@
         },
         scales: {
           x: {
-            beginAtZero: true,
+            beginAtZero: mmmuProAxisMinMode === '0',
+            min: getPercentAxisMin(mmmuProAxisMinMode, mmmuProInitData.data, getModelScores(mmmuProAllModels)),
             max: 100,
             ticks: {
               callback: function (value) {
@@ -4723,11 +5167,11 @@
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro', score: 53.8, sortOrder: 35 },
       { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', score: 38.6, sortOrder: 50 },
       { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', score: 31.8, sortOrder: 60 },
-      { modelId: 'claude-47-opus', label: '❋ Claude 4.7 Opus Extended', score: 51.5, sortOrder: 64 },
+      { modelId: 'claude-47-opus', label: '❋ Claude 4.7 Opus Adaptive', score: 51.5, sortOrder: 64 },
       { modelId: 'claude-47-opus-nr', label: '❋ Claude 4.7 Opus', score: 54.5, sortOrder: 65 },
-      { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Extended', score: 46.2, sortOrder: 65.2 },
+      { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Adaptive', score: 46.2, sortOrder: 65.2 },
       { modelId: 'claude-46-opus-nr', label: '❋ Claude 4.6 Opus', score: 48.5, sortOrder: 66 },
-      { modelId: 'claude-46-sonnet', label: '❋ Claude 4.6 Sonnet Extended', score: 53, sortOrder: 67 },
+      { modelId: 'claude-46-sonnet', label: '❋ Claude 4.6 Sonnet Adaptive', score: 53, sortOrder: 67 },
       { modelId: 'claude-46-sonnet-nr', label: '❋ Claude 4.6 Sonnet', score: 46.2, sortOrder: 68 },
       { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', score: 27.3, sortOrder: 90 },
       { modelId: 'claude-haiku-nr', label: '❋ Claude 4.5 Haiku', score: 27.3, sortOrder: 95 },
@@ -4738,6 +5182,7 @@
       { modelId: 'glm-5t-deep-think', label: 'Ƶ GLM 5 Turbo Deep Think', score: 32.6, sortOrder: 107 },
       { modelId: 'glm-5v-turbo-deep-think', label: 'Ƶ GLM 5V Turbo Deep Think', score: 32.6, sortOrder: 109 },
       { modelId: 'grok-43-expert', label: 'Ø Grok 4.3 Expert', score: 37.9, sortOrder: 109.5 },
+      { modelId: 'grok-43-fast', label: 'Ø Grok 4.3 Fast', score: 18.9, sortOrder: 109.6 },
       { modelId: 'minimax-m27', label: '≋ Minimax M2.7 Max', score: 39.4, sortOrder: 117 },
       { modelId: 'mimo-v25-pro', label: '⋔ Mimo V2.5 Pro', score: 43.2, sortOrder: 118 },
       { modelId: 'mimo-v25', label: '⋔ Mimo V2.5', score: 41.7, sortOrder: 118.5 },
@@ -4810,7 +5255,8 @@
         },
         scales: {
           x: {
-            beginAtZero: true,
+            beginAtZero: terminalBenchAxisMinMode === '0',
+            min: getPercentAxisMin(terminalBenchAxisMinMode, terminalBenchInitData.data, getModelScores(terminalBenchAllModels)),
             max: 100,
             ticks: {
               callback: function (value) {
@@ -4841,11 +5287,11 @@
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro', score: 95.6, sortOrder: 35 },
       { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', score: 80.4, sortOrder: 50 },
       { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', score: 43.3, sortOrder: 60 },
-      { modelId: 'claude-47-opus', label: '❋ Claude 4.7 Opus Extended', score: 88.6, sortOrder: 64 },
+      { modelId: 'claude-47-opus', label: '❋ Claude 4.7 Opus Adaptive', score: 88.6, sortOrder: 64 },
       { modelId: 'claude-47-opus-nr', label: '❋ Claude 4.7 Opus', score: 74, sortOrder: 65 },
-      { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Extended', score: 92.1, sortOrder: 65.2 },
+      { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Adaptive', score: 92.1, sortOrder: 65.2 },
       { modelId: 'claude-46-opus-nr', label: '❋ Claude 4.6 Opus', score: 84.8, sortOrder: 66 },
-      { modelId: 'claude-46-sonnet', label: '❋ Claude 4.6 Sonnet Extended', score: 75.7, sortOrder: 67 },
+      { modelId: 'claude-46-sonnet', label: '❋ Claude 4.6 Sonnet Adaptive', score: 75.7, sortOrder: 67 },
       { modelId: 'claude-46-sonnet-nr', label: '❋ Claude 4.6 Sonnet', score: 79.5, sortOrder: 68 },
       { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', score: 54.7, sortOrder: 90 },
       { modelId: 'claude-haiku-nr', label: '❋ Claude 4.5 Haiku', score: 32.5, sortOrder: 95 },
@@ -4856,6 +5302,7 @@
       { modelId: 'glm-5t-deep-think', label: 'Ƶ GLM 5 Turbo Deep Think', score: 98.5, sortOrder: 107 },
       { modelId: 'glm-5v-turbo-deep-think', label: 'Ƶ GLM 5V Turbo Deep Think', score: 98.5, sortOrder: 109 },
       { modelId: 'grok-43-expert', label: 'Ø Grok 4.3 Expert', score: 97.7, sortOrder: 109.5 },
+      { modelId: 'grok-43-fast', label: 'Ø Grok 4.3 Fast', score: 65.8, sortOrder: 109.6 },
       { modelId: 'minimax-m27', label: '≋ Minimax M2.7 Max', score: 84.8, sortOrder: 117 },
       { modelId: 'mimo-v25-pro', label: '⋔ Mimo V2.5 Pro', score: 94.2, sortOrder: 118 },
       { modelId: 'mimo-v25', label: '⋔ Mimo V2.5', score: 90.6, sortOrder: 118.5 },
@@ -4928,7 +5375,8 @@
         },
         scales: {
           x: {
-            beginAtZero: true,
+            beginAtZero: tau2BenchAxisMinMode === '0',
+            min: getPercentAxisMin(tau2BenchAxisMinMode, tau2BenchInitData.data, getModelScores(tau2BenchAllModels)),
             max: 100,
             ticks: {
               callback: function (value) {
@@ -5064,7 +5512,7 @@
       },
       // Claude
       {
-        modelId: 'claude-47-opus', label: '❋ Claude 4.7 Opus Extended', sortOrder: 64,
+        modelId: 'claude-47-opus', label: '❋ Claude 4.7 Opus Adaptive', sortOrder: 64,
         color: 'rgba(218, 119, 87, 1)',
         segments: [{ value: 200000, plans: 'All plans' }]
       },
@@ -5074,7 +5522,7 @@
         segments: [{ value: 200000, plans: 'All plans' }]
       },
       {
-        modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Extended', sortOrder: 65.2,
+        modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Adaptive', sortOrder: 65.2,
         color: 'rgba(218, 119, 87, 1)',
         segments: [{ value: 200000, plans: 'All plans' }]
       },
@@ -5084,7 +5532,7 @@
         segments: [{ value: 200000, plans: 'All plans' }]
       },
       {
-        modelId: 'claude-46-sonnet', label: '❋ Claude 4.6 Sonnet Extended', sortOrder: 67,
+        modelId: 'claude-46-sonnet', label: '❋ Claude 4.6 Sonnet Adaptive', sortOrder: 67,
         color: 'rgba(218, 119, 87, 1)',
         segments: [{ value: 200000, plans: 'All plans' }]
       },
@@ -5137,6 +5585,11 @@
       // Grok
       {
         modelId: 'grok-43-expert', label: 'Ø Grok 4.3 Expert', sortOrder: 109.5,
+        color: 'rgba(60, 60, 220, 1)',
+        segments: [{ value: 1000000, plans: 'All plans' }]
+      },
+      {
+        modelId: 'grok-43-fast', label: 'Ø Grok 4.3 Fast', sortOrder: 109.6,
         color: 'rgba(60, 60, 220, 1)',
         segments: [{ value: 1000000, plans: 'All plans' }]
       },
@@ -5936,6 +6389,10 @@
         document.querySelectorAll('#maxContextSortSelector .sort-btn').forEach(btn => btn.classList.remove('active'));
         document.getElementById('maxContextSortHighest').classList.add('active');
       }
+      updateAxisMinSelector('lcrAxisMinSelector', 'lcrAxisMin0', 'lcrAxisMinAuto', 'lcrAxisMinAll', lcrAxisMinMode);
+      updateAxisMinSelector('mmmuProAxisMinSelector', 'mmmuProAxisMin0', 'mmmuProAxisMinAuto', 'mmmuProAxisMinAll', mmmuProAxisMinMode);
+      updateAxisMinSelector('terminalBenchAxisMinSelector', 'terminalBenchAxisMin0', 'terminalBenchAxisMinAuto', 'terminalBenchAxisMinAll', terminalBenchAxisMinMode);
+      updateAxisMinSelector('tau2BenchAxisMinSelector', 'tau2BenchAxisMin0', 'tau2BenchAxisMinAuto', 'tau2BenchAxisMinAll', tau2BenchAxisMinMode);
 
       // Update charts if state changed from default
       if (needsChartUpdate) {
@@ -5950,30 +6407,35 @@
         omniscienceChart.data.datasets[2].backgroundColor = omniscienceData.hallucinationBgColors;
         omniscienceChart.update('none');
         mrcrChart.data.datasets = getMrcrDatasets();
+        if (typeof updateMrcrYAxisOptions === 'function') updateMrcrYAxisOptions();
         mrcrChart.update('none');
         const lcrData = getLcrData();
         lcrChart.data.labels = lcrData.labels;
         lcrChart.data.datasets[0].data = lcrData.data;
         lcrChart.data.datasets[0].backgroundColor = lcrData.backgroundColors;
         lcrChart.data.datasets[0].hoverBackgroundColor = lcrData.hoverBackgroundColors;
+        updatePercentBenchmarkAxisMin(lcrChart, lcrAxisMinMode, lcrData.data, getModelScores(lcrAllModels));
         lcrChart.update('none');
         const mmmuProData = getMmmuProData();
         mmmuProChart.data.labels = mmmuProData.labels;
         mmmuProChart.data.datasets[0].data = mmmuProData.data;
         mmmuProChart.data.datasets[0].backgroundColor = mmmuProData.backgroundColors;
         mmmuProChart.data.datasets[0].hoverBackgroundColor = mmmuProData.hoverBackgroundColors;
+        updatePercentBenchmarkAxisMin(mmmuProChart, mmmuProAxisMinMode, mmmuProData.data, getModelScores(mmmuProAllModels));
         mmmuProChart.update('none');
         const terminalBenchData = getTerminalBenchData();
         terminalBenchChart.data.labels = terminalBenchData.labels;
         terminalBenchChart.data.datasets[0].data = terminalBenchData.data;
         terminalBenchChart.data.datasets[0].backgroundColor = terminalBenchData.backgroundColors;
         terminalBenchChart.data.datasets[0].hoverBackgroundColor = terminalBenchData.hoverBackgroundColors;
+        updatePercentBenchmarkAxisMin(terminalBenchChart, terminalBenchAxisMinMode, terminalBenchData.data, getModelScores(terminalBenchAllModels));
         terminalBenchChart.update('none');
         const tau2BenchData = getTau2BenchData();
         tau2BenchChart.data.labels = tau2BenchData.labels;
         tau2BenchChart.data.datasets[0].data = tau2BenchData.data;
         tau2BenchChart.data.datasets[0].backgroundColor = tau2BenchData.backgroundColors;
         tau2BenchChart.data.datasets[0].hoverBackgroundColor = tau2BenchData.hoverBackgroundColors;
+        updatePercentBenchmarkAxisMin(tau2BenchChart, tau2BenchAxisMinMode, tau2BenchData.data, getModelScores(tau2BenchAllModels));
         tau2BenchChart.update('none');
         // Rebuild max context chart without animation
         if (maxContextChart) {
@@ -6089,7 +6551,7 @@
     style="text-align: center; padding: 2rem 1rem; margin-top: 3rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.8rem;">
     Made by <strong> u/Pasto_Shouwa</strong>
     <br>
-    <em>Last updated on <strong>05/05/2026</strong> (dd/mm/yyyy)</em>
+    <em>Last updated on <strong>09/05/2026</strong> (dd/mm/yyyy)</em>
   </footer>
 </body>
 
