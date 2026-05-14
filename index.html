@@ -4070,37 +4070,37 @@
 
     // Base data for AA-Omniscience using object structure with sortOrder and modelId
     const omniscienceAllModels = [
-      { modelId: 'gpt-55-thinking-xhigh', label: '⌘ GPT 5.5 Thinking Heavy', correct: 57, abstention: 6.02, hallucination: 36.98, sortOrder: 18 },
-      { modelId: 'gpt-55-thinking', label: '⌘ GPT 5.5 Thinking Extended', correct: 56, abstention: 6.16, hallucination: 37.84, sortOrder: 20 },
-      { modelId: 'gpt-55-thinking-standard', label: '⌘ GPT 5.5 Thinking Standard', correct: 54, abstention: 6.44, hallucination: 39.56, sortOrder: 22 },
-      { modelId: 'gpt-thinking-mini', label: '⌘ GPT 5 Thinking Mini', correct: 22, abstention: 45.24, hallucination: 32.76, sortOrder: 25 },
-      { modelId: 'gpt-55-instant', label: '⌘ GPT 5.5 Instant', correct: 45, abstention: 4.95, hallucination: 50.05, sortOrder: 27 },
-      { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro', correct: 55, abstention: 22.5, hallucination: 22.5, sortOrder: 35 },
-      { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', correct: 54, abstention: 3.68, hallucination: 42.32, sortOrder: 50 },
-      { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', correct: 46, abstention: 5.4, hallucination: 48.6, sortOrder: 60 },
-      { modelId: 'claude-47-opus', label: '❋ Claude 4.7 Opus Adaptive', correct: 46, abstention: 34.56, hallucination: 19.44, sortOrder: 64 },
-      { modelId: 'claude-47-opus-nr', label: '❋ Claude 4.7 Opus', correct: 44, abstention: 26.88, hallucination: 29.12, sortOrder: 65 },
-      { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Adaptive', correct: 46, abstention: 21.06, hallucination: 32.94, sortOrder: 65.2 },
-      { modelId: 'claude-46-opus-nr', label: '❋ Claude 4.6 Opus', correct: 45, abstention: 13.2, hallucination: 41.8, sortOrder: 66 },
-      { modelId: 'claude-46-sonnet', label: '❋ Claude 4.6 Sonnet Adaptive', correct: 40, abstention: 32.4, hallucination: 27.6, sortOrder: 67 },
-      { modelId: 'claude-46-sonnet-nr', label: '❋ Claude 4.6 Sonnet', correct: 38, abstention: 21.08, hallucination: 40.92, sortOrder: 68 },
-      { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', correct: 17, abstention: 61.42, hallucination: 21.58, sortOrder: 90 },
-      { modelId: 'claude-haiku-nr', label: '❋ Claude 4.5 Haiku', correct: 14, abstention: 64.50, hallucination: 21.50, sortOrder: 95 },
-      { modelId: 'glm-51-deep-think', label: 'Ƶ GLM 5.1 Deep Think', correct: 24, abstention: 53.96, hallucination: 22.04, sortOrder: 98 },
-      { modelId: 'glm-deep-think', label: 'Ƶ GLM 5 Deep Think', correct: 27, abstention: 48.18, hallucination: 24.82, sortOrder: 100 },
-      { modelId: 'glm-51', label: 'Ƶ GLM 5.1', correct: 26, abstention: 27.38, hallucination: 46.62, sortOrder: 103 },
-      { modelId: 'glm-5', label: 'Ƶ GLM 5', correct: 23, abstention: 43.12, hallucination: 33.88, sortOrder: 105 },
-      { modelId: 'glm-5t-deep-think', label: 'Ƶ GLM 5 Turbo Deep Think', correct: 29, abstention: 26.98, hallucination: 44.02, sortOrder: 107 },
-      { modelId: 'glm-5v-turbo-deep-think', label: 'Ƶ GLM 5V Turbo Deep Think', correct: 29, abstention: 22.72, hallucination: 48.28, sortOrder: 109 },
-      { modelId: 'grok-43-expert', label: 'Ø Grok 4.3 Expert', correct: 35, abstention: 48.75, hallucination: 16.25, sortOrder: 109.5 },
-      { modelId: 'grok-43-fast', label: 'Ø Grok 4.3 Fast', correct: 24, abstention: 19.76, hallucination: 56.24, sortOrder: 109.6 },
-      { modelId: 'minimax-m27', label: '≋ Minimax M2.7 Max', correct: 26, abstention: 48.84, hallucination: 25.16, sortOrder: 117 },
-      { modelId: 'mimo-v25-pro', label: '⋔ Mimo V2.5 Pro', correct: 23, abstention: 57.75, hallucination: 19.25, sortOrder: 118 },
-      { modelId: 'mimo-v25', label: '⋔ Mimo V2.5', correct: 17, abstention: 56.44, hallucination: 26.56, sortOrder: 118.5 },
-      { modelId: 'qwen-36-plus-think', label: '▽ Qwen 3.6 Plus Think', correct: 26, abstention: 50.32, hallucination: 23.68, sortOrder: 125 },
-      { modelId: 'kimi-k26-thinking', label: 'Ḱ Kimi K2.6 Thinking', correct: 33, abstention: 40.87, hallucination: 26.13, sortOrder: 127 },
-      { modelId: 'qwen-35-omni-plus', label: '▽ Qwen 3.5 Omni Plus', correct: 17, abstention: 53.12, hallucination: 29.88, sortOrder: 126 },
-      { modelId: 'kimi-k26-instant', label: 'Ḱ Kimi K2.6 Instant', correct: 23, abstention: 43.89, hallucination: 33.11, sortOrder: 128 }
+      { modelId: 'gpt-55-thinking-xhigh', label: '⌘ GPT 5.5 Thinking Heavy', correct: 56.92, abstention: 6.23, hallucination: 36.85, sortOrder: 18 },
+      { modelId: 'gpt-55-thinking', label: '⌘ GPT 5.5 Thinking Extended', correct: 56.05, abstention: 6.27, hallucination: 37.68, sortOrder: 20 },
+      { modelId: 'gpt-55-thinking-standard', label: '⌘ GPT 5.5 Thinking Standard', correct: 54.08, abstention: 6.45, hallucination: 39.47, sortOrder: 22 },
+      { modelId: 'gpt-thinking-mini', label: '⌘ GPT 5 Thinking Mini', correct: 22.20, abstention: 44.81, hallucination: 32.99, sortOrder: 25 },
+      { modelId: 'gpt-55-instant', label: '⌘ GPT 5.5 Instant', correct: 45.07, abstention: 4.82, hallucination: 50.11, sortOrder: 27 },
+      { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro', correct: 55.25, abstention: 22.43, hallucination: 22.32, sortOrder: 35 },
+      { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', correct: 54.00, abstention: 3.56, hallucination: 42.43, sortOrder: 50 },
+      { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', correct: 45.52, abstention: 5.35, hallucination: 49.13, sortOrder: 60 },
+      { modelId: 'claude-47-opus', label: '❋ Claude 4.7 Opus Adaptive', correct: 45.78, abstention: 34.60, hallucination: 19.62, sortOrder: 64 },
+      { modelId: 'claude-47-opus-nr', label: '❋ Claude 4.7 Opus', correct: 43.53, abstention: 27.15, hallucination: 29.32, sortOrder: 65 },
+      { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Adaptive', correct: 46.38, abstention: 20.73, hallucination: 32.89, sortOrder: 65.2 },
+      { modelId: 'claude-46-opus-nr', label: '❋ Claude 4.6 Opus', correct: 45.15, abstention: 13.16, hallucination: 41.69, sortOrder: 66 },
+      { modelId: 'claude-46-sonnet', label: '❋ Claude 4.6 Sonnet Adaptive', correct: 40.03, abstention: 32.30, hallucination: 27.67, sortOrder: 67 },
+      { modelId: 'claude-46-sonnet-nr', label: '❋ Claude 4.6 Sonnet', correct: 37.97, abstention: 21.13, hallucination: 40.90, sortOrder: 68 },
+      { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', correct: 17.43, abstention: 60.92, hallucination: 21.65, sortOrder: 90 },
+      { modelId: 'claude-haiku-nr', label: '❋ Claude 4.5 Haiku', correct: 13.67, abstention: 65.00, hallucination: 21.33, sortOrder: 95 },
+      { modelId: 'glm-51-deep-think', label: 'Ƶ GLM 5.1 Deep Think', correct: 24.20, abstention: 53.53, hallucination: 22.27, sortOrder: 98 },
+      { modelId: 'glm-deep-think', label: 'Ƶ GLM 5 Deep Think', correct: 26.87, abstention: 48.27, hallucination: 24.86, sortOrder: 100 },
+      { modelId: 'glm-51', label: 'Ƶ GLM 5.1', correct: 25.72, abstention: 27.16, hallucination: 47.12, sortOrder: 103 },
+      { modelId: 'glm-5', label: 'Ƶ GLM 5', correct: 22.68, abstention: 43.40, hallucination: 33.92, sortOrder: 105 },
+      { modelId: 'glm-5t-deep-think', label: 'Ƶ GLM 5 Turbo Deep Think', correct: 29.03, abstention: 26.85, hallucination: 44.12, sortOrder: 107 },
+      { modelId: 'glm-5v-turbo-deep-think', label: 'Ƶ GLM 5V Turbo Deep Think', correct: 29.13, abstention: 22.75, hallucination: 48.12, sortOrder: 109 },
+      { modelId: 'grok-43-expert', label: 'Ø Grok 4.3 Expert', correct: 34.63, abstention: 49.05, hallucination: 16.32, sortOrder: 109.5 },
+      { modelId: 'grok-43-fast', label: 'Ø Grok 4.3 Fast', correct: 24.17, abstention: 19.37, hallucination: 56.46, sortOrder: 109.6 },
+      { modelId: 'minimax-m27', label: '≋ Minimax M2.7 Max', correct: 26.12, abstention: 48.45, hallucination: 25.43, sortOrder: 117 },
+      { modelId: 'mimo-v25-pro', label: '⋔ Mimo V2.5 Pro', correct: 22.60, abstention: 58.40, hallucination: 19.00, sortOrder: 118 },
+      { modelId: 'mimo-v25', label: '⋔ Mimo V2.5', correct: 17.27, abstention: 56.13, hallucination: 26.60, sortOrder: 118.5 },
+      { modelId: 'qwen-36-plus-think', label: '▽ Qwen 3.6 Plus Think', correct: 26.23, abstention: 50.19, hallucination: 23.58, sortOrder: 125 },
+      { modelId: 'kimi-k26-thinking', label: 'Ḱ Kimi K2.6 Thinking', correct: 32.80, abstention: 40.82, hallucination: 26.38, sortOrder: 127 },
+      { modelId: 'qwen-35-omni-plus', label: '▽ Qwen 3.5 Omni Plus', correct: 17.42, abstention: 52.87, hallucination: 29.71, sortOrder: 126 },
+      { modelId: 'kimi-k26-instant', label: 'Ḱ Kimi K2.6 Instant', correct: 23.07, abstention: 43.90, hallucination: 33.03, sortOrder: 128 }
     ];
 
     // Current sort mode for omniscience: 'brand', 'hallucination', 'correct'
@@ -6551,7 +6551,7 @@
     style="text-align: center; padding: 2rem 1rem; margin-top: 3rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.8rem;">
     Made by <strong> u/Pasto_Shouwa</strong>
     <br>
-    <em>Last updated on <strong>09/05/2026</strong> (dd/mm/yyyy)</em>
+    <em>Last updated on <strong>13/05/2026</strong> (dd/mm/yyyy)</em>
   </footer>
 </body>
 
