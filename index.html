@@ -2020,7 +2020,7 @@
               <td>Unknown<span class="annotation" data-note="gpt-free-thinking"></span>
                 <span class="detail">[GPT 5 Thinking Mini]</span>
               </td>
-              <td class="rating-great">3+9<span class="detail">[Gemini 3.1 Pro + Gemini 3 Flash Thinking]</span></td>
+              <td class="rating-great">3+9<span class="detail">[Gemini 3.1 Pro Extended + Gemini 3 Flash Extended]</span></td>
             </tr>
             <tr>
               <td>Non-reasoning model limit per day</td>
@@ -2079,7 +2079,7 @@
             <tr>
               <td>Deep research uses per month</td>
               <td>Unknown<span class="detail">[GPT 5.2 Thinking / GPT o3]</span></td>
-              <td class="rating-excellent">5<span class="detail">[Gemini 3 Flash Thinking]</span></td>
+              <td class="rating-excellent">5<span class="detail">[Gemini 3 Flash Extended]</span></td>
             </tr>
 
             <tr class="usa-ad-row">
@@ -2154,13 +2154,13 @@
               </td>
               <td class="rating-excellent">428<span class="detail">(3000/week)</span><span class="detail">[GPT 5.5
                   Thinking]</span></td>
-              <td>3+9<span class="detail">[Gemini 3.1 Pro + Gemini 3 Flash Thinking]</span></td>
+              <td>3+9<span class="detail">[Gemini 3.1 Pro Extended + Gemini 3 Flash Extended]</span></td>
               <td class="rating-great">30+90<span class="detail">(X every X hours)<span class="annotation"
-                    data-note="gemini-hourly-limits"></span></span><span class="detail">[Gemini 3.1 Pro +
-                  Gemini 3 Flash Thinking]</span></td>
+                    data-note="gemini-hourly-limits"></span></span><span class="detail">[Gemini 3.1 Pro Extended +
+                  Gemini 3 Flash Extended]</span></td>
               <td class="rating-great">100+300<span class="detail">(X every X hours)<span class="annotation"
-                    data-note="gemini-hourly-limits"></span></span><span class="detail">[Gemini 3.1 Pro
-                  + Gemini 3 Flash Thinking]</span>
+                    data-note="gemini-hourly-limits"></span></span><span class="detail">[Gemini 3.1 Pro Extended
+                  + Gemini 3 Flash Extended]</span>
               </td>
             </tr>
             <tr>
@@ -2258,7 +2258,7 @@
             <tr>
               <td>Deep research uses per month</td>
               <td colspan="3">Unknown<span class="detail">[GPT 5.2 Thinking / GPT o3]</span></td>
-              <td>5<span class="detail">[Gemini 3 Flash Thinking]</span></td>
+              <td>5<span class="detail">[Gemini 3 Flash Extended]</span></td>
               <td class="rating-great">360<span class="detail">(12/day)</span><span class="detail">[Gemini 3.1
                   Pro]</span></td>
               <td class="rating-excellent">600<span class="detail">(20/day)</span><span class="detail">[Gemini 3.1
@@ -2358,7 +2358,7 @@
               <td class="rating-great">10+500+1500<span class="detail">(X every X hours)<span class="annotation"
                     data-note="gemini-hourly-limits"></span></span><span class="detail">[Gemini 3.1
                   Deep
-                  Think + Gemini 3.1 Pro + Gemini 3 Flash Thinking]</span></td>
+                  Think + Gemini 3.1 Pro Extended + Gemini 3 Flash Extended]</span></td>
             </tr>
             <tr>
               <td>Non-reasoning model limit per day</td>
@@ -2637,12 +2637,17 @@
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot" data-model="gemini-31-pro" onclick="toggleIndividualModel('gemini-31-pro')">
                 <span class="model-dot-indicator dot-gemini"></span>
-                <span class="model-dot-label">Gemini 3.1 Pro</span>
+                <span class="model-dot-label">Gemini 3.1 Pro Extended</span>
               </div>
               <div class="model-dot" data-model="gemini-flash-thinking"
                 onclick="toggleIndividualModel('gemini-flash-thinking')">
                 <span class="model-dot-indicator dot-gemini"></span>
-                <span class="model-dot-label">Gemini 3 Flash Thinking</span>
+                <span class="model-dot-label">Gemini 3 Flash Extended</span>
+              </div>
+              <div class="model-dot" data-model="gemini-31-flash-lite-extended"
+                onclick="toggleIndividualModel('gemini-31-flash-lite-extended')">
+                <span class="model-dot-indicator dot-gemini"></span>
+                <span class="model-dot-label">Gemini 3.1 Flash Lite Extended</span>
               </div>
             </div>
 
@@ -3399,7 +3404,7 @@
             <li>• For "<strong>GPT 5.5 Instant</strong>", "<em>gpt-5.5</em>" was used in the graph.
             </li>
             <li>• All the other models are presented with their respective highest settings.
-            <li>• I have not been able to find consistent graphs for the following models: GLM 5 Turbo,
+            <li>• I have not been able to find consistent graphs for the following models: Gemini 3.1 Pro, Gemini 3.1 Flash Lite, GLM 5 Turbo,
               GLM 5V Turbo, Qwen 3.6 Plus Fast and Minimax M2.7 Air. I will add them immediately if I find some.
             </li>
             <li>• GPT 5.5 Thinking Heavy is available for Plus and Pro ChatGPT users through
@@ -3658,6 +3663,7 @@
       'gpt-55-instant': true,
       'gemini-31-pro': true,
       'gemini-flash-thinking': true,
+      'gemini-31-flash-lite-extended': true,
       'gemini-flash': true,
       'claude-haiku': false,   // Starts hidden by default
       'claude-47-opus': false,    // Starts hidden by default
@@ -3695,6 +3701,7 @@
       'gpt-55-instant': false,
       'gemini-31-pro': false,
       'gemini-flash-thinking': false,
+      'gemini-31-flash-lite-extended': false,
       'gemini-flash': false,
       'claude-haiku': true,    // Starts explicitly disabled
       'claude-47-opus': true,     // Starts explicitly disabled
@@ -3724,7 +3731,7 @@
     // Model groups for group toggles
     const modelGroups = {
       'claude': ['claude-haiku', 'claude-47-opus', 'claude-47-opus-nr', 'claude-46-opus', 'claude-46-opus-nr', 'claude-46-sonnet', 'claude-46-sonnet-nr', 'claude-haiku-nr'],
-      'reasoning': ['gpt-55-thinking-xhigh', 'gpt-55-thinking', 'gpt-55-thinking-standard', 'gpt-thinking-mini', 'gemini-31-pro', 'gemini-flash-thinking', 'claude-haiku', 'claude-47-opus', 'claude-46-opus', 'claude-46-sonnet', 'glm-51-deep-think', 'glm-deep-think', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-43-expert', 'minimax-m27', 'mimo-v25-pro', 'mimo-v25', 'qwen-36-plus-think', 'kimi-k26-thinking'],
+      'reasoning': ['gpt-55-thinking-xhigh', 'gpt-55-thinking', 'gpt-55-thinking-standard', 'gpt-thinking-mini', 'gemini-31-pro', 'gemini-flash-thinking', 'gemini-31-flash-lite-extended', 'claude-haiku', 'claude-47-opus', 'claude-46-opus', 'claude-46-sonnet', 'glm-51-deep-think', 'glm-deep-think', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-43-expert', 'minimax-m27', 'mimo-v25-pro', 'mimo-v25', 'qwen-36-plus-think', 'kimi-k26-thinking'],
       'instant': ['gpt-55-instant', 'gemini-flash', 'claude-47-opus-nr', 'claude-46-opus-nr', 'claude-46-sonnet-nr', 'claude-haiku-nr', 'grok-43-fast', 'glm-51', 'glm-5', 'qwen-35-omni-plus', 'kimi-k26-instant'],
       'chatgpt-pro': [],
       'other': ['glm-51-deep-think', 'grok-43-fast', 'glm-51', 'glm-deep-think', 'glm-5', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-43-expert', 'minimax-m27', 'mimo-v25-pro', 'mimo-v25', 'qwen-36-plus-think', 'kimi-k26-thinking', 'qwen-35-omni-plus', 'kimi-k26-instant'],
@@ -3741,6 +3748,7 @@
       'gpt-55-instant': ['instant'],                     // Needs Non-reasoning
       'gemini-31-pro': ['reasoning'],                   // Only needs Reasoning
       'gemini-flash-thinking': ['reasoning'],          // Only needs Reasoning
+      'gemini-31-flash-lite-extended': ['reasoning'],  // Only needs Reasoning
       'gemini-flash': ['instant'],                     // Only needs Non-reasoning
       'claude-haiku': ['claude', 'reasoning'],         // Needs both Claude AND Reasoning to be on
       'claude-47-opus': ['claude', 'reasoning'],       // Needs both Claude AND Reasoning to be on
@@ -4052,7 +4060,7 @@
     // ============================================================================
     // Each model has a sortOrder value. Lower numbers appear first.
     // Use gaps of 10 to allow inserting new models between existing ones.
-    // Example: To add a model between GPT Thinking Mini (25) and Gemini 3.1 Pro (35), use 27.
+    // Example: To add a model between GPT Thinking Mini (25) and Gemini 3.1 Pro Extended (35), use 27.
     //
     // Current order:
     //   18: ⌘ GPT 5.5 Thinking Heavy (reasoning toggle)
@@ -4060,8 +4068,9 @@
     //   22: ⌘ GPT 5.5 Thinking Standard (reasoning toggle)
     //   25: ⌘ GPT 5 Thinking Mini
     //   27: ⌘ GPT 5.5 Instant (instant toggle)
-    //   35: ✦ Gemini 3.1 Pro
-    //   50: ✦ Gemini 3 Flash Thinking
+    //   35: ✦ Gemini 3.1 Pro Extended
+    //   50: ✦ Gemini 3 Flash Extended
+    //   55: ✦ Gemini 3.1 Flash Lite Extended
     //   60: ✦ Gemini 3 Flash (instant toggle)
     //   65: ❋ Claude 4.6 Opus Adaptive (claude toggle)
     //   67: ❋ Claude 4.6 Sonnet Adaptive (claude toggle)
@@ -4075,8 +4084,9 @@
       { modelId: 'gpt-55-thinking-standard', label: '⌘ GPT 5.5 Thinking Standard', correct: 54.08, abstention: 6.45, hallucination: 39.47, sortOrder: 22 },
       { modelId: 'gpt-thinking-mini', label: '⌘ GPT 5 Thinking Mini', correct: 22.20, abstention: 44.81, hallucination: 32.99, sortOrder: 25 },
       { modelId: 'gpt-55-instant', label: '⌘ GPT 5.5 Instant', correct: 45.07, abstention: 4.82, hallucination: 50.11, sortOrder: 27 },
-      { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro', correct: 55.25, abstention: 22.43, hallucination: 22.32, sortOrder: 35 },
-      { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', correct: 54.00, abstention: 3.56, hallucination: 42.43, sortOrder: 50 },
+      { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro Extended', correct: 55.25, abstention: 22.43, hallucination: 22.32, sortOrder: 35 },
+      { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Extended', correct: 54.00, abstention: 3.56, hallucination: 42.43, sortOrder: 50 },
+      { modelId: 'gemini-31-flash-lite-extended', label: '✦ Gemini 3.1 Flash Lite Extended', correct: 36.40, abstention: 11.68, hallucination: 51.92, sortOrder: 55 },
       { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', correct: 45.52, abstention: 5.35, hallucination: 49.13, sortOrder: 60 },
       { modelId: 'claude-47-opus', label: '❋ Claude 4.7 Opus Adaptive', correct: 45.78, abstention: 34.60, hallucination: 19.62, sortOrder: 64 },
       { modelId: 'claude-47-opus-nr', label: '❋ Claude 4.7 Opus', correct: 43.53, abstention: 27.15, hallucination: 29.32, sortOrder: 65 },
@@ -4545,7 +4555,7 @@
       },
       {
         modelId: 'gemini-31-pro',
-        label: 'Gemini 3.1 Pro',
+        label: 'Gemini 3.1 Pro Extended',
         data: [100, 98.8, 94.2, 74.9, 57.6, 47.4, 25.9],
         borderColor: 'rgba(243, 77, 101, 0.95)',
         backgroundColor: 'rgba(243, 77, 101, 0.7)',
@@ -4560,7 +4570,7 @@
 
       {
         modelId: 'gemini-flash-thinking',
-        label: 'Gemini 3 Flash Thinking',
+        label: 'Gemini 3 Flash Extended',
         data: [97.6, 92.6, 75.2, 59.7, 34.8, 44.9, 20.7],
         borderColor: 'rgba(243, 77, 101, 0.65)',
         backgroundColor: 'rgba(243, 77, 101, 0.5)',
@@ -4570,6 +4580,19 @@
         pointHoverRadius: 6,
         pointBackgroundColor: 'rgba(243, 77, 101, 0.65)',
         sortOrder: 50
+      },
+      {
+        modelId: 'gemini-31-flash-lite-extended',
+        label: 'Gemini 3.1 Flash Lite Extended',
+        data: [98.8, 84.2, 65.9, 39.0, 28.1, 22.5, 12.4],
+        borderColor: 'rgba(243, 77, 101, 0.5)',
+        backgroundColor: 'rgba(243, 77, 101, 0.35)',
+        borderWidth: 2,
+        tension: 0.3,
+        pointRadius: 5,
+        pointHoverRadius: 6,
+        pointBackgroundColor: 'rgba(243, 77, 101, 0.5)',
+        sortOrder: 55
       },
       {
         modelId: 'gemini-flash',
@@ -4924,8 +4947,9 @@
       { modelId: 'gpt-55-thinking-standard', label: '⌘ GPT 5.5 Thinking Standard', score: 72, sortOrder: 22 },
       { modelId: 'gpt-thinking-mini', label: '⌘ GPT 5 Thinking Mini', score: 66, sortOrder: 25 },
       { modelId: 'gpt-55-instant', label: '⌘ GPT 5.5 Instant', score: 56.3, sortOrder: 27 },
-      { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro', score: 72.7, sortOrder: 35 },
-      { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', score: 66.3, sortOrder: 50 },
+      { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro Extended', score: 72.7, sortOrder: 35 },
+      { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Extended', score: 66.3, sortOrder: 50 },
+      { modelId: 'gemini-31-flash-lite-extended', label: '✦ Gemini 3.1 Flash Lite Extended', score: 65.3, sortOrder: 55 },
       { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', score: 48.0, sortOrder: 60 },
       { modelId: 'claude-47-opus', label: '❋ Claude 4.7 Opus Adaptive', score: 70.3, sortOrder: 64 },
       { modelId: 'claude-47-opus-nr', label: '❋ Claude 4.7 Opus', score: 67, sortOrder: 65 },
@@ -5044,8 +5068,9 @@
       { modelId: 'gpt-55-thinking-standard', label: '⌘ GPT 5.5 Thinking Standard', score: 79, sortOrder: 22 },
       { modelId: 'gpt-thinking-mini', label: '⌘ GPT 5 Thinking Mini', score: 69, sortOrder: 25 },
       { modelId: 'gpt-55-instant', label: '⌘ GPT 5.5 Instant', score: 71, sortOrder: 27 },
-      { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro', score: 82, sortOrder: 35 },
-      { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', score: 80, sortOrder: 50 },
+      { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro Extended', score: 82, sortOrder: 35 },
+      { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Extended', score: 80, sortOrder: 50 },
+      { modelId: 'gemini-31-flash-lite-extended', label: '✦ Gemini 3.1 Flash Lite Extended', score: 76, sortOrder: 55 },
       { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', score: 79, sortOrder: 60 },
       { modelId: 'claude-47-opus', label: '❋ Claude 4.7 Opus Adaptive', score: 79, sortOrder: 64 },
       { modelId: 'claude-47-opus-nr', label: '❋ Claude 4.7 Opus', score: 76, sortOrder: 65 },
@@ -5164,8 +5189,9 @@
       { modelId: 'gpt-55-thinking-standard', label: '⌘ GPT 5.5 Thinking Standard', score: 52.3, sortOrder: 22 },
       { modelId: 'gpt-thinking-mini', label: '⌘ GPT 5 Thinking Mini', score: 28.8, sortOrder: 25 },
       { modelId: 'gpt-55-instant', label: '⌘ GPT 5.5 Instant', score: 49.2, sortOrder: 27 },
-      { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro', score: 53.8, sortOrder: 35 },
-      { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', score: 38.6, sortOrder: 50 },
+      { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro Extended', score: 53.8, sortOrder: 35 },
+      { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Extended', score: 38.6, sortOrder: 50 },
+      { modelId: 'gemini-31-flash-lite-extended', label: '✦ Gemini 3.1 Flash Lite Extended', score: 24.2, sortOrder: 55 },
       { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', score: 31.8, sortOrder: 60 },
       { modelId: 'claude-47-opus', label: '❋ Claude 4.7 Opus Adaptive', score: 51.5, sortOrder: 64 },
       { modelId: 'claude-47-opus-nr', label: '❋ Claude 4.7 Opus', score: 54.5, sortOrder: 65 },
@@ -5284,8 +5310,9 @@
       { modelId: 'gpt-55-thinking-standard', label: '⌘ GPT 5.5 Thinking Standard', score: 83.9, sortOrder: 22 },
       { modelId: 'gpt-thinking-mini', label: '⌘ GPT 5 Thinking Mini', score: 71.1, sortOrder: 25 },
       { modelId: 'gpt-55-instant', label: '⌘ GPT 5.5 Instant', score: 69.3, sortOrder: 27 },
-      { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro', score: 95.6, sortOrder: 35 },
-      { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', score: 80.4, sortOrder: 50 },
+      { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro Extended', score: 95.6, sortOrder: 35 },
+      { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Extended', score: 80.4, sortOrder: 50 },
+      { modelId: 'gemini-31-flash-lite-extended', label: '✦ Gemini 3.1 Flash Lite Extended', score: 31.3, sortOrder: 55 },
       { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', score: 43.3, sortOrder: 60 },
       { modelId: 'claude-47-opus', label: '❋ Claude 4.7 Opus Adaptive', score: 88.6, sortOrder: 64 },
       { modelId: 'claude-47-opus-nr', label: '❋ Claude 4.7 Opus', score: 74, sortOrder: 65 },
@@ -5484,7 +5511,7 @@
       },
       // Gemini
       {
-        modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro', sortOrder: 35,
+        modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro Extended', sortOrder: 35,
         color: 'rgba(238, 73, 82, 1)',
         segments: [
           { value: 32000, plans: 'Free' },
@@ -5493,7 +5520,16 @@
         ]
       },
       {
-        modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Thinking', sortOrder: 50,
+        modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Extended', sortOrder: 50,
+        color: 'rgba(238, 73, 82, 1)',
+        segments: [
+          { value: 32000, plans: 'Free' },
+          { value: 128000, plans: 'Plus' },
+          { value: 1000000, plans: 'Pro, Ultra' }
+        ]
+      },
+      {
+        modelId: 'gemini-31-flash-lite-extended', label: '✦ Gemini 3.1 Flash Lite Extended', sortOrder: 55,
         color: 'rgba(238, 73, 82, 1)',
         segments: [
           { value: 32000, plans: 'Free' },
@@ -6551,7 +6587,7 @@
     style="text-align: center; padding: 2rem 1rem; margin-top: 3rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.8rem;">
     Made by <strong> u/Pasto_Shouwa</strong>
     <br>
-    <em>Last updated on <strong>13/05/2026</strong> (dd/mm/yyyy)</em>
+    <em>Last updated on <strong>18/05/2026</strong> (dd/mm/yyyy)</em>
   </footer>
 </body>
 
