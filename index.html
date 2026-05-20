@@ -1192,7 +1192,7 @@
 
     #table-high-tier th:not(:first-child),
     #table-high-tier td:not(:first-child) {
-      width: calc((100% - 273px) / 2);
+      width: calc((100% - 273px) / 3);
     }
 
     /* Subjective Recommendations Toggle */
@@ -1797,9 +1797,12 @@
         min-width: 980px;
       }
 
-      #table-free-tier table,
-      #table-high-tier table {
+      #table-free-tier table {
         min-width: 680px;
+      }
+
+      #table-high-tier table {
+        min-width: 820px;
       }
 
       #table-high-tier table {
@@ -2079,16 +2082,20 @@
           <tbody>
             <tr>
               <td>Reasoning model limit per day</td>
-              <td>Unknown<span class="annotation" data-note="gpt-free-thinking"></span><span class="detail">(Unknown)</span>
+              <td>Unknown<span class="annotation" data-note="gpt-free-thinking"></span><span
+                  class="detail">(Unknown)</span>
                 <span class="detail">[GPT 5 Thinking Mini]</span>
               </td>
-              <td>Unknown {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span class="detail">(X every 5h)</span><span class="detail">[All models]</span></td>
+              <td>Unknown {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span class="detail">(X
+                  every 5h)</span><span class="detail">[All models]</span></td>
             </tr>
             <tr>
               <td>Non-reasoning model limit per day</td>
-              <td class="rating-great">40<span class="detail">(10 every 5h)</span><span class="detail">[GPT 5.5 Instant]</span></td>
+              <td class="rating-great">40<span class="detail">(10 every 5h)</span><span class="detail">[GPT 5.5
+                  Instant]</span></td>
               </td>
-              <td>Unknown {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span class="detail">(X every 5h)</span><span class="detail">[All models]</span></td>
+              <td>Unknown {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span class="detail">(X
+                  every 5h)</span><span class="detail">[All models]</span></td>
             </tr>
             <tr>
               <td>Context window limit</td>
@@ -2111,7 +2118,8 @@
               <td>Image generation per day</td>
               <td>Unknown<span class="annotation" data-note="gpt-image-unknown"></span><span class="detail">[GPT Image
                   2]</span></td>
-              <td>Unknown {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span class="detail">[Nano Banana 2 + Nano Banana 2 Thinking]</span></td>
+              <td>Unknown {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
+                  class="detail">[Nano Banana 2 + Nano Banana 2 Thinking]</span></td>
             </tr>
             <tr>
               <td>Image resolution (1:1)</td>
@@ -2121,7 +2129,8 @@
             <tr>
               <td>Music generation per day</td>
               <td>No</td>
-              <td>Unknown {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span class="detail">(30s per song)</span><span class="detail">[Lyria
+              <td>Unknown {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
+                  class="detail">(30s per song)</span><span class="detail">[Lyria
                   3]</span></td>
             </tr>
             <tr>
@@ -2142,7 +2151,8 @@
             <tr>
               <td>Deep research uses per month</td>
               <td>Unknown<span class="detail">[GPT 5.5 Thinking / GPT o3]</span></td>
-              <td>Unknown {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span class="detail">[Gemini 3.5 Flash Extended]</span></td>
+              <td>Unknown {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
+                  class="detail">[Gemini 3.5 Flash Extended]</span></td>
             </tr>
 
             <tr class="usa-ad-row">
@@ -2218,9 +2228,13 @@
               <td class="rating-excellent">428<span class="detail">(3000/week)</span><span class="detail">[GPT 5.5
                   Thinking]</span></td>
               </td>
-              <td>Unknown {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span class="detail">(X every 5h)</span><span class="detail">[All models]</span></td>
-              <td>Unknown x2 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span class="detail">(X every 5h)</span><span class="detail">[All models]</span></td>
-              <td>Unknown x4 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span class="detail">(X every 5h)</span><span class="detail">[All models]</span></td>
+              <td>Unknown {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span class="detail">(X
+                  every 5h)</span><span class="detail">[All models]</span></td>
+              <td>Unknown x2 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
+                  class="detail">(X every 5h)</span><span class="detail">[All models]</span></td>
+              <td>Unknown x4 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
+                  class="annotation" data-note="gemini-pro-x2-value"></span><span class="detail">(X every
+                  5h)</span><span class="detail">[All models]</span></td>
             </tr>
             <tr>
               <td>Non-reasoning model limit per day</td>
@@ -2228,9 +2242,14 @@
               <td colspan="2" class="rating-great">1280<span class="detail">(160 every 3h)</span><span
                   class="detail">[GPT 5.5 Instant]</span></td>
               </td>
-              <td>Unknown {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span class="detail">(X every 5h)</span><span class="detail">[All models]</span></td>
-              <td>Unknown x2 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span class="detail">(X every 5h)</span><span class="detail">[All models]</span></td>
-              <td>Unknown x4 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span class="detail">(X every 5h)</span><span class="detail">[All models]</span></td></tr>
+              <td>Unknown {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span class="detail">(X
+                  every 5h)</span><span class="detail">[All models]</span></td>
+              <td>Unknown x2 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
+                  class="detail">(X every 5h)</span><span class="detail">[All models]</span></td>
+              <td>Unknown x4 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
+                  class="annotation" data-note="gemini-pro-x2-value"></span><span class="detail">(X every
+                  5h)</span><span class="detail">[All models]</span></td>
+            </tr>
             <tr>
               <td>Context window limit</td>
               <td>27k / 256k<span class="detail">(Non-reasoning / Reasoning)</span></td>
@@ -2261,9 +2280,13 @@
               <td colspan="3">Unknown<span class="annotation" data-note="gpt-image-unknown"></span><span
                   class="detail">[GPT Image 2 / GPT Image 2 Thinking]</span></td>
               </td>
-              <td>Unknown {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span class="detail">(X every 5h)</span><span class="detail">[NB Pro + NB 2 + NB 2 Thinking]</span></td>
-              <td>Unknown x2 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span class="detail">(X every 5h)</span><span class="detail">[NB Pro + NB 2 + NB 2 Thinking]</span></td>
-              <td>Unknown x4 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span class="detail">(X every 5h)</span><span class="detail">[NB Pro + NB 2 + NB 2 Thinking]</span></td>
+              <td>Unknown {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span class="detail">(X
+                  every 5h)</span><span class="detail">[NB Pro + NB 2 + NB 2 Thinking]</span></td>
+              <td>Unknown x2 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
+                  class="detail">(X every 5h)</span><span class="detail">[NB Pro + NB 2 + NB 2 Thinking]</span></td>
+              <td>Unknown x4 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
+                  class="annotation" data-note="gemini-pro-x2-value"></span><span class="detail">(X every
+                  5h)</span><span class="detail">[NB Pro + NB 2 + NB 2 Thinking]</span></td>
             </tr>
             <tr>
               <td>Image resolution (1:1)</td>
@@ -2275,25 +2298,31 @@
               <td colspan="2">No</td>
               <td>Unknown<span class="detail">[Sora 2]</span></td>
               <td>No</td>
-              <td>Unknown x2 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span class="detail">(X every 5h)</span><span class="detail">[Veo Omni]</span></td>
-              <td>Unknown x4 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span class="detail">(X every 5h)</span><span class="detail">[Veo Omni]</span></td>
+              <td>Unknown x2 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
+                  class="detail">(X every 5h)</span><span class="detail">[Veo Omni]</span></td>
+              <td>Unknown x4 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
+                  class="annotation" data-note="gemini-pro-x2-value"></span><span class="detail">(X every
+                  5h)</span><span class="detail">[Veo Omni]</span></td>
             <tr>
               <td>Video resolution and length</td>
               <td colspan="2">No</td>
               <td class="rating-excellent">480p, 720p<span class="detail">(up to 10s)</span><span class="detail">[Sora
                   2]</span></td>
               <td>No</td>
-              <td colspan="2" class="rating-excellent">720p<span class="detail">(up to 10s)</span><span class="detail">[Veo
+              <td colspan="2" class="rating-excellent">720p<span class="detail">(up to 10s)</span><span
+                  class="detail">[Veo
                   3.1 Lite]</span></td>
             </tr>
             <tr>
               <td>Music generation per day</td>
               <td colspan="3">No</td>
-              <td>Unknown {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span class="detail">(30s per song)</span><span class="detail">[Lyria 3]</span></td>
-              <td>Unknown x2 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span class="detail">(180s per song)</span><span
-                  class="detail">[Lyria 3 Pro]</span></td>
-              <td>Unknown x4 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span class="detail">(180s per song)</span><span
-                  class="detail">[Lyria 3 Pro]</span></td>
+              <td>Unknown {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
+                  class="detail">(30s per song)</span><span class="detail">[Lyria 3]</span></td>
+              <td>Unknown x2 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
+                  class="detail">(180s per song)</span><span class="detail">[Lyria 3 Pro]</span></td>
+              <td>Unknown x4 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
+                  class="annotation" data-note="gemini-pro-x2-value"></span><span class="detail">(180s per
+                  song)</span><span class="detail">[Lyria 3 Pro]</span></td>
             </tr>
             <tr>
               <td>Custom model creation</td>
@@ -2315,9 +2344,13 @@
             <tr>
               <td>Deep research uses per month</td>
               <td colspan="3">Unknown<span class="detail">[GPT 5.5 Thinking / GPT o3]</span></td>
-              <td>Unknown {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span class="detail">[Gemini 3.5 Flash Extended]</span></td>
-              <td>Unknown x2 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span class="detail">[Gemini 3.1 Pro]</span></td>
-              <td>Unknown x4 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span class="detail">[Gemini 3.1 Pro]</span></td>
+              <td>Unknown {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
+                  class="detail">[Gemini 3.5 Flash Extended]</span></td>
+              <td>Unknown x2 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
+                  class="detail">[Gemini 3.1 Pro]</span></td>
+              <td>Unknown x4 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
+                  class="annotation" data-note="gemini-pro-x2-value"></span><span class="detail">[Gemini 3.1 Pro]</span>
+              </td>
             </tr>
             <tr>
               <td>Agent mode uses per month</td>
@@ -2393,11 +2426,12 @@
             <tr>
               <th rowspan="2" style="border-bottom: 2px solid var(--border-color);">Feature</th>
               <th class="th-chatgpt">ChatGPT</th>
-              <th class="th-gemini">Gemini</th>
+              <th colspan="2" class="th-gemini">Gemini</th>
             </tr>
             <tr>
               <th class="th-chatgpt" style="text-align: center;">Pro x5 / x20</th>
-              <th class="th-gemini" style="text-align: center;">Ultra</th>
+              <th class="th-gemini" style="text-align: center;">Ultra x5</th>
+              <th class="th-gemini" style="text-align: center;">Ultra x20</th>
             </tr>
           </thead>
           <tbody>
@@ -2407,12 +2441,18 @@
                 Unlimited<span class="detail">[GPT 5.5 Pro + GPT 5.5
                   Thinking]</span>
               </td>
-              <td>Unknown x80 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span class="detail">(X every 5h)</span><span class="detail">[All models]</span></td>
+              <td>Unknown x20 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
+                  class="detail">(X every 5h)</span><span class="detail">[All models]</span></td>
+              <td>Unknown x80 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
+                  class="detail">(X every 5h)</span><span class="detail">[All models]</span></td>
             </tr>
             <tr>
               <td>Non-reasoning model limit per day</td>
               <td class="rating-excellent">Unlimited<span class="detail">[GPT 5.5 Instant]</span></td>
-              <td>Unknown x80 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span class="detail">(X every 5h)</span><span class="detail">[All models]</span></td>
+              <td>Unknown x20 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
+                  class="detail">(X every 5h)</span><span class="detail">[All models]</span></td>
+              <td>Unknown x80 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
+                  class="detail">(X every 5h)</span><span class="detail">[All models]</span></td>
             </tr>
             <tr>
               <td>Context window limit</td>
@@ -2420,10 +2460,14 @@
               <td class="rating-excellent">192k / 1M<span class="annotation" data-note="1m-tokens"></span><span
                   class="detail">(Gemini 3.1 Deep Think / Other models)</span>
               </td>
+              <td class="rating-excellent">192k / 1M<span class="annotation" data-note="1m-tokens"></span><span
+                  class="detail">(Gemini 3.1 Deep Think / Other models)</span>
+              </td>
             </tr>
             <tr>
               <td>File uploads per day</td>
               <td class="rating-excellent">Unlimited</td>
+              <td>Unknown</td>
               <td>Unknown</td>
             </tr>
             <tr>
@@ -2434,102 +2478,122 @@
               <td class="rating-excellent">Memories<span class="annotation" data-note="gemini-memory"></span>, chats
                 history, ecosystem memory<span class="annotation" data-note="ecosystem-memory"></span>
               </td>
+              <td class="rating-excellent">Memories<span class="annotation" data-note="gemini-memory"></span>, chats
+                history, ecosystem memory<span class="annotation" data-note="ecosystem-memory"></span>
+              </td>
             </tr>
             <tr>
               <td>Image generation per day</td>
               <td>Unknown<span class="annotation" data-note="gpt-image-unknown"></span><span class="detail">[GPT Image 2
                   /
                   GPT Image 2 Thinking]</span></td>
-              <td>Unknown x80 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span class="detail">[Nano Banana Pro + Nano Banana 2 + Nano Banana 2 Thinking ]</span></td>
+              <td>Unknown x20 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
+                  class="detail">[Nano Banana Pro + Nano Banana 2 + Nano Banana 2 Thinking ]</span></td>
+              <td>Unknown x80 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
+                  class="detail">[Nano Banana Pro + Nano Banana 2 + Nano Banana 2 Thinking ]</span></td>
             </tr>
             <tr>
               <td>Image resolution (1:1)</td>
               <td>1254×1254 (1.2K)<span class="detail">[All image models]</span></td>
-              <td class="rating-excellent">2048×2048 (2K)<span class="detail">[All image models]</span></td>
+              <td colspan="2" class="rating-excellent">2048×2048 (2K)<span class="detail">[All image models]</span></td>
             </tr>
             <tr>
               <td>Video generation per day</td>
               <td>Unknown<span class="detail">[Sora 2]</span></td>
-              <td>Unknown x80 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span class="detail">[Veo Omni]</span></td>
+              <td>Unknown x20 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
+                  class="detail">[Veo Omni]</span></td>
+              <td>Unknown x80 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
+                  class="detail">[Veo Omni]</span></td>
             </tr>
             <tr>
               <td>Video resolution and length</td>
               <td class="rating-excellent">480p, 720p, 1080p<span class="detail">(up to 20s)</span><span
                   class="detail">[Sora
                   2]</span></td>
-              <td class="rating-great">720p<span class="detail">(up to 10s)</span><span class="detail">[Veo
+              <td colspan="2" class="rating-great">720p<span class="detail">(up to 10s)</span><span class="detail">[Veo
                   3.1]</span></td>
             </tr>
             <tr>
               <td>Music generation per day</td>
               <td>No</td>
-              <td>Unknown x80 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span class="detail">(180s per song)</span><span
-                  class="detail">[Lyria 3 Pro]</span></td>
+              <td>Unknown x20 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
+                  class="detail">(180s per song)</span><span class="detail">[Lyria 3 Pro]</span></td>
+              <td>Unknown x80 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
+                  class="detail">(180s per song)</span><span class="detail">[Lyria 3 Pro]</span></td>
             </tr>
             <tr>
               <td>Custom model creation</td>
               <td class="rating-excellent">Yes<span class="detail">[Custom GPTs]</span></td>
-              <td class="rating-excellent">Yes<span class="detail">[Gems]</span></td>
+              <td colspan="2" class="rating-excellent">Yes<span class="detail">[Gems]</span></td>
             </tr>
             <tr>
               <td>Folder organization</td>
               <td class="rating-excellent">Yes<span class="detail">[Projects]</span></td>
-              <td class="rating-excellent">Yes<span class="detail">[Notebooks]</span></td>
+              <td colspan="2" class="rating-excellent">Yes<span class="detail">[Notebooks]</span></td>
             </tr>
             <tr>
               <td>Maximum scheduled tasks</td>
               <td class="rating-excellent">10<br><span class="detail">[Tasks]</span></td>
-              <td class="rating-excellent">10<br><span class="detail">[Scheduled Actions]</span></td>
+              <td colspan="2" class="rating-excellent">10<br><span class="detail">[Scheduled Actions]</span></td>
             </tr>
             <tr>
               <td>Deep research uses per month</td>
               <td>Unknown<span class="detail">[GPT 5.5 Thinking / GPT o3]</span></td>
-              <td>Unknown x80 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span class="detail">[Gemini 3.1
+              <td>Unknown x20 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
+                  class="detail">[Gemini 3.1
+                  Pro]</span></td>
+              <td>Unknown x80 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
+                  class="detail">[Gemini 3.1
                   Pro]</span></td>
             </tr>
             <tr>
               <td>Agent mode uses per month</td>
               <td id="agent-chatgpt-pro" class="rating-great">400<span class="detail">[Agent Mode]</span></td>
-              <td id="agent-gemini-ultra" class="usa-restricted">
-                <span class="usa-main">Unknown {Shared}<span class="annotation" data-note="gemini-shared-uses"></span></span><span class="detail usa-exclusive-detail">[Gemini Spark]</span><span
-                  class="usa-alt">No</span>
+              <td colspan="2" class="usa-restricted">
+                <span class="usa-main">Unknown {Shared}<span class="annotation"
+                    data-note="gemini-shared-uses"></span></span><span class="detail usa-exclusive-detail">[Gemini
+                  Spark]</span><span class="usa-alt">No</span>
               </td>
             </tr>
 
             <tr class="usa-ad-row">
               <td>Advertisements</td>
               <td class="rating-excellent">No</td>
-              <td class="rating-excellent">No</td>
+              <td colspan="2" class="rating-excellent">No</td>
             </tr>
             <tr>
               <td>Video inputs</td>
               <td class="separator">Yes</td>
-              <td class="rating-excellent separator">20<span class="detail">(Up to 60 minutes per file)</span></td>
+              <td colspan="2" class="rating-excellent separator">20<span class="detail">(Up to 60 minutes per
+                  file)</span></td>
             </tr>
             <tr>
               <td>Audio inputs</td>
               <td class="separator">Yes</td>
-              <td class="rating-excellent separator">20<span class="detail">(Up to 180 minutes per file)</span></td>
+              <td colspan="2" class="rating-excellent separator">20<span class="detail">(Up to 180 minutes per
+                  file)</span></td>
             </tr>
             <tr>
               <td>Youtube summaries</td>
               <td class="separator">No</td>
-              <td class="rating-excellent">Yes</td>
+              <td colspan="2" class="rating-excellent">Yes</td>
             </tr>
             <tr>
               <td>Cloud storage included</td>
               <td class="separator">No</td>
+              <td class="rating-excellent">20TB</td>
               <td class="rating-excellent">30TB</td>
             </tr>
             <tr>
               <td>API credit included</td>
               <td>No</td>
+              <td class="rating-excellent">$40/month<span class="detail">(Unused credit expires monthly)</span></td>
               <td class="rating-excellent">$100/month<span class="detail">(Unused credit expires monthly)</span></td>
             </tr>
             <tr>
               <td>Plan sharing</td>
               <td>No</td>
-              <td class="rating-excellent">Up to 6 accounts</td>
+              <td colspan="2" class="rating-excellent">Up to 6 accounts</td>
             </tr>
             <tr>
               <td>Age estimation and verification method</td>
@@ -2538,7 +2602,7 @@
                   third-party
                   (Persona Identities)<span class="annotation" data-note="age-verification"></span></span>
               </td>
-              <td class="rating-great">Birth date based (prioritized), AI-based<span class="annotation"
+              <td colspan="2" class="rating-great">Birth date based (prioritized), AI-based<span class="annotation"
                   data-note="age-ai"></span><span class="detail">Verification with ID or
                   credit card, sent
                   directly to Google<span class="annotation" data-note="age-verification"></span></span>
@@ -2559,7 +2623,8 @@
               USA-exclusive
               features
             </div>
-            <div class="legend-item legend-unknown-item"><span class="legend-color legend-unknown"></span> Unknown value</div>
+            <div class="legend-item legend-unknown-item"><span class="legend-color legend-unknown"></span> Unknown value
+            </div>
           </div>
           <div class="toggle-container">
             <div class="usa-toggle">
@@ -3142,7 +3207,8 @@
               </li>
               <li>• Maximum context window of all <strong>Gemini</strong> models is
                 32k/128k/1M tokens (Free/Plus/Pro,Ultra).</li>
-              <li>• Maximum context window of <strong>Claude 4.6/4.7</strong> models is 200k/500k tokens (Free/Pro,Max x5,Max x20); other Claude models are 200k tokens.</li>
+              <li>• Maximum context window of <strong>Claude 4.6/4.7</strong> models is 200k/500k tokens (Free/Pro,Max
+                x5,Max x20); other Claude models are 200k tokens.</li>
               <li>• Maximum context window of all <strong>Grok</strong> models is 1M tokens.</li>
               <li>• Maximum context window of all <strong>GLM</strong> models is 200k tokens.</li>
               <li>• Maximum context window of <strong>Qwen Plus</strong> models is 256k tokens.
@@ -3221,7 +3287,8 @@
               </li>
               <li>• Maximum context window of all <strong>Gemini</strong> models is
                 32k/128k/1M tokens (Free/Plus/Pro,Ultra).</li>
-              <li>• Maximum context window of <strong>Claude 4.6/4.7</strong> models is 200k/500k tokens (Free/Pro,Max x5,Max x20); other Claude models are 200k tokens.</li>
+              <li>• Maximum context window of <strong>Claude 4.6/4.7</strong> models is 200k/500k tokens (Free/Pro,Max
+                x5,Max x20); other Claude models are 200k tokens.</li>
               <li>• Maximum context window of all <strong>Grok</strong> models is 1M tokens.</li>
               <li>• Maximum context window of all <strong>GLM</strong> models is 200k tokens.</li>
               <li>• Maximum context window of <strong>Qwen Plus</strong> models is 256k tokens.
@@ -3466,8 +3533,10 @@
             <li>• For "<strong>GPT 5.5 Instant</strong>", "<em>gpt-5.5</em>" was used in the graph.
             </li>
             <li>• All the other models are presented with their respective highest settings.
-            <li>• I have not been able to find consistent graphs for the following models: Gemini 3.1 Pro, Gemini 3.5 Flash, Gemini 3.1 Flash Lite,
-              GLM 5 Turbo, GLM 5V Turbo, Qwen 3.6 Plus Fast and Minimax M2.7 Air. I will add them immediately if I find some.
+            <li>• I have not been able to find consistent graphs for the following models: Gemini 3.1 Pro, Gemini 3.5
+              Flash, Gemini 3.1 Flash Lite,
+              GLM 5 Turbo, GLM 5V Turbo, Qwen 3.6 Plus Fast and Minimax M2.7 Air. I will add them immediately if I find
+              some.
             </li>
             <li>• GPT 5.5 Thinking Heavy is available for Plus and Pro ChatGPT users through
               the Codex app, with limits that reset weekly. It's also available on the web for Pro users.</li>
@@ -3545,6 +3614,7 @@
       'chatgpt-pulse': "ChatGPT can proactively research topics and present them as a briefing, unprompted, through ChatGPT Pulse.",
       'nano-banana-pro-uses': "Consumes one use of Nano Banana Pro and one use of Nano Banana 2.",
       'gemini-shared-uses': "Use limits for these tasks are linked together and reset every 5 hours. Multipliers mean that plan has that many uses compared with the Free plan.",
+      'gemini-pro-x2-value': "There is another plan called Pro x2 that has x8 uses compared to the Free plan, but costs x2.5. It is more recommendable to create another account in the same family group and use two accounts instead of paying for this plan.",
       'gemini-hourly-limits': "While limits of the reasoning models of Gemini are supposed to be limited per day, when demand is too high, the limits may work per 1 or 2 hours. This should end up giving the user the advertised limits anyways, but limiting the speed at which the user can work.",
       'gpt-pro-limits': "GPT Pro x5, has a limit of around 50 uses per week of GPT 5.5 Pro. GPT Pro x20 is supossed to still have unlimited uses of it. This and the higher limits on Codex on the second plan seem to be the only difference between the two.",
     };
