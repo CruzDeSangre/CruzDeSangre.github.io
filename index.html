@@ -535,6 +535,22 @@
       border-left: 3px solid rgba(139, 92, 246, 1);
     }
 
+    .section-title.section-title-accuracy {
+      border-left-color: rgba(16, 163, 127, 1);
+    }
+
+    .section-title.section-title-long {
+      border-left-color: rgba(139, 92, 246, 1);
+    }
+
+    .section-title.section-title-multimodal {
+      border-left-color: rgba(239, 68, 68, 1);
+    }
+
+    .section-title.section-title-agentic {
+      border-left-color: rgba(199, 91, 245, 1);
+    }
+
     .section-title.section-title-blue {
       border-left-color: rgb(59, 130, 246);
     }
@@ -701,6 +717,16 @@
       color: var(--text-muted);
       margin-top: 1rem;
       font-style: italic;
+    }
+
+    .empty-benchmark-state {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      text-align: center;
     }
 
     /* Sort selector for benchmarks */
@@ -1018,8 +1044,8 @@
     .hide-bench-aalcr .bench-section-aalcr,
     .hide-bench-maxcontext .bench-section-maxcontext,
     .hide-bench-mmmu .bench-section-mmmu,
-    .hide-bench-terminal .bench-section-terminal,
-    .hide-bench-tau2 .bench-section-tau2 {
+    .hide-bench-gdpval .bench-section-gdpval,
+    .hide-bench-terminal .bench-section-terminal {
       opacity: 0;
       max-height: 0;
       margin: 0 !important;
@@ -1626,6 +1652,15 @@
       background: rgba(59, 130, 246, 0.8);
     }
 
+    .agentic-bench-group-toggle .toggle-switch.active {
+      background: rgba(199, 91, 245, 0.15);
+      border-color: rgba(199, 91, 245, 0.3);
+    }
+
+    .agentic-bench-group-toggle .toggle-switch.active::after {
+      background: rgba(199, 91, 245, 0.8);
+    }
+
     /* Benchmark Dots */
     .dot-acc {
       background: rgba(16, 163, 127, 0.9);
@@ -1637,6 +1672,10 @@
 
     .dot-multi {
       background: rgba(239, 68, 68, 0.9);
+    }
+
+    .dot-agentic {
+      background: rgba(199, 91, 245, 0.9);
     }
 
     /* Shape modifiers for model icons */
@@ -3055,6 +3094,24 @@
             </div>
           </div>
 
+          <!-- Agentic benchmarks -->
+          <div class="filter-group">
+            <div class="filter-group-header">
+              <span class="filter-group-name">Agentic benchmarks</span>
+              <div class="toggle-inline agentic-bench-group-toggle">
+                <div class="toggle-switch bench-group-toggle-agentic active"
+                  onclick="event.stopPropagation(); toggleBenchGroup('agentic')"></div>
+              </div>
+            </div>
+            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
+              <div class="model-dot bench-toggle-gdpval active" data-bench="gdpval"
+                onclick="toggleBenchSection('gdpval')">
+                <span class="model-dot-indicator dot-agentic"></span>
+                <span class="model-dot-label">GDPval-AA</span>
+              </div>
+            </div>
+          </div>
+
           <!-- Coding benchmarks -->
           <div class="filter-group">
             <div class="filter-group-header">
@@ -3070,10 +3127,6 @@
                 <span class="model-dot-indicator dot-coding"></span>
                 <span class="model-dot-label">Terminal-Bench Hard</span>
               </div>
-              <div class="model-dot bench-toggle-tau2 inactive" data-bench="tau2" onclick="toggleBenchSection('tau2')">
-                <span class="model-dot-indicator dot-coding"></span>
-                <span class="model-dot-label">τ²-Bench Telecom</span>
-              </div>
             </div>
           </div>
 
@@ -3083,7 +3136,7 @@
       <!-- AA-Omniscience -->
       <div id="bench-section-omniscience">
         <div class="section-title-wrapper">
-          <h2 class="section-title">Knowledge Accuracy — AA-Omniscience Benchmark</h2>
+          <h2 class="section-title section-title-accuracy">Knowledge Accuracy — AA-Omniscience Benchmark</h2>
           <div class="toggle-inline">
             <span class="toggle-label">Claude models</span>
             <div class="toggle-switch claude-toggle active" onclick="toggleClaudeModels()"></div>
@@ -3145,7 +3198,7 @@
       <!-- MRCR v2 -->
       <div id="bench-section-mrcr">
         <div class="section-title-wrapper" style="margin-top: 3rem;">
-          <h2 class="section-title">Long Context Accuracy — MRCR v2 8-Needle Benchmark</h2>
+          <h2 class="section-title section-title-long">Long Context Accuracy — MRCR v2 8-Needle Benchmark</h2>
           <div class="toggle-inline">
             <span class="toggle-label">Claude models</span>
             <div class="toggle-switch claude-toggle active" onclick="toggleClaudeModels()"></div>
@@ -3227,7 +3280,7 @@
       <!-- Long Context Reasoning - AA-LCR -->
       <div id="bench-section-aalcr">
         <div class="section-title-wrapper" style="margin-top: 3rem;">
-          <h2 class="section-title">Long Context Reasoning — AA-LCR</h2>
+          <h2 class="section-title section-title-long">Long Context Reasoning — AA-LCR</h2>
           <div class="toggle-inline">
             <span class="toggle-label">Claude models</span>
             <div class="toggle-switch claude-toggle active" onclick="toggleClaudeModels()"></div>
@@ -3307,7 +3360,7 @@
       <!-- Max Context Limit -->
       <div id="bench-section-maxcontext" style="margin-top: 3rem;">
         <div class="section-title-wrapper">
-          <h2 class="section-title">Max Context Limit</h2>
+          <h2 class="section-title section-title-long">Max Context Limit</h2>
           <div class="toggle-inline">
             <span class="toggle-label">Claude models</span>
             <div class="toggle-switch claude-toggle active" onclick="toggleClaudeModels()"></div>
@@ -3344,7 +3397,7 @@
       <!-- Visual Reasoning - MMMU-Pro -->
       <div id="bench-section-mmmu">
         <div class="section-title-wrapper" style="margin-top: 3rem;">
-          <h2 class="section-title">Visual Reasoning — MMMU-Pro</h2>
+          <h2 class="section-title section-title-multimodal">Visual Reasoning — MMMU-Pro</h2>
           <div class="toggle-inline">
             <span class="toggle-label">Claude models</span>
             <div class="toggle-switch claude-toggle active" onclick="toggleClaudeModels()"></div>
@@ -3422,6 +3475,49 @@
         </div>
       </div>
 
+      <!-- GDPval-AA -->
+      <div id="bench-section-gdpval">
+        <div class="section-title-wrapper" style="margin-top: 3rem;">
+          <h2 class="section-title section-title-agentic">Agentic Work — GDPval-AA</h2>
+          <div class="toggle-inline">
+            <span class="toggle-label">Claude models</span>
+            <div class="toggle-switch claude-toggle active" onclick="toggleClaudeModels()"></div>
+          </div>
+          <div class="toggle-inline reasoning-toggle">
+            <span class="toggle-label">Reasoning models</span>
+            <div class="toggle-switch reasoning-model-toggle active" onclick="toggleReasoningModels()"></div>
+          </div>
+          <div class="toggle-inline instant-toggle">
+            <span class="toggle-label">Non-reasoning models</span>
+            <div class="toggle-switch instant-model-toggle active" onclick="toggleInstantModels()"></div>
+          </div>
+          <div class="toggle-inline other-toggle">
+            <span class="toggle-label">Other recommended models</span>
+            <div class="toggle-switch other-models-toggle" onclick="toggleOtherModels()"></div>
+          </div>
+        </div>
+        <div class="chart-container">
+          <canvas id="gdpvalChart"></canvas>
+        </div>
+        <p class="chart-note">Shows performance producing outputs like documents, slides, diagrams, and spreadsheets,
+          mirroring actual work across multiple professional domains. Higher is better.</p>
+        <div class="sort-selector" id="gdpvalSortSelector">
+          <span class="sort-selector-label"><strong>Sort by</strong></span>
+          <div class="sort-selector-buttons">
+            <button class="sort-btn active" onclick="setGdpvalSort('brand')" id="gdpvalSortBrand">✦ Brand</button>
+            <button class="sort-btn" onclick="setGdpvalSort('highest')" id="gdpvalSortHighest">↑ Highest</button>
+          </div>
+        </div>
+        <div class="sort-selector" id="gdpvalAxisMinSelector" style="margin-top: 0.5rem;">
+          <span class="sort-selector-label"><strong>Axis Min</strong></span>
+          <div class="sort-selector-buttons">
+            <button class="sort-btn active" onclick="setGdpvalAxisMin('0')" id="gdpvalAxisMin0">0%</button>
+            <button class="sort-btn" onclick="setGdpvalAxisMin('auto')" id="gdpvalAxisMinAuto">Dynamic</button>
+            <button class="sort-btn" onclick="setGdpvalAxisMin('all')" id="gdpvalAxisMinAll">Dynamic (All)</button>
+          </div>
+        </div>
+      </div>
+
       <!-- Terminal-Bench Hard -->
       <div id="bench-section-terminal" class="coding-benchmark-section">
         <div class="section-title-wrapper" style="margin-top: 3rem;">
@@ -3469,51 +3565,6 @@
           </div>
         </div>
       </div>
-
-      <!-- τ²-Bench Telecom -->
-      <div id="bench-section-tau2" class="coding-benchmark-section">
-        <div class="section-title-wrapper" style="margin-top: 3rem;">
-          <h2 class="section-title section-title-blue">Agentic Tool Use — τ²-Bench Telecom</h2>
-          <div class="toggle-inline">
-            <span class="toggle-label">Claude models</span>
-            <div class="toggle-switch claude-toggle active" onclick="toggleClaudeModels()"></div>
-          </div>
-          <div class="toggle-inline reasoning-toggle">
-            <span class="toggle-label">Reasoning models</span>
-            <div class="toggle-switch reasoning-model-toggle active" onclick="toggleReasoningModels()"></div>
-          </div>
-          <div class="toggle-inline instant-toggle">
-            <span class="toggle-label">Non-reasoning models</span>
-            <div class="toggle-switch instant-model-toggle active" onclick="toggleInstantModels()"></div>
-          </div>
-          <div class="toggle-inline other-toggle">
-            <span class="toggle-label">Other recommended models</span>
-            <div class="toggle-switch other-models-toggle" onclick="toggleOtherModels()"></div>
-          </div>
-
-        </div>
-        <div class="chart-container">
-          <canvas id="tau2BenchChart"></canvas>
-        </div>
-        <p class="chart-note">Shows performance guiding a user through technical troubleshooting. Higher is better.</p>
-        <div class="sort-selector" id="tau2BenchSortSelector">
-          <span class="sort-selector-label"><strong>Sort by</strong></span>
-          <div class="sort-selector-buttons">
-            <button class="sort-btn active" onclick="setTau2BenchSort('brand')" id="tau2BenchSortBrand">✦ Brand</button>
-            <button class="sort-btn" onclick="setTau2BenchSort('highest')" id="tau2BenchSortHighest">↑ Highest</button>
-          </div>
-        </div>
-        <div class="sort-selector" id="tau2BenchAxisMinSelector" style="margin-top: 0.5rem;">
-          <span class="sort-selector-label"><strong>Axis Min</strong></span>
-          <div class="sort-selector-buttons">
-            <button class="sort-btn active" onclick="setTau2BenchAxisMin('0')" id="tau2BenchAxisMin0">0%</button>
-            <button class="sort-btn" onclick="setTau2BenchAxisMin('auto')" id="tau2BenchAxisMinAuto">Dynamic</button>
-            <button class="sort-btn" onclick="setTau2BenchAxisMin('all')" id="tau2BenchAxisMinAll">Dynamic
-              (All)</button>
-          </div>
-        </div>
-      </div>
-
 
       <!-- Notes -->
       <div class="notes collapsible expanded" style="margin-top: 2rem;">
@@ -3677,8 +3728,8 @@
           if (typeof mrcrChart !== 'undefined') mrcrChart.resize();
           if (typeof lcrChart !== 'undefined') lcrChart.resize();
           if (typeof mmmuProChart !== 'undefined') mmmuProChart.resize();
+          if (typeof gdpvalChart !== 'undefined') gdpvalChart.resize();
           if (typeof terminalBenchChart !== 'undefined') terminalBenchChart.resize();
-          if (typeof tau2BenchChart !== 'undefined') tau2BenchChart.resize();
           if (typeof maxContextChart !== 'undefined') maxContextChart.resize();
         }, 50);
       }
@@ -4111,6 +4162,15 @@
       updatePercentBenchmarkAxisMin(mmmuProChart, mmmuProAxisMinMode, mmmuProData.data, getModelScores(mmmuProAllModels));
       mmmuProChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
 
+      // Update GDPval-AA chart
+      const gdpvalData = getGdpvalData();
+      gdpvalChart.data.labels = gdpvalData.labels;
+      gdpvalChart.data.datasets[0].data = gdpvalData.data;
+      gdpvalChart.data.datasets[0].backgroundColor = gdpvalData.backgroundColors;
+      gdpvalChart.data.datasets[0].hoverBackgroundColor = gdpvalData.hoverBackgroundColors;
+      updateScoreBenchmarkAxisMin(gdpvalChart, gdpvalAxisMinMode, gdpvalData.data, getModelScores(gdpvalAllModels));
+      gdpvalChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
+
       // Update Terminal-Bench chart
       const terminalBenchData = getTerminalBenchData();
       terminalBenchChart.data.labels = terminalBenchData.labels;
@@ -4119,15 +4179,6 @@
       terminalBenchChart.data.datasets[0].hoverBackgroundColor = terminalBenchData.hoverBackgroundColors;
       updatePercentBenchmarkAxisMin(terminalBenchChart, terminalBenchAxisMinMode, terminalBenchData.data, getModelScores(terminalBenchAllModels));
       terminalBenchChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
-
-      // Update τ²-Bench chart
-      const tau2BenchData = getTau2BenchData();
-      tau2BenchChart.data.labels = tau2BenchData.labels;
-      tau2BenchChart.data.datasets[0].data = tau2BenchData.data;
-      tau2BenchChart.data.datasets[0].backgroundColor = tau2BenchData.backgroundColors;
-      tau2BenchChart.data.datasets[0].hoverBackgroundColor = tau2BenchData.hoverBackgroundColors;
-      updatePercentBenchmarkAxisMin(tau2BenchChart, tau2BenchAxisMinMode, tau2BenchData.data, getModelScores(tau2BenchAllModels));
-      tau2BenchChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
 
       // Update Max Context chart
       rebuildMaxContextChart();
@@ -4276,13 +4327,13 @@
     // Sort modes for the other benchmarks: 'brand' or 'highest'
     let lcrSortMode = localStorage.getItem('lcrSortMode') || 'brand';
     let mmmuProSortMode = localStorage.getItem('mmmuProSortMode') || 'brand';
+    let gdpvalSortMode = localStorage.getItem('gdpvalSortMode') || 'brand';
     let terminalBenchSortMode = localStorage.getItem('terminalBenchSortMode') || 'brand';
-    let tau2BenchSortMode = localStorage.getItem('tau2BenchSortMode') || 'brand';
     let maxContextSortMode = localStorage.getItem('maxContextSortMode') || 'brand';
     let lcrAxisMinMode = localStorage.getItem('lcrAxisMinMode') || '0';
     let mmmuProAxisMinMode = localStorage.getItem('mmmuProAxisMinMode') || '0';
+    let gdpvalAxisMinMode = localStorage.getItem('gdpvalAxisMinMode') || '0';
     let terminalBenchAxisMinMode = localStorage.getItem('terminalBenchAxisMinMode') || '0';
-    let tau2BenchAxisMinMode = localStorage.getItem('tau2BenchAxisMinMode') || '0';
 
     function getDynamicPercentAxisMin(data) {
       const positiveValues = data.filter(value => typeof value === 'number' && value > 0);
@@ -4308,6 +4359,27 @@
       if (!chart) return;
 
       chart.options.scales.x.min = getPercentAxisMin(mode, visibleData, allData);
+      chart.options.scales.x.beginAtZero = mode === '0';
+    }
+
+    function getDynamicScoreAxisMin(data, step = 100) {
+      const positiveValues = data.filter(value => typeof value === 'number' && value > 0);
+      if (!positiveValues.length) return 0;
+
+      const minVal = Math.min(...positiveValues);
+      return Math.max(0, Math.floor(minVal / step) * step);
+    }
+
+    function getScoreAxisMin(mode, visibleData, allData, step = 100) {
+      if (mode === 'auto') return getDynamicScoreAxisMin(visibleData, step);
+      if (mode === 'all') return getDynamicScoreAxisMin(allData, step);
+      return 0;
+    }
+
+    function updateScoreBenchmarkAxisMin(chart, mode, visibleData, allData, step = 100) {
+      if (!chart) return;
+
+      chart.options.scales.x.min = getScoreAxisMin(mode, visibleData, allData, step);
       chart.options.scales.x.beginAtZero = mode === '0';
     }
 
@@ -4420,6 +4492,28 @@
       mmmuProChart.update({ duration: 750, easing: 'easeInOutQuart' });
     }
 
+    function setGdpvalSort(mode) {
+      gdpvalSortMode = mode;
+      localStorage.setItem('gdpvalSortMode', mode);
+      document.querySelectorAll('#gdpvalSortSelector .sort-btn').forEach(btn => btn.classList.remove('active'));
+      document.getElementById(mode === 'brand' ? 'gdpvalSortBrand' : 'gdpvalSortHighest').classList.add('active');
+      const gdpvalData = getGdpvalData();
+      gdpvalChart.data.labels = gdpvalData.labels;
+      gdpvalChart.data.datasets[0].data = gdpvalData.data;
+      gdpvalChart.data.datasets[0].backgroundColor = gdpvalData.backgroundColors;
+      gdpvalChart.data.datasets[0].hoverBackgroundColor = gdpvalData.hoverBackgroundColors;
+      updateScoreBenchmarkAxisMin(gdpvalChart, gdpvalAxisMinMode, gdpvalData.data, getModelScores(gdpvalAllModels));
+      gdpvalChart.update({ duration: 750, easing: 'easeInOutQuart' });
+    }
+
+    function setGdpvalAxisMin(mode) {
+      gdpvalAxisMinMode = mode;
+      localStorage.setItem('gdpvalAxisMinMode', mode);
+      updateAxisMinSelector('gdpvalAxisMinSelector', 'gdpvalAxisMin0', 'gdpvalAxisMinAuto', 'gdpvalAxisMinAll', mode);
+      updateScoreBenchmarkAxisMin(gdpvalChart, mode, gdpvalChart.data.datasets[0].data, getModelScores(gdpvalAllModels));
+      gdpvalChart.update({ duration: 750, easing: 'easeInOutQuart' });
+    }
+
     function setTerminalBenchSort(mode) {
       terminalBenchSortMode = mode;
       localStorage.setItem('terminalBenchSortMode', mode);
@@ -4440,28 +4534,6 @@
       updateAxisMinSelector('terminalBenchAxisMinSelector', 'terminalBenchAxisMin0', 'terminalBenchAxisMinAuto', 'terminalBenchAxisMinAll', mode);
       updatePercentBenchmarkAxisMin(terminalBenchChart, mode, terminalBenchChart.data.datasets[0].data, getModelScores(terminalBenchAllModels));
       terminalBenchChart.update({ duration: 750, easing: 'easeInOutQuart' });
-    }
-
-    function setTau2BenchSort(mode) {
-      tau2BenchSortMode = mode;
-      localStorage.setItem('tau2BenchSortMode', mode);
-      document.querySelectorAll('#tau2BenchSortSelector .sort-btn').forEach(btn => btn.classList.remove('active'));
-      document.getElementById(mode === 'brand' ? 'tau2BenchSortBrand' : 'tau2BenchSortHighest').classList.add('active');
-      const tau2BenchData = getTau2BenchData();
-      tau2BenchChart.data.labels = tau2BenchData.labels;
-      tau2BenchChart.data.datasets[0].data = tau2BenchData.data;
-      tau2BenchChart.data.datasets[0].backgroundColor = tau2BenchData.backgroundColors;
-      tau2BenchChart.data.datasets[0].hoverBackgroundColor = tau2BenchData.hoverBackgroundColors;
-      updatePercentBenchmarkAxisMin(tau2BenchChart, tau2BenchAxisMinMode, tau2BenchData.data, getModelScores(tau2BenchAllModels));
-      tau2BenchChart.update({ duration: 750, easing: 'easeInOutQuart' });
-    }
-
-    function setTau2BenchAxisMin(mode) {
-      tau2BenchAxisMinMode = mode;
-      localStorage.setItem('tau2BenchAxisMinMode', mode);
-      updateAxisMinSelector('tau2BenchAxisMinSelector', 'tau2BenchAxisMin0', 'tau2BenchAxisMinAuto', 'tau2BenchAxisMinAll', mode);
-      updatePercentBenchmarkAxisMin(tau2BenchChart, mode, tau2BenchChart.data.datasets[0].data, getModelScores(tau2BenchAllModels));
-      tau2BenchChart.update({ duration: 750, easing: 'easeInOutQuart' });
     }
 
     function setMaxContextSort(mode) {
@@ -5334,6 +5406,118 @@
       }
     });
 
+    // GDPval-AA - Horizontal Bar Chart
+    let gdpvalChart;
+    const gdpvalAllModels = [
+      { modelId: 'gpt-55-thinking-xhigh', label: '⌘ GPT 5.5 Thinking Heavy', score: 1769, sortOrder: 18 },
+      { modelId: 'gpt-55-thinking', label: '⌘ GPT 5.5 Thinking Extended', score: 1751, sortOrder: 20 },
+      { modelId: 'gpt-55-thinking-standard', label: '⌘ GPT 5.5 Thinking Standard', score: 1442, sortOrder: 22 },
+      { modelId: 'gpt-thinking-mini', label: '⌘ GPT 5 Thinking Mini', score: 1001, sortOrder: 25 },
+      { modelId: 'gpt-55-instant', label: '⌘ GPT 5.5 Instant', score: 1313, sortOrder: 27 },
+      { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro Extended', score: 1314, sortOrder: 35 },
+      { modelId: 'gemini-35-flash-extended', label: '✦ Gemini 3.5 Flash Extended', score: 1656, sortOrder: 40 },
+      { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Extended', score: 1204, sortOrder: 50 },
+      { modelId: 'gemini-31-flash-lite-extended', label: '✦ Gemini 3.1 Flash Lite Extended', score: 925, sortOrder: 55 },
+      { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', score: 1115, sortOrder: 60 },
+      { modelId: 'claude-47-opus', label: '❋ Claude 4.7 Opus Adaptive', score: 1753, sortOrder: 64 },
+      { modelId: 'claude-47-opus-nr', label: '❋ Claude 4.7 Opus', score: 1681, sortOrder: 65 },
+      { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Adaptive', score: 1619, sortOrder: 65.2 },
+      { modelId: 'claude-46-opus-nr', label: '❋ Claude 4.6 Opus', score: 1589, sortOrder: 66 },
+      { modelId: 'claude-46-sonnet', label: '❋ Claude 4.6 Sonnet Adaptive', score: 1676, sortOrder: 67 },
+      { modelId: 'claude-46-sonnet-nr', label: '❋ Claude 4.6 Sonnet', score: 1595, sortOrder: 68 },
+      { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', score: 1171, sortOrder: 90 },
+      { modelId: 'claude-haiku-nr', label: '❋ Claude 4.5 Haiku', score: 1135, sortOrder: 95 },
+      { modelId: 'glm-51-deep-think', label: 'Ƶ GLM 5.1 Deep Think', score: 1535, sortOrder: 98 },
+      { modelId: 'glm-deep-think', label: 'Ƶ GLM 5 Deep Think', score: 1393, sortOrder: 100 },
+      { modelId: 'glm-51', label: 'Ƶ GLM 5.1', score: 1494, sortOrder: 103 },
+      { modelId: 'glm-5', label: 'Ƶ GLM 5', score: 1323, sortOrder: 105 },
+      { modelId: 'glm-5t-deep-think', label: 'Ƶ GLM 5 Turbo Deep Think', score: 1496, sortOrder: 107 },
+      { modelId: 'glm-5v-turbo-deep-think', label: 'Ƶ GLM 5V Turbo Deep Think', score: 1330, sortOrder: 109 },
+      { modelId: 'grok-43-expert', label: 'Ø Grok 4.3 Expert', score: 1495, sortOrder: 109.5 },
+      { modelId: 'grok-43-fast', label: 'Ø Grok 4.3 Fast', score: 1303, sortOrder: 109.6 },
+      { modelId: 'minimax-m27', label: '≋ Minimax M2.7 Max', score: 1505, sortOrder: 117 },
+      { modelId: 'mimo-v25-pro', label: '⋔ Mimo V2.5 Pro', score: 1571, sortOrder: 118 },
+      { modelId: 'mimo-v25', label: '⋔ Mimo V2.5', score: 1551, sortOrder: 118.5 },
+      { modelId: 'qwen-36-plus-think', label: '▽ Qwen 3.6 Plus Think', score: 1351, sortOrder: 125 },
+      { modelId: 'qwen-35-omni-plus', label: '▽ Qwen 3.5 Omni Plus', score: 1185, sortOrder: 126 },
+      { modelId: 'kimi-k26-thinking', label: 'Ḱ Kimi K2.6 Thinking', score: 1481, sortOrder: 127 },
+      { modelId: 'kimi-k26-instant', label: 'Ḱ Kimi K2.6', score: 1321, sortOrder: 128 }
+    ];
+
+    function getGdpvalData() {
+      let models = gdpvalAllModels.filter(m => modelVisibility[m.modelId]);
+
+      if (gdpvalSortMode === 'highest') {
+        models.sort((a, b) => b.score - a.score);
+      } else {
+        models.sort((a, b) => a.sortOrder - b.sortOrder);
+      }
+
+      const labels = models.map(m => m.label);
+      const data = models.map(m => m.score);
+      const backgroundColors = models.map(m => getBrandBgColor(m.modelId, m.estimated));
+      const hoverBackgroundColors = models.map(m => getBrandHoverBgColor(m.modelId, m.estimated));
+      const borderColors = models.map(m => getBrandBorderColor(m.modelId));
+
+      return { labels, data, backgroundColors, hoverBackgroundColors, borderColors };
+    }
+
+    const gdpvalCtx = document.getElementById('gdpvalChart').getContext('2d');
+    const gdpvalInitData = getGdpvalData();
+    gdpvalChart = new Chart(gdpvalCtx, {
+      type: 'bar',
+      data: {
+        labels: gdpvalInitData.labels,
+        datasets: [{
+          label: 'Score ↑',
+          data: gdpvalInitData.data,
+          backgroundColor: gdpvalInitData.backgroundColors,
+          hoverBackgroundColor: gdpvalInitData.hoverBackgroundColors,
+          borderWidth: 0,
+          borderRadius: 4
+        }]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false
+          },
+          tooltip: {
+            backgroundColor: 'rgba(18, 18, 26, 0.95)',
+            titleColor: '#d9c5a2',
+            bodyColor: '#b3a385',
+            borderColor: 'rgba(255, 255, 255, 0.1)',
+            borderWidth: 1,
+            padding: 12,
+            cornerRadius: 8,
+            callbacks: {
+              label: function (context) {
+                return context.parsed.x;
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            beginAtZero: gdpvalAxisMinMode === '0',
+            min: getScoreAxisMin(gdpvalAxisMinMode, gdpvalInitData.data, getModelScores(gdpvalAllModels)),
+            max: 1800,
+            grid: {
+              color: 'rgba(255, 255, 255, 0.05)'
+            }
+          },
+          y: {
+            grid: {
+              display: false
+            }
+          }
+        }
+      }
+    });
+
     // Terminal-Bench Hard - Horizontal Bar Chart
     let terminalBenchChart;
     const terminalBenchAllModels = [
@@ -5437,128 +5621,6 @@
           x: {
             beginAtZero: terminalBenchAxisMinMode === '0',
             min: getPercentAxisMin(terminalBenchAxisMinMode, terminalBenchInitData.data, getModelScores(terminalBenchAllModels)),
-            max: 100,
-            ticks: {
-              callback: function (value) {
-                return value + '%';
-              }
-            },
-            grid: {
-              color: 'rgba(255, 255, 255, 0.05)'
-            }
-          },
-          y: {
-            grid: {
-              display: false
-            }
-          }
-        }
-      }
-    });
-
-    // τ²-Bench Telecom - Horizontal Bar Chart
-    let tau2BenchChart;
-    const tau2BenchAllModels = [
-      { modelId: 'gpt-55-thinking-xhigh', label: '⌘ GPT 5.5 Thinking Heavy', score: 93.9, sortOrder: 18 },
-      { modelId: 'gpt-55-thinking', label: '⌘ GPT 5.5 Thinking Extended', score: 93, sortOrder: 20 },
-      { modelId: 'gpt-55-thinking-standard', label: '⌘ GPT 5.5 Thinking Standard', score: 83.9, sortOrder: 22 },
-      { modelId: 'gpt-thinking-mini', label: '⌘ GPT 5 Thinking Mini', score: 71.1, sortOrder: 25 },
-      { modelId: 'gpt-55-instant', label: '⌘ GPT 5.5 Instant', score: 69.3, sortOrder: 27 },
-      { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro Extended', score: 95.6, sortOrder: 35 },
-      { modelId: 'gemini-35-flash-extended', label: '✦ Gemini 3.5 Flash Extended', score: 95.3, sortOrder: 40 },
-      { modelId: 'gemini-flash-thinking', label: '✦ Gemini 3 Flash Extended', score: 80.4, sortOrder: 50 },
-      { modelId: 'gemini-31-flash-lite-extended', label: '✦ Gemini 3.1 Flash Lite Extended', score: 31.3, sortOrder: 55 },
-      { modelId: 'gemini-flash', label: '✦ Gemini 3 Flash', score: 43.3, sortOrder: 60 },
-      { modelId: 'claude-47-opus', label: '❋ Claude 4.7 Opus Adaptive', score: 88.6, sortOrder: 64 },
-      { modelId: 'claude-47-opus-nr', label: '❋ Claude 4.7 Opus', score: 74, sortOrder: 65 },
-      { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Adaptive', score: 92.1, sortOrder: 65.2 },
-      { modelId: 'claude-46-opus-nr', label: '❋ Claude 4.6 Opus', score: 84.8, sortOrder: 66 },
-      { modelId: 'claude-46-sonnet', label: '❋ Claude 4.6 Sonnet Adaptive', score: 75.7, sortOrder: 67 },
-      { modelId: 'claude-46-sonnet-nr', label: '❋ Claude 4.6 Sonnet', score: 79.5, sortOrder: 68 },
-      { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', score: 54.7, sortOrder: 90 },
-      { modelId: 'claude-haiku-nr', label: '❋ Claude 4.5 Haiku', score: 32.5, sortOrder: 95 },
-      { modelId: 'glm-51-deep-think', label: 'Ƶ GLM 5.1 Deep Think', score: 97.7, sortOrder: 98 },
-      { modelId: 'glm-deep-think', label: 'Ƶ GLM 5 Deep Think', score: 98.2, sortOrder: 100 },
-      { modelId: 'glm-51', label: 'Ƶ GLM 5.1', score: 97.1, sortOrder: 103 },
-      { modelId: 'glm-5', label: 'Ƶ GLM 5', score: 97.4, sortOrder: 105 },
-      { modelId: 'glm-5t-deep-think', label: 'Ƶ GLM 5 Turbo Deep Think', score: 98.5, sortOrder: 107 },
-      { modelId: 'glm-5v-turbo-deep-think', label: 'Ƶ GLM 5V Turbo Deep Think', score: 98.5, sortOrder: 109 },
-      { modelId: 'grok-43-expert', label: 'Ø Grok 4.3 Expert', score: 97.7, sortOrder: 109.5 },
-      { modelId: 'grok-43-fast', label: 'Ø Grok 4.3 Fast', score: 65.8, sortOrder: 109.6 },
-      { modelId: 'minimax-m27', label: '≋ Minimax M2.7 Max', score: 84.8, sortOrder: 117 },
-      { modelId: 'mimo-v25-pro', label: '⋔ Mimo V2.5 Pro', score: 94.2, sortOrder: 118 },
-      { modelId: 'mimo-v25', label: '⋔ Mimo V2.5', score: 90.6, sortOrder: 118.5 },
-      { modelId: 'qwen-36-plus-think', label: '▽ Qwen 3.6 Plus Think', score: 97.7, sortOrder: 125 },
-      { modelId: 'kimi-k26-thinking', label: 'Ḱ Kimi K2.6 Thinking', score: 95.9, sortOrder: 127 },
-      { modelId: 'qwen-35-omni-plus', label: '▽ Qwen 3.5 Omni Plus', score: 88.3, sortOrder: 126 },
-      { modelId: 'kimi-k26-instant', label: 'Ḱ Kimi K2.6 Instant', score: 93.9, sortOrder: 128 }
-    ];
-
-    function getTau2BenchData() {
-      // Filter models based on modelVisibility
-      let models = tau2BenchAllModels.filter(m => modelVisibility[m.modelId]);
-
-      // Sort based on current sort mode
-      if (tau2BenchSortMode === 'highest') {
-        models.sort((a, b) => b.score - a.score);
-      } else {
-        models.sort((a, b) => a.sortOrder - b.sortOrder);
-      }
-
-      // Extract arrays for Chart.js
-      const labels = models.map(m => m.label);
-      const data = models.map(m => m.score);
-
-      // Per-model brand colors; estimated bars are faded (0.3 opacity)
-      const backgroundColors = models.map(m => getBrandBgColor(m.modelId, m.estimated));
-      const hoverBackgroundColors = models.map(m => getBrandHoverBgColor(m.modelId, m.estimated));
-      const borderColors = models.map(m => getBrandBorderColor(m.modelId));
-
-      return { labels, data, backgroundColors, hoverBackgroundColors, borderColors };
-    }
-
-    const tau2BenchCtx = document.getElementById('tau2BenchChart').getContext('2d');
-    const tau2BenchInitData = getTau2BenchData();
-    tau2BenchChart = new Chart(tau2BenchCtx, {
-      type: 'bar',
-      data: {
-        labels: tau2BenchInitData.labels,
-        datasets: [{
-          label: 'Score ↑',
-          data: tau2BenchInitData.data,
-          backgroundColor: tau2BenchInitData.backgroundColors,
-          hoverBackgroundColor: tau2BenchInitData.hoverBackgroundColors,
-          borderWidth: 0,
-          borderRadius: 4
-        }]
-      },
-      options: {
-        indexAxis: 'y',
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            display: false
-          },
-          tooltip: {
-            backgroundColor: 'rgba(18, 18, 26, 0.95)',
-            titleColor: '#d9c5a2',
-            bodyColor: '#b3a385',
-            borderColor: 'rgba(255, 255, 255, 0.1)',
-            borderWidth: 1,
-            padding: 12,
-            cornerRadius: 8,
-            callbacks: {
-              label: function (context) {
-                return context.parsed.x + '%';
-              }
-            }
-          }
-        },
-        scales: {
-          x: {
-            beginAtZero: tau2BenchAxisMinMode === '0',
-            min: getPercentAxisMin(tau2BenchAxisMinMode, tau2BenchInitData.data, getModelScores(tau2BenchAllModels)),
             max: 100,
             ticks: {
               callback: function (value) {
@@ -6414,8 +6476,8 @@
       aalcr: localStorage.getItem('bench_aalcr') !== 'false',
       maxcontext: localStorage.getItem('bench_maxcontext') !== 'false',
       mmmu: localStorage.getItem('bench_mmmu') !== 'false',
-      terminal: localStorage.getItem('bench_terminal') === 'true',
-      tau2: localStorage.getItem('bench_tau2') === 'true'
+      gdpval: localStorage.getItem('bench_gdpval') !== 'false',
+      terminal: localStorage.getItem('bench_terminal') === 'true'
     };
 
     function initBenchSections() {
@@ -6442,8 +6504,12 @@
       const multiActive = benchSectionVisibility['mmmu'];
       document.querySelectorAll('.bench-group-toggle-multi').forEach(t => t.classList.toggle('active', multiActive));
 
+      // Agentic
+      const agenticActive = benchSectionVisibility['gdpval'];
+      document.querySelectorAll('.bench-group-toggle-agentic').forEach(t => t.classList.toggle('active', agenticActive));
+
       // Coding
-      const codingActive = benchSectionVisibility['terminal'] || benchSectionVisibility['tau2'];
+      const codingActive = benchSectionVisibility['terminal'];
       document.querySelectorAll('.bench-group-toggle-coding').forEach(t => t.classList.toggle('active', codingActive));
     }
 
@@ -6452,7 +6518,8 @@
       if (groupName === 'accuracy') groupBenches = ['omniscience'];
       else if (groupName === 'long') groupBenches = ['mrcr', 'aalcr', 'maxcontext'];
       else if (groupName === 'multi') groupBenches = ['mmmu'];
-      else if (groupName === 'coding') groupBenches = ['terminal', 'tau2'];
+      else if (groupName === 'agentic') groupBenches = ['gdpval'];
+      else if (groupName === 'coding') groupBenches = ['terminal'];
 
       const anyInactive = groupBenches.some(benchId => !benchSectionVisibility[benchId]);
       const newState = anyInactive;
@@ -6486,8 +6553,8 @@
               if (chartId === 'lcrChart' && typeof lcrChart !== 'undefined') lcrChart.resize();
               if (chartId === 'maxContextChart' && typeof maxContextChart !== 'undefined') maxContextChart.resize();
               if (chartId === 'mmmuProChart' && typeof mmmuProChart !== 'undefined') mmmuProChart.resize();
+              if (chartId === 'gdpvalChart' && typeof gdpvalChart !== 'undefined') gdpvalChart.resize();
               if (chartId === 'terminalBenchChart' && typeof terminalBenchChart !== 'undefined') terminalBenchChart.resize();
-              if (chartId === 'tau2BenchChart' && typeof tau2BenchChart !== 'undefined') tau2BenchChart.resize();
             }
           }, 50);
         }
@@ -6645,13 +6712,13 @@
         document.querySelectorAll('#mmmuProSortSelector .sort-btn').forEach(btn => btn.classList.remove('active'));
         document.getElementById('mmmuProSortHighest').classList.add('active');
       }
+      if (gdpvalSortMode !== 'brand') {
+        document.querySelectorAll('#gdpvalSortSelector .sort-btn').forEach(btn => btn.classList.remove('active'));
+        document.getElementById('gdpvalSortHighest').classList.add('active');
+      }
       if (terminalBenchSortMode !== 'brand') {
         document.querySelectorAll('#terminalBenchSortSelector .sort-btn').forEach(btn => btn.classList.remove('active'));
         document.getElementById('terminalBenchSortHighest').classList.add('active');
-      }
-      if (tau2BenchSortMode !== 'brand') {
-        document.querySelectorAll('#tau2BenchSortSelector .sort-btn').forEach(btn => btn.classList.remove('active'));
-        document.getElementById('tau2BenchSortHighest').classList.add('active');
       }
       if (maxContextSortMode !== 'brand') {
         document.querySelectorAll('#maxContextSortSelector .sort-btn').forEach(btn => btn.classList.remove('active'));
@@ -6659,8 +6726,8 @@
       }
       updateAxisMinSelector('lcrAxisMinSelector', 'lcrAxisMin0', 'lcrAxisMinAuto', 'lcrAxisMinAll', lcrAxisMinMode);
       updateAxisMinSelector('mmmuProAxisMinSelector', 'mmmuProAxisMin0', 'mmmuProAxisMinAuto', 'mmmuProAxisMinAll', mmmuProAxisMinMode);
+      updateAxisMinSelector('gdpvalAxisMinSelector', 'gdpvalAxisMin0', 'gdpvalAxisMinAuto', 'gdpvalAxisMinAll', gdpvalAxisMinMode);
       updateAxisMinSelector('terminalBenchAxisMinSelector', 'terminalBenchAxisMin0', 'terminalBenchAxisMinAuto', 'terminalBenchAxisMinAll', terminalBenchAxisMinMode);
-      updateAxisMinSelector('tau2BenchAxisMinSelector', 'tau2BenchAxisMin0', 'tau2BenchAxisMinAuto', 'tau2BenchAxisMinAll', tau2BenchAxisMinMode);
 
       // Update charts if state changed from default
       if (needsChartUpdate) {
@@ -6691,6 +6758,13 @@
         mmmuProChart.data.datasets[0].hoverBackgroundColor = mmmuProData.hoverBackgroundColors;
         updatePercentBenchmarkAxisMin(mmmuProChart, mmmuProAxisMinMode, mmmuProData.data, getModelScores(mmmuProAllModels));
         mmmuProChart.update('none');
+        const gdpvalData = getGdpvalData();
+        gdpvalChart.data.labels = gdpvalData.labels;
+        gdpvalChart.data.datasets[0].data = gdpvalData.data;
+        gdpvalChart.data.datasets[0].backgroundColor = gdpvalData.backgroundColors;
+        gdpvalChart.data.datasets[0].hoverBackgroundColor = gdpvalData.hoverBackgroundColors;
+        updateScoreBenchmarkAxisMin(gdpvalChart, gdpvalAxisMinMode, gdpvalData.data, getModelScores(gdpvalAllModels));
+        gdpvalChart.update('none');
         const terminalBenchData = getTerminalBenchData();
         terminalBenchChart.data.labels = terminalBenchData.labels;
         terminalBenchChart.data.datasets[0].data = terminalBenchData.data;
@@ -6698,13 +6772,6 @@
         terminalBenchChart.data.datasets[0].hoverBackgroundColor = terminalBenchData.hoverBackgroundColors;
         updatePercentBenchmarkAxisMin(terminalBenchChart, terminalBenchAxisMinMode, terminalBenchData.data, getModelScores(terminalBenchAllModels));
         terminalBenchChart.update('none');
-        const tau2BenchData = getTau2BenchData();
-        tau2BenchChart.data.labels = tau2BenchData.labels;
-        tau2BenchChart.data.datasets[0].data = tau2BenchData.data;
-        tau2BenchChart.data.datasets[0].backgroundColor = tau2BenchData.backgroundColors;
-        tau2BenchChart.data.datasets[0].hoverBackgroundColor = tau2BenchData.hoverBackgroundColors;
-        updatePercentBenchmarkAxisMin(tau2BenchChart, tau2BenchAxisMinMode, tau2BenchData.data, getModelScores(tau2BenchAllModels));
-        tau2BenchChart.update('none');
         // Rebuild max context chart without animation
         if (maxContextChart) {
           const mcModels = getMaxContextModels();
@@ -6811,8 +6878,8 @@
               if (typeof mrcrChart !== 'undefined') mrcrChart.resize();
               if (typeof lcrChart !== 'undefined') lcrChart.resize();
               if (typeof mmmuProChart !== 'undefined') mmmuProChart.resize();
+              if (typeof gdpvalChart !== 'undefined') gdpvalChart.resize();
               if (typeof terminalBenchChart !== 'undefined') terminalBenchChart.resize();
-              if (typeof tau2BenchChart !== 'undefined') tau2BenchChart.resize();
             }, 50);
           } else if (savedMainTab === 'benefits') {
             benefitsBtn.classList.add('active');
@@ -6830,7 +6897,7 @@
     style="text-align: center; padding: 2rem 1rem; margin-top: 3rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.8rem;">
     Made by <strong> u/Pasto_Shouwa</strong>
     <br>
-    <em>Last updated on <strong>19/05/2026</strong> (dd/mm/yyyy)</em>
+    <em>Last updated on <strong>21/05/2026</strong> (dd/mm/yyyy)</em>
   </footer>
 </body>
 
