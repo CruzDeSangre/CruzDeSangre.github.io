@@ -1598,10 +1598,6 @@
       background: rgba(50, 50, 50, 1);
     }
 
-    .dot-gpt-legacy {
-      background: var(--chatgpt-primary-legacy-new);
-    }
-
     .dot-claude-legacy {
       background: var(--claude-primary-legacy-new);
     }
@@ -2123,7 +2119,7 @@
               <td>Reasoning model limit per day</td>
               <td>Unknown<span class="annotation" data-note="gpt-free-thinking"></span><span
                   class="detail">(Unknown)</span>
-                <span class="detail">[GPT 5 Thinking Mini]</span>
+                <span class="detail">[GPT 5.4 Thinking Mini]</span>
               </td>
               <td>Unknown {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span class="detail">(X
                   every 5h)</span><span class="detail">[All models]</span></td>
@@ -2259,10 +2255,10 @@
             <tr>
               <td>Reasoning model limit per day</td>
               <td>Unknown<span class="annotation" data-note="gpt-free-thinking"></span>
-                <span class="detail">[GPT 5 Thinking Mini]</span>
+                <span class="detail">[GPT 5.4 Thinking Mini]</span>
               </td>
               <td>40<span class="detail">(10 every 5h)</span>
-                <span class="detail">[GPT 5 Thinking Mini]</span>
+                <span class="detail">[GPT 5.4 Thinking Mini]</span>
               </td>
               <td class="rating-excellent">428<span class="detail">(3000/week)</span><span class="detail">[GPT 5.5
                   Thinking]</span></td>
@@ -2783,10 +2779,10 @@
                 <span class="model-dot-indicator dot-gpt"></span>
                 <span class="model-dot-label">GPT 5.5 Thinking Standard</span>
               </div>
-              <div class="model-dot" data-model="gpt-thinking-mini"
-                onclick="toggleIndividualModel('gpt-thinking-mini')">
-                <span class="model-dot-indicator dot-gpt-legacy"></span>
-                <span class="model-dot-label">GPT 5 Thinking Mini</span>
+              <div class="model-dot" data-model="gpt-54-thinking-mini"
+                onclick="toggleIndividualModel('gpt-54-thinking-mini')">
+                <span class="model-dot-indicator dot-gpt"></span>
+                <span class="model-dot-label">GPT 5.4 Thinking Mini</span>
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
@@ -3592,7 +3588,8 @@
             </li>
             <li>• For "<strong>GPT 5.5 Thinking Standard</strong>", "<em>gpt-5.5:low</em>" was used in the graph.
             </li>
-            <li>• For "<strong>GPT 5 Thinking Mini</strong>", "<em>gpt-5-mini:medium</em>" was used in the graph.</li>
+            <li>• For "<strong>GPT 5.4 Thinking Mini</strong>", "<em>gpt-5.4-mini:medium</em>" was used in the graph.
+            </li>
             <li>• For "<strong>GPT 5.5 Instant</strong>", "<em>gpt-5.5</em>" was used in the graph.
             </li>
             <li>• All the other models are presented with their respective highest settings.
@@ -3854,7 +3851,7 @@
       'gpt-55-thinking-xhigh': false,
       'gpt-55-thinking': true,
       'gpt-55-thinking-standard': true,
-      'gpt-thinking-mini': true,
+      'gpt-54-thinking-mini': true,
       'gpt-55-instant': true,
       'gemini-31-pro': true,
       'gemini-35-flash-extended': true,
@@ -3895,7 +3892,7 @@
       'gpt-55-thinking-xhigh': true,
       'gpt-55-thinking': false,
       'gpt-55-thinking-standard': false,
-      'gpt-thinking-mini': false,
+      'gpt-54-thinking-mini': false,
       'gpt-55-instant': false,
       'gemini-31-pro': false,
       'gemini-35-flash-extended': false,
@@ -3932,11 +3929,11 @@
     // Model groups for group toggles
     const modelGroups = {
       'claude': ['claude-haiku', 'claude-47-opus', 'claude-47-opus-nr', 'claude-46-opus', 'claude-46-opus-nr', 'claude-46-sonnet', 'claude-46-sonnet-nr', 'claude-haiku-nr'],
-      'reasoning': ['gpt-55-thinking-xhigh', 'gpt-55-thinking', 'gpt-55-thinking-standard', 'gpt-thinking-mini', 'gemini-31-pro', 'gemini-35-flash-extended', 'gemini-flash-thinking', 'gemini-31-flash-lite-extended', 'claude-haiku', 'claude-47-opus', 'claude-46-opus', 'claude-46-sonnet', 'glm-51-deep-think', 'glm-deep-think', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-43-expert', 'minimax-m27', 'mimo-v25-pro', 'mimo-v25', 'qwen-37-max-think', 'qwen-36-plus-think', 'kimi-k26-thinking'],
+      'reasoning': ['gpt-55-thinking-xhigh', 'gpt-55-thinking', 'gpt-55-thinking-standard', 'gpt-54-thinking-mini', 'gemini-31-pro', 'gemini-35-flash-extended', 'gemini-flash-thinking', 'gemini-31-flash-lite-extended', 'claude-haiku', 'claude-47-opus', 'claude-46-opus', 'claude-46-sonnet', 'glm-51-deep-think', 'glm-deep-think', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-43-expert', 'minimax-m27', 'mimo-v25-pro', 'mimo-v25', 'qwen-37-max-think', 'qwen-36-plus-think', 'kimi-k26-thinking'],
       'instant': ['gpt-55-instant', 'gemini-35-flash', 'gemini-flash', 'claude-47-opus-nr', 'claude-46-opus-nr', 'claude-46-sonnet-nr', 'claude-haiku-nr', 'grok-43-fast', 'glm-51', 'glm-5', 'qwen-35-omni-plus', 'kimi-k26-instant'],
       'chatgpt-pro': [],
       'other': ['glm-51-deep-think', 'grok-43-fast', 'glm-51', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-43-expert', 'minimax-m27', 'mimo-v25-pro', 'mimo-v25', 'qwen-37-max-think', 'qwen-36-plus-think', 'kimi-k26-thinking', 'qwen-35-omni-plus', 'kimi-k26-instant'],
-      'legacy': ['gpt-thinking-mini', 'gemini-flash-thinking', 'gemini-flash', 'glm-deep-think', 'glm-5', 'claude-46-opus', 'claude-46-opus-nr']
+      'legacy': ['gemini-flash-thinking', 'gemini-flash', 'glm-deep-think', 'glm-5', 'claude-46-opus', 'claude-46-opus-nr']
     };
 
     // Model constraints: which group toggles must ALL be active for a model to be visible
@@ -3945,7 +3942,7 @@
       'gpt-55-thinking-xhigh': ['reasoning'],            // Reasoning model
       'gpt-55-thinking': ['reasoning'],                  // Reasoning model
       'gpt-55-thinking-standard': ['reasoning'],         // Reasoning model
-      'gpt-thinking-mini': ['reasoning', 'legacy'],     // Needs Reasoning AND Legacy
+      'gpt-54-thinking-mini': ['reasoning'],             // Reasoning model
       'gpt-55-instant': ['instant'],                     // Needs Non-reasoning
       'gemini-31-pro': ['reasoning'],                   // Only needs Reasoning
       'gemini-35-flash-extended': ['reasoning'],        // Only needs Reasoning
@@ -4212,7 +4209,6 @@
     // Estimated models are rendered at low opacity (0.3) to look faded.
     // Non-estimated models use 0.75 so bars look rich but not fully opaque.
     const BRAND_RGB = {
-      'gpt-legacy': '100, 150, 135',   // legacy GPT (5 Thinking Mini)
       'gpt': '90,  150, 135',   // darker teal   (reasoning GPT)
       'gemini': '238, 73,  82',    // red
       'claude': '218, 119, 87',    // orange
@@ -4226,7 +4222,6 @@
     };
 
     function getBrandRgb(modelId) {
-      if (modelId === 'gpt-thinking-mini') return BRAND_RGB['gpt-legacy'];
       if (modelId.startsWith('gpt-')) return BRAND_RGB['gpt'];
       if (modelId.startsWith('gemini-')) return BRAND_RGB['gemini'];
       if (modelId.startsWith('claude-')) return BRAND_RGB['claude'];
@@ -4264,23 +4259,7 @@
     // ============================================================================
     // Each model has a sortOrder value. Lower numbers appear first.
     // Use gaps of 10 to allow inserting new models between existing ones.
-    // Example: To add a model between GPT Thinking Mini (25) and Gemini 3.1 Pro Extended (35), use 27.
-    //
-    // Current order:
-    //   18: ⌘ GPT 5.5 Thinking Heavy (reasoning toggle)
-    //   20: ⌘ GPT 5.5 Thinking Extended (reasoning toggle)
-    //   22: ⌘ GPT 5.5 Thinking Standard (reasoning toggle)
-    //   25: ⌘ GPT 5 Thinking Mini
-    //   27: ⌘ GPT 5.5 Instant (instant toggle)
-    //   28: ✦ Gemini 3.5 Flash (instant toggle)
-    //   35: ✦ Gemini 3.1 Pro Extended
-    //   40: ✦ Gemini 3.5 Flash Extended
-    //   50: ✦ Gemini 3 Flash Extended
-    //   55: ✦ Gemini 3.1 Flash Lite Extended
-    //   60: ✦ Gemini 3 Flash (instant toggle)
-    //   65: ❋ Claude 4.6 Opus Adaptive (claude toggle)
-    //   67: ❋ Claude 4.6 Sonnet Adaptive (claude toggle)
-    //   90: ❋ Claude 4.5 Haiku Extended (claude toggle)
+    // Example: To add a model between GPT 5.5 Instant (27) and Gemini 3.1 Pro Extended (35), use 30.
     // ============================================================================
 
     // Base data for AA-Omniscience using object structure with sortOrder and modelId
@@ -4288,7 +4267,7 @@
       { modelId: 'gpt-55-thinking-xhigh', label: '⌘ GPT 5.5 Thinking Heavy', correct: 56.92, abstention: 6.23, hallucination: 36.85, sortOrder: 18 },
       { modelId: 'gpt-55-thinking', label: '⌘ GPT 5.5 Thinking Extended', correct: 56.05, abstention: 6.27, hallucination: 37.68, sortOrder: 20 },
       { modelId: 'gpt-55-thinking-standard', label: '⌘ GPT 5.5 Thinking Standard', correct: 54.08, abstention: 6.45, hallucination: 39.47, sortOrder: 22 },
-      { modelId: 'gpt-thinking-mini', label: '⌘ GPT 5 Thinking Mini', correct: 22.20, abstention: 44.81, hallucination: 32.99, sortOrder: 25 },
+      { modelId: 'gpt-54-thinking-mini', label: '⌘ GPT 5.4 Thinking Mini', correct: 36.50, abstention: 6.88, hallucination: 56.62, sortOrder: 23 },
       { modelId: 'gpt-55-instant', label: '⌘ GPT 5.5 Instant', correct: 45.07, abstention: 4.82, hallucination: 50.11, sortOrder: 27 },
       { modelId: 'gemini-35-flash', label: '✦ Gemini 3.5 Flash', correct: 43.08, abstention: 15.13, hallucination: 41.79, sortOrder: 28 },
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro Extended', correct: 55.25, abstention: 22.43, hallucination: 22.32, sortOrder: 35 },
@@ -4755,18 +4734,18 @@
         sortOrder: 22
       },
       {
-        modelId: 'gpt-thinking-mini',
-        label: 'GPT 5 Thinking Mini',
-        data: [76.3, 57.1, 55, 42.3, 31.9, 24.4, null],
-        borderColor: 'rgba(100, 150, 135, 0.5)',
-        backgroundColor: 'rgba(100, 150, 135, 0.3)',
+        modelId: 'gpt-54-thinking-mini',
+        label: 'GPT 5.4 Thinking Mini',
+        data: [67.7, 54.7, 49.5, 34.7, 34.8, 23.0, null],
+        borderColor: 'rgba(90, 150, 135, 0.55)',
+        backgroundColor: 'rgba(90, 150, 135, 0.25)',
         borderWidth: 2,
         tension: 0.3,
         pointRadius: 5,
         pointHoverRadius: 6,
-        pointBackgroundColor: 'rgba(100, 150, 135, 0.5)',
+        pointBackgroundColor: 'rgba(90, 150, 135, 0.55)',
         spanGaps: false,
-        sortOrder: 25
+        sortOrder: 23
       },
       {
         modelId: 'gpt-55-instant',
@@ -4844,7 +4823,6 @@
         borderColor: 'rgba(243, 77, 101, 0.35)',
         backgroundColor: 'rgba(243, 77, 101, 0.2)',
         borderWidth: 2,
-        borderDash: [5, 5],
         tension: 0.3,
         pointRadius: 5,
         pointHoverRadius: 6,
@@ -5202,7 +5180,7 @@
       { modelId: 'gpt-55-thinking-xhigh', label: '⌘ GPT 5.5 Thinking Heavy', score: 74.3, sortOrder: 18 },
       { modelId: 'gpt-55-thinking', label: '⌘ GPT 5.5 Thinking Extended', score: 73.3, sortOrder: 20 },
       { modelId: 'gpt-55-thinking-standard', label: '⌘ GPT 5.5 Thinking Standard', score: 72, sortOrder: 22 },
-      { modelId: 'gpt-thinking-mini', label: '⌘ GPT 5 Thinking Mini', score: 66, sortOrder: 25 },
+      { modelId: 'gpt-54-thinking-mini', label: '⌘ GPT 5.4 Thinking Mini', score: 61.3, sortOrder: 23 },
       { modelId: 'gpt-55-instant', label: '⌘ GPT 5.5 Instant', score: 56.3, sortOrder: 27 },
       { modelId: 'gemini-35-flash', label: '✦ Gemini 3.5 Flash', score: 53.3, sortOrder: 28 },
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro Extended', score: 72.7, sortOrder: 35 },
@@ -5326,7 +5304,7 @@
       { modelId: 'gpt-55-thinking-xhigh', label: '⌘ GPT 5.5 Thinking Heavy', score: 80, sortOrder: 18 },
       { modelId: 'gpt-55-thinking', label: '⌘ GPT 5.5 Thinking Extended', score: 81, sortOrder: 20 },
       { modelId: 'gpt-55-thinking-standard', label: '⌘ GPT 5.5 Thinking Standard', score: 79, sortOrder: 22 },
-      { modelId: 'gpt-thinking-mini', label: '⌘ GPT 5 Thinking Mini', score: 69, sortOrder: 25 },
+      { modelId: 'gpt-54-thinking-mini', label: '⌘ GPT 5.4 Thinking Mini', score: 71, sortOrder: 23 },
       { modelId: 'gpt-55-instant', label: '⌘ GPT 5.5 Instant', score: 71, sortOrder: 27 },
       { modelId: 'gemini-35-flash', label: '✦ Gemini 3.5 Flash', score: 80, sortOrder: 28 },
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro Extended', score: 82, sortOrder: 35 },
@@ -5450,7 +5428,7 @@
       { modelId: 'gpt-55-thinking-xhigh', label: '⌘ GPT 5.5 Thinking Heavy', score: 1769, sortOrder: 18 },
       { modelId: 'gpt-55-thinking', label: '⌘ GPT 5.5 Thinking Extended', score: 1751, sortOrder: 20 },
       { modelId: 'gpt-55-thinking-standard', label: '⌘ GPT 5.5 Thinking Standard', score: 1442, sortOrder: 22 },
-      { modelId: 'gpt-thinking-mini', label: '⌘ GPT 5 Thinking Mini', score: 1001, sortOrder: 25 },
+      { modelId: 'gpt-54-thinking-mini', label: '⌘ GPT 5.4 Thinking Mini', score: 1319, sortOrder: 23 },
       { modelId: 'gpt-55-instant', label: '⌘ GPT 5.5 Instant', score: 1313, sortOrder: 27 },
       { modelId: 'gemini-35-flash', label: '✦ Gemini 3.5 Flash', score: 1443, sortOrder: 28 },
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro Extended', score: 1314, sortOrder: 35 },
@@ -5564,7 +5542,7 @@
       { modelId: 'gpt-55-thinking-xhigh', label: '⌘ GPT 5.5 Thinking Heavy', score: 60.6, sortOrder: 18 },
       { modelId: 'gpt-55-thinking', label: '⌘ GPT 5.5 Thinking Extended', score: 59.8, sortOrder: 20 },
       { modelId: 'gpt-55-thinking-standard', label: '⌘ GPT 5.5 Thinking Standard', score: 52.3, sortOrder: 22 },
-      { modelId: 'gpt-thinking-mini', label: '⌘ GPT 5 Thinking Mini', score: 28.8, sortOrder: 25 },
+      { modelId: 'gpt-54-thinking-mini', label: '⌘ GPT 5.4 Thinking Mini', score: 34.1, sortOrder: 23 },
       { modelId: 'gpt-55-instant', label: '⌘ GPT 5.5 Instant', score: 49.2, sortOrder: 27 },
       { modelId: 'gemini-35-flash', label: '✦ Gemini 3.5 Flash', score: 46.2, sortOrder: 28 },
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro Extended', score: 53.8, sortOrder: 35 },
@@ -5746,14 +5724,6 @@
       },
       // GPT reasoning models (use the same tier structure)
       {
-        modelId: 'gpt-thinking-mini', label: '⌘ GPT 5 Thinking Mini', sortOrder: 25,
-        color: 'rgba(100, 150, 135, 1)',
-        segments: [
-          { value: 256000, plans: 'Free, Go, Plus' },
-          { value: 400000, plans: 'Pro' }
-        ]
-      },
-      {
         modelId: 'gpt-55-thinking-xhigh', label: '⌘ GPT 5.5 Thinking Heavy', sortOrder: 18,
         color: 'rgba(90, 150, 135, 1)',
         segments: [
@@ -5771,6 +5741,14 @@
       },
       {
         modelId: 'gpt-55-thinking-standard', label: '⌘ GPT 5.5 Thinking Standard', sortOrder: 22,
+        color: 'rgba(90, 150, 135, 1)',
+        segments: [
+          { value: 256000, plans: 'Free, Go, Plus' },
+          { value: 400000, plans: 'Pro' }
+        ]
+      },
+      {
+        modelId: 'gpt-54-thinking-mini', label: '⌘ GPT 5.4 Thinking Mini', sortOrder: 23,
         color: 'rgba(90, 150, 135, 1)',
         segments: [
           { value: 256000, plans: 'Free, Go, Plus' },
@@ -5982,9 +5960,7 @@
     // Each model can have up to 3 segments.
     // Per-tier, each dataset holds the INCREMENTAL width for that model.
     function getMaxContextColor(m) {
-      return m.modelId === 'gpt-thinking-mini'
-        ? `rgba(${getBrandRgb(m.modelId)}, 1)`
-        : m.color;
+      return m.color;
     }
 
     function buildMaxContextDatasets(models) {
@@ -6953,7 +6929,7 @@
     style="text-align: center; padding: 2rem 1rem; margin-top: 3rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.8rem;">
     Made by <strong> u/Pasto_Shouwa</strong>
     <br>
-    <em>Last updated on <strong>23/05/2026</strong> (dd/mm/yyyy)</em>
+    <em>Last updated on <strong>25/05/2026</strong> (dd/mm/yyyy)</em>
   </footer>
 </body>
 
