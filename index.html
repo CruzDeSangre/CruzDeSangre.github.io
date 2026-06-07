@@ -790,6 +790,34 @@
       opacity: 0;
     }
 
+    .benchmark-export-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin: -1.5rem auto 2rem;
+    }
+
+    .benchmark-export-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.78rem;
+      font-weight: 500;
+      padding: 0.55rem 0.95rem;
+      transition: all 0.25s ease;
+    }
+
+    .benchmark-export-btn:hover {
+      background: var(--bg-hover);
+      color: var(--text-primary);
+      border-color: rgba(255, 255, 255, 0.14);
+    }
+
     /* Toggle Switch - Inline version next to section titles */
     .section-title-wrapper {
       display: flex;
@@ -1486,7 +1514,7 @@
 
     .model-filters-panel.expanded .model-filters-content {
       /* Model Filters height*/
-      max-height: 1500px;
+      max-height: 1600px;
       opacity: 1;
       padding: 0 1.5rem 3rem;
     }
@@ -1577,6 +1605,10 @@
 
     .dot-minimax {
       background: rgba(223, 78, 96, 1);
+    }
+
+    .dot-nemotron {
+      background: #76b900;
     }
 
     .dot-mimo {
@@ -2011,6 +2043,17 @@
 
       .sort-btn:not(:last-child)::after {
         display: none;
+      }
+
+      .benchmark-export-actions {
+        margin: -1.25rem auto 1.5rem;
+        gap: 0.5rem;
+      }
+
+      .benchmark-export-btn {
+        flex: 1 1 150px;
+        max-width: 220px;
+        white-space: normal;
       }
 
       .slider-container {
@@ -2696,6 +2739,12 @@
     <!-- TAB 2: BENCHMARKS -->
     <section id="tab-benchmarks" class="tab-content">
 
+      <div class="benchmark-export-actions" aria-label="Benchmark export actions">
+        <button class="benchmark-export-btn" onclick="exportSelectedBenchmarksMarkdown()">Export selected
+          values</button>
+        <button class="benchmark-export-btn" onclick="exportAllBenchmarksMarkdown()">Export all values</button>
+      </div>
+
       <!-- Model Filters Panel -->
       <div class="model-filters-panel" id="modelFiltersPanel">
         <div class="model-filters-header" onclick="toggleFiltersPanel()">
@@ -2770,12 +2819,12 @@
                 <span class="model-dot-label">GPT 5.5 Thinking Heavy</span>
               </div>
               <div class="model-dot" data-model="gpt-55-thinking" onclick="toggleIndividualModel('gpt-55-thinking')">
-                <span class="model-dot-indicator dot-gpt"></span>
+                <span class="model-dot-indicator dot-gpt shape-square"></span>
                 <span class="model-dot-label">GPT 5.5 Thinking Extended</span>
               </div>
               <div class="model-dot" data-model="gpt-55-thinking-standard"
                 onclick="toggleIndividualModel('gpt-55-thinking-standard')">
-                <span class="model-dot-indicator dot-gpt"></span>
+                <span class="model-dot-indicator dot-gpt shape-square"></span>
                 <span class="model-dot-label">GPT 5.5 Thinking Standard</span>
               </div>
               <div class="model-dot" data-model="gpt-54-thinking-mini"
@@ -2889,10 +2938,18 @@
                 <span class="model-dot-label">Mimo V2.5</span>
               </div>
             </div>
+            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
+              <div class="model-dot inactive" data-model="minimax-m3-thinking"
+                onclick="toggleIndividualModel('minimax-m3-thinking')">
+                <span class="model-dot-indicator dot-minimax shape-square"></span>
+                <span class="model-dot-label">MiniMax M3 Thinking</span>
+              </div>
+            </div>
             <div class="model-dots-row">
-              <div class="model-dot inactive" data-model="minimax-m27" onclick="toggleIndividualModel('minimax-m27')">
-                <span class="model-dot-indicator dot-minimax"></span>
-                <span class="model-dot-label">Minimax M2.7 Max</span>
+              <div class="model-dot inactive" data-model="nemotron-3-ultra-reasoning"
+                onclick="toggleIndividualModel('nemotron-3-ultra-reasoning')">
+                <span class="model-dot-indicator dot-nemotron"></span>
+                <span class="model-dot-label">Nemotron 3 Ultra Reasoning</span>
               </div>
             </div>
           </div>
@@ -2981,8 +3038,6 @@
                 <div class="toggle-switch other-models-toggle" onclick="event.stopPropagation(); toggleOtherModels()">
                 </div>
               </div>
-              <span style="font-style: italic; color: var(--text-muted); font-size: 0.8rem;">(Selection of reliable
-                models with a low hallucination rate).</span>
             </div>
           </div>
 
@@ -3263,7 +3318,9 @@
                 tokens.
               <li>• Maximum context window of all <strong>Kimi</strong> models is 200k tokens.</li>
               <li>• Maximum context window of all <strong>Mimo</strong> models is 1M tokens.</li>
-              <li>• Maximum context window of all <strong>Minimax</strong> models is 200k tokens.</li>
+              <li>• Maximum context window of all <strong>MiniMax</strong> models is 1M tokens. However, only the
+                results up to 256k tokens have been published for this benchmark.</li>
+              <li>• Maximum context window of all <strong>Nemotron</strong> models is 1M tokens.</li>
               <li>• 1M tokens equals 1048k tokens.</li>
             </ul>
           </div>
@@ -3343,7 +3400,8 @@
                 tokens.
               <li>• Maximum context window of all <strong>Kimi</strong> models is 200k tokens.</li>
               <li>• Maximum context window of all <strong>Mimo</strong> models is 1M tokens.</li>
-              <li>• Maximum context window of all <strong>Minimax</strong> models is 200k tokens.</li>
+              <li>• Maximum context window of all <strong>MiniMax</strong> models is 1M tokens.</li>
+              <li>• Maximum context window of all <strong>Nemotron</strong> models is 1M tokens.</li>
               <li>• 1M tokens equals 1048k tokens.</li>
             </ul>
           </div>
@@ -3580,9 +3638,8 @@
             </li>
             <li>• All the other models are presented with their respective highest settings.
             <li>• I have not been able to find consistent graphs for the following models: Gemini 3.1 Pro, Gemini 3.5
-              Flash, Gemini 3.1 Flash Lite,
-              GLM 5 Turbo, GLM 5V Turbo, Qwen 3.7 Plus Fast, Qwen 3.6 Plus Fast and Minimax M2.7 Air. I will add them
-              immediately if I find some.
+              Flash, Gemini 3.1 Flash Lite, GLM 5 Turbo, GLM 5V Turbo, Qwen 3.7 Plus Fast, Qwen 3.6 Plus Fast,
+              MiniMax M3 and Nemotron 3 Ultra. I will add them immediately if I find some.
             </li>
             <li>• GPT 5.5 Thinking Heavy is available for Plus and Pro ChatGPT users through
               the Codex app, with limits that reset weekly. It's also available on the web for Pro users.</li>
@@ -3858,7 +3915,8 @@
       'glm-5v-turbo-deep-think': false, // Other recommended, starts hidden
       'grok-43-expert': false,       // Other recommended, starts hidden
       'grok-43-fast': false,         // Other recommended, starts hidden
-      'minimax-m27': false,          // Other recommended, starts hidden
+      'minimax-m3-thinking': false,   // Other recommended, starts hidden
+      'nemotron-3-ultra-reasoning': false, // Other recommended, starts hidden
       'mimo-v25-pro': false,         // Other recommended, starts hidden
       'mimo-v25': false,             // Other recommended, starts hidden
       'qwen-37-max-think': false,    // Other recommended, starts hidden
@@ -3897,7 +3955,8 @@
       'glm-5v-turbo-deep-think': false, // Other recommended
       'grok-43-expert': false,          // Other recommended
       'grok-43-fast': false,            // Other recommended
-      'minimax-m27': false,             // Other recommended
+      'minimax-m3-thinking': false,      // Other recommended
+      'nemotron-3-ultra-reasoning': false, // Other recommended
       'mimo-v25-pro': false,            // Other recommended
       'mimo-v25': false,                // Other recommended
       'qwen-37-max-think': false,       // Other recommended
@@ -3911,10 +3970,10 @@
     // Model groups for group toggles
     const modelGroups = {
       'claude': ['claude-haiku', 'claude-48-opus', 'claude-46-opus', 'claude-46-opus-nr', 'claude-46-sonnet', 'claude-46-sonnet-nr', 'claude-haiku-nr'],
-      'reasoning': ['gpt-55-thinking-xhigh', 'gpt-55-thinking', 'gpt-55-thinking-standard', 'gpt-54-thinking-mini', 'gemini-31-pro', 'gemini-35-flash-extended', 'gemini-31-flash-lite-extended', 'claude-haiku', 'claude-48-opus', 'claude-46-opus', 'claude-46-sonnet', 'glm-51-deep-think', 'glm-deep-think', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-43-expert', 'minimax-m27', 'mimo-v25-pro', 'mimo-v25', 'qwen-37-max-think', 'qwen-37-plus-think', 'qwen-36-plus-think', 'kimi-k26-thinking'],
+      'reasoning': ['gpt-55-thinking-xhigh', 'gpt-55-thinking', 'gpt-55-thinking-standard', 'gpt-54-thinking-mini', 'gemini-31-pro', 'gemini-35-flash-extended', 'gemini-31-flash-lite-extended', 'claude-haiku', 'claude-48-opus', 'claude-46-opus', 'claude-46-sonnet', 'glm-51-deep-think', 'glm-deep-think', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-43-expert', 'minimax-m3-thinking', 'nemotron-3-ultra-reasoning', 'mimo-v25-pro', 'mimo-v25', 'qwen-37-max-think', 'qwen-37-plus-think', 'qwen-36-plus-think', 'kimi-k26-thinking'],
       'instant': ['gpt-55-instant', 'gemini-35-flash', 'claude-46-opus-nr', 'claude-46-sonnet-nr', 'claude-haiku-nr', 'grok-43-fast', 'glm-51', 'glm-5', 'qwen-35-omni-plus', 'kimi-k26-instant'],
       'chatgpt-pro': [],
-      'other': ['glm-51-deep-think', 'grok-43-fast', 'glm-51', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-43-expert', 'minimax-m27', 'mimo-v25-pro', 'mimo-v25', 'qwen-37-max-think', 'qwen-37-plus-think', 'qwen-36-plus-think', 'kimi-k26-thinking', 'qwen-35-omni-plus', 'kimi-k26-instant'],
+      'other': ['glm-51-deep-think', 'grok-43-fast', 'glm-51', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-43-expert', 'minimax-m3-thinking', 'nemotron-3-ultra-reasoning', 'mimo-v25-pro', 'mimo-v25', 'qwen-37-max-think', 'qwen-37-plus-think', 'qwen-36-plus-think', 'kimi-k26-thinking', 'qwen-35-omni-plus', 'kimi-k26-instant'],
       'legacy': ['glm-deep-think', 'glm-5', 'claude-46-opus', 'claude-46-sonnet', 'claude-46-opus-nr', 'claude-46-sonnet-nr', 'qwen-36-plus-think']
     };
 
@@ -3945,7 +4004,8 @@
       'glm-5v-turbo-deep-think': ['other', 'reasoning'],     // Needs both Other AND Reasoning to be on
       'grok-43-expert': ['other', 'reasoning'],              // Needs both Other AND Reasoning to be on
       'grok-43-fast': ['other', 'instant'],                  // Needs both Other AND Non-reasoning to be on
-      'minimax-m27': ['other', 'reasoning'],                 // Needs both Other AND Reasoning to be on
+      'minimax-m3-thinking': ['other', 'reasoning'],          // Needs both Other AND Reasoning to be on
+      'nemotron-3-ultra-reasoning': ['other', 'reasoning'],  // Needs both Other AND Reasoning to be on
       'mimo-v25-pro': ['other', 'reasoning'],                // Needs both Other AND Reasoning to be on
       'mimo-v25': ['other', 'reasoning'],                    // Needs both Other AND Reasoning to be on
       'qwen-37-max-think': ['other', 'reasoning'],           // Needs both Other AND Reasoning to be on
@@ -4195,6 +4255,7 @@
       'glm': '120, 120, 130',   // dark gray
       'grok': '60,  60,  220',   // blue
       'minimax': '223, 78,  96',    // deep red
+      'nemotron': '118, 185, 0',     // NVIDIA green
       'mimo': '255, 116, 0',     // orange
       'qwen': '66,  59,  175',   // violet
       'kimi': '23,  131, 255',   // blue
@@ -4208,6 +4269,7 @@
       if (modelId.startsWith('glm-')) return BRAND_RGB['glm'];
       if (modelId.startsWith('grok-')) return BRAND_RGB['grok'];
       if (modelId.startsWith('minimax-')) return BRAND_RGB['minimax'];
+      if (modelId.startsWith('nemotron-')) return BRAND_RGB['nemotron'];
       if (modelId.startsWith('mimo-')) return BRAND_RGB['mimo'];
       if (modelId.startsWith('qwen-')) return BRAND_RGB['qwen'];
       if (modelId.startsWith('kimi-')) return BRAND_RGB['kimi'];
@@ -4268,7 +4330,8 @@
       { modelId: 'glm-5v-turbo-deep-think', label: 'Ƶ GLM 5V Turbo Deep Think', correct: 29.13, abstention: 22.75, hallucination: 48.12, sortOrder: 109 },
       { modelId: 'grok-43-expert', label: 'Ø Grok 4.3 Expert', correct: 34.63, abstention: 49.05, hallucination: 16.32, sortOrder: 109.5 },
       { modelId: 'grok-43-fast', label: 'Ø Grok 4.3 Fast', correct: 24.17, abstention: 19.37, hallucination: 56.46, sortOrder: 109.6 },
-      { modelId: 'minimax-m27', label: '≋ Minimax M2.7 Max', correct: 26.12, abstention: 48.45, hallucination: 25.43, sortOrder: 117 },
+      { modelId: 'minimax-m3-thinking', label: '≋ MiniMax M3 Thinking', correct: 15.03, abstention: 71.31, hallucination: 13.66, sortOrder: 116.5 },
+      { modelId: 'nemotron-3-ultra-reasoning', label: '▰ Nemotron 3 Ultra Reasoning', correct: 21.55, abstention: 56.07, hallucination: 22.38, sortOrder: 117.5 },
       { modelId: 'mimo-v25-pro', label: '⋔ Mimo V2.5 Pro', correct: 22.60, abstention: 58.40, hallucination: 19.00, sortOrder: 118 },
       { modelId: 'mimo-v25', label: '⋔ Mimo V2.5', correct: 17.27, abstention: 56.13, hallucination: 26.60, sortOrder: 118.5 },
       { modelId: 'qwen-37-max-think', label: '▽ Qwen 3.7 Max Thinking', correct: 30.12, abstention: 53.84, hallucination: 16.03, sortOrder: 124 },
@@ -4912,9 +4975,9 @@
         sortOrder: 103
       },
       {
-        modelId: 'minimax-m27',
-        label: 'Minimax M2.7 Max',
-        data: [63.6, 34.6, 35.5, 20, 16.8, null, null],
+        modelId: 'minimax-m3-thinking',
+        label: 'MiniMax M3 Thinking',
+        data: [92.4, 68.9, 52.2, 35.4, 17.4, 18.6, null],
         borderColor: 'rgba(223, 78, 96, 0.95)',
         backgroundColor: 'rgba(223, 78, 96, 0.5)',
         borderWidth: 2,
@@ -4923,7 +4986,7 @@
         pointHoverRadius: 7,
         pointBackgroundColor: 'rgba(223, 78, 96, 0.95)',
         spanGaps: false,
-        sortOrder: 117
+        sortOrder: 116.5
       },
       {
         modelId: 'mimo-v25-pro',
@@ -5123,7 +5186,8 @@
       { modelId: 'glm-5v-turbo-deep-think', label: 'Ƶ GLM 5V Turbo Deep Think', score: 61, sortOrder: 109 },
       { modelId: 'grok-43-expert', label: 'Ø Grok 4.3 Expert', score: 64.3, sortOrder: 109.5 },
       { modelId: 'grok-43-fast', label: 'Ø Grok 4.3 Fast', score: 24.7, sortOrder: 109.6 },
-      { modelId: 'minimax-m27', label: '≋ Minimax M2.7 Max', score: 68.7, sortOrder: 117 },
+      { modelId: 'minimax-m3-thinking', label: '≋ MiniMax M3 Thinking', score: 74, sortOrder: 116.5 },
+      { modelId: 'nemotron-3-ultra-reasoning', label: '▰ Nemotron 3 Ultra Reasoning', score: 67, sortOrder: 117.5 },
       { modelId: 'mimo-v25-pro', label: '⋔ Mimo V2.5 Pro', score: 73.3, sortOrder: 118 },
       { modelId: 'mimo-v25', label: '⋔ Mimo V2.5', score: 62.7, sortOrder: 118.5 },
       { modelId: 'qwen-37-max-think', label: '▽ Qwen 3.7 Max Thinking', score: 69, sortOrder: 124 },
@@ -5245,7 +5309,8 @@
       { modelId: 'glm-5v-turbo-deep-think', label: 'Ƶ GLM 5V Turbo Deep Think', score: 73, sortOrder: 109 },
       { modelId: 'grok-43-expert', label: 'Ø Grok 4.3 Expert', score: 78, sortOrder: 109.5 },
       { modelId: 'grok-43-fast', label: 'Ø Grok 4.3 Fast', score: 65, sortOrder: 109.6 },
-      { modelId: 'minimax-m27', label: '≋ Minimax M2.7 Max', score: 0, sortOrder: 117 },
+      { modelId: 'minimax-m3-thinking', label: '≋ MiniMax M3 Thinking', score: 80, sortOrder: 116.5 },
+      { modelId: 'nemotron-3-ultra-reasoning', label: '▰ Nemotron 3 Ultra Reasoning', score: 0, sortOrder: 117.5 },
       { modelId: 'mimo-v25-pro', label: '⋔ Mimo V2.5 Pro', score: 0, sortOrder: 118 },
       { modelId: 'mimo-v25', label: '⋔ Mimo V2.5', score: 75, sortOrder: 118.5 },
       { modelId: 'qwen-37-max-think', label: '▽ Qwen 3.7 Max Thinking', score: 0, sortOrder: 124 },
@@ -5367,7 +5432,8 @@
       { modelId: 'glm-5v-turbo-deep-think', label: 'Ƶ GLM 5V Turbo Deep Think', score: 1330, sortOrder: 109 },
       { modelId: 'grok-43-expert', label: 'Ø Grok 4.3 Expert', score: 1495, sortOrder: 109.5 },
       { modelId: 'grok-43-fast', label: 'Ø Grok 4.3 Fast', score: 1303, sortOrder: 109.6 },
-      { modelId: 'minimax-m27', label: '≋ Minimax M2.7 Max', score: 1505, sortOrder: 117 },
+      { modelId: 'minimax-m3-thinking', label: '≋ MiniMax M3 Thinking', score: 1669, sortOrder: 116.5 },
+      { modelId: 'nemotron-3-ultra-reasoning', label: '▰ Nemotron 3 Ultra Reasoning', score: 1377, sortOrder: 117.5 },
       { modelId: 'mimo-v25-pro', label: '⋔ Mimo V2.5 Pro', score: 1571, sortOrder: 118 },
       { modelId: 'mimo-v25', label: '⋔ Mimo V2.5', score: 1551, sortOrder: 118.5 },
       { modelId: 'qwen-37-max-think', label: '▽ Qwen 3.7 Max Thinking', score: 1545, sortOrder: 124 },
@@ -5479,7 +5545,8 @@
       { modelId: 'glm-5v-turbo-deep-think', label: 'Ƶ GLM 5V Turbo Deep Think', score: 32.6, sortOrder: 109 },
       { modelId: 'grok-43-expert', label: 'Ø Grok 4.3 Expert', score: 37.9, sortOrder: 109.5 },
       { modelId: 'grok-43-fast', label: 'Ø Grok 4.3 Fast', score: 18.9, sortOrder: 109.6 },
-      { modelId: 'minimax-m27', label: '≋ Minimax M2.7 Max', score: 39.4, sortOrder: 117 },
+      { modelId: 'minimax-m3-thinking', label: '≋ MiniMax M3 Thinking', score: 42.4, sortOrder: 116.5 },
+      { modelId: 'nemotron-3-ultra-reasoning', label: '▰ Nemotron 3 Ultra Reasoning', score: 36.4, sortOrder: 117.5 },
       { modelId: 'mimo-v25-pro', label: '⋔ Mimo V2.5 Pro', score: 43.2, sortOrder: 118 },
       { modelId: 'mimo-v25', label: '⋔ Mimo V2.5', score: 41.7, sortOrder: 118.5 },
       { modelId: 'qwen-37-max-think', label: '▽ Qwen 3.7 Max Thinking', score: 50.8, sortOrder: 124 },
@@ -5792,9 +5859,15 @@
       },
       // Minimax
       {
-        modelId: 'minimax-m27', label: '≋ Minimax M2.7 Max', sortOrder: 117,
+        modelId: 'minimax-m3-thinking', label: '≋ MiniMax M3 Thinking', sortOrder: 116.5,
         color: 'rgba(223, 78, 96, 1)',
-        segments: [{ value: 200000, plans: 'All plans' }]
+        segments: [{ value: 1000000, plans: 'All plans' }]
+      },
+      // Nemotron
+      {
+        modelId: 'nemotron-3-ultra-reasoning', label: '▰ Nemotron 3 Ultra Reasoning', sortOrder: 117.5,
+        color: 'rgba(118, 185, 0, 1)',
+        segments: [{ value: 1000000, plans: 'All plans' }]
       },
       // Mimo
       {
@@ -5846,6 +5919,213 @@
       if (n >= 1000000) return (n / 1000000).toFixed(n % 1000000 === 0 ? 0 : 1) + 'M';
       if (n >= 1000) return (n / 1000).toFixed(n % 1000 === 0 ? 0 : 1) + 'k';
       return String(n);
+    }
+
+    function cleanMarkdownLabel(label) {
+      return String(label || '')
+        .replace(/\s*\(Estimated\)\s*/gi, ' ')
+        .replace(/^[^\w(]+/u, '')
+        .replace(/\s+/g, ' ')
+        .trim()
+        .replace(/\|/g, '\\|');
+    }
+
+    function cleanMarkdownText(text) {
+      return String(text || '')
+        .replace(/\s+/g, ' ')
+        .trim()
+        .replace(/\|/g, '\\|');
+    }
+
+    function isEstimatedBenchmarkValue(value) {
+      return Boolean(value && typeof value === 'object' && value.estimated === true);
+    }
+
+    function getBenchmarkRawValue(value) {
+      if (value && typeof value === 'object') {
+        if ('value' in value) return value.value;
+        if ('score' in value) return value.score;
+      }
+      return value;
+    }
+
+    function isEstimatedBenchmarkEntry(entry) {
+      if (!entry) return false;
+      if (entry.estimated === true || /\(Estimated\)/i.test(String(entry.label || ''))) return true;
+      if (Array.isArray(entry.data) && entry.data.some(isEstimatedBenchmarkValue)) return true;
+      if (Array.isArray(entry.segments) && entry.segments.some(isEstimatedBenchmarkValue)) return true;
+      return false;
+    }
+
+    function formatMarkdownValue(value, unit, estimated, prefix = '') {
+      const rawValue = getBenchmarkRawValue(value);
+      if (rawValue === null || rawValue === undefined || rawValue === '') return 'N/A';
+      if (typeof rawValue === 'number' && Number.isNaN(rawValue)) return 'N/A';
+
+      let formatted = prefix + String(rawValue);
+      if (unit === 'percent') formatted = prefix + String(rawValue) + '%';
+      else if (unit === 'tokens') formatted = prefix + formatTokens(Number(rawValue));
+
+      return estimated || isEstimatedBenchmarkValue(value) ? formatted + ' (est.)' : formatted;
+    }
+
+    function getBenchmarkExportItems(items, includeAll) {
+      return items
+        .filter(item => !item.isUpperBound)
+        .filter(item => includeAll || modelVisibility[item.modelId])
+        .slice()
+        .sort((a, b) => a.sortOrder - b.sortOrder);
+    }
+
+    function makeMarkdownTable(headers, rows) {
+      if (!rows.length) return '_No matching models for this export._';
+
+      const headerRow = '| ' + headers.join(' | ') + ' |';
+      const dividerRow = '| ' + headers.map(() => '---').join(' | ') + ' |';
+      const bodyRows = rows.map(row => '| ' + row.join(' | ') + ' |');
+      return [headerRow, dividerRow, ...bodyRows].join('\n');
+    }
+
+    function appendMarkdownSection(lines, title, headers, rows) {
+      lines.push('## ' + title);
+      lines.push('');
+      lines.push(makeMarkdownTable(headers, rows));
+      lines.push('');
+    }
+
+    function getBenchmarkExportStamp() {
+      const now = new Date();
+      const pad = value => String(value).padStart(2, '0');
+      return [
+        now.getFullYear(),
+        pad(now.getMonth() + 1),
+        pad(now.getDate())
+      ].join('-');
+    }
+
+    function getBenchmarkExportTimestamp() {
+      return new Date().toLocaleString();
+    }
+
+    function buildOmniscienceExportRows(includeAll) {
+      return getBenchmarkExportItems(omniscienceAllModels, includeAll).map(model => {
+        const estimated = isEstimatedBenchmarkEntry(model);
+        return [
+          cleanMarkdownLabel(model.label),
+          formatMarkdownValue(model.correct, 'percent', estimated),
+          formatMarkdownValue(model.abstention, 'percent', estimated),
+          formatMarkdownValue(model.hallucination, 'percent', estimated),
+          estimated ? 'Yes' : 'No'
+        ];
+      });
+    }
+
+    function buildMrcrExportRows(includeAll) {
+      return getBenchmarkExportItems(mrcrAllDatasets, includeAll).map(dataset => {
+        const estimated = isEstimatedBenchmarkEntry(dataset) || dataset.isEstimatedBand === true;
+        const values = mrcrXAxisLabels.map((label, index) => {
+          const valuePrefix = dataset.lessThan && dataset.lessThan[index] ? '<' : '';
+          return formatMarkdownValue(dataset.data[index], 'percent', estimated, valuePrefix);
+        });
+        return [
+          cleanMarkdownLabel(dataset.label),
+          ...values,
+          estimated ? 'Yes' : 'No'
+        ];
+      });
+    }
+
+    function buildScoreExportRows(models, includeAll, unit) {
+      return getBenchmarkExportItems(models, includeAll).map(model => {
+        const estimated = isEstimatedBenchmarkEntry(model);
+        return [
+          cleanMarkdownLabel(model.label),
+          formatMarkdownValue(model.score, unit, estimated),
+          estimated ? 'Yes' : 'No'
+        ];
+      });
+    }
+
+    function buildMaxContextExportRows(includeAll) {
+      return getBenchmarkExportItems(maxContextAllModels, includeAll).map(model => {
+        const estimated = isEstimatedBenchmarkEntry(model);
+        const maxSegment = model.segments[model.segments.length - 1];
+        const tiers = model.segments.map(segment => {
+          const segmentEstimated = estimated || isEstimatedBenchmarkValue(segment);
+          return cleanMarkdownText(segment.plans + ': ' + formatMarkdownValue(segment.value, 'tokens', segmentEstimated));
+        });
+
+        return [
+          cleanMarkdownLabel(model.label),
+          formatMarkdownValue(maxSegment.value, 'tokens', estimated || isEstimatedBenchmarkValue(maxSegment)),
+          tiers.join('; '),
+          estimated ? 'Yes' : 'No'
+        ];
+      });
+    }
+
+    function buildBenchmarksMarkdown(includeAll) {
+      const lines = [
+        '# AI Benchmark Values',
+        '',
+        'Export: ' + (includeAll ? 'All benchmarks and models' : 'Selected benchmarks and models'),
+        'Generated: ' + getBenchmarkExportTimestamp(),
+        '',
+        'Estimated values are marked with `(est.)` and summarized in the `Estimated` column.',
+        ''
+      ];
+
+      if (includeAll || benchSectionVisibility.omniscience) {
+        appendMarkdownSection(lines, 'AA-Omniscience', ['Model', 'Correct', 'Abstention', 'Hallucination', 'Estimated'], buildOmniscienceExportRows(includeAll));
+      }
+
+      if (includeAll || benchSectionVisibility.mrcr) {
+        appendMarkdownSection(lines, 'MRCR v2 8-Needle', ['Model', ...mrcrXAxisLabels, 'Estimated'], buildMrcrExportRows(includeAll));
+      }
+
+      if (includeAll || benchSectionVisibility.aalcr) {
+        appendMarkdownSection(lines, 'AA-LCR', ['Model', 'Score', 'Estimated'], buildScoreExportRows(lcrAllModels, includeAll, 'percent'));
+      }
+
+      if (includeAll || benchSectionVisibility.maxcontext) {
+        appendMarkdownSection(lines, 'Max Context Limit', ['Model', 'Max Context', 'Plans/Tiers', 'Estimated'], buildMaxContextExportRows(includeAll));
+      }
+
+      if (includeAll || benchSectionVisibility.mmmu) {
+        appendMarkdownSection(lines, 'MMMU-Pro', ['Model', 'Score', 'Estimated'], buildScoreExportRows(mmmuProAllModels, includeAll, 'percent'));
+      }
+
+      if (includeAll || benchSectionVisibility.gdpval) {
+        appendMarkdownSection(lines, 'GDPval-AA', ['Model', 'Score', 'Estimated'], buildScoreExportRows(gdpvalAllModels, includeAll, 'score'));
+      }
+
+      if (includeAll || benchSectionVisibility.terminal) {
+        appendMarkdownSection(lines, 'Terminal-Bench Hard', ['Model', 'Score', 'Estimated'], buildScoreExportRows(terminalBenchAllModels, includeAll, 'percent'));
+      }
+
+      return lines.join('\n').trim() + '\n';
+    }
+
+    function downloadMarkdown(filename, content) {
+      const blob = new Blob([content], { type: 'text/markdown;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+    }
+
+    function exportSelectedBenchmarksMarkdown() {
+      const stamp = getBenchmarkExportStamp();
+      downloadMarkdown('ai-benchmarks-selected-' + stamp + '.md', buildBenchmarksMarkdown(false));
+    }
+
+    function exportAllBenchmarksMarkdown() {
+      const stamp = getBenchmarkExportStamp();
+      downloadMarkdown('ai-benchmarks-all-' + stamp + '.md', buildBenchmarksMarkdown(true));
     }
 
     // Build Chart.js datasets from the segments of each visible model.
@@ -6818,7 +7098,7 @@
     style="text-align: center; padding: 2rem 1rem; margin-top: 3rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.8rem;">
     Made by <strong> u/Pasto_Shouwa</strong>
     <br>
-    <em>Last updated on <strong>03/06/2026</strong> (dd/mm/yyyy)</em>
+    <em>Last updated on <strong>07/06/2026</strong> (dd/mm/yyyy)</em>
   </footer>
 </body>
 
