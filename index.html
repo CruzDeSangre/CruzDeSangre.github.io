@@ -2762,9 +2762,17 @@
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
+              <div class="model-dot" data-model="claude-5-fable" onclick="toggleIndividualModel('claude-5-fable')">
+                <span class="model-dot-indicator dot-claude shape-square"></span>
+                <span class="model-dot-label">Claude 5 Fable Adaptive</span>
+              </div>
               <div class="model-dot" data-model="claude-48-opus" onclick="toggleIndividualModel('claude-48-opus')">
                 <span class="model-dot-indicator dot-claude shape-square"></span>
                 <span class="model-dot-label">Claude 4.8 Opus Adaptive</span>
+              </div>
+              <div class="model-dot" data-model="claude-46-sonnet" onclick="toggleIndividualModel('claude-46-sonnet')">
+                <span class="model-dot-indicator dot-claude"></span>
+                <span class="model-dot-label">Claude 4.6 Sonnet Adaptive</span>
               </div>
               <div class="model-dot inactive" data-model="claude-haiku" onclick="toggleIndividualModel('claude-haiku')">
                 <span class="model-dot-indicator dot-claude"></span>
@@ -2776,12 +2784,13 @@
                 <span class="model-dot-indicator dot-claude-legacy shape-square"></span>
                 <span class="model-dot-label">Claude 4.6 Opus Adaptive</span>
               </div>
-              <div class="model-dot" data-model="claude-46-sonnet" onclick="toggleIndividualModel('claude-46-sonnet')">
-                <span class="model-dot-indicator dot-claude-legacy"></span>
-                <span class="model-dot-label">Claude 4.6 Sonnet Adaptive</span>
-              </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
+              <div class="model-dot inactive" data-model="claude-46-sonnet-nr"
+                onclick="toggleIndividualModel('claude-46-sonnet-nr')">
+                <span class="model-dot-indicator dot-claude"></span>
+                <span class="model-dot-label">Claude 4.6 Sonnet</span>
+              </div>
               <div class="model-dot inactive" data-model="claude-haiku-nr"
                 onclick="toggleIndividualModel('claude-haiku-nr')">
                 <span class="model-dot-indicator dot-claude"></span>
@@ -2793,11 +2802,6 @@
                 onclick="toggleIndividualModel('claude-46-opus-nr')">
                 <span class="model-dot-indicator dot-claude-legacy shape-square"></span>
                 <span class="model-dot-label">Claude 4.6 Opus</span>
-              </div>
-              <div class="model-dot inactive" data-model="claude-46-sonnet-nr"
-                onclick="toggleIndividualModel('claude-46-sonnet-nr')">
-                <span class="model-dot-indicator dot-claude-legacy"></span>
-                <span class="model-dot-label">Claude 4.6 Sonnet</span>
               </div>
             </div>
 
@@ -2850,9 +2854,18 @@
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
+              <div class="model-dot" data-model="claude-5-fable" onclick="toggleIndividualModel('claude-5-fable')">
+                <span class="model-dot-indicator dot-claude shape-square"></span>
+                <span class="model-dot-label">Claude 5 Fable Adaptive</span>
+              </div>
               <div class="model-dot" data-model="claude-48-opus" onclick="toggleIndividualModel('claude-48-opus')">
                 <span class="model-dot-indicator dot-claude shape-square"></span>
                 <span class="model-dot-label">Claude 4.8 Opus Adaptive</span>
+              </div>
+              <div class="model-dot inactive" data-model="claude-46-sonnet"
+                onclick="toggleIndividualModel('claude-46-sonnet')">
+                <span class="model-dot-indicator dot-claude"></span>
+                <span class="model-dot-label">Claude 4.6 Sonnet Adaptive</span>
               </div>
               <div class="model-dot inactive" data-model="claude-haiku" onclick="toggleIndividualModel('claude-haiku')">
                 <span class="model-dot-indicator dot-claude"></span>
@@ -2863,11 +2876,6 @@
               <div class="model-dot" data-model="claude-46-opus" onclick="toggleIndividualModel('claude-46-opus')">
                 <span class="model-dot-indicator dot-claude-legacy shape-square"></span>
                 <span class="model-dot-label">Claude 4.6 Opus Adaptive</span>
-              </div>
-              <div class="model-dot inactive" data-model="claude-46-sonnet"
-                onclick="toggleIndividualModel('claude-46-sonnet')">
-                <span class="model-dot-indicator dot-claude-legacy"></span>
-                <span class="model-dot-label">Claude 4.6 Sonnet Adaptive</span>
               </div>
             </div>
 
@@ -2976,6 +2984,11 @@
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
+              <div class="model-dot inactive" data-model="claude-46-sonnet-nr"
+                onclick="toggleIndividualModel('claude-46-sonnet-nr')">
+                <span class="model-dot-indicator dot-claude"></span>
+                <span class="model-dot-label">Claude 4.6 Sonnet</span>
+              </div>
               <div class="model-dot inactive" data-model="claude-haiku-nr"
                 onclick="toggleIndividualModel('claude-haiku-nr')">
                 <span class="model-dot-indicator dot-claude"></span>
@@ -2987,11 +3000,6 @@
                 onclick="toggleIndividualModel('claude-46-opus-nr')">
                 <span class="model-dot-indicator dot-claude-legacy shape-square"></span>
                 <span class="model-dot-label">Claude 4.6 Opus</span>
-              </div>
-              <div class="model-dot inactive" data-model="claude-46-sonnet-nr"
-                onclick="toggleIndividualModel('claude-46-sonnet-nr')">
-                <span class="model-dot-indicator dot-claude-legacy"></span>
-                <span class="model-dot-label">Claude 4.6 Sonnet</span>
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
@@ -3308,7 +3316,7 @@
               </li>
               <li>• Maximum context window of all <strong>Gemini</strong> models is
                 32k/128k/1M tokens (Free/Plus/Pro,Ultra).</li>
-              <li>• Maximum context window of <strong>Claude 4.6/4.7</strong> models is 200k/500k tokens (Free/Pro,Max
+              <li>• Maximum context window of <strong>Claude >4.6</strong> models is 200k/500k tokens (Free/Pro,Max
                 x5,Max x20); other Claude models are 200k tokens.</li>
               <li>• Maximum context window of all <strong>Grok</strong> models is 1M tokens.</li>
               <li>• Maximum context window of all <strong>GLM</strong> models is 200k tokens.</li>
@@ -3390,7 +3398,7 @@
               </li>
               <li>• Maximum context window of all <strong>Gemini</strong> models is
                 32k/128k/1M tokens (Free/Plus/Pro,Ultra).</li>
-              <li>• Maximum context window of <strong>Claude 4.6/4.7</strong> models is 200k/500k tokens (Free/Pro,Max
+              <li>• Maximum context window of <strong>Claude >4.6</strong> models is 200k/500k tokens (Free/Pro,Max
                 x5,Max x20); other Claude models are 200k tokens.</li>
               <li>• Maximum context window of all <strong>Grok</strong> models is 1M tokens.</li>
               <li>• Maximum context window of all <strong>GLM</strong> models is 200k tokens.</li>
@@ -3637,8 +3645,10 @@
             <li>• For "<strong>GPT 5.5 Instant</strong>", "<em>gpt-5.5</em>" was used in the graph.
             </li>
             <li>• All the other models are presented with their respective highest settings.
-            <li>• I have not been able to find consistent graphs for the following models: Gemini 3.1 Pro, Gemini 3.5
-              Flash, Gemini 3.1 Flash Lite, GLM 5 Turbo, GLM 5V Turbo, Qwen 3.7 Plus Fast, Qwen 3.6 Plus Fast,
+            <li>• I have not been able to find consistent graphs for the following models: Claude 4.8 Opus, Gemini 3.1
+              Pro,
+              Gemini 3.5 Flash, Gemini 3.1 Flash Lite, GLM 5 Turbo, GLM 5V Turbo, Qwen 3.7 Plus Fast, Qwen 3.6 Plus
+              Fast,
               MiniMax M3 and Nemotron 3 Ultra. I will add them immediately if I find some.
             </li>
             <li>• GPT 5.5 Thinking Heavy is available for Plus and Pro ChatGPT users through
@@ -3901,11 +3911,12 @@
       'gemini-35-flash': true,
       'gemini-31-flash-lite-extended': true,
       'claude-haiku': false,   // Starts hidden by default
+      'claude-5-fable': true,     // Starts visible by default
       'claude-48-opus': true,     // Starts visible by default
       'claude-46-opus': true,     // Starts visible by default (legacy)
-      'claude-46-sonnet': true,   // Starts visible by default (legacy)
+      'claude-46-sonnet': true,   // Starts visible by default
       'claude-46-opus-nr': false, // Starts hidden (legacy)
-      'claude-46-sonnet-nr': false, // Starts hidden (legacy)
+      'claude-46-sonnet-nr': false, // Starts hidden
       'claude-haiku-nr': false,   // Non-reasoning, starts hidden
       'glm-51-deep-think': false,    // Starts hidden
       'glm-51': false,               // Starts hidden
@@ -3941,11 +3952,12 @@
       'gemini-35-flash': false,
       'gemini-31-flash-lite-extended': false,
       'claude-haiku': true,    // Starts explicitly disabled
+      'claude-5-fable': false,    // Starts enabled by default
       'claude-48-opus': false,    // Starts enabled by default
       'claude-46-opus': false,    // Starts enabled by default (legacy)
-      'claude-46-sonnet': false,  // Starts enabled by default (legacy)
+      'claude-46-sonnet': false,  // Starts enabled by default
       'claude-46-opus-nr': true,  // Starts explicitly disabled (legacy)
-      'claude-46-sonnet-nr': true, // Starts explicitly disabled (legacy)
+      'claude-46-sonnet-nr': true, // Starts explicitly disabled
       'claude-haiku-nr': true,    // Starts explicitly disabled
       'glm-51-deep-think': false,       // Other recommended
       'glm-51': false,                  // Other recommended
@@ -3969,12 +3981,12 @@
 
     // Model groups for group toggles
     const modelGroups = {
-      'claude': ['claude-haiku', 'claude-48-opus', 'claude-46-opus', 'claude-46-opus-nr', 'claude-46-sonnet', 'claude-46-sonnet-nr', 'claude-haiku-nr'],
-      'reasoning': ['gpt-55-thinking-xhigh', 'gpt-55-thinking', 'gpt-55-thinking-standard', 'gpt-54-thinking-mini', 'gemini-31-pro', 'gemini-35-flash-extended', 'gemini-31-flash-lite-extended', 'claude-haiku', 'claude-48-opus', 'claude-46-opus', 'claude-46-sonnet', 'glm-51-deep-think', 'glm-deep-think', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-43-expert', 'minimax-m3-thinking', 'nemotron-3-ultra-reasoning', 'mimo-v25-pro', 'mimo-v25', 'qwen-37-max-think', 'qwen-37-plus-think', 'qwen-36-plus-think', 'kimi-k26-thinking'],
+      'claude': ['claude-haiku', 'claude-5-fable', 'claude-48-opus', 'claude-46-sonnet', 'claude-46-opus', 'claude-46-opus-nr', 'claude-46-sonnet-nr', 'claude-haiku-nr'],
+      'reasoning': ['gpt-55-thinking-xhigh', 'gpt-55-thinking', 'gpt-55-thinking-standard', 'gpt-54-thinking-mini', 'gemini-31-pro', 'gemini-35-flash-extended', 'gemini-31-flash-lite-extended', 'claude-haiku', 'claude-5-fable', 'claude-48-opus', 'claude-46-sonnet', 'claude-46-opus', 'glm-51-deep-think', 'glm-deep-think', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-43-expert', 'minimax-m3-thinking', 'nemotron-3-ultra-reasoning', 'mimo-v25-pro', 'mimo-v25', 'qwen-37-max-think', 'qwen-37-plus-think', 'qwen-36-plus-think', 'kimi-k26-thinking'],
       'instant': ['gpt-55-instant', 'gemini-35-flash', 'claude-46-opus-nr', 'claude-46-sonnet-nr', 'claude-haiku-nr', 'grok-43-fast', 'glm-51', 'glm-5', 'qwen-35-omni-plus', 'kimi-k26-instant'],
       'chatgpt-pro': [],
       'other': ['glm-51-deep-think', 'grok-43-fast', 'glm-51', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-43-expert', 'minimax-m3-thinking', 'nemotron-3-ultra-reasoning', 'mimo-v25-pro', 'mimo-v25', 'qwen-37-max-think', 'qwen-37-plus-think', 'qwen-36-plus-think', 'kimi-k26-thinking', 'qwen-35-omni-plus', 'kimi-k26-instant'],
-      'legacy': ['glm-deep-think', 'glm-5', 'claude-46-opus', 'claude-46-sonnet', 'claude-46-opus-nr', 'claude-46-sonnet-nr', 'qwen-36-plus-think']
+      'legacy': ['glm-deep-think', 'glm-5', 'claude-46-opus', 'claude-46-opus-nr', 'qwen-36-plus-think']
     };
 
     // Model constraints: which group toggles must ALL be active for a model to be visible
@@ -3990,11 +4002,12 @@
       'gemini-35-flash': ['instant'],                   // Only needs Non-reasoning
       'gemini-31-flash-lite-extended': ['reasoning'],  // Only needs Reasoning
       'claude-haiku': ['claude', 'reasoning'],         // Needs both Claude AND Reasoning to be on
+      'claude-5-fable': ['claude', 'reasoning'],       // Needs both Claude AND Reasoning to be on
       'claude-48-opus': ['claude', 'reasoning'],       // Needs both Claude AND Reasoning to be on
       'claude-46-opus': ['claude', 'reasoning', 'legacy'],  // Needs Claude, Reasoning, AND Legacy to be on
-      'claude-46-sonnet': ['claude', 'reasoning', 'legacy'], // Needs Claude, Reasoning, AND Legacy to be on
+      'claude-46-sonnet': ['claude', 'reasoning'], // Needs both Claude AND Reasoning to be on
       'claude-46-opus-nr': ['claude', 'instant', 'legacy'], // Needs Claude, Non-reasoning, AND Legacy to be on
-      'claude-46-sonnet-nr': ['claude', 'instant', 'legacy'], // Needs Claude, Non-reasoning, AND Legacy to be on
+      'claude-46-sonnet-nr': ['claude', 'instant'], // Needs both Claude AND Non-reasoning to be on
       'claude-haiku-nr': ['claude', 'instant'],         // Needs both Claude AND Non-reasoning to be on
       'glm-51-deep-think': ['other', 'reasoning'],           // Needs both Other AND Reasoning to be on
       'glm-51': ['other', 'instant'],                        // Needs both Other AND Non-reasoning to be on
@@ -4315,6 +4328,7 @@
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro Extended', correct: 55.25, abstention: 22.43, hallucination: 22.32, sortOrder: 35 },
       { modelId: 'gemini-35-flash-extended', label: '✦ Gemini 3.5 Flash Extended', correct: 51.88, abstention: 18.92, hallucination: 29.20, sortOrder: 40 },
       { modelId: 'gemini-31-flash-lite-extended', label: '✦ Gemini 3.1 Flash Lite Extended', correct: 36.40, abstention: 11.68, hallucination: 51.92, sortOrder: 55 },
+      { modelId: 'claude-5-fable', label: '❋ Claude 5 Fable Adaptive', correct: 61.35, abstention: 17.45, hallucination: 21.20, sortOrder: 63.8 },
       { modelId: 'claude-48-opus', label: '❋ Claude 4.8 Opus Adaptive', correct: 46.60, abstention: 34.24, hallucination: 19.16, sortOrder: 63.9 },
       { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Adaptive', correct: 46.38, abstention: 20.73, hallucination: 32.89, sortOrder: 65.2 },
       { modelId: 'claude-46-opus-nr', label: '❋ Claude 4.6 Opus', correct: 45.15, abstention: 13.16, hallucination: 41.69, sortOrder: 66 },
@@ -4890,13 +4904,13 @@
         modelId: 'claude-46-sonnet',
         label: 'Claude 4.6 Sonnet Adaptive',
         data: [96.7, 82, 85.2, 79.4, 72.4, 69.3, null],
-        borderColor: 'rgba(180, 140, 100, 0.8)',
-        backgroundColor: 'rgba(180, 140, 100, 0.5)',
+        borderColor: 'rgba(218, 119, 87, 0.8)',
+        backgroundColor: 'rgba(218, 119, 87, 0.5)',
         borderWidth: 2,
         tension: 0.3,
         pointRadius: 6,
         pointHoverRadius: 7,
-        pointBackgroundColor: 'rgba(180, 140, 100, 0.8)',
+        pointBackgroundColor: 'rgba(218, 119, 87, 0.8)',
         spanGaps: false,
         sortOrder: 63.2
       },
@@ -4904,14 +4918,14 @@
         modelId: 'claude-46-sonnet-nr',
         label: 'Claude 4.6 Sonnet',
         data: [74.3, 54.1, 49.3, 55, 49, 46.1, null],
-        borderColor: 'rgba(180, 140, 100, 0.5)',
-        backgroundColor: 'rgba(180, 140, 100, 0.25)',
+        borderColor: 'rgba(218, 119, 87, 0.5)',
+        backgroundColor: 'rgba(218, 119, 87, 0.25)',
         borderWidth: 2,
         borderDash: [5, 5],
         tension: 0.3,
         pointRadius: 4,
         pointHoverRadius: 5,
-        pointBackgroundColor: 'rgba(180, 140, 100, 0.5)',
+        pointBackgroundColor: 'rgba(218, 119, 87, 0.5)',
         spanGaps: false,
         sortOrder: 63.3
       },
@@ -5171,6 +5185,7 @@
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro Extended', score: 72.7, sortOrder: 35 },
       { modelId: 'gemini-35-flash-extended', label: '✦ Gemini 3.5 Flash Extended', score: 69.3, sortOrder: 40 },
       { modelId: 'gemini-31-flash-lite-extended', label: '✦ Gemini 3.1 Flash Lite Extended', score: 65.3, sortOrder: 55 },
+      { modelId: 'claude-5-fable', label: '❋ Claude 5 Fable Adaptive', score: 70, sortOrder: 63.8 },
       { modelId: 'claude-48-opus', label: '❋ Claude 4.8 Opus Adaptive', score: 67.7, sortOrder: 63.9 },
       { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Adaptive', score: 70.7, sortOrder: 65.2 },
       { modelId: 'claude-46-opus-nr', label: '❋ Claude 4.6 Opus', score: 58.3, sortOrder: 66 },
@@ -5294,6 +5309,7 @@
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro Extended', score: 82, sortOrder: 35 },
       { modelId: 'gemini-35-flash-extended', label: '✦ Gemini 3.5 Flash Extended', score: 84, sortOrder: 40 },
       { modelId: 'gemini-31-flash-lite-extended', label: '✦ Gemini 3.1 Flash Lite Extended', score: 76, sortOrder: 55 },
+      { modelId: 'claude-5-fable', label: '❋ Claude 5 Fable Adaptive (Estimated)', score: 85, sortOrder: 63.8, estimated: true },
       { modelId: 'claude-48-opus', label: '❋ Claude 4.8 Opus Adaptive (Estimated)', score: 79, sortOrder: 63.9, estimated: true },
       { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Adaptive', score: 75, sortOrder: 65.2 },
       { modelId: 'claude-46-opus-nr', label: '❋ Claude 4.6 Opus', score: 73, sortOrder: 66 },
@@ -5417,6 +5433,7 @@
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro Extended', score: 1314, sortOrder: 35 },
       { modelId: 'gemini-35-flash-extended', label: '✦ Gemini 3.5 Flash Extended', score: 1656, sortOrder: 40 },
       { modelId: 'gemini-31-flash-lite-extended', label: '✦ Gemini 3.1 Flash Lite Extended', score: 925, sortOrder: 55 },
+      { modelId: 'claude-5-fable', label: '❋ Claude 5 Fable Adaptive', score: 1932, sortOrder: 63.8 },
       { modelId: 'claude-48-opus', label: '❋ Claude 4.8 Opus Adaptive', score: 1890, sortOrder: 63.9 },
       { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Adaptive', score: 1619, sortOrder: 65.2 },
       { modelId: 'claude-46-opus-nr', label: '❋ Claude 4.6 Opus', score: 1589, sortOrder: 66 },
@@ -5462,6 +5479,41 @@
       return { labels, data, backgroundColors, hoverBackgroundColors, borderColors };
     }
 
+    function formatGdpvalScore(score) {
+      const numericScore = Number(score);
+      if (!Number.isFinite(numericScore)) return String(score);
+      if (Math.abs(numericScore) >= 1000) {
+        const valueInThousands = numericScore / 1000;
+        return Number.isInteger(valueInThousands)
+          ? valueInThousands + 'k'
+          : valueInThousands.toFixed(1) + 'k';
+      }
+
+      return String(numericScore);
+    }
+
+    function getGdpvalRelativePercentage(score, decimals = 2) {
+      const maxScore = Math.max(...gdpvalAllModels.map(m => m.score));
+      if (!Number.isFinite(maxScore) || maxScore <= 0) return String(score);
+
+      const relativeScore = (score / maxScore) * 100;
+      return Math.abs(relativeScore - 100) < 0.005
+        ? '100'
+        : relativeScore.toFixed(decimals);
+    }
+
+    function formatGdpvalRelativeScore(score) {
+      const percentage = getGdpvalRelativePercentage(score);
+
+      return score + ' (' + percentage + '%)';
+    }
+
+    function formatGdpvalRelativeAxisTick(score) {
+      const percentage = getGdpvalRelativePercentage(score, 0);
+
+      return formatGdpvalScore(score) + ' (' + percentage + '%)';
+    }
+
     const gdpvalCtx = document.getElementById('gdpvalChart').getContext('2d');
     const gdpvalInitData = getGdpvalData();
     gdpvalChart = new Chart(gdpvalCtx, {
@@ -5495,7 +5547,7 @@
             cornerRadius: 8,
             callbacks: {
               label: function (context) {
-                return context.parsed.x;
+                return formatGdpvalRelativeScore(context.parsed.x);
               }
             }
           }
@@ -5505,6 +5557,11 @@
             beginAtZero: gdpvalAxisMinMode === '0',
             min: getScoreAxisMin(gdpvalAxisMinMode, gdpvalInitData.data, getModelScores(gdpvalAllModels)),
             max: 1900,
+            ticks: {
+              callback: function (value) {
+                return formatGdpvalRelativeAxisTick(value);
+              }
+            },
             grid: {
               color: 'rgba(255, 255, 255, 0.05)'
             }
@@ -5530,6 +5587,7 @@
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro Extended', score: 53.8, sortOrder: 35 },
       { modelId: 'gemini-35-flash-extended', label: '✦ Gemini 3.5 Flash Extended', score: 40.9, sortOrder: 40 },
       { modelId: 'gemini-31-flash-lite-extended', label: '✦ Gemini 3.1 Flash Lite Extended', score: 24.2, sortOrder: 55 },
+      { modelId: 'claude-5-fable', label: '❋ Claude 5 Fable Adaptive', score: 62.9, sortOrder: 63.8 },
       { modelId: 'claude-48-opus', label: '❋ Claude 4.8 Opus Adaptive', score: 58.3, sortOrder: 63.9 },
       { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Adaptive', score: 46.2, sortOrder: 65.2 },
       { modelId: 'claude-46-opus-nr', label: '❋ Claude 4.6 Opus', score: 48.5, sortOrder: 66 },
@@ -5676,7 +5734,7 @@
     // GPT non-reasoning: 27k / 54k / 128k  (Free / Plus,Go / Pro)
     // GPT reasoning:     256k / 400k        (Free,Go,Plus / Pro)
     // Gemini:            32k / 128k / 1M    (Free / Plus / Pro,Ultra)
-    // Claude:            200k / 500k        (Free / Pro,Max x5,Max x20) for 4.6/4.7
+    // Claude:            200k / 500k        (Free / Pro,Max x5,Max x20) for >4.6 models
     // Grok:              1M                 (all plans)
     // GLM:               200k               (all plans)
     // Qwen:              1M                 (all plans)
@@ -5765,6 +5823,14 @@
         ]
       },
       // Claude
+      {
+        modelId: 'claude-5-fable', label: '❋ Claude 5 Fable Adaptive', sortOrder: 63.8,
+        color: 'rgba(218, 119, 87, 1)',
+        segments: [
+          { value: 200000, plans: 'Free' },
+          { value: 500000, plans: 'Pro, Max x5, Max x20' }
+        ]
+      },
       {
         modelId: 'claude-48-opus', label: '❋ Claude 4.8 Opus Adaptive', sortOrder: 63.9,
         color: 'rgba(218, 119, 87, 1)',
@@ -6778,6 +6844,8 @@
       let needsChartUpdate = false;
       const legacyClaudeSonnetMigrationKey = 'legacyClaudeSonnetMigration_2026_06_02';
       const shouldMigrateLegacyClaudeSonnet = localStorage.getItem(legacyClaudeSonnetMigrationKey) !== 'true';
+      const unlegacyClaudeSonnetMigrationKey = 'unlegacyClaudeSonnetMigration_2026_06_10';
+      const shouldMigrateUnlegacyClaudeSonnet = localStorage.getItem(unlegacyClaudeSonnetMigrationKey) !== 'true';
 
       // Restore modelVisibility from localStorage
       const savedModelVisibility = localStorage.getItem('modelVisibility');
@@ -6876,6 +6944,15 @@
         });
         localStorage.setItem('modelVisibility', JSON.stringify(modelVisibility));
         localStorage.setItem(legacyClaudeSonnetMigrationKey, 'true');
+        needsChartUpdate = true;
+      }
+
+      if (shouldMigrateUnlegacyClaudeSonnet) {
+        ['claude-46-sonnet', 'claude-46-sonnet-nr'].forEach(modelId => {
+          modelVisibility[modelId] = shouldModelBeVisible(modelId);
+        });
+        localStorage.setItem('modelVisibility', JSON.stringify(modelVisibility));
+        localStorage.setItem(unlegacyClaudeSonnetMigrationKey, 'true');
         needsChartUpdate = true;
       }
 
@@ -7098,7 +7175,7 @@
     style="text-align: center; padding: 2rem 1rem; margin-top: 3rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.8rem;">
     Made by <strong> u/Pasto_Shouwa</strong>
     <br>
-    <em>Last updated on <strong>07/06/2026</strong> (dd/mm/yyyy)</em>
+    <em>Last updated on <strong>10/06/2026</strong> (dd/mm/yyyy)</em>
   </footer>
 </body>
 
