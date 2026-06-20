@@ -790,13 +790,137 @@
       opacity: 0;
     }
 
+    .model-profile-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin: -1.5rem auto 1.35rem;
+    }
+
+    .model-profile-edit-toggle {
+      background: transparent;
+      border: 1px solid var(--border-color);
+      border-radius: 999px;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      padding: 0.48rem 0.7rem;
+      text-transform: uppercase;
+      transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .model-profile-edit-toggle:hover,
+    .model-profile-edit-toggle.active {
+      background: var(--bg-hover);
+      border-color: rgba(255, 255, 255, 0.16);
+      color: var(--text-primary);
+    }
+
+    .model-profile-btn {
+      --model-profile-color: rgba(139, 92, 246, 1);
+      align-items: center;
+      background: var(--bg-card);
+      border: 1px solid color-mix(in srgb, var(--model-profile-color) 30%, var(--border-color));
+      border-radius: 20px;
+      color: var(--text-secondary);
+      cursor: pointer;
+      display: inline-flex;
+      gap: 0.45rem;
+      font-family: inherit;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 0.55rem 0.95rem;
+      transition: all 0.25s ease;
+    }
+
+    .model-profile-color-dot {
+      background: var(--model-profile-color);
+      border-radius: 999px;
+      box-shadow: 0 0 10px color-mix(in srgb, var(--model-profile-color) 45%, transparent);
+      flex: 0 0 auto;
+      height: 0.55rem;
+      width: 0.55rem;
+    }
+
+    .model-profile-btn:hover,
+    .model-profile-btn.active {
+      background: color-mix(in srgb, var(--model-profile-color) 14%, var(--bg-hover));
+      border-color: color-mix(in srgb, var(--model-profile-color) 64%, rgba(255, 255, 255, 0.14));
+      color: var(--text-primary);
+    }
+
+    .model-profile-editor {
+      align-items: center;
+      display: flex;
+      gap: 0.55rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: -0.65rem auto 1.25rem;
+      max-height: 80px;
+      opacity: 1;
+      overflow: hidden;
+      transition: max-height 0.25s ease, opacity 0.2s ease, margin 0.25s ease;
+    }
+
+    .model-profile-editor.collapsed {
+      margin-bottom: 1.15rem;
+      margin-top: -1.15rem;
+      max-height: 0;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .model-profile-edit-label {
+      align-items: center;
+      color: var(--text-muted);
+      display: inline-flex;
+      font-size: 0.72rem;
+      font-weight: 600;
+      gap: 0.4rem;
+    }
+
+    .model-profile-name-input {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 999px;
+      color: var(--text-secondary);
+      font: inherit;
+      font-size: 0.76rem;
+      font-weight: 600;
+      max-width: 150px;
+      padding: 0.45rem 0.75rem;
+      transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+    }
+
+    .model-profile-name-input:focus {
+      background: var(--bg-hover);
+      border-color: rgba(255, 255, 255, 0.18);
+      color: var(--text-primary);
+      outline: none;
+    }
+
+    .model-profile-color-input {
+      background: transparent;
+      border: 1px solid var(--border-color);
+      border-radius: 999px;
+      cursor: pointer;
+      height: 2rem;
+      padding: 0.2rem;
+      width: 2.45rem;
+    }
+
     .benchmark-export-actions {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 0.75rem;
       flex-wrap: wrap;
-      margin: -1.5rem auto 2rem;
+      margin: 0 auto 2rem;
     }
 
     .benchmark-export-btn {
@@ -920,6 +1044,39 @@
 
     .legacy-toggle .toggle-switch.active::after {
       background: rgba(180, 140, 100, 0.8);
+    }
+
+    .model-filter-toggles {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .model-filter-toggle-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.75rem 0.9rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+    }
+
+    .model-filter-toggle-title {
+      color: var(--text-secondary);
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    .model-filter-toggle-description {
+      color: var(--text-muted);
+      display: block;
+      font-size: 0.7rem;
+      line-height: 1.35;
     }
 
     /* ── Hide button (circle) next to other/legacy toggles ───────── */
@@ -1545,6 +1702,17 @@
       flex-wrap: wrap;
       gap: 0.5rem;
       padding-left: 0.25rem;
+      max-height: 260px;
+      opacity: 1;
+      overflow: hidden;
+      transition: opacity 0.22s ease, max-height 0.28s ease, margin-bottom 0.28s ease;
+    }
+
+    .model-dots-row.model-filter-row-hidden {
+      max-height: 0;
+      margin-bottom: 0 !important;
+      opacity: 0;
+      pointer-events: none;
     }
 
     .model-dot {
@@ -1555,8 +1723,21 @@
       border-radius: 12px;
       background: var(--bg-hover);
       cursor: pointer;
-      transition: all 0.2s ease;
+      max-width: 280px;
+      overflow: hidden;
+      transform: scale(1);
+      transition: opacity 0.22s ease, transform 0.22s ease, max-width 0.28s ease, padding 0.28s ease, border-width 0.28s ease, background 0.2s ease;
       border: 1px solid transparent;
+    }
+
+    .model-dot.model-filter-hidden {
+      border-width: 0;
+      max-width: 0;
+      opacity: 0 !important;
+      padding-left: 0;
+      padding-right: 0;
+      pointer-events: none;
+      transform: scale(0.96);
     }
 
     .model-dot:hover {
@@ -2225,11 +2406,6 @@
               <td class="rating-excellent">Yes<span class="detail">[Notebooks]</span></td>
             </tr>
             <tr>
-              <td>Maximum scheduled tasks</td>
-              <td class="rating-excellent">10<br><span class="detail">[Tasks]</span></td>
-              <td>No</td>
-            </tr>
-            <tr>
               <td>Deep research uses per month</td>
               <td>Unknown<span class="detail">[GPT 5.5 Thinking / GPT o3]</span></td>
               <td>Unknown {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
@@ -2417,8 +2593,10 @@
               <td colspan="3" class="rating-excellent">Yes<span class="detail">[Notebooks]</span></td>
             </tr>
             <tr>
-              <td>Maximum scheduled tasks</td>
-              <td colspan="3" class="rating-excellent">10<br><span class="detail">[Tasks]</span></td>
+              <td>Maximum active scheduled tasks</td>
+              <td>No</td>
+              <td>3<br><span class="detail">[Tasks]</span></td>
+              <td class="rating-great">5<br><span class="detail">[Tasks]</span></td>
               <td>No</td>
               <td colspan="2" class="rating-excellent">10<br><span class="detail">[Scheduled Actions]</span></td>
             </tr>
@@ -2613,9 +2791,9 @@
               <td colspan="2" class="rating-excellent">Yes<span class="detail">[Notebooks]</span></td>
             </tr>
             <tr>
-              <td>Maximum scheduled tasks</td>
-              <td class="rating-excellent">10<br><span class="detail">[Tasks]</span></td>
-              <td colspan="2" class="rating-excellent">10<br><span class="detail">[Scheduled Actions]</span></td>
+              <td>Maximum active scheduled tasks</td>
+              <td class="rating-excellent">15<br><span class="detail">[Tasks]</span></td>
+              <td colspan="2" class="rating-great">10<br><span class="detail">[Scheduled Actions]</span></td>
             </tr>
             <tr>
               <td>Deep research uses per month</td>
@@ -2737,6 +2915,32 @@
     <!-- TAB 2: BENCHMARKS -->
     <section id="tab-benchmarks" class="tab-content">
 
+      <div class="model-profile-actions" aria-label="Model selection profiles">
+        <button class="model-profile-btn active" data-model-profile="0" onclick="selectModelProfile(0)"><span
+            class="model-profile-color-dot"></span><span class="model-profile-btn-label">Profile 1</span></button>
+        <button class="model-profile-btn" data-model-profile="1" onclick="selectModelProfile(1)"><span
+            class="model-profile-color-dot"></span><span class="model-profile-btn-label">Profile 2</span></button>
+        <button class="model-profile-btn" data-model-profile="2" onclick="selectModelProfile(2)"><span
+            class="model-profile-color-dot"></span><span class="model-profile-btn-label">Profile 3</span></button>
+        <button class="model-profile-btn" data-model-profile="3" onclick="selectModelProfile(3)"><span
+            class="model-profile-color-dot"></span><span class="model-profile-btn-label">Profile 4</span></button>
+        <button class="model-profile-btn" data-model-profile="4" onclick="selectModelProfile(4)"><span
+            class="model-profile-color-dot"></span><span class="model-profile-btn-label">Profile 5</span></button>
+        <button class="model-profile-edit-toggle" id="modelProfileEditToggle"
+          onclick="toggleModelProfileEditor()">Edit</button>
+      </div>
+
+      <div class="model-profile-editor collapsed" id="modelProfileEditor" aria-label="Edit active model profile">
+        <label class="model-profile-edit-label" for="modelProfileNameInput">Name
+          <input class="model-profile-name-input" id="modelProfileNameInput" maxlength="24" type="text"
+            oninput="updateActiveModelProfileName(this.value)">
+        </label>
+        <label class="model-profile-edit-label" for="modelProfileColorInput">Color
+          <input class="model-profile-color-input" id="modelProfileColorInput" type="color"
+            oninput="updateActiveModelProfileColor(this.value)">
+        </label>
+      </div>
+
       <div class="benchmark-export-actions" aria-label="Benchmark export actions">
         <button class="benchmark-export-btn" onclick="exportSelectedBenchmarksMarkdown()">Export selected
           values</button>
@@ -2750,69 +2954,10 @@
           <span class="model-filters-toggle">▼</span>
         </div>
         <div class="model-filters-content">
-          <!-- Claude models -->
-          <div class="filter-group">
-            <div class="filter-group-header">
-              <span class="filter-group-name">Claude models</span>
-              <div class="toggle-inline">
-                <div class="toggle-switch claude-toggle active" onclick="event.stopPropagation(); toggleClaudeModels()">
-                </div>
-              </div>
-            </div>
-            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
-              <div class="model-dot" data-model="claude-5-fable" onclick="toggleIndividualModel('claude-5-fable')">
-                <span class="model-dot-indicator dot-claude shape-cross"></span>
-                <span class="model-dot-label">Claude 5 Fable Adaptive</span>
-              </div>
-              <div class="model-dot" data-model="claude-48-opus" onclick="toggleIndividualModel('claude-48-opus')">
-                <span class="model-dot-indicator dot-claude shape-square"></span>
-                <span class="model-dot-label">Claude 4.8 Opus Adaptive</span>
-              </div>
-              <div class="model-dot" data-model="claude-46-sonnet" onclick="toggleIndividualModel('claude-46-sonnet')">
-                <span class="model-dot-indicator dot-claude"></span>
-                <span class="model-dot-label">Claude 4.6 Sonnet Adaptive</span>
-              </div>
-              <div class="model-dot inactive" data-model="claude-haiku" onclick="toggleIndividualModel('claude-haiku')">
-                <span class="model-dot-indicator dot-claude"></span>
-                <span class="model-dot-label">Claude 4.5 Haiku Extended</span>
-              </div>
-            </div>
-            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
-              <div class="model-dot" data-model="claude-46-opus" onclick="toggleIndividualModel('claude-46-opus')">
-                <span class="model-dot-indicator dot-claude-legacy shape-square"></span>
-                <span class="model-dot-label">Claude 4.6 Opus Adaptive</span>
-              </div>
-            </div>
-            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
-              <div class="model-dot inactive" data-model="claude-46-sonnet-nr"
-                onclick="toggleIndividualModel('claude-46-sonnet-nr')">
-                <span class="model-dot-indicator dot-claude"></span>
-                <span class="model-dot-label">Claude 4.6 Sonnet</span>
-              </div>
-              <div class="model-dot inactive" data-model="claude-haiku-nr"
-                onclick="toggleIndividualModel('claude-haiku-nr')">
-                <span class="model-dot-indicator dot-claude"></span>
-                <span class="model-dot-label">Claude 4.5 Haiku</span>
-              </div>
-            </div>
-            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
-              <div class="model-dot inactive" data-model="claude-46-opus-nr"
-                onclick="toggleIndividualModel('claude-46-opus-nr')">
-                <span class="model-dot-indicator dot-claude-legacy shape-square"></span>
-                <span class="model-dot-label">Claude 4.6 Opus</span>
-              </div>
-            </div>
-
-          </div>
-
           <!-- Reasoning models -->
           <div class="filter-group">
             <div class="filter-group-header">
               <span class="filter-group-name">Reasoning models</span>
-              <div class="toggle-inline reasoning-toggle">
-                <div class="toggle-switch reasoning-model-toggle active"
-                  onclick="event.stopPropagation(); toggleReasoningModels()"></div>
-              </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot inactive" data-model="gpt-55-thinking-xhigh"
@@ -2959,10 +3104,6 @@
           <div class="filter-group">
             <div class="filter-group-header">
               <span class="filter-group-name">Non-reasoning models</span>
-              <div class="toggle-inline instant-toggle">
-                <div class="toggle-switch instant-model-toggle active"
-                  onclick="event.stopPropagation(); toggleInstantModels()"></div>
-              </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot" data-model="gpt-55-instant" onclick="toggleIndividualModel('gpt-55-instant')">
@@ -3017,29 +3158,21 @@
             </div>
           </div>
 
-          <!-- Other recommended models -->
-          <div class="filter-group">
-            <div class="filter-group-header">
-              <span class="filter-group-name">Other recommended models</span>
-              <div class="toggle-inline other-toggle">
-                <div class="hide-btn other-models-hide-btn" title="Hide models"
-                  onclick="event.stopPropagation(); toggleOtherHide()"></div>
-                <div class="toggle-switch other-models-toggle" onclick="event.stopPropagation(); toggleOtherModels()">
-                </div>
+          <div class="model-filter-toggles">
+            <div class="model-filter-toggle-card other-toggle">
+              <div>
+                <span class="model-filter-toggle-title">Extra models</span>
+                <span class="model-filter-toggle-description">Selection of AI models with a low hallucination rate</span>
+              </div>
+              <div class="toggle-switch other-models-toggle" onclick="event.stopPropagation(); toggleOtherModels()">
               </div>
             </div>
-          </div>
-
-          <!-- Legacy models -->
-          <div class="filter-group">
-            <div class="filter-group-header">
-              <span class="filter-group-name">Legacy models</span>
-              <div class="toggle-inline legacy-toggle">
-                <div class="hide-btn legacy-models-hide-btn" title="Hide models"
-                  onclick="event.stopPropagation(); toggleLegacyHide()"></div>
-                <div class="toggle-switch legacy-models-toggle active"
-                  onclick="event.stopPropagation(); toggleLegacyModels()">
-                </div>
+            <div class="model-filter-toggle-card legacy-toggle">
+              <div>
+                <span class="model-filter-toggle-title">Legacy models</span>
+                <span class="model-filter-toggle-description">AI models whose new version has been released but which perform better than its predecesor in some benchmarks</span>
+              </div>
+              <div class="toggle-switch legacy-models-toggle" onclick="event.stopPropagation(); toggleLegacyModels()">
               </div>
             </div>
           </div>
@@ -3174,23 +3307,6 @@
       <div id="bench-section-omniscience">
         <div class="section-title-wrapper">
           <h2 class="section-title section-title-accuracy">Knowledge Accuracy — AA-Omniscience Benchmark</h2>
-          <div class="toggle-inline">
-            <span class="toggle-label">Claude models</span>
-            <div class="toggle-switch claude-toggle active" onclick="toggleClaudeModels()"></div>
-          </div>
-          <div class="toggle-inline reasoning-toggle">
-            <span class="toggle-label">Reasoning models</span>
-            <div class="toggle-switch reasoning-model-toggle active" onclick="toggleReasoningModels()"></div>
-          </div>
-          <div class="toggle-inline instant-toggle">
-            <span class="toggle-label">Non-reasoning models</span>
-            <div class="toggle-switch instant-model-toggle active" onclick="toggleInstantModels()"></div>
-          </div>
-          <div class="toggle-inline other-toggle">
-            <span class="toggle-label">Other recommended models</span>
-            <div class="toggle-switch other-models-toggle" onclick="toggleOtherModels()"></div>
-          </div>
-
         </div>
         <div class="chart-container">
           <canvas id="omniscienceChart"></canvas>
@@ -3236,23 +3352,6 @@
       <div id="bench-section-mrcr">
         <div class="section-title-wrapper" style="margin-top: 3rem;">
           <h2 class="section-title section-title-long">Long Context Accuracy — MRCR v2 8-Needle Benchmark</h2>
-          <div class="toggle-inline">
-            <span class="toggle-label">Claude models</span>
-            <div class="toggle-switch claude-toggle active" onclick="toggleClaudeModels()"></div>
-          </div>
-          <div class="toggle-inline reasoning-toggle">
-            <span class="toggle-label">Reasoning models</span>
-            <div class="toggle-switch reasoning-model-toggle active" onclick="toggleReasoningModels()"></div>
-          </div>
-          <div class="toggle-inline instant-toggle">
-            <span class="toggle-label">Non-reasoning models</span>
-            <div class="toggle-switch instant-model-toggle active" onclick="toggleInstantModels()"></div>
-          </div>
-          <div class="toggle-inline other-toggle">
-            <span class="toggle-label">Other recommended models</span>
-            <div class="toggle-switch other-models-toggle" onclick="toggleOtherModels()"></div>
-          </div>
-
         </div>
         <div class="chart-container">
           <canvas id="mrcrChart"></canvas>
@@ -3321,23 +3420,6 @@
       <div id="bench-section-aalcr">
         <div class="section-title-wrapper" style="margin-top: 3rem;">
           <h2 class="section-title section-title-long">Long Context Reasoning — AA-LCR</h2>
-          <div class="toggle-inline">
-            <span class="toggle-label">Claude models</span>
-            <div class="toggle-switch claude-toggle active" onclick="toggleClaudeModels()"></div>
-          </div>
-          <div class="toggle-inline reasoning-toggle">
-            <span class="toggle-label">Reasoning models</span>
-            <div class="toggle-switch reasoning-model-toggle active" onclick="toggleReasoningModels()"></div>
-          </div>
-          <div class="toggle-inline instant-toggle">
-            <span class="toggle-label">Non-reasoning models</span>
-            <div class="toggle-switch instant-model-toggle active" onclick="toggleInstantModels()"></div>
-          </div>
-          <div class="toggle-inline other-toggle">
-            <span class="toggle-label">Other recommended models</span>
-            <div class="toggle-switch other-models-toggle" onclick="toggleOtherModels()"></div>
-          </div>
-
         </div>
         <div class="chart-container">
           <canvas id="lcrChart"></canvas>
@@ -3403,24 +3485,8 @@
       <div id="bench-section-maxcontext" style="margin-top: 3rem;">
         <div class="section-title-wrapper">
           <h2 class="section-title section-title-long">Max Context Limit</h2>
-          <div class="toggle-inline">
-            <span class="toggle-label">Claude models</span>
-            <div class="toggle-switch claude-toggle active" onclick="toggleClaudeModels()"></div>
-          </div>
-          <div class="toggle-inline reasoning-toggle">
-            <span class="toggle-label">Reasoning models</span>
-            <div class="toggle-switch reasoning-model-toggle active" onclick="toggleReasoningModels()"></div>
-          </div>
-          <div class="toggle-inline instant-toggle">
-            <span class="toggle-label">Non-reasoning models</span>
-            <div class="toggle-switch instant-model-toggle active" onclick="toggleInstantModels()"></div>
-          </div>
-          <div class="toggle-inline other-toggle">
-            <span class="toggle-label">Other recommended models</span>
-            <div class="toggle-switch other-models-toggle" onclick="toggleOtherModels()"></div>
-          </div>
         </div>
-        <div class="chart-container" style="height: auto; min-height: 400px;">
+        <div class="chart-container">
           <canvas id="maxContextChart"></canvas>
         </div>
         <p class="chart-note">Maximum context window size in tokens. Take into consideration that a higher context limit
@@ -3440,23 +3506,6 @@
       <div id="bench-section-mmmu">
         <div class="section-title-wrapper" style="margin-top: 3rem;">
           <h2 class="section-title section-title-multimodal">Visual Reasoning — MMMU-Pro</h2>
-          <div class="toggle-inline">
-            <span class="toggle-label">Claude models</span>
-            <div class="toggle-switch claude-toggle active" onclick="toggleClaudeModels()"></div>
-          </div>
-          <div class="toggle-inline reasoning-toggle">
-            <span class="toggle-label">Reasoning models</span>
-            <div class="toggle-switch reasoning-model-toggle active" onclick="toggleReasoningModels()"></div>
-          </div>
-          <div class="toggle-inline instant-toggle">
-            <span class="toggle-label">Non-reasoning models</span>
-            <div class="toggle-switch instant-model-toggle active" onclick="toggleInstantModels()"></div>
-          </div>
-          <div class="toggle-inline other-toggle">
-            <span class="toggle-label">Other recommended models</span>
-            <div class="toggle-switch other-models-toggle" onclick="toggleOtherModels()"></div>
-          </div>
-
         </div>
         <div class="chart-container">
           <canvas id="mmmuProChart"></canvas>
@@ -3522,22 +3571,6 @@
       <div id="bench-section-gdpval2">
         <div class="section-title-wrapper" style="margin-top: 3rem;">
           <h2 class="section-title section-title-agentic">Agentic Work — GDPval-AA v2</h2>
-          <div class="toggle-inline">
-            <span class="toggle-label">Claude models</span>
-            <div class="toggle-switch claude-toggle active" onclick="toggleClaudeModels()"></div>
-          </div>
-          <div class="toggle-inline reasoning-toggle">
-            <span class="toggle-label">Reasoning models</span>
-            <div class="toggle-switch reasoning-model-toggle active" onclick="toggleReasoningModels()"></div>
-          </div>
-          <div class="toggle-inline instant-toggle">
-            <span class="toggle-label">Non-reasoning models</span>
-            <div class="toggle-switch instant-model-toggle active" onclick="toggleInstantModels()"></div>
-          </div>
-          <div class="toggle-inline other-toggle">
-            <span class="toggle-label">Other recommended models</span>
-            <div class="toggle-switch other-models-toggle" onclick="toggleOtherModels()"></div>
-          </div>
         </div>
         <div class="chart-container">
           <canvas id="gdpval2Chart"></canvas>
@@ -3582,23 +3615,6 @@
       <div id="bench-section-terminal-v21" class="coding-benchmark-section">
         <div class="section-title-wrapper" style="margin-top: 3rem;">
           <h2 class="section-title section-title-blue">Agentic Coding — Terminal-Bench v2.1</h2>
-          <div class="toggle-inline">
-            <span class="toggle-label">Claude models</span>
-            <div class="toggle-switch claude-toggle active" onclick="toggleClaudeModels()"></div>
-          </div>
-          <div class="toggle-inline reasoning-toggle">
-            <span class="toggle-label">Reasoning models</span>
-            <div class="toggle-switch reasoning-model-toggle active" onclick="toggleReasoningModels()"></div>
-          </div>
-          <div class="toggle-inline instant-toggle">
-            <span class="toggle-label">Non-reasoning models</span>
-            <div class="toggle-switch instant-model-toggle active" onclick="toggleInstantModels()"></div>
-          </div>
-          <div class="toggle-inline other-toggle">
-            <span class="toggle-label">Other recommended models</span>
-            <div class="toggle-switch other-models-toggle" onclick="toggleOtherModels()"></div>
-          </div>
-
         </div>
         <div class="chart-container">
           <canvas id="terminalBenchV21Chart"></canvas>
@@ -3898,7 +3914,7 @@
     let showChatGPTProModels = false;
     let showReasoningModels = true;
     let showOtherModels = false;   // whether other models are active in charts
-    let showLegacyModels = true;   // whether legacy models are active in charts
+    let showLegacyModels = false;  // whether legacy models are active in charts
     let otherModelsHidden = true;  // whether other model rows are hidden from the filter list
     let legacyModelsHidden = true; // whether legacy model rows are hidden from the filter list
     // Legacy state variables kept for localStorage migration (old: 0=hidden, 1=list-only, 2=active)
@@ -3920,7 +3936,7 @@
       'claude-haiku': false,   // Starts hidden by default
       'claude-5-fable': true,     // Starts visible by default
       'claude-48-opus': true,     // Starts visible by default
-      'claude-46-opus': true,     // Starts visible by default (legacy)
+      'claude-46-opus': false,    // Legacy, starts hidden by default
       'claude-46-sonnet': true,   // Starts visible by default
       'claude-46-opus-nr': false, // Starts hidden (legacy)
       'claude-46-sonnet-nr': false, // Starts hidden
@@ -3958,7 +3974,7 @@
       'claude-haiku': true,    // Starts explicitly disabled
       'claude-5-fable': false,    // Starts enabled by default
       'claude-48-opus': false,    // Starts enabled by default
-      'claude-46-opus': false,    // Starts enabled by default (legacy)
+      'claude-46-opus': true,     // Legacy, starts explicitly disabled
       'claude-46-sonnet': false,  // Starts enabled by default
       'claude-46-opus-nr': true,  // Starts explicitly disabled (legacy)
       'claude-46-sonnet-nr': true, // Starts explicitly disabled
@@ -3979,6 +3995,16 @@
       'qwen-35-omni-plus': false,        // Other recommended
       'kimi-k26-instant': false          // Other recommended
     };
+
+    const MODEL_PROFILE_COUNT = 5;
+    const MODEL_PROFILES_STORAGE_KEY = 'modelSelectionProfilesV1';
+    const ACTIVE_MODEL_PROFILE_STORAGE_KEY = 'activeModelSelectionProfileIndex';
+    const defaultModelProfileColors = ['#8b5cf6', '#10a37f', '#ff7e21', '#f34d65', '#3b82f6'];
+    const defaultModelVisibility = { ...modelVisibility };
+    const defaultModelExplicitlyDisabled = { ...modelExplicitlyDisabled };
+    let modelSelectionProfiles = [];
+    let activeModelSelectionProfileIndex = 0;
+    let modelProfileEditorExpanded = false;
 
     // Model groups for group toggles
     const modelGroups = {
@@ -4076,66 +4102,208 @@
       });
     }
 
-    // Toggle individual model visibility
-    function toggleIndividualModel(modelId) {
-      modelVisibility[modelId] = !modelVisibility[modelId];
+    function cloneKnownBooleanMap(source, defaults) {
+      const clone = {};
+      Object.keys(defaults).forEach(key => {
+        clone[key] = source && typeof source[key] === 'boolean' ? source[key] : defaults[key];
+      });
+      return clone;
+    }
 
-      // Track explicit disable: if user clicks to disable, mark as explicit
-      // If user clicks to enable, clear the explicit flag
-      modelExplicitlyDisabled[modelId] = !modelVisibility[modelId];
+    function parseStoredJson(key) {
+      const stored = localStorage.getItem(key);
+      if (!stored) return null;
+      try {
+        return JSON.parse(stored);
+      } catch (e) {
+        console.error('Failed to parse ' + key + ':', e);
+        return null;
+      }
+    }
 
-      // Update UI
-      updateModelDotsUI();
-      syncGroupToggles();
+    function getDefaultModelProfileName(index) {
+      return 'Profile ' + (index + 1);
+    }
 
-      // Update legacy flags based on model states
-      updateLegacyFlags();
+    function sanitizeModelProfileName(name, index) {
+      const cleanName = typeof name === 'string' ? name.slice(0, 24) : '';
+      return cleanName.trim() ? cleanName : getDefaultModelProfileName(index);
+    }
 
-      // Update all charts
-      updateAllCharts();
+    function sanitizeModelProfileColor(color, index) {
+      const fallback = defaultModelProfileColors[index] || defaultModelProfileColors[0];
+      return typeof color === 'string' && /^#[0-9a-f]{6}$/i.test(color) ? color : fallback;
+    }
 
-      // Save state (including explicit disable tracking)
+    function getCurrentModelProfileSnapshot() {
+      const currentProfile = modelSelectionProfiles[activeModelSelectionProfileIndex] || {};
+      return {
+        name: sanitizeModelProfileName(currentProfile.name, activeModelSelectionProfileIndex),
+        color: sanitizeModelProfileColor(currentProfile.color, activeModelSelectionProfileIndex),
+        modelVisibility: cloneKnownBooleanMap(modelVisibility, defaultModelVisibility),
+        modelExplicitlyDisabled: cloneKnownBooleanMap(modelExplicitlyDisabled, defaultModelExplicitlyDisabled)
+      };
+    }
+
+    function createDefaultModelProfile(index = 0) {
+      return {
+        name: getDefaultModelProfileName(index),
+        color: sanitizeModelProfileColor(null, index),
+        modelVisibility: cloneKnownBooleanMap(defaultModelVisibility, defaultModelVisibility),
+        modelExplicitlyDisabled: cloneKnownBooleanMap(defaultModelExplicitlyDisabled, defaultModelExplicitlyDisabled)
+      };
+    }
+
+    function normalizeModelProfile(profile, index = 0) {
+      const fallback = createDefaultModelProfile(index);
+      return {
+        name: sanitizeModelProfileName(profile && profile.name, index),
+        color: sanitizeModelProfileColor(profile && profile.color, index),
+        modelVisibility: cloneKnownBooleanMap(profile && profile.modelVisibility, fallback.modelVisibility),
+        modelExplicitlyDisabled: cloneKnownBooleanMap(profile && profile.modelExplicitlyDisabled, fallback.modelExplicitlyDisabled)
+      };
+    }
+
+    function persistCurrentModelState() {
       localStorage.setItem('modelVisibility', JSON.stringify(modelVisibility));
       localStorage.setItem('modelExplicitlyDisabled', JSON.stringify(modelExplicitlyDisabled));
     }
 
-    // Sync group toggle UI based on individual model states
+    function loadModelProfiles() {
+      const savedProfiles = parseStoredJson(MODEL_PROFILES_STORAGE_KEY);
+      const legacyVisibility = parseStoredJson('modelVisibility');
+      const legacyExplicit = parseStoredJson('modelExplicitlyDisabled');
+
+      if (Array.isArray(savedProfiles) && savedProfiles.length) {
+        modelSelectionProfiles = savedProfiles.slice(0, MODEL_PROFILE_COUNT).map((profile, index) => normalizeModelProfile(profile, index));
+      } else {
+        modelSelectionProfiles = [normalizeModelProfile({
+          modelVisibility: legacyVisibility || modelVisibility,
+          modelExplicitlyDisabled: legacyExplicit || modelExplicitlyDisabled
+        }, 0)];
+      }
+
+      while (modelSelectionProfiles.length < MODEL_PROFILE_COUNT) {
+        modelSelectionProfiles.push(createDefaultModelProfile(modelSelectionProfiles.length));
+      }
+
+      const savedActiveIndex = parseInt(localStorage.getItem(ACTIVE_MODEL_PROFILE_STORAGE_KEY), 10);
+      activeModelSelectionProfileIndex = Number.isInteger(savedActiveIndex)
+        ? Math.min(Math.max(savedActiveIndex, 0), MODEL_PROFILE_COUNT - 1)
+        : 0;
+
+      localStorage.setItem(MODEL_PROFILES_STORAGE_KEY, JSON.stringify(modelSelectionProfiles));
+      localStorage.setItem(ACTIVE_MODEL_PROFILE_STORAGE_KEY, activeModelSelectionProfileIndex);
+      applyModelProfile(activeModelSelectionProfileIndex, false);
+    }
+
+    function saveActiveModelProfile() {
+      if (!modelSelectionProfiles.length) return;
+      modelSelectionProfiles[activeModelSelectionProfileIndex] = getCurrentModelProfileSnapshot();
+      localStorage.setItem(MODEL_PROFILES_STORAGE_KEY, JSON.stringify(modelSelectionProfiles));
+      localStorage.setItem(ACTIVE_MODEL_PROFILE_STORAGE_KEY, activeModelSelectionProfileIndex);
+    }
+
+    function applyModelProfile(index, refreshCharts = true) {
+      const profile = normalizeModelProfile(modelSelectionProfiles[index], index);
+      Object.keys(modelVisibility).forEach(key => {
+        modelVisibility[key] = profile.modelVisibility[key];
+      });
+      Object.keys(modelExplicitlyDisabled).forEach(key => {
+        modelExplicitlyDisabled[key] = profile.modelExplicitlyDisabled[key];
+      });
+      persistCurrentModelState();
+      updateModelDotsUI();
+      syncGroupToggles();
+      updateOtherModelsListVisibility();
+      updateLegacyModelsListVisibility();
+      syncModelProfileButtons();
+      if (refreshCharts) updateAllCharts();
+    }
+
+    function selectModelProfile(index) {
+      if (index < 0 || index >= MODEL_PROFILE_COUNT) return;
+      activeModelSelectionProfileIndex = index;
+      localStorage.setItem(ACTIVE_MODEL_PROFILE_STORAGE_KEY, activeModelSelectionProfileIndex);
+      applyModelProfile(index, true);
+    }
+
+    function syncModelProfileButtons() {
+      document.querySelectorAll('.model-profile-btn[data-model-profile]').forEach(btn => {
+        const index = parseInt(btn.getAttribute('data-model-profile'), 10);
+        const profile = normalizeModelProfile(modelSelectionProfiles[index], index);
+        const label = btn.querySelector('.model-profile-btn-label');
+        btn.style.setProperty('--model-profile-color', profile.color);
+        if (label) label.textContent = profile.name;
+        btn.classList.toggle('active', index === activeModelSelectionProfileIndex);
+      });
+
+      const activeProfile = normalizeModelProfile(modelSelectionProfiles[activeModelSelectionProfileIndex], activeModelSelectionProfileIndex);
+      const nameInput = document.getElementById('modelProfileNameInput');
+      const colorInput = document.getElementById('modelProfileColorInput');
+      if (nameInput && nameInput.value !== activeProfile.name) nameInput.value = activeProfile.name;
+      if (colorInput && colorInput.value.toLowerCase() !== activeProfile.color.toLowerCase()) colorInput.value = activeProfile.color;
+
+      const editor = document.getElementById('modelProfileEditor');
+      const editToggle = document.getElementById('modelProfileEditToggle');
+      if (editor) editor.classList.toggle('collapsed', !modelProfileEditorExpanded);
+      if (editToggle) editToggle.classList.toggle('active', modelProfileEditorExpanded);
+    }
+
+    function toggleModelProfileEditor() {
+      modelProfileEditorExpanded = !modelProfileEditorExpanded;
+      syncModelProfileButtons();
+    }
+
+    function updateActiveModelProfileName(name) {
+      if (!modelSelectionProfiles.length) return;
+      const profile = normalizeModelProfile(modelSelectionProfiles[activeModelSelectionProfileIndex], activeModelSelectionProfileIndex);
+      profile.name = sanitizeModelProfileName(name, activeModelSelectionProfileIndex);
+      modelSelectionProfiles[activeModelSelectionProfileIndex] = profile;
+      localStorage.setItem(MODEL_PROFILES_STORAGE_KEY, JSON.stringify(modelSelectionProfiles));
+      syncModelProfileButtons();
+    }
+
+    function updateActiveModelProfileColor(color) {
+      if (!modelSelectionProfiles.length) return;
+      const profile = normalizeModelProfile(modelSelectionProfiles[activeModelSelectionProfileIndex], activeModelSelectionProfileIndex);
+      profile.color = sanitizeModelProfileColor(color, activeModelSelectionProfileIndex);
+      modelSelectionProfiles[activeModelSelectionProfileIndex] = profile;
+      localStorage.setItem(MODEL_PROFILES_STORAGE_KEY, JSON.stringify(modelSelectionProfiles));
+      syncModelProfileButtons();
+    }
+
+    function syncModelGroupToggles() {
+      showOtherModels = modelGroups.other.some(modelId => modelVisibility[modelId]);
+      showLegacyModels = modelGroups.legacy.some(modelId => modelVisibility[modelId]);
+      otherModelsHidden = !showOtherModels;
+      legacyModelsHidden = !showLegacyModels;
+      document.querySelectorAll('.other-models-toggle').forEach(toggle => {
+        toggle.classList.toggle('active', showOtherModels);
+      });
+      document.querySelectorAll('.legacy-models-toggle').forEach(toggle => {
+        toggle.classList.toggle('active', showLegacyModels);
+      });
+    }
+
+    // Toggle individual model visibility
+    function toggleIndividualModel(modelId) {
+      modelVisibility[modelId] = !modelVisibility[modelId];
+      modelExplicitlyDisabled[modelId] = !modelVisibility[modelId];
+      updateModelDotsUI();
+      syncGroupToggles();
+      updateOtherModelsListVisibility();
+      updateLegacyModelsListVisibility();
+      updateLegacyFlags();
+      updateAllCharts();
+      persistCurrentModelState();
+      saveActiveModelProfile();
+    }
+
+    // Compatibility shim for older code paths; profiles no longer use group toggles.
     function syncGroupToggles() {
-      // Claude group
-      const allClaudeVisible = modelGroups.claude.every(m => modelVisibility[m]);
-      const someClaudeVisible = modelGroups.claude.some(m => modelVisibility[m]);
-      document.querySelectorAll('.claude-toggle').forEach(toggle => {
-        toggle.classList.toggle('active', someClaudeVisible);
-      });
-
-      // Reasoning group
-      const allReasoningVisible = modelGroups.reasoning.every(m => modelVisibility[m]);
-      const someReasoningVisible = modelGroups.reasoning.some(m => modelVisibility[m]);
-      document.querySelectorAll('.reasoning-model-toggle').forEach(toggle => {
-        toggle.classList.toggle('active', someReasoningVisible);
-      });
-
-      // Instant group
-      const allInstantVisible = modelGroups.instant.every(m => modelVisibility[m]);
-      const someInstantVisible = modelGroups.instant.some(m => modelVisibility[m]);
-      document.querySelectorAll('.instant-model-toggle').forEach(toggle => {
-        toggle.classList.toggle('active', someInstantVisible);
-      });
-
-      // ChatGPT Pro group
-      const someChatGPTProVisible = modelGroups['chatgpt-pro'].some(m => modelVisibility[m]);
-      document.querySelectorAll('.chatgpt-pro-model-toggle').forEach(toggle => {
-        toggle.classList.toggle('active', someChatGPTProVisible);
-      });
-
-      // Other recommended models group — normal toggle
-      document.querySelectorAll('.other-models-toggle').forEach(t => t.classList.toggle('active', showOtherModels));
-      document.querySelectorAll('.other-models-hide-btn').forEach(b => b.classList.toggle('visible', !otherModelsHidden));
-
-      // Legacy models group — normal toggle
-      document.querySelectorAll('.legacy-models-toggle').forEach(t => t.classList.toggle('active', showLegacyModels));
-      document.querySelectorAll('.legacy-models-hide-btn').forEach(b => b.classList.toggle('visible', !legacyModelsHidden));
-
+      syncModelProfileButtons();
+      syncModelGroupToggles();
     }
 
     // Update legacy flags - NO LONGER derives group states from model visibility
@@ -4178,6 +4346,8 @@
       // Update UI
       updateModelDotsUI();
       syncGroupToggles();
+      updateOtherModelsListVisibility();
+      updateLegacyModelsListVisibility();
       updateLegacyFlags();
       updateAllCharts();
 
@@ -6286,11 +6456,6 @@
       maxContextChart.data.datasets = buildMaxContextDatasets(models);
       // Update x-axis max dynamically
       maxContextChart.options.scales.x.max = getMaxContextXMax(models);
-      // Dynamically resize chart height based on number of bars
-      const barHeight = 30;
-      const padding = 100;
-      const newHeight = Math.max(400, models.length * barHeight + padding);
-      maxContextChart.canvas.parentNode.style.minHeight = newHeight + 'px';
       maxContextChart.resize();
       maxContextChart.update({ duration: 750, easing: 'easeInOutQuart' });
     }
@@ -6299,12 +6464,6 @@
       const models = getMaxContextModels();
       const labels = models.map(m => m.label);
       const datasets = buildMaxContextDatasets(models);
-
-      const barHeight = 30;
-      const padding = 100;
-      const initHeight = Math.max(400, models.length * barHeight + padding);
-      const container = document.getElementById('maxContextChart').parentNode;
-      container.style.minHeight = initHeight + 'px';
 
       const ctx = document.getElementById('maxContextChart').getContext('2d');
       maxContextChart = new Chart(ctx, {
@@ -6521,6 +6680,8 @@
       // Update UI and charts
       updateModelDotsUI();
       syncGroupToggles();
+      updateOtherModelsListVisibility();
+      updateLegacyModelsListVisibility();
       updateLegacyFlags();
       updateAllCharts();
 
@@ -6612,14 +6773,56 @@
 
     // (applyToggle3State removed — replaced by binary toggle + hide-btn)
 
+    const MODEL_FILTER_VISIBILITY_ANIMATION_MS = 300;
+
+    function setAnimatedFilterVisibility(element, visible, hiddenClass) {
+      if (!element) return;
+      clearTimeout(element._modelFilterVisibilityTimer);
+
+      if (visible) {
+        if (element.style.display === 'none') {
+          element.classList.add(hiddenClass);
+          element.style.display = '';
+          element.getBoundingClientRect();
+          element.classList.remove(hiddenClass);
+          element.removeAttribute('aria-hidden');
+        } else {
+          element.classList.remove(hiddenClass);
+          element.removeAttribute('aria-hidden');
+        }
+        return;
+      }
+
+      element.setAttribute('aria-hidden', 'true');
+      if (element.style.display === 'none') {
+        element.classList.add(hiddenClass);
+        return;
+      }
+      element.classList.add(hiddenClass);
+      element._modelFilterVisibilityTimer = setTimeout(() => {
+        if (element.classList.contains(hiddenClass)) {
+          element.style.display = 'none';
+        }
+      }, MODEL_FILTER_VISIBILITY_ANIMATION_MS);
+    }
+
     // Centralized visibility updater for dynamic rows affected by multiple groups
     function updateListRowVisibilities() {
       document.querySelectorAll('.model-dots-row').forEach(row => {
-        const dots = Array.from(row.querySelectorAll('.model-dot'));
-        if (dots.length === 0) return;
-        const containsOther = dots.some(d => modelGroups.other.includes(d.dataset.model));
-        const allAreLegacy = dots.every(d => modelGroups.legacy.includes(d.dataset.model));
-        row.style.display = ((containsOther && otherModelsHidden) || (allAreLegacy && legacyModelsHidden)) ? 'none' : '';
+        const modelDots = row.querySelectorAll('.model-dot[data-model]');
+        if (!modelDots.length) {
+          setAnimatedFilterVisibility(row, true, 'model-filter-row-hidden');
+          return;
+        }
+        let hasVisibleDots = false;
+        modelDots.forEach(dot => {
+          const modelId = dot.dataset.model;
+          const shouldHide = (modelGroups.other.includes(modelId) && !showOtherModels)
+            || (modelGroups.legacy.includes(modelId) && !showLegacyModels);
+          setAnimatedFilterVisibility(dot, !shouldHide, 'model-filter-hidden');
+          if (!shouldHide) hasVisibleDots = true;
+        });
+        setAnimatedFilterVisibility(row, hasVisibleDots, 'model-filter-row-hidden');
       });
     }
 
@@ -6647,7 +6850,7 @@
           modelVisibility[modelId] = shouldModelBeVisible(modelId);
         });
       } else {
-        // Turning OFF: models inactive in charts (but stay visible in list)
+        // Turning OFF: models inactive in charts and hidden from the filter list
         modelGroups.other.forEach(modelId => {
           modelVisibility[modelId] = false;
         });
@@ -6659,12 +6862,14 @@
       // Update UI and charts
       updateModelDotsUI();
       syncGroupToggles();
+      updateOtherModelsListVisibility();
+      updateLegacyModelsListVisibility();
       updateLegacyFlags();
       updateAllCharts();
 
       // Save state
-      localStorage.setItem('modelVisibility', JSON.stringify(modelVisibility));
-      localStorage.setItem('modelExplicitlyDisabled', JSON.stringify(modelExplicitlyDisabled));
+      persistCurrentModelState();
+      saveActiveModelProfile();
       localStorage.setItem('showOtherModels', showOtherModels);
       localStorage.setItem('otherModelsHidden', otherModelsHidden);
     }
@@ -6702,7 +6907,7 @@
           modelVisibility[modelId] = shouldModelBeVisible(modelId);
         });
       } else {
-        // Turning OFF: models inactive in charts (but stay visible in list)
+        // Turning OFF: models inactive in charts and hidden from the filter list
         modelGroups.legacy.forEach(modelId => {
           modelVisibility[modelId] = false;
         });
@@ -6714,12 +6919,14 @@
       // Update UI and charts
       updateModelDotsUI();
       syncGroupToggles();
+      updateOtherModelsListVisibility();
+      updateLegacyModelsListVisibility();
       updateLegacyFlags();
       updateAllCharts();
 
       // Save state
-      localStorage.setItem('modelVisibility', JSON.stringify(modelVisibility));
-      localStorage.setItem('modelExplicitlyDisabled', JSON.stringify(modelExplicitlyDisabled));
+      persistCurrentModelState();
+      saveActiveModelProfile();
       localStorage.setItem('showLegacyModels', showLegacyModels);
       localStorage.setItem('legacyModelsHidden', legacyModelsHidden);
     }
@@ -6839,38 +7046,9 @@
       const unlegacyClaudeSonnetMigrationKey = 'unlegacyClaudeSonnetMigration_2026_06_10';
       const shouldMigrateUnlegacyClaudeSonnet = localStorage.getItem(unlegacyClaudeSonnetMigrationKey) !== 'true';
 
-      // Restore modelVisibility from localStorage
-      const savedModelVisibility = localStorage.getItem('modelVisibility');
-      if (savedModelVisibility) {
-        try {
-          const parsedVisibility = JSON.parse(savedModelVisibility);
-          // Merge saved visibility with defaults (in case new models were added)
-          Object.keys(parsedVisibility).forEach(key => {
-            if (key in modelVisibility) {
-              modelVisibility[key] = parsedVisibility[key];
-            }
-          });
-          needsChartUpdate = true;
-        } catch (e) {
-          console.error('Failed to parse saved modelVisibility:', e);
-        }
-      }
-
-      // Restore modelExplicitlyDisabled from localStorage
-      const savedExplicitlyDisabled = localStorage.getItem('modelExplicitlyDisabled');
-      if (savedExplicitlyDisabled) {
-        try {
-          const parsedExplicit = JSON.parse(savedExplicitlyDisabled);
-          // Merge saved explicit state with defaults (in case new models were added)
-          Object.keys(parsedExplicit).forEach(key => {
-            if (key in modelExplicitlyDisabled) {
-              modelExplicitlyDisabled[key] = parsedExplicit[key];
-            }
-          });
-        } catch (e) {
-          console.error('Failed to parse saved modelExplicitlyDisabled:', e);
-        }
-      }
+      // Restore model profile state, seeding Profile 1 from legacy modelVisibility when needed.
+      loadModelProfiles();
+      needsChartUpdate = true;
 
       // Restore filters panel state
       const savedFiltersPanel = localStorage.getItem('filtersPanelExpanded');
@@ -6884,72 +7062,8 @@
         document.getElementById('benchmarkFiltersPanel').classList.add('expanded');
       }
 
-      // Restore group toggle states from localStorage (or derive from model visibility for backward compat)
-      const savedClaudeModels = localStorage.getItem('claudeModelsVisible');
-      showClaudeModels = savedClaudeModels !== null ? savedClaudeModels === 'true' : modelGroups.claude.some(m => modelVisibility[m]);
-
-      const savedInstantModels = localStorage.getItem('instantModelsVisible');
-      showInstantModels = savedInstantModels !== null ? savedInstantModels === 'true' : modelGroups.instant.some(m => modelVisibility[m]);
-
-      const savedChatGPTProModels = localStorage.getItem('chatgptProModelsVisible');
-      showChatGPTProModels = savedChatGPTProModels !== null ? savedChatGPTProModels === 'true' : modelGroups['chatgpt-pro'].some(m => modelVisibility[m]);
-
-      const savedReasoningModels = localStorage.getItem('reasoningModelsVisible');
-      showReasoningModels = savedReasoningModels !== null ? savedReasoningModels === 'true' : modelGroups.reasoning.some(m => modelVisibility[m]);
-
-      // Restore Other models state (migrate from old 3-state localStorage if present)
-      const savedOtherState = localStorage.getItem('otherModelsState');
-      const savedShowOther = localStorage.getItem('showOtherModels');
-      const savedOtherHidden = localStorage.getItem('otherModelsHidden');
-      if (savedShowOther !== null) {
-        showOtherModels = savedShowOther === 'true';
-        otherModelsHidden = savedOtherHidden !== null ? savedOtherHidden === 'true' : false;
-      } else if (savedOtherState !== null) {
-        // Migrate from old 3-state: 0=hidden+inactive, 1=visible+inactive, 2=visible+active
-        const st = parseInt(savedOtherState);
-        showOtherModels = st === 2;
-        otherModelsHidden = st === 0;
-      } else {
-        showOtherModels = false;
-        otherModelsHidden = true;
-      }
-
-      // Restore Legacy models state (migrate from old 3-state localStorage if present)
-      const savedLegacyState = localStorage.getItem('legacyModelsState');
-      const savedShowLegacy = localStorage.getItem('showLegacyModels');
-      const savedLegacyHidden = localStorage.getItem('legacyModelsHidden');
-      if (savedShowLegacy !== null) {
-        showLegacyModels = savedShowLegacy === 'true';
-        legacyModelsHidden = savedLegacyHidden !== null ? savedLegacyHidden === 'true' : false;
-      } else if (savedLegacyState !== null) {
-        const st = parseInt(savedLegacyState);
-        showLegacyModels = st === 2;
-        legacyModelsHidden = st === 0;
-      } else {
-        showLegacyModels = true;
-        legacyModelsHidden = true;
-      }
-
-      if (shouldMigrateLegacyClaudeSonnet) {
-        ['claude-46-sonnet', 'claude-46-sonnet-nr'].forEach(modelId => {
-          modelVisibility[modelId] = shouldModelBeVisible(modelId);
-        });
-        localStorage.setItem('modelVisibility', JSON.stringify(modelVisibility));
-        localStorage.setItem(legacyClaudeSonnetMigrationKey, 'true');
-        needsChartUpdate = true;
-      }
-
-      if (shouldMigrateUnlegacyClaudeSonnet) {
-        ['claude-46-sonnet', 'claude-46-sonnet-nr'].forEach(modelId => {
-          modelVisibility[modelId] = shouldModelBeVisible(modelId);
-        });
-        localStorage.setItem('modelVisibility', JSON.stringify(modelVisibility));
-        localStorage.setItem(unlegacyClaudeSonnetMigrationKey, 'true');
-        needsChartUpdate = true;
-      }
-
-      // Update all toggle UIs
-      syncGroupToggles();
+      // Update profile and model UIs
+      syncModelProfileButtons();
       updateModelDotsUI();
       updateOtherModelsListVisibility();
       updateLegacyModelsListVisibility();
@@ -7168,7 +7282,7 @@
     style="text-align: center; padding: 2rem 1rem; margin-top: 3rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.8rem;">
     Made by <strong> u/Pasto_Shouwa</strong>
     <br>
-    <em>Last updated on <strong>17/06/2026</strong> (dd/mm/yyyy)</em>
+    <em>Last updated on <strong>19/06/2026</strong> (dd/mm/yyyy)</em>
   </footer>
 </body>
 
