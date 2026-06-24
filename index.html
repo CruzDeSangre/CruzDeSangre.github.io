@@ -3077,11 +3077,11 @@
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot inactive" data-model="mimo-v25-pro" onclick="toggleIndividualModel('mimo-v25-pro')">
                 <span class="model-dot-indicator dot-mimo"></span>
-                <span class="model-dot-label">Mimo V2.5 Pro</span>
+                <span class="model-dot-label">MiMo V2.5 Pro</span>
               </div>
               <div class="model-dot inactive" data-model="mimo-v25" onclick="toggleIndividualModel('mimo-v25')">
                 <span class="model-dot-indicator dot-mimo"></span>
-                <span class="model-dot-label">Mimo V2.5</span>
+                <span class="model-dot-label">MiMo V2.5</span>
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
@@ -3162,7 +3162,8 @@
             <div class="model-filter-toggle-card other-toggle">
               <div>
                 <span class="model-filter-toggle-title">Extra models</span>
-                <span class="model-filter-toggle-description">Selection of AI models with a low hallucination rate</span>
+                <span class="model-filter-toggle-description">Selection of AI models with a low hallucination
+                  rate</span>
               </div>
               <div class="toggle-switch other-models-toggle" onclick="event.stopPropagation(); toggleOtherModels()">
               </div>
@@ -3170,7 +3171,8 @@
             <div class="model-filter-toggle-card legacy-toggle">
               <div>
                 <span class="model-filter-toggle-title">Legacy models</span>
-                <span class="model-filter-toggle-description">AI models whose new version has been released but which perform better than its predecesor in some benchmarks</span>
+                <span class="model-filter-toggle-description">AI models whose new version has been released but which
+                  perform better than its predecesor in some benchmarks</span>
               </div>
               <div class="toggle-switch legacy-models-toggle" onclick="event.stopPropagation(); toggleLegacyModels()">
               </div>
@@ -3385,9 +3387,9 @@
                 texts, MRCR v2 8-Needle evaluates the model capability to find specific information in those texts.</li>
               <li>• There are no benchmarks for 200k tokens.</li>
               <li>• This benchmark doesn't support all models, thus it's likely some of the models selected do not
-                appear
-                here.
+                appear here.
               </li>
+              <li>• GLM and MiniMax models didn't have the benchmark run through all their context window.</li>
               <li>• Maximum context window of <strong>GPT Instant</strong> models is 27k/54k/128k tokens
                 (Free/Plus,Go/Pro).
               </li>
@@ -3406,9 +3408,8 @@
               <li>• Maximum context window of <strong>Qwen Plus and Max</strong> models is 1M
                 tokens.
               <li>• Maximum context window of all <strong>Kimi</strong> models is 200k tokens.</li>
-              <li>• Maximum context window of all <strong>Mimo</strong> models is 1M tokens.</li>
-              <li>• Maximum context window of all <strong>MiniMax</strong> models is 1M tokens. However, only the
-                results up to 256k tokens have been published for this benchmark.</li>
+              <li>• Maximum context window of all <strong>MiMo</strong> models is 1M tokens.</li>
+              <li>• Maximum context window of all <strong>MiniMax</strong> models is 1M tokens.</li>
               <li>• Maximum context window of all <strong>Nemotron</strong> models is 1M tokens.</li>
               <li>• 1M tokens equals 1048k tokens.</li>
             </ul>
@@ -3472,7 +3473,7 @@
               <li>• Maximum context window of <strong>Qwen Plus and Max</strong> models is 1M
                 tokens.
               <li>• Maximum context window of all <strong>Kimi</strong> models is 200k tokens.</li>
-              <li>• Maximum context window of all <strong>Mimo</strong> models is 1M tokens.</li>
+              <li>• Maximum context window of all <strong>MiMo</strong> models is 1M tokens.</li>
               <li>• Maximum context window of all <strong>MiniMax</strong> models is 1M tokens.</li>
               <li>• Maximum context window of all <strong>Nemotron</strong> models is 1M tokens.</li>
               <li>• 1M tokens equals 1048k tokens.</li>
@@ -3552,11 +3553,11 @@
               <li>• <strong>Qwen 3.6 Plus Thinking</strong> is capable of understanding text, images and video.
               <li>• <strong>Qwen 3.5 Omni Plus Fast</strong> is capable of understanding text, images, video and audio.
               <li>• <strong>Kimi</strong> models are capable of understanding text, images and video.
-              <li>• <strong>Mimo V2.5 Pro</strong> is capable of understanding only text.
+              <li>• <strong>MiMo V2.5 Pro</strong> is capable of understanding only text.
               </li>
-              <li>• <strong>Mimo V2.5</strong> is capable of understanding text, images, video and audio.
+              <li>• <strong>MiMo V2.5</strong> is capable of understanding text, images, video and audio.
               </li>
-              <li>• <strong>Minimax</strong> models are capable of understanding only text. Image and
+              <li>• <strong>MiniMax</strong> models are capable of understanding only text. Image and
                 video inputs are routed to another unknown model.
               </li>
               <li>• Models capable of understanding only text are usually able to understand text inside images, but
@@ -4471,7 +4472,7 @@
 
     // Returns a darkened hover color by multiplying each RGB channel by 0.68.
     // This gives a consistent, visible darkening effect for all brands —
-    // including greys (GLM) and already-saturated colors (Mimo orange, Kimi blue, GPT teal).
+    // including greys (GLM) and already-saturated colors (MiMo orange, Kimi blue, GPT teal).
     function getBrandHoverBgColor(modelId, estimated) {
       if (estimated) return getBrandBgColor(modelId, estimated); // keep pattern unchanged on hover
       const rgb = getBrandRgb(modelId);
@@ -4513,8 +4514,8 @@
       { modelId: 'grok-43-fast', label: 'Ø Grok 4.3 Fast', correct: 24.17, abstention: 19.37, hallucination: 56.46, sortOrder: 109.6 },
       { modelId: 'minimax-m3-thinking', label: '≋ MiniMax M3 Thinking', correct: 15.03, abstention: 71.31, hallucination: 13.66, sortOrder: 116.5 },
       { modelId: 'nemotron-3-ultra-reasoning', label: '▰ Nemotron 3 Ultra Reasoning', correct: 21.55, abstention: 56.07, hallucination: 22.38, sortOrder: 117.5 },
-      { modelId: 'mimo-v25-pro', label: '⋔ Mimo V2.5 Pro', correct: 22.60, abstention: 58.40, hallucination: 19.00, sortOrder: 118 },
-      { modelId: 'mimo-v25', label: '⋔ Mimo V2.5', correct: 17.27, abstention: 56.13, hallucination: 26.60, sortOrder: 118.5 },
+      { modelId: 'mimo-v25-pro', label: '⋔ MiMo V2.5 Pro', correct: 22.60, abstention: 58.40, hallucination: 19.00, sortOrder: 118 },
+      { modelId: 'mimo-v25', label: '⋔ MiMo V2.5', correct: 17.27, abstention: 56.13, hallucination: 26.60, sortOrder: 118.5 },
       { modelId: 'qwen-37-max-think', label: '▽ Qwen 3.7 Max Thinking', correct: 30.12, abstention: 53.84, hallucination: 16.03, sortOrder: 124 },
       { modelId: 'qwen-37-plus-think', label: '▽ Qwen 3.7 Plus Thinking', correct: 22.2, abstention: 57.97, hallucination: 19.83, sortOrder: 124.5 },
       { modelId: 'qwen-36-plus-think', label: '▽ Qwen 3.6 Plus Thinking', correct: 26.23, abstention: 50.19, hallucination: 23.58, sortOrder: 125 },
@@ -5041,6 +5042,20 @@
         sortOrder: 55
       },
       {
+        modelId: 'claude-48-opus',
+        label: 'Claude 4.8 Opus Adaptive',
+        data: [97.4, 96.1, 93, 90.7, 75.2, 61.8, null],
+        borderColor: 'rgba(218, 119, 87, 0.95)',
+        backgroundColor: 'rgba(218, 119, 87, 0.7)',
+        borderWidth: 2,
+        tension: 0.3,
+        pointRadius: 6,
+        pointHoverRadius: 7,
+        pointBackgroundColor: 'rgba(218, 119, 87, 0.95)',
+        spanGaps: false,
+        sortOrder: 63.9
+      },
+      {
         modelId: 'claude-46-opus',
         label: 'Claude 4.6 Opus Adaptive',
         data: [98.2, 84.4, 86.2, 74.3, 68.1, 69.1, null],
@@ -5129,6 +5144,20 @@
         sortOrder: 95
       },
       {
+        modelId: 'glm-52-deep-think-max',
+        label: 'GLM 5.2 Deep Think Max',
+        data: [95.1, 81.8, 74.7, 63.4, 51.6, 46.5, null],
+        borderColor: 'rgba(120, 120, 130, 0.95)',
+        backgroundColor: 'rgba(120, 120, 130, 0.5)',
+        borderWidth: 2,
+        tension: 0.3,
+        pointRadius: 6,
+        pointHoverRadius: 7,
+        pointBackgroundColor: 'rgba(120, 120, 130, 0.95)',
+        spanGaps: false,
+        sortOrder: 97
+      },
+      {
         modelId: 'minimax-m3-thinking',
         label: 'MiniMax M3 Thinking',
         data: [92.4, 68.9, 52.2, 35.4, 17.4, 18.6, null],
@@ -5144,7 +5173,7 @@
       },
       {
         modelId: 'mimo-v25-pro',
-        label: 'Mimo V2.5 Pro',
+        label: 'MiMo V2.5 Pro',
         data: [82.9, 62.4, 54.5, 40.4, 31.7, 17, 12.9],
         lessThan: [false, false, false, false, false, false, true],
         borderColor: 'rgba(255, 116, 0, 0.95)',
@@ -5159,7 +5188,7 @@
       },
       {
         modelId: 'mimo-v25',
-        label: 'Mimo V2.5',
+        label: 'MiMo V2.5',
         data: [79.4, 51.4, 34.7, 24.8, 27.2, 28, 13.2],
         lessThan: [false, false, false, false, false, false, true],
         borderColor: 'rgba(255, 116, 0, 0.65)',
@@ -5340,8 +5369,8 @@
       { modelId: 'grok-43-fast', label: 'Ø Grok 4.3 Fast', score: 24.7, sortOrder: 109.6 },
       { modelId: 'minimax-m3-thinking', label: '≋ MiniMax M3 Thinking', score: 74, sortOrder: 116.5 },
       { modelId: 'nemotron-3-ultra-reasoning', label: '▰ Nemotron 3 Ultra Reasoning', score: 67, sortOrder: 117.5 },
-      { modelId: 'mimo-v25-pro', label: '⋔ Mimo V2.5 Pro', score: 73.3, sortOrder: 118 },
-      { modelId: 'mimo-v25', label: '⋔ Mimo V2.5', score: 62.7, sortOrder: 118.5 },
+      { modelId: 'mimo-v25-pro', label: '⋔ MiMo V2.5 Pro', score: 73.3, sortOrder: 118 },
+      { modelId: 'mimo-v25', label: '⋔ MiMo V2.5', score: 62.7, sortOrder: 118.5 },
       { modelId: 'qwen-37-max-think', label: '▽ Qwen 3.7 Max Thinking', score: 69, sortOrder: 124 },
       { modelId: 'qwen-37-plus-think', label: '▽ Qwen 3.7 Plus Thinking', score: 65, sortOrder: 124.5 },
       { modelId: 'qwen-36-plus-think', label: '▽ Qwen 3.6 Plus Thinking', score: 69.7, sortOrder: 125 },
@@ -5461,8 +5490,8 @@
       { modelId: 'grok-43-fast', label: 'Ø Grok 4.3 Fast', score: 65, sortOrder: 109.6 },
       { modelId: 'minimax-m3-thinking', label: '≋ MiniMax M3 Thinking', score: 80, sortOrder: 116.5 },
       { modelId: 'nemotron-3-ultra-reasoning', label: '▰ Nemotron 3 Ultra Reasoning', score: 0, sortOrder: 117.5 },
-      { modelId: 'mimo-v25-pro', label: '⋔ Mimo V2.5 Pro', score: 0, sortOrder: 118 },
-      { modelId: 'mimo-v25', label: '⋔ Mimo V2.5', score: 75, sortOrder: 118.5 },
+      { modelId: 'mimo-v25-pro', label: '⋔ MiMo V2.5 Pro', score: 0, sortOrder: 118 },
+      { modelId: 'mimo-v25', label: '⋔ MiMo V2.5', score: 75, sortOrder: 118.5 },
       { modelId: 'qwen-37-max-think', label: '▽ Qwen 3.7 Max Thinking', score: 0, sortOrder: 124 },
       { modelId: 'qwen-37-plus-think', label: '▽ Qwen 3.7 Plus Thinking', score: 45, sortOrder: 124.5 },
       { modelId: 'qwen-36-plus-think', label: '▽ Qwen 3.6 Plus Thinking', score: 78, sortOrder: 125 },
@@ -5648,8 +5677,8 @@
       { modelId: 'grok-43-expert', label: 'Ø Grok 4.3 Expert', score: 1100, sortOrder: 109.5 },
       { modelId: 'minimax-m3-thinking', label: '≋ MiniMax M3 Thinking', score: 1431, sortOrder: 116.5 },
       { modelId: 'nemotron-3-ultra-reasoning', label: '▰ Nemotron 3 Ultra Reasoning', score: 1183, sortOrder: 117.5 },
-      { modelId: 'mimo-v25-pro', label: '⋔ Mimo V2.5 Pro', score: 1286, sortOrder: 118 },
-      { modelId: 'mimo-v25', label: '⋔ Mimo V2.5', score: 1270, sortOrder: 118.5, estimated: true },
+      { modelId: 'mimo-v25-pro', label: '⋔ MiMo V2.5 Pro', score: 1286, sortOrder: 118 },
+      { modelId: 'mimo-v25', label: '⋔ MiMo V2.5', score: 1270, sortOrder: 118.5, estimated: true },
       { modelId: 'qwen-37-max-think', label: '▽ Qwen 3.7 Max Thinking', score: 1308, sortOrder: 124 },
       { modelId: 'qwen-37-plus-think', label: '▽ Qwen 3.7 Plus Thinking', score: 946, sortOrder: 124.5 },
       { modelId: 'qwen-36-plus-think', label: '▽ Qwen 3.6 Plus Thinking', score: 1160, sortOrder: 125 },
@@ -5784,8 +5813,8 @@
       { modelId: 'grok-43-expert', label: 'Ø Grok 4.3 Expert', score: 39.7, sortOrder: 109.5 },
       { modelId: 'minimax-m3-thinking', label: '≋ MiniMax M3 Thinking', score: 65.2, sortOrder: 116.5 },
       { modelId: 'nemotron-3-ultra-reasoning', label: '▰ Nemotron 3 Ultra Reasoning', score: 53.9, sortOrder: 117.5 },
-      { modelId: 'mimo-v25-pro', label: '⋔ Mimo V2.5 Pro', score: 65.2, sortOrder: 118 },
-      { modelId: 'mimo-v25', label: '⋔ Mimo V2.5', score: 62.9, sortOrder: 118.5, estimated: true },
+      { modelId: 'mimo-v25-pro', label: '⋔ MiMo V2.5 Pro', score: 65.2, sortOrder: 118 },
+      { modelId: 'mimo-v25', label: '⋔ MiMo V2.5', score: 62.9, sortOrder: 118.5, estimated: true },
       { modelId: 'qwen-37-max-think', label: '▽ Qwen 3.7 Max Thinking', score: 74.5, sortOrder: 124 },
       { modelId: 'qwen-37-plus-think', label: '▽ Qwen 3.7 Plus Thinking', score: 61.0, sortOrder: 124.5 },
       { modelId: 'qwen-36-plus-think', label: '▽ Qwen 3.6 Plus Thinking', score: 61.4, sortOrder: 125 },
@@ -5892,8 +5921,8 @@
     //   Grok:                rgba(70, 70, 200, ...)   — dark blue
     //   GLM:                 rgba(100, 100, 110, ...) — dark gray
     //   Qwen:                rgba(66, 59, 175, ...)   — violet
-    //   Mimo:                rgba(255, 116, 0, ...)   — orange
-    //   Minimax:             rgba(223, 78, 96, ...)   — deep red
+    //   MiMo:                rgba(255, 116, 0, ...)   — orange
+    //   MiniMax:             rgba(223, 78, 96, ...)   — deep red
     // ============================================================
 
     let maxContextChart;
@@ -5915,8 +5944,8 @@
     // Grok:              1M                 (all plans)
     // GLM:               200k               (all plans)
     // Qwen:              1M                 (all plans)
-    // Mimo:              1M                 (all plans)
-    // Minimax:           200k               (all plans)
+    // MiMo:              1M                 (all plans)
+    // MiniMax:           200k               (all plans)
 
     const maxContextAllModels = [
       // GPT non-reasoning (instant)
@@ -6085,7 +6114,7 @@
         color: 'rgba(60, 60, 220, 1)',
         segments: [{ value: 1000000, plans: 'All plans' }]
       },
-      // Minimax
+      // MiniMax
       {
         modelId: 'minimax-m3-thinking', label: '≋ MiniMax M3 Thinking', sortOrder: 116.5,
         color: 'rgba(223, 78, 96, 1)',
@@ -6097,14 +6126,14 @@
         color: 'rgba(118, 185, 0, 1)',
         segments: [{ value: 1000000, plans: 'All plans' }]
       },
-      // Mimo
+      // MiMo
       {
-        modelId: 'mimo-v25-pro', label: '⋔ Mimo V2.5 Pro', sortOrder: 118,
+        modelId: 'mimo-v25-pro', label: '⋔ MiMo V2.5 Pro', sortOrder: 118,
         color: 'rgba(255, 116, 0, 1)',
         segments: [{ value: 1000000, plans: 'All plans' }]
       },
       {
-        modelId: 'mimo-v25', label: '⋔ Mimo V2.5', sortOrder: 118.5,
+        modelId: 'mimo-v25', label: '⋔ MiMo V2.5', sortOrder: 118.5,
         color: 'rgba(255, 116, 0, 1)',
         segments: [{ value: 1000000, plans: 'All plans' }]
       },
@@ -7282,7 +7311,7 @@
     style="text-align: center; padding: 2rem 1rem; margin-top: 3rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.8rem;">
     Made by <strong> u/Pasto_Shouwa</strong>
     <br>
-    <em>Last updated on <strong>19/06/2026</strong> (dd/mm/yyyy)</em>
+    <em>Last updated on <strong>24/06/2026</strong> (dd/mm/yyyy)</em>
   </footer>
 </body>
 
