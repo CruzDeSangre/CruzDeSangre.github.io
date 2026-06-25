@@ -4449,7 +4449,6 @@
       if (modelId.startsWith('gpt-')) return BRAND_RGB['gpt'];
       if (modelId.startsWith('gemini-')) return BRAND_RGB['gemini'];
       if (modelId.startsWith('claude-')) return BRAND_RGB['claude'];
-      if (modelId === 'glm-5t-deep-think') return '50,  50,  50';
       if (modelId.startsWith('glm-')) return BRAND_RGB['glm'];
       if (modelId.startsWith('grok-')) return BRAND_RGB['grok'];
       if (modelId.startsWith('minimax-')) return BRAND_RGB['minimax'];
@@ -5659,30 +5658,30 @@
     // GDPval-AA v2 - Horizontal Bar Chart
     let gdpval2Chart;
     const gdpval2AllModels = [
-      { modelId: 'gpt-55-thinking-xhigh', label: '⌘ GPT 5.5 Thinking Extra High', score: 1531, sortOrder: 18 },
-      { modelId: 'gpt-55-thinking', label: '⌘ GPT 5.5 Thinking High', score: 1507, sortOrder: 20 },
-      { modelId: 'gpt-55-thinking-standard', label: '⌘ GPT 5.5 Thinking Medium', score: 1241, sortOrder: 22, estimated: true },
-      { modelId: 'gpt-54-thinking-mini', label: '⌘ GPT 5.4 Thinking Mini', score: 1135, sortOrder: 23, estimated: true },
-      { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro Extended', score: 976, sortOrder: 35 },
-      { modelId: 'gemini-35-flash-extended', label: '✦ Gemini 3.5 Flash Extended', score: 1370, sortOrder: 40 },
-      { modelId: 'gemini-31-flash-lite-extended', label: '✦ Gemini 3.1 Flash Lite Extended', score: 599, sortOrder: 55 },
-      { modelId: 'claude-5-fable', label: '❋ Claude 5 Fable Adaptive', score: 1815, sortOrder: 63.8 },
-      { modelId: 'claude-48-opus', label: '❋ Claude 4.8 Opus Adaptive', score: 1638, sortOrder: 63.9 },
-      { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Adaptive', score: 1403, sortOrder: 65.2, estimated: true },
-      { modelId: 'claude-46-sonnet', label: '❋ Claude 4.6 Sonnet Adaptive', score: 1417, sortOrder: 67 },
-      { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', score: 902, sortOrder: 90 },
-      { modelId: 'glm-52-deep-think-max', label: 'Ƶ GLM 5.2 Deep Think Max', score: 1524, sortOrder: 97 },
-      { modelId: 'glm-5t-deep-think', label: 'Ƶ GLM 5 Turbo Deep Think', score: 1248, sortOrder: 107, estimated: true },
-      { modelId: 'glm-5v-turbo-deep-think', label: 'Ƶ GLM 5V Turbo Deep Think', score: 1110, sortOrder: 109, estimated: true },
-      { modelId: 'grok-43-expert', label: 'Ø Grok 4.3 Expert', score: 1100, sortOrder: 109.5 },
-      { modelId: 'minimax-m3-thinking', label: '≋ MiniMax M3 Thinking', score: 1431, sortOrder: 116.5 },
-      { modelId: 'nemotron-3-ultra-reasoning', label: '▰ Nemotron 3 Ultra Reasoning', score: 1183, sortOrder: 117.5 },
-      { modelId: 'mimo-v25-pro', label: '⋔ MiMo V2.5 Pro', score: 1286, sortOrder: 118 },
-      { modelId: 'mimo-v25', label: '⋔ MiMo V2.5', score: 1270, sortOrder: 118.5, estimated: true },
-      { modelId: 'qwen-37-max-think', label: '▽ Qwen 3.7 Max Thinking', score: 1308, sortOrder: 124 },
-      { modelId: 'qwen-37-plus-think', label: '▽ Qwen 3.7 Plus Thinking', score: 946, sortOrder: 124.5 },
-      { modelId: 'qwen-36-plus-think', label: '▽ Qwen 3.6 Plus Thinking', score: 1160, sortOrder: 125 },
-      { modelId: 'kimi-k26-thinking', label: 'Ḱ Kimi K2.6 Thinking', score: 1202, sortOrder: 127 }
+      { modelId: 'gpt-55-thinking-xhigh', label: '⌘ GPT 5.5 Thinking Extra High', score: 1492, sortOrder: 18 },
+      { modelId: 'gpt-55-thinking', label: '⌘ GPT 5.5 Thinking High', score: 1473, sortOrder: 20 },
+      { modelId: 'gpt-55-thinking-standard', label: '⌘ GPT 5.5 Thinking Medium', score: 1375, sortOrder: 22 },
+      { modelId: 'gpt-54-thinking-mini', label: '⌘ GPT 5.4 Thinking Mini', score: 1110, sortOrder: 23, estimated: true },
+      { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro Extended', score: 963, sortOrder: 35 },
+      { modelId: 'gemini-35-flash-extended', label: '✦ Gemini 3.5 Flash Extended', score: 1348, sortOrder: 40 },
+      { modelId: 'gemini-31-flash-lite-extended', label: '✦ Gemini 3.1 Flash Lite Extended', score: 598, sortOrder: 55 },
+      { modelId: 'claude-5-fable', label: '❋ Claude 5 Fable Adaptive', score: 1769, sortOrder: 63.8 },
+      { modelId: 'claude-48-opus', label: '❋ Claude 4.8 Opus Adaptive', score: 1603, sortOrder: 63.9 },
+      { modelId: 'claude-46-opus', label: '❋ Claude 4.6 Opus Adaptive', score: 1373, sortOrder: 65.2, estimated: true },
+      { modelId: 'claude-46-sonnet', label: '❋ Claude 4.6 Sonnet Adaptive', score: 1381, sortOrder: 67 },
+      { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', score: 892, sortOrder: 90 },
+      { modelId: 'glm-52-deep-think-max', label: 'Ƶ GLM 5.2 Deep Think Max', score: 1517, sortOrder: 97 },
+      { modelId: 'glm-5t-deep-think', label: 'Ƶ GLM 5 Turbo Deep Think', score: 1242, sortOrder: 107, estimated: true },
+      { modelId: 'glm-5v-turbo-deep-think', label: 'Ƶ GLM 5V Turbo Deep Think', score: 1105, sortOrder: 109, estimated: true },
+      { modelId: 'grok-43-expert', label: 'Ø Grok 4.3 Expert', score: 1090, sortOrder: 109.5 },
+      { modelId: 'minimax-m3-thinking', label: '≋ MiniMax M3 Thinking', score: 1396, sortOrder: 116.5 },
+      { modelId: 'nemotron-3-ultra-reasoning', label: '▰ Nemotron 3 Ultra Reasoning', score: 1168, sortOrder: 117.5 },
+      { modelId: 'mimo-v25-pro', label: '⋔ MiMo V2.5 Pro', score: 1271, sortOrder: 118 },
+      { modelId: 'mimo-v25', label: '⋔ MiMo V2.5', score: 1255, sortOrder: 118.5, estimated: true },
+      { modelId: 'qwen-37-max-think', label: '▽ Qwen 3.7 Max Thinking', score: 1284, sortOrder: 124 },
+      { modelId: 'qwen-37-plus-think', label: '▽ Qwen 3.7 Plus Thinking', score: 941, sortOrder: 124.5 },
+      { modelId: 'qwen-36-plus-think', label: '▽ Qwen 3.6 Plus Thinking', score: 1144, sortOrder: 125 },
+      { modelId: 'kimi-k26-thinking', label: 'Ḱ Kimi K2.6 Thinking', score: 1195, sortOrder: 127 }
     ];
 
     function getGdpval2Data() {
@@ -6095,7 +6094,7 @@
       },
       {
         modelId: 'glm-5t-deep-think', label: 'Ƶ GLM 5 Turbo Deep Think', sortOrder: 107,
-        color: 'rgba(50, 50, 50, 1)',
+        color: 'rgba(100, 100, 110, 1)',
         segments: [{ value: 200000, plans: 'All plans' }]
       },
       {
@@ -7311,7 +7310,7 @@
     style="text-align: center; padding: 2rem 1rem; margin-top: 3rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.8rem;">
     Made by <strong> u/Pasto_Shouwa</strong>
     <br>
-    <em>Last updated on <strong>24/06/2026</strong> (dd/mm/yyyy)</em>
+    <em>Last updated on <strong>25/06/2026</strong> (dd/mm/yyyy)</em>
   </footer>
 </body>
 
