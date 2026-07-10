@@ -21,9 +21,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ChatGPT vs Gemini — Comparison</title>
+  <title>ChatGPT vs Gemini Subscriptions &amp; Multi-Model AI Benchmarks</title>
   <meta name="description"
-    content="Complete comparison between ChatGPT and Gemini AI assistants: subscription plans, benchmarks, and features.">
+    content="Compare ChatGPT and Gemini subscription plans, plus benchmarks across GPT, Gemini, Claude, Grok, GLM, Qwen, Kimi, MiniMax, MiMo, and Nemotron models.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -31,8 +31,6 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="manifest" href="/site.webmanifest">
-
   <style>
     * {
       margin: 0;
@@ -465,9 +463,14 @@
       align-items: center;
       justify-content: space-between;
       cursor: pointer;
+      list-style: none;
       user-select: none;
       margin-bottom: 0;
       transition: margin-bottom 0.3s ease;
+    }
+
+    .notes.collapsible .notes-header::-webkit-details-marker {
+      display: none;
     }
 
     .notes.collapsible .notes-header:hover .notes-title {
@@ -479,7 +482,7 @@
       transition: color 0.2s ease;
     }
 
-    .notes.collapsible.expanded .notes-header {
+    .notes.collapsible[open] .notes-header {
       margin-bottom: 1rem;
     }
 
@@ -489,20 +492,18 @@
       transition: transform 0.3s ease;
     }
 
-    .notes.collapsible.expanded .notes-toggle {
+    .notes.collapsible[open] .notes-toggle {
       transform: rotate(180deg);
     }
 
     .notes-content {
-      overflow: hidden;
-      max-height: 0;
-      opacity: 0;
-      transition: max-height 0.3s ease, opacity 0.3s ease;
+      opacity: 1;
     }
 
-    .notes.collapsible.expanded .notes-content {
-      max-height: 500px;
-      opacity: 1;
+    .notes-header:focus-visible {
+      outline: 2px solid var(--text-secondary);
+      outline-offset: 5px;
+      border-radius: 6px;
     }
 
     .notes-list {
@@ -728,6 +729,15 @@
       color: var(--text-muted);
       font-size: 0.9rem;
       text-align: center;
+    }
+
+    .chart-runtime-state.chart-error-state {
+      color: #fca5a5;
+    }
+
+    .chart-container canvas[hidden],
+    .chart-runtime-state[hidden] {
+      display: none !important;
     }
 
     /* Sort selector for benchmarks */
@@ -1248,6 +1258,7 @@
       cursor: help;
       color: var(--text-muted);
       font-size: 0.7em;
+      text-decoration: none;
       vertical-align: super;
       position: relative;
       border-bottom: 1px dotted var(--text-muted);
@@ -1255,8 +1266,15 @@
       transition: color 0.2s ease;
     }
 
-    .annotation:hover {
+    .annotation:hover,
+    .annotation:focus-visible {
       color: var(--text-primary);
+    }
+
+    .annotation:focus-visible {
+      outline: 1px solid var(--text-secondary);
+      outline-offset: 2px;
+      border-radius: 2px;
     }
 
     .annotation::after {
@@ -1286,7 +1304,8 @@
       vertical-align: baseline;
     }
 
-    .annotation:hover::after {
+    .annotation:hover::after,
+    .annotation:focus-visible::after {
       opacity: 1;
       visibility: visible;
     }
@@ -1306,7 +1325,8 @@
       z-index: 101;
     }
 
-    .annotation:hover::before {
+    .annotation:hover::before,
+    .annotation:focus-visible::before {
       opacity: 1;
       visibility: visible;
     }
@@ -2321,7 +2341,7 @@
           style="color: var(--chatgpt-primary); -webkit-text-fill-color: var(--chatgpt-primary);">ChatGPT</span> vs
         <span style="color: var(--gemini-primary); -webkit-text-fill-color: var(--gemini-primary);">Gemini</span>
       </h1>
-      <p class="subtitle">A detailed comparison of AI assistant subscriptions and performance</p>
+      <p class="subtitle">Subscription comparison plus benchmarks across leading AI models.</p>
     </header>
 
     <!-- Price Tier Toggle -->
@@ -2371,7 +2391,6 @@
               <td>Non-reasoning model limit per day</td>
               <td class="rating-great">40<span class="detail">(10 every 5h)</span><span class="detail">[GPT 5.5
                   Instant]</span></td>
-              </td>
               <td>Unknown {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span class="detail">(X
                   every 5h)</span><span class="detail">[All models]</span></td>
             </tr>
@@ -2500,7 +2519,6 @@
               </td>
               <td class="rating-excellent">428<span class="detail">(3000/week)</span><span class="detail">[GPT 5.6
                   Sol/Terra/Luna]</span></td>
-              </td>
               <td>Unknown {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span class="detail">(X
                   every 5h)</span><span class="detail">[All models]</span></td>
               <td>Unknown x2 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
@@ -2514,7 +2532,6 @@
               <td>40<span class="detail">(10 every 5h)</span><span class="detail">[GPT 5.5 Instant]</span></td>
               <td colspan="2" class="rating-great">1280<span class="detail">(160 every 3h)</span><span
                   class="detail">[GPT 5.5 Instant]</span></td>
-              </td>
               <td>Unknown {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span class="detail">(X
                   every 5h)</span><span class="detail">[All models]</span></td>
               <td>Unknown x2 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
@@ -2552,7 +2569,6 @@
               <td>Image generation per day</td>
               <td colspan="3">Unknown<span class="annotation" data-note="gpt-image-unknown"></span><span
                   class="detail">[GPT Image 2 / GPT Image 2 Thinking]</span></td>
-              </td>
               <td>Unknown {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span class="detail">(X
                   every 5h)</span><span class="detail">[NB Pro + NB 2 + NB 2 Thinking]</span></td>
               <td>Unknown x2 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
@@ -2576,6 +2592,7 @@
               <td>Unknown x4 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
                   class="annotation" data-note="gemini-pro-x2-value"></span><span class="detail">(X every
                   5h)</span><span class="detail">[Veo Omni]</span></td>
+            </tr>
             <tr>
               <td>Video resolution and length</td>
               <td colspan="2">No</td>
@@ -2993,6 +3010,11 @@
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
+              <div class="model-dot" data-model="gpt-56-terra-max"
+                onclick="toggleIndividualModel('gpt-56-terra-max')">
+                <span class="model-dot-indicator dot-gpt shape-triangle-right"></span>
+                <span class="model-dot-label">GPT 5.6 Terra Max</span>
+              </div>
               <div class="model-dot" data-model="gpt-56-terra-xhigh"
                 onclick="toggleIndividualModel('gpt-56-terra-xhigh')">
                 <span class="model-dot-indicator dot-gpt shape-triangle-right"></span>
@@ -3010,6 +3032,11 @@
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
+              <div class="model-dot" data-model="gpt-56-luna-max"
+                onclick="toggleIndividualModel('gpt-56-luna-max')">
+                <span class="model-dot-indicator dot-gpt shape-triangle-right"></span>
+                <span class="model-dot-label">GPT 5.6 Luna Max</span>
+              </div>
               <div class="model-dot" data-model="gpt-56-luna-xhigh"
                 onclick="toggleIndividualModel('gpt-56-luna-xhigh')">
                 <span class="model-dot-indicator dot-gpt shape-triangle-right"></span>
@@ -3370,11 +3397,11 @@
         </div>
 
         <!-- Notes for first chart -->
-        <div class="notes collapsible expanded" style="margin-top: 1rem;">
-          <div class="notes-header" onclick="toggleNotes(this)">
+        <details class="notes collapsible" style="margin-top: 1rem;" open>
+          <summary class="notes-header">
             <p class="notes-title">AA-Omniscience Notes</p>
             <span class="notes-toggle">▼</span>
-          </div>
+          </summary>
           <div class="notes-content">
             <ul class="notes-list">
               <li>• This benchmark evaluates the accuracy of models when answering questions without web search.
@@ -3389,7 +3416,7 @@
                   the "AA-Omnisicence Hallucination Rate" benchmark.)</em></li>
             </ul>
           </div>
-        </div>
+        </details>
       </div>
 
       <!-- MRCR v2 -->
@@ -3418,11 +3445,11 @@
         </div>
 
         <!-- Notes for second chart -->
-        <div class="notes collapsible expanded" style="margin-top: 1rem;">
-          <div class="notes-header" onclick="toggleNotes(this)">
+        <details class="notes collapsible" style="margin-top: 1rem;" open>
+          <summary class="notes-header">
             <p class="notes-title">MRCR v2 8-Needle Notes</p>
             <span class="notes-toggle">▼</span>
-          </div>
+          </summary>
           <div class="notes-content">
             <ul class="notes-list">
               <li>• Differs greatly from the next benchmark. While AA-LCR revolves around comprehending really long
@@ -3456,7 +3483,7 @@
               <li>• 1M tokens equals 1048k tokens.</li>
             </ul>
           </div>
-        </div>
+        </details>
       </div>
 
       <!-- Long Context Reasoning - AA-LCR -->
@@ -3488,11 +3515,11 @@
         </div>
 
         <!-- Notes for LCR chart -->
-        <div class="notes collapsible expanded" style="margin-top: 1rem;">
-          <div class="notes-header" onclick="toggleNotes(this)">
+        <details class="notes collapsible" style="margin-top: 1rem;" open>
+          <summary class="notes-header">
             <p class="notes-title">AA-LCR Notes</p>
             <span class="notes-toggle">▼</span>
-          </div>
+          </summary>
           <div class="notes-content">
             <ul class="notes-list">
               <li>• Differs greatly from the next benchmark. While AA-LCR revolves around comprehending really long
@@ -3521,7 +3548,7 @@
               <li>• 1M tokens equals 1048k tokens.</li>
             </ul>
           </div>
-        </div>
+        </details>
       </div>
 
       <!-- Context Window (Web/App) -->
@@ -3573,11 +3600,11 @@
         </div>
 
         <!-- Notes for MMMU-Pro chart -->
-        <div class="notes collapsible expanded" style="margin-top: 1rem;">
-          <div class="notes-header" onclick="toggleNotes(this)">
+        <details class="notes collapsible" style="margin-top: 1rem;" open>
+          <summary class="notes-header">
             <p class="notes-title">MMMU-Pro Notes</p>
             <span class="notes-toggle">▼</span>
-          </div>
+          </summary>
           <div class="notes-content">
             <ul class="notes-list">
               <li>• <strong>GPT</strong> models are capable of understanding text and images.
@@ -3606,7 +3633,7 @@
               </li>
             </ul>
           </div>
-        </div>
+        </details>
       </div>
 
       <!-- GDPval-AA v2 -->
@@ -3635,11 +3662,11 @@
           </div>
         </div>
 
-        <div class="notes collapsible expanded" style="margin-top: 1rem;">
-          <div class="notes-header" onclick="toggleNotes(this)">
+        <details class="notes collapsible" style="margin-top: 1rem;" open>
+          <summary class="notes-header">
             <p class="notes-title">GDPVAL-AA V2 NOTES</p>
             <span class="notes-toggle">▼</span>
-          </div>
+          </summary>
           <div class="notes-content">
             <ul class="notes-list">
               <li>• Human baseline corresponds to an ELO of 1000.
@@ -3650,7 +3677,7 @@
               </li>
             </ul>
           </div>
-        </div>
+        </details>
       </div>
 
       <!-- Terminal-Bench v2.1 -->
@@ -3684,11 +3711,11 @@
           </div>
         </div>
 
-        <div class="notes collapsible expanded" style="margin-top: 1rem;">
-          <div class="notes-header" onclick="toggleNotes(this)">
+        <details class="notes collapsible" style="margin-top: 1rem;" open>
+          <summary class="notes-header">
             <p class="notes-title">TERMINAL-BENCH V2.1 NOTES</p>
             <span class="notes-toggle">▼</span>
-          </div>
+          </summary>
           <div class="notes-content">
             <ul class="notes-list">
               <li>• Values for non-reasoning models of this benchmark are really scarce. Therefore, I've decided against
@@ -3697,15 +3724,15 @@
               </li>
             </ul>
           </div>
-        </div>
+        </details>
       </div>
 
       <!-- Notes -->
-      <div class="notes collapsible expanded" style="margin-top: 2rem;">
-        <div class="notes-header" onclick="toggleNotes(this)">
+      <details class="notes collapsible" style="margin-top: 2rem;" open>
+        <summary class="notes-header">
           <p class="notes-title">Notes</p>
           <span class="notes-toggle">▼</span>
-        </div>
+        </summary>
         <div class="notes-content">
           <ul class="notes-list">
             <li>• All models are presented with their respective highest settings.</li>
@@ -3715,12 +3742,10 @@
             </li>
             <li>• GPT Extra High thinking efforts are available for Plus and Pro ChatGPT users through
               the Codex app, with limits that reset weekly. It's also available on the web for Pro users.
-              The Max thinking effort is only on Codex for Plus and Pro accounts. Benchmark for the Max thinking efforts
-              of Terra and Luna were not included, as there's no point on using them instead of Sol with a lower
-              thinking effort.</li>
+              The Max thinking effort is only on Codex for Plus and Pro accounts.</li>
           </ul>
         </div>
-      </div>
+      </details>
     </section>
 
     <!-- TAB 3: BENEFITS -->
@@ -3760,8 +3785,82 @@
 
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
+    const CHART_JS_URL = 'https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js';
+    const CHART_JS_INTEGRITY = 'sha384-jb8JQMbMoBUzgWatfe6COACi2ljcDdZQ2OxczGA3bGNeWe+6DChMTBJemed7ZnvJ';
+    const VALID_MAIN_TABS = ['specs', 'benchmarks', 'benefits'];
+    const VALID_PRICE_TIERS = ['free', 'low', 'high'];
+    let chartLibraryPromise = null;
+
+    function configureChartDefaults() {
+      Chart.defaults.color = '#b3a385';
+      Chart.defaults.borderColor = 'rgba(255, 255, 255, 0.08)';
+      Chart.defaults.font.family = "'Inter', sans-serif";
+    }
+
+    function loadChartLibrary() {
+      if (window.Chart) {
+        configureChartDefaults();
+        return Promise.resolve(window.Chart);
+      }
+      if (chartLibraryPromise) return chartLibraryPromise;
+
+      chartLibraryPromise = new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = CHART_JS_URL;
+        script.integrity = CHART_JS_INTEGRITY;
+        script.crossOrigin = 'anonymous';
+        script.dataset.chartRuntime = 'true';
+        script.onload = () => {
+          if (!window.Chart) {
+            reject(new Error('Chart.js loaded without exposing Chart.'));
+            return;
+          }
+          configureChartDefaults();
+          resolve(window.Chart);
+        };
+        script.onerror = () => reject(new Error('Unable to load Chart.js.'));
+        document.head.appendChild(script);
+      }).catch(error => {
+        chartLibraryPromise = null;
+        throw error;
+      });
+
+      return chartLibraryPromise;
+    }
+
+    function safeStorageGet(key, fallback = null) {
+      try {
+        const value = window.localStorage.getItem(key);
+        return value === null ? fallback : value;
+      } catch (error) {
+        console.warn('Storage read failed for ' + key + ':', error);
+        return fallback;
+      }
+    }
+
+    function safeStorageSet(key, value) {
+      try {
+        window.localStorage.setItem(key, String(value));
+        return true;
+      } catch (error) {
+        console.warn('Storage write failed for ' + key + ':', error);
+        return false;
+      }
+    }
+
+    function getStoredEnum(key, allowedValues, fallback) {
+      const value = safeStorageGet(key);
+      return allowedValues.includes(value) ? value : fallback;
+    }
+
+    function getStoredBoolean(key, fallback) {
+      const value = safeStorageGet(key);
+      if (value === 'true') return true;
+      if (value === 'false') return false;
+      return fallback;
+    }
+
     /*
      * ╔══════════════════════════════════════════════════════════════════╗
      * ║                    ANNOTATION SYSTEM                           ║
@@ -3799,7 +3898,13 @@
     }
 
     function initAnnotations() {
-      const annotations = document.querySelectorAll('.annotation[data-note]');
+      const annotations = Array.from(document.querySelectorAll('.annotation[data-note]')).map(element => {
+        if (element.tagName === 'A') return element;
+        const link = document.createElement('a');
+        Array.from(element.attributes).forEach(attribute => link.setAttribute(attribute.name, attribute.value));
+        element.replaceWith(link);
+        return link;
+      });
       const footnotesList = document.getElementById('footnotes-list');
       const idToNumber = {};
       let counter = 1;
@@ -3816,8 +3921,17 @@
       annotations.forEach(el => {
         const noteId = el.getAttribute('data-note');
         const num = idToNumber[noteId];
+        const footnoteId = 'footnote-' + noteId;
+        const noteText = FOOTNOTES[noteId] || '(Missing footnote)';
         el.textContent = toSuperscript(num);
-        el.setAttribute('data-tooltip', FOOTNOTES[noteId] || '(Missing footnote)');
+        el.href = '#' + footnoteId;
+        el.setAttribute('role', 'doc-noteref');
+        el.setAttribute('aria-describedby', footnoteId);
+        el.setAttribute('aria-label', 'Footnote ' + num + ': ' + noteText);
+        el.setAttribute('data-tooltip', noteText);
+        el.addEventListener('click', () => {
+          requestAnimationFrame(() => document.getElementById(footnoteId)?.focus({ preventScroll: true }));
+        });
       });
 
       // Generate footnotes list
@@ -3825,6 +3939,8 @@
         footnotesList.innerHTML = '';
         for (const [id, num] of Object.entries(idToNumber)) {
           const li = document.createElement('li');
+          li.id = 'footnote-' + id;
+          li.tabIndex = -1;
           li.setAttribute('data-num', num + '.');
           li.textContent = FOOTNOTES[id] || '(Missing footnote)';
           footnotesList.appendChild(li);
@@ -3836,38 +3952,18 @@
     initAnnotations();
 
     function switchTab(tabId) {
+      tabId = VALID_MAIN_TABS.includes(tabId) ? tabId : 'specs';
       document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
       document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
       document.getElementById('tab-' + tabId).classList.add('active');
       document.getElementById('btn-' + tabId).classList.add('active');
       // Save active tab to localStorage
-      localStorage.setItem('activeMainTab', tabId);
+      safeStorageSet('activeMainTab', tabId);
 
-      // Fix for Chart.js timing issues: when switching to benchmarks tab,
-      // trigger a resize on all charts after a short delay to ensure proper rendering
       if (tabId === 'benchmarks') {
-        setTimeout(() => {
-          if (typeof omniscienceChart !== 'undefined') omniscienceChart.resize();
-          if (typeof mrcrChart !== 'undefined') mrcrChart.resize();
-          if (typeof lcrChart !== 'undefined') lcrChart.resize();
-          if (typeof mmmuProChart !== 'undefined') mmmuProChart.resize();
-          if (typeof gdpval2Chart !== 'undefined') gdpval2Chart.resize();
-          if (typeof terminalBenchV21Chart !== 'undefined') terminalBenchV21Chart.resize();
-          if (typeof maxContextChart !== 'undefined') maxContextChart.resize();
-        }, 50);
+        ensureBenchmarkRuntime().then(resizeInitializedCharts);
       }
     }
-
-    // Toggle collapsible notes
-    function toggleNotes(header) {
-      const notes = header.parentElement;
-      notes.classList.toggle('expanded');
-    }
-
-    // Chart.js configuration
-    Chart.defaults.color = '#b3a385';
-    Chart.defaults.borderColor = 'rgba(255, 255, 255, 0.08)';
-    Chart.defaults.font.family = "'Inter', sans-serif";
 
     // Function to create striped pattern for non-reasoning models
     function createStripedPattern(baseColor, stripeColor = 'rgba(0, 0, 0, 0.15)') {
@@ -3967,9 +4063,11 @@
       'gpt-56-sol-xhigh': false,
       'gpt-56-sol-high': true,
       'gpt-56-sol-medium': true,
+      'gpt-56-terra-max': false,
       'gpt-56-terra-xhigh': false,
       'gpt-56-terra-high': true,
       'gpt-56-terra-medium': true,
+      'gpt-56-luna-max': false,
       'gpt-56-luna-xhigh': false,
       'gpt-56-luna-high': false,
       'gpt-56-luna-medium': false,
@@ -4011,9 +4109,11 @@
       'gpt-56-sol-xhigh': false,
       'gpt-56-sol-high': false,
       'gpt-56-sol-medium': false,
+      'gpt-56-terra-max': false,
       'gpt-56-terra-xhigh': false,
       'gpt-56-terra-high': false,
       'gpt-56-terra-medium': false,
+      'gpt-56-luna-max': false,
       'gpt-56-luna-xhigh': false,
       'gpt-56-luna-high': false,
       'gpt-56-luna-medium': false,
@@ -4060,7 +4160,7 @@
     // Model groups for group toggles
     const modelGroups = {
       'claude': ['claude-haiku', 'claude-5-fable', 'claude-48-opus', 'claude-5-sonnet', 'claude-5-sonnet-high', 'claude-haiku-nr'],
-      'reasoning': ['gpt-56-sol-max', 'gpt-56-sol-xhigh', 'gpt-56-sol-high', 'gpt-56-sol-medium', 'gpt-56-terra-xhigh', 'gpt-56-terra-high', 'gpt-56-terra-medium', 'gpt-56-luna-xhigh', 'gpt-56-luna-high', 'gpt-56-luna-medium', 'gpt-55-thinking-xhigh', 'gpt-55-thinking', 'gpt-55-thinking-standard', 'gpt-54-thinking-mini', 'gemini-31-pro', 'gemini-35-flash-extended', 'gemini-31-flash-lite-extended', 'claude-haiku', 'claude-5-fable', 'claude-48-opus', 'claude-5-sonnet', 'glm-52-deep-think-max', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-45-expert', 'minimax-m3-thinking', 'nemotron-3-ultra-reasoning', 'mimo-v25-pro', 'mimo-v25', 'qwen-37-max-think', 'qwen-37-plus-think', 'kimi-k26-thinking'],
+      'reasoning': ['gpt-56-sol-max', 'gpt-56-sol-xhigh', 'gpt-56-sol-high', 'gpt-56-sol-medium', 'gpt-56-terra-max', 'gpt-56-terra-xhigh', 'gpt-56-terra-high', 'gpt-56-terra-medium', 'gpt-56-luna-max', 'gpt-56-luna-xhigh', 'gpt-56-luna-high', 'gpt-56-luna-medium', 'gpt-55-thinking-xhigh', 'gpt-55-thinking', 'gpt-55-thinking-standard', 'gpt-54-thinking-mini', 'gemini-31-pro', 'gemini-35-flash-extended', 'gemini-31-flash-lite-extended', 'claude-haiku', 'claude-5-fable', 'claude-48-opus', 'claude-5-sonnet', 'glm-52-deep-think-max', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-45-expert', 'minimax-m3-thinking', 'nemotron-3-ultra-reasoning', 'mimo-v25-pro', 'mimo-v25', 'qwen-37-max-think', 'qwen-37-plus-think', 'kimi-k26-thinking'],
       'instant': ['gpt-55-instant', 'gemini-35-flash', 'claude-5-sonnet-high', 'claude-haiku-nr', 'qwen-35-omni-plus', 'kimi-k26-instant'],
       'chatgpt-pro': [],
       'other': ['glm-52-deep-think-max', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-45-expert', 'minimax-m3-thinking', 'nemotron-3-ultra-reasoning', 'mimo-v25-pro', 'mimo-v25', 'qwen-37-max-think', 'qwen-37-plus-think', 'kimi-k26-thinking', 'qwen-35-omni-plus', 'kimi-k26-instant'],
@@ -4074,9 +4174,11 @@
       'gpt-56-sol-xhigh': ['reasoning'],                 // Reasoning model
       'gpt-56-sol-high': ['reasoning'],                  // Reasoning model
       'gpt-56-sol-medium': ['reasoning'],                // Reasoning model
+      'gpt-56-terra-max': ['reasoning'],                 // Reasoning model
       'gpt-56-terra-xhigh': ['reasoning'],               // Reasoning model
       'gpt-56-terra-high': ['reasoning'],                // Reasoning model
       'gpt-56-terra-medium': ['reasoning'],              // Reasoning model
+      'gpt-56-luna-max': ['reasoning'],                  // Reasoning model
       'gpt-56-luna-xhigh': ['reasoning'],                // Reasoning model
       'gpt-56-luna-high': ['reasoning'],                 // Reasoning model
       'gpt-56-luna-medium': ['reasoning'],               // Reasoning model
@@ -4138,13 +4240,13 @@
     function toggleFiltersPanel() {
       const panel = document.getElementById('modelFiltersPanel');
       panel.classList.toggle('expanded');
-      localStorage.setItem('filtersPanelExpanded', panel.classList.contains('expanded'));
+      safeStorageSet('filtersPanelExpanded', panel.classList.contains('expanded'));
     }
 
     function toggleBenchmarkFiltersPanel() {
       const panel = document.getElementById('benchmarkFiltersPanel');
       panel.classList.toggle('expanded');
-      localStorage.setItem('benchmarkFiltersPanelExpanded', panel.classList.contains('expanded'));
+      safeStorageSet('benchmarkFiltersPanelExpanded', panel.classList.contains('expanded'));
     }
 
     // Update all model dots to reflect current visibility
@@ -4168,7 +4270,7 @@
     }
 
     function parseStoredJson(key) {
-      const stored = localStorage.getItem(key);
+      const stored = safeStorageGet(key);
       if (!stored) return null;
       try {
         return JSON.parse(stored);
@@ -4222,8 +4324,8 @@
     }
 
     function persistCurrentModelState() {
-      localStorage.setItem('modelVisibility', JSON.stringify(modelVisibility));
-      localStorage.setItem('modelExplicitlyDisabled', JSON.stringify(modelExplicitlyDisabled));
+      safeStorageSet('modelVisibility', JSON.stringify(modelVisibility));
+      safeStorageSet('modelExplicitlyDisabled', JSON.stringify(modelExplicitlyDisabled));
     }
 
     function loadModelProfiles() {
@@ -4244,21 +4346,21 @@
         modelSelectionProfiles.push(createDefaultModelProfile(modelSelectionProfiles.length));
       }
 
-      const savedActiveIndex = parseInt(localStorage.getItem(ACTIVE_MODEL_PROFILE_STORAGE_KEY), 10);
+      const savedActiveIndex = parseInt(safeStorageGet(ACTIVE_MODEL_PROFILE_STORAGE_KEY), 10);
       activeModelSelectionProfileIndex = Number.isInteger(savedActiveIndex)
         ? Math.min(Math.max(savedActiveIndex, 0), MODEL_PROFILE_COUNT - 1)
         : 0;
 
-      localStorage.setItem(MODEL_PROFILES_STORAGE_KEY, JSON.stringify(modelSelectionProfiles));
-      localStorage.setItem(ACTIVE_MODEL_PROFILE_STORAGE_KEY, activeModelSelectionProfileIndex);
+      safeStorageSet(MODEL_PROFILES_STORAGE_KEY, JSON.stringify(modelSelectionProfiles));
+      safeStorageSet(ACTIVE_MODEL_PROFILE_STORAGE_KEY, activeModelSelectionProfileIndex);
       applyModelProfile(activeModelSelectionProfileIndex, false);
     }
 
     function saveActiveModelProfile() {
       if (!modelSelectionProfiles.length) return;
       modelSelectionProfiles[activeModelSelectionProfileIndex] = getCurrentModelProfileSnapshot();
-      localStorage.setItem(MODEL_PROFILES_STORAGE_KEY, JSON.stringify(modelSelectionProfiles));
-      localStorage.setItem(ACTIVE_MODEL_PROFILE_STORAGE_KEY, activeModelSelectionProfileIndex);
+      safeStorageSet(MODEL_PROFILES_STORAGE_KEY, JSON.stringify(modelSelectionProfiles));
+      safeStorageSet(ACTIVE_MODEL_PROFILE_STORAGE_KEY, activeModelSelectionProfileIndex);
     }
 
     function applyModelProfile(index, refreshCharts = true) {
@@ -4281,7 +4383,7 @@
     function selectModelProfile(index) {
       if (index < 0 || index >= MODEL_PROFILE_COUNT) return;
       activeModelSelectionProfileIndex = index;
-      localStorage.setItem(ACTIVE_MODEL_PROFILE_STORAGE_KEY, activeModelSelectionProfileIndex);
+      safeStorageSet(ACTIVE_MODEL_PROFILE_STORAGE_KEY, activeModelSelectionProfileIndex);
       applyModelProfile(index, true);
     }
 
@@ -4317,7 +4419,7 @@
       const profile = normalizeModelProfile(modelSelectionProfiles[activeModelSelectionProfileIndex], activeModelSelectionProfileIndex);
       profile.name = sanitizeModelProfileName(name, activeModelSelectionProfileIndex);
       modelSelectionProfiles[activeModelSelectionProfileIndex] = profile;
-      localStorage.setItem(MODEL_PROFILES_STORAGE_KEY, JSON.stringify(modelSelectionProfiles));
+      safeStorageSet(MODEL_PROFILES_STORAGE_KEY, JSON.stringify(modelSelectionProfiles));
       syncModelProfileButtons();
     }
 
@@ -4326,7 +4428,7 @@
       const profile = normalizeModelProfile(modelSelectionProfiles[activeModelSelectionProfileIndex], activeModelSelectionProfileIndex);
       profile.color = sanitizeModelProfileColor(color, activeModelSelectionProfileIndex);
       modelSelectionProfiles[activeModelSelectionProfileIndex] = profile;
-      localStorage.setItem(MODEL_PROFILES_STORAGE_KEY, JSON.stringify(modelSelectionProfiles));
+      safeStorageSet(MODEL_PROFILES_STORAGE_KEY, JSON.stringify(modelSelectionProfiles));
       syncModelProfileButtons();
     }
 
@@ -4334,16 +4436,16 @@
       // Migrate older saved states once. After that, group toggles remain
       // independent from the individual model selections inside each group.
       if (!modelGroupToggleStatesInitialized) {
-        const savedShowOtherModels = localStorage.getItem('showOtherModels');
-        const savedShowLegacyModels = localStorage.getItem('showLegacyModels');
-        showOtherModels = savedShowOtherModels === null
-          ? modelGroups.other.some(modelId => modelVisibility[modelId])
-          : savedShowOtherModels === 'true';
-        showLegacyModels = savedShowLegacyModels === null
-          ? modelGroups.legacy.some(modelId => modelVisibility[modelId])
-          : savedShowLegacyModels === 'true';
-        localStorage.setItem('showOtherModels', showOtherModels);
-        localStorage.setItem('showLegacyModels', showLegacyModels);
+        showOtherModels = getStoredBoolean(
+          'showOtherModels',
+          modelGroups.other.some(modelId => modelVisibility[modelId])
+        );
+        showLegacyModels = getStoredBoolean(
+          'showLegacyModels',
+          modelGroups.legacy.some(modelId => modelVisibility[modelId])
+        );
+        safeStorageSet('showOtherModels', showOtherModels);
+        safeStorageSet('showLegacyModels', showLegacyModels);
         modelGroupToggleStatesInitialized = true;
       }
       document.querySelectorAll('.other-models-toggle').forEach(toggle => {
@@ -4384,46 +4486,6 @@
     }
 
     // Toggle reasoning models group
-    function toggleReasoningModels() {
-      showReasoningModels = !showReasoningModels;
-
-      // If turning ON and all models are explicitly disabled, reset explicit flags
-      if (showReasoningModels) {
-        const allExplicitlyDisabled = modelGroups.reasoning.every(m => modelExplicitlyDisabled[m]);
-        if (allExplicitlyDisabled) {
-          modelGroups.reasoning.forEach(m => { modelExplicitlyDisabled[m] = false; });
-        }
-      }
-
-      // Update modelVisibility for reasoning models respecting constraints
-      modelGroups.reasoning.forEach(modelId => {
-        if (showReasoningModels) {
-          // When turning ON: only activate if ALL constraints are met
-          modelVisibility[modelId] = shouldModelBeVisible(modelId);
-        } else {
-          // When turning OFF: always disable
-          modelVisibility[modelId] = false;
-        }
-      });
-
-      // Sync all reasoning toggles
-      document.querySelectorAll('.reasoning-model-toggle').forEach(toggle => {
-        toggle.classList.toggle('active', showReasoningModels);
-      });
-
-      // Update UI
-      updateModelDotsUI();
-      syncGroupToggles();
-      updateOtherModelsListVisibility();
-      updateLegacyModelsListVisibility();
-      updateLegacyFlags();
-      updateAllCharts();
-
-      // Save state
-      localStorage.setItem('modelVisibility', JSON.stringify(modelVisibility));
-      localStorage.setItem('modelExplicitlyDisabled', JSON.stringify(modelExplicitlyDisabled));
-      localStorage.setItem('reasoningModelsVisible', showReasoningModels);
-    }
 
     // Update all charts with animation
     function updateAllCharts() {
@@ -4432,61 +4494,108 @@
         easing: 'easeInOutQuart'
       };
 
+      if (window.Chart && document.getElementById('tab-benchmarks')?.classList.contains('active')) {
+        benchmarkChartsInViewport.forEach(benchId => ensureBenchmarkChart(benchId));
+      }
+
       // Update Omniscience chart
-      const omniscienceData = getOmniscienceData();
-      omniscienceChart.data.labels = omniscienceData.labels;
-      omniscienceChart.data.datasets[0].data = omniscienceData.correct;
-      omniscienceChart.data.datasets[0].backgroundColor = omniscienceData.correctBgColors;
-      omniscienceChart.data.datasets[1].data = omniscienceData.abstention;
-      omniscienceChart.data.datasets[1].backgroundColor = omniscienceData.abstentionBgColors;
-      omniscienceChart.data.datasets[2].data = omniscienceData.hallucination;
-      omniscienceChart.data.datasets[2].backgroundColor = omniscienceData.hallucinationBgColors;
-      omniscienceChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
+      if (omniscienceChart && benchSectionVisibility.omniscience) {
+        const omniscienceData = getOmniscienceData();
+        if (!omniscienceData.labels.length) {
+          setChartRuntimeState('omniscienceChart', 'empty', BENCHMARK_EMPTY_MESSAGE);
+        } else {
+          setChartRuntimeState('omniscienceChart', 'ready');
+          omniscienceChart.data.labels = omniscienceData.labels;
+          omniscienceChart.data.datasets[0].data = omniscienceData.correct;
+          omniscienceChart.data.datasets[0].backgroundColor = omniscienceData.correctBgColors;
+          omniscienceChart.data.datasets[1].data = omniscienceData.abstention;
+          omniscienceChart.data.datasets[1].backgroundColor = omniscienceData.abstentionBgColors;
+          omniscienceChart.data.datasets[2].data = omniscienceData.hallucination;
+          omniscienceChart.data.datasets[2].backgroundColor = omniscienceData.hallucinationBgColors;
+          omniscienceChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
+        }
+      }
 
       // Update MRCR chart
-      mrcrChart.data.datasets = getMrcrDatasets();
-      if (typeof updateMrcrYAxisOptions === 'function') updateMrcrYAxisOptions();
-      mrcrChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
+      if (mrcrChart && benchSectionVisibility.mrcr) {
+        const mrcrDatasets = getMrcrDatasets();
+        if (!mrcrDatasets.some(dataset => !dataset.isUpperBound)) {
+          setChartRuntimeState('mrcrChart', 'empty', BENCHMARK_EMPTY_MESSAGE);
+        } else {
+          setChartRuntimeState('mrcrChart', 'ready');
+          mrcrChart.data.datasets = mrcrDatasets;
+          if (typeof updateMrcrYAxisOptions === 'function') updateMrcrYAxisOptions();
+          mrcrChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
+        }
+      }
 
       // Update LCR chart
-      const lcrData = getLcrData();
-      lcrChart.data.labels = lcrData.labels;
-      lcrChart.data.datasets[0].data = lcrData.data;
-      lcrChart.data.datasets[0].backgroundColor = lcrData.backgroundColors;
-      lcrChart.data.datasets[0].hoverBackgroundColor = lcrData.hoverBackgroundColors;
-      updatePercentBenchmarkAxisMin(lcrChart, lcrAxisMinMode, lcrData.data, getModelScores(lcrAllModels));
-      lcrChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
+      if (lcrChart && benchSectionVisibility.aalcr) {
+        const lcrData = getLcrData();
+        if (!lcrData.labels.length) {
+          setChartRuntimeState('lcrChart', 'empty', BENCHMARK_EMPTY_MESSAGE);
+        } else {
+          setChartRuntimeState('lcrChart', 'ready');
+          lcrChart.data.labels = lcrData.labels;
+          lcrChart.data.datasets[0].data = lcrData.data;
+          lcrChart.data.datasets[0].backgroundColor = lcrData.backgroundColors;
+          lcrChart.data.datasets[0].hoverBackgroundColor = lcrData.hoverBackgroundColors;
+          updatePercentBenchmarkAxisMin(lcrChart, lcrAxisMinMode, lcrData.data, getModelScores(lcrAllModels));
+          lcrChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
+        }
+      }
 
       // Update MMMU-Pro chart
-      const mmmuProData = getMmmuProData();
-      mmmuProChart.data.labels = mmmuProData.labels;
-      mmmuProChart.data.datasets[0].data = mmmuProData.data;
-      mmmuProChart.data.datasets[0].backgroundColor = mmmuProData.backgroundColors;
-      mmmuProChart.data.datasets[0].hoverBackgroundColor = mmmuProData.hoverBackgroundColors;
-      updatePercentBenchmarkAxisMin(mmmuProChart, mmmuProAxisMinMode, mmmuProData.data, getModelScores(mmmuProAllModels));
-      mmmuProChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
+      if (mmmuProChart && benchSectionVisibility.mmmu) {
+        const mmmuProData = getMmmuProData();
+        if (!mmmuProData.labels.length) {
+          setChartRuntimeState('mmmuProChart', 'empty', BENCHMARK_EMPTY_MESSAGE);
+        } else {
+          setChartRuntimeState('mmmuProChart', 'ready');
+          mmmuProChart.data.labels = mmmuProData.labels;
+          mmmuProChart.data.datasets[0].data = mmmuProData.data;
+          mmmuProChart.data.datasets[0].backgroundColor = mmmuProData.backgroundColors;
+          mmmuProChart.data.datasets[0].hoverBackgroundColor = mmmuProData.hoverBackgroundColors;
+          updatePercentBenchmarkAxisMin(mmmuProChart, mmmuProAxisMinMode, mmmuProData.data, getModelScores(mmmuProAllModels));
+          mmmuProChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
+        }
+      }
 
       // Update GDPval-AA v2 chart
-      const gdpval2Data = getGdpval2Data();
-      gdpval2Chart.data.labels = gdpval2Data.labels;
-      gdpval2Chart.data.datasets[0].data = gdpval2Data.data;
-      gdpval2Chart.data.datasets[0].backgroundColor = gdpval2Data.backgroundColors;
-      gdpval2Chart.data.datasets[0].hoverBackgroundColor = gdpval2Data.hoverBackgroundColors;
-      updateScoreBenchmarkAxisMin(gdpval2Chart, gdpval2AxisMinMode, gdpval2Data.data, getModelScores(gdpval2AllModels));
-      gdpval2Chart.options.scales.x.max = getGdpvalAxisMax(gdpval2AllModels);
-      gdpval2Chart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
+      if (gdpval2Chart && benchSectionVisibility.gdpval2) {
+        const gdpval2Data = getGdpval2Data();
+        if (!gdpval2Data.labels.length) {
+          setChartRuntimeState('gdpval2Chart', 'empty', BENCHMARK_EMPTY_MESSAGE);
+        } else {
+          setChartRuntimeState('gdpval2Chart', 'ready');
+          gdpval2Chart.data.labels = gdpval2Data.labels;
+          gdpval2Chart.data.datasets[0].data = gdpval2Data.data;
+          gdpval2Chart.data.datasets[0].backgroundColor = gdpval2Data.backgroundColors;
+          gdpval2Chart.data.datasets[0].hoverBackgroundColor = gdpval2Data.hoverBackgroundColors;
+          updateScoreBenchmarkAxisMin(gdpval2Chart, gdpval2AxisMinMode, gdpval2Data.data, getModelScores(gdpval2AllModels));
+          gdpval2Chart.options.scales.x.max = getGdpvalAxisMax(gdpval2AllModels);
+          gdpval2Chart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
+        }
+      }
 
       // Update Terminal-Bench v2.1 chart
-      const terminalBenchV21Data = getTerminalBenchV21Data();
-      terminalBenchV21Chart.data.labels = terminalBenchV21Data.labels;
-      terminalBenchV21Chart.data.datasets[0].data = terminalBenchV21Data.data;
-      terminalBenchV21Chart.data.datasets[0].backgroundColor = terminalBenchV21Data.backgroundColors;
-      terminalBenchV21Chart.data.datasets[0].hoverBackgroundColor = terminalBenchV21Data.hoverBackgroundColors;
-      updatePercentBenchmarkAxisMin(terminalBenchV21Chart, terminalBenchV21AxisMinMode, terminalBenchV21Data.data, getModelScores(terminalBenchV21AllModels));
-      terminalBenchV21Chart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
+      if (terminalBenchV21Chart && benchSectionVisibility['terminal-v21']) {
+        const terminalBenchV21Data = getTerminalBenchV21Data();
+        if (!terminalBenchV21Data.labels.length) {
+          setChartRuntimeState('terminalBenchV21Chart', 'empty', BENCHMARK_EMPTY_MESSAGE);
+        } else {
+          setChartRuntimeState('terminalBenchV21Chart', 'ready');
+          terminalBenchV21Chart.data.labels = terminalBenchV21Data.labels;
+          terminalBenchV21Chart.data.datasets[0].data = terminalBenchV21Data.data;
+          terminalBenchV21Chart.data.datasets[0].backgroundColor = terminalBenchV21Data.backgroundColors;
+          terminalBenchV21Chart.data.datasets[0].hoverBackgroundColor = terminalBenchV21Data.hoverBackgroundColors;
+          updatePercentBenchmarkAxisMin(terminalBenchV21Chart, terminalBenchV21AxisMinMode, terminalBenchV21Data.data, getModelScores(terminalBenchV21AllModels));
+          terminalBenchV21Chart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
+        }
+      }
 
       // Update Max Context chart
-      rebuildMaxContextChart();
+      if (benchSectionVisibility.maxcontext) rebuildMaxContextChart();
     }
 
     // DISABLED: Striped patterns for non-reasoning models
@@ -4560,9 +4669,11 @@
       { modelId: 'gpt-56-sol-xhigh', label: '⌘ GPT 5.6 Sol Extra High', correct: 57.97, abstention: 4.61, hallucination: 37.42, sortOrder: 2 },
       { modelId: 'gpt-56-sol-high', label: '⌘ GPT 5.6 Sol High', correct: 57.32, abstention: 5.12, hallucination: 37.56, sortOrder: 3 },
       { modelId: 'gpt-56-sol-medium', label: '⌘ GPT 5.6 Sol Medium', correct: 56.58, abstention: 5.60, hallucination: 37.82, sortOrder: 4 },
+      { modelId: 'gpt-56-terra-max', label: '⌘ GPT 5.6 Terra Max', correct: 45.88, abstention: 8.02, hallucination: 46.10, sortOrder: 5 },
       { modelId: 'gpt-56-terra-xhigh', label: '⌘ GPT 5.6 Terra Extra High', correct: 44.68, abstention: 7.34, hallucination: 47.98, sortOrder: 6 },
       { modelId: 'gpt-56-terra-high', label: '⌘ GPT 5.6 Terra High', correct: 44.48, abstention: 6.97, hallucination: 48.55, sortOrder: 7 },
       { modelId: 'gpt-56-terra-medium', label: '⌘ GPT 5.6 Terra Medium', correct: 44.02, abstention: 6.80, hallucination: 49.18, sortOrder: 8 },
+      { modelId: 'gpt-56-luna-max', label: '⌘ GPT 5.6 Luna Max', correct: 41.50, abstention: 5.77, hallucination: 52.73, sortOrder: 9 },
       { modelId: 'gpt-56-luna-xhigh', label: '⌘ GPT 5.6 Luna Extra High', correct: 41.30, abstention: 5.80, hallucination: 52.90, sortOrder: 10 },
       { modelId: 'gpt-56-luna-high', label: '⌘ GPT 5.6 Luna High', correct: 40.67, abstention: 6.22, hallucination: 53.11, sortOrder: 11 },
       { modelId: 'gpt-56-luna-medium', label: '⌘ GPT 5.6 Luna Medium', correct: 39.63, abstention: 6.92, hallucination: 53.45, sortOrder: 12 },
@@ -4597,16 +4708,21 @@
     ];
 
     // Current sort mode for omniscience: 'brand', 'hallucination', 'correct'
-    let omniscienceSortMode = localStorage.getItem('omniscienceSortMode') || 'brand';
+    let omniscienceSortMode = getStoredEnum('omniscienceSortMode', ['brand', 'hallucination', 'correct'], 'brand');
 
     function setOmniscienceSort(mode) {
+      mode = ['brand', 'hallucination', 'correct'].includes(mode) ? mode : 'brand';
       omniscienceSortMode = mode;
-      localStorage.setItem('omniscienceSortMode', mode);
+      safeStorageSet('omniscienceSortMode', mode);
       // Update button UI (scoped to omniscience selector only)
       document.querySelectorAll('#omniscienceSortSelector .sort-btn').forEach(btn => btn.classList.remove('active'));
       if (mode === 'brand') document.getElementById('omniscienceSortBrand').classList.add('active');
       else if (mode === 'hallucination') document.getElementById('omniscienceSortHallucination').classList.add('active');
       else if (mode === 'correct') document.getElementById('omniscienceSortCorrect').classList.add('active');
+      if (!omniscienceChart) {
+        ensureBenchmarkRuntime();
+        return;
+      }
       // Refresh chart
       const omniscienceData = getOmniscienceData();
       omniscienceChart.data.labels = omniscienceData.labels;
@@ -4620,15 +4736,15 @@
     }
 
     // Sort modes for the other benchmarks: 'brand' or 'highest'
-    let lcrSortMode = localStorage.getItem('lcrSortMode') || 'brand';
-    let mmmuProSortMode = localStorage.getItem('mmmuProSortMode') || 'brand';
-    let gdpval2SortMode = localStorage.getItem('gdpval2SortMode') || 'brand';
-    let terminalBenchV21SortMode = localStorage.getItem('terminalBenchV21SortMode') || 'brand';
-    let maxContextSortMode = localStorage.getItem('maxContextSortMode') || 'brand';
-    let lcrAxisMinMode = localStorage.getItem('lcrAxisMinMode') || '0';
-    let mmmuProAxisMinMode = localStorage.getItem('mmmuProAxisMinMode') || '0';
-    let gdpval2AxisMinMode = localStorage.getItem('gdpval2AxisMinMode') || '0';
-    let terminalBenchV21AxisMinMode = localStorage.getItem('terminalBenchV21AxisMinMode') || '0';
+    let lcrSortMode = getStoredEnum('lcrSortMode', ['brand', 'highest'], 'brand');
+    let mmmuProSortMode = getStoredEnum('mmmuProSortMode', ['brand', 'highest'], 'brand');
+    let gdpval2SortMode = getStoredEnum('gdpval2SortMode', ['brand', 'highest'], 'brand');
+    let terminalBenchV21SortMode = getStoredEnum('terminalBenchV21SortMode', ['brand', 'highest'], 'brand');
+    let maxContextSortMode = getStoredEnum('maxContextSortMode', ['brand', 'highest'], 'brand');
+    let lcrAxisMinMode = getStoredEnum('lcrAxisMinMode', ['0', 'auto', 'all'], '0');
+    let mmmuProAxisMinMode = getStoredEnum('mmmuProAxisMinMode', ['0', 'auto', 'all'], '0');
+    let gdpval2AxisMinMode = getStoredEnum('gdpval2AxisMinMode', ['0', 'auto', 'all'], '0');
+    let terminalBenchV21AxisMinMode = getStoredEnum('terminalBenchV21AxisMinMode', ['0', 'auto', 'all'], '0');
 
     function getDynamicPercentAxisMin(data) {
       const positiveValues = data.filter(value => typeof value === 'number' && value > 0);
@@ -4692,8 +4808,8 @@
       return Math.min(Math.max(parsed, 0), mrcrXAxisLabels.length - 1);
     }
 
-    let mrcrXAxisIndex = localStorage.getItem('mrcrXAxisIndex') !== null ? normalizeMrcrXAxisIndex(localStorage.getItem('mrcrXAxisIndex')) : 6;
-    let mrcrYAxisMode = localStorage.getItem('mrcrYAxisMode') || '0';
+    let mrcrXAxisIndex = safeStorageGet('mrcrXAxisIndex') !== null ? normalizeMrcrXAxisIndex(safeStorageGet('mrcrXAxisIndex')) : 6;
+    let mrcrYAxisMode = getStoredEnum('mrcrYAxisMode', ['0', 'auto'], '0');
 
     function updateMrcrXAxisLabel(val) {
       document.getElementById('mrcrXAxisLabel').textContent = mrcrXAxisLabels[normalizeMrcrXAxisIndex(val)];
@@ -4701,7 +4817,7 @@
 
     function setMrcrXAxis(val) {
       mrcrXAxisIndex = normalizeMrcrXAxisIndex(val);
-      localStorage.setItem('mrcrXAxisIndex', mrcrXAxisIndex);
+      safeStorageSet('mrcrXAxisIndex', mrcrXAxisIndex);
       document.getElementById('mrcrXAxisSlider').value = mrcrXAxisIndex;
       updateMrcrXAxisLabel(mrcrXAxisIndex);
 
@@ -4709,6 +4825,8 @@
         mrcrChart.options.scales.x.max = mrcrXAxisLabels[mrcrXAxisIndex];
         updateMrcrYAxisOptions();
         mrcrChart.update({ duration: 750, easing: 'easeInOutQuart' });
+      } else {
+        ensureBenchmarkRuntime();
       }
     }
 
@@ -4735,19 +4853,29 @@
     }
 
     function setMrcrYAxis(mode) {
+      mode = ['0', 'auto'].includes(mode) ? mode : '0';
       mrcrYAxisMode = mode;
-      localStorage.setItem('mrcrYAxisMode', mode);
+      safeStorageSet('mrcrYAxisMode', mode);
       document.querySelectorAll('#mrcrYAxisSelector .sort-btn').forEach(btn => btn.classList.remove('active'));
       document.getElementById(mode === '0' ? 'mrcrYAxis0' : 'mrcrYAxisAuto').classList.add('active');
+      if (!mrcrChart) {
+        ensureBenchmarkRuntime();
+        return;
+      }
       updateMrcrYAxisOptions();
       mrcrChart.update({ duration: 750, easing: 'easeInOutQuart' });
     }
 
     function setLcrSort(mode) {
+      mode = ['brand', 'highest'].includes(mode) ? mode : 'brand';
       lcrSortMode = mode;
-      localStorage.setItem('lcrSortMode', mode);
+      safeStorageSet('lcrSortMode', mode);
       document.querySelectorAll('#lcrSortSelector .sort-btn').forEach(btn => btn.classList.remove('active'));
       document.getElementById(mode === 'brand' ? 'lcrSortBrand' : 'lcrSortHighest').classList.add('active');
+      if (!lcrChart) {
+        ensureBenchmarkRuntime();
+        return;
+      }
       const lcrData = getLcrData();
       lcrChart.data.labels = lcrData.labels;
       lcrChart.data.datasets[0].data = lcrData.data;
@@ -4758,18 +4886,28 @@
     }
 
     function setLcrAxisMin(mode) {
+      mode = ['0', 'auto', 'all'].includes(mode) ? mode : '0';
       lcrAxisMinMode = mode;
-      localStorage.setItem('lcrAxisMinMode', mode);
+      safeStorageSet('lcrAxisMinMode', mode);
       updateAxisMinSelector('lcrAxisMinSelector', 'lcrAxisMin0', 'lcrAxisMinAuto', 'lcrAxisMinAll', mode);
+      if (!lcrChart) {
+        ensureBenchmarkRuntime();
+        return;
+      }
       updatePercentBenchmarkAxisMin(lcrChart, mode, lcrChart.data.datasets[0].data, getModelScores(lcrAllModels));
       lcrChart.update({ duration: 750, easing: 'easeInOutQuart' });
     }
 
     function setMmmuProSort(mode) {
+      mode = ['brand', 'highest'].includes(mode) ? mode : 'brand';
       mmmuProSortMode = mode;
-      localStorage.setItem('mmmuProSortMode', mode);
+      safeStorageSet('mmmuProSortMode', mode);
       document.querySelectorAll('#mmmuProSortSelector .sort-btn').forEach(btn => btn.classList.remove('active'));
       document.getElementById(mode === 'brand' ? 'mmmuProSortBrand' : 'mmmuProSortHighest').classList.add('active');
+      if (!mmmuProChart) {
+        ensureBenchmarkRuntime();
+        return;
+      }
       const mmmuProData = getMmmuProData();
       mmmuProChart.data.labels = mmmuProData.labels;
       mmmuProChart.data.datasets[0].data = mmmuProData.data;
@@ -4780,18 +4918,28 @@
     }
 
     function setMmmuProAxisMin(mode) {
+      mode = ['0', 'auto', 'all'].includes(mode) ? mode : '0';
       mmmuProAxisMinMode = mode;
-      localStorage.setItem('mmmuProAxisMinMode', mode);
+      safeStorageSet('mmmuProAxisMinMode', mode);
       updateAxisMinSelector('mmmuProAxisMinSelector', 'mmmuProAxisMin0', 'mmmuProAxisMinAuto', 'mmmuProAxisMinAll', mode);
+      if (!mmmuProChart) {
+        ensureBenchmarkRuntime();
+        return;
+      }
       updatePercentBenchmarkAxisMin(mmmuProChart, mode, mmmuProChart.data.datasets[0].data, getModelScores(mmmuProAllModels));
       mmmuProChart.update({ duration: 750, easing: 'easeInOutQuart' });
     }
 
     function setGdpval2Sort(mode) {
+      mode = ['brand', 'highest'].includes(mode) ? mode : 'brand';
       gdpval2SortMode = mode;
-      localStorage.setItem('gdpval2SortMode', mode);
+      safeStorageSet('gdpval2SortMode', mode);
       document.querySelectorAll('#gdpval2SortSelector .sort-btn').forEach(btn => btn.classList.remove('active'));
       document.getElementById(mode === 'brand' ? 'gdpval2SortBrand' : 'gdpval2SortHighest').classList.add('active');
+      if (!gdpval2Chart) {
+        ensureBenchmarkRuntime();
+        return;
+      }
       const gdpval2Data = getGdpval2Data();
       gdpval2Chart.data.labels = gdpval2Data.labels;
       gdpval2Chart.data.datasets[0].data = gdpval2Data.data;
@@ -4803,19 +4951,29 @@
     }
 
     function setGdpval2AxisMin(mode) {
+      mode = ['0', 'auto', 'all'].includes(mode) ? mode : '0';
       gdpval2AxisMinMode = mode;
-      localStorage.setItem('gdpval2AxisMinMode', mode);
+      safeStorageSet('gdpval2AxisMinMode', mode);
       updateAxisMinSelector('gdpval2AxisMinSelector', 'gdpval2AxisMin0', 'gdpval2AxisMinAuto', 'gdpval2AxisMinAll', mode);
+      if (!gdpval2Chart) {
+        ensureBenchmarkRuntime();
+        return;
+      }
       updateScoreBenchmarkAxisMin(gdpval2Chart, mode, gdpval2Chart.data.datasets[0].data, getModelScores(gdpval2AllModels));
       gdpval2Chart.options.scales.x.max = getGdpvalAxisMax(gdpval2AllModels);
       gdpval2Chart.update({ duration: 750, easing: 'easeInOutQuart' });
     }
 
     function setTerminalBenchV21Sort(mode) {
+      mode = ['brand', 'highest'].includes(mode) ? mode : 'brand';
       terminalBenchV21SortMode = mode;
-      localStorage.setItem('terminalBenchV21SortMode', mode);
+      safeStorageSet('terminalBenchV21SortMode', mode);
       document.querySelectorAll('#terminalBenchV21SortSelector .sort-btn').forEach(btn => btn.classList.remove('active'));
       document.getElementById(mode === 'brand' ? 'terminalBenchV21SortBrand' : 'terminalBenchV21SortHighest').classList.add('active');
+      if (!terminalBenchV21Chart) {
+        ensureBenchmarkRuntime();
+        return;
+      }
       const terminalBenchV21Data = getTerminalBenchV21Data();
       terminalBenchV21Chart.data.labels = terminalBenchV21Data.labels;
       terminalBenchV21Chart.data.datasets[0].data = terminalBenchV21Data.data;
@@ -4826,18 +4984,28 @@
     }
 
     function setTerminalBenchV21AxisMin(mode) {
+      mode = ['0', 'auto', 'all'].includes(mode) ? mode : '0';
       terminalBenchV21AxisMinMode = mode;
-      localStorage.setItem('terminalBenchV21AxisMinMode', mode);
+      safeStorageSet('terminalBenchV21AxisMinMode', mode);
       updateAxisMinSelector('terminalBenchV21AxisMinSelector', 'terminalBenchV21AxisMin0', 'terminalBenchV21AxisMinAuto', 'terminalBenchV21AxisMinAll', mode);
+      if (!terminalBenchV21Chart) {
+        ensureBenchmarkRuntime();
+        return;
+      }
       updatePercentBenchmarkAxisMin(terminalBenchV21Chart, mode, terminalBenchV21Chart.data.datasets[0].data, getModelScores(terminalBenchV21AllModels));
       terminalBenchV21Chart.update({ duration: 750, easing: 'easeInOutQuart' });
     }
 
     function setMaxContextSort(mode) {
+      mode = ['brand', 'highest'].includes(mode) ? mode : 'brand';
       maxContextSortMode = mode;
-      localStorage.setItem('maxContextSortMode', mode);
+      safeStorageSet('maxContextSortMode', mode);
       document.querySelectorAll('#maxContextSortSelector .sort-btn').forEach(btn => btn.classList.remove('active'));
       document.getElementById(mode === 'brand' ? 'maxContextSortBrand' : 'maxContextSortHighest').classList.add('active');
+      if (!maxContextChart) {
+        ensureBenchmarkRuntime();
+        return;
+      }
       rebuildMaxContextChart();
     }
 
@@ -4899,7 +5067,9 @@
     }
 
     // AA-Omniscience Benchmark - Grouped Bar Chart
-    const omniscienceCtx = document.getElementById('omniscienceChart').getContext('2d');
+    function initOmniscienceChart() {
+      if (omniscienceChart) return omniscienceChart;
+      const omniscienceCtx = document.getElementById('omniscienceChart').getContext('2d');
     const omniscienceData = getOmniscienceData();
     omniscienceChart = new Chart(omniscienceCtx, {
       type: 'bar',
@@ -4985,6 +5155,8 @@
         }
       }
     });
+      return omniscienceChart;
+    }
 
     // Base datasets for MRCR - with modelId for filtering and sortOrder for ordering
     const mrcrAllDatasets = [
@@ -5257,7 +5429,7 @@
 
     let mrcrInitialMin = 0;
     let mrcrInitialBeginAtZero = true;
-    if (localStorage.getItem('mrcrYAxisMode') === 'auto') {
+    if (mrcrYAxisMode === 'auto') {
       let minVal = 100;
       const initDatasets = getMrcrDatasets();
       initDatasets.forEach(ds => {
@@ -5273,7 +5445,9 @@
     }
 
     // MRCR v2 8-Needle Benchmark - Line Chart
-    const mrcrCtx = document.getElementById('mrcrChart').getContext('2d');
+    function initMrcrChart() {
+      if (mrcrChart) return mrcrChart;
+      const mrcrCtx = document.getElementById('mrcrChart').getContext('2d');
     mrcrChart = new Chart(mrcrCtx, {
       type: 'line',
       data: {
@@ -5354,6 +5528,8 @@
         }
       }
     });
+      return mrcrChart;
+    }
 
     // Long Context Reasoning - AA-LCR - Horizontal Bar Chart
     let lcrChart;
@@ -5362,9 +5538,11 @@
       { modelId: 'gpt-56-sol-xhigh', label: '⌘ GPT 5.6 Sol Extra High', score: 71, sortOrder: 2 },
       { modelId: 'gpt-56-sol-high', label: '⌘ GPT 5.6 Sol High', score: 68.3, sortOrder: 3 },
       { modelId: 'gpt-56-sol-medium', label: '⌘ GPT 5.6 Sol Medium', score: 68.7, sortOrder: 4 },
+      { modelId: 'gpt-56-terra-max', label: '⌘ GPT 5.6 Terra Max', score: 74, sortOrder: 5 },
       { modelId: 'gpt-56-terra-xhigh', label: '⌘ GPT 5.6 Terra Extra High', score: 71.3, sortOrder: 6 },
       { modelId: 'gpt-56-terra-high', label: '⌘ GPT 5.6 Terra High', score: 72.3, sortOrder: 7 },
       { modelId: 'gpt-56-terra-medium', label: '⌘ GPT 5.6 Terra Medium', score: 72.3, sortOrder: 8 },
+      { modelId: 'gpt-56-luna-max', label: '⌘ GPT 5.6 Luna Max', score: 74, sortOrder: 9 },
       { modelId: 'gpt-56-luna-xhigh', label: '⌘ GPT 5.6 Luna Extra High', score: 69.7, sortOrder: 10 },
       { modelId: 'gpt-56-luna-high', label: '⌘ GPT 5.6 Luna High', score: 69, sortOrder: 11 },
       { modelId: 'gpt-56-luna-medium', label: '⌘ GPT 5.6 Luna Medium', score: 66, sortOrder: 12 },
@@ -5421,6 +5599,8 @@
       return { labels, data, backgroundColors, hoverBackgroundColors, borderColors };
     }
 
+    function initLcrChart() {
+      if (lcrChart) return lcrChart;
     const lcrCtx = document.getElementById('lcrChart').getContext('2d');
     const lcrInitData = getLcrData();
     lcrChart = new Chart(lcrCtx, {
@@ -5481,6 +5661,8 @@
         }
       }
     });
+      return lcrChart;
+    }
 
     // Visual Reasoning - MMMU-Pro - Horizontal Bar Chart
     let mmmuProChart;
@@ -5489,9 +5671,11 @@
       { modelId: 'gpt-56-sol-xhigh', label: '⌘ GPT 5.6 Sol Extra High', score: 83, sortOrder: 2 },
       { modelId: 'gpt-56-sol-high', label: '⌘ GPT 5.6 Sol High', score: 82, sortOrder: 3 },
       { modelId: 'gpt-56-sol-medium', label: '⌘ GPT 5.6 Sol Medium', score: 81, sortOrder: 4 },
+      { modelId: 'gpt-56-terra-max', label: '⌘ GPT 5.6 Terra Max', score: 81, sortOrder: 5 },
       { modelId: 'gpt-56-terra-xhigh', label: '⌘ GPT 5.6 Terra Extra High', score: 79, sortOrder: 6 },
       { modelId: 'gpt-56-terra-high', label: '⌘ GPT 5.6 Terra High', score: 79, sortOrder: 7 },
       { modelId: 'gpt-56-terra-medium', label: '⌘ GPT 5.6 Terra Medium', score: 77, sortOrder: 8 },
+      { modelId: 'gpt-56-luna-max', label: '⌘ GPT 5.6 Luna Max', score: 79, sortOrder: 9 },
       { modelId: 'gpt-56-luna-xhigh', label: '⌘ GPT 5.6 Luna Extra High', score: 79, sortOrder: 10 },
       { modelId: 'gpt-56-luna-high', label: '⌘ GPT 5.6 Luna High', score: 78, sortOrder: 11 },
       { modelId: 'gpt-56-luna-medium', label: '⌘ GPT 5.6 Luna Medium', score: 76, sortOrder: 12 },
@@ -5548,6 +5732,8 @@
       return { labels, data, backgroundColors, hoverBackgroundColors, borderColors };
     }
 
+    function initMmmuProChart() {
+      if (mmmuProChart) return mmmuProChart;
     const mmmuProCtx = document.getElementById('mmmuProChart').getContext('2d');
     const mmmuProInitData = getMmmuProData();
     mmmuProChart = new Chart(mmmuProCtx, {
@@ -5608,6 +5794,8 @@
         }
       }
     });
+      return mmmuProChart;
+    }
 
     function formatGdpvalScore(score) {
       const numericScore = Number(score);
@@ -5688,9 +5876,11 @@
       { modelId: 'gpt-56-sol-xhigh', label: '⌘ GPT 5.6 Sol Extra High', score: 1702, sortOrder: 2 },
       { modelId: 'gpt-56-sol-high', label: '⌘ GPT 5.6 Sol High', score: 1630, sortOrder: 3 },
       { modelId: 'gpt-56-sol-medium', label: '⌘ GPT 5.6 Sol Medium', score: 1562, sortOrder: 4 },
+      { modelId: 'gpt-56-terra-max', label: '⌘ GPT 5.6 Terra Max', score: 1593, sortOrder: 5 },
       { modelId: 'gpt-56-terra-xhigh', label: '⌘ GPT 5.6 Terra Extra High', score: 1572, sortOrder: 6 },
       { modelId: 'gpt-56-terra-high', label: '⌘ GPT 5.6 Terra High', score: 1513, sortOrder: 7 },
       { modelId: 'gpt-56-terra-medium', label: '⌘ GPT 5.6 Terra Medium', score: 1404, sortOrder: 8 },
+      { modelId: 'gpt-56-luna-max', label: '⌘ GPT 5.6 Luna Max', score: 1592, sortOrder: 9 },
       { modelId: 'gpt-56-luna-xhigh', label: '⌘ GPT 5.6 Luna Extra High', score: 1539, sortOrder: 10 },
       { modelId: 'gpt-56-luna-high', label: '⌘ GPT 5.6 Luna High', score: 1472, sortOrder: 11 },
       { modelId: 'gpt-56-luna-medium', label: '⌘ GPT 5.6 Luna Medium', score: 1273, sortOrder: 12 },
@@ -5758,6 +5948,8 @@
       return formatGdpvalScore(score) + ' (' + percentage + '%)';
     }
 
+    function initGdpval2Chart() {
+      if (gdpval2Chart) return gdpval2Chart;
     const gdpval2Ctx = document.getElementById('gdpval2Chart').getContext('2d');
     const gdpval2InitData = getGdpval2Data();
     gdpval2Chart = new Chart(gdpval2Ctx, {
@@ -5824,6 +6016,8 @@
       },
       plugins: [gdpvalHumanBaselinePlugin]
     });
+      return gdpval2Chart;
+    }
 
     // Terminal-Bench v2.1 - Horizontal Bar Chart
     let terminalBenchV21Chart;
@@ -5832,9 +6026,11 @@
       { modelId: 'gpt-56-sol-xhigh', label: '⌘ GPT 5.6 Sol Extra High', score: 89.5, sortOrder: 2 },
       { modelId: 'gpt-56-sol-high', label: '⌘ GPT 5.6 Sol High', score: 87.3, sortOrder: 3 },
       { modelId: 'gpt-56-sol-medium', label: '⌘ GPT 5.6 Sol Medium', score: 86.1, sortOrder: 4 },
+      { modelId: 'gpt-56-terra-max', label: '⌘ GPT 5.6 Terra Max', score: 88, sortOrder: 5 },
       { modelId: 'gpt-56-terra-xhigh', label: '⌘ GPT 5.6 Terra Extra High', score: 80.1, sortOrder: 6 },
       { modelId: 'gpt-56-terra-high', label: '⌘ GPT 5.6 Terra High', score: 75.7, sortOrder: 7 },
       { modelId: 'gpt-56-terra-medium', label: '⌘ GPT 5.6 Terra Medium', score: 72.3, sortOrder: 8 },
+      { modelId: 'gpt-56-luna-max', label: '⌘ GPT 5.6 Luna Max', score: 80.9, sortOrder: 9 },
       { modelId: 'gpt-56-luna-xhigh', label: '⌘ GPT 5.6 Luna Extra High', score: 77.9, sortOrder: 10 },
       { modelId: 'gpt-56-luna-high', label: '⌘ GPT 5.6 Luna High', score: 69.7, sortOrder: 11 },
       { modelId: 'gpt-56-luna-medium', label: '⌘ GPT 5.6 Luna Medium', score: 53.2, sortOrder: 12 },
@@ -5880,6 +6076,8 @@
       return { labels, data, backgroundColors, hoverBackgroundColors, borderColors };
     }
 
+    function initTerminalBenchV21Chart() {
+      if (terminalBenchV21Chart) return terminalBenchV21Chart;
     const terminalBenchV21Ctx = document.getElementById('terminalBenchV21Chart').getContext('2d');
     const terminalBenchV21InitData = getTerminalBenchV21Data();
     terminalBenchV21Chart = new Chart(terminalBenchV21Ctx, {
@@ -5945,6 +6143,8 @@
         }
       }
     });
+      return terminalBenchV21Chart;
+    }
 
     // ============================================================
     // Context Window (Web/App) - Horizontal Stacked Bar Chart
@@ -6042,6 +6242,14 @@
         ]
       },
       {
+        modelId: 'gpt-56-terra-max', label: '⌘ GPT 5.6 Terra Max', sortOrder: 5,
+        color: 'rgba(90, 150, 135, 1)',
+        segments: [
+          { value: 256000, plans: 'Free, Go, Plus' },
+          { value: 400000, plans: 'Pro' }
+        ]
+      },
+      {
         modelId: 'gpt-56-terra-xhigh', label: '⌘ GPT 5.6 Terra Extra High', sortOrder: 6,
         color: 'rgba(90, 150, 135, 1)',
         segments: [
@@ -6059,6 +6267,14 @@
       },
       {
         modelId: 'gpt-56-terra-medium', label: '⌘ GPT 5.6 Terra Medium', sortOrder: 8,
+        color: 'rgba(90, 150, 135, 1)',
+        segments: [
+          { value: 256000, plans: 'Free, Go, Plus' },
+          { value: 400000, plans: 'Pro' }
+        ]
+      },
+      {
+        modelId: 'gpt-56-luna-max', label: '⌘ GPT 5.6 Luna Max', sortOrder: 9,
         color: 'rgba(90, 150, 135, 1)',
         segments: [
           { value: 256000, plans: 'Free, Go, Plus' },
@@ -6576,6 +6792,11 @@
     function rebuildMaxContextChart() {
       if (!maxContextChart) return;
       const models = getMaxContextModels();
+      if (!models.length) {
+        setChartRuntimeState('maxContextChart', 'empty', BENCHMARK_EMPTY_MESSAGE);
+        return;
+      }
+      setChartRuntimeState('maxContextChart', 'ready');
       maxContextChart.data.labels = models.map(m => m.label);
       maxContextChart.data.datasets = buildMaxContextDatasets(models);
       // Update x-axis max dynamically
@@ -6584,7 +6805,8 @@
       maxContextChart.update({ duration: 750, easing: 'easeInOutQuart' });
     }
 
-    (function initMaxContextChart() {
+    function initMaxContextChart() {
+      if (maxContextChart) return maxContextChart;
       const models = getMaxContextModels();
       const labels = models.map(m => m.label);
       const datasets = buildMaxContextDatasets(models);
@@ -6645,7 +6867,155 @@
           }
         }
       });
-    })();
+      return maxContextChart;
+    }
+
+    const BENCHMARK_EMPTY_MESSAGE = 'No models selected for this benchmark. Select at least one model in Model Filters.';
+    let benchmarkChartObserver = null;
+    const benchmarkChartsInViewport = new Set();
+
+    const benchmarkChartRegistry = {
+      omniscience: {
+        sectionId: 'bench-section-omniscience', canvasId: 'omniscienceChart', init: initOmniscienceChart,
+        getInstance: () => omniscienceChart,
+        hasData: () => getOmniscienceData().labels.length > 0
+      },
+      mrcr: {
+        sectionId: 'bench-section-mrcr', canvasId: 'mrcrChart', init: initMrcrChart,
+        getInstance: () => mrcrChart,
+        hasData: () => getMrcrDatasets().some(dataset => !dataset.isUpperBound)
+      },
+      aalcr: {
+        sectionId: 'bench-section-aalcr', canvasId: 'lcrChart', init: initLcrChart,
+        getInstance: () => lcrChart,
+        hasData: () => getLcrData().labels.length > 0
+      },
+      maxcontext: {
+        sectionId: 'bench-section-maxcontext', canvasId: 'maxContextChart', init: initMaxContextChart,
+        getInstance: () => maxContextChart,
+        hasData: () => getMaxContextModels().length > 0
+      },
+      mmmu: {
+        sectionId: 'bench-section-mmmu', canvasId: 'mmmuProChart', init: initMmmuProChart,
+        getInstance: () => mmmuProChart,
+        hasData: () => getMmmuProData().labels.length > 0
+      },
+      gdpval2: {
+        sectionId: 'bench-section-gdpval2', canvasId: 'gdpval2Chart', init: initGdpval2Chart,
+        getInstance: () => gdpval2Chart,
+        hasData: () => getGdpval2Data().labels.length > 0
+      },
+      'terminal-v21': {
+        sectionId: 'bench-section-terminal-v21', canvasId: 'terminalBenchV21Chart', init: initTerminalBenchV21Chart,
+        getInstance: () => terminalBenchV21Chart,
+        hasData: () => getTerminalBenchV21Data().labels.length > 0
+      }
+    };
+
+    function getChartRuntimeState(canvasId) {
+      const canvas = document.getElementById(canvasId);
+      if (!canvas) return null;
+      const container = canvas.closest('.chart-container');
+      if (!container) return null;
+      let state = container.querySelector('.chart-runtime-state');
+      if (!state) {
+        state = document.createElement('div');
+        state.className = 'empty-benchmark-state chart-runtime-state';
+        state.setAttribute('aria-live', 'polite');
+        state.hidden = true;
+        container.appendChild(state);
+      }
+      return { canvas, state };
+    }
+
+    function setChartRuntimeState(canvasId, type, message = '') {
+      const elements = getChartRuntimeState(canvasId);
+      if (!elements) return;
+      const { canvas, state } = elements;
+      const showCanvas = type === 'ready';
+      canvas.hidden = !showCanvas;
+      state.hidden = showCanvas;
+      state.textContent = showCanvas ? '' : message;
+      state.classList.toggle('chart-error-state', type === 'error');
+    }
+
+    function ensureBenchmarkChart(benchId) {
+      const entry = benchmarkChartRegistry[benchId];
+      if (!entry || !benchSectionVisibility?.[benchId]) return null;
+      if (!entry.hasData()) {
+        setChartRuntimeState(entry.canvasId, 'empty', BENCHMARK_EMPTY_MESSAGE);
+        return null;
+      }
+      setChartRuntimeState(entry.canvasId, 'ready');
+      if (entry.getInstance()) return entry.getInstance();
+      try {
+        return entry.init();
+      } catch (error) {
+        console.error('Failed to initialize ' + benchId + ' chart:', error);
+        setChartRuntimeState(entry.canvasId, 'error', 'This benchmark chart could not be initialized.');
+        return null;
+      }
+    }
+
+    function observeBenchmarkCharts() {
+      const entries = Object.entries(benchmarkChartRegistry);
+      if (!('IntersectionObserver' in window)) {
+        entries.forEach(([benchId]) => {
+          if (benchSectionVisibility[benchId]) {
+            benchmarkChartsInViewport.add(benchId);
+            ensureBenchmarkChart(benchId);
+          }
+        });
+        return;
+      }
+
+      if (!benchmarkChartObserver) {
+        benchmarkChartObserver = new IntersectionObserver(observerEntries => {
+          observerEntries.forEach(observerEntry => {
+            const benchId = observerEntry.target.dataset.benchmarkChart;
+            if (!benchId) return;
+            if (observerEntry.isIntersecting) {
+              benchmarkChartsInViewport.add(benchId);
+              ensureBenchmarkChart(benchId);
+            } else {
+              benchmarkChartsInViewport.delete(benchId);
+            }
+          });
+        }, { rootMargin: '300px 0px' });
+      }
+
+      entries.forEach(([benchId, entry]) => {
+        const section = document.getElementById(entry.sectionId);
+        if (!section || section.dataset.chartObserved === 'true') return;
+        section.dataset.benchmarkChart = benchId;
+        section.dataset.chartObserved = 'true';
+        benchmarkChartObserver.observe(section);
+      });
+    }
+
+    async function ensureBenchmarkRuntime() {
+      if (!document.getElementById('tab-benchmarks')?.classList.contains('active')) return;
+      Object.entries(benchmarkChartRegistry).forEach(([benchId, entry]) => {
+        if (benchSectionVisibility?.[benchId] && !entry.getInstance()) {
+          setChartRuntimeState(entry.canvasId, 'loading', 'Loading benchmark chart…');
+        }
+      });
+      try {
+        await loadChartLibrary();
+        observeBenchmarkCharts();
+      } catch (error) {
+        console.error(error);
+        Object.entries(benchmarkChartRegistry).forEach(([benchId, entry]) => {
+          if (benchSectionVisibility?.[benchId]) {
+            setChartRuntimeState(entry.canvasId, 'error', 'Benchmark charts are unavailable because Chart.js could not be loaded.');
+          }
+        });
+      }
+    }
+
+    function resizeInitializedCharts() {
+      Object.values(benchmarkChartRegistry).forEach(entry => entry.getInstance()?.resize());
+    }
 
     function initUnknownHighlights() {
       const cells = document.querySelectorAll('#tab-specs tbody td:not(:first-child)');
@@ -6678,7 +7048,7 @@
       const tabContent = document.getElementById('tab-specs');
       toggle.classList.toggle('active');
       tabContent.classList.toggle('hide-unknown');
-      localStorage.setItem('unknownToggleActive', toggle.classList.contains('active'));
+      safeStorageSet('unknownToggleActive', toggle.classList.contains('active'));
     }
 
     // Toggle function for subjective recommendations
@@ -6688,7 +7058,7 @@
       toggle.classList.toggle('active');
       tabContent.classList.toggle('hide-subjective');
       // Save state to localStorage
-      localStorage.setItem('subjectiveToggleActive', toggle.classList.contains('active'));
+      safeStorageSet('subjectiveToggleActive', toggle.classList.contains('active'));
     }
 
     // Toggle function for USA-exclusive features
@@ -6700,7 +7070,7 @@
       toggle.classList.toggle('active');
       tabContent.classList.toggle('hide-usa-exclusive');
       // Save state to localStorage
-      localStorage.setItem('usaExclusiveToggleActive', toggle.classList.contains('active'));
+      safeStorageSet('usaExclusiveToggleActive', toggle.classList.contains('active'));
 
       // Update Agent mode ratings based on USA-exclusive state
       const isUSAExclusiveOn = toggle.classList.contains('active');
@@ -6727,6 +7097,7 @@
 
     // Toggle function for price tier with animation
     function switchPriceTier(tier) {
+      tier = VALID_PRICE_TIERS.includes(tier) ? tier : 'low';
       const freeBtn = document.getElementById('btn-tier-free');
       const lowBtn = document.getElementById('btn-tier-low');
       const highBtn = document.getElementById('btn-tier-high');
@@ -6770,130 +7141,14 @@
         }, 350);
       }, 150);
       // Save state to localStorage
-      localStorage.setItem('priceTier', tier);
+      safeStorageSet('priceTier', tier);
     }
 
     // Toggle function for Claude models - syncs all toggles
-    function toggleClaudeModels() {
-      showClaudeModels = !showClaudeModels;
-
-      // If turning ON and all models are explicitly disabled, reset explicit flags
-      if (showClaudeModels) {
-        const allExplicitlyDisabled = modelGroups.claude.every(m => modelExplicitlyDisabled[m]);
-        if (allExplicitlyDisabled) {
-          modelGroups.claude.forEach(m => { modelExplicitlyDisabled[m] = false; });
-        }
-      }
-
-      // Update modelVisibility for Claude models respecting constraints
-      modelGroups.claude.forEach(modelId => {
-        if (showClaudeModels) {
-          // When turning ON: only activate if ALL constraints are met
-          modelVisibility[modelId] = shouldModelBeVisible(modelId);
-        } else {
-          // When turning OFF: always disable
-          modelVisibility[modelId] = false;
-        }
-      });
-
-      // Sync all Claude toggles
-      document.querySelectorAll('.claude-toggle').forEach(toggle => {
-        toggle.classList.toggle('active', showClaudeModels);
-      });
-
-      // Update UI and charts
-      updateModelDotsUI();
-      syncGroupToggles();
-      updateOtherModelsListVisibility();
-      updateLegacyModelsListVisibility();
-      updateLegacyFlags();
-      updateAllCharts();
-
-      // Save state to localStorage
-      localStorage.setItem('modelVisibility', JSON.stringify(modelVisibility));
-      localStorage.setItem('modelExplicitlyDisabled', JSON.stringify(modelExplicitlyDisabled));
-      localStorage.setItem('claudeModelsVisible', showClaudeModels);
-    }
 
     // Toggle function for Instant models - syncs all toggles
-    function toggleInstantModels() {
-      showInstantModels = !showInstantModels;
-
-      // If turning ON and all models are explicitly disabled, reset explicit flags
-      if (showInstantModels) {
-        const allExplicitlyDisabled = modelGroups.instant.every(m => modelExplicitlyDisabled[m]);
-        if (allExplicitlyDisabled) {
-          modelGroups.instant.forEach(m => { modelExplicitlyDisabled[m] = false; });
-        }
-      }
-
-      // Update modelVisibility for instant models respecting constraints
-      modelGroups.instant.forEach(modelId => {
-        if (showInstantModels) {
-          // When turning ON: only activate if ALL constraints are met
-          modelVisibility[modelId] = shouldModelBeVisible(modelId);
-        } else {
-          // When turning OFF: always disable
-          modelVisibility[modelId] = false;
-        }
-      });
-
-      // Sync all Instant toggles
-      document.querySelectorAll('.instant-model-toggle').forEach(toggle => {
-        toggle.classList.toggle('active', showInstantModels);
-      });
-
-      // Update UI and charts
-      updateModelDotsUI();
-      syncGroupToggles();
-      updateLegacyFlags();
-      updateAllCharts();
-
-      // Save state to localStorage
-      localStorage.setItem('modelVisibility', JSON.stringify(modelVisibility));
-      localStorage.setItem('modelExplicitlyDisabled', JSON.stringify(modelExplicitlyDisabled));
-      localStorage.setItem('instantModelsVisible', showInstantModels);
-    }
 
     // Toggle function for ChatGPT Pro models - syncs all toggles
-    function toggleChatGPTProModels() {
-      showChatGPTProModels = !showChatGPTProModels;
-
-      // If turning ON and all models are explicitly disabled, reset explicit flags
-      if (showChatGPTProModels) {
-        const allExplicitlyDisabled = modelGroups['chatgpt-pro'].every(m => modelExplicitlyDisabled[m]);
-        if (allExplicitlyDisabled) {
-          modelGroups['chatgpt-pro'].forEach(m => { modelExplicitlyDisabled[m] = false; });
-        }
-      }
-
-      // Update modelVisibility for ChatGPT Pro models respecting constraints
-      modelGroups['chatgpt-pro'].forEach(modelId => {
-        if (showChatGPTProModels) {
-          // When turning ON: only activate if ALL constraints are met
-          modelVisibility[modelId] = shouldModelBeVisible(modelId);
-        } else {
-          // When turning OFF: always disable
-          modelVisibility[modelId] = false;
-        }
-      });
-
-      // Sync all ChatGPT Pro toggles
-      document.querySelectorAll('.chatgpt-pro-model-toggle').forEach(toggle => {
-        toggle.classList.toggle('active', showChatGPTProModels);
-      });
-
-      // Update UI and charts
-      updateModelDotsUI();
-      syncGroupToggles();
-      updateLegacyFlags();
-      updateAllCharts();
-
-      // Save state to localStorage
-      localStorage.setItem('modelVisibility', JSON.stringify(modelVisibility));
-      localStorage.setItem('modelExplicitlyDisabled', JSON.stringify(modelExplicitlyDisabled));
-      localStorage.setItem('chatgptProModelsVisible', showChatGPTProModels);
-    }
 
     // (applyToggle3State removed — replaced by binary toggle + hide-btn)
 
@@ -6994,18 +7249,11 @@
       // Save state
       persistCurrentModelState();
       saveActiveModelProfile();
-      localStorage.setItem('showOtherModels', showOtherModels);
-      localStorage.setItem('otherModelsHidden', otherModelsHidden);
+      safeStorageSet('showOtherModels', showOtherModels);
+      safeStorageSet('otherModelsHidden', otherModelsHidden);
     }
 
     // Toggle hide/show of Other model rows in the filter list
-    function toggleOtherHide() {
-      otherModelsHidden = !otherModelsHidden;
-      // If showing, also un-hide does NOT auto-enable in charts
-      updateOtherModelsListVisibility();
-      document.querySelectorAll('.other-models-hide-btn').forEach(b => b.classList.toggle('visible', !otherModelsHidden));
-      localStorage.setItem('otherModelsHidden', otherModelsHidden);
-    }
 
     // Update visibility of Legacy model rows in the filter list
     function updateLegacyModelsListVisibility() {
@@ -7051,27 +7299,21 @@
       // Save state
       persistCurrentModelState();
       saveActiveModelProfile();
-      localStorage.setItem('showLegacyModels', showLegacyModels);
-      localStorage.setItem('legacyModelsHidden', legacyModelsHidden);
+      safeStorageSet('showLegacyModels', showLegacyModels);
+      safeStorageSet('legacyModelsHidden', legacyModelsHidden);
     }
 
     // Toggle hide/show of Legacy model rows in the filter list
-    function toggleLegacyHide() {
-      legacyModelsHidden = !legacyModelsHidden;
-      updateLegacyModelsListVisibility();
-      document.querySelectorAll('.legacy-models-hide-btn').forEach(b => b.classList.toggle('visible', !legacyModelsHidden));
-      localStorage.setItem('legacyModelsHidden', legacyModelsHidden);
-    }
 
     // Toggle benchmark sections visibility
     let benchSectionVisibility = {
-      omniscience: localStorage.getItem('bench_omniscience') !== 'false',
-      mrcr: localStorage.getItem('bench_mrcr') !== 'false',
-      aalcr: localStorage.getItem('bench_aalcr') !== 'false',
-      maxcontext: localStorage.getItem('bench_maxcontext') !== 'false',
-      mmmu: localStorage.getItem('bench_mmmu') !== 'false',
-      gdpval2: localStorage.getItem('bench_gdpval2') !== 'false',
-      'terminal-v21': localStorage.getItem('bench_terminal-v21') === 'true'
+      omniscience: getStoredBoolean('bench_omniscience', true),
+      mrcr: getStoredBoolean('bench_mrcr', true),
+      aalcr: getStoredBoolean('bench_aalcr', true),
+      maxcontext: getStoredBoolean('bench_maxcontext', true),
+      mmmu: getStoredBoolean('bench_mmmu', true),
+      gdpval2: getStoredBoolean('bench_gdpval2', true),
+      'terminal-v21': getStoredBoolean('bench_terminal-v21', false)
     };
 
     function initBenchSections() {
@@ -7129,28 +7371,20 @@
     initBenchSections();
 
     function toggleBenchSection(benchId) {
+      if (!Object.prototype.hasOwnProperty.call(benchSectionVisibility, benchId)) return;
       benchSectionVisibility[benchId] = !benchSectionVisibility[benchId];
       const isVisible = benchSectionVisibility[benchId];
-      localStorage.setItem('bench_' + benchId, isVisible);
+      safeStorageSet('bench_' + benchId, isVisible);
 
       const section = document.getElementById('bench-section-' + benchId);
       if (section) {
         section.style.display = isVisible ? '' : 'none';
-        // Trigger resize on charts within this section when making it visible again
         if (isVisible) {
-          setTimeout(() => {
-            const canvas = section.querySelector('canvas');
-            if (canvas) {
-              const chartId = canvas.id;
-              if (chartId === 'omniscienceChart' && typeof omniscienceChart !== 'undefined') omniscienceChart.resize();
-              if (chartId === 'mrcrChart' && typeof mrcrChart !== 'undefined') mrcrChart.resize();
-              if (chartId === 'lcrChart' && typeof lcrChart !== 'undefined') lcrChart.resize();
-              if (chartId === 'maxContextChart' && typeof maxContextChart !== 'undefined') maxContextChart.resize();
-              if (chartId === 'mmmuProChart' && typeof mmmuProChart !== 'undefined') mmmuProChart.resize();
-              if (chartId === 'gdpval2Chart' && typeof gdpval2Chart !== 'undefined') gdpval2Chart.resize();
-              if (chartId === 'terminalBenchV21Chart' && typeof terminalBenchV21Chart !== 'undefined') terminalBenchV21Chart.resize();
-            }
-          }, 50);
+          ensureBenchmarkRuntime().then(() => {
+            benchmarkChartsInViewport.add(benchId);
+            const chart = ensureBenchmarkChart(benchId);
+            chart?.resize();
+          });
         }
       }
 
@@ -7164,24 +7398,17 @@
     function initializeSavedStates() {
       initUnknownHighlights();
 
-      let needsChartUpdate = false;
-      const legacyClaudeSonnetMigrationKey = 'legacyClaudeSonnetMigration_2026_06_02';
-      const shouldMigrateLegacyClaudeSonnet = localStorage.getItem(legacyClaudeSonnetMigrationKey) !== 'true';
-      const unlegacyClaudeSonnetMigrationKey = 'unlegacyClaudeSonnetMigration_2026_06_10';
-      const shouldMigrateUnlegacyClaudeSonnet = localStorage.getItem(unlegacyClaudeSonnetMigrationKey) !== 'true';
-
       // Restore model profile state, seeding Profile 1 from legacy modelVisibility when needed.
       loadModelProfiles();
-      needsChartUpdate = true;
 
       // Restore filters panel state
-      const savedFiltersPanel = localStorage.getItem('filtersPanelExpanded');
+      const savedFiltersPanel = safeStorageGet('filtersPanelExpanded');
       if (savedFiltersPanel === 'true') {
         document.getElementById('modelFiltersPanel').classList.add('expanded');
       }
 
       // Restore benchmark filters panel state
-      const savedBenchmarkFiltersPanel = localStorage.getItem('benchmarkFiltersPanelExpanded');
+      const savedBenchmarkFiltersPanel = safeStorageGet('benchmarkFiltersPanelExpanded');
       if (savedBenchmarkFiltersPanel === 'true') {
         document.getElementById('benchmarkFiltersPanel').classList.add('expanded');
       }
@@ -7193,8 +7420,8 @@
       updateLegacyModelsListVisibility();
 
       // Restore sort button UI states
-      if (localStorage.getItem('mrcrXAxisIndex') !== null) {
-        const val = normalizeMrcrXAxisIndex(localStorage.getItem('mrcrXAxisIndex'));
+      if (safeStorageGet('mrcrXAxisIndex') !== null) {
+        const val = normalizeMrcrXAxisIndex(safeStorageGet('mrcrXAxisIndex'));
         mrcrXAxisIndex = val;
         document.getElementById('mrcrXAxisSlider').value = val;
         document.getElementById('mrcrXAxisLabel').textContent = mrcrXAxisLabels[val];
@@ -7238,60 +7465,8 @@
       updateAxisMinSelector('terminalBenchV21AxisMinSelector', 'terminalBenchV21AxisMin0', 'terminalBenchV21AxisMinAuto', 'terminalBenchV21AxisMinAll', terminalBenchV21AxisMinMode);
 
       // Update charts if state changed from default
-      if (needsChartUpdate) {
-        // Update charts without animation (instant)
-        const omniscienceData = getOmniscienceData();
-        omniscienceChart.data.labels = omniscienceData.labels;
-        omniscienceChart.data.datasets[0].data = omniscienceData.correct;
-        omniscienceChart.data.datasets[0].backgroundColor = omniscienceData.correctBgColors;
-        omniscienceChart.data.datasets[1].data = omniscienceData.abstention;
-        omniscienceChart.data.datasets[1].backgroundColor = omniscienceData.abstentionBgColors;
-        omniscienceChart.data.datasets[2].data = omniscienceData.hallucination;
-        omniscienceChart.data.datasets[2].backgroundColor = omniscienceData.hallucinationBgColors;
-        omniscienceChart.update('none');
-        mrcrChart.data.datasets = getMrcrDatasets();
-        if (typeof updateMrcrYAxisOptions === 'function') updateMrcrYAxisOptions();
-        mrcrChart.update('none');
-        const lcrData = getLcrData();
-        lcrChart.data.labels = lcrData.labels;
-        lcrChart.data.datasets[0].data = lcrData.data;
-        lcrChart.data.datasets[0].backgroundColor = lcrData.backgroundColors;
-        lcrChart.data.datasets[0].hoverBackgroundColor = lcrData.hoverBackgroundColors;
-        updatePercentBenchmarkAxisMin(lcrChart, lcrAxisMinMode, lcrData.data, getModelScores(lcrAllModels));
-        lcrChart.update('none');
-        const mmmuProData = getMmmuProData();
-        mmmuProChart.data.labels = mmmuProData.labels;
-        mmmuProChart.data.datasets[0].data = mmmuProData.data;
-        mmmuProChart.data.datasets[0].backgroundColor = mmmuProData.backgroundColors;
-        mmmuProChart.data.datasets[0].hoverBackgroundColor = mmmuProData.hoverBackgroundColors;
-        updatePercentBenchmarkAxisMin(mmmuProChart, mmmuProAxisMinMode, mmmuProData.data, getModelScores(mmmuProAllModels));
-        mmmuProChart.update('none');
-        const gdpval2Data = getGdpval2Data();
-        gdpval2Chart.data.labels = gdpval2Data.labels;
-        gdpval2Chart.data.datasets[0].data = gdpval2Data.data;
-        gdpval2Chart.data.datasets[0].backgroundColor = gdpval2Data.backgroundColors;
-        gdpval2Chart.data.datasets[0].hoverBackgroundColor = gdpval2Data.hoverBackgroundColors;
-        updateScoreBenchmarkAxisMin(gdpval2Chart, gdpval2AxisMinMode, gdpval2Data.data, getModelScores(gdpval2AllModels));
-        gdpval2Chart.options.scales.x.max = getGdpvalAxisMax(gdpval2AllModels);
-        gdpval2Chart.update('none');
-        const terminalBenchV21Data = getTerminalBenchV21Data();
-        terminalBenchV21Chart.data.labels = terminalBenchV21Data.labels;
-        terminalBenchV21Chart.data.datasets[0].data = terminalBenchV21Data.data;
-        terminalBenchV21Chart.data.datasets[0].backgroundColor = terminalBenchV21Data.backgroundColors;
-        terminalBenchV21Chart.data.datasets[0].hoverBackgroundColor = terminalBenchV21Data.hoverBackgroundColors;
-        updatePercentBenchmarkAxisMin(terminalBenchV21Chart, terminalBenchV21AxisMinMode, terminalBenchV21Data.data, getModelScores(terminalBenchV21AllModels));
-        terminalBenchV21Chart.update('none');
-        // Rebuild max context chart without animation
-        if (maxContextChart) {
-          const mcModels = getMaxContextModels();
-          maxContextChart.data.labels = mcModels.map(m => m.label);
-          maxContextChart.data.datasets = buildMaxContextDatasets(mcModels);
-          maxContextChart.update('none');
-        }
-      }
-
       // Restore unknown highlight toggle state
-      const savedUnknown = localStorage.getItem('unknownToggleActive');
+      const savedUnknown = safeStorageGet('unknownToggleActive');
       if (savedUnknown === 'false') {
         const unknownToggle = document.querySelector('.unknown-toggle .toggle-switch');
         const tabContent = document.getElementById('tab-specs');
@@ -7302,7 +7477,7 @@
       }
 
       // Restore subjective toggle state
-      const savedSubjective = localStorage.getItem('subjectiveToggleActive');
+      const savedSubjective = safeStorageGet('subjectiveToggleActive');
       if (savedSubjective === 'false') {
         // Default is active (ON), so we need to toggle OFF
         const subjectiveToggle = document.querySelector('.subjective-toggle .toggle-switch');
@@ -7314,7 +7489,7 @@
       }
 
       // Restore USA-exclusive toggle state
-      const savedUSA = localStorage.getItem('usaExclusiveToggleActive');
+      const savedUSA = safeStorageGet('usaExclusiveToggleActive');
       if (savedUSA === 'false') {
         // Default is active (ON), so we need to toggle OFF and apply all effects
         const usaToggle = document.querySelector('.usa-toggle .toggle-switch');
@@ -7335,7 +7510,7 @@
       }
 
       // Restore price tier selection
-      const savedTier = localStorage.getItem('priceTier');
+      const savedTier = getStoredEnum('priceTier', VALID_PRICE_TIERS, 'low');
       if (savedTier && savedTier !== 'low') {
         // Default is 'low', so only switch if different
         const freeBtn = document.getElementById('btn-tier-free');
@@ -7362,7 +7537,7 @@
       }
 
       // Restore main tab selection
-      const savedMainTab = localStorage.getItem('activeMainTab');
+      const savedMainTab = getStoredEnum('activeMainTab', VALID_MAIN_TABS, 'specs');
       if (savedMainTab && savedMainTab !== 'specs') {
         // Default is 'specs', so only switch if different
         const specsBtn = document.getElementById('btn-specs');
@@ -7381,15 +7556,7 @@
           if (savedMainTab === 'benchmarks') {
             benchmarksBtn.classList.add('active');
             benchmarksTab.classList.add('active');
-            // Fix for Chart.js timing issues: trigger resize after tab is visible
-            setTimeout(() => {
-              if (typeof omniscienceChart !== 'undefined') omniscienceChart.resize();
-              if (typeof mrcrChart !== 'undefined') mrcrChart.resize();
-              if (typeof lcrChart !== 'undefined') lcrChart.resize();
-              if (typeof mmmuProChart !== 'undefined') mmmuProChart.resize();
-              if (typeof gdpval2Chart !== 'undefined') gdpval2Chart.resize();
-              if (typeof terminalBenchV21Chart !== 'undefined') terminalBenchV21Chart.resize();
-            }, 50);
+            ensureBenchmarkRuntime().then(resizeInitializedCharts);
           } else if (savedMainTab === 'benefits') {
             benefitsBtn.classList.add('active');
             benefitsTab.classList.add('active');
@@ -7406,7 +7573,7 @@
     style="text-align: center; padding: 2rem 1rem; margin-top: 3rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.8rem;">
     Made by <strong> u/Pasto_Shouwa</strong>
     <br>
-    <em>Last updated on <strong>01/07/2026</strong> (dd/mm/yyyy)</em>
+    <em>Last updated on <strong>10/07/2026</strong> (dd/mm/yyyy)</em>
   </footer>
 </body>
 
