@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <!--
   Developer notes for future edits
 
@@ -1213,6 +1213,12 @@
       transform: scale(0.95);
     }
 
+    .shape-legend-triangle-right {
+      border-radius: 0;
+      clip-path: polygon(8% 0%, 100% 50%, 8% 100%);
+      transform: scale(0.9);
+    }
+
     /* Coding benchmark sections */
     .coding-benchmark-section {
       transition: opacity 0.3s ease, max-height 0.4s ease;
@@ -1770,6 +1776,10 @@
       background: rgba(116, 171, 157, 1);
     }
 
+    .dot-gpt-legacy {
+      background: var(--chatgpt-primary-legacy-new);
+    }
+
     .dot-gemini {
       background: rgba(238, 73, 82, 1);
     }
@@ -1912,6 +1922,12 @@
       border-radius: 0 !important;
       clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
       transform: scale(0.95);
+    }
+
+    .shape-triangle-right {
+      border-radius: 0 !important;
+      clip-path: polygon(8% 0%, 100% 50%, 8% 100%);
+      transform: scale(0.9);
     }
 
     /* Thinking models toggle styling */
@@ -2407,7 +2423,7 @@
             </tr>
             <tr>
               <td>Deep research uses per month</td>
-              <td>Unknown<span class="detail">[GPT 5.5 Thinking / GPT o3]</span></td>
+              <td>Unknown<span class="detail">[Unknown]</span></td>
               <td>Unknown {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
                   class="detail">[Gemini 3.5 Flash Extended]</span></td>
             </tr>
@@ -2482,8 +2498,8 @@
               <td>40<span class="detail">(10 every 5h)</span>
                 <span class="detail">[GPT 5.4 Thinking Mini]</span>
               </td>
-              <td class="rating-excellent">428<span class="detail">(3000/week)</span><span class="detail">[GPT 5.5
-                  Thinking]</span></td>
+              <td class="rating-excellent">428<span class="detail">(3000/week)</span><span class="detail">[GPT 5.6
+                  Sol/Terra/Luna]</span></td>
               </td>
               <td>Unknown {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span class="detail">(X
                   every 5h)</span><span class="detail">[All models]</span></td>
@@ -2602,13 +2618,14 @@
             </tr>
             <tr>
               <td>Deep research uses per month</td>
-              <td colspan="3">Unknown<span class="detail">[GPT 5.5 Thinking / GPT o3]</span></td>
+              <td colspan="3">Unknown<span class="detail">[Unknown]</span></td>
               <td>Unknown {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
                   class="detail">[Gemini 3.5 Flash Extended]</span></td>
               <td>Unknown x2 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
-                  class="detail">[Gemini 3.1 Pro]</span></td>
+                  class="detail">[Gemini 3.1 Pro Extended]</span></td>
               <td>Unknown x4 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
-                  class="annotation" data-note="gemini-pro-x2-value"></span><span class="detail">[Gemini 3.1 Pro]</span>
+                  class="annotation" data-note="gemini-pro-x2-value"></span><span class="detail">[Gemini 3.1 Pro
+                  Extended]</span>
               </td>
             </tr>
             <tr>
@@ -2697,8 +2714,7 @@
             <tr>
               <td>Reasoning model limit per day</td>
               <td class="rating-excellent">Unlimited<span class="annotation" data-note="gpt-pro-limits"></span> +
-                Unlimited<span class="detail">[GPT 5.5 Pro + GPT 5.5
-                  Thinking]</span>
+                Unlimited<span class="detail">[GPT 5.6 Sol Pro + GPT 5.6 Sol/Terra/Luna]</span>
               </td>
               <td>Unknown x20 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
                   class="detail">(X every 5h)</span><span class="detail">[All models]</span></td>
@@ -2797,13 +2813,11 @@
             </tr>
             <tr>
               <td>Deep research uses per month</td>
-              <td>Unknown<span class="detail">[GPT 5.5 Thinking / GPT o3]</span></td>
+              <td>Unknown<span class="detail">[Unknown]</span></td>
               <td>Unknown x20 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
-                  class="detail">[Gemini 3.1
-                  Pro]</span></td>
+                  class="detail">[Gemini 3.1 Pro Extended]</span></td>
               <td>Unknown x80 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
-                  class="detail">[Gemini 3.1
-                  Pro]</span></td>
+                  class="detail">[Gemini 3.1 Pro Extended]</span></td>
             </tr>
             <tr>
               <td>Agent mode uses per month</td>
@@ -2960,23 +2974,75 @@
               <span class="filter-group-name">Reasoning models</span>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
+              <div class="model-dot" data-model="gpt-56-sol-max" onclick="toggleIndividualModel('gpt-56-sol-max')">
+                <span class="model-dot-indicator dot-gpt shape-triangle-right"></span>
+                <span class="model-dot-label">GPT 5.6 Sol Max</span>
+              </div>
+              <div class="model-dot" data-model="gpt-56-sol-xhigh" onclick="toggleIndividualModel('gpt-56-sol-xhigh')">
+                <span class="model-dot-indicator dot-gpt shape-star"></span>
+                <span class="model-dot-label">GPT 5.6 Sol Extra High</span>
+              </div>
+              <div class="model-dot" data-model="gpt-56-sol-high" onclick="toggleIndividualModel('gpt-56-sol-high')">
+                <span class="model-dot-indicator dot-gpt shape-square"></span>
+                <span class="model-dot-label">GPT 5.6 Sol High</span>
+              </div>
+              <div class="model-dot" data-model="gpt-56-sol-medium"
+                onclick="toggleIndividualModel('gpt-56-sol-medium')">
+                <span class="model-dot-indicator dot-gpt shape-square"></span>
+                <span class="model-dot-label">GPT 5.6 Sol Medium</span>
+              </div>
+            </div>
+            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
+              <div class="model-dot" data-model="gpt-56-terra-xhigh"
+                onclick="toggleIndividualModel('gpt-56-terra-xhigh')">
+                <span class="model-dot-indicator dot-gpt shape-star"></span>
+                <span class="model-dot-label">GPT 5.6 Terra Extra High</span>
+              </div>
+              <div class="model-dot" data-model="gpt-56-terra-high"
+                onclick="toggleIndividualModel('gpt-56-terra-high')">
+                <span class="model-dot-indicator dot-gpt shape-square"></span>
+                <span class="model-dot-label">GPT 5.6 Terra High</span>
+              </div>
+              <div class="model-dot" data-model="gpt-56-terra-medium"
+                onclick="toggleIndividualModel('gpt-56-terra-medium')">
+                <span class="model-dot-indicator dot-gpt shape-square"></span>
+                <span class="model-dot-label">GPT 5.6 Terra Medium</span>
+              </div>
+            </div>
+            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
+              <div class="model-dot" data-model="gpt-56-luna-xhigh"
+                onclick="toggleIndividualModel('gpt-56-luna-xhigh')">
+                <span class="model-dot-indicator dot-gpt shape-star"></span>
+                <span class="model-dot-label">GPT 5.6 Luna Extra High</span>
+              </div>
+              <div class="model-dot" data-model="gpt-56-luna-high" onclick="toggleIndividualModel('gpt-56-luna-high')">
+                <span class="model-dot-indicator dot-gpt shape-square"></span>
+                <span class="model-dot-label">GPT 5.6 Luna High</span>
+              </div>
+              <div class="model-dot" data-model="gpt-56-luna-medium"
+                onclick="toggleIndividualModel('gpt-56-luna-medium')">
+                <span class="model-dot-indicator dot-gpt shape-square"></span>
+                <span class="model-dot-label">GPT 5.6 Luna Medium</span>
+              </div>
+            </div>
+            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot inactive" data-model="gpt-55-thinking-xhigh"
                 onclick="toggleIndividualModel('gpt-55-thinking-xhigh')">
-                <span class="model-dot-indicator dot-gpt shape-hexagon"></span>
+                <span class="model-dot-indicator dot-gpt-legacy shape-star"></span>
                 <span class="model-dot-label">GPT 5.5 Thinking Extra High</span>
               </div>
               <div class="model-dot" data-model="gpt-55-thinking" onclick="toggleIndividualModel('gpt-55-thinking')">
-                <span class="model-dot-indicator dot-gpt shape-square"></span>
+                <span class="model-dot-indicator dot-gpt-legacy shape-square"></span>
                 <span class="model-dot-label">GPT 5.5 Thinking High</span>
               </div>
               <div class="model-dot" data-model="gpt-55-thinking-standard"
                 onclick="toggleIndividualModel('gpt-55-thinking-standard')">
-                <span class="model-dot-indicator dot-gpt shape-square"></span>
+                <span class="model-dot-indicator dot-gpt-legacy shape-square"></span>
                 <span class="model-dot-label">GPT 5.5 Thinking Medium</span>
               </div>
               <div class="model-dot" data-model="gpt-54-thinking-mini"
                 onclick="toggleIndividualModel('gpt-54-thinking-mini')">
-                <span class="model-dot-indicator dot-gpt"></span>
+                <span class="model-dot-indicator dot-gpt-legacy"></span>
                 <span class="model-dot-label">GPT 5.4 Thinking Mini</span>
               </div>
             </div>
@@ -3016,10 +3082,10 @@
             </div>
 
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
-              <div class="model-dot inactive" data-model="grok-43-expert"
-                onclick="toggleIndividualModel('grok-43-expert')">
+              <div class="model-dot inactive" data-model="grok-45-expert"
+                onclick="toggleIndividualModel('grok-45-expert')">
                 <span class="model-dot-indicator dot-grok shape-square"></span>
-                <span class="model-dot-label">Grok 4.3 Expert</span>
+                <span class="model-dot-label">Grok 4.5 Expert</span>
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
@@ -3051,13 +3117,6 @@
                 onclick="toggleIndividualModel('qwen-37-plus-think')">
                 <span class="model-dot-indicator dot-qwen"></span>
                 <span class="model-dot-label">Qwen 3.7 Plus Thinking</span>
-              </div>
-            </div>
-            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
-              <div class="model-dot inactive" data-model="qwen-36-plus-think"
-                onclick="toggleIndividualModel('qwen-36-plus-think')">
-                <span class="model-dot-indicator dot-qwen-legacy"></span>
-                <span class="model-dot-label">Qwen 3.6 Plus Thinking</span>
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
@@ -3100,7 +3159,7 @@
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot" data-model="gpt-55-instant" onclick="toggleIndividualModel('gpt-55-instant')">
-                <span class="model-dot-indicator dot-gpt"></span>
+                <span class="model-dot-indicator dot-gpt-legacy"></span>
                 <span class="model-dot-label">GPT 5.5 Instant</span>
               </div>
             </div>
@@ -3120,12 +3179,6 @@
                 onclick="toggleIndividualModel('claude-haiku-nr')">
                 <span class="model-dot-indicator dot-claude"></span>
                 <span class="model-dot-label">Claude 4.5 Haiku</span>
-              </div>
-            </div>
-            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
-              <div class="model-dot inactive" data-model="grok-43-fast" onclick="toggleIndividualModel('grok-43-fast')">
-                <span class="model-dot-indicator dot-grok"></span>
-                <span class="model-dot-label">Grok 4.3 Fast</span>
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
@@ -3173,8 +3226,11 @@
             <div class="shape-legend-item" title="Accessible only on &#8805;20 USD plans">
               <span class="shape-legend-icon shape-legend-square"></span>
             </div>
-            <div class="shape-legend-item" title="Accessible only on &#8805;200 USD plans">
-              <span class="shape-legend-icon shape-legend-hexagon"></span>
+            <div class="shape-legend-item" title="Accessible only on &#8805;100 USD plans">
+              <span class="shape-legend-icon shape-legend-star"></span>
+            </div>
+            <div class="shape-legend-item" title="Accessible only on coding apps, with harsher limits">
+              <span class="shape-legend-icon shape-legend-triangle-right"></span>
             </div>
             <div class="shape-legend-item" title="Deprecated model">
               <span class="shape-legend-icon shape-legend-cross"></span>
@@ -3536,7 +3592,6 @@
                 Image and video inputs are likely routed to GLM 5V Turbo Deep Think and GLM 5V Turbo respectively.
               </li>
               <li>• <strong>Qwen 3.7 Max Thinking</strong> is capable of understanding only text.
-              <li>• <strong>Qwen 3.6 Plus Thinking</strong> is capable of understanding text, images and video.
               <li>• <strong>Qwen 3.5 Omni Plus Fast</strong> is capable of understanding text, images, video and audio.
               <li>• <strong>Kimi</strong> models are capable of understanding text, images and video.
               <li>• <strong>MiMo V2.5 Pro</strong> is capable of understanding only text.
@@ -3654,15 +3709,15 @@
         <div class="notes-content">
           <ul class="notes-list">
             <li>• All models are presented with their respective highest settings.</li>
-            <li>• I have not been able to find consistent graphs for the following models: Claude 4.8 Opus, Gemini 3.1
-              Pro,
-              Gemini 3.5 Flash, Gemini 3.1 Flash Lite, GLM 5.2, GLM 5 Turbo, GLM 5V Turbo, Qwen 3.7 Plus Fast, Qwen 3.6
-              Plus
-              Fast,
-              MiniMax M3 and Nemotron 3 Ultra. I will add them immediately if I find some.
+            <li>• I have not been able to find consistent graphs for some variants of the models, usually the
+              non-reasoning ones.
+              I will add them immediately if I find some.
             </li>
-            <li>• GPT 5.5 Thinking Extra High is available for Plus and Pro ChatGPT users through
-              the Codex app, with limits that reset weekly. It's also available on the web for Pro users.</li>
+            <li>• GPT Extra High thinking efforts are available for Plus and Pro ChatGPT users through
+              the Codex app, with limits that reset weekly. It's also available on the web for Pro users.
+              The Max thinking effort is only on Codex for Plus and Pro accounts. Benchmark for the Max thinking efforts
+              of Terra and Luna were not included, as there's no point on using them instead of Sol with a lower
+              thinking effort.</li>
           </ul>
         </div>
       </div>
@@ -3900,6 +3955,7 @@
     let showLegacyModels = false;  // whether legacy models are active in charts
     let otherModelsHidden = true;  // whether other model rows are hidden from the filter list
     let legacyModelsHidden = true; // whether legacy model rows are hidden from the filter list
+    let modelGroupToggleStatesInitialized = false;
     // Legacy state variables kept for localStorage migration (old: 0=hidden, 1=list-only, 2=active)
     let otherModelsState = 0;      // kept for migration logic — do NOT use directly
     let legacyModelsState = 0;     // kept for migration logic — do NOT use directly
@@ -3907,14 +3963,24 @@
 
     // Individual model visibility
     const modelVisibility = {
+      'gpt-56-sol-max': false,
+      'gpt-56-sol-xhigh': false,
+      'gpt-56-sol-high': true,
+      'gpt-56-sol-medium': true,
+      'gpt-56-terra-xhigh': false,
+      'gpt-56-terra-high': true,
+      'gpt-56-terra-medium': true,
+      'gpt-56-luna-xhigh': false,
+      'gpt-56-luna-high': false,
+      'gpt-56-luna-medium': false,
       'gpt-55-thinking-xhigh': false,
-      'gpt-55-thinking': true,
-      'gpt-55-thinking-standard': true,
-      'gpt-54-thinking-mini': true,
-      'gpt-55-instant': true,
+      'gpt-55-thinking': false,
+      'gpt-55-thinking-standard': false,
+      'gpt-54-thinking-mini': false,
+      'gpt-55-instant': false,
       'gemini-31-pro': true,
       'gemini-35-flash-extended': true,
-      'gemini-35-flash': true,
+      'gemini-35-flash': false,
       'gemini-31-flash-lite-extended': true,
       'claude-haiku': false,   // Starts hidden by default
       'claude-5-fable': true,     // Starts visible by default
@@ -3925,15 +3991,13 @@
       'glm-52-deep-think-max': false, // Starts hidden
       'glm-5t-deep-think': false,    // Other recommended, starts hidden
       'glm-5v-turbo-deep-think': false, // Other recommended, starts hidden
-      'grok-43-expert': false,       // Other recommended, starts hidden
-      'grok-43-fast': false,         // Other recommended, starts hidden
+      'grok-45-expert': false,       // Other recommended, starts hidden
       'minimax-m3-thinking': false,   // Other recommended, starts hidden
       'nemotron-3-ultra-reasoning': false, // Other recommended, starts hidden
       'mimo-v25-pro': false,         // Other recommended, starts hidden
       'mimo-v25': false,             // Other recommended, starts hidden
       'qwen-37-max-think': false,    // Other recommended, starts hidden
       'qwen-37-plus-think': false,   // Other recommended, starts hidden
-      'qwen-36-plus-think': false,   // Other recommended, starts hidden
       'kimi-k26-thinking': false,     // Other recommended, starts hidden
       'qwen-35-omni-plus': false,     // Other recommended, starts hidden
       'kimi-k26-instant': false       // Other recommended, starts hidden
@@ -3943,6 +4007,16 @@
     // When a group toggle is turned ON, models that were explicitly disabled stay disabled
     // When a group toggle is turned OFF, all models in group are disabled (not marked as explicit)
     const modelExplicitlyDisabled = {
+      'gpt-56-sol-max': false,
+      'gpt-56-sol-xhigh': false,
+      'gpt-56-sol-high': false,
+      'gpt-56-sol-medium': false,
+      'gpt-56-terra-xhigh': false,
+      'gpt-56-terra-high': false,
+      'gpt-56-terra-medium': false,
+      'gpt-56-luna-xhigh': false,
+      'gpt-56-luna-high': false,
+      'gpt-56-luna-medium': false,
       'gpt-55-thinking-xhigh': true,
       'gpt-55-thinking': false,
       'gpt-55-thinking-standard': false,
@@ -3961,15 +4035,13 @@
       'glm-52-deep-think-max': false, // Other recommended
       'glm-5t-deep-think': false,       // Other recommended
       'glm-5v-turbo-deep-think': false, // Other recommended
-      'grok-43-expert': false,          // Other recommended
-      'grok-43-fast': false,            // Other recommended
+      'grok-45-expert': false,          // Other recommended
       'minimax-m3-thinking': false,      // Other recommended
       'nemotron-3-ultra-reasoning': false, // Other recommended
       'mimo-v25-pro': false,            // Other recommended
       'mimo-v25': false,                // Other recommended
       'qwen-37-max-think': false,       // Other recommended
       'qwen-37-plus-think': false,      // Other recommended
-      'qwen-36-plus-think': false,      // Other recommended
       'kimi-k26-thinking': false,        // Other recommended
       'qwen-35-omni-plus': false,        // Other recommended
       'kimi-k26-instant': false          // Other recommended
@@ -3988,19 +4060,29 @@
     // Model groups for group toggles
     const modelGroups = {
       'claude': ['claude-haiku', 'claude-5-fable', 'claude-48-opus', 'claude-5-sonnet', 'claude-5-sonnet-high', 'claude-haiku-nr'],
-      'reasoning': ['gpt-55-thinking-xhigh', 'gpt-55-thinking', 'gpt-55-thinking-standard', 'gpt-54-thinking-mini', 'gemini-31-pro', 'gemini-35-flash-extended', 'gemini-31-flash-lite-extended', 'claude-haiku', 'claude-5-fable', 'claude-48-opus', 'claude-5-sonnet', 'glm-52-deep-think-max', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-43-expert', 'minimax-m3-thinking', 'nemotron-3-ultra-reasoning', 'mimo-v25-pro', 'mimo-v25', 'qwen-37-max-think', 'qwen-37-plus-think', 'qwen-36-plus-think', 'kimi-k26-thinking'],
-      'instant': ['gpt-55-instant', 'gemini-35-flash', 'claude-5-sonnet-high', 'claude-haiku-nr', 'grok-43-fast', 'qwen-35-omni-plus', 'kimi-k26-instant'],
+      'reasoning': ['gpt-56-sol-max', 'gpt-56-sol-xhigh', 'gpt-56-sol-high', 'gpt-56-sol-medium', 'gpt-56-terra-xhigh', 'gpt-56-terra-high', 'gpt-56-terra-medium', 'gpt-56-luna-xhigh', 'gpt-56-luna-high', 'gpt-56-luna-medium', 'gpt-55-thinking-xhigh', 'gpt-55-thinking', 'gpt-55-thinking-standard', 'gpt-54-thinking-mini', 'gemini-31-pro', 'gemini-35-flash-extended', 'gemini-31-flash-lite-extended', 'claude-haiku', 'claude-5-fable', 'claude-48-opus', 'claude-5-sonnet', 'glm-52-deep-think-max', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-45-expert', 'minimax-m3-thinking', 'nemotron-3-ultra-reasoning', 'mimo-v25-pro', 'mimo-v25', 'qwen-37-max-think', 'qwen-37-plus-think', 'kimi-k26-thinking'],
+      'instant': ['gpt-55-instant', 'gemini-35-flash', 'claude-5-sonnet-high', 'claude-haiku-nr', 'qwen-35-omni-plus', 'kimi-k26-instant'],
       'chatgpt-pro': [],
-      'other': ['glm-52-deep-think-max', 'grok-43-fast', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-43-expert', 'minimax-m3-thinking', 'nemotron-3-ultra-reasoning', 'mimo-v25-pro', 'mimo-v25', 'qwen-37-max-think', 'qwen-37-plus-think', 'qwen-36-plus-think', 'kimi-k26-thinking', 'qwen-35-omni-plus', 'kimi-k26-instant'],
-      'legacy': ['glm-5t-deep-think', 'qwen-36-plus-think']
+      'other': ['glm-52-deep-think-max', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-45-expert', 'minimax-m3-thinking', 'nemotron-3-ultra-reasoning', 'mimo-v25-pro', 'mimo-v25', 'qwen-37-max-think', 'qwen-37-plus-think', 'kimi-k26-thinking', 'qwen-35-omni-plus', 'kimi-k26-instant'],
+      'legacy': ['gpt-55-thinking-xhigh', 'gpt-55-thinking', 'gpt-55-thinking-standard', 'glm-5t-deep-think']
     };
 
     // Model constraints: which group toggles must ALL be active for a model to be visible
     // When a group is turned ON, models are only activated if all their other constraints are met
     const modelConstraints = {
-      'gpt-55-thinking-xhigh': ['reasoning'],            // Reasoning model
-      'gpt-55-thinking': ['reasoning'],                  // Reasoning model
-      'gpt-55-thinking-standard': ['reasoning'],         // Reasoning model
+      'gpt-56-sol-max': ['reasoning'],                   // Reasoning model
+      'gpt-56-sol-xhigh': ['reasoning'],                 // Reasoning model
+      'gpt-56-sol-high': ['reasoning'],                  // Reasoning model
+      'gpt-56-sol-medium': ['reasoning'],                // Reasoning model
+      'gpt-56-terra-xhigh': ['reasoning'],               // Reasoning model
+      'gpt-56-terra-high': ['reasoning'],                // Reasoning model
+      'gpt-56-terra-medium': ['reasoning'],              // Reasoning model
+      'gpt-56-luna-xhigh': ['reasoning'],                // Reasoning model
+      'gpt-56-luna-high': ['reasoning'],                 // Reasoning model
+      'gpt-56-luna-medium': ['reasoning'],               // Reasoning model
+      'gpt-55-thinking-xhigh': ['reasoning', 'legacy'],  // Legacy reasoning model
+      'gpt-55-thinking': ['reasoning', 'legacy'],        // Legacy reasoning model
+      'gpt-55-thinking-standard': ['reasoning', 'legacy'], // Legacy reasoning model
       'gpt-54-thinking-mini': ['reasoning'],             // Reasoning model
       'gpt-55-instant': ['instant'],                     // Needs Non-reasoning
       'gemini-31-pro': ['reasoning'],                   // Only needs Reasoning
@@ -4016,15 +4098,13 @@
       'glm-52-deep-think-max': ['other', 'reasoning'],        // Needs both Other AND Reasoning to be on
       'glm-5t-deep-think': ['other', 'reasoning', 'legacy'], // Needs Other, Reasoning, AND Legacy to be on
       'glm-5v-turbo-deep-think': ['other', 'reasoning'],     // Needs both Other AND Reasoning to be on
-      'grok-43-expert': ['other', 'reasoning'],              // Needs both Other AND Reasoning to be on
-      'grok-43-fast': ['other', 'instant'],                  // Needs both Other AND Non-reasoning to be on
+      'grok-45-expert': ['other', 'reasoning'],              // Needs both Other AND Reasoning to be on
       'minimax-m3-thinking': ['other', 'reasoning'],          // Needs both Other AND Reasoning to be on
       'nemotron-3-ultra-reasoning': ['other', 'reasoning'],  // Needs both Other AND Reasoning to be on
       'mimo-v25-pro': ['other', 'reasoning'],                // Needs both Other AND Reasoning to be on
       'mimo-v25': ['other', 'reasoning'],                    // Needs both Other AND Reasoning to be on
       'qwen-37-max-think': ['other', 'reasoning'],           // Needs both Other AND Reasoning to be on
       'qwen-37-plus-think': ['other', 'reasoning'],          // Needs both Other AND Reasoning to be on
-      'qwen-36-plus-think': ['other', 'reasoning', 'legacy'], // Needs Other, Reasoning, AND Legacy to be on
       'kimi-k26-thinking': ['other', 'reasoning'],            // Needs both Other AND Reasoning to be on
       'qwen-35-omni-plus': ['other', 'instant'],              // Needs both Other AND Non-reasoning to be on
       'kimi-k26-instant': ['other', 'instant']                // Needs both Other AND Non-reasoning to be on
@@ -4251,10 +4331,21 @@
     }
 
     function syncModelGroupToggles() {
-      showOtherModels = modelGroups.other.some(modelId => modelVisibility[modelId]);
-      showLegacyModels = modelGroups.legacy.some(modelId => modelVisibility[modelId]);
-      otherModelsHidden = !showOtherModels;
-      legacyModelsHidden = !showLegacyModels;
+      // Migrate older saved states once. After that, group toggles remain
+      // independent from the individual model selections inside each group.
+      if (!modelGroupToggleStatesInitialized) {
+        const savedShowOtherModels = localStorage.getItem('showOtherModels');
+        const savedShowLegacyModels = localStorage.getItem('showLegacyModels');
+        showOtherModels = savedShowOtherModels === null
+          ? modelGroups.other.some(modelId => modelVisibility[modelId])
+          : savedShowOtherModels === 'true';
+        showLegacyModels = savedShowLegacyModels === null
+          ? modelGroups.legacy.some(modelId => modelVisibility[modelId])
+          : savedShowLegacyModels === 'true';
+        localStorage.setItem('showOtherModels', showOtherModels);
+        localStorage.setItem('showLegacyModels', showLegacyModels);
+        modelGroupToggleStatesInitialized = true;
+      }
       document.querySelectorAll('.other-models-toggle').forEach(toggle => {
         toggle.classList.toggle('active', showOtherModels);
       });
@@ -4465,6 +4556,16 @@
 
     // Base data for AA-Omniscience using object structure with sortOrder and modelId
     const omniscienceAllModels = [
+      { modelId: 'gpt-56-sol-max', label: '⌘ GPT 5.6 Sol Max', correct: 58.53, abstention: 4.63, hallucination: 36.84, sortOrder: 1 },
+      { modelId: 'gpt-56-sol-xhigh', label: '⌘ GPT 5.6 Sol Extra High', correct: 57.97, abstention: 4.61, hallucination: 37.42, sortOrder: 2 },
+      { modelId: 'gpt-56-sol-high', label: '⌘ GPT 5.6 Sol High', correct: 57.32, abstention: 5.12, hallucination: 37.56, sortOrder: 3 },
+      { modelId: 'gpt-56-sol-medium', label: '⌘ GPT 5.6 Sol Medium', correct: 56.58, abstention: 5.60, hallucination: 37.82, sortOrder: 4 },
+      { modelId: 'gpt-56-terra-xhigh', label: '⌘ GPT 5.6 Terra Extra High', correct: 44.68, abstention: 7.34, hallucination: 47.98, sortOrder: 6 },
+      { modelId: 'gpt-56-terra-high', label: '⌘ GPT 5.6 Terra High', correct: 44.48, abstention: 6.97, hallucination: 48.55, sortOrder: 7 },
+      { modelId: 'gpt-56-terra-medium', label: '⌘ GPT 5.6 Terra Medium', correct: 44.02, abstention: 6.80, hallucination: 49.18, sortOrder: 8 },
+      { modelId: 'gpt-56-luna-xhigh', label: '⌘ GPT 5.6 Luna Extra High', correct: 41.30, abstention: 5.80, hallucination: 52.90, sortOrder: 10 },
+      { modelId: 'gpt-56-luna-high', label: '⌘ GPT 5.6 Luna High', correct: 40.67, abstention: 6.22, hallucination: 53.11, sortOrder: 11 },
+      { modelId: 'gpt-56-luna-medium', label: '⌘ GPT 5.6 Luna Medium', correct: 39.63, abstention: 6.92, hallucination: 53.45, sortOrder: 12 },
       { modelId: 'gpt-55-thinking-xhigh', label: '⌘ GPT 5.5 Thinking Extra High', correct: 56.92, abstention: 6.23, hallucination: 36.85, sortOrder: 18 },
       { modelId: 'gpt-55-thinking', label: '⌘ GPT 5.5 Thinking High', correct: 56.05, abstention: 6.27, hallucination: 37.68, sortOrder: 20 },
       { modelId: 'gpt-55-thinking-standard', label: '⌘ GPT 5.5 Thinking Medium', correct: 54.08, abstention: 6.45, hallucination: 39.47, sortOrder: 22 },
@@ -4483,15 +4584,13 @@
       { modelId: 'glm-52-deep-think-max', label: 'Ƶ GLM 5.2 Deep Think Max', correct: 25.05, abstention: 53.87, hallucination: 21.08, sortOrder: 97 },
       { modelId: 'glm-5t-deep-think', label: 'Ƶ GLM 5 Turbo Deep Think', correct: 29.03, abstention: 26.85, hallucination: 44.12, sortOrder: 107 },
       { modelId: 'glm-5v-turbo-deep-think', label: 'Ƶ GLM 5V Turbo Deep Think', correct: 29.13, abstention: 22.75, hallucination: 48.12, sortOrder: 109 },
-      { modelId: 'grok-43-expert', label: 'Ø Grok 4.3 Expert', correct: 34.63, abstention: 49.05, hallucination: 16.32, sortOrder: 109.5 },
-      { modelId: 'grok-43-fast', label: 'Ø Grok 4.3 Fast', correct: 24.17, abstention: 19.37, hallucination: 56.46, sortOrder: 109.6 },
+      { modelId: 'grok-45-expert', label: 'Ø Grok 4.5 Expert', correct: 52.05, abstention: 22.28, hallucination: 25.67, sortOrder: 109.4 },
       { modelId: 'minimax-m3-thinking', label: '≋ MiniMax M3 Thinking', correct: 15.03, abstention: 71.31, hallucination: 13.66, sortOrder: 116.5 },
       { modelId: 'nemotron-3-ultra-reasoning', label: '▰ Nemotron 3 Ultra Reasoning', correct: 21.55, abstention: 56.07, hallucination: 22.38, sortOrder: 117.5 },
       { modelId: 'mimo-v25-pro', label: '⋔ MiMo V2.5 Pro', correct: 22.60, abstention: 58.40, hallucination: 19.00, sortOrder: 118 },
       { modelId: 'mimo-v25', label: '⋔ MiMo V2.5', correct: 17.27, abstention: 56.13, hallucination: 26.60, sortOrder: 118.5 },
       { modelId: 'qwen-37-max-think', label: '▽ Qwen 3.7 Max Thinking', correct: 30.12, abstention: 53.84, hallucination: 16.03, sortOrder: 124 },
       { modelId: 'qwen-37-plus-think', label: '▽ Qwen 3.7 Plus Thinking', correct: 22.2, abstention: 57.97, hallucination: 19.83, sortOrder: 124.5 },
-      { modelId: 'qwen-36-plus-think', label: '▽ Qwen 3.6 Plus Thinking', correct: 26.23, abstention: 50.19, hallucination: 23.58, sortOrder: 125 },
       { modelId: 'kimi-k26-thinking', label: 'Ḱ Kimi K2.6 Thinking', correct: 32.80, abstention: 40.82, hallucination: 26.38, sortOrder: 127 },
       { modelId: 'qwen-35-omni-plus', label: '▽ Qwen 3.5 Omni Plus Fast', correct: 17.42, abstention: 52.87, hallucination: 29.71, sortOrder: 126 },
       { modelId: 'kimi-k26-instant', label: 'Ḱ Kimi K2.6 Instant', correct: 23.07, abstention: 43.90, hallucination: 33.03, sortOrder: 128 }
@@ -4893,13 +4992,13 @@
         modelId: 'gpt-55-thinking-xhigh',
         label: 'GPT 5.5 Thinking Extra High',
         data: [100, 99.9, 95.8, 90.8, 85.8, 73.2, null],
-        borderColor: 'rgba(90, 150, 135, 0.95)',
-        backgroundColor: 'rgba(90, 150, 135, 0.5)',
+        borderColor: 'rgba(176, 221, 210, 0.95)',
+        backgroundColor: 'rgba(176, 221, 210, 0.5)',
         borderWidth: 2,
         tension: 0.3,
         pointRadius: 6,
         pointHoverRadius: 7,
-        pointBackgroundColor: 'rgba(90, 150, 135, 0.95)',
+        pointBackgroundColor: 'rgba(176, 221, 210, 0.95)',
         spanGaps: false,
         sortOrder: 18
       },
@@ -4907,13 +5006,13 @@
         modelId: 'gpt-55-thinking',
         label: 'GPT 5.5 Thinking High',
         data: [100, 98.8, 96.6, 86.2, 79.3, 75.3, null],
-        borderColor: 'rgba(90, 150, 135, 0.8)',
-        backgroundColor: 'rgba(90, 150, 135, 0.35)',
+        borderColor: 'rgba(176, 221, 210, 0.8)',
+        backgroundColor: 'rgba(176, 221, 210, 0.35)',
         borderWidth: 2,
         tension: 0.3,
         pointRadius: 6,
         pointHoverRadius: 7,
-        pointBackgroundColor: 'rgba(90, 150, 135, 0.8)',
+        pointBackgroundColor: 'rgba(176, 221, 210, 0.8)',
         spanGaps: false,
         sortOrder: 20
       },
@@ -4921,13 +5020,13 @@
         modelId: 'gpt-55-thinking-standard',
         label: 'GPT 5.5 Thinking Medium',
         data: [100, 96.3, 91.7, 85.2, 67, 67, null],
-        borderColor: 'rgba(90, 150, 135, 0.65)',
-        backgroundColor: 'rgba(90, 150, 135, 0.3)',
+        borderColor: 'rgba(176, 221, 210, 0.65)',
+        backgroundColor: 'rgba(176, 221, 210, 0.3)',
         borderWidth: 2,
         tension: 0.3,
         pointRadius: 5,
         pointHoverRadius: 6,
-        pointBackgroundColor: 'rgba(90, 150, 135, 0.65)',
+        pointBackgroundColor: 'rgba(176, 221, 210, 0.65)',
         spanGaps: false,
         sortOrder: 22
       },
@@ -4935,13 +5034,13 @@
         modelId: 'gpt-54-thinking-mini',
         label: 'GPT 5.4 Thinking Mini',
         data: [67.7, 54.7, 49.5, 34.7, 34.8, 23.0, null],
-        borderColor: 'rgba(90, 150, 135, 0.55)',
-        backgroundColor: 'rgba(90, 150, 135, 0.25)',
+        borderColor: 'rgba(176, 221, 210, 0.55)',
+        backgroundColor: 'rgba(176, 221, 210, 0.25)',
         borderWidth: 2,
         tension: 0.3,
         pointRadius: 5,
         pointHoverRadius: 6,
-        pointBackgroundColor: 'rgba(90, 150, 135, 0.55)',
+        pointBackgroundColor: 'rgba(176, 221, 210, 0.55)',
         spanGaps: false,
         sortOrder: 23
       },
@@ -4949,14 +5048,14 @@
         modelId: 'gpt-55-instant',
         label: 'GPT 5.5 Instant',
         data: [66.4, 51.4, 35, 37.6, 28.3, null, null],
-        borderColor: 'rgba(90, 150, 135, 0.5)',
-        backgroundColor: 'rgba(90, 150, 135, 0.25)',
+        borderColor: 'rgba(176, 221, 210, 0.5)',
+        backgroundColor: 'rgba(176, 221, 210, 0.25)',
         borderWidth: 2,
         borderDash: [5, 5],
         tension: 0.3,
         pointRadius: 4,
         pointHoverRadius: 5,
-        pointBackgroundColor: 'rgba(90, 150, 135, 0.5)',
+        pointBackgroundColor: 'rgba(176, 221, 210, 0.5)',
         spanGaps: false,
         sortOrder: 27
       },
@@ -5259,6 +5358,16 @@
     // Long Context Reasoning - AA-LCR - Horizontal Bar Chart
     let lcrChart;
     const lcrAllModels = [
+      { modelId: 'gpt-56-sol-max', label: '⌘ GPT 5.6 Sol Max', score: 73.7, sortOrder: 1 },
+      { modelId: 'gpt-56-sol-xhigh', label: '⌘ GPT 5.6 Sol Extra High', score: 71, sortOrder: 2 },
+      { modelId: 'gpt-56-sol-high', label: '⌘ GPT 5.6 Sol High', score: 68.3, sortOrder: 3 },
+      { modelId: 'gpt-56-sol-medium', label: '⌘ GPT 5.6 Sol Medium', score: 68.7, sortOrder: 4 },
+      { modelId: 'gpt-56-terra-xhigh', label: '⌘ GPT 5.6 Terra Extra High', score: 71.3, sortOrder: 6 },
+      { modelId: 'gpt-56-terra-high', label: '⌘ GPT 5.6 Terra High', score: 72.3, sortOrder: 7 },
+      { modelId: 'gpt-56-terra-medium', label: '⌘ GPT 5.6 Terra Medium', score: 72.3, sortOrder: 8 },
+      { modelId: 'gpt-56-luna-xhigh', label: '⌘ GPT 5.6 Luna Extra High', score: 69.7, sortOrder: 10 },
+      { modelId: 'gpt-56-luna-high', label: '⌘ GPT 5.6 Luna High', score: 69, sortOrder: 11 },
+      { modelId: 'gpt-56-luna-medium', label: '⌘ GPT 5.6 Luna Medium', score: 66, sortOrder: 12 },
       { modelId: 'gpt-55-thinking-xhigh', label: '⌘ GPT 5.5 Thinking Extra High', score: 74.3, sortOrder: 18 },
       { modelId: 'gpt-55-thinking', label: '⌘ GPT 5.5 Thinking High', score: 73.3, sortOrder: 20 },
       { modelId: 'gpt-55-thinking-standard', label: '⌘ GPT 5.5 Thinking Medium', score: 72, sortOrder: 22 },
@@ -5277,15 +5386,13 @@
       { modelId: 'glm-52-deep-think-max', label: 'Ƶ GLM 5.2 Deep Think Max', score: 71.3, sortOrder: 97 },
       { modelId: 'glm-5t-deep-think', label: 'Ƶ GLM 5 Turbo Deep Think', score: 60.7, sortOrder: 107 },
       { modelId: 'glm-5v-turbo-deep-think', label: 'Ƶ GLM 5V Turbo Deep Think', score: 61, sortOrder: 109 },
-      { modelId: 'grok-43-expert', label: 'Ø Grok 4.3 Expert', score: 64.3, sortOrder: 109.5 },
-      { modelId: 'grok-43-fast', label: 'Ø Grok 4.3 Fast', score: 24.7, sortOrder: 109.6 },
+      { modelId: 'grok-45-expert', label: 'Ø Grok 4.5 Expert', score: 67.7, sortOrder: 109.4 },
       { modelId: 'minimax-m3-thinking', label: '≋ MiniMax M3 Thinking', score: 74, sortOrder: 116.5 },
       { modelId: 'nemotron-3-ultra-reasoning', label: '▰ Nemotron 3 Ultra Reasoning', score: 67, sortOrder: 117.5 },
       { modelId: 'mimo-v25-pro', label: '⋔ MiMo V2.5 Pro', score: 73.3, sortOrder: 118 },
       { modelId: 'mimo-v25', label: '⋔ MiMo V2.5', score: 62.7, sortOrder: 118.5 },
       { modelId: 'qwen-37-max-think', label: '▽ Qwen 3.7 Max Thinking', score: 69, sortOrder: 124 },
       { modelId: 'qwen-37-plus-think', label: '▽ Qwen 3.7 Plus Thinking', score: 65, sortOrder: 124.5 },
-      { modelId: 'qwen-36-plus-think', label: '▽ Qwen 3.6 Plus Thinking', score: 69.7, sortOrder: 125 },
       { modelId: 'kimi-k26-thinking', label: 'Ḱ Kimi K2.6 Thinking', score: 69.7, sortOrder: 127 },
       { modelId: 'qwen-35-omni-plus', label: '▽ Qwen 3.5 Omni Plus Fast', score: 52.7, sortOrder: 126 },
       { modelId: 'kimi-k26-instant', label: 'Ḱ Kimi K2.6 Instant', score: 57.7, sortOrder: 128 }
@@ -5378,6 +5485,16 @@
     // Visual Reasoning - MMMU-Pro - Horizontal Bar Chart
     let mmmuProChart;
     const mmmuProAllModels = [
+      { modelId: 'gpt-56-sol-max', label: '⌘ GPT 5.6 Sol Max', score: 83, sortOrder: 1 },
+      { modelId: 'gpt-56-sol-xhigh', label: '⌘ GPT 5.6 Sol Extra High', score: 83, sortOrder: 2 },
+      { modelId: 'gpt-56-sol-high', label: '⌘ GPT 5.6 Sol High', score: 82, sortOrder: 3 },
+      { modelId: 'gpt-56-sol-medium', label: '⌘ GPT 5.6 Sol Medium', score: 81, sortOrder: 4 },
+      { modelId: 'gpt-56-terra-xhigh', label: '⌘ GPT 5.6 Terra Extra High', score: 79, sortOrder: 6 },
+      { modelId: 'gpt-56-terra-high', label: '⌘ GPT 5.6 Terra High', score: 79, sortOrder: 7 },
+      { modelId: 'gpt-56-terra-medium', label: '⌘ GPT 5.6 Terra Medium', score: 77, sortOrder: 8 },
+      { modelId: 'gpt-56-luna-xhigh', label: '⌘ GPT 5.6 Luna Extra High', score: 79, sortOrder: 10 },
+      { modelId: 'gpt-56-luna-high', label: '⌘ GPT 5.6 Luna High', score: 78, sortOrder: 11 },
+      { modelId: 'gpt-56-luna-medium', label: '⌘ GPT 5.6 Luna Medium', score: 76, sortOrder: 12 },
       { modelId: 'gpt-55-thinking-xhigh', label: '⌘ GPT 5.5 Thinking Extra High', score: 80, sortOrder: 18 },
       { modelId: 'gpt-55-thinking', label: '⌘ GPT 5.5 Thinking High', score: 81, sortOrder: 20 },
       { modelId: 'gpt-55-thinking-standard', label: '⌘ GPT 5.5 Thinking Medium', score: 79, sortOrder: 22 },
@@ -5396,15 +5513,13 @@
       { modelId: 'glm-52-deep-think-max', label: 'Ƶ GLM 5.2 Deep Think Max (Estimated)', score: 73, sortOrder: 97, estimated: true },
       { modelId: 'glm-5t-deep-think', label: 'Ƶ GLM 5 Turbo Deep Think (Estimated)', score: 73, sortOrder: 107, estimated: true },
       { modelId: 'glm-5v-turbo-deep-think', label: 'Ƶ GLM 5V Turbo Deep Think', score: 73, sortOrder: 109 },
-      { modelId: 'grok-43-expert', label: 'Ø Grok 4.3 Expert', score: 78, sortOrder: 109.5 },
-      { modelId: 'grok-43-fast', label: 'Ø Grok 4.3 Fast', score: 65, sortOrder: 109.6 },
+      { modelId: 'grok-45-expert', label: 'Ø Grok 4.5 Expert', score: 80, sortOrder: 109.4 },
       { modelId: 'minimax-m3-thinking', label: '≋ MiniMax M3 Thinking', score: 80, sortOrder: 116.5 },
       { modelId: 'nemotron-3-ultra-reasoning', label: '▰ Nemotron 3 Ultra Reasoning', score: 0, sortOrder: 117.5 },
       { modelId: 'mimo-v25-pro', label: '⋔ MiMo V2.5 Pro', score: 0, sortOrder: 118 },
       { modelId: 'mimo-v25', label: '⋔ MiMo V2.5', score: 75, sortOrder: 118.5 },
       { modelId: 'qwen-37-max-think', label: '▽ Qwen 3.7 Max Thinking', score: 0, sortOrder: 124 },
-      { modelId: 'qwen-37-plus-think', label: '▽ Qwen 3.7 Plus Thinking', score: 45, sortOrder: 124.5 },
-      { modelId: 'qwen-36-plus-think', label: '▽ Qwen 3.6 Plus Thinking', score: 78, sortOrder: 125 },
+      { modelId: 'qwen-37-plus-think', label: '▽ Qwen 3.7 Plus Thinking', score: 80, sortOrder: 124.5 },
       { modelId: 'kimi-k26-thinking', label: 'Ḱ Kimi K2.6 Thinking', score: 79, sortOrder: 127 },
       { modelId: 'qwen-35-omni-plus', label: '▽ Qwen 3.5 Omni Plus Fast', score: 71, sortOrder: 126 },
       { modelId: 'kimi-k26-instant', label: 'Ḱ Kimi K2.6 Instant (Estimated)', score: 77, sortOrder: 128, estimated: true }
@@ -5569,29 +5684,38 @@
     // GDPval-AA v2 - Horizontal Bar Chart
     let gdpval2Chart;
     const gdpval2AllModels = [
-      { modelId: 'gpt-55-thinking-xhigh', label: '⌘ GPT 5.5 Thinking Extra High', score: 1492, sortOrder: 18 },
-      { modelId: 'gpt-55-thinking', label: '⌘ GPT 5.5 Thinking High', score: 1473, sortOrder: 20 },
-      { modelId: 'gpt-55-thinking-standard', label: '⌘ GPT 5.5 Thinking Medium', score: 1375, sortOrder: 22 },
-      { modelId: 'gpt-54-thinking-mini', label: '⌘ GPT 5.4 Thinking Mini', score: 1110, sortOrder: 23, estimated: true },
+      { modelId: 'gpt-56-sol-max', label: '⌘ GPT 5.6 Sol Max', score: 1748, sortOrder: 1 },
+      { modelId: 'gpt-56-sol-xhigh', label: '⌘ GPT 5.6 Sol Extra High', score: 1702, sortOrder: 2 },
+      { modelId: 'gpt-56-sol-high', label: '⌘ GPT 5.6 Sol High', score: 1630, sortOrder: 3 },
+      { modelId: 'gpt-56-sol-medium', label: '⌘ GPT 5.6 Sol Medium', score: 1562, sortOrder: 4 },
+      { modelId: 'gpt-56-terra-xhigh', label: '⌘ GPT 5.6 Terra Extra High', score: 1572, sortOrder: 6 },
+      { modelId: 'gpt-56-terra-high', label: '⌘ GPT 5.6 Terra High', score: 1513, sortOrder: 7 },
+      { modelId: 'gpt-56-terra-medium', label: '⌘ GPT 5.6 Terra Medium', score: 1404, sortOrder: 8 },
+      { modelId: 'gpt-56-luna-xhigh', label: '⌘ GPT 5.6 Luna Extra High', score: 1539, sortOrder: 10 },
+      { modelId: 'gpt-56-luna-high', label: '⌘ GPT 5.6 Luna High', score: 1472, sortOrder: 11 },
+      { modelId: 'gpt-56-luna-medium', label: '⌘ GPT 5.6 Luna Medium', score: 1273, sortOrder: 12 },
+      { modelId: 'gpt-55-thinking-xhigh', label: '⌘ GPT 5.5 Thinking Extra High', score: 1484, sortOrder: 18 },
+      { modelId: 'gpt-55-thinking', label: '⌘ GPT 5.5 Thinking High', score: 1463, sortOrder: 20 },
+      { modelId: 'gpt-55-thinking-standard', label: '⌘ GPT 5.5 Thinking Medium', score: 1362, sortOrder: 22 },
+      { modelId: 'gpt-54-thinking-mini', label: '⌘ GPT 5.4 Thinking Mini', score: 1102, sortOrder: 23, estimated: true },
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro Extended', score: 963, sortOrder: 35 },
-      { modelId: 'gemini-35-flash-extended', label: '✦ Gemini 3.5 Flash Extended', score: 1348, sortOrder: 40 },
-      { modelId: 'gemini-31-flash-lite-extended', label: '✦ Gemini 3.1 Flash Lite Extended', score: 598, sortOrder: 55 },
-      { modelId: 'claude-5-fable', label: '❋ Claude 5 Fable Thinking Max', score: 1769, sortOrder: 63.8 },
-      { modelId: 'claude-48-opus', label: '❋ Claude 4.8 Opus Thinking Max', score: 1603, sortOrder: 63.9 },
+      { modelId: 'gemini-35-flash-extended', label: '✦ Gemini 3.5 Flash Extended', score: 1339, sortOrder: 40 },
+      { modelId: 'gemini-31-flash-lite-extended', label: '✦ Gemini 3.1 Flash Lite Extended', score: 641, sortOrder: 55 },
+      { modelId: 'claude-5-fable', label: '❋ Claude 5 Fable Thinking Max', score: 1756, sortOrder: 63.8 },
+      { modelId: 'claude-48-opus', label: '❋ Claude 4.8 Opus Thinking Max', score: 1594, sortOrder: 63.9 },
       { modelId: 'claude-5-sonnet', label: '❋ Claude 5 Sonnet Thinking Max', score: 1603, sortOrder: 66.8 },
-      { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', score: 892, sortOrder: 90 },
-      { modelId: 'glm-52-deep-think-max', label: 'Ƶ GLM 5.2 Deep Think Max', score: 1517, sortOrder: 97 },
-      { modelId: 'glm-5t-deep-think', label: 'Ƶ GLM 5 Turbo Deep Think', score: 1242, sortOrder: 107, estimated: true },
-      { modelId: 'glm-5v-turbo-deep-think', label: 'Ƶ GLM 5V Turbo Deep Think', score: 1105, sortOrder: 109, estimated: true },
-      { modelId: 'grok-43-expert', label: 'Ø Grok 4.3 Expert', score: 1090, sortOrder: 109.5 },
-      { modelId: 'minimax-m3-thinking', label: '≋ MiniMax M3 Thinking', score: 1396, sortOrder: 116.5 },
-      { modelId: 'nemotron-3-ultra-reasoning', label: '▰ Nemotron 3 Ultra Reasoning', score: 1168, sortOrder: 117.5 },
-      { modelId: 'mimo-v25-pro', label: '⋔ MiMo V2.5 Pro', score: 1271, sortOrder: 118 },
-      { modelId: 'mimo-v25', label: '⋔ MiMo V2.5', score: 1255, sortOrder: 118.5, estimated: true },
-      { modelId: 'qwen-37-max-think', label: '▽ Qwen 3.7 Max Thinking', score: 1284, sortOrder: 124 },
-      { modelId: 'qwen-37-plus-think', label: '▽ Qwen 3.7 Plus Thinking', score: 941, sortOrder: 124.5 },
-      { modelId: 'qwen-36-plus-think', label: '▽ Qwen 3.6 Plus Thinking', score: 1144, sortOrder: 125 },
-      { modelId: 'kimi-k26-thinking', label: 'Ḱ Kimi K2.6 Thinking', score: 1195, sortOrder: 127 }
+      { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', score: 899, sortOrder: 90 },
+      { modelId: 'glm-52-deep-think-max', label: 'Ƶ GLM 5.2 Deep Think Max', score: 1511, sortOrder: 97 },
+      { modelId: 'glm-5t-deep-think', label: 'Ƶ GLM 5 Turbo Deep Think', score: 1218, sortOrder: 107, estimated: true },
+      { modelId: 'glm-5v-turbo-deep-think', label: 'Ƶ GLM 5V Turbo Deep Think', score: 1038, sortOrder: 109, estimated: true },
+      { modelId: 'grok-45-expert', label: 'Ø Grok 4.5 Expert', score: 1082, sortOrder: 109.4 },
+      { modelId: 'minimax-m3-thinking', label: '≋ MiniMax M3 Thinking', score: 1389, sortOrder: 116.5 },
+      { modelId: 'nemotron-3-ultra-reasoning', label: '▰ Nemotron 3 Ultra Reasoning', score: 1160, sortOrder: 117.5 },
+      { modelId: 'mimo-v25-pro', label: '⋔ MiMo V2.5 Pro', score: 1263, sortOrder: 118 },
+      { modelId: 'mimo-v25', label: '⋔ MiMo V2.5', score: 1247, sortOrder: 118.5, estimated: true },
+      { modelId: 'qwen-37-max-think', label: '▽ Qwen 3.7 Max Thinking', score: 1272, sortOrder: 124 },
+      { modelId: 'qwen-37-plus-think', label: '▽ Qwen 3.7 Plus Thinking', score: 940, sortOrder: 124.5 },
+      { modelId: 'kimi-k26-thinking', label: 'Ḱ Kimi K2.6 Thinking', score: 1191, sortOrder: 127 }
     ];
 
     function getGdpval2Data() {
@@ -5704,6 +5828,16 @@
     // Terminal-Bench v2.1 - Horizontal Bar Chart
     let terminalBenchV21Chart;
     const terminalBenchV21AllModels = [
+      { modelId: 'gpt-56-sol-max', label: '⌘ GPT 5.6 Sol Max', score: 88.0, sortOrder: 1 },
+      { modelId: 'gpt-56-sol-xhigh', label: '⌘ GPT 5.6 Sol Extra High', score: 89.5, sortOrder: 2 },
+      { modelId: 'gpt-56-sol-high', label: '⌘ GPT 5.6 Sol High', score: 87.3, sortOrder: 3 },
+      { modelId: 'gpt-56-sol-medium', label: '⌘ GPT 5.6 Sol Medium', score: 86.1, sortOrder: 4 },
+      { modelId: 'gpt-56-terra-xhigh', label: '⌘ GPT 5.6 Terra Extra High', score: 80.1, sortOrder: 6 },
+      { modelId: 'gpt-56-terra-high', label: '⌘ GPT 5.6 Terra High', score: 75.7, sortOrder: 7 },
+      { modelId: 'gpt-56-terra-medium', label: '⌘ GPT 5.6 Terra Medium', score: 72.3, sortOrder: 8 },
+      { modelId: 'gpt-56-luna-xhigh', label: '⌘ GPT 5.6 Luna Extra High', score: 77.9, sortOrder: 10 },
+      { modelId: 'gpt-56-luna-high', label: '⌘ GPT 5.6 Luna High', score: 69.7, sortOrder: 11 },
+      { modelId: 'gpt-56-luna-medium', label: '⌘ GPT 5.6 Luna Medium', score: 53.2, sortOrder: 12 },
       { modelId: 'gpt-55-thinking-xhigh', label: '⌘ GPT 5.5 Thinking Extra High', score: 84.3, sortOrder: 18 },
       { modelId: 'gpt-55-thinking', label: '⌘ GPT 5.5 Thinking High', score: 79.4, sortOrder: 20 },
       { modelId: 'gpt-55-thinking-standard', label: '⌘ GPT 5.5 Thinking Medium', score: 69.4, sortOrder: 22, estimated: true },
@@ -5718,14 +5852,13 @@
       { modelId: 'glm-52-deep-think-max', label: 'Ƶ GLM 5.2 Deep Think Max', score: 75.3, sortOrder: 97 },
       { modelId: 'glm-5t-deep-think', label: 'Ƶ GLM 5 Turbo Deep Think', score: 46.6, sortOrder: 107, estimated: true },
       { modelId: 'glm-5v-turbo-deep-think', label: 'Ƶ GLM 5V Turbo Deep Think', score: 46.6, sortOrder: 109, estimated: true },
-      { modelId: 'grok-43-expert', label: 'Ø Grok 4.3 Expert', score: 39.7, sortOrder: 109.5 },
+      { modelId: 'grok-45-expert', label: 'Ø Grok 4.5 Expert', score: 81.6, sortOrder: 109.4 },
       { modelId: 'minimax-m3-thinking', label: '≋ MiniMax M3 Thinking', score: 65.2, sortOrder: 116.5 },
       { modelId: 'nemotron-3-ultra-reasoning', label: '▰ Nemotron 3 Ultra Reasoning', score: 53.9, sortOrder: 117.5 },
       { modelId: 'mimo-v25-pro', label: '⋔ MiMo V2.5 Pro', score: 65.2, sortOrder: 118 },
       { modelId: 'mimo-v25', label: '⋔ MiMo V2.5', score: 62.9, sortOrder: 118.5, estimated: true },
       { modelId: 'qwen-37-max-think', label: '▽ Qwen 3.7 Max Thinking', score: 74.5, sortOrder: 124 },
       { modelId: 'qwen-37-plus-think', label: '▽ Qwen 3.7 Plus Thinking', score: 61.0, sortOrder: 124.5 },
-      { modelId: 'qwen-36-plus-think', label: '▽ Qwen 3.6 Plus Thinking', score: 61.4, sortOrder: 125 },
       { modelId: 'kimi-k26-thinking', label: 'Ḱ Kimi K2.6 Thinking', score: 57.3, sortOrder: 127 }
     ];
 
@@ -5849,7 +5982,7 @@
     // GPT reasoning:     256k / 400k        (Free,Go,Plus / Pro)
     // Gemini:            32k / 128k / 1M    (Free / Plus / Pro,Ultra)
     // Claude:            200k / 500k        (Free / Pro,Max x5,Max x20) for >4.6 models
-    // Grok:              1M                 (all plans)
+    // Grok:              500k               (all plans)
     // GLM:               200k               (all plans)
     // Qwen:              1M                 (all plans)
     // MiMo:              1M                 (all plans)
@@ -5876,6 +6009,56 @@
         ]
       },
       // GPT reasoning models (use the same tier structure)
+      {
+        modelId: 'gpt-56-sol-max', label: '⌘ GPT 5.6 Sol Max', sortOrder: 1,
+        color: 'rgba(90, 150, 135, 1)',
+        segments: [{ value: 272000, plans: 'All plans' }]
+      },
+      {
+        modelId: 'gpt-56-sol-xhigh', label: '⌘ GPT 5.6 Sol Extra High', sortOrder: 2,
+        color: 'rgba(90, 150, 135, 1)',
+        segments: [{ value: 272000, plans: 'All plans' }]
+      },
+      {
+        modelId: 'gpt-56-sol-high', label: '⌘ GPT 5.6 Sol High', sortOrder: 3,
+        color: 'rgba(90, 150, 135, 1)',
+        segments: [{ value: 272000, plans: 'All plans' }]
+      },
+      {
+        modelId: 'gpt-56-sol-medium', label: '⌘ GPT 5.6 Sol Medium', sortOrder: 4,
+        color: 'rgba(90, 150, 135, 1)',
+        segments: [{ value: 272000, plans: 'All plans' }]
+      },
+      {
+        modelId: 'gpt-56-terra-xhigh', label: '⌘ GPT 5.6 Terra Extra High', sortOrder: 6,
+        color: 'rgba(90, 150, 135, 1)',
+        segments: [{ value: 128000, plans: 'All plans' }]
+      },
+      {
+        modelId: 'gpt-56-terra-high', label: '⌘ GPT 5.6 Terra High', sortOrder: 7,
+        color: 'rgba(90, 150, 135, 1)',
+        segments: [{ value: 128000, plans: 'All plans' }]
+      },
+      {
+        modelId: 'gpt-56-terra-medium', label: '⌘ GPT 5.6 Terra Medium', sortOrder: 8,
+        color: 'rgba(90, 150, 135, 1)',
+        segments: [{ value: 128000, plans: 'All plans' }]
+      },
+      {
+        modelId: 'gpt-56-luna-xhigh', label: '⌘ GPT 5.6 Luna Extra High', sortOrder: 10,
+        color: 'rgba(90, 150, 135, 1)',
+        segments: [{ value: 128000, plans: 'All plans' }]
+      },
+      {
+        modelId: 'gpt-56-luna-high', label: '⌘ GPT 5.6 Luna High', sortOrder: 11,
+        color: 'rgba(90, 150, 135, 1)',
+        segments: [{ value: 128000, plans: 'All plans' }]
+      },
+      {
+        modelId: 'gpt-56-luna-medium', label: '⌘ GPT 5.6 Luna Medium', sortOrder: 12,
+        color: 'rgba(90, 150, 135, 1)',
+        segments: [{ value: 128000, plans: 'All plans' }]
+      },
       {
         modelId: 'gpt-55-thinking-xhigh', label: '⌘ GPT 5.5 Thinking Extra High', sortOrder: 18,
         color: 'rgba(90, 150, 135, 1)',
@@ -5997,14 +6180,9 @@
       },
       // Grok
       {
-        modelId: 'grok-43-expert', label: 'Ø Grok 4.3 Expert', sortOrder: 109.5,
+        modelId: 'grok-45-expert', label: 'Ø Grok 4.5 Expert', sortOrder: 109.4,
         color: 'rgba(60, 60, 220, 1)',
-        segments: [{ value: 1000000, plans: 'All plans' }]
-      },
-      {
-        modelId: 'grok-43-fast', label: 'Ø Grok 4.3 Fast', sortOrder: 109.6,
-        color: 'rgba(60, 60, 220, 1)',
-        segments: [{ value: 1000000, plans: 'All plans' }]
+        segments: [{ value: 500000, plans: 'All plans' }]
       },
       // MiniMax
       {
@@ -6037,11 +6215,6 @@
       },
       {
         modelId: 'qwen-37-plus-think', label: '▽ Qwen 3.7 Plus Thinking', sortOrder: 124.5,
-        color: 'rgba(66, 59, 175, 1)',
-        segments: [{ value: 1000000, plans: 'All plans' }]
-      },
-      {
-        modelId: 'qwen-36-plus-think', label: '▽ Qwen 3.6 Plus Thinking', sortOrder: 125,
         color: 'rgba(66, 59, 175, 1)',
         segments: [{ value: 1000000, plans: 'All plans' }]
       },
