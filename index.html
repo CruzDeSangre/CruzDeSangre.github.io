@@ -2995,33 +2995,33 @@
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot" data-model="gpt-56-terra-xhigh"
                 onclick="toggleIndividualModel('gpt-56-terra-xhigh')">
-                <span class="model-dot-indicator dot-gpt shape-star"></span>
+                <span class="model-dot-indicator dot-gpt shape-triangle-right"></span>
                 <span class="model-dot-label">GPT 5.6 Terra Extra High</span>
               </div>
               <div class="model-dot" data-model="gpt-56-terra-high"
                 onclick="toggleIndividualModel('gpt-56-terra-high')">
-                <span class="model-dot-indicator dot-gpt shape-square"></span>
+                <span class="model-dot-indicator dot-gpt shape-triangle-right"></span>
                 <span class="model-dot-label">GPT 5.6 Terra High</span>
               </div>
               <div class="model-dot" data-model="gpt-56-terra-medium"
                 onclick="toggleIndividualModel('gpt-56-terra-medium')">
-                <span class="model-dot-indicator dot-gpt shape-square"></span>
+                <span class="model-dot-indicator dot-gpt shape-triangle-right"></span>
                 <span class="model-dot-label">GPT 5.6 Terra Medium</span>
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot" data-model="gpt-56-luna-xhigh"
                 onclick="toggleIndividualModel('gpt-56-luna-xhigh')">
-                <span class="model-dot-indicator dot-gpt shape-star"></span>
+                <span class="model-dot-indicator dot-gpt shape-triangle-right"></span>
                 <span class="model-dot-label">GPT 5.6 Luna Extra High</span>
               </div>
               <div class="model-dot" data-model="gpt-56-luna-high" onclick="toggleIndividualModel('gpt-56-luna-high')">
-                <span class="model-dot-indicator dot-gpt shape-square"></span>
+                <span class="model-dot-indicator dot-gpt shape-triangle-right"></span>
                 <span class="model-dot-label">GPT 5.6 Luna High</span>
               </div>
               <div class="model-dot" data-model="gpt-56-luna-medium"
                 onclick="toggleIndividualModel('gpt-56-luna-medium')">
-                <span class="model-dot-indicator dot-gpt shape-square"></span>
+                <span class="model-dot-indicator dot-gpt shape-triangle-right"></span>
                 <span class="model-dot-label">GPT 5.6 Luna Medium</span>
               </div>
             </div>
@@ -3286,7 +3286,7 @@
               <div class="model-dot bench-toggle-maxcontext active" data-bench="maxcontext"
                 onclick="toggleBenchSection('maxcontext')">
                 <span class="model-dot-indicator dot-long"></span>
-                <span class="model-dot-label">Max Context Limit</span>
+                <span class="model-dot-label">Context Window (Web/App)</span>
               </div>
             </div>
           </div>
@@ -3524,10 +3524,10 @@
         </div>
       </div>
 
-      <!-- Max Context Limit -->
+      <!-- Context Window (Web/App) -->
       <div id="bench-section-maxcontext" style="margin-top: 3rem;">
         <div class="section-title-wrapper">
-          <h2 class="section-title section-title-long">Max Context Limit</h2>
+          <h2 class="section-title section-title-long">Context Window (Web/App)</h2>
         </div>
         <div class="chart-container">
           <canvas id="maxContextChart"></canvas>
@@ -5947,7 +5947,7 @@
     });
 
     // ============================================================
-    // Max Context Limit - Horizontal Stacked Bar Chart
+    // Context Window (Web/App) - Horizontal Stacked Bar Chart
     // ============================================================
     //
     // Models with tiered limits use segments (one segment per tier).
@@ -6012,52 +6012,82 @@
       {
         modelId: 'gpt-56-sol-max', label: '⌘ GPT 5.6 Sol Max', sortOrder: 1,
         color: 'rgba(90, 150, 135, 1)',
-        segments: [{ value: 272000, plans: 'All plans' }]
+        segments: [
+          { value: 256000, plans: 'Free, Go, Plus' },
+          { value: 400000, plans: 'Pro' }
+        ]
       },
       {
         modelId: 'gpt-56-sol-xhigh', label: '⌘ GPT 5.6 Sol Extra High', sortOrder: 2,
         color: 'rgba(90, 150, 135, 1)',
-        segments: [{ value: 272000, plans: 'All plans' }]
+        segments: [
+          { value: 256000, plans: 'Free, Go, Plus' },
+          { value: 400000, plans: 'Pro' }
+        ]
       },
       {
         modelId: 'gpt-56-sol-high', label: '⌘ GPT 5.6 Sol High', sortOrder: 3,
         color: 'rgba(90, 150, 135, 1)',
-        segments: [{ value: 272000, plans: 'All plans' }]
+        segments: [
+          { value: 256000, plans: 'Free, Go, Plus' },
+          { value: 400000, plans: 'Pro' }
+        ]
       },
       {
         modelId: 'gpt-56-sol-medium', label: '⌘ GPT 5.6 Sol Medium', sortOrder: 4,
         color: 'rgba(90, 150, 135, 1)',
-        segments: [{ value: 272000, plans: 'All plans' }]
+        segments: [
+          { value: 256000, plans: 'Free, Go, Plus' },
+          { value: 400000, plans: 'Pro' }
+        ]
       },
       {
         modelId: 'gpt-56-terra-xhigh', label: '⌘ GPT 5.6 Terra Extra High', sortOrder: 6,
         color: 'rgba(90, 150, 135, 1)',
-        segments: [{ value: 128000, plans: 'All plans' }]
+        segments: [
+          { value: 256000, plans: 'Free, Go, Plus' },
+          { value: 400000, plans: 'Pro' }
+        ]
       },
       {
         modelId: 'gpt-56-terra-high', label: '⌘ GPT 5.6 Terra High', sortOrder: 7,
         color: 'rgba(90, 150, 135, 1)',
-        segments: [{ value: 128000, plans: 'All plans' }]
+        segments: [
+          { value: 256000, plans: 'Free, Go, Plus' },
+          { value: 400000, plans: 'Pro' }
+        ]
       },
       {
         modelId: 'gpt-56-terra-medium', label: '⌘ GPT 5.6 Terra Medium', sortOrder: 8,
         color: 'rgba(90, 150, 135, 1)',
-        segments: [{ value: 128000, plans: 'All plans' }]
+        segments: [
+          { value: 256000, plans: 'Free, Go, Plus' },
+          { value: 400000, plans: 'Pro' }
+        ]
       },
       {
         modelId: 'gpt-56-luna-xhigh', label: '⌘ GPT 5.6 Luna Extra High', sortOrder: 10,
         color: 'rgba(90, 150, 135, 1)',
-        segments: [{ value: 128000, plans: 'All plans' }]
+        segments: [
+          { value: 256000, plans: 'Free, Go, Plus' },
+          { value: 400000, plans: 'Pro' }
+        ]
       },
       {
         modelId: 'gpt-56-luna-high', label: '⌘ GPT 5.6 Luna High', sortOrder: 11,
         color: 'rgba(90, 150, 135, 1)',
-        segments: [{ value: 128000, plans: 'All plans' }]
+        segments: [
+          { value: 256000, plans: 'Free, Go, Plus' },
+          { value: 400000, plans: 'Pro' }
+        ]
       },
       {
         modelId: 'gpt-56-luna-medium', label: '⌘ GPT 5.6 Luna Medium', sortOrder: 12,
         color: 'rgba(90, 150, 135, 1)',
-        segments: [{ value: 128000, plans: 'All plans' }]
+        segments: [
+          { value: 256000, plans: 'Free, Go, Plus' },
+          { value: 400000, plans: 'Pro' }
+        ]
       },
       {
         modelId: 'gpt-55-thinking-xhigh', label: '⌘ GPT 5.5 Thinking Extra High', sortOrder: 18,
@@ -6410,7 +6440,7 @@
       }
 
       if (includeAll || benchSectionVisibility.maxcontext) {
-        appendMarkdownSection(lines, 'Max Context Limit', ['Model', 'Max Context', 'Plans/Tiers', 'Estimated'], buildMaxContextExportRows(includeAll));
+        appendMarkdownSection(lines, 'Context Window (Web/App)', ['Model', 'Max Context', 'Plans/Tiers', 'Estimated'], buildMaxContextExportRows(includeAll));
       }
 
       if (includeAll || benchSectionVisibility.mmmu) {
