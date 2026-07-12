@@ -1056,6 +1056,16 @@
       background: rgba(180, 140, 100, 0.8);
     }
 
+    /* Coding models toggle styling (blue) */
+    .coding-models-toggle-card .toggle-switch.active {
+      background: rgba(59, 130, 246, 0.15);
+      border-color: rgba(59, 130, 246, 0.3);
+    }
+
+    .coding-models-toggle-card .toggle-switch.active::after {
+      background: rgba(59, 130, 246, 0.8);
+    }
+
     .model-filter-toggles {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -1793,7 +1803,7 @@
 
     /* Brand colors for dots */
     .dot-gpt {
-      background: rgba(116, 171, 157, 1);
+      background: rgba(16, 163, 127, 1);
     }
 
     .dot-gpt-legacy {
@@ -1818,6 +1828,10 @@
 
     .dot-nemotron {
       background: #76b900;
+    }
+
+    .dot-muse {
+      background: #1567fd;
     }
 
     .dot-mimo {
@@ -3176,6 +3190,11 @@
                 <span class="model-dot-indicator dot-nemotron shape-square"></span>
                 <span class="model-dot-label">Nemotron 3 Ultra Reasoning</span>
               </div>
+              <div class="model-dot inactive" data-model="muse-spark-11"
+                onclick="toggleIndividualModel('muse-spark-11')">
+                <span class="model-dot-indicator dot-muse"></span>
+                <span class="model-dot-label">Muse Spark 1.1</span>
+              </div>
             </div>
           </div>
 
@@ -3209,6 +3228,12 @@
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
+              <div class="model-dot inactive" data-model="glm-52" onclick="toggleIndividualModel('glm-52')">
+                <span class="model-dot-indicator dot-glm"></span>
+                <span class="model-dot-label">GLM 5.2</span>
+              </div>
+            </div>
+            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot inactive" data-model="qwen-35-omni-plus"
                 onclick="toggleIndividualModel('qwen-35-omni-plus')">
                 <span class="model-dot-indicator dot-qwen"></span>
@@ -3238,9 +3263,19 @@
               <div>
                 <span class="model-filter-toggle-title">Legacy models</span>
                 <span class="model-filter-toggle-description">AI models whose new version has been released but which
-                  perform better than its predecesor in some benchmarks</span>
+                  perform better than its predecesor in some benchmarks, or that are used as a fallback or weaker
+                  plan</span>
               </div>
               <div class="toggle-switch legacy-models-toggle" onclick="event.stopPropagation(); toggleLegacyModels()">
+              </div>
+            </div>
+            <div class="model-filter-toggle-card coding-models-toggle-card">
+              <div>
+                <span class="model-filter-toggle-title">Coding Models</span>
+                <span class="model-filter-toggle-description">Models that are not accessible on the web/app, only a
+                  coding app or the API</span>
+              </div>
+              <div class="toggle-switch coding-models-toggle" onclick="event.stopPropagation(); toggleCodingModels()">
               </div>
             </div>
           </div>
@@ -4049,8 +4084,10 @@
     let showReasoningModels = true;
     let showOtherModels = false;   // whether other models are active in charts
     let showLegacyModels = false;  // whether legacy models are active in charts
+    let showCodingModels = false;  // whether coding-app/API-only models are active in charts
     let otherModelsHidden = true;  // whether other model rows are hidden from the filter list
     let legacyModelsHidden = true; // whether legacy model rows are hidden from the filter list
+    let codingModelsHidden = false; // whether coding model rows are hidden from the filter list
     let modelGroupToggleStatesInitialized = false;
     // Legacy state variables kept for localStorage migration (old: 0=hidden, 1=list-only, 2=active)
     let otherModelsState = 0;      // kept for migration logic — do NOT use directly
@@ -4087,11 +4124,13 @@
       'claude-5-sonnet-high': false, // Starts hidden
       'claude-haiku-nr': false,   // Non-reasoning, starts hidden
       'glm-52-deep-think-max': false, // Starts hidden
+      'glm-52': false,                 // Non-reasoning, starts hidden
       'glm-5t-deep-think': false,    // Other recommended, starts hidden
       'glm-5v-turbo-deep-think': false, // Other recommended, starts hidden
       'grok-45-expert': false,       // Other recommended, starts hidden
       'minimax-m3-thinking': false,   // Other recommended, starts hidden
       'nemotron-3-ultra-reasoning': false, // Other recommended, starts hidden
+      'muse-spark-11': false,         // Other recommended, starts hidden
       'mimo-v25-pro': false,         // Other recommended, starts hidden
       'mimo-v25': false,             // Other recommended, starts hidden
       'qwen-37-max-think': false,    // Other recommended, starts hidden
@@ -4133,11 +4172,13 @@
       'claude-5-sonnet-high': true, // Starts explicitly disabled
       'claude-haiku-nr': true,    // Starts explicitly disabled
       'glm-52-deep-think-max': false, // Other recommended
+      'glm-52': false,                 // Other recommended
       'glm-5t-deep-think': false,       // Other recommended
       'glm-5v-turbo-deep-think': false, // Other recommended
       'grok-45-expert': false,          // Other recommended
       'minimax-m3-thinking': false,      // Other recommended
       'nemotron-3-ultra-reasoning': false, // Other recommended
+      'muse-spark-11': false,          // Other recommended
       'mimo-v25-pro': false,            // Other recommended
       'mimo-v25': false,                // Other recommended
       'qwen-37-max-think': false,       // Other recommended
@@ -4160,28 +4201,29 @@
     // Model groups for group toggles
     const modelGroups = {
       'claude': ['claude-haiku', 'claude-5-fable', 'claude-48-opus', 'claude-5-sonnet', 'claude-5-sonnet-high', 'claude-haiku-nr'],
-      'reasoning': ['gpt-56-sol-max', 'gpt-56-sol-xhigh', 'gpt-56-sol-high', 'gpt-56-sol-medium', 'gpt-56-terra-max', 'gpt-56-terra-xhigh', 'gpt-56-terra-high', 'gpt-56-terra-medium', 'gpt-56-luna-max', 'gpt-56-luna-xhigh', 'gpt-56-luna-high', 'gpt-56-luna-medium', 'gpt-55-thinking-xhigh', 'gpt-55-thinking', 'gpt-55-thinking-standard', 'gpt-54-thinking-mini', 'gemini-31-pro', 'gemini-35-flash-extended', 'gemini-31-flash-lite-extended', 'claude-haiku', 'claude-5-fable', 'claude-48-opus', 'claude-5-sonnet', 'glm-52-deep-think-max', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-45-expert', 'minimax-m3-thinking', 'nemotron-3-ultra-reasoning', 'mimo-v25-pro', 'mimo-v25', 'qwen-37-max-think', 'qwen-37-plus-think', 'kimi-k26-thinking'],
-      'instant': ['gpt-55-instant', 'gemini-35-flash', 'claude-5-sonnet-high', 'claude-haiku-nr', 'qwen-35-omni-plus', 'kimi-k26-instant'],
+      'reasoning': ['gpt-56-sol-max', 'gpt-56-sol-xhigh', 'gpt-56-sol-high', 'gpt-56-sol-medium', 'gpt-56-terra-max', 'gpt-56-terra-xhigh', 'gpt-56-terra-high', 'gpt-56-terra-medium', 'gpt-56-luna-max', 'gpt-56-luna-xhigh', 'gpt-56-luna-high', 'gpt-56-luna-medium', 'gpt-55-thinking-xhigh', 'gpt-55-thinking', 'gpt-55-thinking-standard', 'gpt-54-thinking-mini', 'gemini-31-pro', 'gemini-35-flash-extended', 'gemini-31-flash-lite-extended', 'claude-haiku', 'claude-5-fable', 'claude-48-opus', 'claude-5-sonnet', 'glm-52-deep-think-max', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-45-expert', 'minimax-m3-thinking', 'nemotron-3-ultra-reasoning', 'muse-spark-11', 'mimo-v25-pro', 'mimo-v25', 'qwen-37-max-think', 'qwen-37-plus-think', 'kimi-k26-thinking'],
+      'instant': ['gpt-55-instant', 'gemini-35-flash', 'claude-5-sonnet-high', 'claude-haiku-nr', 'glm-52', 'qwen-35-omni-plus', 'kimi-k26-instant'],
       'chatgpt-pro': [],
-      'other': ['glm-52-deep-think-max', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-45-expert', 'minimax-m3-thinking', 'nemotron-3-ultra-reasoning', 'mimo-v25-pro', 'mimo-v25', 'qwen-37-max-think', 'qwen-37-plus-think', 'kimi-k26-thinking', 'qwen-35-omni-plus', 'kimi-k26-instant'],
-      'legacy': ['gpt-55-thinking-xhigh', 'gpt-55-thinking', 'gpt-55-thinking-standard', 'glm-5t-deep-think']
+      'other': ['glm-52-deep-think-max', 'glm-52', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-45-expert', 'minimax-m3-thinking', 'nemotron-3-ultra-reasoning', 'muse-spark-11', 'mimo-v25-pro', 'mimo-v25', 'qwen-37-max-think', 'qwen-37-plus-think', 'kimi-k26-thinking', 'qwen-35-omni-plus', 'kimi-k26-instant'],
+      'legacy': ['gpt-55-thinking-xhigh', 'gpt-55-thinking', 'gpt-55-thinking-standard', 'glm-5t-deep-think'],
+      'coding': ['gpt-56-sol-max', 'gpt-56-terra-max', 'gpt-56-terra-xhigh', 'gpt-56-terra-high', 'gpt-56-terra-medium', 'gpt-56-luna-max', 'gpt-56-luna-xhigh', 'gpt-56-luna-high', 'gpt-56-luna-medium']
     };
 
     // Model constraints: which group toggles must ALL be active for a model to be visible
     // When a group is turned ON, models are only activated if all their other constraints are met
     const modelConstraints = {
-      'gpt-56-sol-max': ['reasoning'],                   // Reasoning model
+      'gpt-56-sol-max': ['reasoning', 'coding'],         // Coding-only reasoning model
       'gpt-56-sol-xhigh': ['reasoning'],                 // Reasoning model
       'gpt-56-sol-high': ['reasoning'],                  // Reasoning model
       'gpt-56-sol-medium': ['reasoning'],                // Reasoning model
-      'gpt-56-terra-max': ['reasoning'],                 // Reasoning model
-      'gpt-56-terra-xhigh': ['reasoning'],               // Reasoning model
-      'gpt-56-terra-high': ['reasoning'],                // Reasoning model
-      'gpt-56-terra-medium': ['reasoning'],              // Reasoning model
-      'gpt-56-luna-max': ['reasoning'],                  // Reasoning model
-      'gpt-56-luna-xhigh': ['reasoning'],                // Reasoning model
-      'gpt-56-luna-high': ['reasoning'],                 // Reasoning model
-      'gpt-56-luna-medium': ['reasoning'],               // Reasoning model
+      'gpt-56-terra-max': ['reasoning', 'coding'],       // Coding-only reasoning model
+      'gpt-56-terra-xhigh': ['reasoning', 'coding'],     // Coding-only reasoning model
+      'gpt-56-terra-high': ['reasoning', 'coding'],      // Coding-only reasoning model
+      'gpt-56-terra-medium': ['reasoning', 'coding'],    // Coding-only reasoning model
+      'gpt-56-luna-max': ['reasoning', 'coding'],        // Coding-only reasoning model
+      'gpt-56-luna-xhigh': ['reasoning', 'coding'],      // Coding-only reasoning model
+      'gpt-56-luna-high': ['reasoning', 'coding'],       // Coding-only reasoning model
+      'gpt-56-luna-medium': ['reasoning', 'coding'],     // Coding-only reasoning model
       'gpt-55-thinking-xhigh': ['reasoning', 'legacy'],  // Legacy reasoning model
       'gpt-55-thinking': ['reasoning', 'legacy'],        // Legacy reasoning model
       'gpt-55-thinking-standard': ['reasoning', 'legacy'], // Legacy reasoning model
@@ -4198,11 +4240,13 @@
       'claude-5-sonnet-high': ['claude', 'instant'], // Needs both Claude AND Non-reasoning to be on
       'claude-haiku-nr': ['claude', 'instant'],         // Needs both Claude AND Non-reasoning to be on
       'glm-52-deep-think-max': ['other', 'reasoning'],        // Needs both Other AND Reasoning to be on
+      'glm-52': ['other', 'instant'],                         // Needs both Other AND Non-reasoning to be on
       'glm-5t-deep-think': ['other', 'reasoning', 'legacy'], // Needs Other, Reasoning, AND Legacy to be on
       'glm-5v-turbo-deep-think': ['other', 'reasoning'],     // Needs both Other AND Reasoning to be on
       'grok-45-expert': ['other', 'reasoning'],              // Needs both Other AND Reasoning to be on
       'minimax-m3-thinking': ['other', 'reasoning'],          // Needs both Other AND Reasoning to be on
       'nemotron-3-ultra-reasoning': ['other', 'reasoning'],  // Needs both Other AND Reasoning to be on
+      'muse-spark-11': ['other', 'reasoning'],                // Needs both Other AND Reasoning to be on
       'mimo-v25-pro': ['other', 'reasoning'],                // Needs both Other AND Reasoning to be on
       'mimo-v25': ['other', 'reasoning'],                    // Needs both Other AND Reasoning to be on
       'qwen-37-max-think': ['other', 'reasoning'],           // Needs both Other AND Reasoning to be on
@@ -4221,6 +4265,7 @@
         case 'chatgpt-pro': return showChatGPTProModels;
         case 'other': return showOtherModels;
         case 'legacy': return showLegacyModels;
+        case 'coding': return showCodingModels;
         default: return true;
       }
     }
@@ -4444,8 +4489,16 @@
           'showLegacyModels',
           modelGroups.legacy.some(modelId => modelVisibility[modelId])
         );
+        showCodingModels = getStoredBoolean(
+          'showCodingModels',
+          false
+        );
+        if (!showCodingModels) {
+          modelGroups.coding.forEach(modelId => { modelVisibility[modelId] = false; });
+        }
         safeStorageSet('showOtherModels', showOtherModels);
         safeStorageSet('showLegacyModels', showLegacyModels);
+        safeStorageSet('showCodingModels', showCodingModels);
         modelGroupToggleStatesInitialized = true;
       }
       document.querySelectorAll('.other-models-toggle').forEach(toggle => {
@@ -4453,6 +4506,9 @@
       });
       document.querySelectorAll('.legacy-models-toggle').forEach(toggle => {
         toggle.classList.toggle('active', showLegacyModels);
+      });
+      document.querySelectorAll('.coding-models-toggle').forEach(toggle => {
+        toggle.classList.toggle('active', showCodingModels);
       });
     }
 
@@ -4608,27 +4664,41 @@
     // Estimated models are rendered at low opacity (0.3) to look faded.
     // Non-estimated models use 0.75 so bars look rich but not fully opaque.
     const BRAND_RGB = {
-      'gpt': '90,  150, 135',   // darker teal   (reasoning GPT)
+      'gpt': '16,  163, 127',   // teal
       'gemini': '238, 73,  82',    // red
       'claude': '218, 119, 87',    // orange
-      'glm': '120, 120, 130',   // dark gray
-      'grok': '60,  60,  220',   // blue
-      'minimax': '223, 78,  96',    // deep red
+      'glm': '50,  50,  50',    // dark gray
+      'grok': '35,  35, 175',   // readable dark blue
+      'minimax': '207, 52, 124',    // magenta
       'nemotron': '118, 185, 0',     // NVIDIA green
+      'muse': '21,  103, 253',       // blue
       'mimo': '255, 116, 0',     // orange
       'qwen': '66,  59,  175',   // violet
       'kimi': '23,  131, 255',   // blue
       'fallback': '139, 92,  246'    // purple
     };
 
+    const LEGACY_GPT_MODEL_IDS = new Set([
+      'gpt-55-thinking-xhigh',
+      'gpt-55-thinking',
+      'gpt-55-thinking-standard',
+      'gpt-54-thinking-mini',
+      'gpt-55-instant'
+    ]);
+
     function getBrandRgb(modelId) {
-      if (modelId.startsWith('gpt-')) return BRAND_RGB['gpt'];
+      if (modelId.startsWith('gpt-')) {
+        return LEGACY_GPT_MODEL_IDS.has(modelId) ? '90, 150, 135' : BRAND_RGB['gpt'];
+      }
       if (modelId.startsWith('gemini-')) return BRAND_RGB['gemini'];
       if (modelId.startsWith('claude-')) return BRAND_RGB['claude'];
-      if (modelId.startsWith('glm-')) return BRAND_RGB['glm'];
+      if (modelId.startsWith('glm-')) {
+        return modelId === 'glm-5t-deep-think' ? '120, 120, 130' : BRAND_RGB['glm'];
+      }
       if (modelId.startsWith('grok-')) return BRAND_RGB['grok'];
       if (modelId.startsWith('minimax-')) return BRAND_RGB['minimax'];
       if (modelId.startsWith('nemotron-')) return BRAND_RGB['nemotron'];
+      if (modelId.startsWith('muse-')) return BRAND_RGB['muse'];
       if (modelId.startsWith('mimo-')) return BRAND_RGB['mimo'];
       if (modelId.startsWith('qwen-')) return BRAND_RGB['qwen'];
       if (modelId.startsWith('kimi-')) return BRAND_RGB['kimi'];
@@ -4692,12 +4762,14 @@
       { modelId: 'claude-5-sonnet-high', label: '❋ Claude 5 Sonnet High', correct: 32.58, abstention: 33.65, hallucination: 33.77, sortOrder: 67.8 },
       { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', correct: 17.43, abstention: 60.92, hallucination: 21.65, sortOrder: 90 },
       { modelId: 'claude-haiku-nr', label: '❋ Claude 4.5 Haiku', correct: 13.67, abstention: 65.00, hallucination: 21.33, sortOrder: 95 },
+      { modelId: 'glm-52', label: 'Ƶ GLM 5.2', correct: 20.32, abstention: 52.96, hallucination: 26.72, sortOrder: 96 },
       { modelId: 'glm-52-deep-think-max', label: 'Ƶ GLM 5.2 Deep Think Max', correct: 25.05, abstention: 53.87, hallucination: 21.08, sortOrder: 97 },
       { modelId: 'glm-5t-deep-think', label: 'Ƶ GLM 5 Turbo Deep Think', correct: 29.03, abstention: 26.85, hallucination: 44.12, sortOrder: 107 },
       { modelId: 'glm-5v-turbo-deep-think', label: 'Ƶ GLM 5V Turbo Deep Think', correct: 29.13, abstention: 22.75, hallucination: 48.12, sortOrder: 109 },
       { modelId: 'grok-45-expert', label: 'Ø Grok 4.5 Expert', correct: 52.05, abstention: 22.28, hallucination: 25.67, sortOrder: 109.4 },
       { modelId: 'minimax-m3-thinking', label: '≋ MiniMax M3 Thinking', correct: 15.03, abstention: 71.31, hallucination: 13.66, sortOrder: 116.5 },
       { modelId: 'nemotron-3-ultra-reasoning', label: '▰ Nemotron 3 Ultra Reasoning', correct: 21.55, abstention: 56.07, hallucination: 22.38, sortOrder: 117.5 },
+      { modelId: 'muse-spark-11', label: 'ƒ Muse Spark 1.1', correct: 40.62, abstention: 36.76, hallucination: 22.62, sortOrder: 117.6 },
       { modelId: 'mimo-v25-pro', label: '⋔ MiMo V2.5 Pro', correct: 22.60, abstention: 58.40, hallucination: 19.00, sortOrder: 118 },
       { modelId: 'mimo-v25', label: '⋔ MiMo V2.5', correct: 17.27, abstention: 56.13, hallucination: 26.60, sortOrder: 118.5 },
       { modelId: 'qwen-37-max-think', label: '▽ Qwen 3.7 Max Thinking', correct: 30.12, abstention: 53.84, hallucination: 16.03, sortOrder: 124 },
@@ -5161,11 +5233,53 @@
     // Base datasets for MRCR - with modelId for filtering and sortOrder for ordering
     const mrcrAllDatasets = [
       {
+        modelId: 'gpt-56-sol-max',
+        label: 'GPT 5.6 Sol Max',
+        data: [100, 100, 98, 98.8, 92.4, 83.5, null],
+        borderColor: 'rgba(90, 150, 135, 0.95)',
+        backgroundColor: 'rgba(90, 150, 135, 0.95)',
+        borderWidth: 2,
+        tension: 0.3,
+        pointRadius: 7,
+        pointHoverRadius: 8,
+        pointBackgroundColor: 'rgba(90, 150, 135, 0.95)',
+        spanGaps: false,
+        sortOrder: 1
+      },
+      {
+        modelId: 'gpt-56-terra-max',
+        label: 'GPT 5.6 Terra Max',
+        data: [98.8, 100, 94.3, 89.7, 80.2, 67.9, null],
+        borderColor: 'rgba(90, 150, 135, 0.8)',
+        backgroundColor: 'rgba(90, 150, 135, 0.8)',
+        borderWidth: 2,
+        tension: 0.3,
+        pointRadius: 6,
+        pointHoverRadius: 7,
+        pointBackgroundColor: 'rgba(90, 150, 135, 0.8)',
+        spanGaps: false,
+        sortOrder: 5
+      },
+      {
+        modelId: 'gpt-56-luna-max',
+        label: 'GPT 5.6 Luna Max',
+        data: [96.4, 93.9, 90.2, 71.5, 58.4, 45.1, null],
+        borderColor: 'rgba(90, 150, 135, 0.65)',
+        backgroundColor: 'rgba(90, 150, 135, 0.65)',
+        borderWidth: 2,
+        tension: 0.3,
+        pointRadius: 5,
+        pointHoverRadius: 6,
+        pointBackgroundColor: 'rgba(90, 150, 135, 0.65)',
+        spanGaps: false,
+        sortOrder: 9
+      },
+      {
         modelId: 'gpt-55-thinking-xhigh',
         label: 'GPT 5.5 Thinking Extra High',
         data: [100, 99.9, 95.8, 90.8, 85.8, 73.2, null],
         borderColor: 'rgba(176, 221, 210, 0.95)',
-        backgroundColor: 'rgba(176, 221, 210, 0.5)',
+        backgroundColor: 'rgba(176, 221, 210, 0.95)',
         borderWidth: 2,
         tension: 0.3,
         pointRadius: 6,
@@ -5179,7 +5293,7 @@
         label: 'GPT 5.5 Thinking High',
         data: [100, 98.8, 96.6, 86.2, 79.3, 75.3, null],
         borderColor: 'rgba(176, 221, 210, 0.8)',
-        backgroundColor: 'rgba(176, 221, 210, 0.35)',
+        backgroundColor: 'rgba(176, 221, 210, 0.8)',
         borderWidth: 2,
         tension: 0.3,
         pointRadius: 6,
@@ -5193,11 +5307,11 @@
         label: 'GPT 5.5 Thinking Medium',
         data: [100, 96.3, 91.7, 85.2, 67, 67, null],
         borderColor: 'rgba(176, 221, 210, 0.65)',
-        backgroundColor: 'rgba(176, 221, 210, 0.3)',
+        backgroundColor: 'rgba(176, 221, 210, 0.65)',
         borderWidth: 2,
         tension: 0.3,
-        pointRadius: 5,
-        pointHoverRadius: 6,
+        pointRadius: 6,
+        pointHoverRadius: 7,
         pointBackgroundColor: 'rgba(176, 221, 210, 0.65)',
         spanGaps: false,
         sortOrder: 22
@@ -5206,13 +5320,13 @@
         modelId: 'gpt-54-thinking-mini',
         label: 'GPT 5.4 Thinking Mini',
         data: [67.7, 54.7, 49.5, 34.7, 34.8, 23.0, null],
-        borderColor: 'rgba(176, 221, 210, 0.55)',
-        backgroundColor: 'rgba(176, 221, 210, 0.25)',
+        borderColor: 'rgba(176, 221, 210, 0.6)',
+        backgroundColor: 'rgba(176, 221, 210, 0.6)',
         borderWidth: 2,
         tension: 0.3,
-        pointRadius: 5,
-        pointHoverRadius: 6,
-        pointBackgroundColor: 'rgba(176, 221, 210, 0.55)',
+        pointRadius: 4,
+        pointHoverRadius: 5,
+        pointBackgroundColor: 'rgba(176, 221, 210, 0.6)',
         spanGaps: false,
         sortOrder: 23
       },
@@ -5221,7 +5335,7 @@
         label: 'GPT 5.5 Instant',
         data: [66.4, 51.4, 35, 37.6, 28.3, null, null],
         borderColor: 'rgba(176, 221, 210, 0.5)',
-        backgroundColor: 'rgba(176, 221, 210, 0.25)',
+        backgroundColor: 'rgba(176, 221, 210, 0.5)',
         borderWidth: 2,
         borderDash: [5, 5],
         tension: 0.3,
@@ -5236,7 +5350,7 @@
         label: 'Gemini 3.1 Pro Extended',
         data: [100, 98.8, 94.2, 74.9, 57.6, 47.4, 25.9],
         borderColor: 'rgba(243, 77, 101, 0.95)',
-        backgroundColor: 'rgba(243, 77, 101, 0.7)',
+        backgroundColor: 'rgba(243, 77, 101, 0.95)',
         borderWidth: 3,
         tension: 0.3,
         pointRadius: 6,
@@ -5250,11 +5364,11 @@
         label: 'Gemini 3.5 Flash Extended',
         data: [95.1, 97.5, 79.6, 61.2, 57.5, 54.6, 26.0],
         borderColor: 'rgba(243, 77, 101, 0.8)',
-        backgroundColor: 'rgba(243, 77, 101, 0.5)',
+        backgroundColor: 'rgba(243, 77, 101, 0.8)',
         borderWidth: 2,
         tension: 0.3,
-        pointRadius: 6,
-        pointHoverRadius: 7,
+        pointRadius: 5,
+        pointHoverRadius: 6,
         pointBackgroundColor: 'rgba(243, 77, 101, 0.8)',
         sortOrder: 40
       },
@@ -5262,27 +5376,27 @@
         modelId: 'gemini-35-flash',
         label: 'Gemini 3.5 Flash',
         data: [60.1, 40.4, 26.3, 25.9, 23.2, 24.7, 17.2],
-        borderColor: 'rgba(243, 77, 101, 0.65)',
-        backgroundColor: 'rgba(243, 77, 101, 0.35)',
+        borderColor: 'rgba(243, 77, 101, 0.5)',
+        backgroundColor: 'rgba(243, 77, 101, 0.5)',
         borderWidth: 2,
         borderDash: [5, 5],
         tension: 0.3,
         pointRadius: 4,
         pointHoverRadius: 5,
-        pointBackgroundColor: 'rgba(243, 77, 101, 0.65)',
+        pointBackgroundColor: 'rgba(243, 77, 101, 0.5)',
         sortOrder: 28
       },
       {
         modelId: 'gemini-31-flash-lite-extended',
         label: 'Gemini 3.1 Flash Lite Extended',
         data: [98.8, 84.2, 65.9, 39.0, 28.1, 22.5, 12.4],
-        borderColor: 'rgba(243, 77, 101, 0.35)',
-        backgroundColor: 'rgba(243, 77, 101, 0.2)',
+        borderColor: 'rgba(243, 77, 101, 0.6)',
+        backgroundColor: 'rgba(243, 77, 101, 0.6)',
         borderWidth: 2,
         tension: 0.3,
-        pointRadius: 5,
-        pointHoverRadius: 6,
-        pointBackgroundColor: 'rgba(243, 77, 101, 0.35)',
+        pointRadius: 4,
+        pointHoverRadius: 5,
+        pointBackgroundColor: 'rgba(243, 77, 101, 0.6)',
         sortOrder: 55
       },
       {
@@ -5290,7 +5404,7 @@
         label: 'Claude 4.8 Opus Thinking Max',
         data: [97.4, 96.1, 93, 90.7, 75.2, 61.8, null],
         borderColor: 'rgba(218, 119, 87, 0.95)',
-        backgroundColor: 'rgba(218, 119, 87, 0.7)',
+        backgroundColor: 'rgba(218, 119, 87, 0.95)',
         borderWidth: 2,
         tension: 0.3,
         pointRadius: 6,
@@ -5300,16 +5414,30 @@
         sortOrder: 63.9
       },
       {
-        modelId: 'claude-haiku',
-        label: 'Claude 4.5 Haiku Extended',
-        data: [82.5, 47.5, 31.5, 17, 13.8, null, null],
-        borderColor: 'rgba(218, 119, 87, 0.65)',
-        backgroundColor: 'rgba(218, 119, 87, 0.3)',
+        modelId: 'claude-5-sonnet',
+        label: 'Claude 5 Sonnet Thinking Max',
+        data: [96.4, 94.9, 87.9, 68, 52.9, 52.2, null],
+        borderColor: 'rgba(218, 119, 87, 0.8)',
+        backgroundColor: 'rgba(218, 119, 87, 0.8)',
         borderWidth: 2,
         tension: 0.3,
         pointRadius: 5,
         pointHoverRadius: 6,
-        pointBackgroundColor: 'rgba(218, 119, 87, 0.65)',
+        pointBackgroundColor: 'rgba(218, 119, 87, 0.8)',
+        spanGaps: false,
+        sortOrder: 66.8
+      },
+      {
+        modelId: 'claude-haiku',
+        label: 'Claude 4.5 Haiku Extended',
+        data: [82.5, 47.5, 31.5, 17, 13.8, null, null],
+        borderColor: 'rgba(218, 119, 87, 0.6)',
+        backgroundColor: 'rgba(218, 119, 87, 0.6)',
+        borderWidth: 2,
+        tension: 0.3,
+        pointRadius: 4,
+        pointHoverRadius: 5,
+        pointBackgroundColor: 'rgba(218, 119, 87, 0.6)',
         spanGaps: false,
         sortOrder: 90
       },
@@ -5317,14 +5445,14 @@
         modelId: 'claude-haiku-nr',
         label: 'Claude 4.5 Haiku',
         data: [29, 21.9, 15.2, 17.3, 9.2, null, null],
-        borderColor: 'rgba(218, 119, 87, 0.35)',
-        backgroundColor: 'rgba(218, 119, 87, 0.2)',
+        borderColor: 'rgba(218, 119, 87, 0.5)',
+        backgroundColor: 'rgba(218, 119, 87, 0.5)',
         borderWidth: 2,
         borderDash: [5, 5],
         tension: 0.3,
         pointRadius: 4,
         pointHoverRadius: 5,
-        pointBackgroundColor: 'rgba(218, 119, 87, 0.35)',
+        pointBackgroundColor: 'rgba(218, 119, 87, 0.5)',
         spanGaps: false,
         sortOrder: 95
       },
@@ -5333,7 +5461,7 @@
         label: 'GLM 5.2 Deep Think Max',
         data: [95.1, 81.8, 74.7, 63.4, 51.6, 46.5, null],
         borderColor: 'rgba(120, 120, 130, 0.95)',
-        backgroundColor: 'rgba(120, 120, 130, 0.5)',
+        backgroundColor: 'rgba(120, 120, 130, 0.95)',
         borderWidth: 2,
         tension: 0.3,
         pointRadius: 6,
@@ -5347,7 +5475,7 @@
         label: 'MiniMax M3 Thinking',
         data: [92.4, 68.9, 52.2, 35.4, 17.4, 18.6, null],
         borderColor: 'rgba(207, 52, 124, 0.95)',
-        backgroundColor: 'rgba(207, 52, 124, 0.5)',
+        backgroundColor: 'rgba(207, 52, 124, 0.95)',
         borderWidth: 2,
         tension: 0.3,
         pointRadius: 6,
@@ -5362,7 +5490,7 @@
         data: [82.9, 62.4, 54.5, 40.4, 31.7, 17, 12.9],
         lessThan: [false, false, false, false, false, false, true],
         borderColor: 'rgba(255, 116, 0, 0.95)',
-        backgroundColor: 'rgba(255, 116, 0, 0.5)',
+        backgroundColor: 'rgba(255, 116, 0, 0.95)',
         borderWidth: 2,
         tension: 0.3,
         pointRadius: 6,
@@ -5377,7 +5505,7 @@
         data: [79.4, 51.4, 34.7, 24.8, 27.2, 28, 13.2],
         lessThan: [false, false, false, false, false, false, true],
         borderColor: 'rgba(255, 116, 0, 0.65)',
-        backgroundColor: 'rgba(255, 116, 0, 0.35)',
+        backgroundColor: 'rgba(255, 116, 0, 0.65)',
         borderWidth: 2,
         tension: 0.3,
         pointRadius: 5,
@@ -5391,7 +5519,7 @@
         label: 'Kimi K2.6 Thinking',
         data: [95.1, 80.6, 68.3, 46.3, 39, null, null],
         borderColor: 'rgba(23, 131, 255, 0.95)',
-        backgroundColor: 'rgba(23, 131, 255, 0.5)',
+        backgroundColor: 'rgba(23, 131, 255, 0.95)',
         borderWidth: 2,
         tension: 0.3,
         pointRadius: 6,
@@ -5404,14 +5532,14 @@
         modelId: 'kimi-k26-instant',
         label: 'Kimi K2.6 Instant',
         data: [70.7, 58.7, 51.4, 43.5, 39.5, null, null],
-        borderColor: 'rgba(23, 131, 255, 0.35)',
-        backgroundColor: 'rgba(23, 131, 255, 0.3)',
+        borderColor: 'rgba(23, 131, 255, 0.5)',
+        backgroundColor: 'rgba(23, 131, 255, 0.5)',
         borderWidth: 2,
         borderDash: [5, 5],
         tension: 0.3,
         pointRadius: 4,
         pointHoverRadius: 5,
-        pointBackgroundColor: 'rgba(23, 131, 255, 0.35)',
+        pointBackgroundColor: 'rgba(23, 131, 255, 0.5)',
         spanGaps: false,
         sortOrder: 128
       }
@@ -5561,12 +5689,14 @@
       { modelId: 'claude-5-sonnet-high', label: '❋ Claude 5 Sonnet High', score: 58.7, sortOrder: 67.8 },
       { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', score: 70.3, sortOrder: 90 },
       { modelId: 'claude-haiku-nr', label: '❋ Claude 4.5 Haiku', score: 43.7, sortOrder: 95 },
+      { modelId: 'glm-52', label: 'Ƶ GLM 5.2', score: 37.3, sortOrder: 96 },
       { modelId: 'glm-52-deep-think-max', label: 'Ƶ GLM 5.2 Deep Think Max', score: 71.3, sortOrder: 97 },
       { modelId: 'glm-5t-deep-think', label: 'Ƶ GLM 5 Turbo Deep Think', score: 60.7, sortOrder: 107 },
       { modelId: 'glm-5v-turbo-deep-think', label: 'Ƶ GLM 5V Turbo Deep Think', score: 61, sortOrder: 109 },
       { modelId: 'grok-45-expert', label: 'Ø Grok 4.5 Expert', score: 67.7, sortOrder: 109.4 },
       { modelId: 'minimax-m3-thinking', label: '≋ MiniMax M3 Thinking', score: 74, sortOrder: 116.5 },
       { modelId: 'nemotron-3-ultra-reasoning', label: '▰ Nemotron 3 Ultra Reasoning', score: 67, sortOrder: 117.5 },
+      { modelId: 'muse-spark-11', label: 'ƒ Muse Spark 1.1', score: 63.3, sortOrder: 117.6 },
       { modelId: 'mimo-v25-pro', label: '⋔ MiMo V2.5 Pro', score: 73.3, sortOrder: 118 },
       { modelId: 'mimo-v25', label: '⋔ MiMo V2.5', score: 62.7, sortOrder: 118.5 },
       { modelId: 'qwen-37-max-think', label: '▽ Qwen 3.7 Max Thinking', score: 69, sortOrder: 124 },
@@ -5694,12 +5824,14 @@
       { modelId: 'claude-5-sonnet-high', label: '❋ Claude 5 Sonnet High', score: 72, sortOrder: 67.8 },
       { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', score: 58, sortOrder: 90 },
       { modelId: 'claude-haiku-nr', label: '❋ Claude 4.5 Haiku', score: 55, sortOrder: 95 },
+      { modelId: 'glm-52', label: 'Ƶ GLM 5.2', score: 83, sortOrder: 96 },
       { modelId: 'glm-52-deep-think-max', label: 'Ƶ GLM 5.2 Deep Think Max (Estimated)', score: 73, sortOrder: 97, estimated: true },
       { modelId: 'glm-5t-deep-think', label: 'Ƶ GLM 5 Turbo Deep Think (Estimated)', score: 73, sortOrder: 107, estimated: true },
       { modelId: 'glm-5v-turbo-deep-think', label: 'Ƶ GLM 5V Turbo Deep Think', score: 73, sortOrder: 109 },
       { modelId: 'grok-45-expert', label: 'Ø Grok 4.5 Expert', score: 80, sortOrder: 109.4 },
       { modelId: 'minimax-m3-thinking', label: '≋ MiniMax M3 Thinking', score: 80, sortOrder: 116.5 },
       { modelId: 'nemotron-3-ultra-reasoning', label: '▰ Nemotron 3 Ultra Reasoning', score: 0, sortOrder: 117.5 },
+      { modelId: 'muse-spark-11', label: 'ƒ Muse Spark 1.1 (Estimated)', score: 81, sortOrder: 117.6, estimated: true },
       { modelId: 'mimo-v25-pro', label: '⋔ MiMo V2.5 Pro', score: 0, sortOrder: 118 },
       { modelId: 'mimo-v25', label: '⋔ MiMo V2.5', score: 75, sortOrder: 118.5 },
       { modelId: 'qwen-37-max-think', label: '▽ Qwen 3.7 Max Thinking', score: 0, sortOrder: 124 },
@@ -5901,6 +6033,7 @@
       { modelId: 'grok-45-expert', label: 'Ø Grok 4.5 Expert', score: 1082, sortOrder: 109.4 },
       { modelId: 'minimax-m3-thinking', label: '≋ MiniMax M3 Thinking', score: 1389, sortOrder: 116.5 },
       { modelId: 'nemotron-3-ultra-reasoning', label: '▰ Nemotron 3 Ultra Reasoning', score: 1160, sortOrder: 117.5 },
+      { modelId: 'muse-spark-11', label: 'ƒ Muse Spark 1.1', score: 1376, sortOrder: 117.6 },
       { modelId: 'mimo-v25-pro', label: '⋔ MiMo V2.5 Pro', score: 1263, sortOrder: 118 },
       { modelId: 'mimo-v25', label: '⋔ MiMo V2.5', score: 1247, sortOrder: 118.5, estimated: true },
       { modelId: 'qwen-37-max-think', label: '▽ Qwen 3.7 Max Thinking', score: 1272, sortOrder: 124 },
@@ -6051,6 +6184,7 @@
       { modelId: 'grok-45-expert', label: 'Ø Grok 4.5 Expert', score: 81.6, sortOrder: 109.4 },
       { modelId: 'minimax-m3-thinking', label: '≋ MiniMax M3 Thinking', score: 65.2, sortOrder: 116.5 },
       { modelId: 'nemotron-3-ultra-reasoning', label: '▰ Nemotron 3 Ultra Reasoning', score: 53.9, sortOrder: 117.5 },
+      { modelId: 'muse-spark-11', label: 'ƒ Muse Spark 1.1', score: 77.9, sortOrder: 117.6 },
       { modelId: 'mimo-v25-pro', label: '⋔ MiMo V2.5 Pro', score: 65.2, sortOrder: 118 },
       { modelId: 'mimo-v25', label: '⋔ MiMo V2.5', score: 62.9, sortOrder: 118.5, estimated: true },
       { modelId: 'qwen-37-max-think', label: '▽ Qwen 3.7 Max Thinking', score: 74.5, sortOrder: 124 },
@@ -6211,7 +6345,7 @@
       // GPT reasoning models (use the same tier structure)
       {
         modelId: 'gpt-56-sol-max', label: '⌘ GPT 5.6 Sol Max', sortOrder: 1,
-        color: 'rgba(90, 150, 135, 1)',
+        color: 'rgba(16, 163, 127, 1)',
         segments: [
           { value: 256000, plans: 'Free, Go, Plus' },
           { value: 400000, plans: 'Pro' }
@@ -6219,7 +6353,7 @@
       },
       {
         modelId: 'gpt-56-sol-xhigh', label: '⌘ GPT 5.6 Sol Extra High', sortOrder: 2,
-        color: 'rgba(90, 150, 135, 1)',
+        color: 'rgba(16, 163, 127, 1)',
         segments: [
           { value: 256000, plans: 'Free, Go, Plus' },
           { value: 400000, plans: 'Pro' }
@@ -6227,7 +6361,7 @@
       },
       {
         modelId: 'gpt-56-sol-high', label: '⌘ GPT 5.6 Sol High', sortOrder: 3,
-        color: 'rgba(90, 150, 135, 1)',
+        color: 'rgba(16, 163, 127, 1)',
         segments: [
           { value: 256000, plans: 'Free, Go, Plus' },
           { value: 400000, plans: 'Pro' }
@@ -6235,7 +6369,7 @@
       },
       {
         modelId: 'gpt-56-sol-medium', label: '⌘ GPT 5.6 Sol Medium', sortOrder: 4,
-        color: 'rgba(90, 150, 135, 1)',
+        color: 'rgba(16, 163, 127, 1)',
         segments: [
           { value: 256000, plans: 'Free, Go, Plus' },
           { value: 400000, plans: 'Pro' }
@@ -6243,7 +6377,7 @@
       },
       {
         modelId: 'gpt-56-terra-max', label: '⌘ GPT 5.6 Terra Max', sortOrder: 5,
-        color: 'rgba(90, 150, 135, 1)',
+        color: 'rgba(16, 163, 127, 1)',
         segments: [
           { value: 256000, plans: 'Free, Go, Plus' },
           { value: 400000, plans: 'Pro' }
@@ -6251,7 +6385,7 @@
       },
       {
         modelId: 'gpt-56-terra-xhigh', label: '⌘ GPT 5.6 Terra Extra High', sortOrder: 6,
-        color: 'rgba(90, 150, 135, 1)',
+        color: 'rgba(16, 163, 127, 1)',
         segments: [
           { value: 256000, plans: 'Free, Go, Plus' },
           { value: 400000, plans: 'Pro' }
@@ -6259,7 +6393,7 @@
       },
       {
         modelId: 'gpt-56-terra-high', label: '⌘ GPT 5.6 Terra High', sortOrder: 7,
-        color: 'rgba(90, 150, 135, 1)',
+        color: 'rgba(16, 163, 127, 1)',
         segments: [
           { value: 256000, plans: 'Free, Go, Plus' },
           { value: 400000, plans: 'Pro' }
@@ -6267,7 +6401,7 @@
       },
       {
         modelId: 'gpt-56-terra-medium', label: '⌘ GPT 5.6 Terra Medium', sortOrder: 8,
-        color: 'rgba(90, 150, 135, 1)',
+        color: 'rgba(16, 163, 127, 1)',
         segments: [
           { value: 256000, plans: 'Free, Go, Plus' },
           { value: 400000, plans: 'Pro' }
@@ -6275,7 +6409,7 @@
       },
       {
         modelId: 'gpt-56-luna-max', label: '⌘ GPT 5.6 Luna Max', sortOrder: 9,
-        color: 'rgba(90, 150, 135, 1)',
+        color: 'rgba(16, 163, 127, 1)',
         segments: [
           { value: 256000, plans: 'Free, Go, Plus' },
           { value: 400000, plans: 'Pro' }
@@ -6283,7 +6417,7 @@
       },
       {
         modelId: 'gpt-56-luna-xhigh', label: '⌘ GPT 5.6 Luna Extra High', sortOrder: 10,
-        color: 'rgba(90, 150, 135, 1)',
+        color: 'rgba(16, 163, 127, 1)',
         segments: [
           { value: 256000, plans: 'Free, Go, Plus' },
           { value: 400000, plans: 'Pro' }
@@ -6291,7 +6425,7 @@
       },
       {
         modelId: 'gpt-56-luna-high', label: '⌘ GPT 5.6 Luna High', sortOrder: 11,
-        color: 'rgba(90, 150, 135, 1)',
+        color: 'rgba(16, 163, 127, 1)',
         segments: [
           { value: 256000, plans: 'Free, Go, Plus' },
           { value: 400000, plans: 'Pro' }
@@ -6299,7 +6433,7 @@
       },
       {
         modelId: 'gpt-56-luna-medium', label: '⌘ GPT 5.6 Luna Medium', sortOrder: 12,
-        color: 'rgba(90, 150, 135, 1)',
+        color: 'rgba(16, 163, 127, 1)',
         segments: [
           { value: 256000, plans: 'Free, Go, Plus' },
           { value: 400000, plans: 'Pro' }
@@ -6410,8 +6544,13 @@
       },
       // GLM
       {
+        modelId: 'glm-52', label: 'Ƶ GLM 5.2', sortOrder: 96,
+        color: 'rgba(50, 50, 50, 1)',
+        segments: [{ value: 1000000, plans: 'All plans' }]
+      },
+      {
         modelId: 'glm-52-deep-think-max', label: 'Ƶ GLM 5.2 Deep Think Max', sortOrder: 97,
-        color: 'rgba(100, 100, 110, 1)',
+        color: 'rgba(50, 50, 50, 1)',
         segments: [{ value: 1000000, plans: 'All plans' }]
       },
       {
@@ -6421,25 +6560,31 @@
       },
       {
         modelId: 'glm-5v-turbo-deep-think', label: 'Ƶ GLM 5V Turbo Deep Think', sortOrder: 109,
-        color: 'rgba(100, 100, 110, 1)',
+        color: 'rgba(50, 50, 50, 1)',
         segments: [{ value: 200000, plans: 'All plans' }]
       },
       // Grok
       {
         modelId: 'grok-45-expert', label: 'Ø Grok 4.5 Expert', sortOrder: 109.4,
-        color: 'rgba(60, 60, 220, 1)',
+        color: 'rgba(35, 35, 175, 1)',
         segments: [{ value: 500000, plans: 'All plans' }]
       },
       // MiniMax
       {
         modelId: 'minimax-m3-thinking', label: '≋ MiniMax M3 Thinking', sortOrder: 116.5,
-        color: 'rgba(223, 78, 96, 1)',
+        color: 'rgba(207, 52, 124, 1)',
         segments: [{ value: 1000000, plans: 'All plans' }]
       },
       // Nemotron
       {
         modelId: 'nemotron-3-ultra-reasoning', label: '▰ Nemotron 3 Ultra Reasoning', sortOrder: 117.5,
         color: 'rgba(118, 185, 0, 1)',
+        segments: [{ value: 1000000, plans: 'All plans' }]
+      },
+      // Muse
+      {
+        modelId: 'muse-spark-11', label: 'ƒ Muse Spark 1.1', sortOrder: 117.6,
+        color: 'rgba(21, 103, 253, 1)',
         segments: [{ value: 1000000, plans: 'All plans' }]
       },
       // MiMo
@@ -7197,7 +7342,8 @@
         modelDots.forEach(dot => {
           const modelId = dot.dataset.model;
           const shouldHide = (modelGroups.other.includes(modelId) && !showOtherModels)
-            || (modelGroups.legacy.includes(modelId) && !showLegacyModels);
+            || (modelGroups.legacy.includes(modelId) && !showLegacyModels)
+            || (modelGroups.coding.includes(modelId) && !showCodingModels);
           setAnimatedFilterVisibility(dot, !shouldHide, 'model-filter-hidden');
           if (!shouldHide) hasVisibleDots = true;
         });
@@ -7305,10 +7451,47 @@
 
     // Toggle hide/show of Legacy model rows in the filter list
 
+    // Toggle the chart-active state for coding-app/API-only models
+    function toggleCodingModels() {
+      showCodingModels = !showCodingModels;
+
+      if (showCodingModels) {
+        if (codingModelsHidden) {
+          codingModelsHidden = false;
+          updateListRowVisibilities();
+        }
+        const allExplicitlyDisabled = modelGroups.coding.every(m => modelExplicitlyDisabled[m]);
+        if (allExplicitlyDisabled) {
+          modelGroups.coding.forEach(m => { modelExplicitlyDisabled[m] = false; });
+        }
+        modelGroups.coding.forEach(modelId => {
+          modelVisibility[modelId] = shouldModelBeVisible(modelId);
+        });
+      } else {
+        modelGroups.coding.forEach(modelId => {
+          modelVisibility[modelId] = false;
+        });
+      }
+
+      codingModelsHidden = !showCodingModels;
+      document.querySelectorAll('.coding-models-toggle').forEach(t => t.classList.toggle('active', showCodingModels));
+
+      updateModelDotsUI();
+      syncGroupToggles();
+      updateListRowVisibilities();
+      updateLegacyFlags();
+      updateAllCharts();
+
+      persistCurrentModelState();
+      saveActiveModelProfile();
+      safeStorageSet('showCodingModels', showCodingModels);
+      safeStorageSet('codingModelsHidden', codingModelsHidden);
+    }
+
     // Toggle benchmark sections visibility
     let benchSectionVisibility = {
       omniscience: getStoredBoolean('bench_omniscience', true),
-      mrcr: getStoredBoolean('bench_mrcr', true),
+      mrcr: getStoredBoolean('bench_mrcr', false),
       aalcr: getStoredBoolean('bench_aalcr', true),
       maxcontext: getStoredBoolean('bench_maxcontext', true),
       mmmu: getStoredBoolean('bench_mmmu', true),
@@ -7573,7 +7756,7 @@
     style="text-align: center; padding: 2rem 1rem; margin-top: 3rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.8rem;">
     Made by <strong> u/Pasto_Shouwa</strong>
     <br>
-    <em>Last updated on <strong>10/07/2026</strong> (dd/mm/yyyy)</em>
+    <em>Last updated on <strong>12/07/2026</strong> (dd/mm/yyyy)</em>
   </footer>
 </body>
 
