@@ -3161,6 +3161,13 @@
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
+              <div class="model-dot inactive" data-model="kimi-k3-max"
+                onclick="toggleIndividualModel('kimi-k3-max')">
+                <span class="model-dot-indicator dot-kimi"></span>
+                <span class="model-dot-label">Kimi K3 Max</span>
+              </div>
+            </div>
+            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot inactive" data-model="kimi-k26-thinking"
                 onclick="toggleIndividualModel('kimi-k26-thinking')">
                 <span class="model-dot-indicator dot-kimi"></span>
@@ -4135,6 +4142,7 @@
       'mimo-v25': false,             // Other recommended, starts hidden
       'qwen-37-max-think': false,    // Other recommended, starts hidden
       'qwen-37-plus-think': false,   // Other recommended, starts hidden
+      'kimi-k3-max': false,           // Other recommended, starts hidden
       'kimi-k26-thinking': false,     // Other recommended, starts hidden
       'qwen-35-omni-plus': false,     // Other recommended, starts hidden
       'kimi-k26-instant': false       // Other recommended, starts hidden
@@ -4183,6 +4191,7 @@
       'mimo-v25': false,                // Other recommended
       'qwen-37-max-think': false,       // Other recommended
       'qwen-37-plus-think': false,      // Other recommended
+      'kimi-k3-max': false,              // Other recommended
       'kimi-k26-thinking': false,        // Other recommended
       'qwen-35-omni-plus': false,        // Other recommended
       'kimi-k26-instant': false          // Other recommended
@@ -4201,11 +4210,11 @@
     // Model groups for group toggles
     const modelGroups = {
       'claude': ['claude-haiku', 'claude-5-fable', 'claude-48-opus', 'claude-5-sonnet', 'claude-5-sonnet-high', 'claude-haiku-nr'],
-      'reasoning': ['gpt-56-sol-max', 'gpt-56-sol-xhigh', 'gpt-56-sol-high', 'gpt-56-sol-medium', 'gpt-56-terra-max', 'gpt-56-terra-xhigh', 'gpt-56-terra-high', 'gpt-56-terra-medium', 'gpt-56-luna-max', 'gpt-56-luna-xhigh', 'gpt-56-luna-high', 'gpt-56-luna-medium', 'gpt-55-thinking-xhigh', 'gpt-55-thinking', 'gpt-55-thinking-standard', 'gpt-54-thinking-mini', 'gemini-31-pro', 'gemini-35-flash-extended', 'gemini-31-flash-lite-extended', 'claude-haiku', 'claude-5-fable', 'claude-48-opus', 'claude-5-sonnet', 'glm-52-deep-think-max', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-45-expert', 'minimax-m3-thinking', 'nemotron-3-ultra-reasoning', 'muse-spark-11', 'mimo-v25-pro', 'mimo-v25', 'qwen-37-max-think', 'qwen-37-plus-think', 'kimi-k26-thinking'],
+      'reasoning': ['gpt-56-sol-max', 'gpt-56-sol-xhigh', 'gpt-56-sol-high', 'gpt-56-sol-medium', 'gpt-56-terra-max', 'gpt-56-terra-xhigh', 'gpt-56-terra-high', 'gpt-56-terra-medium', 'gpt-56-luna-max', 'gpt-56-luna-xhigh', 'gpt-56-luna-high', 'gpt-56-luna-medium', 'gpt-55-thinking-xhigh', 'gpt-55-thinking', 'gpt-55-thinking-standard', 'gpt-54-thinking-mini', 'gemini-31-pro', 'gemini-35-flash-extended', 'gemini-31-flash-lite-extended', 'claude-haiku', 'claude-5-fable', 'claude-48-opus', 'claude-5-sonnet', 'glm-52-deep-think-max', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-45-expert', 'minimax-m3-thinking', 'nemotron-3-ultra-reasoning', 'muse-spark-11', 'mimo-v25-pro', 'mimo-v25', 'qwen-37-max-think', 'qwen-37-plus-think', 'kimi-k3-max', 'kimi-k26-thinking'],
       'instant': ['gpt-55-instant', 'gemini-35-flash', 'claude-5-sonnet-high', 'claude-haiku-nr', 'glm-52', 'qwen-35-omni-plus', 'kimi-k26-instant'],
       'chatgpt-pro': [],
-      'other': ['glm-52-deep-think-max', 'glm-52', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-45-expert', 'minimax-m3-thinking', 'nemotron-3-ultra-reasoning', 'muse-spark-11', 'mimo-v25-pro', 'mimo-v25', 'qwen-37-max-think', 'qwen-37-plus-think', 'kimi-k26-thinking', 'qwen-35-omni-plus', 'kimi-k26-instant'],
-      'legacy': ['gpt-55-thinking-xhigh', 'gpt-55-thinking', 'gpt-55-thinking-standard', 'glm-5t-deep-think'],
+      'other': ['glm-52-deep-think-max', 'glm-52', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-45-expert', 'minimax-m3-thinking', 'nemotron-3-ultra-reasoning', 'muse-spark-11', 'mimo-v25-pro', 'mimo-v25', 'qwen-37-max-think', 'qwen-37-plus-think', 'kimi-k3-max', 'kimi-k26-thinking', 'qwen-35-omni-plus', 'kimi-k26-instant'],
+      'legacy': ['gpt-55-thinking-xhigh', 'gpt-55-thinking', 'gpt-55-thinking-standard', 'glm-5t-deep-think', 'kimi-k26-thinking', 'kimi-k26-instant'],
       'coding': ['gpt-56-sol-max', 'gpt-56-terra-max', 'gpt-56-terra-xhigh', 'gpt-56-terra-high', 'gpt-56-terra-medium', 'gpt-56-luna-max', 'gpt-56-luna-xhigh', 'gpt-56-luna-high', 'gpt-56-luna-medium']
     };
 
@@ -4251,9 +4260,10 @@
       'mimo-v25': ['other', 'reasoning'],                    // Needs both Other AND Reasoning to be on
       'qwen-37-max-think': ['other', 'reasoning'],           // Needs both Other AND Reasoning to be on
       'qwen-37-plus-think': ['other', 'reasoning'],          // Needs both Other AND Reasoning to be on
-      'kimi-k26-thinking': ['other', 'reasoning'],            // Needs both Other AND Reasoning to be on
+      'kimi-k3-max': ['other', 'reasoning'],                  // Needs both Other AND Reasoning to be on
+      'kimi-k26-thinking': ['other', 'reasoning', 'legacy'],  // Needs Other, Reasoning, AND Legacy to be on
       'qwen-35-omni-plus': ['other', 'instant'],              // Needs both Other AND Non-reasoning to be on
-      'kimi-k26-instant': ['other', 'instant']                // Needs both Other AND Non-reasoning to be on
+      'kimi-k26-instant': ['other', 'instant', 'legacy']      // Needs Other, Non-reasoning, AND Legacy to be on
     };
 
     // Get the current state of a group toggle
@@ -4298,6 +4308,10 @@
     function updateModelDotsUI() {
       document.querySelectorAll('.model-dot[data-model]').forEach(dot => {
         const modelId = dot.getAttribute('data-model');
+        const indicator = dot.querySelector('.model-dot-indicator');
+        if (indicator && isLegacyColorModel(modelId)) {
+          indicator.style.background = `rgb(${getBrandRgb(modelId)})`;
+        }
         if (modelVisibility[modelId]) {
           dot.classList.remove('inactive');
         } else {
@@ -4686,15 +4700,11 @@
       'gpt-55-instant'
     ]);
 
-    function getBrandRgb(modelId) {
-      if (modelId.startsWith('gpt-')) {
-        return LEGACY_GPT_MODEL_IDS.has(modelId) ? '90, 150, 135' : BRAND_RGB['gpt'];
-      }
+    function getBaseBrandRgb(modelId) {
+      if (modelId.startsWith('gpt-')) return BRAND_RGB['gpt'];
       if (modelId.startsWith('gemini-')) return BRAND_RGB['gemini'];
       if (modelId.startsWith('claude-')) return BRAND_RGB['claude'];
-      if (modelId.startsWith('glm-')) {
-        return modelId === 'glm-5t-deep-think' ? '120, 120, 130' : BRAND_RGB['glm'];
-      }
+      if (modelId.startsWith('glm-')) return BRAND_RGB['glm'];
       if (modelId.startsWith('grok-')) return BRAND_RGB['grok'];
       if (modelId.startsWith('minimax-')) return BRAND_RGB['minimax'];
       if (modelId.startsWith('nemotron-')) return BRAND_RGB['nemotron'];
@@ -4703,6 +4713,61 @@
       if (modelId.startsWith('qwen-')) return BRAND_RGB['qwen'];
       if (modelId.startsWith('kimi-')) return BRAND_RGB['kimi'];
       return BRAND_RGB['fallback'];
+    }
+
+    function isLegacyColorModel(modelId) {
+      return LEGACY_GPT_MODEL_IDS.has(modelId) || modelGroups.legacy.includes(modelId);
+    }
+
+    // Generic legacy palette: preserve the brand hue, reduce chroma, and raise
+    // lightness for contrast on the dark UI. This avoids per-brand legacy colors.
+    function getLegacyRgb(baseRgb) {
+      const [red, green, blue] = baseRgb.split(',').map(value => Number(value.trim()) / 255);
+      const max = Math.max(red, green, blue);
+      const min = Math.min(red, green, blue);
+      const delta = max - min;
+      let hue = 0;
+      const lightness = (max + min) / 2;
+      const saturation = delta === 0 ? 0 : delta / (1 - Math.abs(2 * lightness - 1));
+
+      if (delta !== 0) {
+        if (max === red) hue = ((green - blue) / delta) % 6;
+        else if (max === green) hue = (blue - red) / delta + 2;
+        else hue = (red - green) / delta + 4;
+        hue *= 60;
+        if (hue < 0) hue += 360;
+      }
+
+      const legacySaturation = saturation === 0
+        ? 0
+        : Math.min(0.48, Math.max(0.24, saturation * 0.55));
+      const legacyLightness = Math.max(0.68, lightness);
+      const chroma = (1 - Math.abs(2 * legacyLightness - 1)) * legacySaturation;
+      const hueSegment = hue / 60;
+      const x = chroma * (1 - Math.abs((hueSegment % 2) - 1));
+      const offset = legacyLightness - chroma / 2;
+      let channels;
+
+      if (hueSegment < 1) channels = [chroma, x, 0];
+      else if (hueSegment < 2) channels = [x, chroma, 0];
+      else if (hueSegment < 3) channels = [0, chroma, x];
+      else if (hueSegment < 4) channels = [0, x, chroma];
+      else if (hueSegment < 5) channels = [x, 0, chroma];
+      else channels = [chroma, 0, x];
+
+      return channels.map(channel => Math.round((channel + offset) * 255)).join(', ');
+    }
+
+    function getBrandRgb(modelId) {
+      const baseRgb = getBaseBrandRgb(modelId);
+      return isLegacyColorModel(modelId) ? getLegacyRgb(baseRgb) : baseRgb;
+    }
+
+    function replaceRgbaRgb(color, rgb) {
+      return color.replace(
+        /rgba\([\d.]+,\s*[\d.]+,\s*[\d.]+,\s*([\d.]+)\)/,
+        (_match, alpha) => `rgba(${rgb}, ${alpha})`
+      );
     }
 
     function getBrandBgColor(modelId, estimated) {
@@ -4774,6 +4839,7 @@
       { modelId: 'mimo-v25', label: '⋔ MiMo V2.5', correct: 17.27, abstention: 56.13, hallucination: 26.60, sortOrder: 118.5 },
       { modelId: 'qwen-37-max-think', label: '▽ Qwen 3.7 Max Thinking', correct: 30.12, abstention: 53.84, hallucination: 16.03, sortOrder: 124 },
       { modelId: 'qwen-37-plus-think', label: '▽ Qwen 3.7 Plus Thinking', correct: 22.2, abstention: 57.97, hallucination: 19.83, sortOrder: 124.5 },
+      { modelId: 'kimi-k3-max', label: 'Ḱ Kimi K3 Max', correct: 45.95, abstention: 26.52, hallucination: 27.53, sortOrder: 126.5 },
       { modelId: 'kimi-k26-thinking', label: 'Ḱ Kimi K2.6 Thinking', correct: 32.80, abstention: 40.82, hallucination: 26.38, sortOrder: 127 },
       { modelId: 'qwen-35-omni-plus', label: '▽ Qwen 3.5 Omni Plus Fast', correct: 17.42, abstention: 52.87, hallucination: 29.71, sortOrder: 126 },
       { modelId: 'kimi-k26-instant', label: 'Ḱ Kimi K2.6 Instant', correct: 23.07, abstention: 43.90, hallucination: 33.03, sortOrder: 128 }
@@ -5547,7 +5613,18 @@
 
     function getMrcrDatasets() {
       // Filter datasets based on modelVisibility
-      let datasets = mrcrAllDatasets.filter(ds => modelVisibility[ds.modelId]);
+      let datasets = mrcrAllDatasets
+        .filter(ds => modelVisibility[ds.modelId])
+        .map(ds => {
+          if (!isLegacyColorModel(ds.modelId)) return ds;
+          const legacyRgb = getBrandRgb(ds.modelId);
+          return {
+            ...ds,
+            borderColor: replaceRgbaRgb(ds.borderColor, legacyRgb),
+            backgroundColor: replaceRgbaRgb(ds.backgroundColor, legacyRgb),
+            pointBackgroundColor: replaceRgbaRgb(ds.pointBackgroundColor, legacyRgb)
+          };
+        });
 
       // Sort by sortOrder to maintain family grouping in legend
       datasets.sort((a, b) => a.sortOrder - b.sortOrder);
@@ -5701,6 +5778,7 @@
       { modelId: 'mimo-v25', label: '⋔ MiMo V2.5', score: 62.7, sortOrder: 118.5 },
       { modelId: 'qwen-37-max-think', label: '▽ Qwen 3.7 Max Thinking', score: 69, sortOrder: 124 },
       { modelId: 'qwen-37-plus-think', label: '▽ Qwen 3.7 Plus Thinking', score: 65, sortOrder: 124.5 },
+      { modelId: 'kimi-k3-max', label: 'Ḱ Kimi K3 Max', score: 74.7, sortOrder: 126.5 },
       { modelId: 'kimi-k26-thinking', label: 'Ḱ Kimi K2.6 Thinking', score: 69.7, sortOrder: 127 },
       { modelId: 'qwen-35-omni-plus', label: '▽ Qwen 3.5 Omni Plus Fast', score: 52.7, sortOrder: 126 },
       { modelId: 'kimi-k26-instant', label: 'Ḱ Kimi K2.6 Instant', score: 57.7, sortOrder: 128 }
@@ -5836,6 +5914,7 @@
       { modelId: 'mimo-v25', label: '⋔ MiMo V2.5', score: 75, sortOrder: 118.5 },
       { modelId: 'qwen-37-max-think', label: '▽ Qwen 3.7 Max Thinking', score: 0, sortOrder: 124 },
       { modelId: 'qwen-37-plus-think', label: '▽ Qwen 3.7 Plus Thinking', score: 80, sortOrder: 124.5 },
+      { modelId: 'kimi-k3-max', label: 'Ḱ Kimi K3 Max', score: 81, sortOrder: 126.5 },
       { modelId: 'kimi-k26-thinking', label: 'Ḱ Kimi K2.6 Thinking', score: 79, sortOrder: 127 },
       { modelId: 'qwen-35-omni-plus', label: '▽ Qwen 3.5 Omni Plus Fast', score: 71, sortOrder: 126 },
       { modelId: 'kimi-k26-instant', label: 'Ḱ Kimi K2.6 Instant (Estimated)', score: 77, sortOrder: 128, estimated: true }
@@ -6038,6 +6117,7 @@
       { modelId: 'mimo-v25', label: '⋔ MiMo V2.5', score: 1247, sortOrder: 118.5, estimated: true },
       { modelId: 'qwen-37-max-think', label: '▽ Qwen 3.7 Max Thinking', score: 1272, sortOrder: 124 },
       { modelId: 'qwen-37-plus-think', label: '▽ Qwen 3.7 Plus Thinking', score: 940, sortOrder: 124.5 },
+      { modelId: 'kimi-k3-max', label: 'Ḱ Kimi K3 Max', score: 1668, sortOrder: 126.5 },
       { modelId: 'kimi-k26-thinking', label: 'Ḱ Kimi K2.6 Thinking', score: 1191, sortOrder: 127 }
     ];
 
@@ -6189,6 +6269,7 @@
       { modelId: 'mimo-v25', label: '⋔ MiMo V2.5', score: 62.9, sortOrder: 118.5, estimated: true },
       { modelId: 'qwen-37-max-think', label: '▽ Qwen 3.7 Max Thinking', score: 74.5, sortOrder: 124 },
       { modelId: 'qwen-37-plus-think', label: '▽ Qwen 3.7 Plus Thinking', score: 61.0, sortOrder: 124.5 },
+      { modelId: 'kimi-k3-max', label: 'Ḱ Kimi K3 Max', score: 85, sortOrder: 126.5 },
       { modelId: 'kimi-k26-thinking', label: 'Ḱ Kimi K2.6 Thinking', score: 57.3, sortOrder: 127 }
     ];
 
@@ -6611,6 +6692,14 @@
       },
       // Kimi
       {
+        modelId: 'kimi-k3-max', label: 'Ḱ Kimi K3 Max', sortOrder: 126.5,
+        color: 'rgba(23, 131, 255, 1)',
+        segments: [
+          { value: 256000, plans: 'Adagio, Andante, Moderato' },
+          { value: 1000000, plans: 'Allegretto, Allegro, Vivace' }
+        ]
+      },
+      {
         modelId: 'kimi-k26-thinking', label: 'Ḱ Kimi K2.6 Thinking', sortOrder: 127,
         color: 'rgba(23, 131, 255, 1)',
         segments: [{ value: 200000, plans: 'All plans' }]
@@ -6846,7 +6935,9 @@
     // Each model can have up to 3 segments.
     // Per-tier, each dataset holds the INCREMENTAL width for that model.
     function getMaxContextColor(m) {
-      return m.color;
+      return isLegacyColorModel(m.modelId)
+        ? `rgba(${getBrandRgb(m.modelId)}, 1)`
+        : m.color;
     }
 
     function buildMaxContextDatasets(models) {
@@ -7756,7 +7847,7 @@
     style="text-align: center; padding: 2rem 1rem; margin-top: 3rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.8rem;">
     Made by <strong> u/Pasto_Shouwa</strong>
     <br>
-    <em>Last updated on <strong>12/07/2026</strong> (dd/mm/yyyy)</em>
+    <em>Last updated on <strong>16/07/2026</strong> (dd/mm/yyyy)</em>
   </footer>
 </body>
 
