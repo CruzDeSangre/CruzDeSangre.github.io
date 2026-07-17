@@ -800,10 +800,12 @@
       opacity: 0;
     }
 
-    .chart-container.terminal-bench-cost-view {
+    .chart-container.terminal-bench-cost-view,
+    .chart-container.gdpval-cost-view {
       height: 500px;
     }
 
+    #gdpval2SortSelector[hidden],
     #terminalBenchV21SortSelector[hidden] {
       display: none;
     }
@@ -2246,7 +2248,8 @@
         overflow: hidden;
       }
 
-      .chart-container.terminal-bench-cost-view {
+      .chart-container.terminal-bench-cost-view,
+      .chart-container.gdpval-cost-view {
         height: 420px;
       }
 
@@ -3035,7 +3038,7 @@
                 <span class="model-dot-label">GPT 5.6 Sol Medium</span>
               </div>
               <div class="model-dot" data-model="gpt-56-sol-low" onclick="toggleIndividualModel('gpt-56-sol-low')">
-                <span class="model-dot-indicator dot-gpt shape-square"></span>
+                <span class="model-dot-indicator dot-gpt shape-triangle-right"></span>
                 <span class="model-dot-label">GPT 5.6 Sol Low</span>
               </div>
             </div>
@@ -3698,8 +3701,17 @@
         <div class="chart-container">
           <canvas id="gdpval2Chart"></canvas>
         </div>
-        <p class="chart-note">Shows performance producing outputs like documents, slides, diagrams, and spreadsheets,
+        <p class="chart-note" id="gdpval2Note">Shows performance producing outputs like documents, slides, diagrams, and spreadsheets,
           mirroring actual work across multiple professional domains. Higher is better.</p>
+        <div class="sort-selector" id="gdpval2ViewSelector">
+          <span class="sort-selector-label"><strong>View</strong></span>
+          <div class="sort-selector-buttons">
+            <button class="sort-btn active" onclick="setGdpval2View('performance')"
+              id="gdpval2ViewPerformance">Only Performance</button>
+            <button class="sort-btn" onclick="setGdpval2View('price')"
+              id="gdpval2ViewPrice">Performance And Price</button>
+          </div>
+        </div>
         <div class="sort-selector" id="gdpval2SortSelector">
           <span class="sort-selector-label"><strong>Sort by</strong></span>
           <div class="sort-selector-buttons">
@@ -3751,9 +3763,9 @@
           <span class="sort-selector-label"><strong>View</strong></span>
           <div class="sort-selector-buttons">
             <button class="sort-btn active" onclick="setTerminalBenchV21View('performance')"
-              id="terminalBenchV21ViewPerformance">Only performance</button>
+              id="terminalBenchV21ViewPerformance">Only Performance</button>
             <button class="sort-btn" onclick="setTerminalBenchV21View('price')"
-              id="terminalBenchV21ViewPrice">Performance and price</button>
+              id="terminalBenchV21ViewPrice">Performance And Price</button>
           </div>
         </div>
         <div class="sort-selector" id="terminalBenchV21SortSelector">
@@ -4239,7 +4251,7 @@
       'chatgpt-pro': [],
       'other': ['glm-52-deep-think-max', 'glm-52', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-45-expert', 'minimax-m3-thinking', 'nemotron-3-ultra-reasoning', 'muse-spark-11', 'mimo-v25-pro', 'mimo-v25', 'qwen-37-max-think', 'qwen-37-plus-think', 'kimi-k3-max', 'kimi-k26-thinking', 'qwen-35-omni-plus', 'kimi-k26-instant'],
       'legacy': ['glm-5t-deep-think', 'kimi-k26-thinking', 'kimi-k26-instant'],
-      'coding': ['gpt-56-sol-max', 'gpt-56-terra-max', 'gpt-56-terra-xhigh', 'gpt-56-terra-high', 'gpt-56-terra-medium', 'gpt-56-terra-low', 'gpt-56-luna-max', 'gpt-56-luna-xhigh', 'gpt-56-luna-high', 'gpt-56-luna-medium', 'gpt-56-luna-low']
+      'coding': ['gpt-56-sol-max', 'gpt-56-sol-low', 'gpt-56-terra-max', 'gpt-56-terra-xhigh', 'gpt-56-terra-high', 'gpt-56-terra-medium', 'gpt-56-terra-low', 'gpt-56-luna-max', 'gpt-56-luna-xhigh', 'gpt-56-luna-high', 'gpt-56-luna-medium', 'gpt-56-luna-low']
     };
 
     // Model constraints: which group toggles must ALL be active for a model to be visible
@@ -4249,7 +4261,7 @@
       'gpt-56-sol-xhigh': ['reasoning'],                 // Reasoning model
       'gpt-56-sol-high': ['reasoning'],                  // Reasoning model
       'gpt-56-sol-medium': ['reasoning'],                // Reasoning model
-      'gpt-56-sol-low': ['reasoning'],                   // Reasoning model
+      'gpt-56-sol-low': ['reasoning', 'coding'],         // Coding-only reasoning model
       'gpt-56-terra-max': ['reasoning', 'coding'],       // Coding-only reasoning model
       'gpt-56-terra-xhigh': ['reasoning', 'coding'],     // Coding-only reasoning model
       'gpt-56-terra-high': ['reasoning', 'coding'],      // Coding-only reasoning model
@@ -4657,17 +4669,27 @@
 
       // Update GDPval-AA v2 chart
       if (gdpval2Chart && benchSectionVisibility.gdpval2) {
-        const gdpval2Data = getGdpval2Data();
-        if (!gdpval2Data.labels.length) {
+        const isPriceView = gdpval2ViewMode === 'price';
+        const gdpval2Data = isPriceView ? null : getGdpval2Data();
+        const gdpval2CostDatasets = isPriceView ? getGdpval2CostDatasets() : null;
+        const hasGdpval2Data = isPriceView
+          ? gdpval2CostDatasets.length > 0
+          : gdpval2Data.labels.length > 0;
+
+        if (!hasGdpval2Data) {
           setChartRuntimeState('gdpval2Chart', 'empty', BENCHMARK_EMPTY_MESSAGE);
         } else {
           setChartRuntimeState('gdpval2Chart', 'ready');
-          gdpval2Chart.data.labels = gdpval2Data.labels;
-          gdpval2Chart.data.datasets[0].data = gdpval2Data.data;
-          gdpval2Chart.data.datasets[0].backgroundColor = gdpval2Data.backgroundColors;
-          gdpval2Chart.data.datasets[0].hoverBackgroundColor = gdpval2Data.hoverBackgroundColors;
-          updateScoreBenchmarkAxisMin(gdpval2Chart, gdpval2AxisMinMode, gdpval2Data.data, getModelScores(gdpval2AllModels));
-          gdpval2Chart.options.scales.x.max = getGdpvalAxisMax(gdpval2AllModels);
+          if (isPriceView) {
+            gdpval2Chart.data.datasets = gdpval2CostDatasets;
+            gdpval2Chart.options.scales.x.max = getGdpval2ReferenceLineMax();
+          } else {
+            gdpval2Chart.data.labels = gdpval2Data.labels;
+            gdpval2Chart.data.datasets[0].data = gdpval2Data.data;
+            gdpval2Chart.data.datasets[0].backgroundColor = gdpval2Data.backgroundColors;
+            gdpval2Chart.data.datasets[0].hoverBackgroundColor = gdpval2Data.hoverBackgroundColors;
+          }
+          updateGdpval2AxisMinOptions(gdpval2Chart, gdpval2AxisMinMode, getGdpval2VisibleScores());
           gdpval2Chart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
         }
       }
@@ -4687,6 +4709,7 @@
           setChartRuntimeState('terminalBenchV21Chart', 'ready');
           if (isPriceView) {
             terminalBenchV21Chart.data.datasets = terminalBenchV21CostDatasets;
+            terminalBenchV21Chart.options.scales.x.max = getTerminalBenchV21ReferenceLineMax();
           } else {
             terminalBenchV21Chart.data.labels = terminalBenchV21Data.labels;
             terminalBenchV21Chart.data.datasets[0].data = terminalBenchV21Data.data;
@@ -4835,14 +4858,17 @@
       { modelId: 'gpt-56-sol-xhigh', label: '⌘ GPT 5.6 Sol Extra High', correct: 57.97, abstention: 4.61, hallucination: 37.42, sortOrder: 2 },
       { modelId: 'gpt-56-sol-high', label: '⌘ GPT 5.6 Sol High', correct: 57.32, abstention: 5.12, hallucination: 37.56, sortOrder: 3 },
       { modelId: 'gpt-56-sol-medium', label: '⌘ GPT 5.6 Sol Medium', correct: 56.58, abstention: 5.60, hallucination: 37.82, sortOrder: 4 },
+      { modelId: 'gpt-56-sol-low', label: '⌘ GPT 5.6 Sol Low', correct: 56.43, abstention: 5.53, hallucination: 38.04, sortOrder: 4.5 },
       { modelId: 'gpt-56-terra-max', label: '⌘ GPT 5.6 Terra Max', correct: 45.88, abstention: 8.02, hallucination: 46.10, sortOrder: 5 },
       { modelId: 'gpt-56-terra-xhigh', label: '⌘ GPT 5.6 Terra Extra High', correct: 44.68, abstention: 7.34, hallucination: 47.98, sortOrder: 6 },
       { modelId: 'gpt-56-terra-high', label: '⌘ GPT 5.6 Terra High', correct: 44.48, abstention: 6.97, hallucination: 48.55, sortOrder: 7 },
       { modelId: 'gpt-56-terra-medium', label: '⌘ GPT 5.6 Terra Medium', correct: 44.02, abstention: 6.80, hallucination: 49.18, sortOrder: 8 },
+      { modelId: 'gpt-56-terra-low', label: '⌘ GPT 5.6 Terra Low', correct: 42.95, abstention: 6.98, hallucination: 50.07, sortOrder: 8.5 },
       { modelId: 'gpt-56-luna-max', label: '⌘ GPT 5.6 Luna Max', correct: 41.50, abstention: 5.77, hallucination: 52.73, sortOrder: 9 },
       { modelId: 'gpt-56-luna-xhigh', label: '⌘ GPT 5.6 Luna Extra High', correct: 41.30, abstention: 5.80, hallucination: 52.90, sortOrder: 10 },
       { modelId: 'gpt-56-luna-high', label: '⌘ GPT 5.6 Luna High', correct: 40.67, abstention: 6.22, hallucination: 53.11, sortOrder: 11 },
       { modelId: 'gpt-56-luna-medium', label: '⌘ GPT 5.6 Luna Medium', correct: 39.63, abstention: 6.92, hallucination: 53.45, sortOrder: 12 },
+      { modelId: 'gpt-56-luna-low', label: '⌘ GPT 5.6 Luna Low', correct: 38.63, abstention: 7.54, hallucination: 53.83, sortOrder: 12.5 },
       { modelId: 'gpt-54-thinking-mini', label: '⌘ GPT 5.4 Thinking Mini', correct: 36.50, abstention: 6.88, hallucination: 56.62, sortOrder: 23 },
       { modelId: 'gpt-55-instant', label: '⌘ GPT 5.5 Instant', correct: 45.07, abstention: 4.82, hallucination: 50.11, sortOrder: 27 },
       { modelId: 'gemini-35-flash', label: '✦ Gemini 3.5 Flash', correct: 43.08, abstention: 15.13, hallucination: 41.79, sortOrder: 28 },
@@ -4905,6 +4931,7 @@
     let lcrSortMode = getStoredEnum('lcrSortMode', ['brand', 'highest'], 'brand');
     let mmmuProSortMode = getStoredEnum('mmmuProSortMode', ['brand', 'highest'], 'brand');
     let gdpval2SortMode = getStoredEnum('gdpval2SortMode', ['brand', 'highest'], 'brand');
+    let gdpval2ViewMode = getStoredEnum('gdpval2ViewMode', ['performance', 'price'], 'performance');
     let terminalBenchV21SortMode = getStoredEnum('terminalBenchV21SortMode', ['brand', 'highest'], 'brand');
     let terminalBenchV21ViewMode = getStoredEnum('terminalBenchV21ViewMode', ['performance', 'price'], 'performance');
     let maxContextSortMode = getStoredEnum('maxContextSortMode', ['brand', 'highest'], 'brand');
@@ -5117,6 +5144,46 @@
       gdpval2Chart.update({ duration: 750, easing: 'easeInOutQuart' });
     }
 
+    const GDPVAL2_PERFORMANCE_NOTE = 'Shows performance producing outputs like documents, slides, diagrams, and spreadsheets, mirroring actual work across multiple professional domains. Higher is better.';
+    const GDPVAL2_PRICE_NOTE = 'Shows performance producing outputs like documents, slides, diagrams, and spreadsheets, mirroring actual work across multiple professional domains, together with average price per task. The best priced models appear toward the upper-left: higher performance and lower price are better. Dashed horizontal lines indicate estimated performance with an unknown price.';
+
+    function syncGdpval2ViewUI() {
+      const isPriceView = gdpval2ViewMode === 'price';
+      document.getElementById('gdpval2ViewPerformance')?.classList.toggle('active', !isPriceView);
+      document.getElementById('gdpval2ViewPrice')?.classList.toggle('active', isPriceView);
+
+      const sortSelector = document.getElementById('gdpval2SortSelector');
+      if (sortSelector) sortSelector.hidden = isPriceView;
+
+      const note = document.getElementById('gdpval2Note');
+      if (note) note.textContent = isPriceView ? GDPVAL2_PRICE_NOTE : GDPVAL2_PERFORMANCE_NOTE;
+
+      const chartContainer = document.getElementById('gdpval2Chart')?.closest('.chart-container');
+      chartContainer?.classList.toggle('gdpval-cost-view', isPriceView);
+    }
+
+    function setGdpval2View(mode) {
+      mode = ['performance', 'price'].includes(mode) ? mode : 'performance';
+      if (gdpval2ViewMode === mode) {
+        syncGdpval2ViewUI();
+        return;
+      }
+
+      gdpval2ViewMode = mode;
+      safeStorageSet('gdpval2ViewMode', mode);
+      syncGdpval2ViewUI();
+
+      if (gdpval2Chart) {
+        gdpval2Chart.destroy();
+        gdpval2Chart = null;
+      }
+
+      ensureBenchmarkRuntime().then(() => {
+        const chart = ensureBenchmarkChart('gdpval2');
+        chart?.resize();
+      });
+    }
+
     function setGdpval2AxisMin(mode) {
       mode = ['0', 'auto', 'all'].includes(mode) ? mode : '0';
       gdpval2AxisMinMode = mode;
@@ -5126,8 +5193,7 @@
         ensureBenchmarkRuntime();
         return;
       }
-      updateScoreBenchmarkAxisMin(gdpval2Chart, mode, gdpval2Chart.data.datasets[0].data, getModelScores(gdpval2AllModels));
-      gdpval2Chart.options.scales.x.max = getGdpvalAxisMax(gdpval2AllModels);
+      updateGdpval2AxisMinOptions(gdpval2Chart, mode, getGdpval2VisibleScores());
       gdpval2Chart.update({ duration: 750, easing: 'easeInOutQuart' });
     }
 
@@ -5770,14 +5836,17 @@
       { modelId: 'gpt-56-sol-xhigh', label: '⌘ GPT 5.6 Sol Extra High', score: 71, sortOrder: 2 },
       { modelId: 'gpt-56-sol-high', label: '⌘ GPT 5.6 Sol High', score: 68.3, sortOrder: 3 },
       { modelId: 'gpt-56-sol-medium', label: '⌘ GPT 5.6 Sol Medium', score: 68.7, sortOrder: 4 },
+      { modelId: 'gpt-56-sol-low', label: '⌘ GPT 5.6 Sol Low', score: 67.7, sortOrder: 4.5 },
       { modelId: 'gpt-56-terra-max', label: '⌘ GPT 5.6 Terra Max', score: 74, sortOrder: 5 },
       { modelId: 'gpt-56-terra-xhigh', label: '⌘ GPT 5.6 Terra Extra High', score: 71.3, sortOrder: 6 },
       { modelId: 'gpt-56-terra-high', label: '⌘ GPT 5.6 Terra High', score: 72.3, sortOrder: 7 },
       { modelId: 'gpt-56-terra-medium', label: '⌘ GPT 5.6 Terra Medium', score: 72.3, sortOrder: 8 },
+      { modelId: 'gpt-56-terra-low', label: '⌘ GPT 5.6 Terra Low', score: 64.3, sortOrder: 8.5 },
       { modelId: 'gpt-56-luna-max', label: '⌘ GPT 5.6 Luna Max', score: 74, sortOrder: 9 },
       { modelId: 'gpt-56-luna-xhigh', label: '⌘ GPT 5.6 Luna Extra High', score: 69.7, sortOrder: 10 },
       { modelId: 'gpt-56-luna-high', label: '⌘ GPT 5.6 Luna High', score: 69, sortOrder: 11 },
       { modelId: 'gpt-56-luna-medium', label: '⌘ GPT 5.6 Luna Medium', score: 66, sortOrder: 12 },
+      { modelId: 'gpt-56-luna-low', label: '⌘ GPT 5.6 Luna Low', score: 59.3, sortOrder: 12.5 },
       { modelId: 'gpt-54-thinking-mini', label: '⌘ GPT 5.4 Thinking Mini', score: 61.3, sortOrder: 23 },
       { modelId: 'gpt-55-instant', label: '⌘ GPT 5.5 Instant', score: 56.3, sortOrder: 27 },
       { modelId: 'gemini-35-flash', label: '✦ Gemini 3.5 Flash', score: 53.3, sortOrder: 28 },
@@ -5903,14 +5972,17 @@
       { modelId: 'gpt-56-sol-xhigh', label: '⌘ GPT 5.6 Sol Extra High', score: 83, sortOrder: 2 },
       { modelId: 'gpt-56-sol-high', label: '⌘ GPT 5.6 Sol High', score: 82, sortOrder: 3 },
       { modelId: 'gpt-56-sol-medium', label: '⌘ GPT 5.6 Sol Medium', score: 81, sortOrder: 4 },
+      { modelId: 'gpt-56-sol-low', label: '⌘ GPT 5.6 Sol Low', score: 81, sortOrder: 4.5 },
       { modelId: 'gpt-56-terra-max', label: '⌘ GPT 5.6 Terra Max', score: 81, sortOrder: 5 },
       { modelId: 'gpt-56-terra-xhigh', label: '⌘ GPT 5.6 Terra Extra High', score: 79, sortOrder: 6 },
       { modelId: 'gpt-56-terra-high', label: '⌘ GPT 5.6 Terra High', score: 79, sortOrder: 7 },
       { modelId: 'gpt-56-terra-medium', label: '⌘ GPT 5.6 Terra Medium', score: 77, sortOrder: 8 },
+      { modelId: 'gpt-56-terra-low', label: '⌘ GPT 5.6 Terra Low', score: 76, sortOrder: 8.5 },
       { modelId: 'gpt-56-luna-max', label: '⌘ GPT 5.6 Luna Max', score: 79, sortOrder: 9 },
       { modelId: 'gpt-56-luna-xhigh', label: '⌘ GPT 5.6 Luna Extra High', score: 79, sortOrder: 10 },
       { modelId: 'gpt-56-luna-high', label: '⌘ GPT 5.6 Luna High', score: 78, sortOrder: 11 },
       { modelId: 'gpt-56-luna-medium', label: '⌘ GPT 5.6 Luna Medium', score: 76, sortOrder: 12 },
+      { modelId: 'gpt-56-luna-low', label: '⌘ GPT 5.6 Luna Low', score: 74, sortOrder: 12.5 },
       { modelId: 'gpt-54-thinking-mini', label: '⌘ GPT 5.4 Thinking Mini', score: 71, sortOrder: 23 },
       { modelId: 'gpt-55-instant', label: '⌘ GPT 5.5 Instant', score: 71, sortOrder: 27 },
       { modelId: 'gemini-35-flash', label: '✦ Gemini 3.5 Flash', score: 80, sortOrder: 28 },
@@ -6052,36 +6124,44 @@
     const gdpvalHumanBaselinePlugin = {
       id: 'gdpvalHumanBaseline',
       afterDatasetsDraw(chart) {
-        const xScale = chart.scales.x;
+        const isPriceView = gdpval2ViewMode === 'price';
+        const scoreScale = isPriceView ? chart.scales.y : chart.scales.x;
         const { ctx, chartArea } = chart;
-        if (!xScale || !chartArea) return;
+        if (!scoreScale || !chartArea) return;
 
         const baselineValue = 1000;
-        const x = xScale.getPixelForValue(baselineValue);
-        if (x < chartArea.left || x > chartArea.right) return;
+        const baselinePixel = scoreScale.getPixelForValue(baselineValue);
+        if (isPriceView && (baselinePixel < chartArea.top || baselinePixel > chartArea.bottom)) return;
+        if (!isPriceView && (baselinePixel < chartArea.left || baselinePixel > chartArea.right)) return;
 
         const label = 'Human baseline corresponds to 1k';
         const paddingX = 7;
         const labelHeight = 22;
 
         ctx.save();
-        ctx.setLineDash([5, 5]);
+        ctx.setLineDash([]);
         ctx.strokeStyle = 'rgba(217, 197, 162, 0.55)';
         ctx.lineWidth = 1.5;
         ctx.beginPath();
-        ctx.moveTo(x, chartArea.top);
-        ctx.lineTo(x, chartArea.bottom);
+        if (isPriceView) {
+          ctx.moveTo(chartArea.left, baselinePixel);
+          ctx.lineTo(chartArea.right, baselinePixel);
+        } else {
+          ctx.moveTo(baselinePixel, chartArea.top);
+          ctx.lineTo(baselinePixel, chartArea.bottom);
+        }
         ctx.stroke();
-        ctx.setLineDash([]);
 
         ctx.font = '11px Inter, sans-serif';
         const textWidth = ctx.measureText(label).width;
-        let labelX = x + 8;
-        if (labelX + textWidth + paddingX * 2 > chartArea.right) {
-          labelX = x - textWidth - paddingX * 2 - 8;
+        let labelX = isPriceView ? chartArea.right - textWidth - paddingX * 2 : baselinePixel + 8;
+        if (!isPriceView && labelX + textWidth + paddingX * 2 > chartArea.right) {
+          labelX = baselinePixel - textWidth - paddingX * 2 - 8;
         }
 
-        const labelY = Math.max(4, chartArea.top - labelHeight - 6);
+        const labelY = isPriceView
+          ? Math.max(chartArea.top + 4, baselinePixel - labelHeight - 5)
+          : Math.max(4, chartArea.top - labelHeight - 6);
         ctx.fillStyle = 'rgba(18, 18, 26, 0.88)';
         ctx.strokeStyle = 'rgba(217, 197, 162, 0.28)';
         ctx.lineWidth = 1;
@@ -6101,42 +6181,45 @@
       }
     };
 
-    // GDPval-AA v2 - Horizontal Bar Chart
+    // GDPval-AA v2 - Horizontal bar and connected scatter views
     let gdpval2Chart;
     const gdpval2AllModels = [
-      { modelId: 'gpt-56-sol-max', label: '⌘ GPT 5.6 Sol Max', score: 1748, sortOrder: 1 },
-      { modelId: 'gpt-56-sol-xhigh', label: '⌘ GPT 5.6 Sol Extra High', score: 1702, sortOrder: 2 },
-      { modelId: 'gpt-56-sol-high', label: '⌘ GPT 5.6 Sol High', score: 1630, sortOrder: 3 },
-      { modelId: 'gpt-56-sol-medium', label: '⌘ GPT 5.6 Sol Medium', score: 1562, sortOrder: 4 },
-      { modelId: 'gpt-56-terra-max', label: '⌘ GPT 5.6 Terra Max', score: 1593, sortOrder: 5 },
-      { modelId: 'gpt-56-terra-xhigh', label: '⌘ GPT 5.6 Terra Extra High', score: 1572, sortOrder: 6 },
-      { modelId: 'gpt-56-terra-high', label: '⌘ GPT 5.6 Terra High', score: 1513, sortOrder: 7 },
-      { modelId: 'gpt-56-terra-medium', label: '⌘ GPT 5.6 Terra Medium', score: 1404, sortOrder: 8 },
-      { modelId: 'gpt-56-luna-max', label: '⌘ GPT 5.6 Luna Max', score: 1592, sortOrder: 9 },
-      { modelId: 'gpt-56-luna-xhigh', label: '⌘ GPT 5.6 Luna Extra High', score: 1539, sortOrder: 10 },
-      { modelId: 'gpt-56-luna-high', label: '⌘ GPT 5.6 Luna High', score: 1472, sortOrder: 11 },
-      { modelId: 'gpt-56-luna-medium', label: '⌘ GPT 5.6 Luna Medium', score: 1273, sortOrder: 12 },
+      { modelId: 'gpt-56-sol-max', label: '⌘ GPT 5.6 Sol Max', score: 1743, costPerTask: 3.49, sortOrder: 1 },
+      { modelId: 'gpt-56-sol-xhigh', label: '⌘ GPT 5.6 Sol Extra High', score: 1702, costPerTask: 2.11, sortOrder: 2 },
+      { modelId: 'gpt-56-sol-high', label: '⌘ GPT 5.6 Sol High', score: 1630, costPerTask: 1.37, sortOrder: 3 },
+      { modelId: 'gpt-56-sol-medium', label: '⌘ GPT 5.6 Sol Medium', score: 1562, costPerTask: 0.74, sortOrder: 4 },
+      { modelId: 'gpt-56-sol-low', label: '⌘ GPT 5.6 Sol Low', score: 1445, costPerTask: 0.33, sortOrder: 4.5 },
+      { modelId: 'gpt-56-terra-max', label: '⌘ GPT 5.6 Terra Max', score: 1593, costPerTask: 1.44, sortOrder: 5 },
+      { modelId: 'gpt-56-terra-xhigh', label: '⌘ GPT 5.6 Terra Extra High', score: 1572, costPerTask: 0.92, sortOrder: 6 },
+      { modelId: 'gpt-56-terra-high', label: '⌘ GPT 5.6 Terra High', score: 1513, costPerTask: 0.61, sortOrder: 7 },
+      { modelId: 'gpt-56-terra-medium', label: '⌘ GPT 5.6 Terra Medium', score: 1404, costPerTask: 0.23, sortOrder: 8 },
+      { modelId: 'gpt-56-terra-low', label: '⌘ GPT 5.6 Terra Low', score: 1249, costPerTask: 0.11, sortOrder: 8.5 },
+      { modelId: 'gpt-56-luna-max', label: '⌘ GPT 5.6 Luna Max', score: 1592, costPerTask: 0.51, sortOrder: 9 },
+      { modelId: 'gpt-56-luna-xhigh', label: '⌘ GPT 5.6 Luna Extra High', score: 1539, costPerTask: 0.33, sortOrder: 10 },
+      { modelId: 'gpt-56-luna-high', label: '⌘ GPT 5.6 Luna High', score: 1472, costPerTask: 0.21, sortOrder: 11 },
+      { modelId: 'gpt-56-luna-medium', label: '⌘ GPT 5.6 Luna Medium', score: 1272, costPerTask: 0.07, sortOrder: 12 },
+      { modelId: 'gpt-56-luna-low', label: '⌘ GPT 5.6 Luna Low', score: 1146, costPerTask: 0.04, sortOrder: 12.5 },
       { modelId: 'gpt-54-thinking-mini', label: '⌘ GPT 5.4 Thinking Mini', score: 1102, sortOrder: 23, estimated: true },
-      { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro Extended', score: 963, sortOrder: 35 },
-      { modelId: 'gemini-35-flash-extended', label: '✦ Gemini 3.5 Flash Extended', score: 1339, sortOrder: 40 },
-      { modelId: 'gemini-31-flash-lite-extended', label: '✦ Gemini 3.1 Flash Lite Extended', score: 641, sortOrder: 55 },
-      { modelId: 'claude-5-fable', label: '❋ Claude 5 Fable Thinking Max', score: 1756, sortOrder: 63.8 },
-      { modelId: 'claude-48-opus', label: '❋ Claude 4.8 Opus Thinking Max', score: 1594, sortOrder: 63.9 },
-      { modelId: 'claude-5-sonnet', label: '❋ Claude 5 Sonnet Thinking Max', score: 1603, sortOrder: 66.8 },
-      { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', score: 899, sortOrder: 90 },
-      { modelId: 'glm-52-deep-think-max', label: 'Ƶ GLM 5.2 Deep Think Max', score: 1511, sortOrder: 97 },
+      { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro Extended', score: 965, costPerTask: 0.27, sortOrder: 35 },
+      { modelId: 'gemini-35-flash-extended', label: '✦ Gemini 3.5 Flash Extended', score: 1349, costPerTask: 1.74, sortOrder: 40 },
+      { modelId: 'gemini-31-flash-lite-extended', label: '✦ Gemini 3.1 Flash Lite Extended', score: 642, costPerTask: 0.02, sortOrder: 55 },
+      { modelId: 'claude-5-fable', label: '❋ Claude 5 Fable Thinking Max', score: 1760, costPerTask: 7.75, sortOrder: 63.8 },
+      { modelId: 'claude-48-opus', label: '❋ Claude 4.8 Opus Thinking Max', score: 1600, costPerTask: 4.34, sortOrder: 63.9 },
+      { modelId: 'claude-5-sonnet', label: '❋ Claude 5 Sonnet Thinking Max', score: 1607, costPerTask: 4.70, sortOrder: 66.8 },
+      { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', score: 907, costPerTask: 0.25, sortOrder: 90 },
+      { modelId: 'glm-52-deep-think-max', label: 'Ƶ GLM 5.2 Deep Think Max', score: 1514, costPerTask: 1.22, sortOrder: 97 },
       { modelId: 'glm-5t-deep-think', label: 'Ƶ GLM 5 Turbo Deep Think', score: 1218, sortOrder: 107, estimated: true },
       { modelId: 'glm-5v-turbo-deep-think', label: 'Ƶ GLM 5V Turbo Deep Think', score: 1038, sortOrder: 109, estimated: true },
-      { modelId: 'grok-45-expert', label: 'Ø Grok 4.5 Expert', score: 1082, sortOrder: 109.4 },
-      { modelId: 'minimax-m3-thinking', label: '≋ MiniMax M3 Thinking', score: 1389, sortOrder: 116.5 },
-      { modelId: 'nemotron-3-ultra-reasoning', label: '▰ Nemotron 3 Ultra Reasoning', score: 1160, sortOrder: 117.5 },
-      { modelId: 'muse-spark-11', label: 'ƒ Muse Spark 1.1', score: 1376, sortOrder: 117.6 },
-      { modelId: 'mimo-v25-pro', label: '⋔ MiMo V2.5 Pro', score: 1263, sortOrder: 118 },
-      { modelId: 'mimo-v25', label: '⋔ MiMo V2.5', score: 1145, sortOrder: 118.5 },
-      { modelId: 'qwen-37-max-think', label: '▽ Qwen 3.7 Max Thinking', score: 1272, sortOrder: 124 },
-      { modelId: 'qwen-37-plus-think', label: '▽ Qwen 3.7 Plus Thinking', score: 940, sortOrder: 124.5 },
-      { modelId: 'kimi-k3-max', label: 'Ḱ Kimi K3 Thinking Max', score: 1668, sortOrder: 126.5 },
-      { modelId: 'kimi-k26-thinking', label: 'Ḱ Kimi K2.6 Thinking High', score: 1191, sortOrder: 127 }
+      { modelId: 'grok-45-expert', label: 'Ø Grok 4.5 Expert', score: 1085, costPerTask: 0.10, sortOrder: 109.4 },
+      { modelId: 'minimax-m3-thinking', label: '≋ MiniMax M3 Thinking', score: 1395, costPerTask: 0.35, sortOrder: 116.5 },
+      { modelId: 'nemotron-3-ultra-reasoning', label: '▰ Nemotron 3 Ultra Reasoning', score: 1164, costPerTask: 0.34, sortOrder: 117.5 },
+      { modelId: 'muse-spark-11', label: 'ƒ Muse Spark 1.1', score: 1374, costPerTask: 0.29, sortOrder: 117.6 },
+      { modelId: 'mimo-v25-pro', label: '⋔ MiMo V2.5 Pro', score: 1265, costPerTask: 0.04, sortOrder: 118 },
+      { modelId: 'mimo-v25', label: '⋔ MiMo V2.5', score: 1145, costPerTask: 0.01, sortOrder: 118.5 },
+      { modelId: 'qwen-37-max-think', label: '▽ Qwen 3.7 Max Thinking', score: 1273, costPerTask: 1.20, sortOrder: 124 },
+      { modelId: 'qwen-37-plus-think', label: '▽ Qwen 3.7 Plus Thinking', score: 936, costPerTask: 0.13, sortOrder: 124.5 },
+      { modelId: 'kimi-k3-max', label: 'Ḱ Kimi K3 Thinking Max', score: 1685, costPerTask: 3.02, sortOrder: 126.5 },
+      { modelId: 'kimi-k26-thinking', label: 'Ḱ Kimi K2.6 Thinking High', score: 1189, costPerTask: 0.55, sortOrder: 127 }
     ];
 
     function getGdpval2Data() {
@@ -6179,74 +6262,300 @@
       return formatGdpvalScore(score) + ' (' + percentage + '%)';
     }
 
-    function initGdpval2Chart() {
-      if (gdpval2Chart) return gdpval2Chart;
-    const gdpval2Ctx = document.getElementById('gdpval2Chart').getContext('2d');
-    const gdpval2InitData = getGdpval2Data();
-    gdpval2Chart = new Chart(gdpval2Ctx, {
-      type: 'bar',
-      data: {
-        labels: gdpval2InitData.labels,
-        datasets: [{
-          label: 'Score ↑',
-          data: gdpval2InitData.data,
-          backgroundColor: gdpval2InitData.backgroundColors,
-          hoverBackgroundColor: gdpval2InitData.hoverBackgroundColors,
-          borderWidth: 0,
-          borderRadius: 4
-        }]
-      },
-      options: {
-        indexAxis: 'y',
-        responsive: true,
-        maintainAspectRatio: false,
-        layout: {
-          padding: {
-            top: 30
-          }
+    const GDPVAL2_UNKNOWN_COST_MODEL_IDS = new Set([
+      'gpt-54-thinking-mini',
+      'glm-5t-deep-think',
+      'glm-5v-turbo-deep-think'
+    ]);
+
+    function getGdpval2PricedModels(includeAll = false) {
+      return gdpval2AllModels
+        .filter(model => typeof model.costPerTask === 'number')
+        .filter(model => includeAll || modelVisibility[model.modelId]);
+    }
+
+    function getGdpval2UnknownCostModels(includeAll = false) {
+      return gdpval2AllModels
+        .filter(model => GDPVAL2_UNKNOWN_COST_MODEL_IDS.has(model.modelId))
+        .filter(model => includeAll || modelVisibility[model.modelId]);
+    }
+
+    function getPriceReferenceAxisMax(visiblePrices, fallbackPrices) {
+      const prices = visiblePrices.length ? visiblePrices : fallbackPrices;
+      const rawMax = Math.max(...prices, 1);
+      if (rawMax <= 1) return 1;
+
+      const magnitude = Math.pow(10, Math.floor(Math.log10(rawMax)));
+      const step = magnitude / 2;
+      return Math.ceil(rawMax / step) * step;
+    }
+
+    function getGdpval2ReferenceLineMax() {
+      const visiblePrices = getGdpval2PricedModels().map(model => model.costPerTask);
+      const fallbackPrices = getGdpval2PricedModels(true).map(model => model.costPerTask);
+      return getPriceReferenceAxisMax(visiblePrices, fallbackPrices);
+    }
+
+    function getGdpval2UnknownCostDatasets() {
+      const xMax = getGdpval2ReferenceLineMax();
+      return getGdpval2UnknownCostModels().map(model => {
+        const modelLabel = model.label.replace(/^\S+\s+/, '');
+        const style = getTerminalBenchV21MrcrStyle(model.modelId);
+        const point = x => ({
+          x,
+          y: model.score,
+          modelId: model.modelId,
+          modelLabel,
+          estimated: model.estimated === true,
+          unknownCost: true
+        });
+
+        return {
+          label: `${modelLabel} (price unknown)`,
+          data: [point(0), point(xMax)],
+          parsing: false,
+          showLine: true,
+          isUnknownCostReference: true,
+          gdpvalSortOrder: model.sortOrder,
+          borderColor: style.color,
+          backgroundColor: style.color,
+          borderWidth: 2,
+          borderDash: [6, 5],
+          tension: 0,
+          fill: false,
+          pointStyle: 'line',
+          pointRadius: 0,
+          pointHoverRadius: 0,
+          pointHitRadius: 6
+        };
+      });
+    }
+
+    function getGdpval2CostDatasets() {
+      const groups = new Map();
+
+      getGdpval2PricedModels().forEach(model => {
+        const series = getTerminalBenchV21SeriesMeta(model);
+        if (!groups.has(series.key)) {
+          groups.set(series.key, { label: series.label, sortOrder: model.sortOrder, points: [] });
+        }
+
+        const style = getTerminalBenchV21MrcrStyle(model.modelId);
+        groups.get(series.key).points.push({
+          x: model.costPerTask,
+          y: model.score,
+          modelId: model.modelId,
+          modelLabel: model.label.replace(/^\S+\s+/, ''),
+          pointLabel: series.pointLabel,
+          effortOrder: series.effortOrder,
+          sortOrder: model.sortOrder,
+          estimated: model.estimated === true,
+          style
+        });
+      });
+
+      const pricedDatasets = Array.from(groups.values())
+        .sort((a, b) => a.sortOrder - b.sortOrder)
+        .map(group => {
+          group.points.sort((a, b) => a.effortOrder - b.effortOrder || a.sortOrder - b.sortOrder);
+          const firstStyle = group.points[0].style;
+          return {
+            label: group.label,
+            data: group.points,
+            parsing: false,
+            showLine: group.points.length > 1,
+            gdpvalSortOrder: group.sortOrder,
+            borderColor: firstStyle.color,
+            backgroundColor: firstStyle.color,
+            borderWidth: 2,
+            tension: 0.22,
+            fill: false,
+            pointStyle: 'circle',
+            pointRadius: group.points.map(point => point.style.pointRadius),
+            pointHoverRadius: group.points.map(point => point.style.pointHoverRadius),
+            pointBackgroundColor: group.points.map(point => point.style.color),
+            pointBorderColor: group.points.map(point => point.style.color)
+          };
+        });
+
+      return pricedDatasets
+        .concat(getGdpval2UnknownCostDatasets())
+        .sort((a, b) => a.gdpvalSortOrder - b.gdpvalSortOrder);
+    }
+
+    function getGdpval2VisibleScores() {
+      if (gdpval2ViewMode === 'price') {
+        return getGdpval2PricedModels()
+          .concat(getGdpval2UnknownCostModels())
+          .map(model => model.score);
+      }
+      return getGdpval2Data().data;
+    }
+
+    function getGdpval2AllScoresForView() {
+      const models = gdpval2ViewMode === 'price'
+        ? getGdpval2PricedModels(true).concat(getGdpval2UnknownCostModels(true))
+        : gdpval2AllModels;
+      return models.map(model => model.score);
+    }
+
+    function updateGdpval2AxisMinOptions(chart, mode, visibleScores) {
+      if (!chart) return;
+      const scoreAxis = gdpval2ViewMode === 'price' ? chart.options.scales.y : chart.options.scales.x;
+      scoreAxis.min = getScoreAxisMin(mode, visibleScores, getGdpval2AllScoresForView());
+      scoreAxis.beginAtZero = mode === '0';
+    }
+
+    const gdpval2PointLabelsPlugin = {
+      id: 'gdpval2PointLabels',
+      afterDatasetsDraw(chart) {
+        if (gdpval2ViewMode !== 'price') return;
+        const context = chart.ctx;
+        context.save();
+        context.fillStyle = '#b3a385';
+        context.font = '500 10px Inter, sans-serif';
+        context.textAlign = 'center';
+
+        chart.data.datasets.forEach((dataset, datasetIndex) => {
+          if (dataset.isUnknownCostReference || dataset.data.length < 2) return;
+          const meta = chart.getDatasetMeta(datasetIndex);
+          meta.data.forEach((point, pointIndex) => {
+            const rawPoint = dataset.data[pointIndex];
+            const radius = Array.isArray(dataset.pointRadius) ? dataset.pointRadius[pointIndex] : dataset.pointRadius;
+            const placeBelow = pointIndex % 2 === 1;
+            context.textBaseline = placeBelow ? 'top' : 'bottom';
+            context.fillText(rawPoint.pointLabel, point.x, point.y + (placeBelow ? radius + 5 : -radius - 5));
+          });
+        });
+
+        context.restore();
+      }
+    };
+
+    function getGdpval2BarConfig() {
+      const initData = getGdpval2Data();
+      return {
+        type: 'bar',
+        data: {
+          labels: initData.labels,
+          datasets: [{
+            label: 'Score ↑',
+            data: initData.data,
+            backgroundColor: initData.backgroundColors,
+            hoverBackgroundColor: initData.hoverBackgroundColors,
+            borderWidth: 0,
+            borderRadius: 4
+          }]
         },
-        plugins: {
-          legend: {
-            display: false
-          },
-          tooltip: {
-            backgroundColor: 'rgba(18, 18, 26, 0.95)',
-            titleColor: '#d9c5a2',
-            bodyColor: '#b3a385',
-            borderColor: 'rgba(255, 255, 255, 0.1)',
-            borderWidth: 1,
-            padding: 12,
-            cornerRadius: 8,
-            callbacks: {
-              label: function (context) {
-                return formatGdpval2RelativeScore(context.parsed.x);
-              }
+        plugins: [gdpvalHumanBaselinePlugin],
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          layout: { padding: { top: 30 } },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              backgroundColor: 'rgba(18, 18, 26, 0.95)',
+              titleColor: '#d9c5a2',
+              bodyColor: '#b3a385',
+              borderColor: 'rgba(255, 255, 255, 0.1)',
+              borderWidth: 1,
+              padding: 12,
+              cornerRadius: 8,
+              callbacks: { label: context => formatGdpval2RelativeScore(context.parsed.x) }
             }
+          },
+          scales: {
+            x: {
+              beginAtZero: gdpval2AxisMinMode === '0',
+              min: getScoreAxisMin(gdpval2AxisMinMode, initData.data, getModelScores(gdpval2AllModels)),
+              max: getGdpvalAxisMax(gdpval2AllModels),
+              ticks: { callback: value => formatGdpval2RelativeAxisTick(value) },
+              grid: { color: 'rgba(255, 255, 255, 0.05)' }
+            },
+            y: { grid: { display: false } }
           }
-        },
-        scales: {
-          x: {
-            beginAtZero: gdpval2AxisMinMode === '0',
-            min: getScoreAxisMin(gdpval2AxisMinMode, gdpval2InitData.data, getModelScores(gdpval2AllModels)),
-            max: getGdpvalAxisMax(gdpval2AllModels),
-            ticks: {
-              callback: function (value) {
-                return formatGdpval2RelativeAxisTick(value);
+        }
+      };
+    }
+
+    function getGdpval2CostConfig() {
+      const datasets = getGdpval2CostDatasets();
+      const visibleScores = getGdpval2VisibleScores();
+      return {
+        type: 'scatter',
+        data: { datasets },
+        plugins: [gdpvalHumanBaselinePlugin, gdpval2PointLabelsPlugin],
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          layout: { padding: { top: 26, right: 12 } },
+          interaction: { mode: 'nearest', intersect: false },
+          plugins: {
+            legend: {
+              display: true,
+              position: 'bottom',
+              labels: {
+                color: '#b3a385',
+                usePointStyle: true,
+                boxWidth: 9,
+                boxHeight: 9,
+                padding: 14,
+                font: { size: 10 }
               }
             },
-            grid: {
-              color: 'rgba(255, 255, 255, 0.05)'
+            tooltip: {
+              backgroundColor: 'rgba(18, 18, 26, 0.95)',
+              titleColor: '#d9c5a2',
+              bodyColor: '#b3a385',
+              borderColor: 'rgba(255, 255, 255, 0.1)',
+              borderWidth: 1,
+              padding: 12,
+              cornerRadius: 8,
+              callbacks: {
+                title: items => items[0]?.raw?.modelLabel || '',
+                label: context => {
+                  const lines = [
+                    `Performance: ${formatGdpval2RelativeScore(context.raw.y)}`,
+                    context.raw.unknownCost
+                      ? 'Average price per task: Unknown'
+                      : `Average price per task: US$${context.raw.x.toFixed(2)}`
+                  ];
+                  if (context.raw.estimated) lines.push('Performance is estimated');
+                  return lines;
+                }
+              }
             }
           },
-          y: {
-            grid: {
-              display: false
+          scales: {
+            x: {
+              type: 'linear',
+              beginAtZero: true,
+              min: 0,
+              max: getGdpval2ReferenceLineMax(),
+              ticks: { callback: value => 'US$' + Number(value).toFixed(2) },
+              grid: { color: 'rgba(255, 255, 255, 0.05)' },
+              title: { display: true, text: 'Average price per task (USD)', color: '#8a7d65' }
+            },
+            y: {
+              beginAtZero: gdpval2AxisMinMode === '0',
+              min: getScoreAxisMin(gdpval2AxisMinMode, visibleScores, getGdpval2AllScoresForView()),
+              max: getGdpvalAxisMax(gdpval2AllModels),
+              ticks: { callback: value => formatGdpval2RelativeAxisTick(value) },
+              grid: { color: 'rgba(255, 255, 255, 0.05)' },
+              title: { display: true, text: 'GDPval-AA v2 score', color: '#8a7d65' }
             }
           }
         }
-      },
-      plugins: [gdpvalHumanBaselinePlugin]
-    });
+      };
+    }
+
+    function initGdpval2Chart() {
+      if (gdpval2Chart) return gdpval2Chart;
+      const context = document.getElementById('gdpval2Chart').getContext('2d');
+      const config = gdpval2ViewMode === 'price' ? getGdpval2CostConfig() : getGdpval2BarConfig();
+      gdpval2Chart = new Chart(context, config);
       return gdpval2Chart;
     }
 
@@ -6413,7 +6722,7 @@
     function getTerminalBenchV21ReferenceLineMax() {
       const visiblePrices = getTerminalBenchV21PricedModels().map(model => model.costPerTask);
       const fallbackPrices = getTerminalBenchV21PricedModels(true).map(model => model.costPerTask);
-      return Math.max(...(visiblePrices.length ? visiblePrices : fallbackPrices), 1);
+      return getPriceReferenceAxisMax(visiblePrices, fallbackPrices);
     }
 
     function getTerminalBenchV21UnknownCostDatasets() {
@@ -6652,6 +6961,7 @@
               type: 'linear',
               beginAtZero: true,
               min: 0,
+              max: getTerminalBenchV21ReferenceLineMax(),
               ticks: { callback: value => 'US$' + Number(value).toFixed(2) },
               grid: { color: 'rgba(255, 255, 255, 0.05)' },
               title: { display: true, text: 'Price per solved task (USD)', color: '#8a7d65' }
@@ -6775,6 +7085,14 @@
         ]
       },
       {
+        modelId: 'gpt-56-sol-low', label: '⌘ GPT 5.6 Sol Low', sortOrder: 4.5,
+        color: 'rgba(16, 163, 127, 1)',
+        segments: [
+          { value: 256000, plans: 'Free, Go, Plus' },
+          { value: 400000, plans: 'Pro' }
+        ]
+      },
+      {
         modelId: 'gpt-56-terra-max', label: '⌘ GPT 5.6 Terra Max', sortOrder: 5,
         color: 'rgba(16, 163, 127, 1)',
         segments: [
@@ -6807,6 +7125,14 @@
         ]
       },
       {
+        modelId: 'gpt-56-terra-low', label: '⌘ GPT 5.6 Terra Low', sortOrder: 8.5,
+        color: 'rgba(16, 163, 127, 1)',
+        segments: [
+          { value: 256000, plans: 'Free, Go, Plus' },
+          { value: 400000, plans: 'Pro' }
+        ]
+      },
+      {
         modelId: 'gpt-56-luna-max', label: '⌘ GPT 5.6 Luna Max', sortOrder: 9,
         color: 'rgba(16, 163, 127, 1)',
         segments: [
@@ -6832,6 +7158,14 @@
       },
       {
         modelId: 'gpt-56-luna-medium', label: '⌘ GPT 5.6 Luna Medium', sortOrder: 12,
+        color: 'rgba(16, 163, 127, 1)',
+        segments: [
+          { value: 256000, plans: 'Free, Go, Plus' },
+          { value: 400000, plans: 'Pro' }
+        ]
+      },
+      {
+        modelId: 'gpt-56-luna-low', label: '⌘ GPT 5.6 Luna Low', sortOrder: 12.5,
         color: 'rgba(16, 163, 127, 1)',
         segments: [
           { value: 256000, plans: 'Free, Go, Plus' },
@@ -7155,6 +7489,19 @@
       });
     }
 
+    function buildGdpval2ExportRows(includeAll) {
+      return getBenchmarkExportItems(gdpval2AllModels, includeAll).map(model => {
+        const estimated = isEstimatedBenchmarkEntry(model);
+        const cost = typeof model.costPerTask === 'number' ? `US$${model.costPerTask.toFixed(2)}` : 'N/A';
+        return [
+          cleanMarkdownLabel(model.label),
+          formatMarkdownValue(model.score, 'score', estimated),
+          cost,
+          estimated ? 'Yes' : 'No'
+        ];
+      });
+    }
+
     function buildMaxContextExportRows(includeAll) {
       return getBenchmarkExportItems(maxContextAllModels, includeAll).map(model => {
         const estimated = isEstimatedBenchmarkEntry(model);
@@ -7205,7 +7552,7 @@
       }
 
       if (includeAll || benchSectionVisibility.gdpval2) {
-        appendMarkdownSection(lines, 'GDPval-AA v2', ['Model', 'Score', 'Estimated'], buildScoreExportRows(gdpval2AllModels, includeAll, 'score'));
+        appendMarkdownSection(lines, 'GDPval-AA v2', ['Model', 'Score', 'Average price per task', 'Estimated'], buildGdpval2ExportRows(includeAll));
       }
 
       if (includeAll || benchSectionVisibility['terminal-v21']) {
@@ -7446,7 +7793,9 @@
       gdpval2: {
         sectionId: 'bench-section-gdpval2', canvasId: 'gdpval2Chart', init: initGdpval2Chart,
         getInstance: () => gdpval2Chart,
-        hasData: () => getGdpval2Data().labels.length > 0
+        hasData: () => gdpval2ViewMode === 'price'
+          ? getGdpval2CostDatasets().length > 0
+          : getGdpval2Data().labels.length > 0
       },
       'terminal-v21': {
         sectionId: 'bench-section-terminal-v21', canvasId: 'terminalBenchV21Chart', init: initTerminalBenchV21Chart,
@@ -7980,6 +8329,7 @@
     // Initialize saved toggle states from localStorage on page load
     function initializeSavedStates() {
       initUnknownHighlights();
+      syncGdpval2ViewUI();
       syncTerminalBenchV21ViewUI();
 
       // Restore model profile state, seeding Profile 1 from legacy modelVisibility when needed.
