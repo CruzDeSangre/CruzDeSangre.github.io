@@ -1262,7 +1262,6 @@
     }
 
     .hide-bench-omniscience .bench-section-omniscience,
-    .hide-bench-mrcr .bench-section-mrcr,
     .hide-bench-aalcr .bench-section-aalcr,
     .hide-bench-maxcontext .bench-section-maxcontext,
     .hide-bench-mmmu .bench-section-mmmu {
@@ -3104,18 +3103,18 @@
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot" data-model="gemini-31-pro" onclick="toggleIndividualModel('gemini-31-pro')">
-                <span class="model-dot-indicator dot-gemini"></span>
+                <span class="model-dot-indicator dot-gemini-legacy"></span>
                 <span class="model-dot-label">Gemini 3.1 Pro Extended</span>
               </div>
-              <div class="model-dot" data-model="gemini-35-flash-extended"
-                onclick="toggleIndividualModel('gemini-35-flash-extended')">
+              <div class="model-dot" data-model="gemini-36-flash-extended"
+                onclick="toggleIndividualModel('gemini-36-flash-extended')">
                 <span class="model-dot-indicator dot-gemini"></span>
-                <span class="model-dot-label">Gemini 3.5 Flash Extended</span>
+                <span class="model-dot-label">Gemini 3.6 Flash Extended</span>
               </div>
-              <div class="model-dot" data-model="gemini-31-flash-lite-extended"
-                onclick="toggleIndividualModel('gemini-31-flash-lite-extended')">
+              <div class="model-dot" data-model="gemini-35-flash-lite-extended"
+                onclick="toggleIndividualModel('gemini-35-flash-lite-extended')">
                 <span class="model-dot-indicator dot-gemini"></span>
-                <span class="model-dot-label">Gemini 3.1 Flash Lite Extended</span>
+                <span class="model-dot-label">Gemini 3.5 Flash Lite Extended</span>
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
@@ -3229,12 +3228,6 @@
               <div class="model-dot" data-model="gpt-55-instant" onclick="toggleIndividualModel('gpt-55-instant')">
                 <span class="model-dot-indicator dot-gpt-legacy"></span>
                 <span class="model-dot-label">GPT 5.5 Instant</span>
-              </div>
-            </div>
-            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
-              <div class="model-dot" data-model="gemini-35-flash" onclick="toggleIndividualModel('gemini-35-flash')">
-                <span class="model-dot-indicator dot-gemini"></span>
-                <span class="model-dot-label">Gemini 3.5 Flash</span>
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
@@ -3359,10 +3352,6 @@
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
-              <div class="model-dot bench-toggle-mrcr active" data-bench="mrcr" onclick="toggleBenchSection('mrcr')">
-                <span class="model-dot-indicator dot-long"></span>
-                <span class="model-dot-label">MRCR v2 8-Needle</span>
-              </div>
               <div class="model-dot bench-toggle-aalcr active" data-bench="aalcr" onclick="toggleBenchSection('aalcr')">
                 <span class="model-dot-indicator dot-long"></span>
                 <span class="model-dot-label">AA-LCR</span>
@@ -3476,73 +3465,6 @@
         </details>
       </div>
 
-      <!-- MRCR v2 -->
-      <div id="bench-section-mrcr">
-        <div class="section-title-wrapper" style="margin-top: 3rem;">
-          <h2 class="section-title section-title-long">Long Context Accuracy — MRCR v2 8-Needle Benchmark</h2>
-        </div>
-        <div class="chart-container">
-          <canvas id="mrcrChart"></canvas>
-        </div>
-        <p class="chart-note">Shows how accuracy at locating specific details in context degrades as context length
-          increases. Ranges from 8k to 1048k (1M) tokens. Higher is better.</p>
-        <div class="slider-container"
-          style="display: flex; flex-direction: column; align-items: center; margin-top: 0.75rem; margin-bottom: 0.5rem; gap: 0.25rem;">
-          <span class="sort-selector-label"><strong>Max Context Length:</strong> <span id="mrcrXAxisLabel"
-              style="color: var(--text-primary);">1M</span></span>
-          <input type="range" id="mrcrXAxisSlider" class="custom-slider" min="0" max="6" value="6" step="1"
-            oninput="updateMrcrXAxisLabel(this.value)" onchange="setMrcrXAxis(this.value)">
-        </div>
-        <div class="sort-selector" id="mrcrYAxisSelector" style="margin-top: 0.5rem;">
-          <span class="sort-selector-label"><strong>Y-Axis Min</strong></span>
-          <div class="sort-selector-buttons">
-            <button class="sort-btn active" onclick="setMrcrYAxis('0')" id="mrcrYAxis0">0%</button>
-            <button class="sort-btn" onclick="setMrcrYAxis('auto')" id="mrcrYAxisAuto">Dynamic</button>
-          </div>
-        </div>
-
-        <!-- Notes for second chart -->
-        <details class="notes collapsible" style="margin-top: 1rem;" open>
-          <summary class="notes-header">
-            <p class="notes-title">MRCR v2 8-Needle Notes</p>
-            <span class="notes-toggle">▼</span>
-          </summary>
-          <div class="notes-content">
-            <ul class="notes-list">
-              <li>• Differs greatly from the next benchmark. While AA-LCR revolves around comprehending really long
-                texts, MRCR v2 8-Needle evaluates the model capability to find specific information in those texts.</li>
-              <li>• There are no benchmarks for 200k tokens.</li>
-              <li>• This benchmark doesn't support all models, thus it's likely some of the models selected do not
-                appear here.
-              </li>
-              <li>• GLM and MiniMax models didn't have the benchmark run through all their context window.</li>
-              <li>• Maximum context window of <strong>GPT Instant</strong> models is 27k/54k/128k tokens
-                (Free/Plus,Go/Pro).
-              </li>
-              <li>• Maximum context window of <strong>GPT Thinking</strong> models is 256k/400k (Free,Go,Plus/Pro)
-                tokens.
-              </li>
-              <li>• Maximum context window of all <strong>Gemini</strong> models is
-                32k/128k/1M tokens (Free/Plus/Pro,Ultra).</li>
-              <li>• Maximum context window of <strong>Claude >4.6</strong> models is 200k/500k tokens (Free/Pro,Max
-                x5,Max x20); other Claude models are 200k tokens.</li>
-              <li>• Maximum context window of all <strong>Grok</strong> models is 1M tokens.</li>
-              <li>• Maximum context window of <strong>GLM 5.2</strong> models is 1M tokens; other GLM models have 200k
-                tokens.</li>
-              <li>• Maximum context window of <strong>Qwen Omni</strong> models is 262k tokens.
-              </li>
-              <li>• Maximum context window of <strong>Qwen Plus and Max</strong> models is 1M
-                tokens.
-              <li>• Maximum context window of all <strong>Kimi</strong> models is 200k tokens.</li>
-              <li>• Maximum context window of all <strong>MiMo</strong> models is 1M tokens.</li>
-              <li>• Maximum context window of all <strong>MiniMax</strong> models is 1M tokens.</li>
-              <li>• Maximum context window of all <strong>Nemotron</strong> models is 1M tokens.</li>
-              <li>• 1M tokens equals 1048k tokens.</li>
-            </ul>
-          </div>
-        </details>
-      </div>
-
       <!-- Long Context Reasoning - AA-LCR -->
       <div id="bench-section-aalcr">
         <div class="section-title-wrapper" style="margin-top: 3rem;">
@@ -3579,8 +3501,7 @@
           </summary>
           <div class="notes-content">
             <ul class="notes-list">
-              <li>• Differs greatly from the next benchmark. While AA-LCR revolves around comprehending really long
-                texts, MRCR v2 8-Needle evaluates the model capability to find specific information in those texts.</li>
+              <li>• AA-LCR evaluates extraction, comprehension and synthesis across long texts.</li>
               <li>• Maximum context window of <strong>GPT Instant</strong> models is 27k/54k/128k tokens
                 (Free/Plus,Go/Pro).
               </li>
@@ -4135,7 +4056,7 @@
     // Legacy state variables kept for localStorage migration (old: 0=hidden, 1=list-only, 2=active)
     let otherModelsState = 0;      // kept for migration logic — do NOT use directly
     let legacyModelsState = 0;     // kept for migration logic — do NOT use directly
-    let omniscienceChart, mrcrChart;
+    let omniscienceChart;
 
     // Individual model visibility
     const modelVisibility = {
@@ -4157,9 +4078,8 @@
       'gpt-54-thinking-mini': false,
       'gpt-55-instant': false,
       'gemini-31-pro': true,
-      'gemini-35-flash-extended': true,
-      'gemini-35-flash': false,
-      'gemini-31-flash-lite-extended': true,
+      'gemini-36-flash-extended': true,
+      'gemini-35-flash-lite-extended': true,
       'claude-haiku': false,   // Starts hidden by default
       'claude-5-fable': true,     // Starts visible by default
       'claude-48-opus': true,     // Starts visible by default
@@ -4206,9 +4126,8 @@
       'gpt-54-thinking-mini': false,
       'gpt-55-instant': false,
       'gemini-31-pro': false,
-      'gemini-35-flash-extended': false,
-      'gemini-35-flash': false,
-      'gemini-31-flash-lite-extended': false,
+      'gemini-36-flash-extended': false,
+      'gemini-35-flash-lite-extended': false,
       'claude-haiku': true,    // Starts explicitly disabled
       'claude-5-fable': false,    // Starts enabled by default
       'claude-48-opus': false,    // Starts enabled by default
@@ -4246,8 +4165,8 @@
     // Model groups for group toggles
     const modelGroups = {
       'claude': ['claude-haiku', 'claude-5-fable', 'claude-48-opus', 'claude-5-sonnet', 'claude-5-sonnet-high', 'claude-haiku-nr'],
-      'reasoning': ['gpt-56-sol-max', 'gpt-56-sol-xhigh', 'gpt-56-sol-high', 'gpt-56-sol-medium', 'gpt-56-sol-low', 'gpt-56-terra-max', 'gpt-56-terra-xhigh', 'gpt-56-terra-high', 'gpt-56-terra-medium', 'gpt-56-terra-low', 'gpt-56-luna-max', 'gpt-56-luna-xhigh', 'gpt-56-luna-high', 'gpt-56-luna-medium', 'gpt-56-luna-low', 'gpt-54-thinking-mini', 'gemini-31-pro', 'gemini-35-flash-extended', 'gemini-31-flash-lite-extended', 'claude-haiku', 'claude-5-fable', 'claude-48-opus', 'claude-5-sonnet', 'glm-52-deep-think-max', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-45-expert', 'minimax-m3-thinking', 'nemotron-3-ultra-reasoning', 'muse-spark-11', 'mimo-v25-pro', 'mimo-v25', 'qwen-37-max-think', 'qwen-37-plus-think', 'kimi-k3-max', 'kimi-k26-thinking'],
-      'instant': ['gpt-55-instant', 'gemini-35-flash', 'claude-5-sonnet-high', 'claude-haiku-nr', 'glm-52', 'qwen-35-omni-plus', 'kimi-k26-instant'],
+      'reasoning': ['gpt-56-sol-max', 'gpt-56-sol-xhigh', 'gpt-56-sol-high', 'gpt-56-sol-medium', 'gpt-56-sol-low', 'gpt-56-terra-max', 'gpt-56-terra-xhigh', 'gpt-56-terra-high', 'gpt-56-terra-medium', 'gpt-56-terra-low', 'gpt-56-luna-max', 'gpt-56-luna-xhigh', 'gpt-56-luna-high', 'gpt-56-luna-medium', 'gpt-56-luna-low', 'gpt-54-thinking-mini', 'gemini-31-pro', 'gemini-36-flash-extended', 'gemini-35-flash-lite-extended', 'claude-haiku', 'claude-5-fable', 'claude-48-opus', 'claude-5-sonnet', 'glm-52-deep-think-max', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-45-expert', 'minimax-m3-thinking', 'nemotron-3-ultra-reasoning', 'muse-spark-11', 'mimo-v25-pro', 'mimo-v25', 'qwen-37-max-think', 'qwen-37-plus-think', 'kimi-k3-max', 'kimi-k26-thinking'],
+      'instant': ['gpt-55-instant', 'claude-5-sonnet-high', 'claude-haiku-nr', 'glm-52', 'qwen-35-omni-plus', 'kimi-k26-instant'],
       'chatgpt-pro': [],
       'other': ['glm-52-deep-think-max', 'glm-52', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-45-expert', 'minimax-m3-thinking', 'nemotron-3-ultra-reasoning', 'muse-spark-11', 'mimo-v25-pro', 'mimo-v25', 'qwen-37-max-think', 'qwen-37-plus-think', 'kimi-k3-max', 'kimi-k26-thinking', 'qwen-35-omni-plus', 'kimi-k26-instant'],
       'legacy': ['glm-5t-deep-think', 'kimi-k26-thinking', 'kimi-k26-instant'],
@@ -4275,9 +4194,8 @@
       'gpt-54-thinking-mini': ['reasoning'],             // Reasoning model
       'gpt-55-instant': ['instant'],                     // Needs Non-reasoning
       'gemini-31-pro': ['reasoning'],                   // Only needs Reasoning
-      'gemini-35-flash-extended': ['reasoning'],        // Only needs Reasoning
-      'gemini-35-flash': ['instant'],                   // Only needs Non-reasoning
-      'gemini-31-flash-lite-extended': ['reasoning'],  // Only needs Reasoning
+      'gemini-36-flash-extended': ['reasoning'],        // Only needs Reasoning
+      'gemini-35-flash-lite-extended': ['reasoning'],   // Only needs Reasoning
       'claude-haiku': ['claude', 'reasoning'],         // Needs both Claude AND Reasoning to be on
       'claude-5-fable': ['claude', 'reasoning'],       // Needs both Claude AND Reasoning to be on
       'claude-48-opus': ['claude', 'reasoning'],       // Needs both Claude AND Reasoning to be on
@@ -4622,19 +4540,6 @@
         }
       }
 
-      // Update MRCR chart
-      if (mrcrChart && benchSectionVisibility.mrcr) {
-        const mrcrDatasets = getMrcrDatasets();
-        if (!mrcrDatasets.some(dataset => !dataset.isUpperBound)) {
-          setChartRuntimeState('mrcrChart', 'empty', BENCHMARK_EMPTY_MESSAGE);
-        } else {
-          setChartRuntimeState('mrcrChart', 'ready');
-          mrcrChart.data.datasets = mrcrDatasets;
-          if (typeof updateMrcrYAxisOptions === 'function') updateMrcrYAxisOptions();
-          mrcrChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
-        }
-      }
-
       // Update LCR chart
       if (lcrChart && benchSectionVisibility.aalcr) {
         const lcrData = getLcrData();
@@ -4749,9 +4654,12 @@
       'fallback': '139, 92,  246'    // purple
     };
 
-    const LEGACY_GPT_MODEL_IDS = new Set([
+    // Legacy-colored models that remain independent from the Legacy Models
+    // toggle, so they can stay visible in the default model selection.
+    const DEFAULT_VISIBLE_LEGACY_MODEL_IDS = new Set([
       'gpt-54-thinking-mini',
-      'gpt-55-instant'
+      'gpt-55-instant',
+      'gemini-31-pro'
     ]);
 
     function getBaseBrandRgb(modelId) {
@@ -4770,7 +4678,7 @@
     }
 
     function isLegacyColorModel(modelId) {
-      return LEGACY_GPT_MODEL_IDS.has(modelId) || modelGroups.legacy.includes(modelId);
+      return DEFAULT_VISIBLE_LEGACY_MODEL_IDS.has(modelId) || modelGroups.legacy.includes(modelId);
     }
 
     // Generic legacy palette: preserve the brand hue, reduce chroma, and raise
@@ -4871,10 +4779,9 @@
       { modelId: 'gpt-56-luna-low', label: '⌘ GPT 5.6 Luna Low', correct: 38.63, abstention: 7.54, hallucination: 53.83, sortOrder: 12.5 },
       { modelId: 'gpt-54-thinking-mini', label: '⌘ GPT 5.4 Thinking Mini', correct: 36.50, abstention: 6.88, hallucination: 56.62, sortOrder: 23 },
       { modelId: 'gpt-55-instant', label: '⌘ GPT 5.5 Instant', correct: 45.07, abstention: 4.82, hallucination: 50.11, sortOrder: 27 },
-      { modelId: 'gemini-35-flash', label: '✦ Gemini 3.5 Flash', correct: 43.08, abstention: 15.13, hallucination: 41.79, sortOrder: 28 },
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro Extended', correct: 55.25, abstention: 22.43, hallucination: 22.32, sortOrder: 35 },
-      { modelId: 'gemini-35-flash-extended', label: '✦ Gemini 3.5 Flash Extended', correct: 51.88, abstention: 18.92, hallucination: 29.20, sortOrder: 40 },
-      { modelId: 'gemini-31-flash-lite-extended', label: '✦ Gemini 3.1 Flash Lite Extended', correct: 36.40, abstention: 11.68, hallucination: 51.92, sortOrder: 55 },
+      { modelId: 'gemini-36-flash-extended', label: '✦ Gemini 3.6 Flash Extended', correct: 50.20, abstention: 23.13, hallucination: 26.67, sortOrder: 36 },
+      { modelId: 'gemini-35-flash-lite-extended', label: '✦ Gemini 3.5 Flash Lite Extended', correct: 30.28, abstention: 46.35, hallucination: 23.37, sortOrder: 38 },
       { modelId: 'claude-5-fable', label: '❋ Claude 5 Fable Thinking Max', correct: 61.35, abstention: 17.45, hallucination: 21.20, sortOrder: 63.8 },
       { modelId: 'claude-48-opus', label: '❋ Claude 4.8 Opus Thinking Max', correct: 46.60, abstention: 34.24, hallucination: 19.16, sortOrder: 63.9 },
       { modelId: 'claude-5-sonnet', label: '❋ Claude 5 Sonnet Thinking Max', correct: 38.30, abstention: 38.72, hallucination: 22.98, sortOrder: 66.8 },
@@ -4992,72 +4899,6 @@
       document.querySelectorAll(`#${selectorId} .sort-btn`).forEach(btn => btn.classList.remove('active'));
       const activeButtonId = mode === '0' ? zeroButtonId : mode === 'all' ? allButtonId : autoButtonId;
       document.getElementById(activeButtonId).classList.add('active');
-    }
-
-    const mrcrXAxisLabels = ['8k', '16k', '32k', '64k', '128k', '256k', '1M'];
-
-    function normalizeMrcrXAxisIndex(val) {
-      const parsed = parseInt(val, 10);
-      if (Number.isNaN(parsed)) return mrcrXAxisLabels.length - 1;
-      return Math.min(Math.max(parsed, 0), mrcrXAxisLabels.length - 1);
-    }
-
-    let mrcrXAxisIndex = safeStorageGet('mrcrXAxisIndex') !== null ? normalizeMrcrXAxisIndex(safeStorageGet('mrcrXAxisIndex')) : 6;
-    let mrcrYAxisMode = getStoredEnum('mrcrYAxisMode', ['0', 'auto'], '0');
-
-    function updateMrcrXAxisLabel(val) {
-      document.getElementById('mrcrXAxisLabel').textContent = mrcrXAxisLabels[normalizeMrcrXAxisIndex(val)];
-    }
-
-    function setMrcrXAxis(val) {
-      mrcrXAxisIndex = normalizeMrcrXAxisIndex(val);
-      safeStorageSet('mrcrXAxisIndex', mrcrXAxisIndex);
-      document.getElementById('mrcrXAxisSlider').value = mrcrXAxisIndex;
-      updateMrcrXAxisLabel(mrcrXAxisIndex);
-
-      if (mrcrChart) {
-        mrcrChart.options.scales.x.max = mrcrXAxisLabels[mrcrXAxisIndex];
-        updateMrcrYAxisOptions();
-        mrcrChart.update({ duration: 750, easing: 'easeInOutQuart' });
-      } else {
-        ensureBenchmarkRuntime();
-      }
-    }
-
-    function updateMrcrYAxisOptions() {
-      if (!mrcrChart) return;
-      if (mrcrYAxisMode === 'auto') {
-        let minVal = 100;
-        const datasets = getMrcrDatasets();
-        datasets.forEach(ds => {
-          ds.data.slice(0, mrcrXAxisIndex + 1).forEach(val => {
-            if (val !== null && val < minVal) {
-              minVal = val;
-            }
-          });
-        });
-        let floorVal = Math.floor(minVal / 5) * 5;
-        if (floorVal >= 100) floorVal = 0;
-        mrcrChart.options.scales.y.min = floorVal;
-        mrcrChart.options.scales.y.beginAtZero = false;
-      } else {
-        mrcrChart.options.scales.y.min = 0;
-        mrcrChart.options.scales.y.beginAtZero = true;
-      }
-    }
-
-    function setMrcrYAxis(mode) {
-      mode = ['0', 'auto'].includes(mode) ? mode : '0';
-      mrcrYAxisMode = mode;
-      safeStorageSet('mrcrYAxisMode', mode);
-      document.querySelectorAll('#mrcrYAxisSelector .sort-btn').forEach(btn => btn.classList.remove('active'));
-      document.getElementById(mode === '0' ? 'mrcrYAxis0' : 'mrcrYAxisAuto').classList.add('active');
-      if (!mrcrChart) {
-        ensureBenchmarkRuntime();
-        return;
-      }
-      updateMrcrYAxisOptions();
-      mrcrChart.update({ duration: 750, easing: 'easeInOutQuart' });
     }
 
     function setLcrSort(mode) {
@@ -5431,12 +5272,11 @@
       return omniscienceChart;
     }
 
-    // Base datasets for MRCR - with modelId for filtering and sortOrder for ordering
-    const mrcrAllDatasets = [
+    // Shared point styles used by Terminal-Bench v2.1.
+    const benchmarkPointStyleSources = [
       {
         modelId: 'gpt-56-sol-max',
         label: 'GPT 5.6 Sol Max',
-        data: [100, 100, 98, 98.8, 92.4, 83.5, null],
         borderColor: 'rgba(16, 163, 127, 0.95)',
         backgroundColor: 'rgba(16, 163, 127, 0.95)',
         borderWidth: 2,
@@ -5450,7 +5290,6 @@
       {
         modelId: 'gpt-56-terra-max',
         label: 'GPT 5.6 Terra Max',
-        data: [98.8, 100, 94.3, 89.7, 80.2, 67.9, null],
         borderColor: 'rgba(16, 163, 127, 0.8)',
         backgroundColor: 'rgba(16, 163, 127, 0.8)',
         borderWidth: 2,
@@ -5464,7 +5303,6 @@
       {
         modelId: 'gpt-56-luna-max',
         label: 'GPT 5.6 Luna Max',
-        data: [96.4, 93.9, 90.2, 71.5, 58.4, 45.1, null],
         borderColor: 'rgba(16, 163, 127, 0.65)',
         backgroundColor: 'rgba(16, 163, 127, 0.65)',
         borderWidth: 2,
@@ -5478,7 +5316,6 @@
       {
         modelId: 'gpt-54-thinking-mini',
         label: 'GPT 5.4 Thinking Mini',
-        data: [67.7, 54.7, 49.5, 34.7, 34.8, 23.0, null],
         borderColor: 'rgba(176, 221, 210, 0.6)',
         backgroundColor: 'rgba(176, 221, 210, 0.6)',
         borderWidth: 2,
@@ -5492,7 +5329,6 @@
       {
         modelId: 'gpt-55-instant',
         label: 'GPT 5.5 Instant',
-        data: [66.4, 51.4, 35, 37.6, 28.3, null, null],
         borderColor: 'rgba(176, 221, 210, 0.5)',
         backgroundColor: 'rgba(176, 221, 210, 0.5)',
         borderWidth: 2,
@@ -5507,7 +5343,6 @@
       {
         modelId: 'gemini-31-pro',
         label: 'Gemini 3.1 Pro Extended',
-        data: [100, 98.8, 94.2, 74.9, 57.6, 47.4, 25.9],
         borderColor: 'rgba(238, 73, 82, 0.95)',
         backgroundColor: 'rgba(238, 73, 82, 0.95)',
         borderWidth: 3,
@@ -5519,49 +5354,8 @@
         sortOrder: 35
       },
       {
-        modelId: 'gemini-35-flash-extended',
-        label: 'Gemini 3.5 Flash Extended',
-        data: [95.1, 97.5, 79.6, 61.2, 57.5, 54.6, 26.0],
-        borderColor: 'rgba(238, 73, 82, 0.8)',
-        backgroundColor: 'rgba(238, 73, 82, 0.8)',
-        borderWidth: 2,
-        tension: 0.3,
-        pointRadius: 5,
-        pointHoverRadius: 6,
-        pointBackgroundColor: 'rgba(238, 73, 82, 0.8)',
-        sortOrder: 40
-      },
-      {
-        modelId: 'gemini-35-flash',
-        label: 'Gemini 3.5 Flash',
-        data: [60.1, 40.4, 26.3, 25.9, 23.2, 24.7, 17.2],
-        borderColor: 'rgba(238, 73, 82, 0.5)',
-        backgroundColor: 'rgba(238, 73, 82, 0.5)',
-        borderWidth: 2,
-        borderDash: [5, 5],
-        tension: 0.3,
-        pointRadius: 4,
-        pointHoverRadius: 5,
-        pointBackgroundColor: 'rgba(238, 73, 82, 0.5)',
-        sortOrder: 28
-      },
-      {
-        modelId: 'gemini-31-flash-lite-extended',
-        label: 'Gemini 3.1 Flash Lite Extended',
-        data: [98.8, 84.2, 65.9, 39.0, 28.1, 22.5, 12.4],
-        borderColor: 'rgba(238, 73, 82, 0.6)',
-        backgroundColor: 'rgba(238, 73, 82, 0.6)',
-        borderWidth: 2,
-        tension: 0.3,
-        pointRadius: 4,
-        pointHoverRadius: 5,
-        pointBackgroundColor: 'rgba(238, 73, 82, 0.6)',
-        sortOrder: 55
-      },
-      {
         modelId: 'claude-48-opus',
         label: 'Claude 4.8 Opus Thinking Max',
-        data: [97.4, 96.1, 93, 90.7, 75.2, 61.8, null],
         borderColor: 'rgba(218, 119, 87, 0.95)',
         backgroundColor: 'rgba(218, 119, 87, 0.95)',
         borderWidth: 2,
@@ -5575,7 +5369,6 @@
       {
         modelId: 'claude-5-sonnet',
         label: 'Claude 5 Sonnet Thinking Max',
-        data: [96.4, 94.9, 87.9, 68, 52.9, 52.2, null],
         borderColor: 'rgba(218, 119, 87, 0.8)',
         backgroundColor: 'rgba(218, 119, 87, 0.8)',
         borderWidth: 2,
@@ -5589,7 +5382,6 @@
       {
         modelId: 'claude-haiku',
         label: 'Claude 4.5 Haiku Extended',
-        data: [82.5, 47.5, 31.5, 17, 13.8, null, null],
         borderColor: 'rgba(218, 119, 87, 0.6)',
         backgroundColor: 'rgba(218, 119, 87, 0.6)',
         borderWidth: 2,
@@ -5603,7 +5395,6 @@
       {
         modelId: 'claude-haiku-nr',
         label: 'Claude 4.5 Haiku',
-        data: [29, 21.9, 15.2, 17.3, 9.2, null, null],
         borderColor: 'rgba(218, 119, 87, 0.5)',
         backgroundColor: 'rgba(218, 119, 87, 0.5)',
         borderWidth: 2,
@@ -5618,7 +5409,6 @@
       {
         modelId: 'glm-52-deep-think-max',
         label: 'GLM 5.2 Deep Think Max',
-        data: [95.1, 81.8, 74.7, 63.4, 51.6, 46.5, null],
         borderColor: 'rgba(120, 120, 130, 0.95)',
         backgroundColor: 'rgba(120, 120, 130, 0.95)',
         borderWidth: 2,
@@ -5632,7 +5422,6 @@
       {
         modelId: 'minimax-m3-thinking',
         label: 'MiniMax M3 Thinking',
-        data: [92.4, 68.9, 52.2, 35.4, 17.4, 18.6, null],
         borderColor: 'rgba(207, 52, 124, 0.95)',
         backgroundColor: 'rgba(207, 52, 124, 0.95)',
         borderWidth: 2,
@@ -5646,8 +5435,6 @@
       {
         modelId: 'mimo-v25-pro',
         label: 'MiMo V2.5 Pro',
-        data: [82.9, 62.4, 54.5, 40.4, 31.7, 17, 12.9],
-        lessThan: [false, false, false, false, false, false, true],
         borderColor: 'rgba(255, 116, 0, 0.95)',
         backgroundColor: 'rgba(255, 116, 0, 0.95)',
         borderWidth: 2,
@@ -5661,8 +5448,6 @@
       {
         modelId: 'mimo-v25',
         label: 'MiMo V2.5',
-        data: [79.4, 51.4, 34.7, 24.8, 27.2, 28, 13.2],
-        lessThan: [false, false, false, false, false, false, true],
         borderColor: 'rgba(255, 116, 0, 0.65)',
         backgroundColor: 'rgba(255, 116, 0, 0.65)',
         borderWidth: 2,
@@ -5676,7 +5461,6 @@
       {
         modelId: 'kimi-k26-thinking',
         label: 'Kimi K2.6 Thinking High',
-        data: [95.1, 80.6, 68.3, 46.3, 39, null, null],
         borderColor: 'rgba(23, 131, 255, 0.95)',
         backgroundColor: 'rgba(23, 131, 255, 0.95)',
         borderWidth: 2,
@@ -5690,7 +5474,6 @@
       {
         modelId: 'kimi-k26-instant',
         label: 'Kimi K2.6 Standard',
-        data: [70.7, 58.7, 51.4, 43.5, 39.5, null, null],
         borderColor: 'rgba(23, 131, 255, 0.5)',
         backgroundColor: 'rgba(23, 131, 255, 0.5)',
         borderWidth: 2,
@@ -5703,131 +5486,6 @@
         sortOrder: 128
       }
     ];
-
-    function getMrcrDatasets() {
-      // Filter datasets based on modelVisibility
-      let datasets = mrcrAllDatasets
-        .filter(ds => modelVisibility[ds.modelId])
-        .map(ds => {
-          if (!isLegacyColorModel(ds.modelId)) return ds;
-          const legacyRgb = getBrandRgb(ds.modelId);
-          return {
-            ...ds,
-            borderColor: replaceRgbaRgb(ds.borderColor, legacyRgb),
-            backgroundColor: replaceRgbaRgb(ds.backgroundColor, legacyRgb),
-            pointBackgroundColor: replaceRgbaRgb(ds.pointBackgroundColor, legacyRgb)
-          };
-        });
-
-      // Sort by sortOrder to maintain family grouping in legend
-      datasets.sort((a, b) => a.sortOrder - b.sortOrder);
-
-      return datasets;
-    }
-
-    let mrcrInitialMin = 0;
-    let mrcrInitialBeginAtZero = true;
-    if (mrcrYAxisMode === 'auto') {
-      let minVal = 100;
-      const initDatasets = getMrcrDatasets();
-      initDatasets.forEach(ds => {
-        ds.data.slice(0, mrcrXAxisIndex + 1).forEach(val => {
-          if (val !== null && val < minVal) {
-            minVal = val;
-          }
-        });
-      });
-      mrcrInitialMin = Math.floor(minVal / 5) * 5;
-      if (mrcrInitialMin >= 100) mrcrInitialMin = 0;
-      mrcrInitialBeginAtZero = false;
-    }
-
-    // MRCR v2 8-Needle Benchmark - Line Chart
-    function initMrcrChart() {
-      if (mrcrChart) return mrcrChart;
-      const mrcrCtx = document.getElementById('mrcrChart').getContext('2d');
-    mrcrChart = new Chart(mrcrCtx, {
-      type: 'line',
-      data: {
-        labels: ['8k', '16k', '32k', '64k', '128k', '256k', '1M'],
-        datasets: getMrcrDatasets()
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            position: 'top',
-            labels: {
-              padding: 20,
-              usePointStyle: true,
-              pointStyle: 'circle',
-              filter: function (item, chartData) {
-                // Hide the upper bound helper dataset from legend
-                const ds = chartData.datasets[item.datasetIndex];
-                return !ds.isUpperBound;
-              }
-            }
-          },
-          tooltip: {
-            backgroundColor: 'rgba(18, 18, 26, 0.95)',
-            titleColor: '#d9c5a2',
-            bodyColor: '#b3a385',
-            borderColor: 'rgba(255, 255, 255, 0.1)',
-            borderWidth: 1,
-            padding: 12,
-            cornerRadius: 8,
-            callbacks: {
-              label: function (context) {
-                // Skip upper bound helper dataset in tooltip
-                if (context.dataset.isUpperBound) return null;
-                if (context.parsed.y === null) return context.dataset.label + ': Not supported';
-                const valuePrefix = context.dataset.lessThan && context.dataset.lessThan[context.dataIndex] ? '<' : '';
-                // Show estimated label for the band
-                if (context.dataset.isEstimatedBand) {
-                  const labelName = context.dataset.label.replace(' (Estimated)', '');
-                  return labelName + ': ' + valuePrefix + context.parsed.y + '% (Estimated!)';
-                }
-                return context.dataset.label + ': ' + valuePrefix + context.parsed.y + '%';
-              }
-            }
-          }
-        },
-        scales: {
-          y: {
-            min: mrcrInitialMin,
-            beginAtZero: mrcrInitialBeginAtZero,
-            max: 100,
-            ticks: {
-              callback: function (value) {
-                return value + '%';
-              }
-            },
-            grid: {
-              color: 'rgba(255, 255, 255, 0.05)'
-            },
-            title: {
-              display: true,
-              text: 'Accuracy',
-              color: '#8a7d65'
-            }
-          },
-          x: {
-            max: typeof mrcrXAxisLabels !== 'undefined' ? mrcrXAxisLabels[mrcrXAxisIndex] : '1M',
-            grid: {
-              color: 'rgba(255, 255, 255, 0.05)'
-            },
-            title: {
-              display: true,
-              text: 'Context Length (tokens)',
-              color: '#8a7d65'
-            }
-          }
-        }
-      }
-    });
-      return mrcrChart;
-    }
 
     // Long Context Reasoning - AA-LCR - Horizontal Bar Chart
     let lcrChart;
@@ -5849,10 +5507,9 @@
       { modelId: 'gpt-56-luna-low', label: '⌘ GPT 5.6 Luna Low', score: 59.3, sortOrder: 12.5 },
       { modelId: 'gpt-54-thinking-mini', label: '⌘ GPT 5.4 Thinking Mini', score: 61.3, sortOrder: 23 },
       { modelId: 'gpt-55-instant', label: '⌘ GPT 5.5 Instant', score: 56.3, sortOrder: 27 },
-      { modelId: 'gemini-35-flash', label: '✦ Gemini 3.5 Flash', score: 53.3, sortOrder: 28 },
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro Extended', score: 72.7, sortOrder: 35 },
-      { modelId: 'gemini-35-flash-extended', label: '✦ Gemini 3.5 Flash Extended', score: 69.3, sortOrder: 40 },
-      { modelId: 'gemini-31-flash-lite-extended', label: '✦ Gemini 3.1 Flash Lite Extended', score: 65.3, sortOrder: 55 },
+      { modelId: 'gemini-36-flash-extended', label: '✦ Gemini 3.6 Flash Extended', score: 69.7, sortOrder: 36 },
+      { modelId: 'gemini-35-flash-lite-extended', label: '✦ Gemini 3.5 Flash Lite Extended', score: 62, sortOrder: 38 },
       { modelId: 'claude-5-fable', label: '❋ Claude 5 Fable Thinking Max', score: 70, sortOrder: 63.8 },
       { modelId: 'claude-48-opus', label: '❋ Claude 4.8 Opus Thinking Max', score: 67.7, sortOrder: 63.9 },
       { modelId: 'claude-5-sonnet', label: '❋ Claude 5 Sonnet Thinking Max', score: 70.7, sortOrder: 66.8 },
@@ -5985,10 +5642,9 @@
       { modelId: 'gpt-56-luna-low', label: '⌘ GPT 5.6 Luna Low', score: 74, sortOrder: 12.5 },
       { modelId: 'gpt-54-thinking-mini', label: '⌘ GPT 5.4 Thinking Mini', score: 71, sortOrder: 23 },
       { modelId: 'gpt-55-instant', label: '⌘ GPT 5.5 Instant', score: 71, sortOrder: 27 },
-      { modelId: 'gemini-35-flash', label: '✦ Gemini 3.5 Flash', score: 80, sortOrder: 28 },
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro Extended', score: 82, sortOrder: 35 },
-      { modelId: 'gemini-35-flash-extended', label: '✦ Gemini 3.5 Flash Extended', score: 84, sortOrder: 40 },
-      { modelId: 'gemini-31-flash-lite-extended', label: '✦ Gemini 3.1 Flash Lite Extended', score: 76, sortOrder: 55 },
+      { modelId: 'gemini-36-flash-extended', label: '✦ Gemini 3.6 Flash Extended', score: 83, sortOrder: 36 },
+      { modelId: 'gemini-35-flash-lite-extended', label: '✦ Gemini 3.5 Flash Lite Extended', score: 79, sortOrder: 38 },
       { modelId: 'claude-5-fable', label: '❋ Claude 5 Fable Thinking Max (Estimated)', score: 85, sortOrder: 63.8, estimated: true },
       { modelId: 'claude-48-opus', label: '❋ Claude 4.8 Opus Thinking Max (Estimated)', score: 79, sortOrder: 63.9, estimated: true },
       { modelId: 'claude-5-sonnet', label: '❋ Claude 5 Sonnet Thinking Max', score: 77, sortOrder: 66.8 },
@@ -6201,8 +5857,8 @@
       { modelId: 'gpt-56-luna-low', label: '⌘ GPT 5.6 Luna Low', score: 1146, costPerTask: 0.04, sortOrder: 12.5 },
       { modelId: 'gpt-54-thinking-mini', label: '⌘ GPT 5.4 Thinking Mini', score: 1102, sortOrder: 23, estimated: true },
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro Extended', score: 965, costPerTask: 0.27, sortOrder: 35 },
-      { modelId: 'gemini-35-flash-extended', label: '✦ Gemini 3.5 Flash Extended', score: 1349, costPerTask: 1.74, sortOrder: 40 },
-      { modelId: 'gemini-31-flash-lite-extended', label: '✦ Gemini 3.1 Flash Lite Extended', score: 642, costPerTask: 0.02, sortOrder: 55 },
+      { modelId: 'gemini-36-flash-extended', label: '✦ Gemini 3.6 Flash Extended', score: 1421, costPerTask: 1.04, sortOrder: 36 },
+      { modelId: 'gemini-35-flash-lite-extended', label: '✦ Gemini 3.5 Flash Lite Extended', score: 1140, costPerTask: 0.10, sortOrder: 38 },
       { modelId: 'claude-5-fable', label: '❋ Claude 5 Fable Thinking Max', score: 1760, costPerTask: 7.75, sortOrder: 63.8 },
       { modelId: 'claude-48-opus', label: '❋ Claude 4.8 Opus Thinking Max', score: 1600, costPerTask: 4.34, sortOrder: 63.9 },
       { modelId: 'claude-5-sonnet', label: '❋ Claude 5 Sonnet Thinking Max', score: 1607, costPerTask: 4.70, sortOrder: 66.8 },
@@ -6300,7 +5956,7 @@
       const xMax = getGdpval2ReferenceLineMax();
       return getGdpval2UnknownCostModels().map(model => {
         const modelLabel = model.label.replace(/^\S+\s+/, '');
-        const style = getTerminalBenchV21MrcrStyle(model.modelId);
+        const style = getTerminalBenchV21PointStyle(model.modelId);
         const point = x => ({
           x,
           y: model.score,
@@ -6340,7 +5996,7 @@
           groups.set(series.key, { label: series.label, sortOrder: model.sortOrder, points: [] });
         }
 
-        const style = getTerminalBenchV21MrcrStyle(model.modelId);
+        const style = getTerminalBenchV21PointStyle(model.modelId);
         groups.get(series.key).points.push({
           x: model.costPerTask,
           y: model.score,
@@ -6579,8 +6235,8 @@
       { modelId: 'gpt-56-luna-low', label: '⌘ GPT 5.6 Luna Low', score: 43.4, costPerTask: 0.12, sortOrder: 12.5 },
       { modelId: 'gpt-54-thinking-mini', label: '⌘ GPT 5.4 Thinking Mini', score: 45.3, sortOrder: 23, estimated: true },
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro Extended', score: 73.8, costPerTask: 0.58, sortOrder: 35 },
-      { modelId: 'gemini-35-flash-extended', label: '✦ Gemini 3.5 Flash Extended', score: 78.7, costPerTask: 0.87, sortOrder: 40 },
-      { modelId: 'gemini-31-flash-lite-extended', label: '✦ Gemini 3.1 Flash Lite Extended', score: 31.1, costPerTask: 0.14, sortOrder: 55 },
+      { modelId: 'gemini-36-flash-extended', label: '✦ Gemini 3.6 Flash Extended', score: 77.5, costPerTask: 1.40, sortOrder: 36 },
+      { modelId: 'gemini-35-flash-lite-extended', label: '✦ Gemini 3.5 Flash Lite Extended', score: 53.6, costPerTask: 0.26, sortOrder: 38 },
       { modelId: 'claude-5-fable', label: '❋ Claude 5 Fable Thinking Max', score: 84.6, costPerTask: 3.36, sortOrder: 63.8 },
       { modelId: 'claude-48-opus', label: '❋ Claude 4.8 Opus Thinking Max', score: 84.6, costPerTask: 3.42, sortOrder: 63.9 },
       { modelId: 'claude-5-sonnet', label: '❋ Claude 5 Sonnet Thinking Max', score: 80.5, costPerTask: 1.89, sortOrder: 66.8 },
@@ -6618,7 +6274,7 @@
       return { labels, data, backgroundColors, hoverBackgroundColors, borderColors };
     }
 
-    const TERMINAL_BENCH_V21_MRCR_STYLE_ANCHORS = {
+    const TERMINAL_BENCH_V21_STYLE_ANCHORS = {
       'gpt-56-sol': 'gpt-56-sol-max',
       'gpt-56-terra': 'gpt-56-terra-max',
       'gpt-56-luna': 'gpt-56-luna-max',
@@ -6634,9 +6290,11 @@
     ]);
 
     // These radii cover priced Terminal-Bench models that do not yet have an
-    // MRCR result. They follow the same size grammar documented for MRCR.
-    const TERMINAL_BENCH_V21_MRCR_RADIUS_FALLBACKS = {
+    // Point sizes for Terminal-Bench models without an explicit shared style.
+    const TERMINAL_BENCH_V21_RADIUS_FALLBACKS = {
       'claude-5-fable': 7,
+      'gemini-36-flash-extended': 5,
+      'gemini-35-flash-lite-extended': 4,
       'grok-45-expert': 6,
       'nemotron-3-ultra-reasoning': 6,
       'muse-spark-11': 6,
@@ -6652,23 +6310,27 @@
       return channels.length === 3 ? `rgba(${channels.join(', ')}, 1)` : fallbackColor;
     }
 
-    function getTerminalBenchV21MrcrStyle(modelId) {
-      let styleSource = mrcrAllDatasets.find(dataset => dataset.modelId === modelId);
+    function getTerminalBenchV21PointStyle(modelId) {
+      let styleSource = benchmarkPointStyleSources.find(dataset => dataset.modelId === modelId);
 
       if (!styleSource) {
-        const anchorKey = Object.keys(TERMINAL_BENCH_V21_MRCR_STYLE_ANCHORS)
+        const anchorKey = Object.keys(TERMINAL_BENCH_V21_STYLE_ANCHORS)
           .find(prefix => modelId.startsWith(prefix + '-'));
         if (anchorKey) {
-          const anchorId = TERMINAL_BENCH_V21_MRCR_STYLE_ANCHORS[anchorKey];
-          styleSource = mrcrAllDatasets.find(dataset => dataset.modelId === anchorId);
+          const anchorId = TERMINAL_BENCH_V21_STYLE_ANCHORS[anchorKey];
+          styleSource = benchmarkPointStyleSources.find(dataset => dataset.modelId === anchorId);
         }
       }
 
       const fallbackColor = getBrandBorderColor(modelId);
+      const sourcePointColor = styleSource?.pointBackgroundColor;
+      const resolvedPointColor = sourcePointColor && isLegacyColorModel(modelId)
+        ? replaceRgbaRgb(sourcePointColor, getBrandRgb(modelId))
+        : sourcePointColor;
       return {
-        color: getOpaqueChartColor(styleSource?.pointBackgroundColor, fallbackColor),
-        pointRadius: styleSource?.pointRadius ?? TERMINAL_BENCH_V21_MRCR_RADIUS_FALLBACKS[modelId] ?? 6,
-        pointHoverRadius: styleSource?.pointHoverRadius ?? ((TERMINAL_BENCH_V21_MRCR_RADIUS_FALLBACKS[modelId] ?? 6) + 1)
+        color: getOpaqueChartColor(resolvedPointColor, fallbackColor),
+        pointRadius: styleSource?.pointRadius ?? TERMINAL_BENCH_V21_RADIUS_FALLBACKS[modelId] ?? 6,
+        pointHoverRadius: styleSource?.pointHoverRadius ?? ((TERMINAL_BENCH_V21_RADIUS_FALLBACKS[modelId] ?? 6) + 1)
       };
     }
 
@@ -6729,7 +6391,7 @@
       const xMax = getTerminalBenchV21ReferenceLineMax();
       return getTerminalBenchV21UnknownCostModels().map(model => {
         const modelLabel = model.label.replace(/^\S+\s+/, '');
-        const style = getTerminalBenchV21MrcrStyle(model.modelId);
+        const style = getTerminalBenchV21PointStyle(model.modelId);
         const point = x => ({
           x,
           y: model.score,
@@ -6769,7 +6431,7 @@
           groups.set(series.key, { label: series.label, sortOrder: model.sortOrder, points: [] });
         }
 
-        const style = getTerminalBenchV21MrcrStyle(model.modelId);
+        const style = getTerminalBenchV21PointStyle(model.modelId);
         groups.get(series.key).points.push({
           x: model.costPerTask,
           y: model.score,
@@ -7042,15 +6704,6 @@
           { value: 128000, plans: 'Pro' }
         ]
       },
-      {
-        modelId: 'gemini-35-flash', label: '✦ Gemini 3.5 Flash', sortOrder: 28,
-        color: 'rgba(238, 73, 82, 1)',
-        segments: [
-          { value: 32000, plans: 'Free' },
-          { value: 128000, plans: 'Plus' },
-          { value: 1000000, plans: 'Pro, Ultra' }
-        ]
-      },
       // GPT reasoning models (use the same tier structure)
       {
         modelId: 'gpt-56-sol-max', label: '⌘ GPT 5.6 Sol Max', sortOrder: 1,
@@ -7191,7 +6844,7 @@
         ]
       },
       {
-        modelId: 'gemini-35-flash-extended', label: '✦ Gemini 3.5 Flash Extended', sortOrder: 40,
+        modelId: 'gemini-36-flash-extended', label: '✦ Gemini 3.6 Flash Extended', sortOrder: 36,
         color: 'rgba(238, 73, 82, 1)',
         segments: [
           { value: 32000, plans: 'Free' },
@@ -7200,7 +6853,7 @@
         ]
       },
       {
-        modelId: 'gemini-31-flash-lite-extended', label: '✦ Gemini 3.1 Flash Lite Extended', sortOrder: 55,
+        modelId: 'gemini-35-flash-lite-extended', label: '✦ Gemini 3.5 Flash Lite Extended', sortOrder: 38,
         color: 'rgba(238, 73, 82, 1)',
         segments: [
           { value: 32000, plans: 'Free' },
@@ -7450,21 +7103,6 @@
       });
     }
 
-    function buildMrcrExportRows(includeAll) {
-      return getBenchmarkExportItems(mrcrAllDatasets, includeAll).map(dataset => {
-        const estimated = isEstimatedBenchmarkEntry(dataset) || dataset.isEstimatedBand === true;
-        const values = mrcrXAxisLabels.map((label, index) => {
-          const valuePrefix = dataset.lessThan && dataset.lessThan[index] ? '<' : '';
-          return formatMarkdownValue(dataset.data[index], 'percent', estimated, valuePrefix);
-        });
-        return [
-          cleanMarkdownLabel(dataset.label),
-          ...values,
-          estimated ? 'Yes' : 'No'
-        ];
-      });
-    }
-
     function buildScoreExportRows(models, includeAll, unit) {
       return getBenchmarkExportItems(models, includeAll).map(model => {
         const estimated = isEstimatedBenchmarkEntry(model);
@@ -7533,10 +7171,6 @@
 
       if (includeAll || benchSectionVisibility.omniscience) {
         appendMarkdownSection(lines, 'AA-Omniscience', ['Model', 'Correct', 'Abstention', 'Hallucination', 'Estimated'], buildOmniscienceExportRows(includeAll));
-      }
-
-      if (includeAll || benchSectionVisibility.mrcr) {
-        appendMarkdownSection(lines, 'MRCR v2 8-Needle', ['Model', ...mrcrXAxisLabels, 'Estimated'], buildMrcrExportRows(includeAll));
       }
 
       if (includeAll || benchSectionVisibility.aalcr) {
@@ -7769,11 +7403,6 @@
         sectionId: 'bench-section-omniscience', canvasId: 'omniscienceChart', init: initOmniscienceChart,
         getInstance: () => omniscienceChart,
         hasData: () => getOmniscienceData().labels.length > 0
-      },
-      mrcr: {
-        sectionId: 'bench-section-mrcr', canvasId: 'mrcrChart', init: initMrcrChart,
-        getInstance: () => mrcrChart,
-        hasData: () => getMrcrDatasets().some(dataset => !dataset.isUpperBound)
       },
       aalcr: {
         sectionId: 'bench-section-aalcr', canvasId: 'lcrChart', init: initLcrChart,
@@ -8240,7 +7869,6 @@
     // Toggle benchmark sections visibility
     let benchSectionVisibility = {
       omniscience: getStoredBoolean('bench_omniscience', true),
-      mrcr: getStoredBoolean('bench_mrcr', false),
       aalcr: getStoredBoolean('bench_aalcr', true),
       maxcontext: getStoredBoolean('bench_maxcontext', true),
       mmmu: getStoredBoolean('bench_mmmu', true),
@@ -8265,7 +7893,7 @@
       document.querySelectorAll('.bench-group-toggle-accuracy').forEach(t => t.classList.toggle('active', accActive));
 
       // Long context
-      const longActive = benchSectionVisibility['mrcr'] || benchSectionVisibility['aalcr'] || benchSectionVisibility['maxcontext'];
+      const longActive = benchSectionVisibility['aalcr'] || benchSectionVisibility['maxcontext'];
       document.querySelectorAll('.bench-group-toggle-long').forEach(t => t.classList.toggle('active', longActive));
 
       // Multimodal
@@ -8284,7 +7912,7 @@
     function toggleBenchGroup(groupName) {
       let groupBenches = [];
       if (groupName === 'accuracy') groupBenches = ['omniscience'];
-      else if (groupName === 'long') groupBenches = ['mrcr', 'aalcr', 'maxcontext'];
+      else if (groupName === 'long') groupBenches = ['aalcr', 'maxcontext'];
       else if (groupName === 'multi') groupBenches = ['mmmu'];
       else if (groupName === 'agentic') groupBenches = ['gdpval2'];
       else if (groupName === 'coding') groupBenches = ['terminal-v21'];
@@ -8354,20 +7982,6 @@
       updateLegacyModelsListVisibility();
 
       // Restore sort button UI states
-      if (safeStorageGet('mrcrXAxisIndex') !== null) {
-        const val = normalizeMrcrXAxisIndex(safeStorageGet('mrcrXAxisIndex'));
-        mrcrXAxisIndex = val;
-        document.getElementById('mrcrXAxisSlider').value = val;
-        document.getElementById('mrcrXAxisLabel').textContent = mrcrXAxisLabels[val];
-      }
-      if (mrcrYAxisMode !== '0') {
-        document.querySelectorAll('#mrcrYAxisSelector .sort-btn').forEach(btn => btn.classList.remove('active'));
-        document.getElementById('mrcrYAxisAuto').classList.add('active');
-        if (typeof updateMrcrYAxisOptions === 'function') {
-          // This will be correctly handled when updateAllCharts() or resizing happens, 
-          // or we just trigger an update later if needed. The initial config takes care of it.
-        }
-      }
       if (omniscienceSortMode !== 'brand') {
         document.querySelectorAll('#omniscienceSortSelector .sort-btn').forEach(btn => btn.classList.remove('active'));
         if (omniscienceSortMode === 'hallucination') document.getElementById('omniscienceSortHallucination').classList.add('active');
@@ -8507,7 +8121,7 @@
     style="text-align: center; padding: 2rem 1rem; margin-top: 3rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.8rem;">
     Made by <strong> u/Pasto_Shouwa</strong>
     <br>
-    <em>Last updated on <strong>17/07/2026</strong> (dd/mm/yyyy)</em>
+    <em>Last updated on <strong>21/07/2026</strong> (dd/mm/yyyy)</em>
   </footer>
 </body>
 
