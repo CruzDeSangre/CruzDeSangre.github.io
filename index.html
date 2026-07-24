@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--
   Developer notes for future edits
 
@@ -11,9 +11,6 @@
   USA-exclusive feature toggle:
   - The toggle uses these CSS classes, not annotation footnotes.
   - Whole USA-only cells: add class "usa-restricted" to the <td>.
-  - Partial USA-only text: wrap it with <span class="usa-only">...</span>.
-  - Content that changes when USA content is hidden:
-    use <span class="usa-main">...</span> plus <span class="usa-alt">...</span>.
   - Whole rows hidden with USA content: add class "usa-ad-row" to the <tr>.
 -->
 <html lang="en">
@@ -21,9 +18,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ChatGPT vs Gemini Subscriptions &amp; Multi-Model AI Benchmarks</title>
+  <title>Added three thinking efforts of Claude 5 Opus. Ended support for comparisons with the Gemini plans.</title>
   <meta name="description"
-    content="Compare ChatGPT and Gemini subscription plans, plus benchmarks across GPT, Gemini, Claude, Grok, GLM, Qwen, Kimi, MiniMax, MiMo, and Nemotron models.">
+    content="Compare ChatGPT Free, Go, Plus, and Pro plans, plus benchmarks across GPT, Gemini, Claude, and other leading AI models.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -53,9 +50,6 @@
       --chatgpt-primary: #74AB9D;
       --chatgpt-bg: rgba(116, 171, 157, 0.08);
       --chatgpt-border: rgba(116, 171, 157, 0.2);
-      --gemini-primary: #EE4952;
-      --gemini-bg: rgba(180, 120, 122, 0.08);
-      --gemini-border: rgba(180, 120, 122, 0.2);
       --claude-primary: #ff7e21;
       --claude-bg: rgba(255, 126, 33, 0.08);
       --claude-border: rgba(255, 126, 33, 0.2);
@@ -71,10 +65,6 @@
 
 
       /* Rating Colors */
-      --rating-excellent: rgba(34, 197, 94, 0.15);
-      --rating-excellent-border: rgba(34, 197, 94, 0.3);
-      --rating-great: rgba(59, 130, 246, 0.15);
-      --rating-great-border: rgba(59, 130, 246, 0.3);
       --rating-good: rgba(234, 179, 8, 0.15);
       --rating-good-border: rgba(234, 179, 8, 0.3);
       --rating-fair: rgba(249, 115, 22, 0.15);
@@ -270,12 +260,6 @@
       border-bottom: 2px solid var(--chatgpt-border);
     }
 
-    .th-gemini {
-      background: var(--gemini-bg);
-      color: var(--gemini-primary);
-      border-bottom: 2px solid var(--gemini-border);
-    }
-
     td {
       padding: 1rem;
       text-align: center;
@@ -314,19 +298,7 @@
       opacity: 0.8;
     }
 
-    .hide-usa-exclusive .usa-exclusive-detail {
-      display: none;
-    }
-
     /* Rating Colors */
-    .rating-excellent {
-      background: var(--rating-excellent);
-    }
-
-    .rating-great {
-      background: var(--rating-great);
-    }
-
     .rating-good {
       background: var(--rating-good);
     }
@@ -361,11 +333,6 @@
       background: var(--rating-worst);
     }
 
-    /* Separator */
-    .separator {
-      border-left: 1px solid var(--border-color);
-    }
-
     /* Legend */
     .legend {
       display: flex;
@@ -395,14 +362,6 @@
       width: 12px;
       height: 12px;
       border-radius: 3px;
-    }
-
-    .legend-excellent {
-      background: rgba(34, 197, 94, 0.4);
-    }
-
-    .legend-great {
-      background: rgba(59, 130, 246, 0.4);
     }
 
     .legend-good {
@@ -562,99 +521,7 @@
       margin-top: 3rem;
     }
 
-    /* Benefits Cards */
-    .benefits-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-      gap: 1.5rem;
-    }
 
-    .benefit-card {
-      background: var(--bg-card);
-      border-radius: 16px;
-      border: 1px solid var(--border-color);
-      padding: 2rem;
-      transition: all 0.3s ease;
-    }
-
-    .benefit-card:hover {
-      border-color: var(--border-light);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    }
-
-    .benefit-card.chatgpt {
-      border-top: 3px solid var(--chatgpt-primary);
-    }
-
-    .benefit-card.gemini {
-      border-top: 3px solid var(--gemini-primary);
-    }
-
-    .benefit-header {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .benefit-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.25rem;
-    }
-
-    .chatgpt .benefit-icon {
-      background: var(--chatgpt-bg);
-      color: var(--chatgpt-primary);
-    }
-
-    .gemini .benefit-icon {
-      background: var(--gemini-bg);
-      color: var(--gemini-primary);
-    }
-
-    .benefit-title {
-      font-size: 1.25rem;
-      font-weight: 600;
-    }
-
-    .chatgpt .benefit-title {
-      color: var(--chatgpt-primary);
-    }
-
-    .gemini .benefit-title {
-      color: var(--gemini-primary);
-    }
-
-    .benefit-list {
-      list-style: none;
-    }
-
-    .benefit-list li {
-      position: relative;
-      padding: 0.75rem 0 0.75rem 1.5rem;
-      color: var(--text-secondary);
-      border-bottom: 1px solid var(--border-light);
-      font-size: 0.9rem;
-    }
-
-    .benefit-list li:last-child {
-      border-bottom: none;
-    }
-
-    .benefit-list li::before {
-      content: '→';
-      position: absolute;
-      left: 0;
-      color: var(--text-muted);
-    }
-
-    /* Scrollbar */
     ::-webkit-scrollbar {
       width: 6px;
       height: 6px;
@@ -1447,10 +1314,10 @@
 
     #table-high-tier th:not(:first-child),
     #table-high-tier td:not(:first-child) {
-      width: calc((100% - 273px) / 3);
+      width: calc(100% - 273px);
     }
 
-    /* Subjective Recommendations Toggle */
+    /* Plan legend and toggles */
     .legend-toggle-wrapper {
       display: flex;
       align-items: center;
@@ -1464,26 +1331,6 @@
       display: flex;
       flex-wrap: wrap;
       /* gap removed for animation support */
-    }
-
-    .subjective-toggle {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.35rem 0.75rem;
-      background: var(--bg-card);
-      border-radius: 20px;
-      border: 1px solid var(--border-color);
-      white-space: nowrap;
-    }
-
-    .subjective-toggle .toggle-switch.active {
-      background: var(--rating-great);
-      border-color: var(--rating-great-border);
-    }
-
-    .subjective-toggle .toggle-switch.active::after {
-      background: rgba(59, 130, 246, 0.8);
     }
 
     .unknown-toggle {
@@ -1510,30 +1357,11 @@
       opacity: 0;
     }
 
-    .hide-usa-exclusive .usa-unknown-cell::after {
-      opacity: 0;
-    }
-
-    /* Hide subjective when toggle is off */
-    .rating-great {
-      transition: background 0.3s ease, border-left-color 0.3s ease;
-    }
-
-    .hide-subjective .rating-great {
-      background: transparent;
-      border-left-color: transparent;
-    }
-
-    .legend-subjective,
     .legend-usa,
     .legend-unknown-item {
       transition: opacity 0.3s ease, max-width 0.4s ease, margin-right 0.4s ease;
       overflow: hidden;
       white-space: nowrap;
-    }
-
-    .legend-subjective {
-      max-width: 300px;
     }
 
     .legend-usa {
@@ -1544,7 +1372,6 @@
       max-width: 180px;
     }
 
-    .hide-subjective .legend-subjective,
     .hide-usa-exclusive .legend-usa,
     .hide-unknown .legend-unknown-item {
       opacity: 0;
@@ -1595,32 +1422,6 @@
       transition: box-shadow 0.3s ease;
     }
 
-    .rating-great.usa-restricted {
-      transition: background 0.3s ease, border-left-color 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    /* Hide USA-only inline content */
-    .usa-only,
-    .usa-main {
-      display: inline-flex;
-      opacity: 1;
-      max-width: 500px;
-      /* Large enough to fit content */
-      white-space: nowrap;
-      vertical-align: bottom;
-      transition: opacity 0.3s ease 0.1s, max-width 0.5s ease;
-    }
-
-    .hide-usa-exclusive .usa-only,
-    .hide-usa-exclusive .usa-main {
-      opacity: 0;
-      max-width: 0;
-      margin: 0;
-      pointer-events: none;
-      overflow: hidden;
-      transition: opacity 0.3s ease 0s, max-width 0.5s ease;
-    }
-
     /* Animation specifically for advertisement rows */
     .usa-ad-row td {
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -1642,25 +1443,6 @@
     .hide-usa-exclusive .usa-ad-row td * {
       opacity: 0;
       transition: opacity 0.2s ease;
-    }
-
-    /* Show alternate content when USA is hidden */
-    .usa-alt {
-      display: inline-flex;
-      opacity: 0;
-      max-width: 0;
-      overflow: hidden;
-      white-space: nowrap;
-      vertical-align: bottom;
-      transition: opacity 0.3s ease, max-width 0.5s ease;
-      pointer-events: none;
-    }
-
-    .hide-usa-exclusive .usa-alt {
-      opacity: 1;
-      max-width: 500px;
-      pointer-events: auto;
-      overflow: visible;
     }
 
     /* Model Filters Panel */
@@ -2108,11 +1890,11 @@
       }
 
       #table-free-tier table {
-        min-width: 680px;
+        min-width: 520px;
       }
 
       #table-high-tier table {
-        min-width: 820px;
+        min-width: 520px;
       }
 
       #table-high-tier table {
@@ -2153,7 +1935,6 @@
         align-items: flex-start;
       }
 
-      .subjective-toggle,
       .unknown-toggle,
       .usa-toggle {
         margin-left: 0;
@@ -2365,11 +2146,8 @@
 <body>
   <div class="container">
     <header>
-      <h1 class="title"><span
-          style="color: var(--chatgpt-primary); -webkit-text-fill-color: var(--chatgpt-primary);">ChatGPT</span> vs
-        <span style="color: var(--gemini-primary); -webkit-text-fill-color: var(--gemini-primary);">Gemini</span>
-      </h1>
-      <p class="subtitle">Subscription comparison plus benchmarks across leading AI models.</p>
+      <h1 class="title"><span style="color: var(--chatgpt-primary); -webkit-text-fill-color: var(--chatgpt-primary);">ChatGPT Plans</span></h1>
+      <p class="subtitle">Compare ChatGPT subscription plans and benchmarks across leading AI models.</p>
     </header>
 
     <!-- Price Tier Toggle -->
@@ -2385,7 +2163,6 @@
     <nav class="tabs-nav">
       <button onclick="switchTab('specs')" id="btn-specs" class="tab-btn active">Subscription Plans</button>
       <button onclick="switchTab('benchmarks')" id="btn-benchmarks" class="tab-btn">Benchmarks</button>
-      <button onclick="switchTab('benefits')" id="btn-benefits" class="tab-btn">Other Benefits</button>
     </nav>
 
     <!-- TAB 1: SPECS -->
@@ -2398,11 +2175,9 @@
             <tr>
               <th rowspan="2" style="border-bottom: 2px solid var(--border-color);">Feature</th>
               <th class="th-chatgpt">ChatGPT</th>
-              <th class="th-gemini">Gemini</th>
             </tr>
             <tr>
               <th class="th-chatgpt" style="text-align: center;">Free</th>
-              <th class="th-gemini" style="text-align: center;">Free</th>
             </tr>
           </thead>
           <tbody>
@@ -2412,94 +2187,69 @@
                   class="detail">(Unknown)</span>
                 <span class="detail">[GPT 5.4 Thinking Mini]</span>
               </td>
-              <td>Unknown {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span class="detail">(X
-                  every 5h)</span><span class="detail">[All models]</span></td>
             </tr>
             <tr>
               <td>Non-reasoning model limit per day</td>
-              <td class="rating-great">40<span class="detail">(10 every 5h)</span><span class="detail">[GPT 5.5
+              <td>40<span class="detail">(10 every 5h)</span><span class="detail">[GPT 5.5
                   Instant]</span></td>
-              <td>Unknown {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span class="detail">(X
-                  every 5h)</span><span class="detail">[All models]</span></td>
             </tr>
             <tr>
               <td>Context window limit</td>
-              <td class="rating-excellent">27k / 256k<span class="detail">(Non-reasoning / Reasoning)</span></td>
-              <td class="rating-excellent">32k</td>
+              <td>27k / 256k<span class="detail">(Non-reasoning / Reasoning)</span></td>
             </tr>
             <tr>
               <td>File uploads per day</td>
-              <td class="rating-great">3</td>
-              <td>Unknown</td>
+              <td>3</td>
             </tr>
             <tr>
               <td>Memory features</td>
               <td>Memories</td>
-              <td class="rating-excellent">Memories<span class="annotation" data-note="gemini-memory"></span>, chats
-                history, ecosystem memory<span class="annotation" data-note="ecosystem-memory"></span>
-              </td>
             </tr>
             <tr>
               <td>Image generation per day</td>
               <td>Unknown<span class="annotation" data-note="gpt-image-unknown"></span><span class="detail">[GPT Image
                   2]</span></td>
-              <td>Unknown {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
-                  class="detail">[Nano Banana 2 + Nano Banana 2 Thinking]</span></td>
             </tr>
             <tr>
               <td>Image resolution (1:1)</td>
               <td>1254×1254 (1.2K)<span class="detail">[All image models]</span></td>
-              <td class="rating-excellent">2048×2048 (2K)<span class="detail">[All image models]</span></td>
             </tr>
             <tr>
               <td>Music generation per day</td>
               <td>No</td>
-              <td>Unknown {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
-                  class="detail">(30s per song)</span><span class="detail">[Lyria
-                  3]</span></td>
             </tr>
             <tr>
               <td>Custom model creation</td>
               <td>No<span class="detail">[Custom GPTs]</span></td>
-              <td class="rating-excellent">Yes<span class="detail">[Gems]</span></td>
             </tr>
             <tr>
               <td>Folder organization</td>
-              <td class="rating-excellent">Yes<span class="detail">[Projects]</span></td>
-              <td class="rating-excellent">Yes<span class="detail">[Notebooks]</span></td>
+              <td>Yes<span class="detail">[Projects]</span></td>
             </tr>
             <tr>
               <td>Deep research uses per month</td>
-              <td>Unknown<span class="detail">[Unknown]</span></td>
-              <td>Unknown {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
-                  class="detail">[Gemini 3.5 Flash Extended]</span></td>
+              <td>Unknown</span></td>
             </tr>
-
             <tr class="usa-ad-row">
               <td>Advertisements</td>
               <td class="usa-restricted">Yes
               </td>
-              <td class="rating-excellent">No</td>
             </tr>
             <tr>
               <td>Video inputs</td>
               <td>No</td>
-              <td class="rating-excellent">Yes<span class="detail">(Up to 5 minutes per file)</span></td>
             </tr>
             <tr>
               <td>Audio inputs</td>
               <td>No</td>
-              <td class="rating-excellent">Yes<span class="detail">(Up to 10 minutes per file)</span></td>
             </tr>
             <tr>
               <td>Youtube summaries</td>
               <td>No</td>
-              <td class="rating-excellent">Yes</td>
             </tr>
             <tr>
               <td>Cloud storage included</td>
               <td>No</td>
-              <td class="rating-excellent">15GB<span class="annotation" data-note="free-15gb"></span></td>
             </tr>
             <tr>
               <td>Age estimation and verification method</td>
@@ -2507,11 +2257,6 @@
                   ID, through a
                   third-party
                   (Persona Identities)<span class="annotation" data-note="age-verification"></span></span>
-              </td>
-              <td class="rating-great">Birth date based (prioritized), AI-based<span class="annotation"
-                  data-note="age-ai"></span><span class="detail">Verification with ID or
-                  credit card, sent
-                  directly to Google<span class="annotation" data-note="age-verification"></span></span>
               </td>
             </tr>
           </tbody>
@@ -2525,15 +2270,11 @@
             <tr>
               <th rowspan="2" style="border-bottom: 2px solid var(--border-color);">Feature</th>
               <th colspan="3" class="th-chatgpt">ChatGPT</th>
-              <th colspan="3" class="th-gemini">Gemini</th>
             </tr>
             <tr>
               <th class="th-chatgpt" style="text-align: center;">Free</th>
               <th class="th-chatgpt" style="text-align: center;">Go</th>
               <th class="th-chatgpt" style="text-align: center;">Plus</th>
-              <th class="th-gemini" style="text-align: center;">Free</th>
-              <th class="th-gemini" style="text-align: center;">Plus</th>
-              <th class="th-gemini" style="text-align: center;">Pro</th>
             </tr>
           </thead>
           <tbody>
@@ -2545,195 +2286,116 @@
               <td>40<span class="detail">(10 every 5h)</span>
                 <span class="detail">[GPT 5.4 Thinking Mini]</span>
               </td>
-              <td class="rating-excellent">428<span class="detail">(3000/week)</span><span class="detail">[GPT 5.6
-                  Sol/Terra/Luna]</span></td>
-              <td>Unknown {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span class="detail">(X
-                  every 5h)</span><span class="detail">[All models]</span></td>
-              <td>Unknown x2 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
-                  class="detail">(X every 5h)</span><span class="detail">[All models]</span></td>
-              <td>Unknown x4 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
-                  class="annotation" data-note="gemini-pro-x2-value"></span><span class="detail">(X every
-                  5h)</span><span class="detail">[All models]</span></td>
+              <td>428<span class="detail">(3000/week)</span><span class="detail">[GPT 5.6
+                  Sol]</span></td>
             </tr>
             <tr>
               <td>Non-reasoning model limit per day</td>
               <td>40<span class="detail">(10 every 5h)</span><span class="detail">[GPT 5.5 Instant]</span></td>
-              <td colspan="2" class="rating-great">1280<span class="detail">(160 every 3h)</span><span
+              <td colspan="2">1280<span class="detail">(160 every 3h)</span><span
                   class="detail">[GPT 5.5 Instant]</span></td>
-              <td>Unknown {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span class="detail">(X
-                  every 5h)</span><span class="detail">[All models]</span></td>
-              <td>Unknown x2 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
-                  class="detail">(X every 5h)</span><span class="detail">[All models]</span></td>
-              <td>Unknown x4 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
-                  class="annotation" data-note="gemini-pro-x2-value"></span><span class="detail">(X every
-                  5h)</span><span class="detail">[All models]</span></td>
             </tr>
             <tr>
               <td>Context window limit</td>
               <td>27k / 256k<span class="detail">(Non-reasoning / Reasoning)</span></td>
-              <td colspan="2" class="rating-great">54k / 256k<span class="detail">(Non-reasoning / Reasoning)</span>
+              <td colspan="2">54k / 256k<span class="detail">(Non-reasoning / Reasoning)</span>
               </td>
-              <td>32k</td>
-              <td class="rating-great">128k</td>
-              <td class="rating-excellent">1M<span class="annotation" data-note="1m-tokens"></span></td>
             </tr>
             <tr>
               <td>File uploads per day</td>
               <td>3</td>
-              <td class="rating-great">30</td>
-              <td class="rating-excellent">640<span class="detail">(80 every 3h)</span></td>
-              <td colspan="3">Unknown</td>
+              <td>30</td>
+              <td>640<span class="detail">(80 every 3h)</span></td>
             </tr>
             <tr>
               <td>Memory features</td>
               <td colspan="2">Memories</td>
-              <td class="rating-excellent">Memories, chats history, chat search</td>
-              <td class="rating-excellent" colspan="3">Memories<span class="annotation"
-                  data-note="gemini-memory"></span>, chats
-                history, ecosystem memory<span class="annotation" data-note="ecosystem-memory"></span>
-              </td>
+              <td>Memories, chats history, chat search</td>
             </tr>
             <tr>
               <td>Image generation per day</td>
               <td colspan="3">Unknown<span class="annotation" data-note="gpt-image-unknown"></span><span
                   class="detail">[GPT Image 2 / GPT Image 2 Thinking]</span></td>
-              <td>Unknown {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span class="detail">(X
-                  every 5h)</span><span class="detail">[NB Pro + NB 2 + NB 2 Thinking]</span></td>
-              <td>Unknown x2 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
-                  class="detail">(X every 5h)</span><span class="detail">[NB Pro + NB 2 + NB 2 Thinking]</span></td>
-              <td>Unknown x4 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
-                  class="annotation" data-note="gemini-pro-x2-value"></span><span class="detail">(X every
-                  5h)</span><span class="detail">[NB Pro + NB 2 + NB 2 Thinking]</span></td>
             </tr>
             <tr>
               <td>Image resolution (1:1)</td>
               <td colspan="3">1254×1254 (1.2K)<span class="detail">[All image models]</span></td>
-              <td colspan="3" class="rating-excellent">2048×2048 (2K)<span class="detail">[All image models]</span></td>
             </tr>
             <tr>
               <td>Video generation per day</td>
               <td colspan="2">No</td>
               <td>Unknown<span class="detail">[Sora 2]</span></td>
-              <td>No</td>
-              <td>Unknown x2 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
-                  class="detail">(X every 5h)</span><span class="detail">[Veo Omni]</span></td>
-              <td>Unknown x4 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
-                  class="annotation" data-note="gemini-pro-x2-value"></span><span class="detail">(X every
-                  5h)</span><span class="detail">[Veo Omni]</span></td>
             </tr>
             <tr>
               <td>Video resolution and length</td>
               <td colspan="2">No</td>
-              <td class="rating-excellent">480p, 720p<span class="detail">(up to 10s)</span><span class="detail">[Sora
+              <td>480p, 720p<span class="detail">(up to 10s)</span><span class="detail">[Sora
                   2]</span></td>
-              <td>No</td>
-              <td colspan="2" class="rating-excellent">720p<span class="detail">(up to 10s)</span><span
-                  class="detail">[Veo
-                  3.1 Lite]</span></td>
             </tr>
             <tr>
               <td>Music generation per day</td>
               <td colspan="3">No</td>
-              <td>Unknown {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
-                  class="detail">(30s per song)</span><span class="detail">[Lyria 3]</span></td>
-              <td>Unknown x2 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
-                  class="detail">(180s per song)</span><span class="detail">[Lyria 3 Pro]</span></td>
-              <td>Unknown x4 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
-                  class="annotation" data-note="gemini-pro-x2-value"></span><span class="detail">(180s per
-                  song)</span><span class="detail">[Lyria 3 Pro]</span></td>
             </tr>
             <tr>
               <td>Custom model creation</td>
               <td>No<span class="detail">[Custom GPTs]</span></td>
-              <td colspan="2" class="rating-excellent">Yes<span class="detail">[Custom GPTs]</span></td>
-              <td colspan="3" class="rating-excellent">Yes<span class="detail">[Gems]</span></td>
+              <td colspan="2">Yes<span class="detail">[Custom GPTs]</span></td>
             </tr>
             <tr>
               <td>Folder organization</td>
-              <td colspan="3" class="rating-excellent">Yes<span class="detail">[Projects]</span></td>
-              <td colspan="3" class="rating-excellent">Yes<span class="detail">[Notebooks]</span></td>
+              <td colspan="3">Yes<span class="detail">[Projects]</span></td>
             </tr>
             <tr>
               <td>Maximum active scheduled tasks</td>
               <td>No</td>
               <td>3<br><span class="detail">[Tasks]</span></td>
-              <td class="rating-great">5<br><span class="detail">[Tasks]</span></td>
-              <td>No</td>
-              <td colspan="2" class="rating-excellent">10<br><span class="detail">[Scheduled Actions]</span></td>
+              <td>5<br><span class="detail">[Tasks]</span></td>
             </tr>
             <tr>
               <td>Deep research uses per month</td>
-              <td colspan="3">Unknown<span class="detail">[Unknown]</span></td>
-              <td>Unknown {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
-                  class="detail">[Gemini 3.5 Flash Extended]</span></td>
-              <td>Unknown x2 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
-                  class="detail">[Gemini 3.1 Pro Extended]</span></td>
-              <td>Unknown x4 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
-                  class="annotation" data-note="gemini-pro-x2-value"></span><span class="detail">[Gemini 3.1 Pro
-                  Extended]</span>
-              </td>
+              <td colspan="3">Unknown</span></td>
             </tr>
             <tr>
               <td>Agent mode uses per month</td>
               <td colspan="2">No</td>
-              <td class="rating-excellent">40<span class="detail">[Agent Mode]</span></td>
-              <td colspan="3">No</td>
+              <td>40<span class="detail">[Agent Mode]</span></td>
             </tr>
-
             <tr class="usa-ad-row">
               <td>Advertisements</td>
               <td colspan="2" class="usa-restricted">Yes
               </td>
-              <td class="rating-excellent separator">No</td>
-              <td colspan="3" class="rating-excellent">No</td>
+              <td>No</td>
             </tr>
             <tr>
               <td>Video inputs</td>
-              <td colspan="3" class="separator">No</td>
-              <td colspan="2">Yes<span class="detail">(Up to 5 minutes per file)</span></td>
-              <td class="rating-excellent separator">Yes<span class="detail">(Up to 60 minutes per file)</span></td>
+              <td colspan="3">No</td>
             </tr>
             <tr>
               <td>Audio inputs</td>
-              <td colspan="3" class="separator">No</td>
-              <td colspan="2">Yes<span class="detail">(Up to 10 minutes per file)</span></td>
-              <td class="rating-excellent separator">Yes<span class="detail">(Up to 180 minutes per file)</span></td>
+              <td colspan="3">No</td>
             </tr>
             <tr>
               <td>Youtube summaries</td>
-              <td colspan="3" class="separator">No</td>
-              <td colspan="3" class="rating-excellent">Yes</td>
+              <td colspan="3">No</td>
             </tr>
             <tr>
               <td>Cloud storage included</td>
-              <td colspan="3" class="separator">No</td>
-              <td>15GB<span class="annotation" data-note="free-15gb"></span></td>
-              <td class="rating-great">200GB</td>
-              <td class="rating-excellent">5TB</td>
+              <td colspan="3">No</td>
             </tr>
             <tr>
               <td>API credit included</td>
               <td colspan="3">No</td>
-              <td colspan="2">No</td>
-              <td class="rating-excellent">$10/month<span class="detail">(Unused credit expires monthly)</span></td>
             </tr>
             <tr>
               <td>Plan sharing</td>
-              <td colspan="3" class="separator">No</td>
-              <td>No</td>
-              <td colspan="2" class="rating-excellent">Up to 6 accounts</td>
+              <td colspan="3">No</td>
             </tr>
             <tr>
               <td>Age estimation and verification method</td>
-              <td colspan="3" class="separator">AI-based<span class="annotation" data-note="age-ai"></span><span
+              <td colspan="3">AI-based<span class="annotation" data-note="age-ai"></span><span
                   class="detail">Verification only with ID, through a
                   third-party
                   (Persona Identities)<span class="annotation" data-note="age-verification"></span></span>
-              </td>
-              <td colspan="3" class="rating-great">Birth date based (prioritized), AI-based<span class="annotation"
-                  data-note="age-ai"></span><span class="detail">Verification with ID or
-                  credit card, sent
-                  directly to Google<span class="annotation" data-note="age-verification"></span></span>
               </td>
             </tr>
           </tbody>
@@ -2747,171 +2409,105 @@
             <tr>
               <th rowspan="2" style="border-bottom: 2px solid var(--border-color);">Feature</th>
               <th class="th-chatgpt">ChatGPT</th>
-              <th colspan="2" class="th-gemini">Gemini</th>
             </tr>
             <tr>
               <th class="th-chatgpt" style="text-align: center;">Pro x5 / x20</th>
-              <th class="th-gemini" style="text-align: center;">Ultra x5</th>
-              <th class="th-gemini" style="text-align: center;">Ultra x20</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>Reasoning model limit per day</td>
-              <td class="rating-excellent">Unlimited<span class="annotation" data-note="gpt-pro-limits"></span> +
-                Unlimited<span class="detail">[GPT 5.6 Sol Pro + GPT 5.6 Sol/Terra/Luna]</span>
+              <td>Unlimited<span class="annotation" data-note="gpt-pro-limits"></span> +
+                Unlimited<span class="detail">[GPT 5.6 Sol Pro + GPT 5.6 Sol]</span>
               </td>
-              <td>Unknown x20 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
-                  class="detail">(X every 5h)</span><span class="detail">[All models]</span></td>
-              <td>Unknown x80 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
-                  class="detail">(X every 5h)</span><span class="detail">[All models]</span></td>
             </tr>
             <tr>
               <td>Non-reasoning model limit per day</td>
-              <td class="rating-excellent">Unlimited<span class="detail">[GPT 5.5 Instant]</span></td>
-              <td>Unknown x20 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
-                  class="detail">(X every 5h)</span><span class="detail">[All models]</span></td>
-              <td>Unknown x80 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
-                  class="detail">(X every 5h)</span><span class="detail">[All models]</span></td>
+              <td>Unlimited<span class="detail">[GPT 5.5 Instant]</span></td>
             </tr>
             <tr>
               <td>Context window limit</td>
-              <td class="rating-great">128k / 400k<span class="detail">(Non-reasoning / Reasoning)</span></td>
-              <td class="rating-excellent">192k / 1M<span class="annotation" data-note="1m-tokens"></span><span
-                  class="detail">(Gemini 3.1 Deep Think / Other models)</span>
-              </td>
-              <td class="rating-excellent">192k / 1M<span class="annotation" data-note="1m-tokens"></span><span
-                  class="detail">(Gemini 3.1 Deep Think / Other models)</span>
-              </td>
+              <td>128k / 400k<span class="detail">(Non-reasoning / Reasoning)</span></td>
             </tr>
             <tr>
               <td>File uploads per day</td>
-              <td class="rating-excellent">Unlimited</td>
-              <td>Unknown</td>
-              <td>Unknown</td>
+              <td>Unlimited</td>
             </tr>
             <tr>
               <td>Memory features</td>
-              <td class="rating-excellent">Memories, chats history, chat search, proactive
-                research<span class="annotation" data-note="chatgpt-pulse"></span>
-              </td>
-              <td class="rating-excellent">Memories<span class="annotation" data-note="gemini-memory"></span>, chats
-                history, ecosystem memory<span class="annotation" data-note="ecosystem-memory"></span>
-              </td>
-              <td class="rating-excellent">Memories<span class="annotation" data-note="gemini-memory"></span>, chats
-                history, ecosystem memory<span class="annotation" data-note="ecosystem-memory"></span>
-              </td>
+              <td>Memories, chats history, chat search</td>
             </tr>
             <tr>
               <td>Image generation per day</td>
               <td>Unknown<span class="annotation" data-note="gpt-image-unknown"></span><span class="detail">[GPT Image 2
                   /
                   GPT Image 2 Thinking]</span></td>
-              <td>Unknown x20 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
-                  class="detail">[Nano Banana Pro + Nano Banana 2 + Nano Banana 2 Thinking ]</span></td>
-              <td>Unknown x80 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
-                  class="detail">[Nano Banana Pro + Nano Banana 2 + Nano Banana 2 Thinking ]</span></td>
             </tr>
             <tr>
               <td>Image resolution (1:1)</td>
               <td>1254×1254 (1.2K)<span class="detail">[All image models]</span></td>
-              <td colspan="2" class="rating-excellent">2048×2048 (2K)<span class="detail">[All image models]</span></td>
             </tr>
             <tr>
               <td>Video generation per day</td>
               <td>Unknown<span class="detail">[Sora 2]</span></td>
-              <td>Unknown x20 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
-                  class="detail">[Veo Omni]</span></td>
-              <td>Unknown x80 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
-                  class="detail">[Veo Omni]</span></td>
             </tr>
             <tr>
               <td>Video resolution and length</td>
-              <td class="rating-excellent">480p, 720p, 1080p<span class="detail">(up to 20s)</span><span
+              <td>480p, 720p, 1080p<span class="detail">(up to 20s)</span><span
                   class="detail">[Sora
                   2]</span></td>
-              <td colspan="2" class="rating-great">720p<span class="detail">(up to 10s)</span><span class="detail">[Veo
-                  3.1]</span></td>
             </tr>
             <tr>
               <td>Music generation per day</td>
               <td>No</td>
-              <td>Unknown x20 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
-                  class="detail">(180s per song)</span><span class="detail">[Lyria 3 Pro]</span></td>
-              <td>Unknown x80 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
-                  class="detail">(180s per song)</span><span class="detail">[Lyria 3 Pro]</span></td>
             </tr>
             <tr>
               <td>Custom model creation</td>
-              <td class="rating-excellent">Yes<span class="detail">[Custom GPTs]</span></td>
-              <td colspan="2" class="rating-excellent">Yes<span class="detail">[Gems]</span></td>
+              <td>Yes<span class="detail">[Custom GPTs]</span></td>
             </tr>
             <tr>
               <td>Folder organization</td>
-              <td class="rating-excellent">Yes<span class="detail">[Projects]</span></td>
-              <td colspan="2" class="rating-excellent">Yes<span class="detail">[Notebooks]</span></td>
+              <td>Yes<span class="detail">[Projects]</span></td>
             </tr>
             <tr>
               <td>Maximum active scheduled tasks</td>
-              <td class="rating-excellent">15<br><span class="detail">[Tasks]</span></td>
-              <td colspan="2" class="rating-great">10<br><span class="detail">[Scheduled Actions]</span></td>
+              <td>15<br><span class="detail">[Tasks]</span></td>
             </tr>
             <tr>
               <td>Deep research uses per month</td>
-              <td>Unknown<span class="detail">[Unknown]</span></td>
-              <td>Unknown x20 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
-                  class="detail">[Gemini 3.1 Pro Extended]</span></td>
-              <td>Unknown x80 {Shared}<span class="annotation" data-note="gemini-shared-uses"></span><span
-                  class="detail">[Gemini 3.1 Pro Extended]</span></td>
+              <td>Unknown</span></td>
             </tr>
             <tr>
               <td>Agent mode uses per month</td>
-              <td id="agent-chatgpt-pro" class="rating-great">400<span class="detail">[Agent Mode]</span></td>
-              <td colspan="2" class="usa-restricted">
-                <span class="usa-main">Unknown {Shared}<span class="annotation"
-                    data-note="gemini-shared-uses"></span></span><span class="detail usa-exclusive-detail">[Gemini
-                  Spark]</span><span class="usa-alt">No</span>
-              </td>
+              <td>400<span class="detail">[Agent Mode]</span></td>
             </tr>
-
-            <tr class="usa-ad-row">
+            <tr>
               <td>Advertisements</td>
-              <td class="rating-excellent">No</td>
-              <td colspan="2" class="rating-excellent">No</td>
+              <td>No</td>
             </tr>
             <tr>
               <td>Video inputs</td>
-              <td class="separator">Yes</td>
-              <td colspan="2" class="rating-excellent separator">20<span class="detail">(Up to 60 minutes per
-                  file)</span></td>
+              <td>Yes</td>
             </tr>
             <tr>
               <td>Audio inputs</td>
-              <td class="separator">Yes</td>
-              <td colspan="2" class="rating-excellent separator">20<span class="detail">(Up to 180 minutes per
-                  file)</span></td>
+              <td>Yes</td>
             </tr>
             <tr>
               <td>Youtube summaries</td>
-              <td class="separator">No</td>
-              <td colspan="2" class="rating-excellent">Yes</td>
+              <td>No</td>
             </tr>
             <tr>
               <td>Cloud storage included</td>
-              <td class="separator">No</td>
-              <td class="rating-excellent">20TB</td>
-              <td class="rating-excellent">30TB</td>
+              <td>No</td>
             </tr>
             <tr>
               <td>API credit included</td>
               <td>No</td>
-              <td class="rating-excellent">$40/month<span class="detail">(Unused credit expires monthly)</span></td>
-              <td class="rating-excellent">$100/month<span class="detail">(Unused credit expires monthly)</span></td>
             </tr>
             <tr>
               <td>Plan sharing</td>
               <td>No</td>
-              <td colspan="2" class="rating-excellent">Up to 6 accounts</td>
             </tr>
             <tr>
               <td>Age estimation and verification method</td>
@@ -2919,11 +2515,6 @@
                   ID, through a
                   third-party
                   (Persona Identities)<span class="annotation" data-note="age-verification"></span></span>
-              </td>
-              <td colspan="2" class="rating-great">Birth date based (prioritized), AI-based<span class="annotation"
-                  data-note="age-ai"></span><span class="detail">Verification with ID or
-                  credit card, sent
-                  directly to Google<span class="annotation" data-note="age-verification"></span></span>
               </td>
             </tr>
           </tbody>
@@ -2934,9 +2525,6 @@
       <div class="legend">
         <div class="legend-toggle-wrapper">
           <div class="legend-items">
-            <div class="legend-item"><span class="legend-color legend-excellent"></span> Best option</div>
-            <div class="legend-item legend-subjective"><span class="legend-color legend-great"></span> Sufficient option
-              (subjectively)</div>
             <div class="legend-item legend-usa"><span class="legend-color legend-usa-restricted"></span> Includes
               USA-exclusive
               features
@@ -2953,10 +2541,6 @@
               <span class="toggle-label">Unknown values</span>
               <div class="toggle-switch active" onclick="toggleUnknownHighlights()"></div>
             </div>
-            <div class="subjective-toggle">
-              <span class="toggle-label">Subjective recommendations</span>
-              <div class="toggle-switch active" onclick="toggleSubjective()"></div>
-            </div>
           </div>
         </div>
       </div>
@@ -2970,7 +2554,6 @@
       </div>
     </section>
 
-    <!-- TAB 2: BENCHMARKS -->
     <!-- TAB 2: BENCHMARKS -->
     <section id="tab-benchmarks" class="tab-content">
 
@@ -3122,14 +2705,28 @@
                 <span class="model-dot-indicator dot-claude shape-square"></span>
                 <span class="model-dot-label">Claude 5 Fable Thinking Max</span>
               </div>
-              <div class="model-dot" data-model="claude-48-opus" onclick="toggleIndividualModel('claude-48-opus')">
+            </div>
+            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
+              <div class="model-dot" data-model="claude-5-opus-max" onclick="toggleIndividualModel('claude-5-opus-max')">
                 <span class="model-dot-indicator dot-claude shape-square"></span>
-                <span class="model-dot-label">Claude 4.8 Opus Thinking Max</span>
+                <span class="model-dot-label">Claude 5 Opus Thinking Max</span>
               </div>
+              <div class="model-dot" data-model="claude-5-opus-extra" onclick="toggleIndividualModel('claude-5-opus-extra')">
+                <span class="model-dot-indicator dot-claude shape-square"></span>
+                <span class="model-dot-label">Claude 5 Opus Thinking Extra</span>
+              </div>
+              <div class="model-dot" data-model="claude-5-opus-high" onclick="toggleIndividualModel('claude-5-opus-high')">
+                <span class="model-dot-indicator dot-claude shape-square"></span>
+                <span class="model-dot-label">Claude 5 Opus Thinking High</span>
+              </div>
+            </div>
+            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot" data-model="claude-5-sonnet" onclick="toggleIndividualModel('claude-5-sonnet')">
                 <span class="model-dot-indicator dot-claude"></span>
                 <span class="model-dot-label">Claude 5 Sonnet Thinking Max</span>
               </div>
+            </div>
+            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot inactive" data-model="claude-haiku" onclick="toggleIndividualModel('claude-haiku')">
                 <span class="model-dot-indicator dot-claude"></span>
                 <span class="model-dot-label">Claude 4.5 Haiku Extended</span>
@@ -3236,6 +2833,8 @@
                 <span class="model-dot-indicator dot-claude"></span>
                 <span class="model-dot-label">Claude 5 Sonnet High</span>
               </div>
+            </div>
+            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot inactive" data-model="claude-haiku-nr"
                 onclick="toggleIndividualModel('claude-haiku-nr')">
                 <span class="model-dot-indicator dot-claude"></span>
@@ -3747,47 +3346,13 @@
       </details>
     </section>
 
-    <!-- TAB 3: BENEFITS -->
-    <section id="tab-benefits" class="tab-content">
-      <div class="benefits-grid">
-        <!-- ChatGPT -->
-        <div class="benefit-card chatgpt">
-          <div class="benefit-header">
-            <div class="benefit-icon">⌘</div>
-            <h2 class="benefit-title">ChatGPT</h2>
-          </div>
-          <ul class="benefit-list">
-            <li>Web search on thinking models thinks significantly longer (can easily take 7-10 min vs Gemini's 1-3 min)
-            </li>
-            <li>Easy switching between different personalities</li>
-            <li>Can connect to a limited selection of websites, as well as to a web version of Photoshop, though tool
-              calls can be inconsistent</li>
-          </ul>
-        </div>
-
-        <!-- Gemini -->
-        <div class="benefit-card gemini">
-          <div class="benefit-header">
-            <div class="benefit-icon">✦</div>
-            <h2 class="benefit-title">Gemini</h2>
-          </div>
-          <ul class="benefit-list">
-            <li>Nano Banana Pro offers faster and higher resolution on image generation than GPT Image 2. The images'
-              realism
-              are on par; on text GPT Image 2 seems to be better.</li>
-            <li>Native Android integration (iOS confirmed to come soon), though it can be over-eager with tool calls
-            </li>
-          </ul>
-        </div>
-      </div>
-    </section>
 
   </div>
 
   <script>
     const CHART_JS_URL = 'https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js';
     const CHART_JS_INTEGRITY = 'sha384-jb8JQMbMoBUzgWatfe6COACi2ljcDdZQ2OxczGA3bGNeWe+6DChMTBJemed7ZnvJ';
-    const VALID_MAIN_TABS = ['specs', 'benchmarks', 'benefits'];
+    const VALID_MAIN_TABS = ['specs', 'benchmarks'];
     const VALID_PRICE_TIERS = ['free', 'low', 'high'];
     let chartLibraryPromise = null;
 
@@ -3875,20 +3440,9 @@
     const FOOTNOTES = {
       'gpt-free-thinking': "Used to be 1 per day for Free and 10 for Go, but was increased. The current limit is not public, nor if it is daily or weekly.",
       'gpt-image-unknown': "GPT Image 2 limits are unknown. GPT Image 1 limits were 200/day for old Pro, 50/day for Plus, 5/day for Free.",
-      'user-reports': "According to user reports. The actual limits are not public.",
-      'nano-banana-pro-throttle': "Google tends to throttle the daily limit of image generation when a new model or AI tool is released.",
-      '1m-tokens': "Exactly 1048k tokens.",
-      'gemini-memory': "While Gemini has a memory feature, it sometimes calls memory when not needed, or decides not to call it when actually needed; which sometimes provokes inconsistent outputs.",
-      'ecosystem-memory': "Gemini can use your connected Google services (such as Gmail; Google Drive; Google Photos; Google, Maps, and YouTube search history and other Google Workspace services) through Gemini Personal Intelligence to help you find information, personalize answers and more. Of course, only if toggled by the user, since the option is off by default.",
-      'free-15gb': "Free accounts use the Google account's free 15GB storage.",
       'age-ai': "AI-based age estimation can be unreliable, sometimes flagging an account as underage based on the user's preferences.",
-      'age-verification': "Which age verification method is better depends on whether you're more comfortable sharing proof of a credit card (or an ID if you don't have one) with Google, or sharing your ID with Persona Identities.",
-      'chatgpt-pulse': "ChatGPT can proactively research topics and present them as a briefing, unprompted, through ChatGPT Pulse.",
-      'nano-banana-pro-uses': "Consumes one use of Nano Banana Pro and one use of Nano Banana 2.",
-      'gemini-shared-uses': "Use limits for these tasks are linked together and reset every 5 hours. Multipliers mean that plan has that many uses compared with the Free plan.",
-      'gemini-pro-x2-value': "There is another plan called Pro x2 that has x8 uses compared to the Free plan, but costs x2.5. It is more recommendable to create another account in the same family group and use two accounts instead of paying for this plan.",
-      'gemini-hourly-limits': "While limits of the reasoning models of Gemini are supposed to be limited per day, when demand is too high, the limits may work per 1 or 2 hours. This should end up giving the user the advertised limits anyways, but limiting the speed at which the user can work.",
-      'gpt-pro-limits': "GPT Pro x5, has a limit of around 50 uses per week of GPT 5.5 Pro. GPT Pro x20 is supossed to still have unlimited uses of it. This and the higher limits on Codex on the second plan seem to be the only difference between the two.",
+      'age-verification': "ChatGPT age verification is handled by the third-party provider Persona Identities and requires sharing an ID with that provider.",
+      'gpt-pro-limits': "GPT Pro x5, has a limit of around 50 uses per week of GPT 5.5 Pro. GPT Pro x20 is supossed to still have unlimited uses of it. This and the higher limits on Work/Codex on the second plan seem to be the only difference between the two.",
     };
 
     function toSuperscript(num) {
@@ -4082,7 +3636,9 @@
       'gemini-35-flash-lite-extended': true,
       'claude-haiku': false,   // Starts hidden by default
       'claude-5-fable': true,     // Starts visible by default
-      'claude-48-opus': true,     // Starts visible by default
+      'claude-5-opus-max': true,  // Starts visible by default
+      'claude-5-opus-extra': true, // Starts visible by default
+      'claude-5-opus-high': true, // Starts visible by default
       'claude-5-sonnet': true,    // Starts visible by default
       'claude-5-sonnet-high': false, // Starts hidden
       'claude-haiku-nr': false,   // Non-reasoning, starts hidden
@@ -4130,7 +3686,9 @@
       'gemini-35-flash-lite-extended': false,
       'claude-haiku': true,    // Starts explicitly disabled
       'claude-5-fable': false,    // Starts enabled by default
-      'claude-48-opus': false,    // Starts enabled by default
+      'claude-5-opus-max': false, // Starts enabled by default
+      'claude-5-opus-extra': false, // Starts enabled by default
+      'claude-5-opus-high': false, // Starts enabled by default
       'claude-5-sonnet': false,   // Starts enabled by default
       'claude-5-sonnet-high': true, // Starts explicitly disabled
       'claude-haiku-nr': true,    // Starts explicitly disabled
@@ -4164,8 +3722,8 @@
 
     // Model groups for group toggles
     const modelGroups = {
-      'claude': ['claude-haiku', 'claude-5-fable', 'claude-48-opus', 'claude-5-sonnet', 'claude-5-sonnet-high', 'claude-haiku-nr'],
-      'reasoning': ['gpt-56-sol-max', 'gpt-56-sol-xhigh', 'gpt-56-sol-high', 'gpt-56-sol-medium', 'gpt-56-sol-low', 'gpt-56-terra-max', 'gpt-56-terra-xhigh', 'gpt-56-terra-high', 'gpt-56-terra-medium', 'gpt-56-terra-low', 'gpt-56-luna-max', 'gpt-56-luna-xhigh', 'gpt-56-luna-high', 'gpt-56-luna-medium', 'gpt-56-luna-low', 'gpt-54-thinking-mini', 'gemini-31-pro', 'gemini-36-flash-extended', 'gemini-35-flash-lite-extended', 'claude-haiku', 'claude-5-fable', 'claude-48-opus', 'claude-5-sonnet', 'glm-52-deep-think-max', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-45-expert', 'minimax-m3-thinking', 'nemotron-3-ultra-reasoning', 'muse-spark-11', 'mimo-v25-pro', 'mimo-v25', 'qwen-37-max-think', 'qwen-37-plus-think', 'kimi-k3-max', 'kimi-k26-thinking'],
+      'claude': ['claude-5-fable', 'claude-5-opus-max', 'claude-5-opus-extra', 'claude-5-opus-high', 'claude-5-sonnet', 'claude-5-sonnet-high', 'claude-haiku', 'claude-haiku-nr'],
+      'reasoning': ['gpt-56-sol-max', 'gpt-56-sol-xhigh', 'gpt-56-sol-high', 'gpt-56-sol-medium', 'gpt-56-sol-low', 'gpt-56-terra-max', 'gpt-56-terra-xhigh', 'gpt-56-terra-high', 'gpt-56-terra-medium', 'gpt-56-terra-low', 'gpt-56-luna-max', 'gpt-56-luna-xhigh', 'gpt-56-luna-high', 'gpt-56-luna-medium', 'gpt-56-luna-low', 'gpt-54-thinking-mini', 'gemini-31-pro', 'gemini-36-flash-extended', 'gemini-35-flash-lite-extended', 'claude-5-fable', 'claude-5-opus-max', 'claude-5-opus-extra', 'claude-5-opus-high', 'claude-5-sonnet', 'claude-haiku', 'glm-52-deep-think-max', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-45-expert', 'minimax-m3-thinking', 'nemotron-3-ultra-reasoning', 'muse-spark-11', 'mimo-v25-pro', 'mimo-v25', 'qwen-37-max-think', 'qwen-37-plus-think', 'kimi-k3-max', 'kimi-k26-thinking'],
       'instant': ['gpt-55-instant', 'claude-5-sonnet-high', 'claude-haiku-nr', 'glm-52', 'qwen-35-omni-plus', 'kimi-k26-instant'],
       'chatgpt-pro': [],
       'other': ['glm-52-deep-think-max', 'glm-52', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-45-expert', 'minimax-m3-thinking', 'nemotron-3-ultra-reasoning', 'muse-spark-11', 'mimo-v25-pro', 'mimo-v25', 'qwen-37-max-think', 'qwen-37-plus-think', 'kimi-k3-max', 'kimi-k26-thinking', 'qwen-35-omni-plus', 'kimi-k26-instant'],
@@ -4198,7 +3756,9 @@
       'gemini-35-flash-lite-extended': ['reasoning'],   // Only needs Reasoning
       'claude-haiku': ['claude', 'reasoning'],         // Needs both Claude AND Reasoning to be on
       'claude-5-fable': ['claude', 'reasoning'],       // Needs both Claude AND Reasoning to be on
-      'claude-48-opus': ['claude', 'reasoning'],       // Needs both Claude AND Reasoning to be on
+      'claude-5-opus-max': ['claude', 'reasoning'],    // Needs both Claude AND Reasoning to be on
+      'claude-5-opus-extra': ['claude', 'reasoning'],  // Needs both Claude AND Reasoning to be on
+      'claude-5-opus-high': ['claude', 'reasoning'],   // Needs both Claude AND Reasoning to be on
       'claude-5-sonnet': ['claude', 'reasoning'],      // Needs both Claude AND Reasoning to be on
       'claude-5-sonnet-high': ['claude', 'instant'], // Needs both Claude AND Non-reasoning to be on
       'claude-haiku-nr': ['claude', 'instant'],         // Needs both Claude AND Non-reasoning to be on
@@ -4655,11 +4215,13 @@
     };
 
     // Legacy-colored models that remain independent from the Legacy Models
-    // toggle, so they can stay visible in the default model selection.
-    const DEFAULT_VISIBLE_LEGACY_MODEL_IDS = new Set([
+    // toggle; their visibility still follows their normal model groups.
+    const LEGACY_COLOR_ONLY_MODEL_IDS = new Set([
       'gpt-54-thinking-mini',
       'gpt-55-instant',
-      'gemini-31-pro'
+      'gemini-31-pro',
+      'claude-haiku',
+      'claude-haiku-nr'
     ]);
 
     function getBaseBrandRgb(modelId) {
@@ -4678,7 +4240,7 @@
     }
 
     function isLegacyColorModel(modelId) {
-      return DEFAULT_VISIBLE_LEGACY_MODEL_IDS.has(modelId) || modelGroups.legacy.includes(modelId);
+      return LEGACY_COLOR_ONLY_MODEL_IDS.has(modelId) || modelGroups.legacy.includes(modelId);
     }
 
     // Generic legacy palette: preserve the brand hue, reduce chroma, and raise
@@ -4778,12 +4340,14 @@
       { modelId: 'gpt-56-luna-medium', label: '⌘ GPT 5.6 Luna Medium', correct: 39.63, abstention: 6.92, hallucination: 53.45, sortOrder: 12 },
       { modelId: 'gpt-56-luna-low', label: '⌘ GPT 5.6 Luna Low', correct: 38.63, abstention: 7.54, hallucination: 53.83, sortOrder: 12.5 },
       { modelId: 'gpt-54-thinking-mini', label: '⌘ GPT 5.4 Thinking Mini', correct: 36.50, abstention: 6.88, hallucination: 56.62, sortOrder: 23 },
-      { modelId: 'gpt-55-instant', label: '⌘ GPT 5.5 Instant', correct: 45.07, abstention: 4.82, hallucination: 50.11, sortOrder: 27 },
+      { modelId: 'gpt-55-instant', label: '⌘ GPT 5.5 Instant', correct: 44.12, abstention: 15.25, hallucination: 40.63, sortOrder: 27 },
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro Extended', correct: 55.25, abstention: 22.43, hallucination: 22.32, sortOrder: 35 },
       { modelId: 'gemini-36-flash-extended', label: '✦ Gemini 3.6 Flash Extended', correct: 50.20, abstention: 23.13, hallucination: 26.67, sortOrder: 36 },
       { modelId: 'gemini-35-flash-lite-extended', label: '✦ Gemini 3.5 Flash Lite Extended', correct: 30.28, abstention: 46.35, hallucination: 23.37, sortOrder: 38 },
       { modelId: 'claude-5-fable', label: '❋ Claude 5 Fable Thinking Max', correct: 61.35, abstention: 17.45, hallucination: 21.20, sortOrder: 63.8 },
-      { modelId: 'claude-48-opus', label: '❋ Claude 4.8 Opus Thinking Max', correct: 46.60, abstention: 34.24, hallucination: 19.16, sortOrder: 63.9 },
+      { modelId: 'claude-5-opus-max', label: '❋ Claude 5 Opus Thinking Max', correct: 54.20, abstention: 22.87, hallucination: 22.93, sortOrder: 63.81 },
+      { modelId: 'claude-5-opus-extra', label: '❋ Claude 5 Opus Thinking Extra', correct: 53.25, abstention: 23.30, hallucination: 23.45, sortOrder: 63.82 },
+      { modelId: 'claude-5-opus-high', label: '❋ Claude 5 Opus Thinking High', correct: 52.67, abstention: 22.75, hallucination: 24.58, sortOrder: 63.83 },
       { modelId: 'claude-5-sonnet', label: '❋ Claude 5 Sonnet Thinking Max', correct: 38.30, abstention: 38.72, hallucination: 22.98, sortOrder: 66.8 },
       { modelId: 'claude-5-sonnet-high', label: '❋ Claude 5 Sonnet High', correct: 32.58, abstention: 33.65, hallucination: 33.77, sortOrder: 67.8 },
       { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', correct: 17.43, abstention: 60.92, hallucination: 21.65, sortOrder: 90 },
@@ -5354,19 +4918,6 @@
         sortOrder: 35
       },
       {
-        modelId: 'claude-48-opus',
-        label: 'Claude 4.8 Opus Thinking Max',
-        borderColor: 'rgba(218, 119, 87, 0.95)',
-        backgroundColor: 'rgba(218, 119, 87, 0.95)',
-        borderWidth: 2,
-        tension: 0.3,
-        pointRadius: 6,
-        pointHoverRadius: 7,
-        pointBackgroundColor: 'rgba(218, 119, 87, 0.95)',
-        spanGaps: false,
-        sortOrder: 63.9
-      },
-      {
         modelId: 'claude-5-sonnet',
         label: 'Claude 5 Sonnet Thinking Max',
         borderColor: 'rgba(218, 119, 87, 0.8)',
@@ -5506,12 +5057,14 @@
       { modelId: 'gpt-56-luna-medium', label: '⌘ GPT 5.6 Luna Medium', score: 66, sortOrder: 12 },
       { modelId: 'gpt-56-luna-low', label: '⌘ GPT 5.6 Luna Low', score: 59.3, sortOrder: 12.5 },
       { modelId: 'gpt-54-thinking-mini', label: '⌘ GPT 5.4 Thinking Mini', score: 61.3, sortOrder: 23 },
-      { modelId: 'gpt-55-instant', label: '⌘ GPT 5.5 Instant', score: 56.3, sortOrder: 27 },
+      { modelId: 'gpt-55-instant', label: '⌘ GPT 5.5 Instant', score: 64.0, sortOrder: 27 },
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro Extended', score: 72.7, sortOrder: 35 },
       { modelId: 'gemini-36-flash-extended', label: '✦ Gemini 3.6 Flash Extended', score: 69.7, sortOrder: 36 },
       { modelId: 'gemini-35-flash-lite-extended', label: '✦ Gemini 3.5 Flash Lite Extended', score: 62, sortOrder: 38 },
       { modelId: 'claude-5-fable', label: '❋ Claude 5 Fable Thinking Max', score: 70, sortOrder: 63.8 },
-      { modelId: 'claude-48-opus', label: '❋ Claude 4.8 Opus Thinking Max', score: 67.7, sortOrder: 63.9 },
+      { modelId: 'claude-5-opus-max', label: '❋ Claude 5 Opus Thinking Max', score: 70.0, sortOrder: 63.81 },
+      { modelId: 'claude-5-opus-extra', label: '❋ Claude 5 Opus Thinking Extra', score: 68.7, sortOrder: 63.82 },
+      { modelId: 'claude-5-opus-high', label: '❋ Claude 5 Opus Thinking High', score: 67.0, sortOrder: 63.83 },
       { modelId: 'claude-5-sonnet', label: '❋ Claude 5 Sonnet Thinking Max', score: 70.7, sortOrder: 66.8 },
       { modelId: 'claude-5-sonnet-high', label: '❋ Claude 5 Sonnet High', score: 58.7, sortOrder: 67.8 },
       { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', score: 70.3, sortOrder: 90 },
@@ -5641,12 +5194,14 @@
       { modelId: 'gpt-56-luna-medium', label: '⌘ GPT 5.6 Luna Medium', score: 76, sortOrder: 12 },
       { modelId: 'gpt-56-luna-low', label: '⌘ GPT 5.6 Luna Low', score: 74, sortOrder: 12.5 },
       { modelId: 'gpt-54-thinking-mini', label: '⌘ GPT 5.4 Thinking Mini', score: 71, sortOrder: 23 },
-      { modelId: 'gpt-55-instant', label: '⌘ GPT 5.5 Instant', score: 71, sortOrder: 27 },
+      { modelId: 'gpt-55-instant', label: '⌘ GPT 5.5 Instant (Estimated)', score: 71, sortOrder: 27, estimated: true },
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro Extended', score: 82, sortOrder: 35 },
       { modelId: 'gemini-36-flash-extended', label: '✦ Gemini 3.6 Flash Extended', score: 83, sortOrder: 36 },
       { modelId: 'gemini-35-flash-lite-extended', label: '✦ Gemini 3.5 Flash Lite Extended', score: 79, sortOrder: 38 },
       { modelId: 'claude-5-fable', label: '❋ Claude 5 Fable Thinking Max (Estimated)', score: 85, sortOrder: 63.8, estimated: true },
-      { modelId: 'claude-48-opus', label: '❋ Claude 4.8 Opus Thinking Max (Estimated)', score: 79, sortOrder: 63.9, estimated: true },
+      { modelId: 'claude-5-opus-max', label: '❋ Claude 5 Opus Thinking Max', score: 85, sortOrder: 63.81 },
+      { modelId: 'claude-5-opus-extra', label: '❋ Claude 5 Opus Thinking Extra', score: 84, sortOrder: 63.82 },
+      { modelId: 'claude-5-opus-high', label: '❋ Claude 5 Opus Thinking High', score: 82, sortOrder: 63.83 },
       { modelId: 'claude-5-sonnet', label: '❋ Claude 5 Sonnet Thinking Max', score: 77, sortOrder: 66.8 },
       { modelId: 'claude-5-sonnet-high', label: '❋ Claude 5 Sonnet High', score: 72, sortOrder: 67.8 },
       { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', score: 58, sortOrder: 90 },
@@ -5860,7 +5415,9 @@
       { modelId: 'gemini-36-flash-extended', label: '✦ Gemini 3.6 Flash Extended', score: 1421, costPerTask: 1.04, sortOrder: 36 },
       { modelId: 'gemini-35-flash-lite-extended', label: '✦ Gemini 3.5 Flash Lite Extended', score: 1140, costPerTask: 0.10, sortOrder: 38 },
       { modelId: 'claude-5-fable', label: '❋ Claude 5 Fable Thinking Max', score: 1760, costPerTask: 7.75, sortOrder: 63.8 },
-      { modelId: 'claude-48-opus', label: '❋ Claude 4.8 Opus Thinking Max', score: 1600, costPerTask: 4.34, sortOrder: 63.9 },
+      { modelId: 'claude-5-opus-max', label: '❋ Claude 5 Opus Thinking Max', score: 1861, costPerTask: 6.77, sortOrder: 63.81 },
+      { modelId: 'claude-5-opus-extra', label: '❋ Claude 5 Opus Thinking Extra', score: 1827, costPerTask: 4.96, sortOrder: 63.82 },
+      { modelId: 'claude-5-opus-high', label: '❋ Claude 5 Opus Thinking High', score: 1741, costPerTask: 3.03, sortOrder: 63.83 },
       { modelId: 'claude-5-sonnet', label: '❋ Claude 5 Sonnet Thinking Max', score: 1607, costPerTask: 4.70, sortOrder: 66.8 },
       { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', score: 907, costPerTask: 0.25, sortOrder: 90 },
       { modelId: 'glm-52-deep-think-max', label: 'Ƶ GLM 5.2 Deep Think Max', score: 1514, costPerTask: 1.22, sortOrder: 97 },
@@ -6238,7 +5795,9 @@
       { modelId: 'gemini-36-flash-extended', label: '✦ Gemini 3.6 Flash Extended', score: 77.5, costPerTask: 1.40, sortOrder: 36 },
       { modelId: 'gemini-35-flash-lite-extended', label: '✦ Gemini 3.5 Flash Lite Extended', score: 53.6, costPerTask: 0.26, sortOrder: 38 },
       { modelId: 'claude-5-fable', label: '❋ Claude 5 Fable Thinking Max', score: 84.6, costPerTask: 3.36, sortOrder: 63.8 },
-      { modelId: 'claude-48-opus', label: '❋ Claude 4.8 Opus Thinking Max', score: 84.6, costPerTask: 3.42, sortOrder: 63.9 },
+      { modelId: 'claude-5-opus-max', label: '❋ Claude 5 Opus Thinking Max', score: 89.1, costPerTask: 2.42, sortOrder: 63.81 },
+      { modelId: 'claude-5-opus-extra', label: '❋ Claude 5 Opus Thinking Extra', score: 88.0, costPerTask: 1.87, sortOrder: 63.82 },
+      { modelId: 'claude-5-opus-high', label: '❋ Claude 5 Opus Thinking High', score: 87.6, costPerTask: 1.23, sortOrder: 63.83 },
       { modelId: 'claude-5-sonnet', label: '❋ Claude 5 Sonnet Thinking Max', score: 80.5, costPerTask: 1.89, sortOrder: 66.8 },
       { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', score: 44.2, costPerTask: 0.99, sortOrder: 90 },
       { modelId: 'glm-52-deep-think-max', label: 'Ƶ GLM 5.2 Deep Think Max', score: 75.3, costPerTask: 0.83, sortOrder: 97 },
@@ -6338,6 +5897,7 @@
       low: { order: 0, label: 'Low' },
       medium: { order: 1, label: 'Medium' },
       high: { order: 2, label: 'High' },
+      extra: { order: 3, label: 'Extra' },
       xhigh: { order: 3, label: 'Extra High' },
       max: { order: 4, label: 'Max' }
     });
@@ -6362,6 +5922,17 @@
             effortOrder: effortMeta.order
           };
         }
+      }
+
+      if (modelId.startsWith('claude-5-opus-')) {
+        const effort = modelId.split('-').pop();
+        const effortMeta = getTerminalBenchV21EffortMeta(effort, cleanLabel);
+        return {
+          key: 'claude-5-opus',
+          label: 'Claude 5 Opus',
+          pointLabel: effortMeta.label,
+          effortOrder: effortMeta.order
+        };
       }
 
       // Every other model is intentionally its own series. Sharing a provider
@@ -6871,7 +6442,23 @@
         ]
       },
       {
-        modelId: 'claude-48-opus', label: '❋ Claude 4.8 Opus Thinking Max', sortOrder: 63.9,
+        modelId: 'claude-5-opus-max', label: '❋ Claude 5 Opus Thinking Max', sortOrder: 63.81,
+        color: 'rgba(218, 119, 87, 1)',
+        segments: [
+          { value: 200000, plans: 'Free' },
+          { value: 500000, plans: 'Pro, Max x5, Max x20' }
+        ]
+      },
+      {
+        modelId: 'claude-5-opus-extra', label: '❋ Claude 5 Opus Thinking Extra', sortOrder: 63.82,
+        color: 'rgba(218, 119, 87, 1)',
+        segments: [
+          { value: 200000, plans: 'Free' },
+          { value: 500000, plans: 'Pro, Max x5, Max x20' }
+        ]
+      },
+      {
+        modelId: 'claude-5-opus-high', label: '❋ Claude 5 Opus Thinking High', sortOrder: 63.83,
         color: 'rgba(218, 119, 87, 1)',
         segments: [
           { value: 200000, plans: 'Free' },
@@ -7557,12 +7144,6 @@
           cell.classList.add('unknown-cell');
         }
 
-        const usaMain = cell.querySelector('.usa-main');
-        const usaMainText = usaMain ? getDirectText(usaMain) : '';
-
-        if (usaMainText && isUnknownText(usaMainText)) {
-          cell.classList.add('unknown-cell', 'usa-unknown-cell');
-        }
       });
     }
 
@@ -7574,48 +7155,13 @@
       safeStorageSet('unknownToggleActive', toggle.classList.contains('active'));
     }
 
-    // Toggle function for subjective recommendations
-    function toggleSubjective() {
-      const toggle = document.querySelector('.subjective-toggle .toggle-switch');
-      const tabContent = document.getElementById('tab-specs');
-      toggle.classList.toggle('active');
-      tabContent.classList.toggle('hide-subjective');
-      // Save state to localStorage
-      safeStorageSet('subjectiveToggleActive', toggle.classList.contains('active'));
-    }
-
     // Toggle function for USA-exclusive features
-    // DEV REMINDER: When USA-exclusive is OFF, Gemini Pro loses "ecosystem memory" advantage,
-    // so ChatGPT Plus becomes the better option for Memory features
     function toggleUSAExclusive() {
       const toggle = document.querySelector('.usa-toggle .toggle-switch');
       const tabContent = document.getElementById('tab-specs');
       toggle.classList.toggle('active');
       tabContent.classList.toggle('hide-usa-exclusive');
-      // Save state to localStorage
       safeStorageSet('usaExclusiveToggleActive', toggle.classList.contains('active'));
-
-      // Update Agent mode ratings based on USA-exclusive state
-      const isUSAExclusiveOn = toggle.classList.contains('active');
-
-      // Agent mode cells ($100-$250)
-      const agentGeminiUltra = document.getElementById('agent-gemini-ultra');
-      const agentChatGPTPro = document.getElementById('agent-chatgpt-pro');
-
-      if (isUSAExclusiveOn) {
-        // Agent mode: Gemini Ultra has 6000 uses (USA only)
-        if (agentChatGPTPro) {
-          agentChatGPTPro.classList.remove('rating-excellent');
-          agentChatGPTPro.classList.add('rating-great');
-        }
-      } else {
-        // Agent mode: Gemini Ultra has no agent mode without USA
-        if (agentGeminiUltra) agentGeminiUltra.classList.remove('rating-excellent');
-        if (agentChatGPTPro) {
-          agentChatGPTPro.classList.remove('rating-great');
-          agentChatGPTPro.classList.add('rating-excellent');
-        }
-      }
     }
 
     // Toggle function for price tier with animation
@@ -8024,36 +7570,14 @@
         }
       }
 
-      // Restore subjective toggle state
-      const savedSubjective = safeStorageGet('subjectiveToggleActive');
-      if (savedSubjective === 'false') {
-        // Default is active (ON), so we need to toggle OFF
-        const subjectiveToggle = document.querySelector('.subjective-toggle .toggle-switch');
-        const tabContent = document.getElementById('tab-specs');
-        if (subjectiveToggle) {
-          subjectiveToggle.classList.remove('active');
-          tabContent.classList.add('hide-subjective');
-        }
-      }
-
       // Restore USA-exclusive toggle state
       const savedUSA = safeStorageGet('usaExclusiveToggleActive');
       if (savedUSA === 'false') {
-        // Default is active (ON), so we need to toggle OFF and apply all effects
         const usaToggle = document.querySelector('.usa-toggle .toggle-switch');
         const tabContent = document.getElementById('tab-specs');
         if (usaToggle) {
           usaToggle.classList.remove('active');
           tabContent.classList.add('hide-usa-exclusive');
-          // Apply the rating changes for USA OFF state
-          const agentGeminiUltra = document.getElementById('agent-gemini-ultra');
-          const agentChatGPTPro = document.getElementById('agent-chatgpt-pro');
-
-          if (agentGeminiUltra) agentGeminiUltra.classList.remove('rating-excellent');
-          if (agentChatGPTPro) {
-            agentChatGPTPro.classList.remove('rating-great');
-            agentChatGPTPro.classList.add('rating-excellent');
-          }
         }
       }
 
@@ -8084,32 +7608,12 @@
         }
       }
 
-      // Restore main tab selection
+      // Restore main tab selection. Removed tabs fall back to specs.
       const savedMainTab = getStoredEnum('activeMainTab', VALID_MAIN_TABS, 'specs');
-      if (savedMainTab && savedMainTab !== 'specs') {
-        // Default is 'specs', so only switch if different
-        const specsBtn = document.getElementById('btn-specs');
-        const benchmarksBtn = document.getElementById('btn-benchmarks');
-        const benefitsBtn = document.getElementById('btn-benefits');
-        const specsTab = document.getElementById('tab-specs');
-        const benchmarksTab = document.getElementById('tab-benchmarks');
-        const benefitsTab = document.getElementById('tab-benefits');
-
-        if (specsBtn && benchmarksBtn && benefitsBtn && specsTab && benchmarksTab && benefitsTab) {
-          // Remove active from all buttons and tabs
-          [specsBtn, benchmarksBtn, benefitsBtn].forEach(btn => btn.classList.remove('active'));
-          [specsTab, benchmarksTab, benefitsTab].forEach(tab => tab.classList.remove('active'));
-
-          // Activate the saved tab
-          if (savedMainTab === 'benchmarks') {
-            benchmarksBtn.classList.add('active');
-            benchmarksTab.classList.add('active');
-            ensureBenchmarkRuntime().then(resizeInitializedCharts);
-          } else if (savedMainTab === 'benefits') {
-            benefitsBtn.classList.add('active');
-            benefitsTab.classList.add('active');
-          }
-        }
+      if (savedMainTab === 'benchmarks') {
+        switchTab('benchmarks');
+      } else {
+        safeStorageSet('activeMainTab', 'specs');
       }
     }
 
@@ -8121,7 +7625,7 @@
     style="text-align: center; padding: 2rem 1rem; margin-top: 3rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.8rem;">
     Made by <strong> u/Pasto_Shouwa</strong>
     <br>
-    <em>Last updated on <strong>21/07/2026</strong> (dd/mm/yyyy)</em>
+    <em>Last updated on <strong>24/07/2026</strong> (dd/mm/yyyy)</em>
   </footer>
 </body>
 
