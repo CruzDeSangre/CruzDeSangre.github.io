@@ -18,7 +18,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Added three thinking efforts of Claude 5 Opus. Ended support for comparisons with the Gemini plans.</title>
+  <title>Added five thinking efforts of Claude 5 Opus. Ended support for comparisons with the Gemini plans.</title>
   <meta name="description"
     content="Compare ChatGPT Free, Go, Plus, and Pro plans, plus benchmarks across GPT, Gemini, Claude, and other leading AI models.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -2719,6 +2719,14 @@
                 <span class="model-dot-indicator dot-claude shape-square"></span>
                 <span class="model-dot-label">Claude 5 Opus Thinking High</span>
               </div>
+              <div class="model-dot" data-model="claude-5-opus-medium" onclick="toggleIndividualModel('claude-5-opus-medium')">
+                <span class="model-dot-indicator dot-claude shape-square"></span>
+                <span class="model-dot-label">Claude 5 Opus Thinking Medium</span>
+              </div>
+              <div class="model-dot" data-model="claude-5-opus-low" onclick="toggleIndividualModel('claude-5-opus-low')">
+                <span class="model-dot-indicator dot-claude shape-square"></span>
+                <span class="model-dot-label">Claude 5 Opus Thinking Low</span>
+              </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot" data-model="claude-5-sonnet" onclick="toggleIndividualModel('claude-5-sonnet')">
@@ -3639,6 +3647,8 @@
       'claude-5-opus-max': true,  // Starts visible by default
       'claude-5-opus-extra': true, // Starts visible by default
       'claude-5-opus-high': true, // Starts visible by default
+      'claude-5-opus-medium': true, // Starts visible by default
+      'claude-5-opus-low': true, // Starts visible by default
       'claude-5-sonnet': true,    // Starts visible by default
       'claude-5-sonnet-high': false, // Starts hidden
       'claude-haiku-nr': false,   // Non-reasoning, starts hidden
@@ -3689,6 +3699,8 @@
       'claude-5-opus-max': false, // Starts enabled by default
       'claude-5-opus-extra': false, // Starts enabled by default
       'claude-5-opus-high': false, // Starts enabled by default
+      'claude-5-opus-medium': false, // Starts enabled by default
+      'claude-5-opus-low': false, // Starts enabled by default
       'claude-5-sonnet': false,   // Starts enabled by default
       'claude-5-sonnet-high': true, // Starts explicitly disabled
       'claude-haiku-nr': true,    // Starts explicitly disabled
@@ -3722,8 +3734,8 @@
 
     // Model groups for group toggles
     const modelGroups = {
-      'claude': ['claude-5-fable', 'claude-5-opus-max', 'claude-5-opus-extra', 'claude-5-opus-high', 'claude-5-sonnet', 'claude-5-sonnet-high', 'claude-haiku', 'claude-haiku-nr'],
-      'reasoning': ['gpt-56-sol-max', 'gpt-56-sol-xhigh', 'gpt-56-sol-high', 'gpt-56-sol-medium', 'gpt-56-sol-low', 'gpt-56-terra-max', 'gpt-56-terra-xhigh', 'gpt-56-terra-high', 'gpt-56-terra-medium', 'gpt-56-terra-low', 'gpt-56-luna-max', 'gpt-56-luna-xhigh', 'gpt-56-luna-high', 'gpt-56-luna-medium', 'gpt-56-luna-low', 'gpt-54-thinking-mini', 'gemini-31-pro', 'gemini-36-flash-extended', 'gemini-35-flash-lite-extended', 'claude-5-fable', 'claude-5-opus-max', 'claude-5-opus-extra', 'claude-5-opus-high', 'claude-5-sonnet', 'claude-haiku', 'glm-52-deep-think-max', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-45-expert', 'minimax-m3-thinking', 'nemotron-3-ultra-reasoning', 'muse-spark-11', 'mimo-v25-pro', 'mimo-v25', 'qwen-37-max-think', 'qwen-37-plus-think', 'kimi-k3-max', 'kimi-k26-thinking'],
+      'claude': ['claude-5-fable', 'claude-5-opus-max', 'claude-5-opus-extra', 'claude-5-opus-high', 'claude-5-opus-medium', 'claude-5-opus-low', 'claude-5-sonnet', 'claude-5-sonnet-high', 'claude-haiku', 'claude-haiku-nr'],
+      'reasoning': ['gpt-56-sol-max', 'gpt-56-sol-xhigh', 'gpt-56-sol-high', 'gpt-56-sol-medium', 'gpt-56-sol-low', 'gpt-56-terra-max', 'gpt-56-terra-xhigh', 'gpt-56-terra-high', 'gpt-56-terra-medium', 'gpt-56-terra-low', 'gpt-56-luna-max', 'gpt-56-luna-xhigh', 'gpt-56-luna-high', 'gpt-56-luna-medium', 'gpt-56-luna-low', 'gpt-54-thinking-mini', 'gemini-31-pro', 'gemini-36-flash-extended', 'gemini-35-flash-lite-extended', 'claude-5-fable', 'claude-5-opus-max', 'claude-5-opus-extra', 'claude-5-opus-high', 'claude-5-opus-medium', 'claude-5-opus-low', 'claude-5-sonnet', 'claude-haiku', 'glm-52-deep-think-max', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-45-expert', 'minimax-m3-thinking', 'nemotron-3-ultra-reasoning', 'muse-spark-11', 'mimo-v25-pro', 'mimo-v25', 'qwen-37-max-think', 'qwen-37-plus-think', 'kimi-k3-max', 'kimi-k26-thinking'],
       'instant': ['gpt-55-instant', 'claude-5-sonnet-high', 'claude-haiku-nr', 'glm-52', 'qwen-35-omni-plus', 'kimi-k26-instant'],
       'chatgpt-pro': [],
       'other': ['glm-52-deep-think-max', 'glm-52', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-45-expert', 'minimax-m3-thinking', 'nemotron-3-ultra-reasoning', 'muse-spark-11', 'mimo-v25-pro', 'mimo-v25', 'qwen-37-max-think', 'qwen-37-plus-think', 'kimi-k3-max', 'kimi-k26-thinking', 'qwen-35-omni-plus', 'kimi-k26-instant'],
@@ -3759,6 +3771,8 @@
       'claude-5-opus-max': ['claude', 'reasoning'],    // Needs both Claude AND Reasoning to be on
       'claude-5-opus-extra': ['claude', 'reasoning'],  // Needs both Claude AND Reasoning to be on
       'claude-5-opus-high': ['claude', 'reasoning'],   // Needs both Claude AND Reasoning to be on
+      'claude-5-opus-medium': ['claude', 'reasoning'], // Needs both Claude AND Reasoning to be on
+      'claude-5-opus-low': ['claude', 'reasoning'],    // Needs both Claude AND Reasoning to be on
       'claude-5-sonnet': ['claude', 'reasoning'],      // Needs both Claude AND Reasoning to be on
       'claude-5-sonnet-high': ['claude', 'instant'], // Needs both Claude AND Non-reasoning to be on
       'claude-haiku-nr': ['claude', 'instant'],         // Needs both Claude AND Non-reasoning to be on
@@ -4348,6 +4362,8 @@
       { modelId: 'claude-5-opus-max', label: '❋ Claude 5 Opus Thinking Max', correct: 54.20, abstention: 22.87, hallucination: 22.93, sortOrder: 63.81 },
       { modelId: 'claude-5-opus-extra', label: '❋ Claude 5 Opus Thinking Extra', correct: 53.25, abstention: 23.30, hallucination: 23.45, sortOrder: 63.82 },
       { modelId: 'claude-5-opus-high', label: '❋ Claude 5 Opus Thinking High', correct: 52.67, abstention: 22.75, hallucination: 24.58, sortOrder: 63.83 },
+      { modelId: 'claude-5-opus-medium', label: '❋ Claude 5 Opus Thinking Medium', correct: 51.10, abstention: 23.43, hallucination: 25.47, sortOrder: 63.84 },
+      { modelId: 'claude-5-opus-low', label: '❋ Claude 5 Opus Thinking Low', correct: 50.42, abstention: 22.35, hallucination: 27.23, sortOrder: 63.85 },
       { modelId: 'claude-5-sonnet', label: '❋ Claude 5 Sonnet Thinking Max', correct: 38.30, abstention: 38.72, hallucination: 22.98, sortOrder: 66.8 },
       { modelId: 'claude-5-sonnet-high', label: '❋ Claude 5 Sonnet High', correct: 32.58, abstention: 33.65, hallucination: 33.77, sortOrder: 67.8 },
       { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', correct: 17.43, abstention: 60.92, hallucination: 21.65, sortOrder: 90 },
@@ -5065,6 +5081,8 @@
       { modelId: 'claude-5-opus-max', label: '❋ Claude 5 Opus Thinking Max', score: 70.0, sortOrder: 63.81 },
       { modelId: 'claude-5-opus-extra', label: '❋ Claude 5 Opus Thinking Extra', score: 68.7, sortOrder: 63.82 },
       { modelId: 'claude-5-opus-high', label: '❋ Claude 5 Opus Thinking High', score: 67.0, sortOrder: 63.83 },
+      { modelId: 'claude-5-opus-medium', label: '❋ Claude 5 Opus Thinking Medium', score: 69.0, sortOrder: 63.84 },
+      { modelId: 'claude-5-opus-low', label: '❋ Claude 5 Opus Thinking Low', score: 69.3, sortOrder: 63.85 },
       { modelId: 'claude-5-sonnet', label: '❋ Claude 5 Sonnet Thinking Max', score: 70.7, sortOrder: 66.8 },
       { modelId: 'claude-5-sonnet-high', label: '❋ Claude 5 Sonnet High', score: 58.7, sortOrder: 67.8 },
       { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', score: 70.3, sortOrder: 90 },
@@ -5202,6 +5220,8 @@
       { modelId: 'claude-5-opus-max', label: '❋ Claude 5 Opus Thinking Max', score: 85, sortOrder: 63.81 },
       { modelId: 'claude-5-opus-extra', label: '❋ Claude 5 Opus Thinking Extra', score: 84, sortOrder: 63.82 },
       { modelId: 'claude-5-opus-high', label: '❋ Claude 5 Opus Thinking High', score: 82, sortOrder: 63.83 },
+      { modelId: 'claude-5-opus-medium', label: '❋ Claude 5 Opus Thinking Medium', score: 82, sortOrder: 63.84 },
+      { modelId: 'claude-5-opus-low', label: '❋ Claude 5 Opus Thinking Low', score: 80, sortOrder: 63.85 },
       { modelId: 'claude-5-sonnet', label: '❋ Claude 5 Sonnet Thinking Max', score: 77, sortOrder: 66.8 },
       { modelId: 'claude-5-sonnet-high', label: '❋ Claude 5 Sonnet High', score: 72, sortOrder: 67.8 },
       { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', score: 58, sortOrder: 90 },
@@ -5418,6 +5438,8 @@
       { modelId: 'claude-5-opus-max', label: '❋ Claude 5 Opus Thinking Max', score: 1861, costPerTask: 6.77, sortOrder: 63.81 },
       { modelId: 'claude-5-opus-extra', label: '❋ Claude 5 Opus Thinking Extra', score: 1827, costPerTask: 4.96, sortOrder: 63.82 },
       { modelId: 'claude-5-opus-high', label: '❋ Claude 5 Opus Thinking High', score: 1741, costPerTask: 3.03, sortOrder: 63.83 },
+      { modelId: 'claude-5-opus-medium', label: '❋ Claude 5 Opus Thinking Medium', score: 1632, costPerTask: 1.36, sortOrder: 63.84 },
+      { modelId: 'claude-5-opus-low', label: '❋ Claude 5 Opus Thinking Low', score: 1454, costPerTask: 0.58, sortOrder: 63.85 },
       { modelId: 'claude-5-sonnet', label: '❋ Claude 5 Sonnet Thinking Max', score: 1607, costPerTask: 4.70, sortOrder: 66.8 },
       { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', score: 907, costPerTask: 0.25, sortOrder: 90 },
       { modelId: 'glm-52-deep-think-max', label: 'Ƶ GLM 5.2 Deep Think Max', score: 1514, costPerTask: 1.22, sortOrder: 97 },
@@ -5798,6 +5820,8 @@
       { modelId: 'claude-5-opus-max', label: '❋ Claude 5 Opus Thinking Max', score: 89.1, costPerTask: 2.42, sortOrder: 63.81 },
       { modelId: 'claude-5-opus-extra', label: '❋ Claude 5 Opus Thinking Extra', score: 88.0, costPerTask: 1.87, sortOrder: 63.82 },
       { modelId: 'claude-5-opus-high', label: '❋ Claude 5 Opus Thinking High', score: 87.6, costPerTask: 1.23, sortOrder: 63.83 },
+      { modelId: 'claude-5-opus-medium', label: '❋ Claude 5 Opus Thinking Medium', score: 86.1, costPerTask: 0.75, sortOrder: 63.84 },
+      { modelId: 'claude-5-opus-low', label: '❋ Claude 5 Opus Thinking Low', score: 76.4, costPerTask: 0.50, sortOrder: 63.85 },
       { modelId: 'claude-5-sonnet', label: '❋ Claude 5 Sonnet Thinking Max', score: 80.5, costPerTask: 1.89, sortOrder: 66.8 },
       { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', score: 44.2, costPerTask: 0.99, sortOrder: 90 },
       { modelId: 'glm-52-deep-think-max', label: 'Ƶ GLM 5.2 Deep Think Max', score: 75.3, costPerTask: 0.83, sortOrder: 97 },
@@ -6459,6 +6483,22 @@
       },
       {
         modelId: 'claude-5-opus-high', label: '❋ Claude 5 Opus Thinking High', sortOrder: 63.83,
+        color: 'rgba(218, 119, 87, 1)',
+        segments: [
+          { value: 200000, plans: 'Free' },
+          { value: 500000, plans: 'Pro, Max x5, Max x20' }
+        ]
+      },
+      {
+        modelId: 'claude-5-opus-medium', label: '❋ Claude 5 Opus Thinking Medium', sortOrder: 63.84,
+        color: 'rgba(218, 119, 87, 1)',
+        segments: [
+          { value: 200000, plans: 'Free' },
+          { value: 500000, plans: 'Pro, Max x5, Max x20' }
+        ]
+      },
+      {
+        modelId: 'claude-5-opus-low', label: '❋ Claude 5 Opus Thinking Low', sortOrder: 63.85,
         color: 'rgba(218, 119, 87, 1)',
         segments: [
           { value: 200000, plans: 'Free' },
@@ -7625,7 +7665,7 @@
     style="text-align: center; padding: 2rem 1rem; margin-top: 3rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.8rem;">
     Made by <strong> u/Pasto_Shouwa</strong>
     <br>
-    <em>Last updated on <strong>24/07/2026</strong> (dd/mm/yyyy)</em>
+    <em>Last updated on <strong>25/07/2026</strong> (dd/mm/yyyy)</em>
   </footer>
 </body>
 
