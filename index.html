@@ -1625,6 +1625,14 @@
       background: #1567fd;
     }
 
+    .dot-deepseek {
+      background: #4d6bfe;
+    }
+
+    .dot-deepseek-legacy {
+      background: rgba(134, 148, 213, 1);
+    }
+
     .dot-mimo {
       background: rgba(255, 116, 0, 1);
     }
@@ -2698,11 +2706,6 @@
                 <span class="model-dot-indicator dot-gemini-legacy"></span>
                 <span class="model-dot-label">Gemini 3.1 Pro Extended</span>
               </div>
-              <div class="model-dot" data-model="gemini-36-flash-extended"
-                onclick="toggleIndividualModel('gemini-36-flash-extended')">
-                <span class="model-dot-indicator dot-gemini-legacy"></span>
-                <span class="model-dot-label">Gemini 3.6 Flash Extended</span>
-              </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot" data-model="claude-5-fable" onclick="toggleIndividualModel('claude-5-fable')">
@@ -2804,6 +2807,23 @@
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
+              <div class="model-dot inactive" data-model="deepseek-v4-vision-deep-think"
+                onclick="toggleIndividualModel('deepseek-v4-vision-deep-think')">
+                <span class="model-dot-indicator dot-deepseek"></span>
+                <span class="model-dot-label">DeepSeek V4 Vision Deep Think</span>
+              </div>
+              <div class="model-dot inactive" data-model="deepseek-v4-expert-deep-think"
+                onclick="toggleIndividualModel('deepseek-v4-expert-deep-think')">
+                <span class="model-dot-indicator dot-deepseek"></span>
+                <span class="model-dot-label">DeepSeek V4 Expert Deep Think</span>
+              </div>
+              <div class="model-dot inactive" data-model="deepseek-v4-instant-deep-think"
+                onclick="toggleIndividualModel('deepseek-v4-instant-deep-think')">
+                <span class="model-dot-indicator dot-deepseek-legacy"></span>
+                <span class="model-dot-label">DeepSeek V4 Instant Deep Think</span>
+              </div>
+            </div>
+            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot inactive" data-model="mimo-v25-pro" onclick="toggleIndividualModel('mimo-v25-pro')">
                 <span class="model-dot-indicator dot-mimo"></span>
                 <span class="model-dot-label">MiMo V2.5 Pro</span>
@@ -2863,13 +2883,6 @@
                 onclick="toggleIndividualModel('claude-haiku-nr')">
                 <span class="model-dot-indicator dot-claude"></span>
                 <span class="model-dot-label">Claude 4.5 Haiku</span>
-              </div>
-            </div>
-            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
-              <div class="model-dot inactive" data-model="qwen-35-omni-plus"
-                onclick="toggleIndividualModel('qwen-35-omni-plus')">
-                <span class="model-dot-indicator dot-qwen"></span>
-                <span class="model-dot-label">Qwen 3.5 Omni Plus Fast</span>
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
@@ -3191,7 +3204,6 @@
               <li>• <strong>GLM</strong> models are capable of understanding only text.
                 Image and video inputs are likely routed to GLM 5V Turbo Deep Think and GLM 5V Turbo respectively.
               </li>
-              <li>• <strong>Qwen 3.5 Omni Plus Fast</strong> is capable of understanding text, images, video and audio.
               <li>• <strong>Kimi</strong> models are capable of understanding text, images and video.
               <li>• <strong>MiMo V2.5 Pro</strong> is capable of understanding only text.
               </li>
@@ -3629,7 +3641,6 @@
       'gemini-37-flash-extended': true,
       'gemini-35-flash-lite-extended': true,
       'gemini-31-pro': true,
-      'gemini-36-flash-extended': false, // Legacy model, starts hidden
       'claude-haiku': false,   // Starts hidden by default
       'claude-5-fable': true,     // Starts visible by default
       'claude-5-opus-max': true,  // Starts visible by default
@@ -3648,13 +3659,15 @@
       'minimax-m3-thinking': false,   // Other recommended, starts hidden
       'nemotron-3-ultra-reasoning': false, // Other recommended, starts hidden
       'muse-spark-12': false,         // Other recommended, starts hidden
+      'deepseek-v4-vision-deep-think': false, // Other recommended, starts hidden
+      'deepseek-v4-expert-deep-think': false, // Other recommended, starts hidden
+      'deepseek-v4-instant-deep-think': false, // Other recommended, starts hidden
       'mimo-v25-pro': false,         // Other recommended, starts hidden
       'mimo-v25': false,             // Other recommended, starts hidden
       'qwen-38-max': false,          // Other recommended, starts hidden
       'qwen-37-plus-think': false,   // Other recommended, starts hidden
       'kimi-k3-max': false,           // Other recommended, starts hidden
       'kimi-k26-thinking': false,     // Other recommended, starts hidden
-      'qwen-35-omni-plus': false,     // Other recommended, starts hidden
       'kimi-k26-instant': false       // Other recommended, starts hidden
     };
 
@@ -3682,7 +3695,6 @@
       'gemini-37-flash-extended': false,
       'gemini-35-flash-lite-extended': false,
       'gemini-31-pro': false,
-      'gemini-36-flash-extended': false,
       'claude-haiku': true,    // Starts explicitly disabled
       'claude-5-fable': false,    // Starts enabled by default
       'claude-5-opus-max': false, // Starts enabled by default
@@ -3701,13 +3713,15 @@
       'minimax-m3-thinking': false,      // Other recommended
       'nemotron-3-ultra-reasoning': false, // Other recommended
       'muse-spark-12': false,          // Other recommended
+      'deepseek-v4-vision-deep-think': false, // Other recommended
+      'deepseek-v4-expert-deep-think': false, // Other recommended
+      'deepseek-v4-instant-deep-think': false, // Other recommended
       'mimo-v25-pro': false,            // Other recommended
       'mimo-v25': false,                // Other recommended
       'qwen-38-max': false,             // Other recommended
       'qwen-37-plus-think': false,      // Other recommended
       'kimi-k3-max': false,              // Other recommended
       'kimi-k26-thinking': false,        // Other recommended
-      'qwen-35-omni-plus': false,        // Other recommended
       'kimi-k26-instant': false          // Other recommended
     };
 
@@ -3724,11 +3738,11 @@
     // Model groups for group toggles
     const modelGroups = {
       'claude': ['claude-5-fable', 'claude-5-opus-max', 'claude-5-opus-extra', 'claude-5-opus-high', 'claude-5-opus-medium', 'claude-5-opus-low', 'claude-5-sonnet', 'claude-5-sonnet-high', 'claude-48-opus-max', 'claude-haiku', 'claude-haiku-nr'],
-      'reasoning': ['gpt-56-sol-max', 'gpt-56-sol-xhigh', 'gpt-56-sol-high', 'gpt-56-sol-medium', 'gpt-56-sol-low', 'gpt-56-terra-max', 'gpt-56-terra-xhigh', 'gpt-56-terra-high', 'gpt-56-terra-medium', 'gpt-56-terra-low', 'gpt-56-luna-max', 'gpt-56-luna-xhigh', 'gpt-56-luna-high', 'gpt-56-luna-medium', 'gpt-56-luna-low', 'gemini-37-flash-extended', 'gemini-35-flash-lite-extended', 'gemini-31-pro', 'gemini-36-flash-extended', 'claude-5-fable', 'claude-5-opus-max', 'claude-5-opus-extra', 'claude-5-opus-high', 'claude-5-opus-medium', 'claude-5-opus-low', 'claude-5-sonnet', 'claude-48-opus-max', 'claude-haiku', 'glm-53-deep-think-max', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-46-expert', 'minimax-m3-thinking', 'nemotron-3-ultra-reasoning', 'muse-spark-12', 'mimo-v25-pro', 'mimo-v25', 'qwen-38-max', 'qwen-37-plus-think', 'kimi-k3-max', 'kimi-k26-thinking'],
-      'instant': ['gpt-56-sol-instant', 'gpt-56-luna-instant', 'claude-5-sonnet-high', 'claude-haiku-nr', 'qwen-35-omni-plus', 'kimi-k26-instant'],
+      'reasoning': ['gpt-56-sol-max', 'gpt-56-sol-xhigh', 'gpt-56-sol-high', 'gpt-56-sol-medium', 'gpt-56-sol-low', 'gpt-56-terra-max', 'gpt-56-terra-xhigh', 'gpt-56-terra-high', 'gpt-56-terra-medium', 'gpt-56-terra-low', 'gpt-56-luna-max', 'gpt-56-luna-xhigh', 'gpt-56-luna-high', 'gpt-56-luna-medium', 'gpt-56-luna-low', 'gemini-37-flash-extended', 'gemini-35-flash-lite-extended', 'gemini-31-pro', 'claude-5-fable', 'claude-5-opus-max', 'claude-5-opus-extra', 'claude-5-opus-high', 'claude-5-opus-medium', 'claude-5-opus-low', 'claude-5-sonnet', 'claude-48-opus-max', 'claude-haiku', 'glm-53-deep-think-max', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-46-expert', 'minimax-m3-thinking', 'nemotron-3-ultra-reasoning', 'muse-spark-12', 'deepseek-v4-vision-deep-think', 'deepseek-v4-expert-deep-think', 'deepseek-v4-instant-deep-think', 'mimo-v25-pro', 'mimo-v25', 'qwen-38-max', 'qwen-37-plus-think', 'kimi-k3-max', 'kimi-k26-thinking'],
+      'instant': ['gpt-56-sol-instant', 'gpt-56-luna-instant', 'claude-5-sonnet-high', 'claude-haiku-nr', 'kimi-k26-instant'],
       'chatgpt-pro': [],
-      'other': ['glm-53-deep-think-max', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-46-expert', 'minimax-m3-thinking', 'nemotron-3-ultra-reasoning', 'muse-spark-12', 'mimo-v25-pro', 'mimo-v25', 'qwen-38-max', 'qwen-37-plus-think', 'kimi-k3-max', 'kimi-k26-thinking', 'qwen-35-omni-plus', 'kimi-k26-instant'],
-      'legacy': ['gemini-36-flash-extended', 'claude-48-opus-max', 'glm-5t-deep-think', 'qwen-37-plus-think', 'qwen-35-omni-plus', 'kimi-k26-thinking', 'kimi-k26-instant'],
+      'other': ['glm-53-deep-think-max', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-46-expert', 'minimax-m3-thinking', 'nemotron-3-ultra-reasoning', 'muse-spark-12', 'deepseek-v4-vision-deep-think', 'deepseek-v4-expert-deep-think', 'deepseek-v4-instant-deep-think', 'mimo-v25-pro', 'mimo-v25', 'qwen-38-max', 'qwen-37-plus-think', 'kimi-k3-max', 'kimi-k26-thinking', 'kimi-k26-instant'],
+      'legacy': ['claude-48-opus-max', 'glm-5t-deep-think', 'deepseek-v4-instant-deep-think', 'qwen-37-plus-think', 'kimi-k26-thinking', 'kimi-k26-instant'],
       'coding': ['gpt-56-sol-max', 'gpt-56-sol-low', 'gpt-56-terra-max', 'gpt-56-terra-xhigh', 'gpt-56-terra-high', 'gpt-56-terra-medium', 'gpt-56-terra-low', 'gpt-56-luna-max', 'gpt-56-luna-xhigh', 'gpt-56-luna-high', 'gpt-56-luna-medium', 'gpt-56-luna-low']
     };
 
@@ -3755,7 +3769,6 @@
       'gemini-37-flash-extended': ['reasoning'],        // Only needs Reasoning
       'gemini-35-flash-lite-extended': ['reasoning'],   // Only needs Reasoning
       'gemini-31-pro': ['reasoning'],                   // Only needs Reasoning
-      'gemini-36-flash-extended': ['reasoning', 'legacy'], // Needs Reasoning and Legacy
       'claude-haiku': ['claude', 'reasoning'],         // Needs both Claude AND Reasoning to be on
       'claude-5-fable': ['claude', 'reasoning'],       // Needs both Claude AND Reasoning to be on
       'claude-5-opus-max': ['claude', 'reasoning'],    // Needs both Claude AND Reasoning to be on
@@ -3774,13 +3787,15 @@
       'minimax-m3-thinking': ['other', 'reasoning'],          // Needs both Other AND Reasoning to be on
       'nemotron-3-ultra-reasoning': ['other', 'reasoning'],  // Needs both Other AND Reasoning to be on
       'muse-spark-12': ['other', 'reasoning'],                // Needs both Other AND Reasoning to be on
+      'deepseek-v4-vision-deep-think': ['other', 'reasoning'], // Needs both Other AND Reasoning to be on
+      'deepseek-v4-expert-deep-think': ['other', 'reasoning'], // Needs both Other AND Reasoning to be on
+      'deepseek-v4-instant-deep-think': ['other', 'reasoning', 'legacy'], // Needs Other, Reasoning, AND Legacy to be on
       'mimo-v25-pro': ['other', 'reasoning'],                // Needs both Other AND Reasoning to be on
       'mimo-v25': ['other', 'reasoning'],                    // Needs both Other AND Reasoning to be on
       'qwen-38-max': ['other', 'reasoning'],                 // Needs both Other AND Reasoning to be on
       'qwen-37-plus-think': ['other', 'reasoning', 'legacy'], // Needs Other, Reasoning, AND Legacy to be on
       'kimi-k3-max': ['other', 'reasoning'],                  // Needs both Other AND Reasoning to be on
       'kimi-k26-thinking': ['other', 'reasoning', 'legacy'],  // Needs Other, Reasoning, AND Legacy to be on
-      'qwen-35-omni-plus': ['other', 'instant', 'legacy'],    // Needs Other, Non-reasoning, AND Legacy to be on
       'kimi-k26-instant': ['other', 'instant', 'legacy']      // Needs Other, Non-reasoning, AND Legacy to be on
     };
 
@@ -4212,6 +4227,7 @@
       'minimax': '207, 52, 124',    // magenta
       'nemotron': '118, 185, 0',     // NVIDIA green
       'muse': '21,  103, 253',       // blue
+      'deepseek': '77, 107, 254',    // #4d6bfe
       'mimo': '255, 116, 0',     // orange
       'qwen': '66,  59,  175',   // violet
       'kimi': '23,  131, 255',   // blue
@@ -4235,6 +4251,7 @@
       if (modelId.startsWith('minimax-')) return BRAND_RGB['minimax'];
       if (modelId.startsWith('nemotron-')) return BRAND_RGB['nemotron'];
       if (modelId.startsWith('muse-')) return BRAND_RGB['muse'];
+      if (modelId.startsWith('deepseek-')) return BRAND_RGB['deepseek'];
       if (modelId.startsWith('mimo-')) return BRAND_RGB['mimo'];
       if (modelId.startsWith('qwen-')) return BRAND_RGB['qwen'];
       if (modelId.startsWith('kimi-')) return BRAND_RGB['kimi'];
@@ -4346,7 +4363,6 @@
       { modelId: 'gemini-37-flash-extended', label: '✦ Gemini 3.7 Flash Extended', correct: 55.32, abstention: 15.85, hallucination: 28.83, sortOrder: 35 },
       { modelId: 'gemini-35-flash-lite-extended', label: '✦ Gemini 3.5 Flash Lite Extended', correct: 29.47, abstention: 46.30, hallucination: 24.23, sortOrder: 35.5 },
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro Extended', correct: 55.25, abstention: 22.43, hallucination: 22.32, sortOrder: 36 },
-      { modelId: 'gemini-36-flash-extended', label: '✦ Gemini 3.6 Flash Extended', correct: 49.97, abstention: 22.20, hallucination: 27.83, sortOrder: 36.5 },
       { modelId: 'claude-5-fable', label: '❋ Claude 5 Fable Thinking Max', correct: 65.35, abstention: 12.60, hallucination: 22.05, sortOrder: 63.8 },
       { modelId: 'claude-5-opus-max', label: '❋ Claude 5 Opus Thinking Max', correct: 60.87, abstention: 15.33, hallucination: 23.80, sortOrder: 63.81 },
       { modelId: 'claude-5-opus-extra', label: '❋ Claude 5 Opus Thinking Extra', correct: 59.50, abstention: 16.38, hallucination: 24.12, sortOrder: 63.82 },
@@ -4365,13 +4381,15 @@
       { modelId: 'minimax-m3-thinking', label: '≋ MiniMax M3 Thinking', correct: 16.70, abstention: 67.95, hallucination: 15.35, sortOrder: 116.5 },
       { modelId: 'nemotron-3-ultra-reasoning', label: '▰ Nemotron 3 Ultra Reasoning', correct: 22.58, abstention: 54.43, hallucination: 22.99, sortOrder: 117.5 },
       { modelId: 'muse-spark-12', label: 'ƒ Muse Spark 1.2', correct: 45.38, abstention: 36.44, hallucination: 18.18, sortOrder: 117.55 },
+      { modelId: 'deepseek-v4-vision-deep-think', label: '🐋︎ DeepSeek V4 Vision Deep Think', correct: 38.57, abstention: 5.23, hallucination: 56.20, sortOrder: 117.58 },
+      { modelId: 'deepseek-v4-expert-deep-think', label: '🐋︎ DeepSeek V4 Expert Deep Think', correct: 49.10, abstention: 2.63, hallucination: 48.27, sortOrder: 117.6 },
+      { modelId: 'deepseek-v4-instant-deep-think', label: '🐋︎ DeepSeek V4 Instant Deep Think', correct: 40.38, abstention: 4.95, hallucination: 54.67, sortOrder: 117.7 },
       { modelId: 'mimo-v25-pro', label: '⋔ MiMo V2.5 Pro', correct: 22.42, abstention: 58.42, hallucination: 19.16, sortOrder: 118 },
       { modelId: 'mimo-v25', label: '⋔ MiMo V2.5', correct: 16.75, abstention: 56.67, hallucination: 26.58, sortOrder: 118.5 },
       { modelId: 'qwen-38-max', label: '▽ Qwen 3.8 Max', correct: 31.85, abstention: 39.70, hallucination: 28.45, sortOrder: 123.5 },
       { modelId: 'qwen-37-plus-think', label: '▽ Qwen 3.7 Plus Thinking', correct: 22.52, abstention: 56.05, hallucination: 21.43, sortOrder: 124.5 },
       { modelId: 'kimi-k3-max', label: 'Ḱ Kimi K3 Thinking Max', correct: 47.58, abstention: 24.53, hallucination: 27.89, sortOrder: 126.5 },
       { modelId: 'kimi-k26-thinking', label: 'Ḱ Kimi K2.6 Thinking High', correct: 32.80, abstention: 40.82, hallucination: 26.38, sortOrder: 127 },
-      { modelId: 'qwen-35-omni-plus', label: '▽ Qwen 3.5 Omni Plus Fast', correct: 17.43, abstention: 52.02, hallucination: 30.55, sortOrder: 126 },
       { modelId: 'kimi-k26-instant', label: 'Ḱ Kimi K2.6 Standard', correct: 23.07, abstention: 43.90, hallucination: 33.03, sortOrder: 128 }
     ];
 
@@ -5039,7 +5057,6 @@
       { modelId: 'gemini-37-flash-extended', label: '✦ Gemini 3.7 Flash Extended', score: 80, sortOrder: 35 },
       { modelId: 'gemini-35-flash-lite-extended', label: '✦ Gemini 3.5 Flash Lite Extended', score: 74.7, sortOrder: 35.5 },
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro Extended', score: 72.7, sortOrder: 36 },
-      { modelId: 'gemini-36-flash-extended', label: '✦ Gemini 3.6 Flash Extended', score: 79.0, sortOrder: 36.5 },
       { modelId: 'claude-5-fable', label: '❋ Claude 5 Fable Thinking Max', score: 76.7, sortOrder: 63.8 },
       { modelId: 'claude-5-opus-max', label: '❋ Claude 5 Opus Thinking Max', score: 75.7, sortOrder: 63.81 },
       { modelId: 'claude-5-opus-extra', label: '❋ Claude 5 Opus Thinking Extra', score: 76.3, sortOrder: 63.82 },
@@ -5058,13 +5075,15 @@
       { modelId: 'minimax-m3-thinking', label: '≋ MiniMax M3 Thinking', score: 80.3, sortOrder: 116.5 },
       { modelId: 'nemotron-3-ultra-reasoning', label: '▰ Nemotron 3 Ultra Reasoning', score: 71.0, sortOrder: 117.5 },
       { modelId: 'muse-spark-12', label: 'ƒ Muse Spark 1.2', score: 83.3, sortOrder: 117.55 },
+      { modelId: 'deepseek-v4-vision-deep-think', label: '🐋︎ DeepSeek V4 Vision Deep Think', score: 78, sortOrder: 117.58 },
+      { modelId: 'deepseek-v4-expert-deep-think', label: '🐋︎ DeepSeek V4 Expert Deep Think', score: 75.3, sortOrder: 117.6 },
+      { modelId: 'deepseek-v4-instant-deep-think', label: '🐋︎ DeepSeek V4 Instant Deep Think', score: 74.3, sortOrder: 117.7 },
       { modelId: 'mimo-v25-pro', label: '⋔ MiMo V2.5 Pro', score: 77.7, sortOrder: 118 },
       { modelId: 'mimo-v25', label: '⋔ MiMo V2.5', score: 68.3, sortOrder: 118.5 },
       { modelId: 'qwen-38-max', label: '▽ Qwen 3.8 Max', score: 74.3, sortOrder: 123.5 },
       { modelId: 'qwen-37-plus-think', label: '▽ Qwen 3.7 Plus Thinking', score: 69.0, sortOrder: 124.5 },
       { modelId: 'kimi-k3-max', label: 'Ḱ Kimi K3 Thinking Max', score: 82.7, sortOrder: 126.5 },
       { modelId: 'kimi-k26-thinking', label: 'Ḱ Kimi K2.6 Thinking High', score: 76.7, sortOrder: 127 },
-      { modelId: 'qwen-35-omni-plus', label: '▽ Qwen 3.5 Omni Plus Fast', score: 58.0, sortOrder: 126 },
       { modelId: 'kimi-k26-instant', label: 'Ḱ Kimi K2.6 Standard', score: 66.0, sortOrder: 128 }
     ];
 
@@ -5179,7 +5198,6 @@
       { modelId: 'gemini-37-flash-extended', label: '✦ Gemini 3.7 Flash Extended', score: 85, sortOrder: 35 },
       { modelId: 'gemini-35-flash-lite-extended', label: '✦ Gemini 3.5 Flash Lite Extended', score: 79, sortOrder: 35.5 },
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro Extended', score: 82, sortOrder: 36 },
-      { modelId: 'gemini-36-flash-extended', label: '✦ Gemini 3.6 Flash Extended', score: 83, sortOrder: 36.5 },
       { modelId: 'claude-5-fable', label: '❋ Claude 5 Fable Thinking Max (Estimated)', score: 84, sortOrder: 63.8, estimated: true },
       { modelId: 'claude-5-opus-max', label: '❋ Claude 5 Opus Thinking Max', score: 85, sortOrder: 63.81 },
       { modelId: 'claude-5-opus-extra', label: '❋ Claude 5 Opus Thinking Extra', score: 84, sortOrder: 63.82 },
@@ -5198,13 +5216,15 @@
       { modelId: 'minimax-m3-thinking', label: '≋ MiniMax M3 Thinking', score: 80, sortOrder: 116.5 },
       { modelId: 'nemotron-3-ultra-reasoning', label: '▰ Nemotron 3 Ultra Reasoning', score: 0, sortOrder: 117.5 },
       { modelId: 'muse-spark-12', label: 'ƒ Muse Spark 1.2 (Estimated)', score: 81, sortOrder: 117.55, estimated: true },
+      { modelId: 'deepseek-v4-vision-deep-think', label: '🐋︎ DeepSeek V4 Vision Deep Think', score: 75, sortOrder: 117.58 },
+      { modelId: 'deepseek-v4-expert-deep-think', label: '🐋︎ DeepSeek V4 Expert Deep Think', score: 0, sortOrder: 117.6 },
+      { modelId: 'deepseek-v4-instant-deep-think', label: '🐋︎ DeepSeek V4 Instant Deep Think', score: 0, sortOrder: 117.7 },
       { modelId: 'mimo-v25-pro', label: '⋔ MiMo V2.5 Pro', score: 0, sortOrder: 118 },
       { modelId: 'mimo-v25', label: '⋔ MiMo V2.5', score: 75, sortOrder: 118.5 },
       { modelId: 'qwen-38-max', label: '▽ Qwen 3.8 Max', score: 82, sortOrder: 123.5 },
       { modelId: 'qwen-37-plus-think', label: '▽ Qwen 3.7 Plus Thinking', score: 80, sortOrder: 124.5 },
       { modelId: 'kimi-k3-max', label: 'Ḱ Kimi K3 Thinking Max', score: 81, sortOrder: 126.5 },
       { modelId: 'kimi-k26-thinking', label: 'Ḱ Kimi K2.6 Thinking High', score: 79, sortOrder: 127 },
-      { modelId: 'qwen-35-omni-plus', label: '▽ Qwen 3.5 Omni Plus Fast', score: 71, sortOrder: 126 },
       { modelId: 'kimi-k26-instant', label: 'Ḱ Kimi K2.6 Standard (Estimated)', score: 77, sortOrder: 128, estimated: true }
     ];
 
@@ -5397,7 +5417,6 @@
       { modelId: 'gemini-37-flash-extended', label: '✦ Gemini 3.7 Flash Extended', score: 1525, costPerTask: 1.25, sortOrder: 35 },
       { modelId: 'gemini-35-flash-lite-extended', label: '✦ Gemini 3.5 Flash Lite Extended', score: 1139, costPerTask: 0.10, sortOrder: 35.5 },
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro Extended', score: 965, costPerTask: 0.27, sortOrder: 36 },
-      { modelId: 'gemini-36-flash-extended', label: '✦ Gemini 3.6 Flash Extended', score: 1423, costPerTask: 1.04, sortOrder: 36.5 },
       { modelId: 'claude-5-fable', label: '❋ Claude 5 Fable Thinking Max', score: 1742, costPerTask: 7.75, sortOrder: 63.8 },
       { modelId: 'claude-5-opus-max', label: '❋ Claude 5 Opus Thinking Max', score: 1845, costPerTask: 6.77, sortOrder: 63.81 },
       { modelId: 'claude-5-opus-extra', label: '❋ Claude 5 Opus Thinking Extra', score: 1820, costPerTask: 4.96, sortOrder: 63.82 },
@@ -5414,6 +5433,9 @@
       { modelId: 'minimax-m3-thinking', label: '≋ MiniMax M3 Thinking', score: 1389, costPerTask: 0.35, sortOrder: 116.5 },
       { modelId: 'nemotron-3-ultra-reasoning', label: '▰ Nemotron 3 Ultra Reasoning', score: 1163, costPerTask: 0.51, sortOrder: 117.5 },
       { modelId: 'muse-spark-12', label: 'ƒ Muse Spark 1.2', score: 1631, costPerTask: 0.88, sortOrder: 117.55 },
+      { modelId: 'deepseek-v4-vision-deep-think', label: '🐋︎ DeepSeek V4 Vision Deep Think', score: 1675, costPerTask: 0.35, sortOrder: 117.58 },
+      { modelId: 'deepseek-v4-expert-deep-think', label: '🐋︎ DeepSeek V4 Expert Deep Think', score: 1590, costPerTask: 0.54, sortOrder: 117.6 },
+      { modelId: 'deepseek-v4-instant-deep-think', label: '🐋︎ DeepSeek V4 Instant Deep Think', score: 1559, costPerTask: 0.29, sortOrder: 117.7 },
       { modelId: 'mimo-v25-pro', label: '⋔ MiMo V2.5 Pro', score: 1266, costPerTask: 0.04, sortOrder: 118 },
       { modelId: 'mimo-v25', label: '⋔ MiMo V2.5', score: 1150, costPerTask: 0.01, sortOrder: 118.5 },
       { modelId: 'qwen-38-max', label: '▽ Qwen 3.8 Max', score: 1738, costPerTask: 3.51, sortOrder: 123.5 },
@@ -5779,7 +5801,6 @@
       { modelId: 'gemini-37-flash-extended', label: '✦ Gemini 3.7 Flash Extended', score: 85.8, costPerTask: 0.49, sortOrder: 35 },
       { modelId: 'gemini-35-flash-lite-extended', label: '✦ Gemini 3.5 Flash Lite Extended', score: 53.6, costPerTask: 0.26, sortOrder: 35.5 },
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro Extended', score: 73.8, costPerTask: 0.58, sortOrder: 36 },
-      { modelId: 'gemini-36-flash-extended', label: '✦ Gemini 3.6 Flash Extended', score: 77.5, costPerTask: 1.40, sortOrder: 36.5 },
       { modelId: 'claude-5-fable', label: '❋ Claude 5 Fable Thinking Max', score: 84.6, costPerTask: 3.36, sortOrder: 63.8 },
       { modelId: 'claude-5-opus-max', label: '❋ Claude 5 Opus Thinking Max', score: 89.1, costPerTask: 2.42, sortOrder: 63.81 },
       { modelId: 'claude-5-opus-extra', label: '❋ Claude 5 Opus Thinking Extra', score: 88.0, costPerTask: 1.87, sortOrder: 63.82 },
@@ -5796,6 +5817,9 @@
       { modelId: 'minimax-m3-thinking', label: '≋ MiniMax M3 Thinking', score: 65.2, costPerTask: 0.28, sortOrder: 116.5 },
       { modelId: 'nemotron-3-ultra-reasoning', label: '▰ Nemotron 3 Ultra Reasoning', score: 53.9, costPerTask: 1.13, sortOrder: 117.5 },
       { modelId: 'muse-spark-12', label: 'ƒ Muse Spark 1.2', score: 80.1, costPerTask: 0.80, sortOrder: 117.55 },
+      { modelId: 'deepseek-v4-vision-deep-think', label: '🐋︎ DeepSeek V4 Vision Deep Think', score: 74.2, costPerTask: 0.11, sortOrder: 117.58 },
+      { modelId: 'deepseek-v4-expert-deep-think', label: '🐋︎ DeepSeek V4 Expert Deep Think', score: 78.7, costPerTask: 0.40, sortOrder: 117.6 },
+      { modelId: 'deepseek-v4-instant-deep-think', label: '🐋︎ DeepSeek V4 Instant Deep Think', score: 78.7, costPerTask: 0.14, sortOrder: 117.7 },
       { modelId: 'mimo-v25-pro', label: '⋔ MiMo V2.5 Pro', score: 65.2, costPerTask: 0.07, sortOrder: 118 },
       { modelId: 'mimo-v25', label: '⋔ MiMo V2.5', score: 63.7, costPerTask: 0.03, sortOrder: 118.5 },
       { modelId: 'qwen-38-max', label: '▽ Qwen 3.8 Max', score: 81.3, costPerTask: 1.23, sortOrder: 123.5 },
@@ -5841,7 +5865,6 @@
     const TERMINAL_BENCH_V21_RADIUS_FALLBACKS = {
       'claude-5-fable': 7,
       'gemini-37-flash-extended': 5,
-      'gemini-36-flash-extended': 5,
       'gemini-35-flash-lite-extended': 4,
       'grok-46-expert': 6,
       'nemotron-3-ultra-reasoning': 6,
@@ -6414,15 +6437,6 @@
         ]
       },
       {
-        modelId: 'gemini-36-flash-extended', label: '✦ Gemini 3.6 Flash Extended', sortOrder: 36.5,
-        color: 'rgba(238, 73, 82, 1)',
-        segments: [
-          { value: 32000, plans: 'Free' },
-          { value: 128000, plans: 'Plus' },
-          { value: 1000000, plans: 'Pro, Ultra' }
-        ]
-      },
-      {
         modelId: 'gemini-35-flash-lite-extended', label: '✦ Gemini 3.5 Flash Lite Extended', sortOrder: 35.5,
         color: 'rgba(238, 73, 82, 1)',
         segments: [
@@ -6554,6 +6568,22 @@
         color: 'rgba(21, 103, 253, 1)',
         segments: [{ value: 1000000, plans: 'All plans' }]
       },
+      // DeepSeek
+      {
+        modelId: 'deepseek-v4-vision-deep-think', label: '🐋︎ DeepSeek V4 Vision Deep Think', sortOrder: 117.58,
+        color: 'rgba(77, 107, 254, 1)',
+        segments: [{ value: 1000000, plans: 'All Plans' }]
+      },
+      {
+        modelId: 'deepseek-v4-expert-deep-think', label: '🐋︎ DeepSeek V4 Expert Deep Think', sortOrder: 117.6,
+        color: 'rgba(77, 107, 254, 1)',
+        segments: [{ value: 1000000, plans: 'All Plans' }]
+      },
+      {
+        modelId: 'deepseek-v4-instant-deep-think', label: '🐋︎ DeepSeek V4 Instant Deep Think', sortOrder: 117.7,
+        color: 'rgba(77, 107, 254, 1)',
+        segments: [{ value: 1000000, plans: 'All Plans' }]
+      },
       // MiMo
       {
         modelId: 'mimo-v25-pro', label: '⋔ MiMo V2.5 Pro', sortOrder: 118,
@@ -6589,11 +6619,6 @@
         modelId: 'kimi-k26-thinking', label: 'Ḱ Kimi K2.6 Thinking High', sortOrder: 127,
         color: 'rgba(23, 131, 255, 1)',
         segments: [{ value: 200000, plans: 'All plans' }]
-      },
-      {
-        modelId: 'qwen-35-omni-plus', label: '▽ Qwen 3.5 Omni Plus Fast', sortOrder: 126,
-        color: 'rgba(66, 59, 175, 1)',
-        segments: [{ value: 262000, plans: 'All plans' }]
       },
       {
         modelId: 'kimi-k26-instant', label: 'Ḱ Kimi K2.6 Standard', sortOrder: 128,
@@ -7643,7 +7668,7 @@
     style="text-align: center; padding: 2rem 1rem; margin-top: 3rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.8rem;">
     Made by <strong> u/Pasto_Shouwa</strong>
     <br>
-    <em>Last updated on <strong>20/08/2026</strong> (dd/mm/yyyy)</em>
+    <em>Last updated on <strong>25/08/2026</strong> (dd/mm/yyyy)</em>
   </footer>
 </body>
 
