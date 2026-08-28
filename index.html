@@ -2765,17 +2765,10 @@
                 <span class="model-dot-indicator dot-glm"></span>
                 <span class="model-dot-label">GLM 5.3 Deep Think Max</span>
               </div>
-              <div class="model-dot inactive" data-model="glm-5v-turbo-deep-think"
-                onclick="toggleIndividualModel('glm-5v-turbo-deep-think')">
+              <div class="model-dot inactive" data-model="glm-53-flash-deep-think-max"
+                onclick="toggleIndividualModel('glm-53-flash-deep-think-max')">
                 <span class="model-dot-indicator dot-glm"></span>
-                <span class="model-dot-label">GLM 5V Turbo Deep Think</span>
-              </div>
-            </div>
-            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
-              <div class="model-dot inactive" data-model="glm-5t-deep-think"
-                onclick="toggleIndividualModel('glm-5t-deep-think')">
-                <span class="model-dot-indicator dot-glm-legacy"></span>
-                <span class="model-dot-label">GLM 5 Turbo Deep Think</span>
+                <span class="model-dot-label">GLM 5.3 Flash Deep Think Max</span>
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
@@ -3202,7 +3195,7 @@
               <li>• <strong>Grok</strong> models are capable of understanding text and images.
               </li>
               <li>• <strong>GLM</strong> models are capable of understanding only text.
-                Image and video inputs are likely routed to GLM 5V Turbo Deep Think and GLM 5V Turbo respectively.
+                Image and video inputs are likely routed to other GLM models.
               </li>
               <li>• <strong>Kimi</strong> models are capable of understanding text, images and video.
               <li>• <strong>MiMo V2.5 Pro</strong> is capable of understanding only text.
@@ -3653,8 +3646,7 @@
       'claude-48-opus-max': false, // Legacy model, starts hidden
       'claude-haiku-nr': false,   // Non-reasoning, starts hidden
       'glm-53-deep-think-max': true, // Starts visible by default
-      'glm-5t-deep-think': false,    // Other recommended, starts hidden
-      'glm-5v-turbo-deep-think': false, // Other recommended, starts hidden
+      'glm-53-flash-deep-think-max': false, // Other recommended, starts hidden
       'grok-46-expert': false,       // Other recommended, starts hidden
       'minimax-m3-thinking': false,   // Other recommended, starts hidden
       'nemotron-3-ultra-reasoning': false, // Other recommended, starts hidden
@@ -3707,8 +3699,7 @@
       'claude-48-opus-max': false, // Starts enabled by default
       'claude-haiku-nr': true,    // Starts explicitly disabled
       'glm-53-deep-think-max': false, // Starts enabled by default
-      'glm-5t-deep-think': false,       // Other recommended
-      'glm-5v-turbo-deep-think': false, // Other recommended
+      'glm-53-flash-deep-think-max': false, // Other recommended
       'grok-46-expert': false,          // Other recommended
       'minimax-m3-thinking': false,      // Other recommended
       'nemotron-3-ultra-reasoning': false, // Other recommended
@@ -3738,11 +3729,11 @@
     // Model groups for group toggles
     const modelGroups = {
       'claude': ['claude-5-fable', 'claude-5-opus-max', 'claude-5-opus-extra', 'claude-5-opus-high', 'claude-5-opus-medium', 'claude-5-opus-low', 'claude-5-sonnet', 'claude-5-sonnet-high', 'claude-48-opus-max', 'claude-haiku', 'claude-haiku-nr'],
-      'reasoning': ['gpt-56-sol-max', 'gpt-56-sol-xhigh', 'gpt-56-sol-high', 'gpt-56-sol-medium', 'gpt-56-sol-low', 'gpt-56-terra-max', 'gpt-56-terra-xhigh', 'gpt-56-terra-high', 'gpt-56-terra-medium', 'gpt-56-terra-low', 'gpt-56-luna-max', 'gpt-56-luna-xhigh', 'gpt-56-luna-high', 'gpt-56-luna-medium', 'gpt-56-luna-low', 'gemini-37-flash-extended', 'gemini-35-flash-lite-extended', 'gemini-31-pro', 'claude-5-fable', 'claude-5-opus-max', 'claude-5-opus-extra', 'claude-5-opus-high', 'claude-5-opus-medium', 'claude-5-opus-low', 'claude-5-sonnet', 'claude-48-opus-max', 'claude-haiku', 'glm-53-deep-think-max', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-46-expert', 'minimax-m3-thinking', 'nemotron-3-ultra-reasoning', 'muse-spark-12', 'deepseek-v4-vision-deep-think', 'deepseek-v4-expert-deep-think', 'deepseek-v4-instant-deep-think', 'mimo-v25-pro', 'mimo-v25', 'qwen-38-max', 'qwen-37-plus-think', 'kimi-k3-max', 'kimi-k26-thinking'],
+      'reasoning': ['gpt-56-sol-max', 'gpt-56-sol-xhigh', 'gpt-56-sol-high', 'gpt-56-sol-medium', 'gpt-56-sol-low', 'gpt-56-terra-max', 'gpt-56-terra-xhigh', 'gpt-56-terra-high', 'gpt-56-terra-medium', 'gpt-56-terra-low', 'gpt-56-luna-max', 'gpt-56-luna-xhigh', 'gpt-56-luna-high', 'gpt-56-luna-medium', 'gpt-56-luna-low', 'gemini-37-flash-extended', 'gemini-35-flash-lite-extended', 'gemini-31-pro', 'claude-5-fable', 'claude-5-opus-max', 'claude-5-opus-extra', 'claude-5-opus-high', 'claude-5-opus-medium', 'claude-5-opus-low', 'claude-5-sonnet', 'claude-48-opus-max', 'claude-haiku', 'glm-53-deep-think-max', 'glm-53-flash-deep-think-max', 'grok-46-expert', 'minimax-m3-thinking', 'nemotron-3-ultra-reasoning', 'muse-spark-12', 'deepseek-v4-vision-deep-think', 'deepseek-v4-expert-deep-think', 'deepseek-v4-instant-deep-think', 'mimo-v25-pro', 'mimo-v25', 'qwen-38-max', 'qwen-37-plus-think', 'kimi-k3-max', 'kimi-k26-thinking'],
       'instant': ['gpt-56-sol-instant', 'gpt-56-luna-instant', 'claude-5-sonnet-high', 'claude-haiku-nr', 'kimi-k26-instant'],
       'chatgpt-pro': [],
-      'other': ['glm-53-deep-think-max', 'glm-5t-deep-think', 'glm-5v-turbo-deep-think', 'grok-46-expert', 'minimax-m3-thinking', 'nemotron-3-ultra-reasoning', 'muse-spark-12', 'deepseek-v4-vision-deep-think', 'deepseek-v4-expert-deep-think', 'deepseek-v4-instant-deep-think', 'mimo-v25-pro', 'mimo-v25', 'qwen-38-max', 'qwen-37-plus-think', 'kimi-k3-max', 'kimi-k26-thinking', 'kimi-k26-instant'],
-      'legacy': ['claude-48-opus-max', 'glm-5t-deep-think', 'deepseek-v4-instant-deep-think', 'qwen-37-plus-think', 'kimi-k26-thinking', 'kimi-k26-instant'],
+      'other': ['glm-53-deep-think-max', 'glm-53-flash-deep-think-max', 'grok-46-expert', 'minimax-m3-thinking', 'nemotron-3-ultra-reasoning', 'muse-spark-12', 'deepseek-v4-vision-deep-think', 'deepseek-v4-expert-deep-think', 'deepseek-v4-instant-deep-think', 'mimo-v25-pro', 'mimo-v25', 'qwen-38-max', 'qwen-37-plus-think', 'kimi-k3-max', 'kimi-k26-thinking', 'kimi-k26-instant'],
+      'legacy': ['claude-48-opus-max', 'deepseek-v4-instant-deep-think', 'qwen-37-plus-think', 'kimi-k26-thinking', 'kimi-k26-instant'],
       'coding': ['gpt-56-sol-max', 'gpt-56-sol-low', 'gpt-56-terra-max', 'gpt-56-terra-xhigh', 'gpt-56-terra-high', 'gpt-56-terra-medium', 'gpt-56-terra-low', 'gpt-56-luna-max', 'gpt-56-luna-xhigh', 'gpt-56-luna-high', 'gpt-56-luna-medium', 'gpt-56-luna-low']
     };
 
@@ -3781,8 +3772,7 @@
       'claude-48-opus-max': ['claude', 'reasoning', 'legacy'], // Needs Claude, Reasoning, AND Legacy to be on
       'claude-haiku-nr': ['claude', 'instant'],         // Needs both Claude AND Non-reasoning to be on
       'glm-53-deep-think-max': ['other', 'reasoning'],        // Needs both Other AND Reasoning to be on
-      'glm-5t-deep-think': ['other', 'reasoning', 'legacy'], // Needs Other, Reasoning, AND Legacy to be on
-      'glm-5v-turbo-deep-think': ['other', 'reasoning'],     // Needs both Other AND Reasoning to be on
+      'glm-53-flash-deep-think-max': ['other', 'reasoning'],  // Needs both Other AND Reasoning to be on
       'grok-46-expert': ['other', 'reasoning'],              // Needs both Other AND Reasoning to be on
       'minimax-m3-thinking': ['other', 'reasoning'],          // Needs both Other AND Reasoning to be on
       'nemotron-3-ultra-reasoning': ['other', 'reasoning'],  // Needs both Other AND Reasoning to be on
@@ -4375,8 +4365,7 @@
       { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', correct: 18.02, abstention: 59.60, hallucination: 22.38, sortOrder: 90 },
       { modelId: 'claude-haiku-nr', label: '❋ Claude 4.5 Haiku', correct: 14.43, abstention: 63.57, hallucination: 22.00, sortOrder: 95 },
       { modelId: 'glm-53-deep-think-max', label: 'Ƶ GLM 5.3 Deep Think Max', correct: 33.85, abstention: 46.60, hallucination: 19.55, sortOrder: 96.5 },
-      { modelId: 'glm-5t-deep-think', label: 'Ƶ GLM 5 Turbo Deep Think', correct: 28.45, abstention: 26.73, hallucination: 44.82, sortOrder: 107 },
-      { modelId: 'glm-5v-turbo-deep-think', label: 'Ƶ GLM 5V Turbo Deep Think', correct: 29.33, abstention: 22.05, hallucination: 48.62, sortOrder: 109 },
+      { modelId: 'glm-53-flash-deep-think-max', label: 'Ƶ GLM 5.3 Flash Deep Think Max', correct: 27.50, abstention: 52.47, hallucination: 20.03, sortOrder: 96.6 },
       { modelId: 'grok-46-expert', label: 'Ø Grok 4.6 Expert', correct: 48.23, abstention: 34.02, hallucination: 17.75, sortOrder: 109.3 },
       { modelId: 'minimax-m3-thinking', label: '≋ MiniMax M3 Thinking', correct: 16.70, abstention: 67.95, hallucination: 15.35, sortOrder: 116.5 },
       { modelId: 'nemotron-3-ultra-reasoning', label: '▰ Nemotron 3 Ultra Reasoning', correct: 22.58, abstention: 54.43, hallucination: 22.99, sortOrder: 117.5 },
@@ -5069,8 +5058,7 @@
       { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', score: 73.7, sortOrder: 90 },
       { modelId: 'claude-haiku-nr', label: '❋ Claude 4.5 Haiku', score: 48.3, sortOrder: 95 },
       { modelId: 'glm-53-deep-think-max', label: 'Ƶ GLM 5.3 Deep Think Max', score: 76.3, sortOrder: 96.5 },
-      { modelId: 'glm-5t-deep-think', label: 'Ƶ GLM 5 Turbo Deep Think', score: 66.7, sortOrder: 107 },
-      { modelId: 'glm-5v-turbo-deep-think', label: 'Ƶ GLM 5V Turbo Deep Think', score: 65.7, sortOrder: 109 },
+      { modelId: 'glm-53-flash-deep-think-max', label: 'Ƶ GLM 5.3 Flash Deep Think Max', score: 78, sortOrder: 96.6 },
       { modelId: 'grok-46-expert', label: 'Ø Grok 4.6 Expert', score: 75, sortOrder: 109.3 },
       { modelId: 'minimax-m3-thinking', label: '≋ MiniMax M3 Thinking', score: 80.3, sortOrder: 116.5 },
       { modelId: 'nemotron-3-ultra-reasoning', label: '▰ Nemotron 3 Ultra Reasoning', score: 71.0, sortOrder: 117.5 },
@@ -5209,11 +5197,10 @@
       { modelId: 'claude-48-opus-max', label: '❋ Claude 4.8 Opus Thinking Max', score: 81, sortOrder: 89 },
       { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', score: 59, sortOrder: 90 },
       { modelId: 'claude-haiku-nr', label: '❋ Claude 4.5 Haiku', score: 55, sortOrder: 95 },
-      { modelId: 'glm-53-deep-think-max', label: 'Ƶ GLM 5.3 Deep Think Max (Estimated)', score: 73, sortOrder: 96.5, estimated: true },
-      { modelId: 'glm-5t-deep-think', label: 'Ƶ GLM 5 Turbo Deep Think (Estimated)', score: 73, sortOrder: 107, estimated: true },
-      { modelId: 'glm-5v-turbo-deep-think', label: 'Ƶ GLM 5V Turbo Deep Think', score: 73, sortOrder: 109 },
+      { modelId: 'glm-53-deep-think-max', label: 'Ƶ GLM 5.3 Deep Think Max (Estimated)', score: 81, sortOrder: 96.5, estimated: true },
+      { modelId: 'glm-53-flash-deep-think-max', label: 'Ƶ GLM 5.3 Flash Deep Think Max (Estimated)', score: 81, sortOrder: 96.6, estimated: true },
       { modelId: 'grok-46-expert', label: 'Ø Grok 4.6 Expert (Estimated)', score: 80, sortOrder: 109.3, estimated: true },
-      { modelId: 'minimax-m3-thinking', label: '≋ MiniMax M3 Thinking', score: 80, sortOrder: 116.5 },
+      { modelId: 'minimax-m3-thinking', label: '≋ MiniMax M3 Thinking', score: 79, sortOrder: 116.5 },
       { modelId: 'nemotron-3-ultra-reasoning', label: '▰ Nemotron 3 Ultra Reasoning', score: 0, sortOrder: 117.5 },
       { modelId: 'muse-spark-12', label: 'ƒ Muse Spark 1.2 (Estimated)', score: 81, sortOrder: 117.55, estimated: true },
       { modelId: 'deepseek-v4-vision-deep-think', label: '🐋︎ DeepSeek V4 Vision Deep Think', score: 75, sortOrder: 117.58 },
@@ -5399,49 +5386,48 @@
     // GDPval-AA v2 - Horizontal bar and connected scatter views
     let gdpval2Chart;
     const gdpval2AllModels = [
-      { modelId: 'gpt-56-sol-max', label: '⌘ GPT 5.6 Sol Max', score: 1729, costPerTask: 3.49, sortOrder: 1 },
-      { modelId: 'gpt-56-sol-xhigh', label: '⌘ GPT 5.6 Sol Extra High', score: 1681, costPerTask: 2.11, sortOrder: 2 },
-      { modelId: 'gpt-56-sol-high', label: '⌘ GPT 5.6 Sol High', score: 1623, costPerTask: 1.37, sortOrder: 3 },
-      { modelId: 'gpt-56-sol-medium', label: '⌘ GPT 5.6 Sol Medium', score: 1553, costPerTask: 0.74, sortOrder: 4 },
-      { modelId: 'gpt-56-sol-low', label: '⌘ GPT 5.6 Sol Low', score: 1442, costPerTask: 0.33, sortOrder: 4.5 },
-      { modelId: 'gpt-56-terra-max', label: '⌘ GPT 5.6 Terra Max', score: 1578, costPerTask: 1.15, sortOrder: 5 },
-      { modelId: 'gpt-56-terra-xhigh', label: '⌘ GPT 5.6 Terra Extra High', score: 1572, costPerTask: 0.74, sortOrder: 6 },
-      { modelId: 'gpt-56-terra-high', label: '⌘ GPT 5.6 Terra High', score: 1511, costPerTask: 0.49, sortOrder: 7 },
-      { modelId: 'gpt-56-terra-medium', label: '⌘ GPT 5.6 Terra Medium', score: 1406, costPerTask: 0.18, sortOrder: 8 },
-      { modelId: 'gpt-56-terra-low', label: '⌘ GPT 5.6 Terra Low', score: 1256, costPerTask: 0.09, sortOrder: 8.5 },
-      { modelId: 'gpt-56-luna-max', label: '⌘ GPT 5.6 Luna Max', score: 1580, costPerTask: 0.10, sortOrder: 9 },
-      { modelId: 'gpt-56-luna-xhigh', label: '⌘ GPT 5.6 Luna Extra High', score: 1528, costPerTask: 0.07, sortOrder: 10 },
-      { modelId: 'gpt-56-luna-high', label: '⌘ GPT 5.6 Luna High', score: 1467, costPerTask: 0.04, sortOrder: 11 },
-      { modelId: 'gpt-56-luna-medium', label: '⌘ GPT 5.6 Luna Medium', score: 1276, costPerTask: 0.01, sortOrder: 12 },
-      { modelId: 'gpt-56-luna-low', label: '⌘ GPT 5.6 Luna Low', score: 1154, costPerTask: 0.01, sortOrder: 12.5 },
-      { modelId: 'gemini-37-flash-extended', label: '✦ Gemini 3.7 Flash Extended', score: 1525, costPerTask: 1.25, sortOrder: 35 },
-      { modelId: 'gemini-35-flash-lite-extended', label: '✦ Gemini 3.5 Flash Lite Extended', score: 1139, costPerTask: 0.10, sortOrder: 35.5 },
+      { modelId: 'gpt-56-sol-max', label: '⌘ GPT 5.6 Sol Max', score: 1710, costPerTask: 2.81, sortOrder: 1 },
+      { modelId: 'gpt-56-sol-xhigh', label: '⌘ GPT 5.6 Sol Extra High', score: 1672, costPerTask: 1.70, sortOrder: 2 },
+      { modelId: 'gpt-56-sol-high', label: '⌘ GPT 5.6 Sol High', score: 1616, costPerTask: 1.11, sortOrder: 3 },
+      { modelId: 'gpt-56-sol-medium', label: '⌘ GPT 5.6 Sol Medium', score: 1543, costPerTask: 0.60, sortOrder: 4 },
+      { modelId: 'gpt-56-sol-low', label: '⌘ GPT 5.6 Sol Low', score: 1441, costPerTask: 0.27, sortOrder: 4.5 },
+      { modelId: 'gpt-56-terra-max', label: '⌘ GPT 5.6 Terra Max', score: 1566, costPerTask: 1.24, sortOrder: 5 },
+      { modelId: 'gpt-56-terra-xhigh', label: '⌘ GPT 5.6 Terra Extra High', score: 1568, costPerTask: 0.80, sortOrder: 6 },
+      { modelId: 'gpt-56-terra-high', label: '⌘ GPT 5.6 Terra High', score: 1507, costPerTask: 0.53, sortOrder: 7 },
+      { modelId: 'gpt-56-terra-medium', label: '⌘ GPT 5.6 Terra Medium', score: 1403, costPerTask: 0.20, sortOrder: 8 },
+      { modelId: 'gpt-56-terra-low', label: '⌘ GPT 5.6 Terra Low', score: 1255, costPerTask: 0.10, sortOrder: 8.5 },
+      { modelId: 'gpt-56-luna-max', label: '⌘ GPT 5.6 Luna Max', score: 1569, costPerTask: 0.11, sortOrder: 9 },
+      { modelId: 'gpt-56-luna-xhigh', label: '⌘ GPT 5.6 Luna Extra High', score: 1519, costPerTask: 0.07, sortOrder: 10 },
+      { modelId: 'gpt-56-luna-high', label: '⌘ GPT 5.6 Luna High', score: 1457, costPerTask: 0.04, sortOrder: 11 },
+      { modelId: 'gpt-56-luna-medium', label: '⌘ GPT 5.6 Luna Medium', score: 1271, costPerTask: 0.01, sortOrder: 12 },
+      { modelId: 'gpt-56-luna-low', label: '⌘ GPT 5.6 Luna Low', score: 1153, costPerTask: 0.01, sortOrder: 12.5 },
+      { modelId: 'gemini-37-flash-extended', label: '✦ Gemini 3.7 Flash Extended', score: 1516, costPerTask: 1.25, sortOrder: 35 },
+      { modelId: 'gemini-35-flash-lite-extended', label: '✦ Gemini 3.5 Flash Lite Extended', score: 1138, costPerTask: 0.10, sortOrder: 35.5 },
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro Extended', score: 965, costPerTask: 0.27, sortOrder: 36 },
-      { modelId: 'claude-5-fable', label: '❋ Claude 5 Fable Thinking Max', score: 1742, costPerTask: 7.75, sortOrder: 63.8 },
-      { modelId: 'claude-5-opus-max', label: '❋ Claude 5 Opus Thinking Max', score: 1845, costPerTask: 6.77, sortOrder: 63.81 },
-      { modelId: 'claude-5-opus-extra', label: '❋ Claude 5 Opus Thinking Extra', score: 1820, costPerTask: 4.96, sortOrder: 63.82 },
-      { modelId: 'claude-5-opus-high', label: '❋ Claude 5 Opus Thinking High', score: 1735, costPerTask: 3.03, sortOrder: 63.83 },
-      { modelId: 'claude-5-opus-medium', label: '❋ Claude 5 Opus Thinking Medium', score: 1624, costPerTask: 1.36, sortOrder: 63.84 },
+      { modelId: 'claude-5-fable', label: '❋ Claude 5 Fable Thinking Max', score: 1723, costPerTask: 7.75, sortOrder: 63.8 },
+      { modelId: 'claude-5-opus-max', label: '❋ Claude 5 Opus Thinking Max', score: 1824, costPerTask: 6.77, sortOrder: 63.81 },
+      { modelId: 'claude-5-opus-extra', label: '❋ Claude 5 Opus Thinking Extra', score: 1797, costPerTask: 4.96, sortOrder: 63.82 },
+      { modelId: 'claude-5-opus-high', label: '❋ Claude 5 Opus Thinking High', score: 1719, costPerTask: 3.03, sortOrder: 63.83 },
+      { modelId: 'claude-5-opus-medium', label: '❋ Claude 5 Opus Thinking Medium', score: 1613, costPerTask: 1.36, sortOrder: 63.84 },
       { modelId: 'claude-5-opus-low', label: '❋ Claude 5 Opus Thinking Low', score: 1454, costPerTask: 0.58, sortOrder: 63.85 },
-      { modelId: 'claude-5-sonnet', label: '❋ Claude 5 Sonnet Thinking Max', score: 1600, costPerTask: 4.70, sortOrder: 66.8 },
-      { modelId: 'claude-48-opus-max', label: '❋ Claude 4.8 Opus Thinking Max', score: 1587, costPerTask: 4.34, sortOrder: 89 },
-      { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', score: 913, costPerTask: 0.19, sortOrder: 90 },
-      { modelId: 'glm-53-deep-think-max', label: 'Ƶ GLM 5.3 Deep Think Max', score: 1769, costPerTask: 2.26, sortOrder: 96.5 },
-      { modelId: 'glm-5t-deep-think', label: 'Ƶ GLM 5 Turbo Deep Think', score: 1218, sortOrder: 107, estimated: true },
-      { modelId: 'glm-5v-turbo-deep-think', label: 'Ƶ GLM 5V Turbo Deep Think', score: 1038, sortOrder: 109, estimated: true },
-      { modelId: 'grok-46-expert', label: 'Ø Grok 4.6 Expert', score: 1749, costPerTask: 2.09, sortOrder: 109.3 },
-      { modelId: 'minimax-m3-thinking', label: '≋ MiniMax M3 Thinking', score: 1389, costPerTask: 0.35, sortOrder: 116.5 },
-      { modelId: 'nemotron-3-ultra-reasoning', label: '▰ Nemotron 3 Ultra Reasoning', score: 1163, costPerTask: 0.51, sortOrder: 117.5 },
-      { modelId: 'muse-spark-12', label: 'ƒ Muse Spark 1.2', score: 1631, costPerTask: 0.88, sortOrder: 117.55 },
-      { modelId: 'deepseek-v4-vision-deep-think', label: '🐋︎ DeepSeek V4 Vision Deep Think', score: 1675, costPerTask: 0.35, sortOrder: 117.58 },
-      { modelId: 'deepseek-v4-expert-deep-think', label: '🐋︎ DeepSeek V4 Expert Deep Think', score: 1590, costPerTask: 0.54, sortOrder: 117.6 },
-      { modelId: 'deepseek-v4-instant-deep-think', label: '🐋︎ DeepSeek V4 Instant Deep Think', score: 1559, costPerTask: 0.29, sortOrder: 117.7 },
-      { modelId: 'mimo-v25-pro', label: '⋔ MiMo V2.5 Pro', score: 1266, costPerTask: 0.04, sortOrder: 118 },
-      { modelId: 'mimo-v25', label: '⋔ MiMo V2.5', score: 1150, costPerTask: 0.01, sortOrder: 118.5 },
-      { modelId: 'qwen-38-max', label: '▽ Qwen 3.8 Max', score: 1738, costPerTask: 3.51, sortOrder: 123.5 },
-      { modelId: 'qwen-37-plus-think', label: '▽ Qwen 3.7 Plus Thinking', score: 945, costPerTask: 0.14, sortOrder: 124.5 },
-      { modelId: 'kimi-k3-max', label: 'Ḱ Kimi K3 Thinking Max', score: 1681, costPerTask: 2.15, sortOrder: 126.5 },
-      { modelId: 'kimi-k26-thinking', label: 'Ḱ Kimi K2.6 Thinking High', score: 1189, costPerTask: 0.55, sortOrder: 127 }
+      { modelId: 'claude-5-sonnet', label: '❋ Claude 5 Sonnet Thinking Max', score: 1587, costPerTask: 4.70, sortOrder: 66.8 },
+      { modelId: 'claude-48-opus-max', label: '❋ Claude 4.8 Opus Thinking Max', score: 1578, costPerTask: 4.34, sortOrder: 89 },
+      { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', score: 915, costPerTask: 0.19, sortOrder: 90 },
+      { modelId: 'glm-53-deep-think-max', label: 'Ƶ GLM 5.3 Deep Think Max', score: 1758, costPerTask: 2.26, sortOrder: 96.5 },
+      { modelId: 'glm-53-flash-deep-think-max', label: 'Ƶ GLM 5.3 Flash Deep Think Max', score: 1765, costPerTask: 0.30, sortOrder: 96.6 },
+      { modelId: 'grok-46-expert', label: 'Ø Grok 4.6 Expert', score: 1730, costPerTask: 2.36, sortOrder: 109.3 },
+      { modelId: 'minimax-m3-thinking', label: '≋ MiniMax M3 Thinking', score: 1380, costPerTask: 0.35, sortOrder: 116.5 },
+      { modelId: 'nemotron-3-ultra-reasoning', label: '▰ Nemotron 3 Ultra Reasoning', score: 1152, costPerTask: 0.51, sortOrder: 117.5 },
+      { modelId: 'muse-spark-12', label: 'ƒ Muse Spark 1.2', score: 1615, costPerTask: 0.88, sortOrder: 117.55 },
+      { modelId: 'deepseek-v4-vision-deep-think', label: '🐋︎ DeepSeek V4 Vision Deep Think', score: 1666, costPerTask: 0.35, sortOrder: 117.58 },
+      { modelId: 'deepseek-v4-expert-deep-think', label: '🐋︎ DeepSeek V4 Expert Deep Think', score: 1577, costPerTask: 0.58, sortOrder: 117.6 },
+      { modelId: 'deepseek-v4-instant-deep-think', label: '🐋︎ DeepSeek V4 Instant Deep Think', score: 1547, costPerTask: 0.29, sortOrder: 117.7 },
+      { modelId: 'mimo-v25-pro', label: '⋔ MiMo V2.5 Pro', score: 1263, costPerTask: 0.04, sortOrder: 118 },
+      { modelId: 'mimo-v25', label: '⋔ MiMo V2.5', score: 1148, costPerTask: 0.01, sortOrder: 118.5 },
+      { modelId: 'qwen-38-max', label: '▽ Qwen 3.8 Max', score: 1721, costPerTask: 2.74, sortOrder: 123.5 },
+      { modelId: 'qwen-37-plus-think', label: '▽ Qwen 3.7 Plus Thinking', score: 947, costPerTask: 0.10, sortOrder: 124.5 },
+      { modelId: 'kimi-k3-max', label: 'Ḱ Kimi K3 Thinking Max', score: 1668, costPerTask: 2.15, sortOrder: 126.5 },
+      { modelId: 'kimi-k26-thinking', label: 'Ḱ Kimi K2.6 Thinking High', score: 1191, costPerTask: 0.60, sortOrder: 127 }
     ];
 
     function getGdpval2Data() {
@@ -5484,10 +5470,7 @@
       return formatGdpvalScore(score) + ' (' + percentage + '%)';
     }
 
-    const GDPVAL2_UNKNOWN_COST_MODEL_IDS = new Set([
-      'glm-5t-deep-think',
-      'glm-5v-turbo-deep-think'
-    ]);
+    const GDPVAL2_UNKNOWN_COST_MODEL_IDS = new Set();
 
     function getGdpval2PricedModels(includeAll = false) {
       return gdpval2AllModels
@@ -5783,11 +5766,11 @@
     // Terminal-Bench v2.1 - Horizontal bar and connected scatter views
     let terminalBenchV21Chart;
     const terminalBenchV21AllModels = [
-      { modelId: 'gpt-56-sol-max', label: '⌘ GPT 5.6 Sol Max', score: 88.0, costPerTask: 0.75, sortOrder: 1 },
-      { modelId: 'gpt-56-sol-xhigh', label: '⌘ GPT 5.6 Sol Extra High', score: 89.5, costPerTask: 0.53, sortOrder: 2 },
-      { modelId: 'gpt-56-sol-high', label: '⌘ GPT 5.6 Sol High', score: 87.3, costPerTask: 0.39, sortOrder: 3 },
-      { modelId: 'gpt-56-sol-medium', label: '⌘ GPT 5.6 Sol Medium', score: 86.1, costPerTask: 0.32, sortOrder: 4 },
-      { modelId: 'gpt-56-sol-low', label: '⌘ GPT 5.6 Sol Low', score: 76.8, costPerTask: 0.23, sortOrder: 4.5 },
+      { modelId: 'gpt-56-sol-max', label: '⌘ GPT 5.6 Sol Max', score: 88.0, costPerTask: 0.54, sortOrder: 1 },
+      { modelId: 'gpt-56-sol-xhigh', label: '⌘ GPT 5.6 Sol Extra High', score: 89.5, costPerTask: 0.38, sortOrder: 2 },
+      { modelId: 'gpt-56-sol-high', label: '⌘ GPT 5.6 Sol High', score: 87.3, costPerTask: 0.28, sortOrder: 3 },
+      { modelId: 'gpt-56-sol-medium', label: '⌘ GPT 5.6 Sol Medium', score: 86.1, costPerTask: 0.23, sortOrder: 4 },
+      { modelId: 'gpt-56-sol-low', label: '⌘ GPT 5.6 Sol Low', score: 76.8, costPerTask: 0.17, sortOrder: 4.5 },
       { modelId: 'gpt-56-terra-max', label: '⌘ GPT 5.6 Terra Max', score: 88, costPerTask: 0.57, sortOrder: 5 },
       { modelId: 'gpt-56-terra-xhigh', label: '⌘ GPT 5.6 Terra Extra High', score: 80.1, costPerTask: 0.34, sortOrder: 6 },
       { modelId: 'gpt-56-terra-high', label: '⌘ GPT 5.6 Terra High', score: 75.7, costPerTask: 0.27, sortOrder: 7 },
@@ -5811,21 +5794,20 @@
       { modelId: 'claude-48-opus-max', label: '❋ Claude 4.8 Opus Thinking Max', score: 84.6, costPerTask: 3.42, sortOrder: 89 },
       { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', score: 44.2, costPerTask: 0.70, sortOrder: 90 },
       { modelId: 'glm-53-deep-think-max', label: 'Ƶ GLM 5.3 Deep Think Max', score: 83.9, costPerTask: 0.66, sortOrder: 96.5 },
-      { modelId: 'glm-5t-deep-think', label: 'Ƶ GLM 5 Turbo Deep Think', score: 46.6, sortOrder: 107, estimated: true },
-      { modelId: 'glm-5v-turbo-deep-think', label: 'Ƶ GLM 5V Turbo Deep Think', score: 46.6, sortOrder: 109, estimated: true },
-      { modelId: 'grok-46-expert', label: 'Ø Grok 4.6 Expert', score: 88.4, costPerTask: 0.72, sortOrder: 109.3 },
+      { modelId: 'glm-53-flash-deep-think-max', label: 'Ƶ GLM 5.3 Flash Deep Think Max', score: 84.3, costPerTask: 0.08, sortOrder: 96.6 },
+      { modelId: 'grok-46-expert', label: 'Ø Grok 4.6 Expert', score: 88.4, costPerTask: 0.81, sortOrder: 109.3 },
       { modelId: 'minimax-m3-thinking', label: '≋ MiniMax M3 Thinking', score: 65.2, costPerTask: 0.28, sortOrder: 116.5 },
       { modelId: 'nemotron-3-ultra-reasoning', label: '▰ Nemotron 3 Ultra Reasoning', score: 53.9, costPerTask: 1.13, sortOrder: 117.5 },
       { modelId: 'muse-spark-12', label: 'ƒ Muse Spark 1.2', score: 80.1, costPerTask: 0.80, sortOrder: 117.55 },
       { modelId: 'deepseek-v4-vision-deep-think', label: '🐋︎ DeepSeek V4 Vision Deep Think', score: 74.2, costPerTask: 0.11, sortOrder: 117.58 },
-      { modelId: 'deepseek-v4-expert-deep-think', label: '🐋︎ DeepSeek V4 Expert Deep Think', score: 78.7, costPerTask: 0.40, sortOrder: 117.6 },
+      { modelId: 'deepseek-v4-expert-deep-think', label: '🐋︎ DeepSeek V4 Expert Deep Think', score: 78.7, costPerTask: 0.41, sortOrder: 117.6 },
       { modelId: 'deepseek-v4-instant-deep-think', label: '🐋︎ DeepSeek V4 Instant Deep Think', score: 78.7, costPerTask: 0.14, sortOrder: 117.7 },
       { modelId: 'mimo-v25-pro', label: '⋔ MiMo V2.5 Pro', score: 65.2, costPerTask: 0.07, sortOrder: 118 },
       { modelId: 'mimo-v25', label: '⋔ MiMo V2.5', score: 63.7, costPerTask: 0.03, sortOrder: 118.5 },
-      { modelId: 'qwen-38-max', label: '▽ Qwen 3.8 Max', score: 81.3, costPerTask: 1.23, sortOrder: 123.5 },
-      { modelId: 'qwen-37-plus-think', label: '▽ Qwen 3.7 Plus Thinking', score: 61.0, costPerTask: 0.76, sortOrder: 124.5 },
+      { modelId: 'qwen-38-max', label: '▽ Qwen 3.8 Max', score: 81.3, costPerTask: 1.02, sortOrder: 123.5 },
+      { modelId: 'qwen-37-plus-think', label: '▽ Qwen 3.7 Plus Thinking', score: 61.0, costPerTask: 0.50, sortOrder: 124.5 },
       { modelId: 'kimi-k3-max', label: 'Ḱ Kimi K3 Thinking Max', score: 85, costPerTask: 0.63, sortOrder: 126.5 },
-      { modelId: 'kimi-k26-thinking', label: 'Ḱ Kimi K2.6 Thinking High', score: 65.9, costPerTask: 0.77, sortOrder: 127 }
+      { modelId: 'kimi-k26-thinking', label: 'Ḱ Kimi K2.6 Thinking High', score: 65.9, costPerTask: 0.81, sortOrder: 127 }
     ];
 
     function getTerminalBenchV21Data() {
@@ -5855,10 +5837,7 @@
 
     // These estimated scores remain useful context even though their price is
     // unknown. They are reference lines, never synthetic zero-cost points.
-    const TERMINAL_BENCH_V21_UNKNOWN_COST_MODEL_IDS = new Set([
-      'glm-5t-deep-think',
-      'glm-5v-turbo-deep-think'
-    ]);
+    const TERMINAL_BENCH_V21_UNKNOWN_COST_MODEL_IDS = new Set();
 
     // These radii cover priced Terminal-Bench models that do not yet have an
     // Point sizes for Terminal-Bench models without an explicit shared style.
@@ -6535,14 +6514,9 @@
         segments: [{ value: 1000000, plans: 'All plans' }]
       },
       {
-        modelId: 'glm-5t-deep-think', label: 'Ƶ GLM 5 Turbo Deep Think', sortOrder: 107,
-        color: 'rgba(100, 100, 110, 1)',
-        segments: [{ value: 200000, plans: 'All plans' }]
-      },
-      {
-        modelId: 'glm-5v-turbo-deep-think', label: 'Ƶ GLM 5V Turbo Deep Think', sortOrder: 109,
+        modelId: 'glm-53-flash-deep-think-max', label: 'Ƶ GLM 5.3 Flash Deep Think Max', sortOrder: 96.6,
         color: 'rgba(50, 50, 50, 1)',
-        segments: [{ value: 200000, plans: 'All plans' }]
+        segments: [{ value: 1000000, plans: 'All plans' }]
       },
       // Grok
       {
@@ -7668,7 +7642,7 @@
     style="text-align: center; padding: 2rem 1rem; margin-top: 3rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.8rem;">
     Made by <strong> u/Pasto_Shouwa</strong>
     <br>
-    <em>Last updated on <strong>25/08/2026</strong> (dd/mm/yyyy)</em>
+    <em>Last updated on <strong>28/08/2026</strong> (dd/mm/yyyy)</em>
   </footer>
 </body>
 
