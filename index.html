@@ -2690,11 +2690,23 @@
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
-              <div class="model-dot" data-model="gemini-37-flash-extended"
-                onclick="toggleIndividualModel('gemini-37-flash-extended')">
+              <div class="model-dot" data-model="gemini-38-flash-extended-high"
+                onclick="toggleIndividualModel('gemini-38-flash-extended-high')">
                 <span class="model-dot-indicator dot-gemini"></span>
-                <span class="model-dot-label">Gemini 3.7 Flash Extended</span>
+                <span class="model-dot-label">Gemini 3.8 Flash Extended High</span>
               </div>
+              <div class="model-dot" data-model="gemini-38-flash-extended-medium"
+                onclick="toggleIndividualModel('gemini-38-flash-extended-medium')">
+                <span class="model-dot-indicator dot-gemini"></span>
+                <span class="model-dot-label">Gemini 3.8 Flash Extended Medium</span>
+              </div>
+              <div class="model-dot" data-model="gemini-38-flash-extended-low"
+                onclick="toggleIndividualModel('gemini-38-flash-extended-low')">
+                <span class="model-dot-indicator dot-gemini"></span>
+                <span class="model-dot-label">Gemini 3.8 Flash Extended Low</span>
+              </div>
+            </div>
+            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot" data-model="gemini-35-flash-lite-extended"
                 onclick="toggleIndividualModel('gemini-35-flash-lite-extended')">
                 <span class="model-dot-indicator dot-gemini"></span>
@@ -3647,7 +3659,9 @@
       'gpt-56-luna-low': false,
       'gpt-56-sol-instant': true,
       'gpt-56-luna-instant': true,
-      'gemini-37-flash-extended': true,
+      'gemini-38-flash-extended-high': true,
+      'gemini-38-flash-extended-medium': true,
+      'gemini-38-flash-extended-low': true,
       'gemini-35-flash-lite-extended': true,
       'gemini-31-pro': true,
       'claude-haiku': true,    // Starts visible by default
@@ -3704,7 +3718,9 @@
       'gpt-56-luna-low': false,
       'gpt-56-sol-instant': false,
       'gpt-56-luna-instant': false,
-      'gemini-37-flash-extended': false,
+      'gemini-38-flash-extended-high': false,
+      'gemini-38-flash-extended-medium': false,
+      'gemini-38-flash-extended-low': false,
       'gemini-35-flash-lite-extended': false,
       'gemini-31-pro': false,
       'claude-haiku': true,    // Starts explicitly disabled
@@ -3753,7 +3769,7 @@
     // Model groups for group toggles
     const modelGroups = {
       'claude': ['claude-51-fable-low', 'claude-51-fable-medium', 'claude-51-fable-high', 'claude-51-fable-extra', 'claude-51-fable-max', 'claude-5-opus-max', 'claude-5-opus-extra', 'claude-5-opus-high', 'claude-5-opus-medium', 'claude-5-opus-low', 'claude-5-sonnet', 'claude-5-sonnet-high', 'claude-48-opus-max', 'claude-haiku', 'claude-haiku-nr'],
-      'reasoning': ['gpt-56-sol-max', 'gpt-56-sol-xhigh', 'gpt-56-sol-high', 'gpt-56-sol-medium', 'gpt-56-sol-low', 'gpt-56-terra-max', 'gpt-56-terra-xhigh', 'gpt-56-terra-high', 'gpt-56-terra-medium', 'gpt-56-terra-low', 'gpt-56-luna-max', 'gpt-56-luna-xhigh', 'gpt-56-luna-high', 'gpt-56-luna-medium', 'gpt-56-luna-low', 'gemini-37-flash-extended', 'gemini-35-flash-lite-extended', 'gemini-31-pro', 'claude-51-fable-low', 'claude-51-fable-medium', 'claude-51-fable-high', 'claude-51-fable-extra', 'claude-51-fable-max', 'claude-5-opus-max', 'claude-5-opus-extra', 'claude-5-opus-high', 'claude-5-opus-medium', 'claude-5-opus-low', 'claude-5-sonnet', 'claude-48-opus-max', 'claude-haiku', 'glm-53-deep-think-max', 'glm-53-flash-deep-think-max', 'grok-46-expert', 'minimax-m3-thinking', 'nemotron-3-ultra-reasoning', 'muse-spark-12', 'deepseek-v4-vision-deep-think', 'deepseek-v4-expert-deep-think', 'deepseek-v4-instant-deep-think', 'mimo-v25-pro', 'mimo-v25', 'qwen-38-max', 'qwen-37-plus-think', 'kimi-k3-max', 'kimi-k26-thinking'],
+      'reasoning': ['gpt-56-sol-max', 'gpt-56-sol-xhigh', 'gpt-56-sol-high', 'gpt-56-sol-medium', 'gpt-56-sol-low', 'gpt-56-terra-max', 'gpt-56-terra-xhigh', 'gpt-56-terra-high', 'gpt-56-terra-medium', 'gpt-56-terra-low', 'gpt-56-luna-max', 'gpt-56-luna-xhigh', 'gpt-56-luna-high', 'gpt-56-luna-medium', 'gpt-56-luna-low', 'gemini-38-flash-extended-high', 'gemini-38-flash-extended-medium', 'gemini-38-flash-extended-low', 'gemini-35-flash-lite-extended', 'gemini-31-pro', 'claude-51-fable-low', 'claude-51-fable-medium', 'claude-51-fable-high', 'claude-51-fable-extra', 'claude-51-fable-max', 'claude-5-opus-max', 'claude-5-opus-extra', 'claude-5-opus-high', 'claude-5-opus-medium', 'claude-5-opus-low', 'claude-5-sonnet', 'claude-48-opus-max', 'claude-haiku', 'glm-53-deep-think-max', 'glm-53-flash-deep-think-max', 'grok-46-expert', 'minimax-m3-thinking', 'nemotron-3-ultra-reasoning', 'muse-spark-12', 'deepseek-v4-vision-deep-think', 'deepseek-v4-expert-deep-think', 'deepseek-v4-instant-deep-think', 'mimo-v25-pro', 'mimo-v25', 'qwen-38-max', 'qwen-37-plus-think', 'kimi-k3-max', 'kimi-k26-thinking'],
       'instant': ['gpt-56-sol-instant', 'gpt-56-luna-instant', 'claude-5-sonnet-high', 'claude-haiku-nr', 'kimi-k26-instant'],
       'chatgpt-pro': [],
       'other': ['glm-53-deep-think-max', 'glm-53-flash-deep-think-max', 'grok-46-expert', 'minimax-m3-thinking', 'nemotron-3-ultra-reasoning', 'muse-spark-12', 'deepseek-v4-vision-deep-think', 'deepseek-v4-expert-deep-think', 'deepseek-v4-instant-deep-think', 'mimo-v25-pro', 'mimo-v25', 'qwen-38-max', 'qwen-37-plus-think', 'kimi-k3-max', 'kimi-k26-thinking', 'kimi-k26-instant'],
@@ -3781,7 +3797,9 @@
       'gpt-56-luna-low': ['reasoning', 'coding'],        // Coding-only reasoning model
       'gpt-56-sol-instant': ['instant'],                 // Needs Non-reasoning
       'gpt-56-luna-instant': ['instant'],                // Needs Non-reasoning
-      'gemini-37-flash-extended': ['reasoning'],        // Only needs Reasoning
+      'gemini-38-flash-extended-high': ['reasoning'],   // Only needs Reasoning
+      'gemini-38-flash-extended-medium': ['reasoning'], // Only needs Reasoning
+      'gemini-38-flash-extended-low': ['reasoning'],    // Only needs Reasoning
       'gemini-35-flash-lite-extended': ['reasoning'],   // Only needs Reasoning
       'gemini-31-pro': ['reasoning'],                   // Only needs Reasoning
       'claude-51-fable-low': ['claude', 'reasoning'],    // Needs both Claude AND Reasoning to be on
@@ -4378,7 +4396,9 @@
       { modelId: 'gpt-56-luna-low', label: '⌘ GPT 5.6 Luna Low', correct: 39.62, abstention: 6.12, hallucination: 54.26, sortOrder: 12.5 },
       { modelId: 'gpt-56-sol-instant', label: '⌘ GPT 5.6 Sol Instant', correct: 48.70, abstention: 3.70, hallucination: 47.60, sortOrder: 13 },
       { modelId: 'gpt-56-luna-instant', label: '⌘ GPT 5.6 Luna Instant', correct: 28.60, abstention: 17.85, hallucination: 53.55, sortOrder: 14 },
-      { modelId: 'gemini-37-flash-extended', label: '✦ Gemini 3.7 Flash Extended', correct: 55.32, abstention: 15.85, hallucination: 28.83, sortOrder: 35 },
+      { modelId: 'gemini-38-flash-extended-low', label: '✦ Gemini 3.8 Flash Extended Low', correct: 52.22, abstention: 16.91, hallucination: 30.87, sortOrder: 30 },
+      { modelId: 'gemini-38-flash-extended-medium', label: '✦ Gemini 3.8 Flash Extended Medium', correct: 52.98, abstention: 22.62, hallucination: 24.40, sortOrder: 31 },
+      { modelId: 'gemini-38-flash-extended-high', label: '✦ Gemini 3.8 Flash Extended High', correct: 54.60, abstention: 20.35, hallucination: 25.05, sortOrder: 32 },
       { modelId: 'gemini-35-flash-lite-extended', label: '✦ Gemini 3.5 Flash Lite Extended', correct: 29.47, abstention: 46.30, hallucination: 24.23, sortOrder: 35.5 },
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro Extended', correct: 55.25, abstention: 22.43, hallucination: 22.32, sortOrder: 36 },
       { modelId: 'claude-51-fable-low', label: '❋ Claude 5.1 Fable Thinking Low', correct: 60.23, abstention: 13.67, hallucination: 26.10, sortOrder: 63.0 },
@@ -5075,7 +5095,9 @@
       { modelId: 'gpt-56-luna-low', label: '⌘ GPT 5.6 Luna Low', score: 65.3, sortOrder: 12.5 },
       { modelId: 'gpt-56-sol-instant', label: '⌘ GPT 5.6 Sol Instant', score: 57.0, sortOrder: 13 },
       { modelId: 'gpt-56-luna-instant', label: '⌘ GPT 5.6 Luna Instant', score: 38.7, sortOrder: 14 },
-      { modelId: 'gemini-37-flash-extended', label: '✦ Gemini 3.7 Flash Extended', score: 80, sortOrder: 35 },
+      { modelId: 'gemini-38-flash-extended-low', label: '✦ Gemini 3.8 Flash Extended Low', score: 78.7, sortOrder: 30 },
+      { modelId: 'gemini-38-flash-extended-medium', label: '✦ Gemini 3.8 Flash Extended Medium', score: 82, sortOrder: 31 },
+      { modelId: 'gemini-38-flash-extended-high', label: '✦ Gemini 3.8 Flash Extended High', score: 81, sortOrder: 32 },
       { modelId: 'gemini-35-flash-lite-extended', label: '✦ Gemini 3.5 Flash Lite Extended', score: 74.7, sortOrder: 35.5 },
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro Extended', score: 72.7, sortOrder: 36 },
       { modelId: 'claude-51-fable-low', label: '❋ Claude 5.1 Fable Thinking Low', score: 79.3, sortOrder: 63.0 },
@@ -5219,7 +5241,9 @@
       { modelId: 'gpt-56-luna-low', label: '⌘ GPT 5.6 Luna Low', score: 74, sortOrder: 12.5 },
       { modelId: 'gpt-56-sol-instant', label: '⌘ GPT 5.6 Sol Instant', score: 72, sortOrder: 13 },
       { modelId: 'gpt-56-luna-instant', label: '⌘ GPT 5.6 Luna Instant', score: 60, sortOrder: 14 },
-      { modelId: 'gemini-37-flash-extended', label: '✦ Gemini 3.7 Flash Extended', score: 85, sortOrder: 35 },
+      { modelId: 'gemini-38-flash-extended-low', label: '✦ Gemini 3.8 Flash Extended Low', score: 85, sortOrder: 30 },
+      { modelId: 'gemini-38-flash-extended-medium', label: '✦ Gemini 3.8 Flash Extended Medium', score: 84, sortOrder: 31 },
+      { modelId: 'gemini-38-flash-extended-high', label: '✦ Gemini 3.8 Flash Extended High', score: 86, sortOrder: 32 },
       { modelId: 'gemini-35-flash-lite-extended', label: '✦ Gemini 3.5 Flash Lite Extended', score: 79, sortOrder: 35.5 },
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro Extended', score: 82, sortOrder: 36 },
       { modelId: 'claude-51-fable-low', label: '❋ Claude 5.1 Fable Thinking Low (Estimated)', score: 80, sortOrder: 63.0, estimated: true },
@@ -5441,7 +5465,9 @@
       { modelId: 'gpt-56-luna-high', label: '⌘ GPT 5.6 Luna High', score: 1457, costPerTask: 0.04, sortOrder: 11 },
       { modelId: 'gpt-56-luna-medium', label: '⌘ GPT 5.6 Luna Medium', score: 1271, costPerTask: 0.01, sortOrder: 12 },
       { modelId: 'gpt-56-luna-low', label: '⌘ GPT 5.6 Luna Low', score: 1153, costPerTask: 0.01, sortOrder: 12.5 },
-      { modelId: 'gemini-37-flash-extended', label: '✦ Gemini 3.7 Flash Extended', score: 1516, costPerTask: 1.25, sortOrder: 35 },
+      { modelId: 'gemini-38-flash-extended-low', label: '✦ Gemini 3.8 Flash Extended Low', score: 1394, costPerTask: 0.53, sortOrder: 30 },
+      { modelId: 'gemini-38-flash-extended-medium', label: '✦ Gemini 3.8 Flash Extended Medium', score: 1497, costPerTask: 1.24, sortOrder: 31 },
+      { modelId: 'gemini-38-flash-extended-high', label: '✦ Gemini 3.8 Flash Extended High', score: 1545, costPerTask: 1.69, sortOrder: 32 },
       { modelId: 'gemini-35-flash-lite-extended', label: '✦ Gemini 3.5 Flash Lite Extended', score: 1138, costPerTask: 0.10, sortOrder: 35.5 },
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro Extended', score: 965, costPerTask: 0.27, sortOrder: 36 },
       { modelId: 'claude-51-fable-low', label: '❋ Claude 5.1 Fable Thinking Low', score: 1587, costPerTask: 1.43, sortOrder: 63.0 },
@@ -5825,7 +5851,9 @@
       { modelId: 'gpt-56-luna-high', label: '⌘ GPT 5.6 Luna High', score: 69.7, costPerTask: 0.03, sortOrder: 11 },
       { modelId: 'gpt-56-luna-medium', label: '⌘ GPT 5.6 Luna Medium', score: 53.2, costPerTask: 0.02, sortOrder: 12 },
       { modelId: 'gpt-56-luna-low', label: '⌘ GPT 5.6 Luna Low', score: 43.4, costPerTask: 0.02, sortOrder: 12.5 },
-      { modelId: 'gemini-37-flash-extended', label: '✦ Gemini 3.7 Flash Extended', score: 85.8, costPerTask: 0.49, sortOrder: 35 },
+      { modelId: 'gemini-38-flash-extended-low', label: '✦ Gemini 3.8 Flash Extended Low', score: 83.1, costPerTask: 0.49, sortOrder: 30 },
+      { modelId: 'gemini-38-flash-extended-medium', label: '✦ Gemini 3.8 Flash Extended Medium', score: 83.9, costPerTask: 0.54, sortOrder: 31 },
+      { modelId: 'gemini-38-flash-extended-high', label: '✦ Gemini 3.8 Flash Extended High', score: 87.6, costPerTask: 0.72, sortOrder: 32 },
       { modelId: 'gemini-35-flash-lite-extended', label: '✦ Gemini 3.5 Flash Lite Extended', score: 53.6, costPerTask: 0.26, sortOrder: 35.5 },
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro Extended', score: 73.8, costPerTask: 0.58, sortOrder: 36 },
       { modelId: 'claude-51-fable-low', label: '❋ Claude 5.1 Fable Thinking Low', score: 85.0, costPerTask: 0.68, sortOrder: 63.0 },
@@ -5895,7 +5923,6 @@
       'claude-51-fable-high': 7,
       'claude-51-fable-extra': 7,
       'claude-51-fable-max': 7,
-      'gemini-37-flash-extended': 5,
       'gemini-35-flash-lite-extended': 4,
       'grok-46-expert': 6,
       'nemotron-3-ultra-reasoning': 6,
@@ -5984,6 +6011,17 @@
         return {
           key: 'claude-51-fable',
           label: 'Claude 5.1 Fable',
+          pointLabel: effortMeta.label,
+          effortOrder: effortMeta.order
+        };
+      }
+
+      if (modelId.startsWith('gemini-38-flash-extended-')) {
+        const effort = modelId.split('-').pop();
+        const effortMeta = getTerminalBenchV21EffortMeta(effort, cleanLabel);
+        return {
+          key: 'gemini-38-flash-extended',
+          label: 'Gemini 3.8 Flash Extended',
           pointLabel: effortMeta.label,
           effortOrder: effortMeta.order
         };
@@ -6470,7 +6508,25 @@
         ]
       },
       {
-        modelId: 'gemini-37-flash-extended', label: '✦ Gemini 3.7 Flash Extended', sortOrder: 35,
+        modelId: 'gemini-38-flash-extended-low', label: '✦ Gemini 3.8 Flash Extended Low', sortOrder: 30,
+        color: 'rgba(238, 73, 82, 1)',
+        segments: [
+          { value: 32000, plans: 'Free' },
+          { value: 128000, plans: 'Plus' },
+          { value: 1000000, plans: 'Pro, Ultra' }
+        ]
+      },
+      {
+        modelId: 'gemini-38-flash-extended-medium', label: '✦ Gemini 3.8 Flash Extended Medium', sortOrder: 31,
+        color: 'rgba(238, 73, 82, 1)',
+        segments: [
+          { value: 32000, plans: 'Free' },
+          { value: 128000, plans: 'Plus' },
+          { value: 1000000, plans: 'Pro, Ultra' }
+        ]
+      },
+      {
+        modelId: 'gemini-38-flash-extended-high', label: '✦ Gemini 3.8 Flash Extended High', sortOrder: 32,
         color: 'rgba(238, 73, 82, 1)',
         segments: [
           { value: 32000, plans: 'Free' },
@@ -6490,6 +6546,46 @@
       // Claude
       {
         modelId: 'claude-5-opus-max', label: '❋ Claude 5 Opus Thinking Max', sortOrder: 63.81,
+        color: 'rgba(218, 119, 87, 1)',
+        segments: [
+          { value: 200000, plans: 'Free' },
+          { value: 500000, plans: 'Pro, Max x5, Max x20' }
+        ]
+      },
+      {
+        modelId: 'claude-51-fable-low', label: '❋ Claude 5.1 Fable Thinking Low', sortOrder: 63.0,
+        color: 'rgba(218, 119, 87, 1)',
+        segments: [
+          { value: 200000, plans: 'Free' },
+          { value: 500000, plans: 'Pro, Max x5, Max x20' }
+        ]
+      },
+      {
+        modelId: 'claude-51-fable-medium', label: '❋ Claude 5.1 Fable Thinking Medium', sortOrder: 63.1,
+        color: 'rgba(218, 119, 87, 1)',
+        segments: [
+          { value: 200000, plans: 'Free' },
+          { value: 500000, plans: 'Pro, Max x5, Max x20' }
+        ]
+      },
+      {
+        modelId: 'claude-51-fable-high', label: '❋ Claude 5.1 Fable Thinking High', sortOrder: 63.2,
+        color: 'rgba(218, 119, 87, 1)',
+        segments: [
+          { value: 200000, plans: 'Free' },
+          { value: 500000, plans: 'Pro, Max x5, Max x20' }
+        ]
+      },
+      {
+        modelId: 'claude-51-fable-extra', label: '❋ Claude 5.1 Fable Thinking Extra', sortOrder: 63.3,
+        color: 'rgba(218, 119, 87, 1)',
+        segments: [
+          { value: 200000, plans: 'Free' },
+          { value: 500000, plans: 'Pro, Max x5, Max x20' }
+        ]
+      },
+      {
+        modelId: 'claude-51-fable-max', label: '❋ Claude 5.1 Fable Thinking Max', sortOrder: 63.4,
         color: 'rgba(218, 119, 87, 1)',
         segments: [
           { value: 200000, plans: 'Free' },
@@ -7697,7 +7793,7 @@
     style="text-align: center; padding: 2rem 1rem; margin-top: 3rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.8rem;">
     Made by <strong> u/Pasto_Shouwa</strong>
     <br>
-    <em>Last updated on <strong>01/09/2026</strong> (dd/mm/yyyy)</em>
+    <em>Last updated on <strong>02/09/2026</strong> (dd/mm/yyyy)</em>
   </footer>
 </body>
 
