@@ -2225,10 +2225,6 @@
               <td>1254×1254 (1.2K)<span class="detail">[All image models]</span></td>
             </tr>
             <tr>
-              <td>Music generation per day</td>
-              <td>No</td>
-            </tr>
-            <tr>
               <td>Custom model creation</td>
               <td>No<span class="detail">[Custom GPTs]</span></td>
             </tr>
@@ -2243,30 +2239,6 @@
             <tr class="usa-ad-row">
               <td>Advertisements</td>
               <td class="usa-restricted">Yes
-              </td>
-            </tr>
-            <tr>
-              <td>Video inputs</td>
-              <td>No</td>
-            </tr>
-            <tr>
-              <td>Audio inputs</td>
-              <td>No</td>
-            </tr>
-            <tr>
-              <td>Youtube summaries</td>
-              <td>No</td>
-            </tr>
-            <tr>
-              <td>Cloud storage included</td>
-              <td>No</td>
-            </tr>
-            <tr>
-              <td>Age estimation and verification method</td>
-              <td>AI-based<span class="annotation" data-note="age-ai"></span><span class="detail">Verification only with
-                  ID, through a
-                  third-party
-                  (Persona Identities)<span class="annotation" data-note="age-verification"></span></span>
               </td>
             </tr>
           </tbody>
@@ -2303,12 +2275,8 @@
             </tr>
             <tr>
               <td>Non-reasoning model limit per day</td>
-              <td>
-                <!-- Previous limit: 40 (10 every 5h). Kept here in case this change needs to be reverted. -->
-                Unlimited<span class="detail">[GPT 5.6 Luna]</span>
-              </td>
-              <td>
-                <!-- Previous limit: 1280 (160 every 3h). Kept here in case this change needs to be reverted. -->
+              <td colspan="2">
+                <!-- Previous Free limit: 40 (10 every 5h). Previous Go limit: 1280 (160 every 3h). -->
                 Unlimited<span class="detail">[GPT 5.6 Luna]</span>
               </td>
               <td>
@@ -2331,7 +2299,7 @@
             <tr>
               <td>Memory features</td>
               <td colspan="2">Memories</td>
-              <td>Memories, chats history, chat search</td>
+              <td>Memories, chat search</td>
             </tr>
             <tr>
               <td>Image generation per day</td>
@@ -2341,21 +2309,6 @@
             <tr>
               <td>Image resolution (1:1)</td>
               <td colspan="3">1254×1254 (1.2K)<span class="detail">[All image models]</span></td>
-            </tr>
-            <tr>
-              <td>Video generation per day</td>
-              <td colspan="2">No</td>
-              <td>Unknown<span class="detail">[Sora 2]</span></td>
-            </tr>
-            <tr>
-              <td>Video resolution and length</td>
-              <td colspan="2">No</td>
-              <td>480p, 720p<span class="detail">(up to 10s)</span><span class="detail">[Sora
-                  2]</span></td>
-            </tr>
-            <tr>
-              <td>Music generation per day</td>
-              <td colspan="3">No</td>
             </tr>
             <tr>
               <td>Custom model creation</td>
@@ -2382,38 +2335,6 @@
               </td>
               <td>No</td>
             </tr>
-            <tr>
-              <td>Video inputs</td>
-              <td colspan="3">No</td>
-            </tr>
-            <tr>
-              <td>Audio inputs</td>
-              <td colspan="3">No</td>
-            </tr>
-            <tr>
-              <td>Youtube summaries</td>
-              <td colspan="3">No</td>
-            </tr>
-            <tr>
-              <td>Cloud storage included</td>
-              <td colspan="3">No</td>
-            </tr>
-            <tr>
-              <td>API credit included</td>
-              <td colspan="3">No</td>
-            </tr>
-            <tr>
-              <td>Plan sharing</td>
-              <td colspan="3">No</td>
-            </tr>
-            <tr>
-              <td>Age estimation and verification method</td>
-              <td colspan="3">AI-based<span class="annotation" data-note="age-ai"></span><span
-                  class="detail">Verification only with ID, through a
-                  third-party
-                  (Persona Identities)<span class="annotation" data-note="age-verification"></span></span>
-              </td>
-            </tr>
           </tbody>
         </table>
       </div>
@@ -2424,110 +2345,68 @@
           <thead>
             <tr>
               <th rowspan="2" style="border-bottom: 2px solid var(--border-color);">Feature</th>
-              <th class="th-chatgpt">ChatGPT</th>
+              <th colspan="2" class="th-chatgpt">ChatGPT</th>
             </tr>
             <tr>
-              <th class="th-chatgpt" style="text-align: center;">Pro x5 / x20</th>
+              <th class="th-chatgpt" style="text-align: center;">Pro x5</th>
+              <th class="th-chatgpt" style="text-align: center;">Pro x20</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>Reasoning model limit per day</td>
-              <td>Unlimited<span class="annotation" data-note="gpt-pro-limits"></span> +
-                Unlimited<span class="detail">[GPT 5.6 Sol Pro + GPT 5.6 Sol]</span>
+              <td>7+Unlimited<span class="detail">(50/week+unlimited)</span><span class="detail">[GPT 6 Astra High<span
+                    class="annotation" data-note="gpt-astra-high-effort"></span> + GPT 5.6 Sol Extra High]</span>
+              </td>
+              <td>28+Unlimited<span class="detail">(200/week+unlimited)</span><span class="detail">[GPT 6 Astra High<span
+                    class="annotation" data-note="gpt-astra-high-effort"></span> + GPT 5.6 Sol Extra High]</span>
               </td>
             </tr>
             <tr>
               <td>Non-reasoning model limit per day</td>
-              <td>Unlimited<span class="detail">[GPT 5.6 Sol Extra High]</span></td>
+              <td colspan="2">Unlimited<span class="detail">[GPT 5.6 Sol]</span></td>
             </tr>
             <tr>
               <td>Context window limit</td>
-              <td>128k / 400k<span class="detail">(Non-reasoning / Reasoning)</span></td>
+              <td colspan="2">128k / 400k<span class="detail">(Non-reasoning / Reasoning)</span></td>
             </tr>
             <tr>
               <td>File uploads per day</td>
-              <td>Unlimited</td>
+              <td colspan="2">Unlimited</td>
             </tr>
             <tr>
               <td>Memory features</td>
-              <td>Memories, chats history, chat search</td>
+              <td colspan="2">Memories, chat search</td>
             </tr>
             <tr>
               <td>Image generation per day</td>
-              <td>Unknown<span class="annotation" data-note="gpt-image-unknown"></span><span class="detail">[GPT Image 2
+              <td colspan="2">Unknown<span class="annotation" data-note="gpt-image-unknown"></span><span class="detail">[GPT Image 2
                   /
                   GPT Image 2 Thinking]</span></td>
             </tr>
             <tr>
               <td>Image resolution (1:1)</td>
-              <td>1254×1254 (1.2K)<span class="detail">[All image models]</span></td>
-            </tr>
-            <tr>
-              <td>Video generation per day</td>
-              <td>Unknown<span class="detail">[Sora 2]</span></td>
-            </tr>
-            <tr>
-              <td>Video resolution and length</td>
-              <td>480p, 720p, 1080p<span class="detail">(up to 20s)</span><span
-                  class="detail">[Sora
-                  2]</span></td>
-            </tr>
-            <tr>
-              <td>Music generation per day</td>
-              <td>No</td>
+              <td colspan="2">1254×1254 (1.2K)<span class="detail">[All image models]</span></td>
             </tr>
             <tr>
               <td>Custom model creation</td>
-              <td>Yes<span class="detail">[Custom GPTs]</span></td>
+              <td colspan="2">Yes<span class="detail">[Custom GPTs]</span></td>
             </tr>
             <tr>
               <td>Folder organization</td>
-              <td>Yes<span class="detail">[Projects]</span></td>
+              <td colspan="2">Yes<span class="detail">[Projects]</span></td>
             </tr>
             <tr>
               <td>Maximum active scheduled tasks</td>
-              <td>15<br><span class="detail">[Tasks]</span></td>
+              <td colspan="2">15<br><span class="detail">[Tasks]</span></td>
             </tr>
             <tr>
               <td>Deep research uses per month</td>
-              <td>Unknown</span></td>
+              <td colspan="2">Unknown</span></td>
             </tr>
             <tr>
               <td>Advertisements</td>
-              <td>No</td>
-            </tr>
-            <tr>
-              <td>Video inputs</td>
-              <td>Yes</td>
-            </tr>
-            <tr>
-              <td>Audio inputs</td>
-              <td>Yes</td>
-            </tr>
-            <tr>
-              <td>Youtube summaries</td>
-              <td>No</td>
-            </tr>
-            <tr>
-              <td>Cloud storage included</td>
-              <td>No</td>
-            </tr>
-            <tr>
-              <td>API credit included</td>
-              <td>No</td>
-            </tr>
-            <tr>
-              <td>Plan sharing</td>
-              <td>No</td>
-            </tr>
-            <tr>
-              <td>Age estimation and verification method</td>
-              <td>AI-based<span class="annotation" data-note="age-ai"></span><span class="detail">Verification only with
-                  ID, through a
-                  third-party
-                  (Persona Identities)<span class="annotation" data-note="age-verification"></span></span>
-              </td>
+              <td colspan="2">No</td>
             </tr>
           </tbody>
         </table>
@@ -2550,7 +2429,7 @@
               <div class="toggle-switch active" onclick="toggleUSAExclusive()"></div>
             </div>
             <div class="unknown-toggle">
-              <span class="toggle-label">Unknown values</span>
+              <span class="toggle-label">Mark unknown values</span>
               <div class="toggle-switch active" onclick="toggleUnknownHighlights()"></div>
             </div>
           </div>
@@ -2612,6 +2491,29 @@
           <div class="filter-group">
             <div class="filter-group-header">
               <span class="filter-group-name">Reasoning models</span>
+            </div>
+            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
+              <div class="model-dot" data-model="gpt-6-astra-max" onclick="toggleIndividualModel('gpt-6-astra-max')">
+                <span class="model-dot-indicator dot-gpt shape-triangle-right"></span>
+                <span class="model-dot-label">GPT 6 Astra Max</span>
+              </div>
+              <div class="model-dot" data-model="gpt-6-astra-xhigh" onclick="toggleIndividualModel('gpt-6-astra-xhigh')">
+                <span class="model-dot-indicator dot-gpt shape-triangle-right"></span>
+                <span class="model-dot-label">GPT 6 Astra Extra High</span>
+              </div>
+              <div class="model-dot" data-model="gpt-6-astra-high" onclick="toggleIndividualModel('gpt-6-astra-high')">
+                <span class="model-dot-indicator dot-gpt shape-star"></span>
+                <span class="model-dot-label">GPT 6 Astra High</span>
+              </div>
+              <div class="model-dot" data-model="gpt-6-astra-medium"
+                onclick="toggleIndividualModel('gpt-6-astra-medium')">
+                <span class="model-dot-indicator dot-gpt shape-triangle-right"></span>
+                <span class="model-dot-label">GPT 6 Astra Medium</span>
+              </div>
+              <div class="model-dot" data-model="gpt-6-astra-low" onclick="toggleIndividualModel('gpt-6-astra-low')">
+                <span class="model-dot-indicator dot-gpt shape-triangle-right"></span>
+                <span class="model-dot-label">GPT 6 Astra Low</span>
+              </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot" data-model="gpt-56-sol-max" onclick="toggleIndividualModel('gpt-56-sol-max')">
@@ -3466,11 +3368,9 @@
      */
     const FOOTNOTES = {
       'gpt-free-thinking': "Used to be 1 per day for Free and 10 for Go, but was increased. The current limit is not public, nor if it is daily or weekly.",
-      'gpt-luna-low-effort': "The thinking effort is not public. It is likely Low to reduce costs; otherwise, the other likely configuration is GPT 5.6 Luna Medium.",
-      'gpt-image-unknown': "GPT Image 2 limits are unknown. GPT Image 1 limits were 200/day for old Pro, 50/day for Plus, 5/day for Free.",
-      'age-ai': "AI-based age estimation can be unreliable, sometimes flagging an account as underage based on the user's preferences.",
-      'age-verification': "ChatGPT age verification is handled by the third-party provider Persona Identities and requires sharing an ID with that provider.",
-      'gpt-pro-limits': "GPT Pro x5, has a limit of around 50 uses per week of GPT 5.5 Pro. GPT Pro x20 is supossed to still have unlimited uses of it. This and the higher limits on Work/Codex on the second plan seem to be the only difference between the two.",
+      'gpt-luna-low-effort': "The thinking effort is not public. It is likely Low to reduce costs; otherwise, the only other likely configuration is GPT 5.6 Luna Medium.",
+      'gpt-astra-high-effort': "The thinking effort is not public. High is assumed because it was the highest thinking effort selectable on GPT Pro when the thinking effort was possible to choose.",
+      'gpt-image-unknown': "GPT Image 2 limits are unknown. GPT Image 1 limits were 200/day for old Pro, 50/day for Plus, 5/day for Free."
     };
 
     function toSuperscript(num) {
@@ -3642,6 +3542,11 @@
 
     // Individual model visibility
     const modelVisibility = {
+      'gpt-6-astra-max': false,
+      'gpt-6-astra-xhigh': false,
+      'gpt-6-astra-high': true,
+      'gpt-6-astra-medium': true,
+      'gpt-6-astra-low': false,
       'gpt-56-sol-max': false,
       'gpt-56-sol-xhigh': false,
       'gpt-56-sol-high': true,
@@ -3701,6 +3606,11 @@
     // When a group toggle is turned ON, models that were explicitly disabled stay disabled
     // When a group toggle is turned OFF, all models in group are disabled (not marked as explicit)
     const modelExplicitlyDisabled = {
+      'gpt-6-astra-max': false,
+      'gpt-6-astra-xhigh': false,
+      'gpt-6-astra-high': false,
+      'gpt-6-astra-medium': false,
+      'gpt-6-astra-low': false,
       'gpt-56-sol-max': false,
       'gpt-56-sol-xhigh': false,
       'gpt-56-sol-high': false,
@@ -3769,7 +3679,7 @@
     // Model groups for group toggles
     const modelGroups = {
       'claude': ['claude-51-fable-low', 'claude-51-fable-medium', 'claude-51-fable-high', 'claude-51-fable-extra', 'claude-51-fable-max', 'claude-5-opus-max', 'claude-5-opus-extra', 'claude-5-opus-high', 'claude-5-opus-medium', 'claude-5-opus-low', 'claude-5-sonnet', 'claude-5-sonnet-high', 'claude-48-opus-max', 'claude-haiku', 'claude-haiku-nr'],
-      'reasoning': ['gpt-56-sol-max', 'gpt-56-sol-xhigh', 'gpt-56-sol-high', 'gpt-56-sol-medium', 'gpt-56-sol-low', 'gpt-56-terra-max', 'gpt-56-terra-xhigh', 'gpt-56-terra-high', 'gpt-56-terra-medium', 'gpt-56-terra-low', 'gpt-56-luna-max', 'gpt-56-luna-xhigh', 'gpt-56-luna-high', 'gpt-56-luna-medium', 'gpt-56-luna-low', 'gemini-38-flash-extended-high', 'gemini-38-flash-extended-medium', 'gemini-38-flash-extended-low', 'gemini-35-flash-lite-extended', 'gemini-31-pro', 'claude-51-fable-low', 'claude-51-fable-medium', 'claude-51-fable-high', 'claude-51-fable-extra', 'claude-51-fable-max', 'claude-5-opus-max', 'claude-5-opus-extra', 'claude-5-opus-high', 'claude-5-opus-medium', 'claude-5-opus-low', 'claude-5-sonnet', 'claude-48-opus-max', 'claude-haiku', 'glm-53-deep-think-max', 'glm-53-flash-deep-think-max', 'grok-46-expert', 'minimax-m3-thinking', 'nemotron-3-ultra-reasoning', 'muse-spark-12', 'deepseek-v4-vision-deep-think', 'deepseek-v4-expert-deep-think', 'deepseek-v4-instant-deep-think', 'mimo-v25-pro', 'mimo-v25', 'qwen-38-max', 'qwen-37-plus-think', 'kimi-k3-max', 'kimi-k26-thinking'],
+      'reasoning': ['gpt-6-astra-max', 'gpt-6-astra-xhigh', 'gpt-6-astra-high', 'gpt-6-astra-medium', 'gpt-6-astra-low', 'gpt-56-sol-max', 'gpt-56-sol-xhigh', 'gpt-56-sol-high', 'gpt-56-sol-medium', 'gpt-56-sol-low', 'gpt-56-terra-max', 'gpt-56-terra-xhigh', 'gpt-56-terra-high', 'gpt-56-terra-medium', 'gpt-56-terra-low', 'gpt-56-luna-max', 'gpt-56-luna-xhigh', 'gpt-56-luna-high', 'gpt-56-luna-medium', 'gpt-56-luna-low', 'gemini-38-flash-extended-high', 'gemini-38-flash-extended-medium', 'gemini-38-flash-extended-low', 'gemini-35-flash-lite-extended', 'gemini-31-pro', 'claude-51-fable-low', 'claude-51-fable-medium', 'claude-51-fable-high', 'claude-51-fable-extra', 'claude-51-fable-max', 'claude-5-opus-max', 'claude-5-opus-extra', 'claude-5-opus-high', 'claude-5-opus-medium', 'claude-5-opus-low', 'claude-5-sonnet', 'claude-48-opus-max', 'claude-haiku', 'glm-53-deep-think-max', 'glm-53-flash-deep-think-max', 'grok-46-expert', 'minimax-m3-thinking', 'nemotron-3-ultra-reasoning', 'muse-spark-12', 'deepseek-v4-vision-deep-think', 'deepseek-v4-expert-deep-think', 'deepseek-v4-instant-deep-think', 'mimo-v25-pro', 'mimo-v25', 'qwen-38-max', 'qwen-37-plus-think', 'kimi-k3-max', 'kimi-k26-thinking'],
       'instant': ['gpt-56-sol-instant', 'gpt-56-luna-instant', 'claude-5-sonnet-high', 'claude-haiku-nr', 'kimi-k26-instant'],
       'chatgpt-pro': [],
       'other': ['glm-53-deep-think-max', 'glm-53-flash-deep-think-max', 'grok-46-expert', 'minimax-m3-thinking', 'nemotron-3-ultra-reasoning', 'muse-spark-12', 'deepseek-v4-vision-deep-think', 'deepseek-v4-expert-deep-think', 'deepseek-v4-instant-deep-think', 'mimo-v25-pro', 'mimo-v25', 'qwen-38-max', 'qwen-37-plus-think', 'kimi-k3-max', 'kimi-k26-thinking', 'kimi-k26-instant'],
@@ -3780,6 +3690,11 @@
     // Model constraints: which group toggles must ALL be active for a model to be visible
     // When a group is turned ON, models are only activated if all their other constraints are met
     const modelConstraints = {
+      'gpt-6-astra-max': ['reasoning'],                       // Reasoning model
+      'gpt-6-astra-xhigh': ['reasoning'],                     // Reasoning model
+      'gpt-6-astra-high': ['reasoning'],                      // Reasoning model
+      'gpt-6-astra-medium': ['reasoning'],                    // Reasoning model
+      'gpt-6-astra-low': ['reasoning'],                       // Reasoning model
       'gpt-56-sol-max': ['reasoning', 'coding'],         // Coding-only reasoning model
       'gpt-56-sol-xhigh': ['reasoning'],                 // Reasoning model
       'gpt-56-sol-high': ['reasoning'],                  // Reasoning model
@@ -4379,6 +4294,11 @@
 
     // Base data for AA-Omniscience using object structure with sortOrder and modelId
     const omniscienceAllModels = [
+      { modelId: 'gpt-6-astra-max', label: '⌘ GPT 6 Astra Max', correct: 62.60, abstention: 18.20, hallucination: 19.20, sortOrder: -4 },
+      { modelId: 'gpt-6-astra-xhigh', label: '⌘ GPT 6 Astra Extra High', correct: 61.85, abstention: 19.72, hallucination: 18.43, sortOrder: -3 },
+      { modelId: 'gpt-6-astra-high', label: '⌘ GPT 6 Astra High', correct: 61.13, abstention: 21.47, hallucination: 17.40, sortOrder: -2 },
+      { modelId: 'gpt-6-astra-medium', label: '⌘ GPT 6 Astra Medium', correct: 60.57, abstention: 21.08, hallucination: 18.35, sortOrder: -1 },
+      { modelId: 'gpt-6-astra-low', label: '⌘ GPT 6 Astra Low', correct: 59.53, abstention: 21.49, hallucination: 18.98, sortOrder: 0 },
       { modelId: 'gpt-56-sol-max', label: '⌘ GPT 5.6 Sol Max', correct: 59.40, abstention: 3.17, hallucination: 37.43, sortOrder: 1 },
       { modelId: 'gpt-56-sol-xhigh', label: '⌘ GPT 5.6 Sol Extra High', correct: 58.82, abstention: 3.35, hallucination: 37.83, sortOrder: 2 },
       { modelId: 'gpt-56-sol-high', label: '⌘ GPT 5.6 Sol High', correct: 58.35, abstention: 3.67, hallucination: 37.98, sortOrder: 3 },
@@ -4903,14 +4823,27 @@
     // Shared point styles used by Terminal-Bench v2.1.
     const benchmarkPointStyleSources = [
       {
-        modelId: 'gpt-56-sol-max',
-        label: 'GPT 5.6 Sol Max',
+        modelId: 'gpt-6-astra-max',
+        label: 'GPT 6 Astra Max',
         borderColor: 'rgba(16, 163, 127, 0.95)',
         backgroundColor: 'rgba(16, 163, 127, 0.95)',
         borderWidth: 2,
         tension: 0.3,
         pointRadius: 7,
         pointHoverRadius: 8,
+        pointBackgroundColor: 'rgba(16, 163, 127, 0.95)',
+        spanGaps: false,
+        sortOrder: -4
+      },
+      {
+        modelId: 'gpt-56-sol-max',
+        label: 'GPT 5.6 Sol Max',
+        borderColor: 'rgba(16, 163, 127, 0.95)',
+        backgroundColor: 'rgba(16, 163, 127, 0.95)',
+        borderWidth: 2,
+        tension: 0.3,
+        pointRadius: 6,
+        pointHoverRadius: 7,
         pointBackgroundColor: 'rgba(16, 163, 127, 0.95)',
         spanGaps: false,
         sortOrder: 1
@@ -4922,8 +4855,8 @@
         backgroundColor: 'rgba(16, 163, 127, 0.8)',
         borderWidth: 2,
         tension: 0.3,
-        pointRadius: 6,
-        pointHoverRadius: 7,
+        pointRadius: 5,
+        pointHoverRadius: 6,
         pointBackgroundColor: 'rgba(16, 163, 127, 0.8)',
         spanGaps: false,
         sortOrder: 5
@@ -4935,8 +4868,8 @@
         backgroundColor: 'rgba(16, 163, 127, 0.65)',
         borderWidth: 2,
         tension: 0.3,
-        pointRadius: 5,
-        pointHoverRadius: 6,
+        pointRadius: 4,
+        pointHoverRadius: 5,
         pointBackgroundColor: 'rgba(16, 163, 127, 0.65)',
         spanGaps: false,
         sortOrder: 9
@@ -5078,6 +5011,11 @@
     // Long Context Reasoning - AA-LCR - Horizontal Bar Chart
     let lcrChart;
     const lcrAllModels = [
+      { modelId: 'gpt-6-astra-max', label: '⌘ GPT 6 Astra Max', score: 74.3, sortOrder: -4 },
+      { modelId: 'gpt-6-astra-xhigh', label: '⌘ GPT 6 Astra Extra High', score: 74, sortOrder: -3 },
+      { modelId: 'gpt-6-astra-high', label: '⌘ GPT 6 Astra High', score: 76, sortOrder: -2 },
+      { modelId: 'gpt-6-astra-medium', label: '⌘ GPT 6 Astra Medium', score: 76.3, sortOrder: -1 },
+      { modelId: 'gpt-6-astra-low', label: '⌘ GPT 6 Astra Low', score: 72.7, sortOrder: 0 },
       { modelId: 'gpt-56-sol-max', label: '⌘ GPT 5.6 Sol Max', score: 77.7, sortOrder: 1 },
       { modelId: 'gpt-56-sol-xhigh', label: '⌘ GPT 5.6 Sol Extra High', score: 76.3, sortOrder: 2 },
       { modelId: 'gpt-56-sol-high', label: '⌘ GPT 5.6 Sol High', score: 75.3, sortOrder: 3 },
@@ -5224,6 +5162,11 @@
     // Visual Reasoning - MMMU-Pro - Horizontal Bar Chart
     let mmmuProChart;
     const mmmuProAllModels = [
+      { modelId: 'gpt-6-astra-max', label: '⌘ GPT 6 Astra Max', score: 87, sortOrder: -4 },
+      { modelId: 'gpt-6-astra-xhigh', label: '⌘ GPT 6 Astra Extra High', score: 86, sortOrder: -3 },
+      { modelId: 'gpt-6-astra-high', label: '⌘ GPT 6 Astra High', score: 86, sortOrder: -2 },
+      { modelId: 'gpt-6-astra-medium', label: '⌘ GPT 6 Astra Medium', score: 85, sortOrder: -1 },
+      { modelId: 'gpt-6-astra-low', label: '⌘ GPT 6 Astra Low', score: 85, sortOrder: 0 },
       { modelId: 'gpt-56-sol-max', label: '⌘ GPT 5.6 Sol Max', score: 83, sortOrder: 1 },
       { modelId: 'gpt-56-sol-xhigh', label: '⌘ GPT 5.6 Sol Extra High', score: 83, sortOrder: 2 },
       { modelId: 'gpt-56-sol-high', label: '⌘ GPT 5.6 Sol High', score: 82, sortOrder: 3 },
@@ -5450,6 +5393,11 @@
     // GDPval-AA v2 - Horizontal bar and connected scatter views
     let gdpval2Chart;
     const gdpval2AllModels = [
+      { modelId: 'gpt-6-astra-max', label: '⌘ GPT 6 Astra Max', score: 1629, costPerTask: 4.53, sortOrder: -4 },
+      { modelId: 'gpt-6-astra-xhigh', label: '⌘ GPT 6 Astra Extra High', score: 1606, costPerTask: 3.04, sortOrder: -3 },
+      { modelId: 'gpt-6-astra-high', label: '⌘ GPT 6 Astra High', score: 1574, costPerTask: 2.38, sortOrder: -2 },
+      { modelId: 'gpt-6-astra-medium', label: '⌘ GPT 6 Astra Medium', score: 1552, costPerTask: 1.82, sortOrder: -1 },
+      { modelId: 'gpt-6-astra-low', label: '⌘ GPT 6 Astra Low', score: 1474, costPerTask: 0.85, sortOrder: 0 },
       { modelId: 'gpt-56-sol-max', label: '⌘ GPT 5.6 Sol Max', score: 1710, costPerTask: 2.81, sortOrder: 1 },
       { modelId: 'gpt-56-sol-xhigh', label: '⌘ GPT 5.6 Sol Extra High', score: 1672, costPerTask: 1.70, sortOrder: 2 },
       { modelId: 'gpt-56-sol-high', label: '⌘ GPT 5.6 Sol High', score: 1616, costPerTask: 1.11, sortOrder: 3 },
@@ -5836,6 +5784,11 @@
     // Terminal-Bench v2.1 - Horizontal bar and connected scatter views
     let terminalBenchV21Chart;
     const terminalBenchV21AllModels = [
+      { modelId: 'gpt-6-astra-max', label: '⌘ GPT 6 Astra Max', score: 88.4, costPerTask: 1.20, sortOrder: -4 },
+      { modelId: 'gpt-6-astra-xhigh', label: '⌘ GPT 6 Astra Extra High', score: 89.1, costPerTask: 0.87, sortOrder: -3 },
+      { modelId: 'gpt-6-astra-high', label: '⌘ GPT 6 Astra High', score: 89.9, costPerTask: 0.64, sortOrder: -2 },
+      { modelId: 'gpt-6-astra-medium', label: '⌘ GPT 6 Astra Medium', score: 89.5, costPerTask: 0.45, sortOrder: -1 },
+      { modelId: 'gpt-6-astra-low', label: '⌘ GPT 6 Astra Low', score: 88, costPerTask: 0.29, sortOrder: 0 },
       { modelId: 'gpt-56-sol-max', label: '⌘ GPT 5.6 Sol Max', score: 88.0, costPerTask: 0.54, sortOrder: 1 },
       { modelId: 'gpt-56-sol-xhigh', label: '⌘ GPT 5.6 Sol Extra High', score: 89.5, costPerTask: 0.38, sortOrder: 2 },
       { modelId: 'gpt-56-sol-high', label: '⌘ GPT 5.6 Sol High', score: 87.3, costPerTask: 0.28, sortOrder: 3 },
@@ -5905,9 +5858,11 @@
     }
 
     const TERMINAL_BENCH_V21_STYLE_ANCHORS = {
+      'gpt-6-astra': 'gpt-6-astra-max',
       'gpt-56-sol': 'gpt-56-sol-max',
       'gpt-56-terra': 'gpt-56-terra-max',
       'gpt-56-luna': 'gpt-56-luna-max',
+      'claude-5-sonnet': 'claude-5-sonnet',
       'glm': 'glm-53-deep-think-max'
     };
 
@@ -5980,6 +5935,17 @@
     function getTerminalBenchV21SeriesMeta(model) {
       const modelId = model.modelId;
       const cleanLabel = model.label.replace(/^\S+\s+/, '');
+
+      if (modelId.startsWith('gpt-6-astra-')) {
+        const effort = modelId.split('-').pop();
+        const effortMeta = getTerminalBenchV21EffortMeta(effort, cleanLabel);
+        return {
+          key: 'gpt-6-astra',
+          label: 'GPT 6 Astra',
+          pointLabel: effortMeta.label,
+          effortOrder: effortMeta.order
+        };
+      }
 
       for (const family of ['sol', 'terra', 'luna']) {
         if (modelId.startsWith(`gpt-56-${family}-`)) {
@@ -6377,6 +6343,46 @@
         ]
       },
       // GPT reasoning models (use the same tier structure)
+      {
+        modelId: 'gpt-6-astra-max', label: '⌘ GPT 6 Astra Max', sortOrder: -4,
+        color: 'rgba(16, 163, 127, 1)',
+        segments: [
+          { value: 256000, plans: 'Free, Go, Plus' },
+          { value: 400000, plans: 'Pro' }
+        ]
+      },
+      {
+        modelId: 'gpt-6-astra-xhigh', label: '⌘ GPT 6 Astra Extra High', sortOrder: -3,
+        color: 'rgba(16, 163, 127, 1)',
+        segments: [
+          { value: 256000, plans: 'Free, Go, Plus' },
+          { value: 400000, plans: 'Pro' }
+        ]
+      },
+      {
+        modelId: 'gpt-6-astra-high', label: '⌘ GPT 6 Astra High', sortOrder: -2,
+        color: 'rgba(16, 163, 127, 1)',
+        segments: [
+          { value: 256000, plans: 'Free, Go, Plus' },
+          { value: 400000, plans: 'Pro' }
+        ]
+      },
+      {
+        modelId: 'gpt-6-astra-medium', label: '⌘ GPT 6 Astra Medium', sortOrder: -1,
+        color: 'rgba(16, 163, 127, 1)',
+        segments: [
+          { value: 256000, plans: 'Free, Go, Plus' },
+          { value: 400000, plans: 'Pro' }
+        ]
+      },
+      {
+        modelId: 'gpt-6-astra-low', label: '⌘ GPT 6 Astra Low', sortOrder: 0,
+        color: 'rgba(16, 163, 127, 1)',
+        segments: [
+          { value: 256000, plans: 'Free, Go, Plus' },
+          { value: 400000, plans: 'Pro' }
+        ]
+      },
       {
         modelId: 'gpt-56-sol-max', label: '⌘ GPT 5.6 Sol Max', sortOrder: 1,
         color: 'rgba(16, 163, 127, 1)',
@@ -7793,7 +7799,7 @@
     style="text-align: center; padding: 2rem 1rem; margin-top: 3rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.8rem;">
     Made by <strong> u/Pasto_Shouwa</strong>
     <br>
-    <em>Last updated on <strong>02/09/2026</strong> (dd/mm/yyyy)</em>
+    <em>Last updated on <strong>04/09/2026</strong> (dd/mm/yyyy)</em>
   </footer>
 </body>
 
