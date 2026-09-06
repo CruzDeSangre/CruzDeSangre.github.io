@@ -2582,19 +2582,19 @@
               </div>
               <div class="model-dot" data-model="gpt-56-luna-medium"
                 onclick="toggleIndividualModel('gpt-56-luna-medium')">
-                <span class="model-dot-indicator dot-gpt shape-triangle-right"></span>
+                <span class="model-dot-indicator dot-gpt"></span>
                 <span class="model-dot-label">GPT 5.6 Luna Medium</span>
               </div>
               <div class="model-dot" data-model="gpt-56-luna-low"
                 onclick="toggleIndividualModel('gpt-56-luna-low')">
-                <span class="model-dot-indicator dot-gpt shape-triangle-right"></span>
+                <span class="model-dot-indicator dot-gpt"></span>
                 <span class="model-dot-label">GPT 5.6 Luna Low</span>
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot" data-model="gemini-38-flash-extended-high"
                 onclick="toggleIndividualModel('gemini-38-flash-extended-high')">
-                <span class="model-dot-indicator dot-gemini"></span>
+                <span class="model-dot-indicator dot-gemini shape-triangle-right"></span>
                 <span class="model-dot-label">Gemini 3.8 Flash Extended High</span>
               </div>
               <div class="model-dot" data-model="gemini-38-flash-extended-medium"
@@ -2763,16 +2763,23 @@
                 <span class="model-dot-label">MiniMax M3 Thinking</span>
               </div>
             </div>
+            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
+              <div class="model-dot inactive" data-model="muse-spark-13"
+                onclick="toggleIndividualModel('muse-spark-13')">
+                <span class="model-dot-indicator dot-muse shape-triangle-right"></span>
+                <span class="model-dot-label">Muse Spark 1.3 Max</span>
+              </div>
+              <div class="model-dot inactive" data-model="muse-spark-11"
+                onclick="toggleIndividualModel('muse-spark-11')">
+                <span class="model-dot-indicator dot-muse"></span>
+                <span class="model-dot-label">Muse Spark 1.1 Thinking</span>
+              </div>
+            </div>
             <div class="model-dots-row">
               <div class="model-dot inactive" data-model="nemotron-3-ultra-reasoning"
                 onclick="toggleIndividualModel('nemotron-3-ultra-reasoning')">
-                <span class="model-dot-indicator dot-nemotron shape-square"></span>
+                <span class="model-dot-indicator dot-nemotron shape-triangle-right"></span>
                 <span class="model-dot-label">Nemotron 3 Ultra Reasoning</span>
-              </div>
-              <div class="model-dot inactive" data-model="muse-spark-12"
-                onclick="toggleIndividualModel('muse-spark-12')">
-                <span class="model-dot-indicator dot-muse"></span>
-                <span class="model-dot-label">Muse Spark 1.2</span>
               </div>
             </div>
           </div>
@@ -3588,8 +3595,9 @@
       'glm-53-flash-deep-think-max': false, // Other recommended, starts hidden
       'grok-46-expert': false,       // Other recommended, starts hidden
       'minimax-m3-thinking': false,   // Other recommended, starts hidden
+      'muse-spark-13': false,         // Other recommended, starts hidden
+      'muse-spark-11': false,         // Other recommended, starts hidden
       'nemotron-3-ultra-reasoning': false, // Other recommended, starts hidden
-      'muse-spark-12': false,         // Other recommended, starts hidden
       'deepseek-v4-vision-deep-think': false, // Other recommended, starts hidden
       'deepseek-v4-expert-deep-think': false, // Other recommended, starts hidden
       'deepseek-v4-instant-deep-think': false, // Other recommended, starts hidden
@@ -3652,8 +3660,9 @@
       'glm-53-flash-deep-think-max': false, // Other recommended
       'grok-46-expert': false,          // Other recommended
       'minimax-m3-thinking': false,      // Other recommended
+      'muse-spark-13': false,            // Other recommended
+      'muse-spark-11': false,            // Other recommended
       'nemotron-3-ultra-reasoning': false, // Other recommended
-      'muse-spark-12': false,          // Other recommended
       'deepseek-v4-vision-deep-think': false, // Other recommended
       'deepseek-v4-expert-deep-think': false, // Other recommended
       'deepseek-v4-instant-deep-think': false, // Other recommended
@@ -3679,22 +3688,22 @@
     // Model groups for group toggles
     const modelGroups = {
       'claude': ['claude-51-fable-low', 'claude-51-fable-medium', 'claude-51-fable-high', 'claude-51-fable-extra', 'claude-51-fable-max', 'claude-5-opus-max', 'claude-5-opus-extra', 'claude-5-opus-high', 'claude-5-opus-medium', 'claude-5-opus-low', 'claude-5-sonnet', 'claude-5-sonnet-high', 'claude-48-opus-max', 'claude-haiku', 'claude-haiku-nr'],
-      'reasoning': ['gpt-6-astra-max', 'gpt-6-astra-xhigh', 'gpt-6-astra-high', 'gpt-6-astra-medium', 'gpt-6-astra-low', 'gpt-56-sol-max', 'gpt-56-sol-xhigh', 'gpt-56-sol-high', 'gpt-56-sol-medium', 'gpt-56-sol-low', 'gpt-56-terra-max', 'gpt-56-terra-xhigh', 'gpt-56-terra-high', 'gpt-56-terra-medium', 'gpt-56-terra-low', 'gpt-56-luna-max', 'gpt-56-luna-xhigh', 'gpt-56-luna-high', 'gpt-56-luna-medium', 'gpt-56-luna-low', 'gemini-38-flash-extended-high', 'gemini-38-flash-extended-medium', 'gemini-38-flash-extended-low', 'gemini-35-flash-lite-extended', 'gemini-31-pro', 'claude-51-fable-low', 'claude-51-fable-medium', 'claude-51-fable-high', 'claude-51-fable-extra', 'claude-51-fable-max', 'claude-5-opus-max', 'claude-5-opus-extra', 'claude-5-opus-high', 'claude-5-opus-medium', 'claude-5-opus-low', 'claude-5-sonnet', 'claude-48-opus-max', 'claude-haiku', 'glm-53-deep-think-max', 'glm-53-flash-deep-think-max', 'grok-46-expert', 'minimax-m3-thinking', 'nemotron-3-ultra-reasoning', 'muse-spark-12', 'deepseek-v4-vision-deep-think', 'deepseek-v4-expert-deep-think', 'deepseek-v4-instant-deep-think', 'mimo-v25-pro', 'mimo-v25', 'qwen-38-max', 'qwen-37-plus-think', 'kimi-k3-max', 'kimi-k26-thinking'],
+      'reasoning': ['gpt-6-astra-max', 'gpt-6-astra-xhigh', 'gpt-6-astra-high', 'gpt-6-astra-medium', 'gpt-6-astra-low', 'gpt-56-sol-max', 'gpt-56-sol-xhigh', 'gpt-56-sol-high', 'gpt-56-sol-medium', 'gpt-56-sol-low', 'gpt-56-terra-max', 'gpt-56-terra-xhigh', 'gpt-56-terra-high', 'gpt-56-terra-medium', 'gpt-56-terra-low', 'gpt-56-luna-max', 'gpt-56-luna-xhigh', 'gpt-56-luna-high', 'gpt-56-luna-medium', 'gpt-56-luna-low', 'gemini-38-flash-extended-high', 'gemini-38-flash-extended-medium', 'gemini-38-flash-extended-low', 'gemini-35-flash-lite-extended', 'gemini-31-pro', 'claude-51-fable-low', 'claude-51-fable-medium', 'claude-51-fable-high', 'claude-51-fable-extra', 'claude-51-fable-max', 'claude-5-opus-max', 'claude-5-opus-extra', 'claude-5-opus-high', 'claude-5-opus-medium', 'claude-5-opus-low', 'claude-5-sonnet', 'claude-48-opus-max', 'claude-haiku', 'glm-53-deep-think-max', 'glm-53-flash-deep-think-max', 'grok-46-expert', 'minimax-m3-thinking', 'muse-spark-13', 'muse-spark-11', 'nemotron-3-ultra-reasoning', 'deepseek-v4-vision-deep-think', 'deepseek-v4-expert-deep-think', 'deepseek-v4-instant-deep-think', 'mimo-v25-pro', 'mimo-v25', 'qwen-38-max', 'qwen-37-plus-think', 'kimi-k3-max', 'kimi-k26-thinking'],
       'instant': ['gpt-56-sol-instant', 'gpt-56-luna-instant', 'claude-5-sonnet-high', 'claude-haiku-nr', 'kimi-k26-instant'],
       'chatgpt-pro': [],
-      'other': ['glm-53-deep-think-max', 'glm-53-flash-deep-think-max', 'grok-46-expert', 'minimax-m3-thinking', 'nemotron-3-ultra-reasoning', 'muse-spark-12', 'deepseek-v4-vision-deep-think', 'deepseek-v4-expert-deep-think', 'deepseek-v4-instant-deep-think', 'mimo-v25-pro', 'mimo-v25', 'qwen-38-max', 'qwen-37-plus-think', 'kimi-k3-max', 'kimi-k26-thinking', 'kimi-k26-instant'],
+      'other': ['glm-53-deep-think-max', 'glm-53-flash-deep-think-max', 'grok-46-expert', 'minimax-m3-thinking', 'muse-spark-13', 'muse-spark-11', 'nemotron-3-ultra-reasoning', 'deepseek-v4-vision-deep-think', 'deepseek-v4-expert-deep-think', 'deepseek-v4-instant-deep-think', 'mimo-v25-pro', 'mimo-v25', 'qwen-38-max', 'qwen-37-plus-think', 'kimi-k3-max', 'kimi-k26-thinking', 'kimi-k26-instant'],
       'legacy': ['claude-48-opus-max', 'deepseek-v4-instant-deep-think', 'qwen-37-plus-think', 'kimi-k26-thinking', 'kimi-k26-instant'],
-      'coding': ['gpt-56-sol-max', 'gpt-56-sol-low', 'gpt-56-terra-max', 'gpt-56-terra-xhigh', 'gpt-56-terra-high', 'gpt-56-terra-medium', 'gpt-56-terra-low', 'gpt-56-luna-max', 'gpt-56-luna-xhigh', 'gpt-56-luna-high', 'gpt-56-luna-medium', 'gpt-56-luna-low']
+      'coding': ['gpt-6-astra-max', 'gpt-6-astra-xhigh', 'gpt-6-astra-medium', 'gpt-6-astra-low', 'gpt-56-sol-max', 'gpt-56-sol-low', 'gpt-56-terra-max', 'gpt-56-terra-xhigh', 'gpt-56-terra-high', 'gpt-56-terra-medium', 'gpt-56-terra-low', 'gpt-56-luna-max', 'gpt-56-luna-xhigh', 'gpt-56-luna-high', 'gemini-38-flash-extended-high', 'muse-spark-13', 'nemotron-3-ultra-reasoning']
     };
 
     // Model constraints: which group toggles must ALL be active for a model to be visible
     // When a group is turned ON, models are only activated if all their other constraints are met
     const modelConstraints = {
-      'gpt-6-astra-max': ['reasoning'],                       // Reasoning model
-      'gpt-6-astra-xhigh': ['reasoning'],                     // Reasoning model
+      'gpt-6-astra-max': ['reasoning', 'coding'],             // Coding-app reasoning model
+      'gpt-6-astra-xhigh': ['reasoning', 'coding'],           // Coding-app reasoning model
       'gpt-6-astra-high': ['reasoning'],                      // Reasoning model
-      'gpt-6-astra-medium': ['reasoning'],                    // Reasoning model
-      'gpt-6-astra-low': ['reasoning'],                       // Reasoning model
+      'gpt-6-astra-medium': ['reasoning', 'coding'],          // Coding-app reasoning model
+      'gpt-6-astra-low': ['reasoning', 'coding'],             // Coding-app reasoning model
       'gpt-56-sol-max': ['reasoning', 'coding'],         // Coding-only reasoning model
       'gpt-56-sol-xhigh': ['reasoning'],                 // Reasoning model
       'gpt-56-sol-high': ['reasoning'],                  // Reasoning model
@@ -3708,11 +3717,11 @@
       'gpt-56-luna-max': ['reasoning', 'coding'],        // Coding-only reasoning model
       'gpt-56-luna-xhigh': ['reasoning', 'coding'],      // Coding-only reasoning model
       'gpt-56-luna-high': ['reasoning', 'coding'],       // Coding-only reasoning model
-      'gpt-56-luna-medium': ['reasoning', 'coding'],     // Coding-only reasoning model
-      'gpt-56-luna-low': ['reasoning', 'coding'],        // Coding-only reasoning model
+      'gpt-56-luna-medium': ['reasoning'],                // Reasoning model
+      'gpt-56-luna-low': ['reasoning'],                   // Reasoning model
       'gpt-56-sol-instant': ['instant'],                 // Needs Non-reasoning
       'gpt-56-luna-instant': ['instant'],                // Needs Non-reasoning
-      'gemini-38-flash-extended-high': ['reasoning'],   // Only needs Reasoning
+      'gemini-38-flash-extended-high': ['reasoning', 'coding'], // Coding-app reasoning model
       'gemini-38-flash-extended-medium': ['reasoning'], // Only needs Reasoning
       'gemini-38-flash-extended-low': ['reasoning'],    // Only needs Reasoning
       'gemini-35-flash-lite-extended': ['reasoning'],   // Only needs Reasoning
@@ -3736,8 +3745,9 @@
       'glm-53-flash-deep-think-max': ['other', 'reasoning'],  // Needs both Other AND Reasoning to be on
       'grok-46-expert': ['other', 'reasoning'],              // Needs both Other AND Reasoning to be on
       'minimax-m3-thinking': ['other', 'reasoning'],          // Needs both Other AND Reasoning to be on
-      'nemotron-3-ultra-reasoning': ['other', 'reasoning'],  // Needs both Other AND Reasoning to be on
-      'muse-spark-12': ['other', 'reasoning'],                // Needs both Other AND Reasoning to be on
+      'muse-spark-13': ['other', 'reasoning', 'coding'],       // Needs Other, Reasoning, AND Coding to be on
+      'muse-spark-11': ['other', 'reasoning'],                // Needs both Other AND Reasoning to be on
+      'nemotron-3-ultra-reasoning': ['other', 'reasoning', 'coding'], // Needs Other, Reasoning, AND Coding to be on
       'deepseek-v4-vision-deep-think': ['other', 'reasoning'], // Needs both Other AND Reasoning to be on
       'deepseek-v4-expert-deep-think': ['other', 'reasoning'], // Needs both Other AND Reasoning to be on
       'deepseek-v4-instant-deep-think': ['other', 'reasoning', 'legacy'], // Needs Other, Reasoning, AND Legacy to be on
@@ -4190,7 +4200,8 @@
     const LEGACY_COLOR_ONLY_MODEL_IDS = new Set([
       'gemini-31-pro',
       'claude-haiku',
-      'claude-haiku-nr'
+      'claude-haiku-nr',
+      'muse-spark-11'
     ]);
 
     function getBaseBrandRgb(modelId) {
@@ -4340,8 +4351,9 @@
       { modelId: 'glm-53-flash-deep-think-max', label: 'Ƶ GLM 5.3 Flash Deep Think Max', correct: 27.50, abstention: 52.47, hallucination: 20.03, sortOrder: 96.6 },
       { modelId: 'grok-46-expert', label: 'Ø Grok 4.6 Expert', correct: 48.23, abstention: 34.02, hallucination: 17.75, sortOrder: 109.3 },
       { modelId: 'minimax-m3-thinking', label: '≋ MiniMax M3 Thinking', correct: 16.70, abstention: 67.95, hallucination: 15.35, sortOrder: 116.5 },
+      { modelId: 'muse-spark-13', label: 'ƒ Muse Spark 1.3 Max', correct: 43.83, abstention: 37.27, hallucination: 18.90, sortOrder: 117.0 },
+      { modelId: 'muse-spark-11', label: 'ƒ Muse Spark 1.1 Thinking', correct: 52.05, abstention: 23.98, hallucination: 23.97, sortOrder: 117.25 },
       { modelId: 'nemotron-3-ultra-reasoning', label: '▰ Nemotron 3 Ultra Reasoning', correct: 22.58, abstention: 54.43, hallucination: 22.99, sortOrder: 117.5 },
-      { modelId: 'muse-spark-12', label: 'ƒ Muse Spark 1.2', correct: 45.38, abstention: 36.44, hallucination: 18.18, sortOrder: 117.55 },
       { modelId: 'deepseek-v4-vision-deep-think', label: '🐋︎ DeepSeek V4 Vision Deep Think', correct: 38.57, abstention: 5.23, hallucination: 56.20, sortOrder: 117.58 },
       { modelId: 'deepseek-v4-expert-deep-think', label: '🐋︎ DeepSeek V4 Expert Deep Think', correct: 49.10, abstention: 2.63, hallucination: 48.27, sortOrder: 117.6 },
       { modelId: 'deepseek-v4-instant-deep-think', label: '🐋︎ DeepSeek V4 Instant Deep Think', correct: 40.38, abstention: 4.95, hallucination: 54.67, sortOrder: 117.7 },
@@ -5057,8 +5069,9 @@
       { modelId: 'glm-53-flash-deep-think-max', label: 'Ƶ GLM 5.3 Flash Deep Think Max', score: 78, sortOrder: 96.6 },
       { modelId: 'grok-46-expert', label: 'Ø Grok 4.6 Expert', score: 75, sortOrder: 109.3 },
       { modelId: 'minimax-m3-thinking', label: '≋ MiniMax M3 Thinking', score: 80.3, sortOrder: 116.5 },
+      { modelId: 'muse-spark-13', label: 'ƒ Muse Spark 1.3 Max', score: 84.3, sortOrder: 117.0 },
+      { modelId: 'muse-spark-11', label: 'ƒ Muse Spark 1.1 Thinking', score: 77.7, sortOrder: 117.25 },
       { modelId: 'nemotron-3-ultra-reasoning', label: '▰ Nemotron 3 Ultra Reasoning', score: 71.0, sortOrder: 117.5 },
-      { modelId: 'muse-spark-12', label: 'ƒ Muse Spark 1.2', score: 83.3, sortOrder: 117.55 },
       { modelId: 'deepseek-v4-vision-deep-think', label: '🐋︎ DeepSeek V4 Vision Deep Think', score: 78, sortOrder: 117.58 },
       { modelId: 'deepseek-v4-expert-deep-think', label: '🐋︎ DeepSeek V4 Expert Deep Think', score: 75.3, sortOrder: 117.6 },
       { modelId: 'deepseek-v4-instant-deep-think', label: '🐋︎ DeepSeek V4 Instant Deep Think', score: 74.3, sortOrder: 117.7 },
@@ -5189,11 +5202,11 @@
       { modelId: 'gemini-38-flash-extended-high', label: '✦ Gemini 3.8 Flash Extended High', score: 86, sortOrder: 32 },
       { modelId: 'gemini-35-flash-lite-extended', label: '✦ Gemini 3.5 Flash Lite Extended', score: 79, sortOrder: 35.5 },
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro Extended', score: 82, sortOrder: 36 },
-      { modelId: 'claude-51-fable-low', label: '❋ Claude 5.1 Fable Thinking Low (Estimated)', score: 80, sortOrder: 63.0, estimated: true },
-      { modelId: 'claude-51-fable-medium', label: '❋ Claude 5.1 Fable Thinking Medium (Estimated)', score: 82, sortOrder: 63.1, estimated: true },
-      { modelId: 'claude-51-fable-high', label: '❋ Claude 5.1 Fable Thinking High (Estimated)', score: 82, sortOrder: 63.2, estimated: true },
-      { modelId: 'claude-51-fable-extra', label: '❋ Claude 5.1 Fable Thinking Extra (Estimated)', score: 84, sortOrder: 63.3, estimated: true },
-      { modelId: 'claude-51-fable-max', label: '❋ Claude 5.1 Fable Thinking Max (Estimated)', score: 85, sortOrder: 63.4, estimated: true },
+      { modelId: 'claude-51-fable-low', label: '❋ Claude 5.1 Fable Thinking Low (Estimated)', score: 81, sortOrder: 63.0, estimated: true },
+      { modelId: 'claude-51-fable-medium', label: '❋ Claude 5.1 Fable Thinking Medium (Estimated)', score: 83, sortOrder: 63.1, estimated: true },
+      { modelId: 'claude-51-fable-high', label: '❋ Claude 5.1 Fable Thinking High (Estimated)', score: 84, sortOrder: 63.2, estimated: true },
+      { modelId: 'claude-51-fable-extra', label: '❋ Claude 5.1 Fable Thinking Extra (Estimated)', score: 85, sortOrder: 63.3, estimated: true },
+      { modelId: 'claude-51-fable-max', label: '❋ Claude 5.1 Fable Thinking Max (Estimated)', score: 86, sortOrder: 63.4, estimated: true },
       { modelId: 'claude-5-opus-max', label: '❋ Claude 5 Opus Thinking Max', score: 85, sortOrder: 63.81 },
       { modelId: 'claude-5-opus-extra', label: '❋ Claude 5 Opus Thinking Extra', score: 84, sortOrder: 63.82 },
       { modelId: 'claude-5-opus-high', label: '❋ Claude 5 Opus Thinking High', score: 82, sortOrder: 63.83 },
@@ -5208,8 +5221,9 @@
       { modelId: 'glm-53-flash-deep-think-max', label: 'Ƶ GLM 5.3 Flash Deep Think Max (Estimated)', score: 81, sortOrder: 96.6, estimated: true },
       { modelId: 'grok-46-expert', label: 'Ø Grok 4.6 Expert (Estimated)', score: 80, sortOrder: 109.3, estimated: true },
       { modelId: 'minimax-m3-thinking', label: '≋ MiniMax M3 Thinking', score: 79, sortOrder: 116.5 },
+      { modelId: 'muse-spark-13', label: 'ƒ Muse Spark 1.3 Max (Estimated)', score: 83, sortOrder: 117.0, estimated: true },
+      { modelId: 'muse-spark-11', label: 'ƒ Muse Spark 1.1 Thinking (Estimated)', score: 81, sortOrder: 117.25, estimated: true },
       { modelId: 'nemotron-3-ultra-reasoning', label: '▰ Nemotron 3 Ultra Reasoning', score: 0, sortOrder: 117.5 },
-      { modelId: 'muse-spark-12', label: 'ƒ Muse Spark 1.2 (Estimated)', score: 81, sortOrder: 117.55, estimated: true },
       { modelId: 'deepseek-v4-vision-deep-think', label: '🐋︎ DeepSeek V4 Vision Deep Think', score: 75, sortOrder: 117.58 },
       { modelId: 'deepseek-v4-expert-deep-think', label: '🐋︎ DeepSeek V4 Expert Deep Think', score: 0, sortOrder: 117.6 },
       { modelId: 'deepseek-v4-instant-deep-think', label: '🐋︎ DeepSeek V4 Instant Deep Think', score: 0, sortOrder: 117.7 },
@@ -5435,8 +5449,9 @@
       { modelId: 'glm-53-flash-deep-think-max', label: 'Ƶ GLM 5.3 Flash Deep Think Max', score: 1765, costPerTask: 0.30, sortOrder: 96.6 },
       { modelId: 'grok-46-expert', label: 'Ø Grok 4.6 Expert', score: 1730, costPerTask: 2.36, sortOrder: 109.3 },
       { modelId: 'minimax-m3-thinking', label: '≋ MiniMax M3 Thinking', score: 1380, costPerTask: 0.35, sortOrder: 116.5 },
+      { modelId: 'muse-spark-13', label: 'ƒ Muse Spark 1.3 Max', score: 1720, costPerTask: 1.90, sortOrder: 117.0 },
+      { modelId: 'muse-spark-11', label: 'ƒ Muse Spark 1.1 Thinking', score: 1298, costPerTask: 0.29, sortOrder: 117.25 },
       { modelId: 'nemotron-3-ultra-reasoning', label: '▰ Nemotron 3 Ultra Reasoning', score: 1152, costPerTask: 0.51, sortOrder: 117.5 },
-      { modelId: 'muse-spark-12', label: 'ƒ Muse Spark 1.2', score: 1615, costPerTask: 0.88, sortOrder: 117.55 },
       { modelId: 'deepseek-v4-vision-deep-think', label: '🐋︎ DeepSeek V4 Vision Deep Think', score: 1666, costPerTask: 0.35, sortOrder: 117.58 },
       { modelId: 'deepseek-v4-expert-deep-think', label: '🐋︎ DeepSeek V4 Expert Deep Think', score: 1577, costPerTask: 0.58, sortOrder: 117.6 },
       { modelId: 'deepseek-v4-instant-deep-think', label: '🐋︎ DeepSeek V4 Instant Deep Think', score: 1547, costPerTask: 0.29, sortOrder: 117.7 },
@@ -5826,8 +5841,9 @@
       { modelId: 'glm-53-flash-deep-think-max', label: 'Ƶ GLM 5.3 Flash Deep Think Max', score: 84.3, costPerTask: 0.08, sortOrder: 96.6 },
       { modelId: 'grok-46-expert', label: 'Ø Grok 4.6 Expert', score: 88.4, costPerTask: 0.81, sortOrder: 109.3 },
       { modelId: 'minimax-m3-thinking', label: '≋ MiniMax M3 Thinking', score: 65.2, costPerTask: 0.28, sortOrder: 116.5 },
+      { modelId: 'muse-spark-13', label: 'ƒ Muse Spark 1.3 Max', score: 85.8, costPerTask: 0.98, sortOrder: 117.0 },
+      { modelId: 'muse-spark-11', label: 'ƒ Muse Spark 1.1 Thinking', score: 77.9, costPerTask: 0.72, sortOrder: 117.25 },
       { modelId: 'nemotron-3-ultra-reasoning', label: '▰ Nemotron 3 Ultra Reasoning', score: 53.9, costPerTask: 1.13, sortOrder: 117.5 },
-      { modelId: 'muse-spark-12', label: 'ƒ Muse Spark 1.2', score: 80.1, costPerTask: 0.80, sortOrder: 117.55 },
       { modelId: 'deepseek-v4-vision-deep-think', label: '🐋︎ DeepSeek V4 Vision Deep Think', score: 74.2, costPerTask: 0.11, sortOrder: 117.58 },
       { modelId: 'deepseek-v4-expert-deep-think', label: '🐋︎ DeepSeek V4 Expert Deep Think', score: 78.7, costPerTask: 0.41, sortOrder: 117.6 },
       { modelId: 'deepseek-v4-instant-deep-think', label: '🐋︎ DeepSeek V4 Instant Deep Think', score: 78.7, costPerTask: 0.14, sortOrder: 117.7 },
@@ -5880,8 +5896,9 @@
       'claude-51-fable-max': 7,
       'gemini-35-flash-lite-extended': 4,
       'grok-46-expert': 6,
+      'muse-spark-13': 6,
+      'muse-spark-11': 6,
       'nemotron-3-ultra-reasoning': 6,
-      'muse-spark-12': 6,
       'qwen-38-max': 6,
       'qwen-37-plus-think': 5,
       'kimi-k3-max': 7
@@ -6687,16 +6704,20 @@
         color: 'rgba(207, 52, 124, 1)',
         segments: [{ value: 1000000, plans: 'All plans' }]
       },
+      {
+        modelId: 'muse-spark-13', label: 'ƒ Muse Spark 1.3 Max', sortOrder: 117.0,
+        color: 'rgba(21, 103, 253, 1)',
+        segments: [{ value: 1000000, plans: 'All plans' }]
+      },
+      {
+        modelId: 'muse-spark-11', label: 'ƒ Muse Spark 1.1 Thinking', sortOrder: 117.25,
+        color: 'rgba(21, 103, 253, 1)',
+        segments: [{ value: 1000000, plans: 'All plans' }]
+      },
       // Nemotron
       {
         modelId: 'nemotron-3-ultra-reasoning', label: '▰ Nemotron 3 Ultra Reasoning', sortOrder: 117.5,
         color: 'rgba(118, 185, 0, 1)',
-        segments: [{ value: 1000000, plans: 'All plans' }]
-      },
-      // Muse
-      {
-        modelId: 'muse-spark-12', label: 'ƒ Muse Spark 1.2', sortOrder: 117.55,
-        color: 'rgba(21, 103, 253, 1)',
         segments: [{ value: 1000000, plans: 'All plans' }]
       },
       // DeepSeek
@@ -7799,7 +7820,7 @@
     style="text-align: center; padding: 2rem 1rem; margin-top: 3rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.8rem;">
     Made by <strong> u/Pasto_Shouwa</strong>
     <br>
-    <em>Last updated on <strong>04/09/2026</strong> (dd/mm/yyyy)</em>
+    <em>Last updated on <strong>06/09/2026</strong> (dd/mm/yyyy)</em>
   </footer>
 </body>
 
