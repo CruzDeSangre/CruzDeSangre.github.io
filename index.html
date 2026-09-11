@@ -673,7 +673,8 @@
     }
 
     #gdpval2SortSelector[hidden],
-    #terminalBenchV21SortSelector[hidden] {
+    #terminalBenchV21SortSelector[hidden],
+    #terminalBenchV40SortSelector[hidden] {
       display: none;
     }
 
@@ -1617,20 +1618,12 @@
       background: #cf347c;
     }
 
-    .dot-nemotron {
-      background: #76b900;
-    }
-
     .dot-muse {
       background: #1567fd;
     }
 
     .dot-deepseek {
       background: #4d6bfe;
-    }
-
-    .dot-deepseek-legacy {
-      background: rgba(134, 148, 213, 1);
     }
 
     .dot-mimo {
@@ -2730,20 +2723,10 @@
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
-              <div class="model-dot inactive" data-model="deepseek-v4-vision-deep-think"
-                onclick="toggleIndividualModel('deepseek-v4-vision-deep-think')">
+              <div class="model-dot inactive" data-model="deepseek-v41-flash-deep-think"
+                onclick="toggleIndividualModel('deepseek-v41-flash-deep-think')">
                 <span class="model-dot-indicator dot-deepseek"></span>
-                <span class="model-dot-label">DeepSeek V4 Vision Deep Think</span>
-              </div>
-              <div class="model-dot inactive" data-model="deepseek-v4-expert-deep-think"
-                onclick="toggleIndividualModel('deepseek-v4-expert-deep-think')">
-                <span class="model-dot-indicator dot-deepseek"></span>
-                <span class="model-dot-label">DeepSeek V4 Expert Deep Think</span>
-              </div>
-              <div class="model-dot inactive" data-model="deepseek-v4-instant-deep-think"
-                onclick="toggleIndividualModel('deepseek-v4-instant-deep-think')">
-                <span class="model-dot-indicator dot-deepseek-legacy"></span>
-                <span class="model-dot-label">DeepSeek V4 Instant Deep Think</span>
+                <span class="model-dot-label">DeepSeek V4.1 Flash Deep Think</span>
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
@@ -2773,13 +2756,6 @@
                 onclick="toggleIndividualModel('muse-spark-11')">
                 <span class="model-dot-indicator dot-muse"></span>
                 <span class="model-dot-label">Muse Spark 1.1 Thinking</span>
-              </div>
-            </div>
-            <div class="model-dots-row">
-              <div class="model-dot inactive" data-model="nemotron-3-ultra-reasoning"
-                onclick="toggleIndividualModel('nemotron-3-ultra-reasoning')">
-                <span class="model-dot-indicator dot-nemotron shape-triangle-right"></span>
-                <span class="model-dot-label">Nemotron 3 Ultra Reasoning</span>
               </div>
             </div>
           </div>
@@ -2914,7 +2890,7 @@
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot bench-toggle-aalcr active" data-bench="aalcr" onclick="toggleBenchSection('aalcr')">
                 <span class="model-dot-indicator dot-long"></span>
-                <span class="model-dot-label">AA-LCR</span>
+                <span class="model-dot-label">AA-LCR v1.1</span>
               </div>
               <div class="model-dot bench-toggle-maxcontext active" data-bench="maxcontext"
                 onclick="toggleBenchSection('maxcontext')">
@@ -2974,6 +2950,11 @@
                 <span class="model-dot-indicator dot-coding"></span>
                 <span class="model-dot-label">Terminal-Bench v2.1</span>
               </div>
+              <div class="model-dot bench-toggle-terminal-v40 inactive" data-bench="terminal-v40"
+                onclick="toggleBenchSection('terminal-v40')">
+                <span class="model-dot-indicator dot-coding"></span>
+                <span class="model-dot-label">Terminal-Bench v4.0</span>
+              </div>
             </div>
           </div>
 
@@ -3025,10 +3006,10 @@
         </details>
       </div>
 
-      <!-- Long Context Reasoning - AA-LCR -->
+      <!-- Long Context Reasoning - AA-LCR v1.1 -->
       <div id="bench-section-aalcr">
         <div class="section-title-wrapper" style="margin-top: 3rem;">
-          <h2 class="section-title section-title-long">Long Context Reasoning — AA-LCR</h2>
+          <h2 class="section-title section-title-long">Long Context Reasoning — AA-LCR v1.1</h2>
         </div>
         <div class="chart-container">
           <canvas id="lcrChart"></canvas>
@@ -3056,12 +3037,12 @@
         <!-- Notes for LCR chart -->
         <details class="notes collapsible" style="margin-top: 1rem;" open>
           <summary class="notes-header">
-            <p class="notes-title">AA-LCR Notes</p>
+            <p class="notes-title">AA-LCR v1.1 Notes</p>
             <span class="notes-toggle">▼</span>
           </summary>
           <div class="notes-content">
             <ul class="notes-list">
-              <li>• AA-LCR evaluates extraction, comprehension and synthesis across long texts.</li>
+              <li>• AA-LCR v1.1 evaluates extraction, comprehension and synthesis across long texts.</li>
             </ul>
           </div>
         </details>
@@ -3256,6 +3237,62 @@
                 including them or estimating their values. Reasoning models will usually perform better than their
                 non-reasoning counterparts anyways.
               </li>
+            </ul>
+          </div>
+        </details>
+      </div>
+
+      <!-- Terminal-Bench v4.0 -->
+      <div id="bench-section-terminal-v40" class="coding-benchmark-section">
+        <div class="section-title-wrapper" style="margin-top: 3rem;">
+          <h2 class="section-title section-title-blue">Agentic Coding — Terminal-Bench v4.0</h2>
+        </div>
+        <div class="chart-container">
+          <canvas id="terminalBenchV40Chart"></canvas>
+        </div>
+        <p class="chart-note" id="terminalBenchV40Note">Shows agent performance on challenging terminal-based tasks across software engineering, machine learning, scientific computing, security, system administration, hardware, and other technical domains. Because it focuses on difficult agentic workflows, results may be less representative of typical day-to-day use for most users.</p>
+        <div class="sort-selector" id="terminalBenchV40ViewSelector">
+          <span class="sort-selector-label"><strong>View</strong></span>
+          <div class="sort-selector-buttons">
+            <button class="sort-btn active" onclick="setTerminalBenchV40View('performance')"
+              id="terminalBenchV40ViewPerformance">Only Performance</button>
+            <button class="sort-btn" onclick="setTerminalBenchV40View('price')"
+              id="terminalBenchV40ViewPrice">Performance And Price</button>
+          </div>
+        </div>
+        <div class="sort-selector" id="terminalBenchV40SortSelector">
+          <span class="sort-selector-label"><strong>Sort by</strong></span>
+          <div class="sort-selector-buttons">
+            <button class="sort-btn active" onclick="setTerminalBenchV40Sort('brand')" id="terminalBenchV40SortBrand">✦
+              Brand</button>
+            <button class="sort-btn" onclick="setTerminalBenchV40Sort('highest')" id="terminalBenchV40SortHighest">↑
+              Highest</button>
+          </div>
+        </div>
+        <div class="sort-selector" id="terminalBenchV40AxisMinSelector" style="margin-top: 0.5rem;">
+          <span class="sort-selector-label"><strong>Axis Min</strong></span>
+          <div class="sort-selector-buttons">
+            <button class="sort-btn active" onclick="setTerminalBenchV40AxisMin('0')"
+              id="terminalBenchV40AxisMin0">0%</button>
+            <button class="sort-btn" onclick="setTerminalBenchV40AxisMin('auto')"
+              id="terminalBenchV40AxisMinAuto">Dynamic</button>
+            <button class="sort-btn" onclick="setTerminalBenchV40AxisMin('all')" id="terminalBenchV40AxisMinAll">Dynamic
+              (All)</button>
+          </div>
+        </div>
+
+        <details class="notes collapsible" style="margin-top: 1rem;" open>
+          <summary class="notes-header">
+            <p class="notes-title">TERMINAL-BENCH V4.0 NOTES</p>
+            <span class="notes-toggle">▼</span>
+          </summary>
+          <div class="notes-content">
+            <ul class="notes-list">
+              <li>• Values for non-reasoning models of this benchmark are really scarce. Therefore, I've decided against
+                including them or estimating their values. Reasoning models will usually perform better than their
+                non-reasoning counterparts anyways.
+              </li>
+              <li>• This benchmark might not represent the actual model performance in day-to-day use for most users, as it tests models on really difficult tasks.</li>
             </ul>
           </div>
         </details>
@@ -3597,10 +3634,7 @@
       'minimax-m3-thinking': false,   // Other recommended, starts hidden
       'muse-spark-13': false,         // Other recommended, starts hidden
       'muse-spark-11': false,         // Other recommended, starts hidden
-      'nemotron-3-ultra-reasoning': false, // Other recommended, starts hidden
-      'deepseek-v4-vision-deep-think': false, // Other recommended, starts hidden
-      'deepseek-v4-expert-deep-think': false, // Other recommended, starts hidden
-      'deepseek-v4-instant-deep-think': false, // Other recommended, starts hidden
+      'deepseek-v41-flash-deep-think': false, // Other recommended, starts hidden
       'mimo-v25-pro': false,         // Other recommended, starts hidden
       'mimo-v25': false,             // Other recommended, starts hidden
       'qwen-38-max': false,          // Other recommended, starts hidden
@@ -3662,10 +3696,7 @@
       'minimax-m3-thinking': false,      // Other recommended
       'muse-spark-13': false,            // Other recommended
       'muse-spark-11': false,            // Other recommended
-      'nemotron-3-ultra-reasoning': false, // Other recommended
-      'deepseek-v4-vision-deep-think': false, // Other recommended
-      'deepseek-v4-expert-deep-think': false, // Other recommended
-      'deepseek-v4-instant-deep-think': false, // Other recommended
+      'deepseek-v41-flash-deep-think': false, // Other recommended
       'mimo-v25-pro': false,            // Other recommended
       'mimo-v25': false,                // Other recommended
       'qwen-38-max': false,             // Other recommended
@@ -3688,12 +3719,12 @@
     // Model groups for group toggles
     const modelGroups = {
       'claude': ['claude-51-fable-low', 'claude-51-fable-medium', 'claude-51-fable-high', 'claude-51-fable-extra', 'claude-51-fable-max', 'claude-5-opus-max', 'claude-5-opus-extra', 'claude-5-opus-high', 'claude-5-opus-medium', 'claude-5-opus-low', 'claude-5-sonnet', 'claude-5-sonnet-high', 'claude-48-opus-max', 'claude-haiku', 'claude-haiku-nr'],
-      'reasoning': ['gpt-6-astra-max', 'gpt-6-astra-xhigh', 'gpt-6-astra-high', 'gpt-6-astra-medium', 'gpt-6-astra-low', 'gpt-56-sol-max', 'gpt-56-sol-xhigh', 'gpt-56-sol-high', 'gpt-56-sol-medium', 'gpt-56-sol-low', 'gpt-56-terra-max', 'gpt-56-terra-xhigh', 'gpt-56-terra-high', 'gpt-56-terra-medium', 'gpt-56-terra-low', 'gpt-56-luna-max', 'gpt-56-luna-xhigh', 'gpt-56-luna-high', 'gpt-56-luna-medium', 'gpt-56-luna-low', 'gemini-38-flash-extended-high', 'gemini-38-flash-extended-medium', 'gemini-38-flash-extended-low', 'gemini-35-flash-lite-extended', 'gemini-31-pro', 'claude-51-fable-low', 'claude-51-fable-medium', 'claude-51-fable-high', 'claude-51-fable-extra', 'claude-51-fable-max', 'claude-5-opus-max', 'claude-5-opus-extra', 'claude-5-opus-high', 'claude-5-opus-medium', 'claude-5-opus-low', 'claude-5-sonnet', 'claude-48-opus-max', 'claude-haiku', 'glm-53-deep-think-max', 'glm-53-flash-deep-think-max', 'grok-46-expert', 'minimax-m3-thinking', 'muse-spark-13', 'muse-spark-11', 'nemotron-3-ultra-reasoning', 'deepseek-v4-vision-deep-think', 'deepseek-v4-expert-deep-think', 'deepseek-v4-instant-deep-think', 'mimo-v25-pro', 'mimo-v25', 'qwen-38-max', 'qwen-37-plus-think', 'kimi-k3-max', 'kimi-k26-thinking'],
+      'reasoning': ['gpt-6-astra-max', 'gpt-6-astra-xhigh', 'gpt-6-astra-high', 'gpt-6-astra-medium', 'gpt-6-astra-low', 'gpt-56-sol-max', 'gpt-56-sol-xhigh', 'gpt-56-sol-high', 'gpt-56-sol-medium', 'gpt-56-sol-low', 'gpt-56-terra-max', 'gpt-56-terra-xhigh', 'gpt-56-terra-high', 'gpt-56-terra-medium', 'gpt-56-terra-low', 'gpt-56-luna-max', 'gpt-56-luna-xhigh', 'gpt-56-luna-high', 'gpt-56-luna-medium', 'gpt-56-luna-low', 'gemini-38-flash-extended-high', 'gemini-38-flash-extended-medium', 'gemini-38-flash-extended-low', 'gemini-35-flash-lite-extended', 'gemini-31-pro', 'claude-51-fable-low', 'claude-51-fable-medium', 'claude-51-fable-high', 'claude-51-fable-extra', 'claude-51-fable-max', 'claude-5-opus-max', 'claude-5-opus-extra', 'claude-5-opus-high', 'claude-5-opus-medium', 'claude-5-opus-low', 'claude-5-sonnet', 'claude-48-opus-max', 'claude-haiku', 'glm-53-deep-think-max', 'glm-53-flash-deep-think-max', 'grok-46-expert', 'minimax-m3-thinking', 'muse-spark-13', 'muse-spark-11', 'deepseek-v41-flash-deep-think', 'mimo-v25-pro', 'mimo-v25', 'qwen-38-max', 'qwen-37-plus-think', 'kimi-k3-max', 'kimi-k26-thinking'],
       'instant': ['gpt-56-sol-instant', 'gpt-56-luna-instant', 'claude-5-sonnet-high', 'claude-haiku-nr', 'kimi-k26-instant'],
       'chatgpt-pro': [],
-      'other': ['glm-53-deep-think-max', 'glm-53-flash-deep-think-max', 'grok-46-expert', 'minimax-m3-thinking', 'muse-spark-13', 'muse-spark-11', 'nemotron-3-ultra-reasoning', 'deepseek-v4-vision-deep-think', 'deepseek-v4-expert-deep-think', 'deepseek-v4-instant-deep-think', 'mimo-v25-pro', 'mimo-v25', 'qwen-38-max', 'qwen-37-plus-think', 'kimi-k3-max', 'kimi-k26-thinking', 'kimi-k26-instant'],
-      'legacy': ['claude-48-opus-max', 'deepseek-v4-instant-deep-think', 'qwen-37-plus-think', 'kimi-k26-thinking', 'kimi-k26-instant'],
-      'coding': ['gpt-6-astra-max', 'gpt-6-astra-xhigh', 'gpt-6-astra-medium', 'gpt-6-astra-low', 'gpt-56-sol-max', 'gpt-56-sol-low', 'gpt-56-terra-max', 'gpt-56-terra-xhigh', 'gpt-56-terra-high', 'gpt-56-terra-medium', 'gpt-56-terra-low', 'gpt-56-luna-max', 'gpt-56-luna-xhigh', 'gpt-56-luna-high', 'gemini-38-flash-extended-high', 'muse-spark-13', 'nemotron-3-ultra-reasoning']
+      'other': ['glm-53-deep-think-max', 'glm-53-flash-deep-think-max', 'grok-46-expert', 'minimax-m3-thinking', 'muse-spark-13', 'muse-spark-11', 'deepseek-v41-flash-deep-think', 'mimo-v25-pro', 'mimo-v25', 'qwen-38-max', 'qwen-37-plus-think', 'kimi-k3-max', 'kimi-k26-thinking', 'kimi-k26-instant'],
+      'legacy': ['claude-48-opus-max', 'qwen-37-plus-think', 'kimi-k26-thinking', 'kimi-k26-instant'],
+      'coding': ['gpt-6-astra-max', 'gpt-6-astra-xhigh', 'gpt-6-astra-medium', 'gpt-6-astra-low', 'gpt-56-sol-max', 'gpt-56-sol-low', 'gpt-56-terra-max', 'gpt-56-terra-xhigh', 'gpt-56-terra-high', 'gpt-56-terra-medium', 'gpt-56-terra-low', 'gpt-56-luna-max', 'gpt-56-luna-xhigh', 'gpt-56-luna-high', 'gemini-38-flash-extended-high', 'muse-spark-13']
     };
 
     // Model constraints: which group toggles must ALL be active for a model to be visible
@@ -3747,10 +3778,7 @@
       'minimax-m3-thinking': ['other', 'reasoning'],          // Needs both Other AND Reasoning to be on
       'muse-spark-13': ['other', 'reasoning', 'coding'],       // Needs Other, Reasoning, AND Coding to be on
       'muse-spark-11': ['other', 'reasoning'],                // Needs both Other AND Reasoning to be on
-      'nemotron-3-ultra-reasoning': ['other', 'reasoning', 'coding'], // Needs Other, Reasoning, AND Coding to be on
-      'deepseek-v4-vision-deep-think': ['other', 'reasoning'], // Needs both Other AND Reasoning to be on
-      'deepseek-v4-expert-deep-think': ['other', 'reasoning'], // Needs both Other AND Reasoning to be on
-      'deepseek-v4-instant-deep-think': ['other', 'reasoning', 'legacy'], // Needs Other, Reasoning, AND Legacy to be on
+      'deepseek-v41-flash-deep-think': ['other', 'reasoning'], // Needs both Other AND Reasoning to be on
       'mimo-v25-pro': ['other', 'reasoning'],                // Needs both Other AND Reasoning to be on
       'mimo-v25': ['other', 'reasoning'],                    // Needs both Other AND Reasoning to be on
       'qwen-38-max': ['other', 'reasoning'],                 // Needs both Other AND Reasoning to be on
@@ -4166,6 +4194,33 @@
         }
       }
 
+      // Update Terminal-Bench v4.0 chart
+      if (terminalBenchV40Chart && benchSectionVisibility['terminal-v40']) {
+        const isPriceView = terminalBenchV40ViewMode === 'price';
+        const terminalBenchV40Data = isPriceView ? null : getTerminalBenchV40Data();
+        const terminalBenchV40CostDatasets = isPriceView ? getTerminalBenchV40CostDatasets() : null;
+        const hasTerminalBenchV40Data = isPriceView
+          ? terminalBenchV40CostDatasets.length > 0
+          : terminalBenchV40Data.labels.length > 0;
+
+        if (!hasTerminalBenchV40Data) {
+          setChartRuntimeState('terminalBenchV40Chart', 'empty', BENCHMARK_EMPTY_MESSAGE);
+        } else {
+          setChartRuntimeState('terminalBenchV40Chart', 'ready');
+          if (isPriceView) {
+            terminalBenchV40Chart.data.datasets = terminalBenchV40CostDatasets;
+            terminalBenchV40Chart.options.scales.x.max = getTerminalBenchV40ReferenceLineMax();
+          } else {
+            terminalBenchV40Chart.data.labels = terminalBenchV40Data.labels;
+            terminalBenchV40Chart.data.datasets[0].data = terminalBenchV40Data.data;
+            terminalBenchV40Chart.data.datasets[0].backgroundColor = terminalBenchV40Data.backgroundColors;
+            terminalBenchV40Chart.data.datasets[0].hoverBackgroundColor = terminalBenchV40Data.hoverBackgroundColors;
+          }
+          updateTerminalBenchV40AxisMinOptions(terminalBenchV40Chart, terminalBenchV40AxisMinMode, getTerminalBenchV40VisibleScores());
+          terminalBenchV40Chart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
+        }
+      }
+
       // Update Max Context chart
       if (benchSectionVisibility.maxcontext) rebuildMaxContextChart();
     }
@@ -4186,7 +4241,6 @@
       'glm': '50,  50,  50',    // dark gray
       'grok': '35,  35, 175',   // readable dark blue
       'minimax': '207, 52, 124',    // magenta
-      'nemotron': '118, 185, 0',     // NVIDIA green
       'muse': '21,  103, 253',       // blue
       'deepseek': '77, 107, 254',    // #4d6bfe
       'mimo': '255, 116, 0',     // orange
@@ -4211,7 +4265,6 @@
       if (modelId.startsWith('glm-')) return BRAND_RGB['glm'];
       if (modelId.startsWith('grok-')) return BRAND_RGB['grok'];
       if (modelId.startsWith('minimax-')) return BRAND_RGB['minimax'];
-      if (modelId.startsWith('nemotron-')) return BRAND_RGB['nemotron'];
       if (modelId.startsWith('muse-')) return BRAND_RGB['muse'];
       if (modelId.startsWith('deepseek-')) return BRAND_RGB['deepseek'];
       if (modelId.startsWith('mimo-')) return BRAND_RGB['mimo'];
@@ -4353,10 +4406,7 @@
       { modelId: 'minimax-m3-thinking', label: '≋ MiniMax M3 Thinking', correct: 16.70, abstention: 67.95, hallucination: 15.35, sortOrder: 116.5 },
       { modelId: 'muse-spark-13', label: 'ƒ Muse Spark 1.3 Max', correct: 43.83, abstention: 37.27, hallucination: 18.90, sortOrder: 117.0 },
       { modelId: 'muse-spark-11', label: 'ƒ Muse Spark 1.1 Thinking', correct: 52.05, abstention: 23.98, hallucination: 23.97, sortOrder: 117.25 },
-      { modelId: 'nemotron-3-ultra-reasoning', label: '▰ Nemotron 3 Ultra Reasoning', correct: 22.58, abstention: 54.43, hallucination: 22.99, sortOrder: 117.5 },
-      { modelId: 'deepseek-v4-vision-deep-think', label: '🐋︎ DeepSeek V4 Vision Deep Think', correct: 38.57, abstention: 5.23, hallucination: 56.20, sortOrder: 117.58 },
-      { modelId: 'deepseek-v4-expert-deep-think', label: '🐋︎ DeepSeek V4 Expert Deep Think', correct: 49.10, abstention: 2.63, hallucination: 48.27, sortOrder: 117.6 },
-      { modelId: 'deepseek-v4-instant-deep-think', label: '🐋︎ DeepSeek V4 Instant Deep Think', correct: 40.38, abstention: 4.95, hallucination: 54.67, sortOrder: 117.7 },
+      { modelId: 'deepseek-v41-flash-deep-think', label: '🐋︎ DeepSeek V4.1 Flash Deep Think', correct: 46.40, abstention: 1.90, hallucination: 51.70, sortOrder: 117.57 },
       { modelId: 'mimo-v25-pro', label: '⋔ MiMo V2.5 Pro', correct: 22.42, abstention: 58.42, hallucination: 19.16, sortOrder: 118 },
       { modelId: 'mimo-v25', label: '⋔ MiMo V2.5', correct: 16.75, abstention: 56.67, hallucination: 26.58, sortOrder: 118.5 },
       { modelId: 'qwen-38-max', label: '▽ Qwen 3.8 Max', correct: 31.85, abstention: 39.70, hallucination: 28.45, sortOrder: 123.5 },
@@ -4401,11 +4451,14 @@
     let gdpval2ViewMode = getStoredEnum('gdpval2ViewMode', ['performance', 'price'], 'performance');
     let terminalBenchV21SortMode = getStoredEnum('terminalBenchV21SortMode', ['brand', 'highest'], 'brand');
     let terminalBenchV21ViewMode = getStoredEnum('terminalBenchV21ViewMode', ['performance', 'price'], 'performance');
+    let terminalBenchV40SortMode = getStoredEnum('terminalBenchV40SortMode', ['brand', 'highest'], 'brand');
+    let terminalBenchV40ViewMode = getStoredEnum('terminalBenchV40ViewMode', ['performance', 'price'], 'performance');
     let maxContextSortMode = getStoredEnum('maxContextSortMode', ['brand', 'highest'], 'brand');
     let lcrAxisMinMode = getStoredEnum('lcrAxisMinMode', ['0', 'auto', 'all'], '0');
     let mmmuProAxisMinMode = getStoredEnum('mmmuProAxisMinMode', ['0', 'auto', 'all'], '0');
     let gdpval2AxisMinMode = getStoredEnum('gdpval2AxisMinMode', ['0', 'auto', 'all'], '0');
     let terminalBenchV21AxisMinMode = getStoredEnum('terminalBenchV21AxisMinMode', ['0', 'auto', 'all'], '0');
+    let terminalBenchV40AxisMinMode = getStoredEnum('terminalBenchV40AxisMinMode', ['0', 'auto', 'all'], '0');
 
     function getDynamicPercentAxisMin(data) {
       const positiveValues = data.filter(value => typeof value === 'number' && value > 0);
@@ -4618,7 +4671,7 @@
     }
 
     const TERMINAL_BENCH_V21_PERFORMANCE_NOTE = 'Shows performance of agents on terminal tasks, including workflows such as debugging code, configuring systems, and resolving technical problems. Higher is better.';
-    const TERMINAL_BENCH_V21_PRICE_NOTE = 'Shows performance of agents on terminal tasks, including workflows such as debugging code, configuring systems, and resolving technical problems, together with price per solved task. The best priced models appear toward the upper-left: higher performance and lower price are better. Dashed horizontal lines indicate estimated performance with an unknown price.';
+    const TERMINAL_BENCH_V21_PRICE_NOTE = 'Shows performance of agents on terminal tasks, including workflows such as debugging code, configuring systems, and resolving technical problems. The best models appear toward the upper-left; higher performance and lower price are better.';
 
     function syncTerminalBenchV21ViewUI() {
       const isPriceView = terminalBenchV21ViewMode === 'price';
@@ -4668,6 +4721,78 @@
       }
       updateTerminalBenchV21AxisMinOptions(terminalBenchV21Chart, mode, getTerminalBenchV21VisibleScores());
       terminalBenchV21Chart.update({ duration: 750, easing: 'easeInOutQuart' });
+    }
+
+    function setTerminalBenchV40Sort(mode) {
+      mode = ['brand', 'highest'].includes(mode) ? mode : 'brand';
+      terminalBenchV40SortMode = mode;
+      safeStorageSet('terminalBenchV40SortMode', mode);
+      document.querySelectorAll('#terminalBenchV40SortSelector .sort-btn').forEach(btn => btn.classList.remove('active'));
+      document.getElementById(mode === 'brand' ? 'terminalBenchV40SortBrand' : 'terminalBenchV40SortHighest').classList.add('active');
+      if (!terminalBenchV40Chart) {
+        ensureBenchmarkRuntime();
+        return;
+      }
+      const terminalBenchV40Data = getTerminalBenchV40Data();
+      terminalBenchV40Chart.data.labels = terminalBenchV40Data.labels;
+      terminalBenchV40Chart.data.datasets[0].data = terminalBenchV40Data.data;
+      terminalBenchV40Chart.data.datasets[0].backgroundColor = terminalBenchV40Data.backgroundColors;
+      terminalBenchV40Chart.data.datasets[0].hoverBackgroundColor = terminalBenchV40Data.hoverBackgroundColors;
+      updateTerminalBenchV40AxisMinOptions(terminalBenchV40Chart, terminalBenchV40AxisMinMode, terminalBenchV40Data.data);
+      terminalBenchV40Chart.update({ duration: 750, easing: 'easeInOutQuart' });
+    }
+
+    const TERMINAL_BENCH_V40_PERFORMANCE_NOTE = 'Shows agent performance on challenging terminal-based tasks across software engineering, machine learning, scientific computing, security, system administration, hardware, and other technical domains. Because it focuses on difficult agentic workflows, results may be less representative of typical day-to-day use for most users.';
+    const TERMINAL_BENCH_V40_PRICE_NOTE = 'Shows agent performance on challenging terminal-based tasks across software engineering, machine learning, scientific computing, security, system administration, hardware, and other technical domains. Because it focuses on difficult agentic workflows, results may be less representative of typical day-to-day use for most users. The best models appear toward the upper-left; higher performance and lower price are better.';
+
+    function syncTerminalBenchV40ViewUI() {
+      const isPriceView = terminalBenchV40ViewMode === 'price';
+      document.getElementById('terminalBenchV40ViewPerformance')?.classList.toggle('active', !isPriceView);
+      document.getElementById('terminalBenchV40ViewPrice')?.classList.toggle('active', isPriceView);
+
+      const sortSelector = document.getElementById('terminalBenchV40SortSelector');
+      if (sortSelector) sortSelector.hidden = isPriceView;
+
+      const note = document.getElementById('terminalBenchV40Note');
+      if (note) note.textContent = isPriceView ? TERMINAL_BENCH_V40_PRICE_NOTE : TERMINAL_BENCH_V40_PERFORMANCE_NOTE;
+
+      const chartContainer = document.getElementById('terminalBenchV40Chart')?.closest('.chart-container');
+      chartContainer?.classList.toggle('terminal-bench-cost-view', isPriceView);
+    }
+
+    function setTerminalBenchV40View(mode) {
+      mode = ['performance', 'price'].includes(mode) ? mode : 'performance';
+      if (terminalBenchV40ViewMode === mode) {
+        syncTerminalBenchV40ViewUI();
+        return;
+      }
+
+      terminalBenchV40ViewMode = mode;
+      safeStorageSet('terminalBenchV40ViewMode', mode);
+      syncTerminalBenchV40ViewUI();
+
+      if (terminalBenchV40Chart) {
+        terminalBenchV40Chart.destroy();
+        terminalBenchV40Chart = null;
+      }
+
+      ensureBenchmarkRuntime().then(() => {
+        const chart = ensureBenchmarkChart('terminal-v40');
+        chart?.resize();
+      });
+    }
+
+    function setTerminalBenchV40AxisMin(mode) {
+      mode = ['0', 'auto', 'all'].includes(mode) ? mode : '0';
+      terminalBenchV40AxisMinMode = mode;
+      safeStorageSet('terminalBenchV40AxisMinMode', mode);
+      updateAxisMinSelector('terminalBenchV40AxisMinSelector', 'terminalBenchV40AxisMin0', 'terminalBenchV40AxisMinAuto', 'terminalBenchV40AxisMinAll', mode);
+      if (!terminalBenchV40Chart) {
+        ensureBenchmarkRuntime();
+        return;
+      }
+      updateTerminalBenchV40AxisMinOptions(terminalBenchV40Chart, mode, getTerminalBenchV40VisibleScores());
+      terminalBenchV40Chart.update({ duration: 750, easing: 'easeInOutQuart' });
     }
 
     function setMaxContextSort(mode) {
@@ -4832,7 +4957,7 @@
       return omniscienceChart;
     }
 
-    // Shared point styles used by Terminal-Bench v2.1.
+    // Shared point styles used by the Terminal-Bench charts.
     const benchmarkPointStyleSources = [
       {
         modelId: 'gpt-6-astra-max',
@@ -5020,68 +5145,65 @@
       }
     ];
 
-    // Long Context Reasoning - AA-LCR - Horizontal Bar Chart
+    // Long Context Reasoning - AA-LCR v1.1 - Horizontal Bar Chart
     let lcrChart;
     const lcrAllModels = [
-      { modelId: 'gpt-6-astra-max', label: '⌘ GPT 6 Astra Max', score: 74.3, sortOrder: -4 },
-      { modelId: 'gpt-6-astra-xhigh', label: '⌘ GPT 6 Astra Extra High', score: 74, sortOrder: -3 },
-      { modelId: 'gpt-6-astra-high', label: '⌘ GPT 6 Astra High', score: 76, sortOrder: -2 },
-      { modelId: 'gpt-6-astra-medium', label: '⌘ GPT 6 Astra Medium', score: 76.3, sortOrder: -1 },
-      { modelId: 'gpt-6-astra-low', label: '⌘ GPT 6 Astra Low', score: 72.7, sortOrder: 0 },
-      { modelId: 'gpt-56-sol-max', label: '⌘ GPT 5.6 Sol Max', score: 77.7, sortOrder: 1 },
-      { modelId: 'gpt-56-sol-xhigh', label: '⌘ GPT 5.6 Sol Extra High', score: 76.3, sortOrder: 2 },
-      { modelId: 'gpt-56-sol-high', label: '⌘ GPT 5.6 Sol High', score: 75.3, sortOrder: 3 },
-      { modelId: 'gpt-56-sol-medium', label: '⌘ GPT 5.6 Sol Medium', score: 74.3, sortOrder: 4 },
-      { modelId: 'gpt-56-sol-low', label: '⌘ GPT 5.6 Sol Low', score: 73.0, sortOrder: 4.5 },
-      { modelId: 'gpt-56-terra-max', label: '⌘ GPT 5.6 Terra Max', score: 79.7, sortOrder: 5 },
-      { modelId: 'gpt-56-terra-xhigh', label: '⌘ GPT 5.6 Terra Extra High', score: 75.0, sortOrder: 6 },
-      { modelId: 'gpt-56-terra-high', label: '⌘ GPT 5.6 Terra High', score: 73.3, sortOrder: 7 },
-      { modelId: 'gpt-56-terra-medium', label: '⌘ GPT 5.6 Terra Medium', score: 70.3, sortOrder: 8 },
-      { modelId: 'gpt-56-terra-low', label: '⌘ GPT 5.6 Terra Low', score: 68.7, sortOrder: 8.5 },
-      { modelId: 'gpt-56-luna-max', label: '⌘ GPT 5.6 Luna Max', score: 78.3, sortOrder: 9 },
-      { modelId: 'gpt-56-luna-xhigh', label: '⌘ GPT 5.6 Luna Extra High', score: 73.3, sortOrder: 10 },
-      { modelId: 'gpt-56-luna-high', label: '⌘ GPT 5.6 Luna High', score: 74.0, sortOrder: 11 },
-      { modelId: 'gpt-56-luna-medium', label: '⌘ GPT 5.6 Luna Medium', score: 72.0, sortOrder: 12 },
-      { modelId: 'gpt-56-luna-low', label: '⌘ GPT 5.6 Luna Low', score: 65.3, sortOrder: 12.5 },
-      { modelId: 'gpt-56-sol-instant', label: '⌘ GPT 5.6 Sol Instant', score: 57.0, sortOrder: 13 },
-      { modelId: 'gpt-56-luna-instant', label: '⌘ GPT 5.6 Luna Instant', score: 38.7, sortOrder: 14 },
-      { modelId: 'gemini-38-flash-extended-low', label: '✦ Gemini 3.8 Flash Extended Low', score: 78.7, sortOrder: 30 },
-      { modelId: 'gemini-38-flash-extended-medium', label: '✦ Gemini 3.8 Flash Extended Medium', score: 82, sortOrder: 31 },
-      { modelId: 'gemini-38-flash-extended-high', label: '✦ Gemini 3.8 Flash Extended High', score: 81, sortOrder: 32 },
-      { modelId: 'gemini-35-flash-lite-extended', label: '✦ Gemini 3.5 Flash Lite Extended', score: 74.7, sortOrder: 35.5 },
-      { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro Extended', score: 72.7, sortOrder: 36 },
-      { modelId: 'claude-51-fable-low', label: '❋ Claude 5.1 Fable Thinking Low', score: 79.3, sortOrder: 63.0 },
-      { modelId: 'claude-51-fable-medium', label: '❋ Claude 5.1 Fable Thinking Medium', score: 78.7, sortOrder: 63.1 },
-      { modelId: 'claude-51-fable-high', label: '❋ Claude 5.1 Fable Thinking High', score: 77, sortOrder: 63.2 },
-      { modelId: 'claude-51-fable-extra', label: '❋ Claude 5.1 Fable Thinking Extra', score: 78, sortOrder: 63.3 },
-      { modelId: 'claude-51-fable-max', label: '❋ Claude 5.1 Fable Thinking Max', score: 80, sortOrder: 63.4 },
-      { modelId: 'claude-5-opus-max', label: '❋ Claude 5 Opus Thinking Max', score: 75.7, sortOrder: 63.81 },
-      { modelId: 'claude-5-opus-extra', label: '❋ Claude 5 Opus Thinking Extra', score: 76.3, sortOrder: 63.82 },
-      { modelId: 'claude-5-opus-high', label: '❋ Claude 5 Opus Thinking High', score: 76.3, sortOrder: 63.83 },
-      { modelId: 'claude-5-opus-medium', label: '❋ Claude 5 Opus Thinking Medium', score: 78.7, sortOrder: 63.84 },
-      { modelId: 'claude-5-opus-low', label: '❋ Claude 5 Opus Thinking Low', score: 77.0, sortOrder: 63.85 },
-      { modelId: 'claude-5-sonnet', label: '❋ Claude 5 Sonnet Thinking Max', score: 77.0, sortOrder: 66.8 },
-      { modelId: 'claude-5-sonnet-high', label: '❋ Claude 5 Sonnet High', score: 66.0, sortOrder: 67.8 },
-      { modelId: 'claude-48-opus-max', label: '❋ Claude 4.8 Opus Thinking Max', score: 73.0, sortOrder: 89 },
-      { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', score: 73.7, sortOrder: 90 },
-      { modelId: 'claude-haiku-nr', label: '❋ Claude 4.5 Haiku', score: 48.3, sortOrder: 95 },
-      { modelId: 'glm-53-deep-think-max', label: 'Ƶ GLM 5.3 Deep Think Max', score: 76.3, sortOrder: 96.5 },
-      { modelId: 'glm-53-flash-deep-think-max', label: 'Ƶ GLM 5.3 Flash Deep Think Max', score: 78, sortOrder: 96.6 },
-      { modelId: 'grok-46-expert', label: 'Ø Grok 4.6 Expert', score: 75, sortOrder: 109.3 },
-      { modelId: 'minimax-m3-thinking', label: '≋ MiniMax M3 Thinking', score: 80.3, sortOrder: 116.5 },
-      { modelId: 'muse-spark-13', label: 'ƒ Muse Spark 1.3 Max', score: 84.3, sortOrder: 117.0 },
+      { modelId: 'gpt-6-astra-max', label: '⌘ GPT 6 Astra Max', score: 80.7, sortOrder: -4 },
+      { modelId: 'gpt-6-astra-xhigh', label: '⌘ GPT 6 Astra Extra High', score: 80, sortOrder: -3 },
+      { modelId: 'gpt-6-astra-high', label: '⌘ GPT 6 Astra High', score: 80, sortOrder: -2 },
+      { modelId: 'gpt-6-astra-medium', label: '⌘ GPT 6 Astra Medium', score: 79.7, sortOrder: -1 },
+      { modelId: 'gpt-6-astra-low', label: '⌘ GPT 6 Astra Low', score: 80, sortOrder: 0 },
+      { modelId: 'gpt-56-sol-max', label: '⌘ GPT 5.6 Sol Max', score: 84, sortOrder: 1 },
+      { modelId: 'gpt-56-sol-xhigh', label: '⌘ GPT 5.6 Sol Extra High', score: 82.3, sortOrder: 2 },
+      { modelId: 'gpt-56-sol-high', label: '⌘ GPT 5.6 Sol High', score: 81.7, sortOrder: 3 },
+      { modelId: 'gpt-56-sol-medium', label: '⌘ GPT 5.6 Sol Medium', score: 80.3, sortOrder: 4 },
+      { modelId: 'gpt-56-sol-low', label: '⌘ GPT 5.6 Sol Low', score: 78, sortOrder: 4.5 },
+      { modelId: 'gpt-56-terra-max', label: '⌘ GPT 5.6 Terra Max', score: 83, sortOrder: 5 },
+      { modelId: 'gpt-56-terra-xhigh', label: '⌘ GPT 5.6 Terra Extra High', score: 79, sortOrder: 6 },
+      { modelId: 'gpt-56-terra-high', label: '⌘ GPT 5.6 Terra High', score: 77.7, sortOrder: 7 },
+      { modelId: 'gpt-56-terra-medium', label: '⌘ GPT 5.6 Terra Medium', score: 74, sortOrder: 8 },
+      { modelId: 'gpt-56-terra-low', label: '⌘ GPT 5.6 Terra Low', score: 71.3, sortOrder: 8.5 },
+      { modelId: 'gpt-56-luna-max', label: '⌘ GPT 5.6 Luna Max', score: 83.7, sortOrder: 9 },
+      { modelId: 'gpt-56-luna-xhigh', label: '⌘ GPT 5.6 Luna Extra High', score: 81.7, sortOrder: 10 },
+      { modelId: 'gpt-56-luna-high', label: '⌘ GPT 5.6 Luna High', score: 80.3, sortOrder: 11 },
+      { modelId: 'gpt-56-luna-medium', label: '⌘ GPT 5.6 Luna Medium', score: 75, sortOrder: 12 },
+      { modelId: 'gpt-56-luna-low', label: '⌘ GPT 5.6 Luna Low', score: 70, sortOrder: 12.5 },
+      { modelId: 'gpt-56-sol-instant', label: '⌘ GPT 5.6 Sol Instant', score: 62.3, sortOrder: 13 },
+      { modelId: 'gpt-56-luna-instant', label: '⌘ GPT 5.6 Luna Instant', score: 42.7, sortOrder: 14 },
+      { modelId: 'gemini-38-flash-extended-low', label: '✦ Gemini 3.8 Flash Extended Low', score: 80.7, sortOrder: 30 },
+      { modelId: 'gemini-38-flash-extended-medium', label: '✦ Gemini 3.8 Flash Extended Medium', score: 84, sortOrder: 31 },
+      { modelId: 'gemini-38-flash-extended-high', label: '✦ Gemini 3.8 Flash Extended High', score: 81.3, sortOrder: 32 },
+      { modelId: 'gemini-35-flash-lite-extended', label: '✦ Gemini 3.5 Flash Lite Extended', score: 76, sortOrder: 35.5 },
+      { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro Extended', score: 82, sortOrder: 36 },
+      { modelId: 'claude-51-fable-low', label: '❋ Claude 5.1 Fable Thinking Low', score: 82.3, sortOrder: 63.0 },
+      { modelId: 'claude-51-fable-medium', label: '❋ Claude 5.1 Fable Thinking Medium', score: 84.7, sortOrder: 63.1 },
+      { modelId: 'claude-51-fable-high', label: '❋ Claude 5.1 Fable Thinking High', score: 83.7, sortOrder: 63.2 },
+      { modelId: 'claude-51-fable-extra', label: '❋ Claude 5.1 Fable Thinking Extra', score: 83, sortOrder: 63.3 },
+      { modelId: 'claude-51-fable-max', label: '❋ Claude 5.1 Fable Thinking Max', score: 85.3, sortOrder: 63.4 },
+      { modelId: 'claude-5-opus-max', label: '❋ Claude 5 Opus Thinking Max', score: 79.3, sortOrder: 63.81 },
+      { modelId: 'claude-5-opus-extra', label: '❋ Claude 5 Opus Thinking Extra', score: 80.3, sortOrder: 63.82 },
+      { modelId: 'claude-5-opus-high', label: '❋ Claude 5 Opus Thinking High', score: 79, sortOrder: 63.83 },
+      { modelId: 'claude-5-opus-medium', label: '❋ Claude 5 Opus Thinking Medium', score: 82, sortOrder: 63.84 },
+      { modelId: 'claude-5-opus-low', label: '❋ Claude 5 Opus Thinking Low', score: 81.3, sortOrder: 63.85 },
+      { modelId: 'claude-5-sonnet', label: '❋ Claude 5 Sonnet Thinking Max', score: 82, sortOrder: 66.8 },
+      { modelId: 'claude-5-sonnet-high', label: '❋ Claude 5 Sonnet High', score: 70, sortOrder: 67.8 },
+      { modelId: 'claude-48-opus-max', label: '❋ Claude 4.8 Opus Thinking Max', score: 77.7, sortOrder: 89 },
+      { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', score: 74.3, sortOrder: 90 },
+      { modelId: 'claude-haiku-nr', label: '❋ Claude 4.5 Haiku', score: 49.7, sortOrder: 95 },
+      { modelId: 'glm-53-deep-think-max', label: 'Ƶ GLM 5.3 Deep Think Max', score: 79.7, sortOrder: 96.5 },
+      { modelId: 'glm-53-flash-deep-think-max', label: 'Ƶ GLM 5.3 Flash Deep Think Max', score: 80, sortOrder: 96.6 },
+      { modelId: 'grok-46-expert', label: 'Ø Grok 4.6 Expert', score: 80.3, sortOrder: 109.3 },
+      { modelId: 'minimax-m3-thinking', label: '≋ MiniMax M3 Thinking', score: 83, sortOrder: 116.5 },
+      { modelId: 'muse-spark-13', label: 'ƒ Muse Spark 1.3 Max', score: 83, sortOrder: 117.0 },
       { modelId: 'muse-spark-11', label: 'ƒ Muse Spark 1.1 Thinking', score: 77.7, sortOrder: 117.25 },
-      { modelId: 'nemotron-3-ultra-reasoning', label: '▰ Nemotron 3 Ultra Reasoning', score: 71.0, sortOrder: 117.5 },
-      { modelId: 'deepseek-v4-vision-deep-think', label: '🐋︎ DeepSeek V4 Vision Deep Think', score: 78, sortOrder: 117.58 },
-      { modelId: 'deepseek-v4-expert-deep-think', label: '🐋︎ DeepSeek V4 Expert Deep Think', score: 75.3, sortOrder: 117.6 },
-      { modelId: 'deepseek-v4-instant-deep-think', label: '🐋︎ DeepSeek V4 Instant Deep Think', score: 74.3, sortOrder: 117.7 },
-      { modelId: 'mimo-v25-pro', label: '⋔ MiMo V2.5 Pro', score: 77.7, sortOrder: 118 },
-      { modelId: 'mimo-v25', label: '⋔ MiMo V2.5', score: 68.3, sortOrder: 118.5 },
-      { modelId: 'qwen-38-max', label: '▽ Qwen 3.8 Max', score: 74.3, sortOrder: 123.5 },
-      { modelId: 'qwen-37-plus-think', label: '▽ Qwen 3.7 Plus Thinking', score: 69.0, sortOrder: 124.5 },
-      { modelId: 'kimi-k3-max', label: 'Ḱ Kimi K3 Thinking Max', score: 82.7, sortOrder: 126.5 },
-      { modelId: 'kimi-k26-thinking', label: 'Ḱ Kimi K2.6 Thinking High', score: 76.7, sortOrder: 127 },
-      { modelId: 'kimi-k26-instant', label: 'Ḱ Kimi K2.6 Standard', score: 66.0, sortOrder: 128 }
+      { modelId: 'deepseek-v41-flash-deep-think', label: '🐋︎ DeepSeek V4.1 Flash Deep Think', score: 84, sortOrder: 117.57 },
+      { modelId: 'mimo-v25-pro', label: '⋔ MiMo V2.5 Pro', score: 79.7, sortOrder: 118 },
+      { modelId: 'mimo-v25', label: '⋔ MiMo V2.5', score: 73, sortOrder: 118.5 },
+      { modelId: 'qwen-38-max', label: '▽ Qwen 3.8 Max', score: 78.3, sortOrder: 123.5 },
+      { modelId: 'qwen-37-plus-think', label: '▽ Qwen 3.7 Plus Thinking', score: 73, sortOrder: 124.5 },
+      { modelId: 'kimi-k3-max', label: 'Ḱ Kimi K3 Thinking Max', score: 88.7, sortOrder: 126.5 },
+      { modelId: 'kimi-k26-thinking', label: 'Ḱ Kimi K2.6 Thinking High', score: 81, sortOrder: 127 },
+      { modelId: 'kimi-k26-instant', label: 'Ḱ Kimi K2.6 Standard', score: 69.7, sortOrder: 128 }
     ];
 
     function getLcrData() {
@@ -5223,10 +5345,7 @@
       { modelId: 'minimax-m3-thinking', label: '≋ MiniMax M3 Thinking', score: 79, sortOrder: 116.5 },
       { modelId: 'muse-spark-13', label: 'ƒ Muse Spark 1.3 Max (Estimated)', score: 83, sortOrder: 117.0, estimated: true },
       { modelId: 'muse-spark-11', label: 'ƒ Muse Spark 1.1 Thinking (Estimated)', score: 81, sortOrder: 117.25, estimated: true },
-      { modelId: 'nemotron-3-ultra-reasoning', label: '▰ Nemotron 3 Ultra Reasoning', score: 0, sortOrder: 117.5 },
-      { modelId: 'deepseek-v4-vision-deep-think', label: '🐋︎ DeepSeek V4 Vision Deep Think', score: 75, sortOrder: 117.58 },
-      { modelId: 'deepseek-v4-expert-deep-think', label: '🐋︎ DeepSeek V4 Expert Deep Think', score: 0, sortOrder: 117.6 },
-      { modelId: 'deepseek-v4-instant-deep-think', label: '🐋︎ DeepSeek V4 Instant Deep Think', score: 0, sortOrder: 117.7 },
+      { modelId: 'deepseek-v41-flash-deep-think', label: '🐋︎ DeepSeek V4.1 Flash Deep Think', score: 77, sortOrder: 117.57 },
       { modelId: 'mimo-v25-pro', label: '⋔ MiMo V2.5 Pro', score: 0, sortOrder: 118 },
       { modelId: 'mimo-v25', label: '⋔ MiMo V2.5', score: 75, sortOrder: 118.5 },
       { modelId: 'qwen-38-max', label: '▽ Qwen 3.8 Max', score: 82, sortOrder: 123.5 },
@@ -5451,10 +5570,7 @@
       { modelId: 'minimax-m3-thinking', label: '≋ MiniMax M3 Thinking', score: 1380, costPerTask: 0.35, sortOrder: 116.5 },
       { modelId: 'muse-spark-13', label: 'ƒ Muse Spark 1.3 Max', score: 1720, costPerTask: 1.90, sortOrder: 117.0 },
       { modelId: 'muse-spark-11', label: 'ƒ Muse Spark 1.1 Thinking', score: 1298, costPerTask: 0.29, sortOrder: 117.25 },
-      { modelId: 'nemotron-3-ultra-reasoning', label: '▰ Nemotron 3 Ultra Reasoning', score: 1152, costPerTask: 0.51, sortOrder: 117.5 },
-      { modelId: 'deepseek-v4-vision-deep-think', label: '🐋︎ DeepSeek V4 Vision Deep Think', score: 1666, costPerTask: 0.35, sortOrder: 117.58 },
-      { modelId: 'deepseek-v4-expert-deep-think', label: '🐋︎ DeepSeek V4 Expert Deep Think', score: 1577, costPerTask: 0.58, sortOrder: 117.6 },
-      { modelId: 'deepseek-v4-instant-deep-think', label: '🐋︎ DeepSeek V4 Instant Deep Think', score: 1547, costPerTask: 0.29, sortOrder: 117.7 },
+      { modelId: 'deepseek-v41-flash-deep-think', label: '🐋︎ DeepSeek V4.1 Flash Deep Think', score: 1632, costPerTask: 0.30, sortOrder: 117.57 },
       { modelId: 'mimo-v25-pro', label: '⋔ MiMo V2.5 Pro', score: 1263, costPerTask: 0.04, sortOrder: 118 },
       { modelId: 'mimo-v25', label: '⋔ MiMo V2.5', score: 1148, costPerTask: 0.01, sortOrder: 118.5 },
       { modelId: 'qwen-38-max', label: '▽ Qwen 3.8 Max', score: 1721, costPerTask: 2.74, sortOrder: 123.5 },
@@ -5843,10 +5959,7 @@
       { modelId: 'minimax-m3-thinking', label: '≋ MiniMax M3 Thinking', score: 65.2, costPerTask: 0.28, sortOrder: 116.5 },
       { modelId: 'muse-spark-13', label: 'ƒ Muse Spark 1.3 Max', score: 85.8, costPerTask: 0.98, sortOrder: 117.0 },
       { modelId: 'muse-spark-11', label: 'ƒ Muse Spark 1.1 Thinking', score: 77.9, costPerTask: 0.72, sortOrder: 117.25 },
-      { modelId: 'nemotron-3-ultra-reasoning', label: '▰ Nemotron 3 Ultra Reasoning', score: 53.9, costPerTask: 1.13, sortOrder: 117.5 },
-      { modelId: 'deepseek-v4-vision-deep-think', label: '🐋︎ DeepSeek V4 Vision Deep Think', score: 74.2, costPerTask: 0.11, sortOrder: 117.58 },
-      { modelId: 'deepseek-v4-expert-deep-think', label: '🐋︎ DeepSeek V4 Expert Deep Think', score: 78.7, costPerTask: 0.41, sortOrder: 117.6 },
-      { modelId: 'deepseek-v4-instant-deep-think', label: '🐋︎ DeepSeek V4 Instant Deep Think', score: 78.7, costPerTask: 0.14, sortOrder: 117.7 },
+      { modelId: 'deepseek-v41-flash-deep-think', label: '🐋︎ DeepSeek V4.1 Flash Deep Think (Estimated)', score: 85, costPerTask: 0.11, sortOrder: 117.57, estimated: true, priceEstimated: true },
       { modelId: 'mimo-v25-pro', label: '⋔ MiMo V2.5 Pro', score: 65.2, costPerTask: 0.07, sortOrder: 118 },
       { modelId: 'mimo-v25', label: '⋔ MiMo V2.5', score: 63.7, costPerTask: 0.03, sortOrder: 118.5 },
       { modelId: 'qwen-38-max', label: '▽ Qwen 3.8 Max', score: 81.3, costPerTask: 1.02, sortOrder: 123.5 },
@@ -5898,7 +6011,6 @@
       'grok-46-expert': 6,
       'muse-spark-13': 6,
       'muse-spark-11': 6,
-      'nemotron-3-ultra-reasoning': 6,
       'qwen-38-max': 6,
       'qwen-37-plus-think': 5,
       'kimi-k3-max': 7
@@ -6087,6 +6199,7 @@
           effortOrder: series.effortOrder,
           sortOrder: model.sortOrder,
           estimated: model.estimated === true,
+          priceEstimated: model.priceEstimated === true,
           style
         });
       });
@@ -6103,14 +6216,21 @@
             showLine: group.points.length > 1,
             terminalSortOrder: group.sortOrder,
             borderColor: firstStyle.color,
-            backgroundColor: firstStyle.color,
+            backgroundColor: group.points.every(point => !point.estimated && !point.priceEstimated)
+              ? firstStyle.color
+              : 'transparent',
             borderWidth: 2,
             tension: 0.22,
             fill: false,
             pointStyle: 'circle',
             pointRadius: group.points.map(point => point.style.pointRadius),
             pointHoverRadius: group.points.map(point => point.style.pointHoverRadius),
-            pointBackgroundColor: group.points.map(point => point.style.color),
+            pointBackgroundColor: group.points.map(point =>
+              point.estimated || point.priceEstimated ? 'transparent' : point.style.color
+            ),
+            pointHoverBackgroundColor: group.points.map(point =>
+              point.estimated || point.priceEstimated ? 'transparent' : point.style.color
+            ),
             pointBorderColor: group.points.map(point => point.style.color)
           };
         });
@@ -6250,15 +6370,23 @@
               padding: 12,
               cornerRadius: 8,
               callbacks: {
+                labelColor: context => {
+                  const raw = context.raw || {};
+                  const estimated = raw.estimated === true || raw.priceEstimated === true;
+                  const borderColor = raw.style?.color || context.dataset?.borderColor || '#ffffff';
+                  return {
+                    borderColor,
+                    backgroundColor: estimated ? '#000000' : borderColor
+                  };
+                },
                 title: items => items[0]?.raw?.modelLabel || '',
                 label: context => {
                   const lines = [
-                    `Performance: ${context.raw.y}%`,
+                    `Performance: ${context.raw.y}%${context.raw.estimated ? ' (Estimated)' : ''}`,
                     context.raw.unknownCost
                       ? 'Price per solved task: Unknown'
-                      : `Price per solved task: US$${context.raw.x.toFixed(2)}`
+                      : `Price per solved task: US$${context.raw.x.toFixed(2)}${context.raw.priceEstimated ? ' (Estimated)' : ''}`
                   ];
-                  if (context.raw.estimated) lines.push('Performance is estimated');
                   return lines;
                 }
               }
@@ -6295,6 +6423,324 @@
         : getTerminalBenchV21BarConfig();
       terminalBenchV21Chart = new Chart(context, config);
       return terminalBenchV21Chart;
+    }
+
+    // Terminal-Bench v4.0 - Horizontal bar and connected scatter views
+    let terminalBenchV40Chart;
+    const terminalBenchV40AllModels = [
+      { modelId: 'gpt-6-astra-max', label: '⌘ GPT 6 Astra Max', score: 59.1, costPerTask: 8.50, sortOrder: -4 },
+      { modelId: 'gpt-6-astra-xhigh', label: '⌘ GPT 6 Astra Extra High', score: 59.6, costPerTask: 5.86, sortOrder: -3 },
+      { modelId: 'gpt-6-astra-high', label: '⌘ GPT 6 Astra High', score: 54.0, costPerTask: 4.05, sortOrder: -2 },
+      { modelId: 'gpt-6-astra-medium', label: '⌘ GPT 6 Astra Medium', score: 49.5, costPerTask: 4.43, sortOrder: -1 },
+      { modelId: 'gpt-6-astra-low', label: '⌘ GPT 6 Astra Low', score: 41.9, costPerTask: 2.25, sortOrder: 0 },
+      { modelId: 'gpt-56-sol-max', label: '⌘ GPT 5.6 Sol Max', score: 39.0, costPerTask: 8.09, sortOrder: 1 },
+      { modelId: 'gpt-56-sol-xhigh', label: '⌘ GPT 5.6 Sol Extra High', score: 24.7, costPerTask: 3.46, sortOrder: 2 },
+      { modelId: 'gpt-56-sol-high', label: '⌘ GPT 5.6 Sol High', score: 20.7, costPerTask: 2.22, sortOrder: 3 },
+      { modelId: 'gpt-56-sol-medium', label: '⌘ GPT 5.6 Sol Medium', score: 14.6, costPerTask: 1.64, sortOrder: 4 },
+      { modelId: 'gpt-56-sol-low', label: '⌘ GPT 5.6 Sol Low', score: 1.0, costPerTask: 0.52, sortOrder: 4.5 },
+      { modelId: 'gpt-56-terra-max', label: '⌘ GPT 5.6 Terra Max', score: 35.4, costPerTask: 6.39, sortOrder: 5 },
+      { modelId: 'gpt-56-terra-xhigh', label: '⌘ GPT 5.6 Terra Extra High', score: 10.1, costPerTask: 1.57, sortOrder: 6 },
+      { modelId: 'gpt-56-terra-high', label: '⌘ GPT 5.6 Terra High', score: 1.5, costPerTask: 0.63, sortOrder: 7 },
+      { modelId: 'gpt-56-terra-medium', label: '⌘ GPT 5.6 Terra Medium', score: 1.0, costPerTask: 0.34, sortOrder: 8 },
+      { modelId: 'gpt-56-terra-low', label: '⌘ GPT 5.6 Terra Low', score: 1.5, costPerTask: 0.24, sortOrder: 8.5 },
+      { modelId: 'gpt-56-luna-max', label: '⌘ GPT 5.6 Luna Max', score: 11.6, costPerTask: 0.85, sortOrder: 9 },
+      { modelId: 'gpt-56-luna-xhigh', label: '⌘ GPT 5.6 Luna Extra High', score: 3.5, costPerTask: 0.30, sortOrder: 10 },
+      { modelId: 'gpt-56-luna-high', label: '⌘ GPT 5.6 Luna High', score: 2.5, costPerTask: 0.11, sortOrder: 11 },
+      { modelId: 'gpt-56-luna-medium', label: '⌘ GPT 5.6 Luna Medium', score: 0.5, costPerTask: 0.03, sortOrder: 12 },
+      { modelId: 'gpt-56-luna-low', label: '⌘ GPT 5.6 Luna Low', score: 0.0, costPerTask: 0.01, sortOrder: 12.5 },
+      { modelId: 'gemini-38-flash-extended-low', label: '✦ Gemini 3.8 Flash Extended Low', score: 10.1, costPerTask: 5.38, sortOrder: 30 },
+      { modelId: 'gemini-38-flash-extended-medium', label: '✦ Gemini 3.8 Flash Extended Medium', score: 19.7, costPerTask: 4.61, sortOrder: 31 },
+      { modelId: 'gemini-38-flash-extended-high', label: '✦ Gemini 3.8 Flash Extended High', score: 19.7, costPerTask: 5.84, sortOrder: 32 },
+      { modelId: 'gemini-35-flash-lite-extended', label: '✦ Gemini 3.5 Flash Lite Extended', score: 1.0, costPerTask: 0.71, sortOrder: 35.5 },
+      { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro Extended', score: 4.0, costPerTask: 4.15, sortOrder: 36 },
+      { modelId: 'claude-51-fable-low', label: '❋ Claude 5.1 Fable Thinking Low', score: 40.4, costPerTask: 7.32, sortOrder: 63.0 },
+      { modelId: 'claude-51-fable-medium', label: '❋ Claude 5.1 Fable Thinking Medium', score: 44.9, costPerTask: 9.12, sortOrder: 63.1 },
+      { modelId: 'claude-51-fable-high', label: '❋ Claude 5.1 Fable Thinking High', score: 52.0, costPerTask: 11.64, sortOrder: 63.2 },
+      { modelId: 'claude-51-fable-extra', label: '❋ Claude 5.1 Fable Thinking Extra', score: 55.1, costPerTask: 15.78, sortOrder: 63.3 },
+      { modelId: 'claude-51-fable-max', label: '❋ Claude 5.1 Fable Thinking Max', score: 52.0, costPerTask: 19.22, sortOrder: 63.4 },
+      { modelId: 'claude-5-opus-max', label: '❋ Claude 5 Opus Thinking Max', score: 49.0, costPerTask: 19.29, sortOrder: 63.81 },
+      { modelId: 'claude-5-opus-extra', label: '❋ Claude 5 Opus Thinking Extra', score: 46.5, costPerTask: 17.35, sortOrder: 63.82 },
+      { modelId: 'claude-5-opus-high', label: '❋ Claude 5 Opus Thinking High', score: 46.0, costPerTask: 13.14, sortOrder: 63.83 },
+      { modelId: 'claude-5-opus-medium', label: '❋ Claude 5 Opus Thinking Medium', score: 34.3, costPerTask: 9.18, sortOrder: 63.84 },
+      { modelId: 'claude-5-opus-low', label: '❋ Claude 5 Opus Thinking Low', score: 26.3, costPerTask: 5.18, sortOrder: 63.85 },
+      { modelId: 'claude-5-sonnet', label: '❋ Claude 5 Sonnet Thinking Max', score: 14.1, costPerTask: 19.69, sortOrder: 66.8 },
+      { modelId: 'claude-48-opus-max', label: '❋ Claude 4.8 Opus Thinking Max', score: 21.7, costPerTask: 18.15, sortOrder: 89 },
+      { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', score: 0.0, costPerTask: 0.81, sortOrder: 90 },
+      { modelId: 'glm-53-deep-think-max', label: 'Ƶ GLM 5.3 Deep Think Max', score: 41.9, costPerTask: 8.06, sortOrder: 96.5 },
+      { modelId: 'glm-53-flash-deep-think-max', label: 'Ƶ GLM 5.3 Flash Deep Think Max', score: 32.8, costPerTask: 0.79, sortOrder: 96.6 },
+      { modelId: 'grok-46-expert', label: 'Ø Grok 4.6 Expert', score: 21.2, costPerTask: 7.51, sortOrder: 109.3 },
+      { modelId: 'minimax-m3-thinking', label: '≋ MiniMax M3 Thinking', score: 2.0, costPerTask: 3.04, sortOrder: 116.5 },
+      { modelId: 'muse-spark-13', label: 'ƒ Muse Spark 1.3 Max', score: 33.3, costPerTask: 6.94, sortOrder: 117.0 },
+      { modelId: 'muse-spark-11', label: 'ƒ Muse Spark 1.1 Thinking', score: 6.1, costPerTask: 8.57, sortOrder: 117.25 },
+      { modelId: 'deepseek-v41-flash-deep-think', label: '🐋︎ DeepSeek V4.1 Flash Deep Think', score: 26.8, costPerTask: 1.16, sortOrder: 117.57 },
+      { modelId: 'mimo-v25-pro', label: '⋔ MiMo V2.5 Pro', score: 0.0, costPerTask: 0.24, sortOrder: 118 },
+      { modelId: 'mimo-v25', label: '⋔ MiMo V2.5', score: 0.0, costPerTask: 0.11, sortOrder: 118.5 },
+      { modelId: 'qwen-38-max', label: '▽ Qwen 3.8 Max', score: 18.7, costPerTask: 15.98, sortOrder: 123.5 },
+      { modelId: 'qwen-37-plus-think', label: '▽ Qwen 3.7 Plus Thinking', score: 1.0, costPerTask: 2.09, sortOrder: 124.5 },
+      { modelId: 'kimi-k3-max', label: 'Ḱ Kimi K3 Thinking Max', score: 12.6, costPerTask: 5.09, sortOrder: 126.5 }
+    ];
+
+    function getTerminalBenchV40Data() {
+      // A score of 0 is valid benchmark data and must never be filtered out.
+      let models = terminalBenchV40AllModels.filter(model => modelVisibility[model.modelId] === true);
+
+      if (terminalBenchV40SortMode === 'highest') {
+        models.sort((a, b) => b.score - a.score);
+      } else {
+        models.sort((a, b) => a.sortOrder - b.sortOrder);
+      }
+
+      const labels = models.map(model => model.label);
+      const data = models.map(model => model.score);
+      const backgroundColors = models.map(model => getBrandBgColor(model.modelId, model.estimated));
+      const hoverBackgroundColors = models.map(model => getBrandHoverBgColor(model.modelId, model.estimated));
+      const borderColors = models.map(model => getBrandBorderColor(model.modelId));
+
+      return { labels, data, backgroundColors, hoverBackgroundColors, borderColors };
+    }
+
+    function getTerminalBenchV40PricedModels(includeAll = false) {
+      return terminalBenchV40AllModels
+        .filter(model => typeof model.costPerTask === 'number')
+        .filter(model => includeAll || modelVisibility[model.modelId] === true);
+    }
+
+    function getTerminalBenchV40ReferenceLineMax() {
+      const visiblePrices = getTerminalBenchV40PricedModels().map(model => model.costPerTask);
+      const fallbackPrices = getTerminalBenchV40PricedModels(true).map(model => model.costPerTask);
+      return getPriceReferenceAxisMax(visiblePrices, fallbackPrices);
+    }
+
+    function getTerminalBenchV40CostDatasets() {
+      const groups = new Map();
+
+      getTerminalBenchV40PricedModels().forEach(model => {
+        const series = getTerminalBenchV21SeriesMeta(model);
+        if (!groups.has(series.key)) {
+          groups.set(series.key, { label: series.label, sortOrder: model.sortOrder, points: [] });
+        }
+
+        const style = getTerminalBenchV21PointStyle(model.modelId);
+        groups.get(series.key).points.push({
+          x: model.costPerTask,
+          y: model.score,
+          modelId: model.modelId,
+          modelLabel: model.label.replace(/^\S+\s+/, ''),
+          pointLabel: series.pointLabel,
+          effortOrder: series.effortOrder,
+          sortOrder: model.sortOrder,
+          estimated: model.estimated === true,
+          priceEstimated: model.priceEstimated === true,
+          style
+        });
+      });
+
+      return Array.from(groups.values())
+        .sort((a, b) => a.sortOrder - b.sortOrder)
+        .map(group => {
+          group.points.sort((a, b) => a.effortOrder - b.effortOrder || a.sortOrder - b.sortOrder);
+          const firstStyle = group.points[0].style;
+          return {
+            label: group.label,
+            data: group.points,
+            parsing: false,
+            showLine: group.points.length > 1,
+            terminalSortOrder: group.sortOrder,
+            borderColor: firstStyle.color,
+            backgroundColor: group.points.every(point => !point.estimated && !point.priceEstimated)
+              ? firstStyle.color
+              : 'transparent',
+            borderWidth: 2,
+            tension: 0.22,
+            fill: false,
+            pointStyle: 'circle',
+            pointRadius: group.points.map(point => point.style.pointRadius),
+            pointHoverRadius: group.points.map(point => point.style.pointHoverRadius),
+            pointBackgroundColor: group.points.map(point =>
+              point.estimated || point.priceEstimated ? 'transparent' : point.style.color
+            ),
+            pointHoverBackgroundColor: group.points.map(point =>
+              point.estimated || point.priceEstimated ? 'transparent' : point.style.color
+            ),
+            pointBorderColor: group.points.map(point => point.style.color)
+          };
+        });
+    }
+
+    function getTerminalBenchV40VisibleScores() {
+      if (terminalBenchV40ViewMode === 'price') {
+        return getTerminalBenchV40PricedModels().map(model => model.score);
+      }
+      return getTerminalBenchV40Data().data;
+    }
+
+    function getTerminalBenchV40AllScoresForView() {
+      return getTerminalBenchV40PricedModels(true).map(model => model.score);
+    }
+
+    function updateTerminalBenchV40AxisMinOptions(chart, mode, visibleScores) {
+      if (!chart) return;
+      const scoreAxis = terminalBenchV40ViewMode === 'price' ? chart.options.scales.y : chart.options.scales.x;
+      scoreAxis.min = getPercentAxisMin(mode, visibleScores, getTerminalBenchV40AllScoresForView());
+      scoreAxis.beginAtZero = mode === '0';
+    }
+
+    const terminalBenchV40PointLabelsPlugin = {
+      id: 'terminalBenchV40PointLabels',
+      afterDatasetsDraw(chart) {
+        if (terminalBenchV40ViewMode !== 'price') return;
+        const context = chart.ctx;
+        context.save();
+        context.fillStyle = '#b3a385';
+        context.font = '500 10px Inter, sans-serif';
+        context.textAlign = 'center';
+
+        chart.data.datasets.forEach((dataset, datasetIndex) => {
+          if (dataset.data.length < 2) return;
+          const meta = chart.getDatasetMeta(datasetIndex);
+          meta.data.forEach((point, pointIndex) => {
+            const rawPoint = dataset.data[pointIndex];
+            const radius = Array.isArray(dataset.pointRadius) ? dataset.pointRadius[pointIndex] : dataset.pointRadius;
+            const placeBelow = pointIndex % 2 === 1;
+            context.textBaseline = placeBelow ? 'top' : 'bottom';
+            context.fillText(rawPoint.pointLabel, point.x, point.y + (placeBelow ? radius + 5 : -radius - 5));
+          });
+        });
+
+        context.restore();
+      }
+    };
+
+    function getTerminalBenchV40BarConfig() {
+      const initData = getTerminalBenchV40Data();
+      return {
+        type: 'bar',
+        data: {
+          labels: initData.labels,
+          datasets: [{
+            label: 'Score ↑',
+            data: initData.data,
+            backgroundColor: initData.backgroundColors,
+            hoverBackgroundColor: initData.hoverBackgroundColors,
+            borderWidth: 0,
+            borderRadius: 4,
+            minBarLength: 4
+          }]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          layout: { padding: { top: 30 } },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              backgroundColor: 'rgba(18, 18, 26, 0.95)',
+              titleColor: '#d9c5a2',
+              bodyColor: '#b3a385',
+              borderColor: 'rgba(255, 255, 255, 0.1)',
+              borderWidth: 1,
+              padding: 12,
+              cornerRadius: 8,
+              callbacks: { label: context => context.parsed.x + '%' }
+            }
+          },
+          scales: {
+            x: {
+              beginAtZero: terminalBenchV40AxisMinMode === '0',
+              min: getPercentAxisMin(terminalBenchV40AxisMinMode, initData.data, getModelScores(terminalBenchV40AllModels)),
+              max: 100,
+              ticks: { callback: value => value + '%' },
+              grid: { color: 'rgba(255, 255, 255, 0.05)' }
+            },
+            y: { grid: { display: false } }
+          }
+        }
+      };
+    }
+
+    function getTerminalBenchV40CostConfig() {
+      const datasets = getTerminalBenchV40CostDatasets();
+      const visibleScores = getTerminalBenchV40VisibleScores();
+      return {
+        type: 'scatter',
+        data: { datasets },
+        plugins: [terminalBenchV40PointLabelsPlugin],
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          layout: { padding: { top: 26, right: 12 } },
+          interaction: { mode: 'nearest', intersect: false },
+          plugins: {
+            legend: {
+              display: true,
+              position: 'bottom',
+              labels: {
+                color: '#b3a385',
+                usePointStyle: true,
+                boxWidth: 9,
+                boxHeight: 9,
+                padding: 14,
+                font: { size: 10 }
+              }
+            },
+            tooltip: {
+              backgroundColor: 'rgba(18, 18, 26, 0.95)',
+              titleColor: '#d9c5a2',
+              bodyColor: '#b3a385',
+              borderColor: 'rgba(255, 255, 255, 0.1)',
+              borderWidth: 1,
+              padding: 12,
+              cornerRadius: 8,
+              callbacks: {
+                labelColor: context => {
+                  const raw = context.raw || {};
+                  const estimated = raw.estimated === true || raw.priceEstimated === true;
+                  const borderColor = raw.style?.color || context.dataset?.borderColor || '#ffffff';
+                  return {
+                    borderColor,
+                    backgroundColor: estimated ? '#000000' : borderColor
+                  };
+                },
+                title: items => items[0]?.raw?.modelLabel || '',
+                label: context => [
+                  `Performance: ${context.raw.y}%${context.raw.estimated ? ' (Estimated)' : ''}`,
+                  `Price per solved task: US$${context.raw.x.toFixed(2)}${context.raw.priceEstimated ? ' (Estimated)' : ''}`
+                ]
+              }
+            }
+          },
+          scales: {
+            x: {
+              type: 'linear',
+              beginAtZero: true,
+              min: 0,
+              max: getTerminalBenchV40ReferenceLineMax(),
+              ticks: { callback: value => 'US$' + Number(value).toFixed(2) },
+              grid: { color: 'rgba(255, 255, 255, 0.05)' },
+              title: { display: true, text: 'Price per solved task (USD)', color: '#8a7d65' }
+            },
+            y: {
+              beginAtZero: terminalBenchV40AxisMinMode === '0',
+              min: getPercentAxisMin(terminalBenchV40AxisMinMode, visibleScores, getTerminalBenchV40AllScoresForView()),
+              max: 100,
+              ticks: { callback: value => value + '%' },
+              grid: { color: 'rgba(255, 255, 255, 0.05)' },
+              title: { display: true, text: 'Terminal-Bench v4.0 score', color: '#8a7d65' }
+            }
+          }
+        }
+      };
+    }
+
+    function initTerminalBenchV40Chart() {
+      if (terminalBenchV40Chart) return terminalBenchV40Chart;
+      const context = document.getElementById('terminalBenchV40Chart').getContext('2d');
+      const config = terminalBenchV40ViewMode === 'price'
+        ? getTerminalBenchV40CostConfig()
+        : getTerminalBenchV40BarConfig();
+      terminalBenchV40Chart = new Chart(context, config);
+      return terminalBenchV40Chart;
     }
 
     // ============================================================
@@ -6714,25 +7160,9 @@
         color: 'rgba(21, 103, 253, 1)',
         segments: [{ value: 1000000, plans: 'All plans' }]
       },
-      // Nemotron
-      {
-        modelId: 'nemotron-3-ultra-reasoning', label: '▰ Nemotron 3 Ultra Reasoning', sortOrder: 117.5,
-        color: 'rgba(118, 185, 0, 1)',
-        segments: [{ value: 1000000, plans: 'All plans' }]
-      },
       // DeepSeek
       {
-        modelId: 'deepseek-v4-vision-deep-think', label: '🐋︎ DeepSeek V4 Vision Deep Think', sortOrder: 117.58,
-        color: 'rgba(77, 107, 254, 1)',
-        segments: [{ value: 1000000, plans: 'All Plans' }]
-      },
-      {
-        modelId: 'deepseek-v4-expert-deep-think', label: '🐋︎ DeepSeek V4 Expert Deep Think', sortOrder: 117.6,
-        color: 'rgba(77, 107, 254, 1)',
-        segments: [{ value: 1000000, plans: 'All Plans' }]
-      },
-      {
-        modelId: 'deepseek-v4-instant-deep-think', label: '🐋︎ DeepSeek V4 Instant Deep Think', sortOrder: 117.7,
+        modelId: 'deepseek-v41-flash-deep-think', label: '🐋︎ DeepSeek V4.1 Flash Deep Think', sortOrder: 117.57,
         color: 'rgba(77, 107, 254, 1)',
         segments: [{ value: 1000000, plans: 'All Plans' }]
       },
@@ -6909,6 +7339,19 @@
       });
     }
 
+    function buildTerminalBenchV40ExportRows(includeAll) {
+      return getBenchmarkExportItems(terminalBenchV40AllModels, includeAll).map(model => {
+        const estimated = isEstimatedBenchmarkEntry(model);
+        const cost = typeof model.costPerTask === 'number' ? `US$${model.costPerTask.toFixed(2)}` : 'N/A';
+        return [
+          cleanMarkdownLabel(model.label),
+          formatMarkdownValue(model.score, 'percent', estimated),
+          cost,
+          estimated ? 'Yes' : 'No'
+        ];
+      });
+    }
+
     function buildGdpval2ExportRows(includeAll) {
       return getBenchmarkExportItems(gdpval2AllModels, includeAll).map(model => {
         const estimated = isEstimatedBenchmarkEntry(model);
@@ -6956,7 +7399,7 @@
       }
 
       if (includeAll || benchSectionVisibility.aalcr) {
-        appendMarkdownSection(lines, 'AA-LCR', ['Model', 'Score', 'Estimated'], buildScoreExportRows(lcrAllModels, includeAll, 'percent'));
+        appendMarkdownSection(lines, 'AA-LCR v1.1', ['Model', 'Score', 'Estimated'], buildScoreExportRows(lcrAllModels, includeAll, 'percent'));
       }
 
       if (includeAll || benchSectionVisibility.maxcontext) {
@@ -6973,6 +7416,10 @@
 
       if (includeAll || benchSectionVisibility['terminal-v21']) {
         appendMarkdownSection(lines, 'Terminal-Bench v2.1', ['Model', 'Score', 'Price per solved task', 'Estimated'], buildTerminalBenchV21ExportRows(includeAll));
+      }
+
+      if (includeAll || benchSectionVisibility['terminal-v40']) {
+        appendMarkdownSection(lines, 'Terminal-Bench v4.0', ['Model', 'Score', 'Price per solved task', 'Estimated'], buildTerminalBenchV40ExportRows(includeAll));
       }
 
       return lines.join('\n').trim() + '\n';
@@ -7214,6 +7661,13 @@
         hasData: () => terminalBenchV21ViewMode === 'price'
           ? getTerminalBenchV21CostDatasets().length > 0
           : getTerminalBenchV21Data().labels.length > 0
+      },
+      'terminal-v40': {
+        sectionId: 'bench-section-terminal-v40', canvasId: 'terminalBenchV40Chart', init: initTerminalBenchV40Chart,
+        getInstance: () => terminalBenchV40Chart,
+        hasData: () => terminalBenchV40ViewMode === 'price'
+          ? getTerminalBenchV40CostDatasets().length > 0
+          : getTerminalBenchV40Data().labels.length > 0
       }
     };
 
@@ -7614,7 +8068,8 @@
       maxcontext: getStoredBoolean('bench_maxcontext', true),
       mmmu: getStoredBoolean('bench_mmmu', true),
       gdpval2: getStoredBoolean('bench_gdpval2', true),
-      'terminal-v21': getStoredBoolean('bench_terminal-v21', false)
+      'terminal-v21': getStoredBoolean('bench_terminal-v21', false),
+      'terminal-v40': getStoredBoolean('bench_terminal-v40', false)
     };
 
     function initBenchSections() {
@@ -7646,7 +8101,7 @@
       document.querySelectorAll('.bench-group-toggle-agentic').forEach(t => t.classList.toggle('active', agenticActive));
 
       // Coding
-      const codingActive = benchSectionVisibility['terminal-v21'];
+      const codingActive = benchSectionVisibility['terminal-v21'] || benchSectionVisibility['terminal-v40'];
       document.querySelectorAll('.bench-group-toggle-coding').forEach(t => t.classList.toggle('active', codingActive));
     }
 
@@ -7656,7 +8111,7 @@
       else if (groupName === 'long') groupBenches = ['aalcr', 'maxcontext'];
       else if (groupName === 'multi') groupBenches = ['mmmu'];
       else if (groupName === 'agentic') groupBenches = ['gdpval2'];
-      else if (groupName === 'coding') groupBenches = ['terminal-v21'];
+      else if (groupName === 'coding') groupBenches = ['terminal-v21', 'terminal-v40'];
 
       const anyInactive = groupBenches.some(benchId => !benchSectionVisibility[benchId]);
       const newState = anyInactive;
@@ -7700,6 +8155,7 @@
       initUnknownHighlights();
       syncGdpval2ViewUI();
       syncTerminalBenchV21ViewUI();
+      syncTerminalBenchV40ViewUI();
 
       // Restore model profile state, seeding Profile 1 from legacy modelVisibility when needed.
       loadModelProfiles();
@@ -7744,6 +8200,10 @@
         document.querySelectorAll('#terminalBenchV21SortSelector .sort-btn').forEach(btn => btn.classList.remove('active'));
         document.getElementById('terminalBenchV21SortHighest').classList.add('active');
       }
+      if (terminalBenchV40SortMode !== 'brand') {
+        document.querySelectorAll('#terminalBenchV40SortSelector .sort-btn').forEach(btn => btn.classList.remove('active'));
+        document.getElementById('terminalBenchV40SortHighest').classList.add('active');
+      }
       if (maxContextSortMode !== 'brand') {
         document.querySelectorAll('#maxContextSortSelector .sort-btn').forEach(btn => btn.classList.remove('active'));
         document.getElementById('maxContextSortHighest').classList.add('active');
@@ -7752,6 +8212,7 @@
       updateAxisMinSelector('mmmuProAxisMinSelector', 'mmmuProAxisMin0', 'mmmuProAxisMinAuto', 'mmmuProAxisMinAll', mmmuProAxisMinMode);
       updateAxisMinSelector('gdpval2AxisMinSelector', 'gdpval2AxisMin0', 'gdpval2AxisMinAuto', 'gdpval2AxisMinAll', gdpval2AxisMinMode);
       updateAxisMinSelector('terminalBenchV21AxisMinSelector', 'terminalBenchV21AxisMin0', 'terminalBenchV21AxisMinAuto', 'terminalBenchV21AxisMinAll', terminalBenchV21AxisMinMode);
+      updateAxisMinSelector('terminalBenchV40AxisMinSelector', 'terminalBenchV40AxisMin0', 'terminalBenchV40AxisMinAuto', 'terminalBenchV40AxisMinAll', terminalBenchV40AxisMinMode);
 
       // Update charts if state changed from default
       // Restore unknown highlight toggle state
@@ -7820,7 +8281,7 @@
     style="text-align: center; padding: 2rem 1rem; margin-top: 3rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.8rem;">
     Made by <strong> u/Pasto_Shouwa</strong>
     <br>
-    <em>Last updated on <strong>06/09/2026</strong> (dd/mm/yyyy)</em>
+    <em>Last updated on <strong>10/09/2026</strong> (dd/mm/yyyy)</em>
   </footer>
 </body>
 
