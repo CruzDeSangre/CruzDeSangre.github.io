@@ -2698,14 +2698,12 @@
               <div class="model-dot inactive" data-model="qwen-38-max"
                 onclick="toggleIndividualModel('qwen-38-max')">
                 <span class="model-dot-indicator dot-qwen"></span>
-                <span class="model-dot-label">Qwen 3.8 Max</span>
+                <span class="model-dot-label">Qwen 3.8 Max Thinking</span>
               </div>
-            </div>
-            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
-              <div class="model-dot inactive" data-model="qwen-37-plus-think"
-                onclick="toggleIndividualModel('qwen-37-plus-think')">
+              <div class="model-dot inactive" data-model="qwen-38-omni-flash-thinking"
+                onclick="toggleIndividualModel('qwen-38-omni-flash-thinking')">
                 <span class="model-dot-indicator dot-qwen"></span>
-                <span class="model-dot-label">Qwen 3.7 Plus Thinking</span>
+                <span class="model-dot-label">Qwen 3.8 Omni Flash Thinking</span>
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
@@ -3104,27 +3102,21 @@
           </summary>
           <div class="notes-content">
             <ul class="notes-list">
-              <li>• <strong>GPT</strong> models are capable of understanding text and images.
-              </li>
-              <li>• <strong>Gemini</strong> models are capable of understanding text, images, video and audio.
-              </li>
-              <li>• <strong>Claude</strong> models are capable of understanding text and images.
-              </li>
-              <li>• <strong>Grok</strong> models are capable of understanding text and images.
-              </li>
-              <li>• <strong>GLM</strong> models are capable of understanding only text.
-                Image and video inputs are likely routed to other GLM models.
-              </li>
-              <li>• <strong>Kimi</strong> models are capable of understanding text, images and video.
-              <li>• <strong>MiMo V2.5 Pro</strong> is capable of understanding only text.
-              </li>
-              <li>• <strong>MiMo V2.5</strong> is capable of understanding text, images, video and audio.
-              </li>
-              <li>• <strong>MiniMax</strong> models are capable of understanding only text. Image and
-                video inputs are routed to another unknown model.
-              </li>
-              <li>• Models capable of understanding only text are usually able to understand text inside images, but
-                nothing else in them.
+              <li>• <strong>GPT</strong> models are capable of understanding text and images.</li>
+              <li>• <strong>Claude</strong> models are capable of understanding text and images.</li>
+              <li>• <strong>Gemini</strong> models are capable of understanding text, images, video and audio.</li>
+              <li>• <strong>Grok</strong> models are capable of understanding text and images.</li>
+              <li>• <strong>Muse</strong> models are capable of understanding text, images and video.</li>
+              <li>• <strong>GLM</strong> is capable of understanding only text. Image and video inputs are likely routed to other GLM models.</li>
+              <li>• <strong>GLM Flash</strong> is capable of understanding text, images and video.</li>
+              <li>• <strong>Kimi</strong> models are capable of understanding text, images and video.</li>
+              <li>• <strong>Qwen Max</strong> is capable of understanding text and images.</li>
+              <li>• <strong>Qwen Omni Flash</strong> is capable of understanding text, images, video and audio.</li>
+              <li>• <strong>DeepSeek</strong> models are capable of understanding text and images.</li>
+              <li>• <strong>MiMo V Pro</strong> is capable of understanding only text.</li>
+              <li>• <strong>MiMo V</strong> is capable of understanding text, images, video and audio.</li>
+              <li>• <strong>MiniMax</strong> models are capable of understanding text, images and video.</li>
+              <li>• Models capable of understanding only text are usually able to read text inside images, but no other elements in them.
               </li>
             </ul>
           </div>
@@ -3179,8 +3171,6 @@
                 including them or estimating their values. Reasoning models will usually perform better than their
                 non-reasoning counterparts anyways.
               </li>
-              <li>• In <strong>Performance And Price</strong>, selected models with a supplied price appear as points.
-                Explicitly supported estimated scores with an unknown price appear as dashed horizontal reference lines.</li>
             </ul>
           </div>
         </details>
@@ -3524,7 +3514,7 @@
     // Diagonal hatch pattern for "Estimated" bars.
     // Thin lines with wide gaps give a subtle "approximate" signal
     // while keeping the brand color clearly readable.
-    function createEstimatedPattern(rgb) {
+    function createEstimatedPattern(rgb, opacity = 1) {
       const size = 16;                       // tile size (larger = more gap between lines)
       const stripeWidth = 10;               // thin lines
       const canvas = document.createElement('canvas');
@@ -3536,7 +3526,7 @@
       ctx.clearRect(0, 0, size, size);
 
       // Draw one diagonal stripe per tile (45°)
-      ctx.strokeStyle = `rgba(${rgb}, 1)`;
+      ctx.strokeStyle = `rgba(${rgb}, ${opacity})`;
       ctx.lineWidth = stripeWidth;
       ctx.lineCap = 'square';
 
@@ -3638,7 +3628,7 @@
       'mimo-v25-pro': false,         // Other recommended, starts hidden
       'mimo-v25': false,             // Other recommended, starts hidden
       'qwen-38-max': false,          // Other recommended, starts hidden
-      'qwen-37-plus-think': false,   // Other recommended, starts hidden
+      'qwen-38-omni-flash-thinking': false, // Other recommended, starts hidden
       'kimi-k3-max': false,           // Other recommended, starts hidden
       'kimi-k26-thinking': false,     // Other recommended, starts hidden
       'kimi-k26-instant': false       // Other recommended, starts hidden
@@ -3700,7 +3690,7 @@
       'mimo-v25-pro': false,            // Other recommended
       'mimo-v25': false,                // Other recommended
       'qwen-38-max': false,             // Other recommended
-      'qwen-37-plus-think': false,      // Other recommended
+      'qwen-38-omni-flash-thinking': false, // Other recommended
       'kimi-k3-max': false,              // Other recommended
       'kimi-k26-thinking': false,        // Other recommended
       'kimi-k26-instant': false          // Other recommended
@@ -3719,11 +3709,11 @@
     // Model groups for group toggles
     const modelGroups = {
       'claude': ['claude-51-fable-low', 'claude-51-fable-medium', 'claude-51-fable-high', 'claude-51-fable-extra', 'claude-51-fable-max', 'claude-5-opus-max', 'claude-5-opus-extra', 'claude-5-opus-high', 'claude-5-opus-medium', 'claude-5-opus-low', 'claude-5-sonnet', 'claude-5-sonnet-high', 'claude-48-opus-max', 'claude-haiku', 'claude-haiku-nr'],
-      'reasoning': ['gpt-6-astra-max', 'gpt-6-astra-xhigh', 'gpt-6-astra-high', 'gpt-6-astra-medium', 'gpt-6-astra-low', 'gpt-56-sol-max', 'gpt-56-sol-xhigh', 'gpt-56-sol-high', 'gpt-56-sol-medium', 'gpt-56-sol-low', 'gpt-56-terra-max', 'gpt-56-terra-xhigh', 'gpt-56-terra-high', 'gpt-56-terra-medium', 'gpt-56-terra-low', 'gpt-56-luna-max', 'gpt-56-luna-xhigh', 'gpt-56-luna-high', 'gpt-56-luna-medium', 'gpt-56-luna-low', 'gemini-38-flash-extended-high', 'gemini-38-flash-extended-medium', 'gemini-38-flash-extended-low', 'gemini-35-flash-lite-extended', 'gemini-31-pro', 'claude-51-fable-low', 'claude-51-fable-medium', 'claude-51-fable-high', 'claude-51-fable-extra', 'claude-51-fable-max', 'claude-5-opus-max', 'claude-5-opus-extra', 'claude-5-opus-high', 'claude-5-opus-medium', 'claude-5-opus-low', 'claude-5-sonnet', 'claude-48-opus-max', 'claude-haiku', 'glm-53-deep-think-max', 'glm-53-flash-deep-think-max', 'grok-46-expert', 'minimax-m3-thinking', 'muse-spark-13', 'muse-spark-11', 'deepseek-v41-flash-deep-think', 'mimo-v25-pro', 'mimo-v25', 'qwen-38-max', 'qwen-37-plus-think', 'kimi-k3-max', 'kimi-k26-thinking'],
+      'reasoning': ['gpt-6-astra-max', 'gpt-6-astra-xhigh', 'gpt-6-astra-high', 'gpt-6-astra-medium', 'gpt-6-astra-low', 'gpt-56-sol-max', 'gpt-56-sol-xhigh', 'gpt-56-sol-high', 'gpt-56-sol-medium', 'gpt-56-sol-low', 'gpt-56-terra-max', 'gpt-56-terra-xhigh', 'gpt-56-terra-high', 'gpt-56-terra-medium', 'gpt-56-terra-low', 'gpt-56-luna-max', 'gpt-56-luna-xhigh', 'gpt-56-luna-high', 'gpt-56-luna-medium', 'gpt-56-luna-low', 'gemini-38-flash-extended-high', 'gemini-38-flash-extended-medium', 'gemini-38-flash-extended-low', 'gemini-35-flash-lite-extended', 'gemini-31-pro', 'claude-51-fable-low', 'claude-51-fable-medium', 'claude-51-fable-high', 'claude-51-fable-extra', 'claude-51-fable-max', 'claude-5-opus-max', 'claude-5-opus-extra', 'claude-5-opus-high', 'claude-5-opus-medium', 'claude-5-opus-low', 'claude-5-sonnet', 'claude-48-opus-max', 'claude-haiku', 'glm-53-deep-think-max', 'glm-53-flash-deep-think-max', 'grok-46-expert', 'minimax-m3-thinking', 'muse-spark-13', 'muse-spark-11', 'deepseek-v41-flash-deep-think', 'mimo-v25-pro', 'mimo-v25', 'qwen-38-max', 'qwen-38-omni-flash-thinking', 'kimi-k3-max', 'kimi-k26-thinking'],
       'instant': ['gpt-56-sol-instant', 'gpt-56-luna-instant', 'claude-5-sonnet-high', 'claude-haiku-nr', 'kimi-k26-instant'],
       'chatgpt-pro': [],
-      'other': ['glm-53-deep-think-max', 'glm-53-flash-deep-think-max', 'grok-46-expert', 'minimax-m3-thinking', 'muse-spark-13', 'muse-spark-11', 'deepseek-v41-flash-deep-think', 'mimo-v25-pro', 'mimo-v25', 'qwen-38-max', 'qwen-37-plus-think', 'kimi-k3-max', 'kimi-k26-thinking', 'kimi-k26-instant'],
-      'legacy': ['claude-48-opus-max', 'qwen-37-plus-think', 'kimi-k26-thinking', 'kimi-k26-instant'],
+      'other': ['glm-53-deep-think-max', 'glm-53-flash-deep-think-max', 'grok-46-expert', 'minimax-m3-thinking', 'muse-spark-13', 'muse-spark-11', 'deepseek-v41-flash-deep-think', 'mimo-v25-pro', 'mimo-v25', 'qwen-38-max', 'qwen-38-omni-flash-thinking', 'kimi-k3-max', 'kimi-k26-thinking', 'kimi-k26-instant'],
+      'legacy': ['claude-48-opus-max', 'kimi-k26-thinking', 'kimi-k26-instant'],
       'coding': ['gpt-6-astra-max', 'gpt-6-astra-xhigh', 'gpt-6-astra-medium', 'gpt-6-astra-low', 'gpt-56-sol-max', 'gpt-56-sol-low', 'gpt-56-terra-max', 'gpt-56-terra-xhigh', 'gpt-56-terra-high', 'gpt-56-terra-medium', 'gpt-56-terra-low', 'gpt-56-luna-max', 'gpt-56-luna-xhigh', 'gpt-56-luna-high', 'gemini-38-flash-extended-high', 'muse-spark-13']
     };
 
@@ -3782,7 +3772,7 @@
       'mimo-v25-pro': ['other', 'reasoning'],                // Needs both Other AND Reasoning to be on
       'mimo-v25': ['other', 'reasoning'],                    // Needs both Other AND Reasoning to be on
       'qwen-38-max': ['other', 'reasoning'],                 // Needs both Other AND Reasoning to be on
-      'qwen-37-plus-think': ['other', 'reasoning', 'legacy'], // Needs Other, Reasoning, AND Legacy to be on
+      'qwen-38-omni-flash-thinking': ['other', 'reasoning'],  // Needs both Other AND Reasoning to be on
       'kimi-k3-max': ['other', 'reasoning'],                  // Needs both Other AND Reasoning to be on
       'kimi-k26-thinking': ['other', 'reasoning', 'legacy'],  // Needs Other, Reasoning, AND Legacy to be on
       'kimi-k26-instant': ['other', 'instant', 'legacy']      // Needs Other, Non-reasoning, AND Legacy to be on
@@ -4100,10 +4090,13 @@
           omniscienceChart.data.labels = omniscienceData.labels;
           omniscienceChart.data.datasets[0].data = omniscienceData.correct;
           omniscienceChart.data.datasets[0].backgroundColor = omniscienceData.correctBgColors;
+          omniscienceChart.data.datasets[0].hoverBackgroundColor = omniscienceData.correctHoverBgColors;
           omniscienceChart.data.datasets[1].data = omniscienceData.abstention;
           omniscienceChart.data.datasets[1].backgroundColor = omniscienceData.abstentionBgColors;
+          omniscienceChart.data.datasets[1].hoverBackgroundColor = omniscienceData.abstentionHoverBgColors;
           omniscienceChart.data.datasets[2].data = omniscienceData.hallucination;
           omniscienceChart.data.datasets[2].backgroundColor = omniscienceData.hallucinationBgColors;
+          omniscienceChart.data.datasets[2].hoverBackgroundColor = omniscienceData.hallucinationHoverBgColors;
           omniscienceChart.update({ duration: animationConfig.duration, easing: animationConfig.easing });
         }
       }
@@ -4232,7 +4225,7 @@
     const useStripedPatternsForNonReasoning = false;
 
     // Brand color helper for bar charts — returns per-model RGBA string.
-    // Estimated models are rendered at low opacity (0.3) to look faded.
+    // Estimated models use a diagonal brand-color hatch instead of reduced alpha.
     // Non-estimated models use 0.75 so bars look rich but not fully opaque.
     const BRAND_RGB = {
       'gpt': '16,  163, 127',   // teal
@@ -4409,8 +4402,8 @@
       { modelId: 'deepseek-v41-flash-deep-think', label: '🐋︎ DeepSeek V4.1 Flash Deep Think', correct: 46.40, abstention: 1.90, hallucination: 51.70, sortOrder: 117.57 },
       { modelId: 'mimo-v25-pro', label: '⋔ MiMo V2.5 Pro', correct: 22.42, abstention: 58.42, hallucination: 19.16, sortOrder: 118 },
       { modelId: 'mimo-v25', label: '⋔ MiMo V2.5', correct: 16.75, abstention: 56.67, hallucination: 26.58, sortOrder: 118.5 },
-      { modelId: 'qwen-38-max', label: '▽ Qwen 3.8 Max', correct: 31.85, abstention: 39.70, hallucination: 28.45, sortOrder: 123.5 },
-      { modelId: 'qwen-37-plus-think', label: '▽ Qwen 3.7 Plus Thinking', correct: 22.52, abstention: 56.05, hallucination: 21.43, sortOrder: 124.5 },
+      { modelId: 'qwen-38-max', label: '▽ Qwen 3.8 Max Thinking', correct: 31.68, abstention: 48.62, hallucination: 19.70, sortOrder: 123.5 },
+      { modelId: 'qwen-38-omni-flash-thinking', label: '▽ Qwen 3.8 Omni Flash Thinking (Estimated)', correct: 24.50, abstention: 41.28, hallucination: 34.22, sortOrder: 124, estimated: true },
       { modelId: 'kimi-k3-max', label: 'Ḱ Kimi K3 Thinking Max', correct: 47.58, abstention: 24.53, hallucination: 27.89, sortOrder: 126.5 },
       { modelId: 'kimi-k26-thinking', label: 'Ḱ Kimi K2.6 Thinking High', correct: 32.80, abstention: 40.82, hallucination: 26.38, sortOrder: 127 },
       { modelId: 'kimi-k26-instant', label: 'Ḱ Kimi K2.6 Standard', correct: 23.07, abstention: 43.90, hallucination: 33.03, sortOrder: 128 }
@@ -4437,10 +4430,13 @@
       omniscienceChart.data.labels = omniscienceData.labels;
       omniscienceChart.data.datasets[0].data = omniscienceData.correct;
       omniscienceChart.data.datasets[0].backgroundColor = omniscienceData.correctBgColors;
+      omniscienceChart.data.datasets[0].hoverBackgroundColor = omniscienceData.correctHoverBgColors;
       omniscienceChart.data.datasets[1].data = omniscienceData.abstention;
       omniscienceChart.data.datasets[1].backgroundColor = omniscienceData.abstentionBgColors;
+      omniscienceChart.data.datasets[1].hoverBackgroundColor = omniscienceData.abstentionHoverBgColors;
       omniscienceChart.data.datasets[2].data = omniscienceData.hallucination;
       omniscienceChart.data.datasets[2].backgroundColor = omniscienceData.hallucinationBgColors;
+      omniscienceChart.data.datasets[2].hoverBackgroundColor = omniscienceData.hallucinationHoverBgColors;
       omniscienceChart.update({ duration: 750, easing: 'easeInOutQuart' });
     }
 
@@ -4835,12 +4831,18 @@
       const correctColor = 'rgba(125, 192, 93, 0.65)';
       const abstentionColor = 'rgba(66, 59, 175, 0.65)';
       const hallucinationColor = 'rgba(238, 73, 82, 0.65)';
+      const correctHoverColor = 'rgba(85, 131, 63, 0.95)';
+      const abstentionHoverColor = 'rgba(45, 40, 119, 0.95)';
+      const hallucinationHoverColor = 'rgba(162, 50, 56, 0.95)';
 
       let correctBgColors, abstentionBgColors, hallucinationBgColors;
 
-      const correctEstimated = 'rgba(125, 192, 93, 0.35)';
-      const abstentionEstimated = 'rgba(66, 59, 175, 0.35)';
-      const hallucinationEstimated = 'rgba(238, 73, 82, 0.35)';
+      const correctEstimated = createEstimatedPattern('125, 192, 93', 0.65);
+      const abstentionEstimated = createEstimatedPattern('66, 59, 175', 0.65);
+      const hallucinationEstimated = createEstimatedPattern('238, 73, 82', 0.65);
+      const correctEstimatedHover = createEstimatedPattern('85, 131, 63', 0.95);
+      const abstentionEstimatedHover = createEstimatedPattern('45, 40, 119', 0.95);
+      const hallucinationEstimatedHover = createEstimatedPattern('162, 50, 56', 0.95);
 
       if (useStripedPatternsForNonReasoning) {
         const correctStriped = createStripedPattern(correctColor);
@@ -4862,7 +4864,15 @@
         hallucinationBgColors = models.map(m => m.estimated ? hallucinationEstimated : hallucinationColor);
       }
 
-      return { labels, correct, abstention, hallucination, correctBgColors, abstentionBgColors, hallucinationBgColors };
+      const correctHoverBgColors = models.map(m => m.estimated ? correctEstimatedHover : correctHoverColor);
+      const abstentionHoverBgColors = models.map(m => m.estimated ? abstentionEstimatedHover : abstentionHoverColor);
+      const hallucinationHoverBgColors = models.map(m => m.estimated ? hallucinationEstimatedHover : hallucinationHoverColor);
+
+      return {
+        labels, correct, abstention, hallucination,
+        correctBgColors, abstentionBgColors, hallucinationBgColors,
+        correctHoverBgColors, abstentionHoverBgColors, hallucinationHoverBgColors
+      };
     }
 
     // AA-Omniscience Benchmark - Grouped Bar Chart
@@ -4879,7 +4889,7 @@
             label: 'Correct ↑',
             data: omniscienceData.correct,
             backgroundColor: omniscienceData.correctBgColors,
-            hoverBackgroundColor: 'rgba(85, 131, 63, 0.95)',
+            hoverBackgroundColor: omniscienceData.correctHoverBgColors,
             borderColor: 'rgba(116, 171, 157, 0.9)',
             borderWidth: 0,
             borderRadius: 4
@@ -4888,7 +4898,7 @@
             label: 'Abstention ↑',
             data: omniscienceData.abstention,
             backgroundColor: omniscienceData.abstentionBgColors,
-            hoverBackgroundColor: 'rgba(45, 40, 119, 0.95)',
+            hoverBackgroundColor: omniscienceData.abstentionHoverBgColors,
             borderColor: 'rgba(66, 59, 175, 0.9)',
             borderWidth: 0,
             borderRadius: 4
@@ -4897,7 +4907,7 @@
             label: 'Hallucination ↓',
             data: omniscienceData.hallucination,
             backgroundColor: omniscienceData.hallucinationBgColors,
-            hoverBackgroundColor: 'rgba(162, 50, 56, 0.95)',
+            hoverBackgroundColor: omniscienceData.hallucinationHoverBgColors,
             borderColor: 'rgba(238, 73, 82, 0.9)',
             borderWidth: 0,
             borderRadius: 4
@@ -5199,8 +5209,8 @@
       { modelId: 'deepseek-v41-flash-deep-think', label: '🐋︎ DeepSeek V4.1 Flash Deep Think', score: 84, sortOrder: 117.57 },
       { modelId: 'mimo-v25-pro', label: '⋔ MiMo V2.5 Pro', score: 79.7, sortOrder: 118 },
       { modelId: 'mimo-v25', label: '⋔ MiMo V2.5', score: 73, sortOrder: 118.5 },
-      { modelId: 'qwen-38-max', label: '▽ Qwen 3.8 Max', score: 78.3, sortOrder: 123.5 },
-      { modelId: 'qwen-37-plus-think', label: '▽ Qwen 3.7 Plus Thinking', score: 73, sortOrder: 124.5 },
+      { modelId: 'qwen-38-max', label: '▽ Qwen 3.8 Max Thinking', score: 80.3, sortOrder: 123.5 },
+      { modelId: 'qwen-38-omni-flash-thinking', label: '▽ Qwen 3.8 Omni Flash Thinking (Estimated)', score: 79.9, sortOrder: 124, estimated: true },
       { modelId: 'kimi-k3-max', label: 'Ḱ Kimi K3 Thinking Max', score: 88.7, sortOrder: 126.5 },
       { modelId: 'kimi-k26-thinking', label: 'Ḱ Kimi K2.6 Thinking High', score: 81, sortOrder: 127 },
       { modelId: 'kimi-k26-instant', label: 'Ḱ Kimi K2.6 Standard', score: 69.7, sortOrder: 128 }
@@ -5348,8 +5358,8 @@
       { modelId: 'deepseek-v41-flash-deep-think', label: '🐋︎ DeepSeek V4.1 Flash Deep Think', score: 77, sortOrder: 117.57 },
       { modelId: 'mimo-v25-pro', label: '⋔ MiMo V2.5 Pro', score: 0, sortOrder: 118 },
       { modelId: 'mimo-v25', label: '⋔ MiMo V2.5', score: 75, sortOrder: 118.5 },
-      { modelId: 'qwen-38-max', label: '▽ Qwen 3.8 Max', score: 82, sortOrder: 123.5 },
-      { modelId: 'qwen-37-plus-think', label: '▽ Qwen 3.7 Plus Thinking', score: 80, sortOrder: 124.5 },
+      { modelId: 'qwen-38-max', label: '▽ Qwen 3.8 Max Thinking', score: 83, sortOrder: 123.5 },
+      { modelId: 'qwen-38-omni-flash-thinking', label: '▽ Qwen 3.8 Omni Flash Thinking (Estimated)', score: 80, sortOrder: 124, estimated: true },
       { modelId: 'kimi-k3-max', label: 'Ḱ Kimi K3 Thinking Max', score: 81, sortOrder: 126.5 },
       { modelId: 'kimi-k26-thinking', label: 'Ḱ Kimi K2.6 Thinking High', score: 79, sortOrder: 127 },
       { modelId: 'kimi-k26-instant', label: 'Ḱ Kimi K2.6 Standard (Estimated)', score: 77, sortOrder: 128, estimated: true }
@@ -5573,8 +5583,8 @@
       { modelId: 'deepseek-v41-flash-deep-think', label: '🐋︎ DeepSeek V4.1 Flash Deep Think', score: 1632, costPerTask: 0.30, sortOrder: 117.57 },
       { modelId: 'mimo-v25-pro', label: '⋔ MiMo V2.5 Pro', score: 1263, costPerTask: 0.04, sortOrder: 118 },
       { modelId: 'mimo-v25', label: '⋔ MiMo V2.5', score: 1148, costPerTask: 0.01, sortOrder: 118.5 },
-      { modelId: 'qwen-38-max', label: '▽ Qwen 3.8 Max', score: 1721, costPerTask: 2.74, sortOrder: 123.5 },
-      { modelId: 'qwen-37-plus-think', label: '▽ Qwen 3.7 Plus Thinking', score: 947, costPerTask: 0.10, sortOrder: 124.5 },
+      { modelId: 'qwen-38-max', label: '▽ Qwen 3.8 Max Thinking', score: 1689, costPerTask: 4.54, sortOrder: 123.5 },
+      { modelId: 'qwen-38-omni-flash-thinking', label: '▽ Qwen 3.8 Omni Flash Thinking (Estimated)', score: 1625, costPerTask: 0.25, sortOrder: 124, estimated: true, priceEstimated: true },
       { modelId: 'kimi-k3-max', label: 'Ḱ Kimi K3 Thinking Max', score: 1668, costPerTask: 2.15, sortOrder: 126.5 },
       { modelId: 'kimi-k26-thinking', label: 'Ḱ Kimi K2.6 Thinking High', score: 1191, costPerTask: 0.60, sortOrder: 127 }
     ];
@@ -5703,6 +5713,7 @@
           effortOrder: series.effortOrder,
           sortOrder: model.sortOrder,
           estimated: model.estimated === true,
+          priceEstimated: model.priceEstimated === true,
           style
         });
       });
@@ -5719,14 +5730,21 @@
             showLine: group.points.length > 1,
             gdpvalSortOrder: group.sortOrder,
             borderColor: firstStyle.color,
-            backgroundColor: firstStyle.color,
+            backgroundColor: group.points.every(point => !point.estimated && !point.priceEstimated)
+              ? firstStyle.color
+              : 'transparent',
             borderWidth: 2,
             tension: 0.22,
             fill: false,
             pointStyle: 'circle',
             pointRadius: group.points.map(point => point.style.pointRadius),
             pointHoverRadius: group.points.map(point => point.style.pointHoverRadius),
-            pointBackgroundColor: group.points.map(point => point.style.color),
+            pointBackgroundColor: group.points.map(point =>
+              point.estimated || point.priceEstimated ? 'transparent' : point.style.color
+            ),
+            pointHoverBackgroundColor: group.points.map(point =>
+              point.estimated || point.priceEstimated ? 'transparent' : point.style.color
+            ),
             pointBorderColor: group.points.map(point => point.style.color)
           };
         });
@@ -5867,15 +5885,23 @@
               padding: 12,
               cornerRadius: 8,
               callbacks: {
+                labelColor: context => {
+                  const raw = context.raw || {};
+                  const estimated = raw.estimated === true || raw.priceEstimated === true;
+                  const borderColor = raw.style?.color || context.dataset?.borderColor || '#ffffff';
+                  return {
+                    borderColor,
+                    backgroundColor: estimated ? '#000000' : borderColor
+                  };
+                },
                 title: items => items[0]?.raw?.modelLabel || '',
                 label: context => {
                   const lines = [
-                    `Performance: ${formatGdpval2RelativeScore(context.raw.y)}`,
+                    `Performance: ${formatGdpval2RelativeScore(context.raw.y)}${context.raw.estimated ? ' (Estimated)' : ''}`,
                     context.raw.unknownCost
                       ? 'Average price per task: Unknown'
-                      : `Average price per task: US$${context.raw.x.toFixed(2)}`
+                      : `Average price per task: US$${context.raw.x.toFixed(2)}${context.raw.priceEstimated ? ' (Estimated)' : ''}`
                   ];
-                  if (context.raw.estimated) lines.push('Performance is estimated');
                   return lines;
                 }
               }
@@ -5962,8 +5988,8 @@
       { modelId: 'deepseek-v41-flash-deep-think', label: '🐋︎ DeepSeek V4.1 Flash Deep Think (Estimated)', score: 85, costPerTask: 0.11, sortOrder: 117.57, estimated: true, priceEstimated: true },
       { modelId: 'mimo-v25-pro', label: '⋔ MiMo V2.5 Pro', score: 65.2, costPerTask: 0.07, sortOrder: 118 },
       { modelId: 'mimo-v25', label: '⋔ MiMo V2.5', score: 63.7, costPerTask: 0.03, sortOrder: 118.5 },
-      { modelId: 'qwen-38-max', label: '▽ Qwen 3.8 Max', score: 81.3, costPerTask: 1.02, sortOrder: 123.5 },
-      { modelId: 'qwen-37-plus-think', label: '▽ Qwen 3.7 Plus Thinking', score: 61.0, costPerTask: 0.50, sortOrder: 124.5 },
+      { modelId: 'qwen-38-max', label: '▽ Qwen 3.8 Max Thinking', score: 88.8, costPerTask: 1.53, sortOrder: 123.5 },
+      { modelId: 'qwen-38-omni-flash-thinking', label: '▽ Qwen 3.8 Omni Flash Thinking (Estimated)', score: 86.3, costPerTask: 0.09, sortOrder: 124, estimated: true, priceEstimated: true },
       { modelId: 'kimi-k3-max', label: 'Ḱ Kimi K3 Thinking Max', score: 85, costPerTask: 0.63, sortOrder: 126.5 },
       { modelId: 'kimi-k26-thinking', label: 'Ḱ Kimi K2.6 Thinking High', score: 65.9, costPerTask: 0.81, sortOrder: 127 }
     ];
@@ -6012,7 +6038,7 @@
       'muse-spark-13': 6,
       'muse-spark-11': 6,
       'qwen-38-max': 6,
-      'qwen-37-plus-think': 5,
+      'qwen-38-omni-flash-thinking': 6,
       'kimi-k3-max': 7
     };
 
@@ -6475,8 +6501,8 @@
       { modelId: 'deepseek-v41-flash-deep-think', label: '🐋︎ DeepSeek V4.1 Flash Deep Think', score: 26.8, costPerTask: 1.16, sortOrder: 117.57 },
       { modelId: 'mimo-v25-pro', label: '⋔ MiMo V2.5 Pro', score: 0.0, costPerTask: 0.24, sortOrder: 118 },
       { modelId: 'mimo-v25', label: '⋔ MiMo V2.5', score: 0.0, costPerTask: 0.11, sortOrder: 118.5 },
-      { modelId: 'qwen-38-max', label: '▽ Qwen 3.8 Max', score: 18.7, costPerTask: 15.98, sortOrder: 123.5 },
-      { modelId: 'qwen-37-plus-think', label: '▽ Qwen 3.7 Plus Thinking', score: 1.0, costPerTask: 2.09, sortOrder: 124.5 },
+      { modelId: 'qwen-38-max', label: '▽ Qwen 3.8 Max Thinking', score: 38.9, costPerTask: 18.68, sortOrder: 123.5 },
+      { modelId: 'qwen-38-omni-flash-thinking', label: '▽ Qwen 3.8 Omni Flash Thinking (Estimated)', score: 25.7, costPerTask: 0.77, sortOrder: 124, estimated: true, priceEstimated: true },
       { modelId: 'kimi-k3-max', label: 'Ḱ Kimi K3 Thinking Max', score: 12.6, costPerTask: 5.09, sortOrder: 126.5 }
     ];
 
@@ -7179,12 +7205,12 @@
       },
       // Qwen
       {
-        modelId: 'qwen-38-max', label: '▽ Qwen 3.8 Max', sortOrder: 123.5,
+        modelId: 'qwen-38-max', label: '▽ Qwen 3.8 Max Thinking', sortOrder: 123.5,
         color: 'rgba(66, 59, 175, 1)',
         segments: [{ value: 1000000, plans: 'All plans' }]
       },
       {
-        modelId: 'qwen-37-plus-think', label: '▽ Qwen 3.7 Plus Thinking', sortOrder: 124.5,
+        modelId: 'qwen-38-omni-flash-thinking', label: '▽ Qwen 3.8 Omni Flash Thinking', sortOrder: 124,
         color: 'rgba(66, 59, 175, 1)',
         segments: [{ value: 1000000, plans: 'All plans' }]
       },
@@ -8281,7 +8307,7 @@
     style="text-align: center; padding: 2rem 1rem; margin-top: 3rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.8rem;">
     Made by <strong> u/Pasto_Shouwa</strong>
     <br>
-    <em>Last updated on <strong>10/09/2026</strong> (dd/mm/yyyy)</em>
+    <em>Last updated on <strong>21/09/2026</strong> (dd/mm/yyyy)</em>
   </footer>
 </body>
 
