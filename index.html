@@ -1412,6 +1412,16 @@
       background: rgba(168, 85, 247, 0.8);
     }
 
+    /* Keep the USA-exclusive feature dormant while retaining its implementation. */
+    .usa-features-disabled .legend-usa,
+    .usa-features-disabled .usa-toggle {
+      display: none;
+    }
+
+    .usa-features-disabled .usa-restricted {
+      box-shadow: none;
+    }
+
     /* Hide USA-exclusive elements when toggle is off */
     .hide-usa-exclusive .usa-restricted {
       box-shadow: none;
@@ -1725,8 +1735,14 @@
       background: rgba(199, 91, 245, 0.9);
     }
 
-    /* Shape modifiers for model icons */
-    .shape-square {
+    /* Model Filters shape meanings: free, US$20 plan, US$100 plan, code-only. */
+    .shape-dot-free {
+      border-radius: 50% !important;
+      clip-path: none;
+      transform: none;
+    }
+
+    .shape-square-twenty {
       border-radius: 20% !important;
       transform: scale(0.85);
     }
@@ -1743,13 +1759,13 @@
       transform: scale(0.85);
     }
 
-    .shape-star {
+    .shape-star-hundred {
       border-radius: 0 !important;
       clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
       transform: scale(0.95);
     }
 
-    .shape-triangle-right {
+    .shape-triangle-code {
       border-radius: 0 !important;
       clip-path: polygon(8% 0%, 100% 50%, 8% 100%);
       transform: scale(0.9);
@@ -2166,7 +2182,7 @@
     </nav>
 
     <!-- TAB 1: SPECS -->
-    <section id="tab-specs" class="tab-content active">
+    <section id="tab-specs" class="tab-content active usa-features-disabled">
 
       <!-- Free Plans Table -->
       <div class="table-wrapper tier-table hidden" id="table-free-tier">
@@ -2210,15 +2226,11 @@
             <tr>
               <td>Image generation per day</td>
               <td>Unknown<span class="annotation" data-note="gpt-image-unknown"></span><span class="detail">[GPT Image
-                  2]</span></td>
+                  2.5]</span></td>
             </tr>
             <tr>
               <td>Image resolution (1:1)</td>
               <td>1254×1254 (1.2K)<span class="detail">[All image models]</span></td>
-            </tr>
-            <tr>
-              <td>Custom model creation</td>
-              <td>No<span class="detail">[Custom GPTs]</span></td>
             </tr>
             <tr>
               <td>Folder organization</td>
@@ -2296,16 +2308,11 @@
             <tr>
               <td>Image generation per day</td>
               <td colspan="3">Unknown<span class="annotation" data-note="gpt-image-unknown"></span><span
-                  class="detail">[GPT Image 2 / GPT Image 2 Thinking]</span></td>
+                  class="detail">[GPT Image 2.5 / GPT Image 2.5 Thinking]</span></td>
             </tr>
             <tr>
               <td>Image resolution (1:1)</td>
               <td colspan="3">1254×1254 (1.2K)<span class="detail">[All image models]</span></td>
-            </tr>
-            <tr>
-              <td>Custom model creation</td>
-              <td>No<span class="detail">[Custom GPTs]</span></td>
-              <td colspan="2">Yes<span class="detail">[Custom GPTs]</span></td>
             </tr>
             <tr>
               <td>Folder organization</td>
@@ -2340,8 +2347,8 @@
               <th colspan="2" class="th-chatgpt">ChatGPT</th>
             </tr>
             <tr>
-              <th class="th-chatgpt" style="text-align: center;">Pro x5</th>
-              <th class="th-chatgpt" style="text-align: center;">Pro x20</th>
+              <th class="th-chatgpt" style="text-align: center;">Pro 100</th>
+              <th class="th-chatgpt" style="text-align: center;">Pro 200</th>
             </tr>
           </thead>
           <tbody>
@@ -2372,17 +2379,13 @@
             </tr>
             <tr>
               <td>Image generation per day</td>
-              <td colspan="2">Unknown<span class="annotation" data-note="gpt-image-unknown"></span><span class="detail">[GPT Image 2
+              <td colspan="2">Unknown<span class="annotation" data-note="gpt-image-unknown"></span><span class="detail">[GPT Image 2.5
                   /
-                  GPT Image 2 Thinking]</span></td>
+                  GPT Image 2.5 Thinking]</span></td>
             </tr>
             <tr>
               <td>Image resolution (1:1)</td>
               <td colspan="2">1254×1254 (1.2K)<span class="detail">[All image models]</span></td>
-            </tr>
-            <tr>
-              <td>Custom model creation</td>
-              <td colspan="2">Yes<span class="detail">[Custom GPTs]</span></td>
             </tr>
             <tr>
               <td>Folder organization</td>
@@ -2391,6 +2394,14 @@
             <tr>
               <td>Maximum active scheduled tasks</td>
               <td colspan="2">15<br><span class="detail">[Tasks]</span></td>
+            </tr>
+            <tr>
+              <td>Persistent AI assistant</td>
+              <td colspan="2">Yes<br><span class="detail">[Dots]</span></td>
+            </tr>
+            <tr>
+              <td>Collaborative AI Workspace</td>
+              <td colspan="2">Yes</td>
             </tr>
             <tr>
               <td>Deep research uses per month</td>
@@ -2486,134 +2497,107 @@
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot" data-model="gpt-6-astra-max" onclick="toggleIndividualModel('gpt-6-astra-max')">
-                <span class="model-dot-indicator dot-gpt shape-triangle-right"></span>
+                <span class="model-dot-indicator dot-gpt shape-triangle-code"></span>
                 <span class="model-dot-label">GPT 6 Astra Max</span>
               </div>
               <div class="model-dot" data-model="gpt-6-astra-xhigh" onclick="toggleIndividualModel('gpt-6-astra-xhigh')">
-                <span class="model-dot-indicator dot-gpt shape-triangle-right"></span>
+                <span class="model-dot-indicator dot-gpt shape-triangle-code"></span>
                 <span class="model-dot-label">GPT 6 Astra Extra High</span>
               </div>
               <div class="model-dot" data-model="gpt-6-astra-high" onclick="toggleIndividualModel('gpt-6-astra-high')">
-                <span class="model-dot-indicator dot-gpt shape-star"></span>
+                <span class="model-dot-indicator dot-gpt shape-star-hundred"></span>
                 <span class="model-dot-label">GPT 6 Astra High</span>
               </div>
               <div class="model-dot" data-model="gpt-6-astra-medium"
                 onclick="toggleIndividualModel('gpt-6-astra-medium')">
-                <span class="model-dot-indicator dot-gpt shape-triangle-right"></span>
+                <span class="model-dot-indicator dot-gpt shape-triangle-code"></span>
                 <span class="model-dot-label">GPT 6 Astra Medium</span>
               </div>
               <div class="model-dot" data-model="gpt-6-astra-low" onclick="toggleIndividualModel('gpt-6-astra-low')">
-                <span class="model-dot-indicator dot-gpt shape-triangle-right"></span>
+                <span class="model-dot-indicator dot-gpt shape-triangle-code"></span>
                 <span class="model-dot-label">GPT 6 Astra Low</span>
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
-              <div class="model-dot" data-model="gpt-6-sol-max" onclick="toggleIndividualModel('gpt-6-sol-max')">
-                <span class="model-dot-indicator dot-gpt shape-triangle-right"></span>
-                <span class="model-dot-label">GPT 6 Sol Max</span>
+              <div class="model-dot" data-model="gpt-61-sol-max" onclick="toggleIndividualModel('gpt-61-sol-max')">
+                <span class="model-dot-indicator dot-gpt shape-triangle-code"></span>
+                <span class="model-dot-label">GPT 6.1 Sol Max</span>
               </div>
-              <div class="model-dot" data-model="gpt-6-sol-xhigh" onclick="toggleIndividualModel('gpt-6-sol-xhigh')">
-                <span class="model-dot-indicator dot-gpt shape-star"></span>
-                <span class="model-dot-label">GPT 6 Sol Extra High</span>
+              <div class="model-dot" data-model="gpt-61-sol-xhigh" onclick="toggleIndividualModel('gpt-61-sol-xhigh')">
+                <span class="model-dot-indicator dot-gpt shape-triangle-code"></span>
+                <span class="model-dot-label">GPT 6.1 Sol Extra High</span>
               </div>
-              <div class="model-dot" data-model="gpt-6-sol-high" onclick="toggleIndividualModel('gpt-6-sol-high')">
-                <span class="model-dot-indicator dot-gpt shape-square"></span>
-                <span class="model-dot-label">GPT 6 Sol High</span>
+              <div class="model-dot" data-model="gpt-61-sol-high" onclick="toggleIndividualModel('gpt-61-sol-high')">
+                <span class="model-dot-indicator dot-gpt shape-triangle-code"></span>
+                <span class="model-dot-label">GPT 6.1 Sol High</span>
               </div>
-              <div class="model-dot" data-model="gpt-6-sol-medium" onclick="toggleIndividualModel('gpt-6-sol-medium')">
-                <span class="model-dot-indicator dot-gpt shape-square"></span>
-                <span class="model-dot-label">GPT 6 Sol Medium</span>
+              <div class="model-dot" data-model="gpt-61-sol-medium" onclick="toggleIndividualModel('gpt-61-sol-medium')">
+                <span class="model-dot-indicator dot-gpt shape-triangle-code"></span>
+                <span class="model-dot-label">GPT 6.1 Sol Medium</span>
               </div>
-              <div class="model-dot" data-model="gpt-6-sol-low" onclick="toggleIndividualModel('gpt-6-sol-low')">
-                <span class="model-dot-indicator dot-gpt shape-triangle-right"></span>
-                <span class="model-dot-label">GPT 6 Sol Low</span>
+              <div class="model-dot" data-model="gpt-61-sol-low" onclick="toggleIndividualModel('gpt-61-sol-low')">
+                <span class="model-dot-indicator dot-gpt shape-triangle-code"></span>
+                <span class="model-dot-label">GPT 6.1 Sol Low</span>
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot" data-model="gpt-56-sol-max" onclick="toggleIndividualModel('gpt-56-sol-max')">
-                <span class="model-dot-indicator dot-gpt shape-triangle-right"></span>
+                <span class="model-dot-indicator dot-gpt shape-triangle-code"></span>
                 <span class="model-dot-label">GPT 5.6 Sol Max</span>
               </div>
               <div class="model-dot" data-model="gpt-56-sol-xhigh" onclick="toggleIndividualModel('gpt-56-sol-xhigh')">
-                <span class="model-dot-indicator dot-gpt shape-star"></span>
+                <span class="model-dot-indicator dot-gpt shape-star-hundred"></span>
                 <span class="model-dot-label">GPT 5.6 Sol Extra High</span>
               </div>
               <div class="model-dot" data-model="gpt-56-sol-high" onclick="toggleIndividualModel('gpt-56-sol-high')">
-                <span class="model-dot-indicator dot-gpt shape-square"></span>
+                <span class="model-dot-indicator dot-gpt shape-square-twenty"></span>
                 <span class="model-dot-label">GPT 5.6 Sol High</span>
               </div>
               <div class="model-dot" data-model="gpt-56-sol-medium"
                 onclick="toggleIndividualModel('gpt-56-sol-medium')">
-                <span class="model-dot-indicator dot-gpt shape-square"></span>
+                <span class="model-dot-indicator dot-gpt shape-square-twenty"></span>
                 <span class="model-dot-label">GPT 5.6 Sol Medium</span>
               </div>
               <div class="model-dot" data-model="gpt-56-sol-low" onclick="toggleIndividualModel('gpt-56-sol-low')">
-                <span class="model-dot-indicator dot-gpt shape-triangle-right"></span>
+                <span class="model-dot-indicator dot-gpt shape-triangle-code"></span>
                 <span class="model-dot-label">GPT 5.6 Sol Low</span>
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
-              <div class="model-dot" data-model="gpt-56-terra-max"
-                onclick="toggleIndividualModel('gpt-56-terra-max')">
-                <span class="model-dot-indicator dot-gpt shape-triangle-right"></span>
-                <span class="model-dot-label">GPT 5.6 Terra Max</span>
-              </div>
-              <div class="model-dot" data-model="gpt-56-terra-xhigh"
-                onclick="toggleIndividualModel('gpt-56-terra-xhigh')">
-                <span class="model-dot-indicator dot-gpt shape-triangle-right"></span>
-                <span class="model-dot-label">GPT 5.6 Terra Extra High</span>
-              </div>
-              <div class="model-dot" data-model="gpt-56-terra-high"
-                onclick="toggleIndividualModel('gpt-56-terra-high')">
-                <span class="model-dot-indicator dot-gpt shape-triangle-right"></span>
-                <span class="model-dot-label">GPT 5.6 Terra High</span>
-              </div>
-              <div class="model-dot" data-model="gpt-56-terra-medium"
-                onclick="toggleIndividualModel('gpt-56-terra-medium')">
-                <span class="model-dot-indicator dot-gpt shape-triangle-right"></span>
-                <span class="model-dot-label">GPT 5.6 Terra Medium</span>
-              </div>
-              <div class="model-dot" data-model="gpt-56-terra-low"
-                onclick="toggleIndividualModel('gpt-56-terra-low')">
-                <span class="model-dot-indicator dot-gpt shape-triangle-right"></span>
-                <span class="model-dot-label">GPT 5.6 Terra Low</span>
-              </div>
-            </div>
-            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot" data-model="gpt-6-luna-max" onclick="toggleIndividualModel('gpt-6-luna-max')">
-                <span class="model-dot-indicator dot-gpt shape-triangle-right"></span>
+                <span class="model-dot-indicator dot-gpt shape-triangle-code"></span>
                 <span class="model-dot-label">GPT 6 Luna Max</span>
               </div>
               <div class="model-dot" data-model="gpt-6-luna-xhigh" onclick="toggleIndividualModel('gpt-6-luna-xhigh')">
-                <span class="model-dot-indicator dot-gpt shape-triangle-right"></span>
+                <span class="model-dot-indicator dot-gpt shape-triangle-code"></span>
                 <span class="model-dot-label">GPT 6 Luna Extra High</span>
               </div>
               <div class="model-dot" data-model="gpt-6-luna-high" onclick="toggleIndividualModel('gpt-6-luna-high')">
-                <span class="model-dot-indicator dot-gpt shape-triangle-right"></span>
+                <span class="model-dot-indicator dot-gpt shape-triangle-code"></span>
                 <span class="model-dot-label">GPT 6 Luna High</span>
               </div>
               <div class="model-dot" data-model="gpt-6-luna-medium" onclick="toggleIndividualModel('gpt-6-luna-medium')">
-                <span class="model-dot-indicator dot-gpt"></span>
+                <span class="model-dot-indicator dot-gpt shape-triangle-code"></span>
                 <span class="model-dot-label">GPT 6 Luna Medium</span>
               </div>
               <div class="model-dot" data-model="gpt-6-luna-low" onclick="toggleIndividualModel('gpt-6-luna-low')">
-                <span class="model-dot-indicator dot-gpt"></span>
+                <span class="model-dot-indicator dot-gpt shape-triangle-code"></span>
                 <span class="model-dot-label">GPT 6 Luna Low</span>
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot" data-model="gpt-56-luna-max"
                 onclick="toggleIndividualModel('gpt-56-luna-max')">
-                <span class="model-dot-indicator dot-gpt shape-triangle-right"></span>
+                <span class="model-dot-indicator dot-gpt shape-triangle-code"></span>
                 <span class="model-dot-label">GPT 5.6 Luna Max</span>
               </div>
               <div class="model-dot" data-model="gpt-56-luna-xhigh"
                 onclick="toggleIndividualModel('gpt-56-luna-xhigh')">
-                <span class="model-dot-indicator dot-gpt shape-triangle-right"></span>
+                <span class="model-dot-indicator dot-gpt shape-triangle-code"></span>
                 <span class="model-dot-label">GPT 5.6 Luna Extra High</span>
               </div>
               <div class="model-dot" data-model="gpt-56-luna-high" onclick="toggleIndividualModel('gpt-56-luna-high')">
-                <span class="model-dot-indicator dot-gpt shape-triangle-right"></span>
+                <span class="model-dot-indicator dot-gpt shape-triangle-code"></span>
                 <span class="model-dot-label">GPT 5.6 Luna High</span>
               </div>
               <div class="model-dot" data-model="gpt-56-luna-medium"
@@ -2630,7 +2614,7 @@
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot" data-model="gemini-38-flash-extended-high"
                 onclick="toggleIndividualModel('gemini-38-flash-extended-high')">
-                <span class="model-dot-indicator dot-gemini shape-triangle-right"></span>
+                <span class="model-dot-indicator dot-gemini shape-triangle-code"></span>
                 <span class="model-dot-label">Gemini 3.8 Flash Extended High</span>
               </div>
               <div class="model-dot" data-model="gemini-38-flash-extended-medium"
@@ -2659,57 +2643,73 @@
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot" data-model="claude-51-fable-max" onclick="toggleIndividualModel('claude-51-fable-max')">
-                <span class="model-dot-indicator dot-claude shape-star"></span>
+                <span class="model-dot-indicator dot-claude shape-star-hundred"></span>
                 <span class="model-dot-label">Claude 5.1 Fable Thinking Max</span>
               </div>
               <div class="model-dot" data-model="claude-51-fable-extra" onclick="toggleIndividualModel('claude-51-fable-extra')">
-                <span class="model-dot-indicator dot-claude shape-star"></span>
+                <span class="model-dot-indicator dot-claude shape-star-hundred"></span>
                 <span class="model-dot-label">Claude 5.1 Fable Thinking Extra</span>
               </div>
               <div class="model-dot" data-model="claude-51-fable-high" onclick="toggleIndividualModel('claude-51-fable-high')">
-                <span class="model-dot-indicator dot-claude shape-star"></span>
+                <span class="model-dot-indicator dot-claude shape-star-hundred"></span>
                 <span class="model-dot-label">Claude 5.1 Fable Thinking High</span>
               </div>
               <div class="model-dot" data-model="claude-51-fable-medium" onclick="toggleIndividualModel('claude-51-fable-medium')">
-                <span class="model-dot-indicator dot-claude shape-star"></span>
+                <span class="model-dot-indicator dot-claude shape-star-hundred"></span>
                 <span class="model-dot-label">Claude 5.1 Fable Thinking Medium</span>
               </div>
               <div class="model-dot" data-model="claude-51-fable-low" onclick="toggleIndividualModel('claude-51-fable-low')">
-                <span class="model-dot-indicator dot-claude shape-star"></span>
+                <span class="model-dot-indicator dot-claude shape-star-hundred"></span>
                 <span class="model-dot-label">Claude 5.1 Fable Thinking Low</span>
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot" data-model="claude-55-opus-max" onclick="toggleIndividualModel('claude-55-opus-max')">
-                <span class="model-dot-indicator dot-claude shape-square"></span>
+                <span class="model-dot-indicator dot-claude shape-square-twenty"></span>
                 <span class="model-dot-label">Claude 5.5 Opus Thinking Max</span>
               </div>
               <div class="model-dot" data-model="claude-55-opus-extra" onclick="toggleIndividualModel('claude-55-opus-extra')">
-                <span class="model-dot-indicator dot-claude shape-square"></span>
+                <span class="model-dot-indicator dot-claude shape-square-twenty"></span>
                 <span class="model-dot-label">Claude 5.5 Opus Thinking Extra</span>
               </div>
               <div class="model-dot" data-model="claude-55-opus-high" onclick="toggleIndividualModel('claude-55-opus-high')">
-                <span class="model-dot-indicator dot-claude shape-square"></span>
+                <span class="model-dot-indicator dot-claude shape-square-twenty"></span>
                 <span class="model-dot-label">Claude 5.5 Opus Thinking High</span>
               </div>
               <div class="model-dot" data-model="claude-55-opus-medium" onclick="toggleIndividualModel('claude-55-opus-medium')">
-                <span class="model-dot-indicator dot-claude shape-square"></span>
+                <span class="model-dot-indicator dot-claude shape-square-twenty"></span>
                 <span class="model-dot-label">Claude 5.5 Opus Thinking Medium</span>
               </div>
               <div class="model-dot" data-model="claude-55-opus-low" onclick="toggleIndividualModel('claude-55-opus-low')">
-                <span class="model-dot-indicator dot-claude shape-square"></span>
+                <span class="model-dot-indicator dot-claude shape-square-twenty"></span>
                 <span class="model-dot-label">Claude 5.5 Opus Thinking Low</span>
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
-              <div class="model-dot" data-model="claude-5-sonnet" onclick="toggleIndividualModel('claude-5-sonnet')">
+              <div class="model-dot inactive" data-model="claude-55-sonnet-max" onclick="toggleIndividualModel('claude-55-sonnet-max')">
                 <span class="model-dot-indicator dot-claude"></span>
-                <span class="model-dot-label">Claude 5 Sonnet Thinking Max</span>
+                <span class="model-dot-label">Claude 5.5 Sonnet Thinking Max</span>
+              </div>
+              <div class="model-dot inactive" data-model="claude-55-sonnet-extra" onclick="toggleIndividualModel('claude-55-sonnet-extra')">
+                <span class="model-dot-indicator dot-claude"></span>
+                <span class="model-dot-label">Claude 5.5 Sonnet Thinking Extra</span>
+              </div>
+              <div class="model-dot inactive" data-model="claude-55-sonnet-high" onclick="toggleIndividualModel('claude-55-sonnet-high')">
+                <span class="model-dot-indicator dot-claude"></span>
+                <span class="model-dot-label">Claude 5.5 Sonnet Thinking High</span>
+              </div>
+              <div class="model-dot inactive" data-model="claude-55-sonnet-medium" onclick="toggleIndividualModel('claude-55-sonnet-medium')">
+                <span class="model-dot-indicator dot-claude"></span>
+                <span class="model-dot-label">Claude 5.5 Sonnet Thinking Medium</span>
+              </div>
+              <div class="model-dot inactive" data-model="claude-55-sonnet-low" onclick="toggleIndividualModel('claude-55-sonnet-low')">
+                <span class="model-dot-indicator dot-claude"></span>
+                <span class="model-dot-label">Claude 5.5 Sonnet Thinking Low</span>
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot inactive" data-model="claude-48-opus-max" onclick="toggleIndividualModel('claude-48-opus-max')">
-                <span class="model-dot-indicator dot-claude shape-square"></span>
+                <span class="model-dot-indicator dot-claude shape-square-twenty"></span>
                 <span class="model-dot-label">Claude 4.8 Opus Thinking Max</span>
               </div>
               <div class="model-dot inactive" data-model="claude-haiku" onclick="toggleIndividualModel('claude-haiku')">
@@ -2719,9 +2719,14 @@
             </div>
 
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
+              <div class="model-dot inactive" data-model="grok-47-expert"
+                onclick="toggleIndividualModel('grok-47-expert')">
+                <span class="model-dot-indicator dot-grok shape-triangle-code"></span>
+                <span class="model-dot-label">Grok 4.7 Expert</span>
+              </div>
               <div class="model-dot inactive" data-model="grok-46-expert"
                 onclick="toggleIndividualModel('grok-46-expert')">
-                <span class="model-dot-indicator dot-grok shape-square"></span>
+                <span class="model-dot-indicator dot-grok shape-dot-free"></span>
                 <span class="model-dot-label">Grok 4.6 Expert</span>
               </div>
             </div>
@@ -2783,14 +2788,14 @@
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot inactive" data-model="minimax-m3-thinking"
                 onclick="toggleIndividualModel('minimax-m3-thinking')">
-                <span class="model-dot-indicator dot-minimax shape-square"></span>
+                <span class="model-dot-indicator dot-minimax shape-square-twenty"></span>
                 <span class="model-dot-label">MiniMax M3 Thinking</span>
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot inactive" data-model="muse-spark-13"
                 onclick="toggleIndividualModel('muse-spark-13')">
-                <span class="model-dot-indicator dot-muse shape-triangle-right"></span>
+                <span class="model-dot-indicator dot-muse shape-triangle-code"></span>
                 <span class="model-dot-label">Muse Spark 1.3 Max</span>
               </div>
               <div class="model-dot inactive" data-model="muse-spark-11"
@@ -2807,14 +2812,9 @@
               <span class="filter-group-name">Non-reasoning models</span>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
-              <div class="model-dot" data-model="gpt-6-sol-instant"
-                onclick="toggleIndividualModel('gpt-6-sol-instant')">
-                <span class="model-dot-indicator dot-gpt"></span>
-                <span class="model-dot-label">GPT 6 Sol Instant</span>
-              </div>
               <div class="model-dot" data-model="gpt-6-luna-instant"
                 onclick="toggleIndividualModel('gpt-6-luna-instant')">
-                <span class="model-dot-indicator dot-gpt"></span>
+                <span class="model-dot-indicator dot-gpt shape-triangle-code"></span>
                 <span class="model-dot-label">GPT 6 Luna Instant</span>
               </div>
             </div>
@@ -2828,13 +2828,6 @@
                 onclick="toggleIndividualModel('gpt-56-luna-instant')">
                 <span class="model-dot-indicator dot-gpt"></span>
                 <span class="model-dot-label">GPT 5.6 Luna Instant</span>
-              </div>
-            </div>
-            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
-              <div class="model-dot inactive" data-model="claude-5-sonnet-high"
-                onclick="toggleIndividualModel('claude-5-sonnet-high')">
-                <span class="model-dot-indicator dot-claude"></span>
-                <span class="model-dot-label">Claude 5 Sonnet High</span>
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
@@ -3397,7 +3390,7 @@
       'gpt-free-thinking': "Used to be 1 per day for Free and 10 for Go, but was increased. The current limit is not public, nor if it is daily or weekly.",
       'gpt-luna-low-effort': "The thinking effort is not public. It is likely Low to reduce costs; otherwise, the only other likely configuration is GPT 5.6 Luna Medium.",
       'gpt-astra-high-effort': "The thinking effort is not public. High is assumed because it was the highest thinking effort selectable on GPT Pro when the thinking effort was possible to choose.",
-      'gpt-image-unknown': "GPT Image 2 limits are unknown. GPT Image 1 limits were 200/day for old Pro, 50/day for Plus, 5/day for Free."
+      'gpt-image-unknown': "GPT Image 2.5 limits are unknown. GPT Image 1 limits were 200/day for old Pro, 50/day for Plus, 5/day for Free."
     };
 
     function toSuperscript(num) {
@@ -3574,21 +3567,16 @@
       'gpt-6-astra-high': true,
       'gpt-6-astra-medium': true,
       'gpt-6-astra-low': false,
-      'gpt-6-sol-max': false,
-      'gpt-6-sol-xhigh': false,
-      'gpt-6-sol-high': true,
-      'gpt-6-sol-medium': true,
-      'gpt-6-sol-low': false,
+      'gpt-61-sol-max': false,
+      'gpt-61-sol-xhigh': false,
+      'gpt-61-sol-high': true,
+      'gpt-61-sol-medium': true,
+      'gpt-61-sol-low': false,
       'gpt-56-sol-max': false,
       'gpt-56-sol-xhigh': false,
       'gpt-56-sol-high': false,
       'gpt-56-sol-medium': false,
       'gpt-56-sol-low': false,
-      'gpt-56-terra-max': false,
-      'gpt-56-terra-xhigh': false,
-      'gpt-56-terra-high': false,
-      'gpt-56-terra-medium': false,
-      'gpt-56-terra-low': false,
       'gpt-6-luna-max': false,
       'gpt-6-luna-xhigh': false,
       'gpt-6-luna-high': false,
@@ -3599,16 +3587,15 @@
       'gpt-56-luna-high': false,
       'gpt-56-luna-medium': false,
       'gpt-56-luna-low': false,
-      'gpt-6-sol-instant': true,
       'gpt-6-luna-instant': true,
       'gpt-56-sol-instant': false,
       'gpt-56-luna-instant': false,
-      'gemini-38-flash-extended-high': true,
-      'gemini-38-flash-extended-medium': true,
-      'gemini-38-flash-extended-low': true,
-      'gemini-35-flash-lite-extended': true,
-      'gemini-31-pro': true,
-      'claude-haiku': true,    // Starts visible by default
+      'gemini-38-flash-extended-high': false,
+      'gemini-38-flash-extended-medium': false,
+      'gemini-38-flash-extended-low': false,
+      'gemini-35-flash-lite-extended': false,
+      'gemini-31-pro': false,
+      'claude-haiku': false,    // Starts hidden by default
       'claude-51-fable-low': false,    // Starts hidden by default
       'claude-51-fable-medium': false, // Starts hidden by default
       'claude-51-fable-high': false,   // Starts hidden by default
@@ -3619,12 +3606,16 @@
       'claude-55-opus-high': false, // Starts hidden by default
       'claude-55-opus-medium': false, // Starts hidden by default
       'claude-55-opus-low': false, // Starts hidden by default
-      'claude-5-sonnet': true,    // Starts visible by default
-      'claude-5-sonnet-high': true, // Starts visible by default
+      'claude-55-sonnet-max': false,
+      'claude-55-sonnet-extra': false,
+      'claude-55-sonnet-high': false,
+      'claude-55-sonnet-medium': false,
+      'claude-55-sonnet-low': false,
       'claude-48-opus-max': false, // Legacy model, starts hidden
-      'claude-haiku-nr': true,   // Starts visible by default
-      'glm-53-deep-think-max': true, // Starts visible by default
+      'claude-haiku-nr': false,   // Starts hidden by default
+      'glm-53-deep-think-max': false, // Starts hidden by default
       'glm-53-flash-deep-think-max': false, // Other recommended, starts hidden
+      'grok-47-expert': false,       // Other recommended, starts hidden
       'grok-46-expert': false,       // Other recommended, starts hidden
       'minimax-m3-thinking': false,   // Other recommended, starts hidden
       'muse-spark-13': false,         // Other recommended, starts hidden
@@ -3648,21 +3639,16 @@
       'gpt-6-astra-high': false,
       'gpt-6-astra-medium': false,
       'gpt-6-astra-low': false,
-      'gpt-6-sol-max': false,
-      'gpt-6-sol-xhigh': false,
-      'gpt-6-sol-high': false,
-      'gpt-6-sol-medium': false,
-      'gpt-6-sol-low': false,
+      'gpt-61-sol-max': false,
+      'gpt-61-sol-xhigh': false,
+      'gpt-61-sol-high': false,
+      'gpt-61-sol-medium': false,
+      'gpt-61-sol-low': false,
       'gpt-56-sol-max': false,
       'gpt-56-sol-xhigh': false,
       'gpt-56-sol-high': false,
       'gpt-56-sol-medium': false,
       'gpt-56-sol-low': false,
-      'gpt-56-terra-max': false,
-      'gpt-56-terra-xhigh': false,
-      'gpt-56-terra-high': false,
-      'gpt-56-terra-medium': false,
-      'gpt-56-terra-low': false,
       'gpt-6-luna-max': false,
       'gpt-6-luna-xhigh': false,
       'gpt-6-luna-high': false,
@@ -3673,7 +3659,6 @@
       'gpt-56-luna-high': false,
       'gpt-56-luna-medium': false,
       'gpt-56-luna-low': false,
-      'gpt-6-sol-instant': false,
       'gpt-6-luna-instant': false,
       'gpt-56-sol-instant': false,
       'gpt-56-luna-instant': false,
@@ -3693,12 +3678,16 @@
       'claude-55-opus-high': false, // Starts enabled by default
       'claude-55-opus-medium': false, // Starts enabled by default
       'claude-55-opus-low': false, // Starts enabled by default
-      'claude-5-sonnet': false,   // Starts enabled by default
-      'claude-5-sonnet-high': true, // Starts explicitly disabled
+      'claude-55-sonnet-max': false,
+      'claude-55-sonnet-extra': false,
+      'claude-55-sonnet-high': false,
+      'claude-55-sonnet-medium': false,
+      'claude-55-sonnet-low': false,
       'claude-48-opus-max': false, // Starts enabled by default
       'claude-haiku-nr': true,    // Starts explicitly disabled
       'glm-53-deep-think-max': false, // Starts enabled by default
       'glm-53-flash-deep-think-max': false, // Other recommended
+      'grok-47-expert': false,          // Other recommended
       'grok-46-expert': false,          // Other recommended
       'minimax-m3-thinking': false,      // Other recommended
       'muse-spark-13': false,            // Other recommended
@@ -3725,19 +3714,15 @@
 
     // Model groups for group toggles
     const modelGroups = {
-      'claude': ['claude-51-fable-low', 'claude-51-fable-medium', 'claude-51-fable-high', 'claude-51-fable-extra', 'claude-51-fable-max', 'claude-55-opus-max', 'claude-55-opus-extra', 'claude-55-opus-high', 'claude-55-opus-medium', 'claude-55-opus-low', 'claude-5-sonnet', 'claude-5-sonnet-high', 'claude-48-opus-max', 'claude-haiku', 'claude-haiku-nr'],
-      'reasoning': ['gpt-6-astra-max', 'gpt-6-astra-xhigh', 'gpt-6-astra-high', 'gpt-6-astra-medium', 'gpt-6-astra-low', 'gpt-6-sol-max', 'gpt-6-sol-xhigh', 'gpt-6-sol-high', 'gpt-6-sol-medium', 'gpt-6-sol-low', 'gpt-56-sol-max', 'gpt-56-sol-xhigh', 'gpt-56-sol-high', 'gpt-56-sol-medium', 'gpt-56-sol-low', 'gpt-56-terra-max', 'gpt-56-terra-xhigh', 'gpt-56-terra-high', 'gpt-56-terra-medium', 'gpt-56-terra-low', 'gpt-6-luna-max', 'gpt-6-luna-xhigh', 'gpt-6-luna-high', 'gpt-6-luna-medium', 'gpt-6-luna-low', 'gpt-56-luna-max', 'gpt-56-luna-xhigh', 'gpt-56-luna-high', 'gpt-56-luna-medium', 'gpt-56-luna-low', 'gemini-38-flash-extended-high', 'gemini-38-flash-extended-medium', 'gemini-38-flash-extended-low', 'gemini-35-flash-lite-extended', 'gemini-31-pro', 'claude-51-fable-low', 'claude-51-fable-medium', 'claude-51-fable-high', 'claude-51-fable-extra', 'claude-51-fable-max', 'claude-55-opus-max', 'claude-55-opus-extra', 'claude-55-opus-high', 'claude-55-opus-medium', 'claude-55-opus-low', 'claude-5-sonnet', 'claude-48-opus-max', 'claude-haiku', 'glm-53-deep-think-max', 'glm-53-flash-deep-think-max', 'grok-46-expert', 'minimax-m3-thinking', 'muse-spark-13', 'muse-spark-11', 'deepseek-v41-flash-deep-think', 'mimo-v26-pro', 'mimo-v26-flash', 'qwen-38-max', 'qwen-38-omni-flash-thinking', 'kimi-k3-max', 'kimi-k26-thinking'],
-      'instant': ['gpt-6-sol-instant', 'gpt-56-sol-instant', 'gpt-6-luna-instant', 'gpt-56-luna-instant', 'claude-5-sonnet-high', 'claude-haiku-nr', 'kimi-k26-instant'],
+      'claude': ['claude-51-fable-low', 'claude-51-fable-medium', 'claude-51-fable-high', 'claude-51-fable-extra', 'claude-51-fable-max', 'claude-55-opus-max', 'claude-55-opus-extra', 'claude-55-opus-high', 'claude-55-opus-medium', 'claude-55-opus-low', 'claude-55-sonnet-max', 'claude-55-sonnet-extra', 'claude-55-sonnet-high', 'claude-55-sonnet-medium', 'claude-55-sonnet-low', 'claude-48-opus-max', 'claude-haiku', 'claude-haiku-nr'],
+      'reasoning': ['gpt-6-astra-max', 'gpt-6-astra-xhigh', 'gpt-6-astra-high', 'gpt-6-astra-medium', 'gpt-6-astra-low', 'gpt-61-sol-max', 'gpt-61-sol-xhigh', 'gpt-61-sol-high', 'gpt-61-sol-medium', 'gpt-61-sol-low', 'gpt-56-sol-max', 'gpt-56-sol-xhigh', 'gpt-56-sol-high', 'gpt-56-sol-medium', 'gpt-56-sol-low', 'gpt-6-luna-max', 'gpt-6-luna-xhigh', 'gpt-6-luna-high', 'gpt-6-luna-medium', 'gpt-6-luna-low', 'gpt-56-luna-max', 'gpt-56-luna-xhigh', 'gpt-56-luna-high', 'gpt-56-luna-medium', 'gpt-56-luna-low', 'gemini-38-flash-extended-high', 'gemini-38-flash-extended-medium', 'gemini-38-flash-extended-low', 'gemini-35-flash-lite-extended', 'gemini-31-pro', 'claude-51-fable-low', 'claude-51-fable-medium', 'claude-51-fable-high', 'claude-51-fable-extra', 'claude-51-fable-max', 'claude-55-opus-max', 'claude-55-opus-extra', 'claude-55-opus-high', 'claude-55-opus-medium', 'claude-55-opus-low', 'claude-55-sonnet-max', 'claude-55-sonnet-extra', 'claude-55-sonnet-high', 'claude-55-sonnet-medium', 'claude-55-sonnet-low', 'claude-48-opus-max', 'claude-haiku', 'glm-53-deep-think-max', 'glm-53-flash-deep-think-max', 'grok-47-expert', 'grok-46-expert', 'minimax-m3-thinking', 'muse-spark-13', 'muse-spark-11', 'deepseek-v41-flash-deep-think', 'mimo-v26-pro', 'mimo-v26-flash', 'qwen-38-max', 'qwen-38-omni-flash-thinking', 'kimi-k3-max', 'kimi-k26-thinking'],
+      'instant': ['gpt-56-sol-instant', 'gpt-6-luna-instant', 'gpt-56-luna-instant', 'claude-haiku-nr', 'kimi-k26-instant'],
       'chatgpt-pro': [],
-      'other': ['glm-53-deep-think-max', 'glm-53-flash-deep-think-max', 'grok-46-expert', 'minimax-m3-thinking', 'muse-spark-13', 'muse-spark-11', 'deepseek-v41-flash-deep-think', 'mimo-v26-pro', 'mimo-v26-flash', 'qwen-38-max', 'qwen-38-omni-flash-thinking', 'kimi-k3-max', 'kimi-k26-thinking', 'kimi-k26-instant'],
+      'other': ['glm-53-deep-think-max', 'glm-53-flash-deep-think-max', 'grok-47-expert', 'grok-46-expert', 'minimax-m3-thinking', 'muse-spark-13', 'muse-spark-11', 'deepseek-v41-flash-deep-think', 'mimo-v26-pro', 'mimo-v26-flash', 'qwen-38-max', 'qwen-38-omni-flash-thinking', 'kimi-k3-max', 'kimi-k26-thinking', 'kimi-k26-instant'],
       'legacy': [
         'claude-48-opus-max', 'kimi-k26-thinking', 'kimi-k26-instant',
-        'gpt-56-sol-max', 'gpt-56-sol-xhigh', 'gpt-56-sol-high', 'gpt-56-sol-medium', 'gpt-56-sol-low',
-        'gpt-56-terra-max', 'gpt-56-terra-xhigh', 'gpt-56-terra-high', 'gpt-56-terra-medium', 'gpt-56-terra-low',
-        'gpt-56-luna-max', 'gpt-56-luna-xhigh', 'gpt-56-luna-high', 'gpt-56-luna-medium', 'gpt-56-luna-low',
-        'gpt-56-sol-instant', 'gpt-56-luna-instant'
       ],
-      'coding': ['gpt-6-astra-max', 'gpt-6-astra-xhigh', 'gpt-6-astra-medium', 'gpt-6-astra-low', 'gpt-6-sol-max', 'gpt-6-sol-low', 'gpt-56-sol-max', 'gpt-56-sol-low', 'gpt-56-terra-max', 'gpt-56-terra-xhigh', 'gpt-56-terra-high', 'gpt-56-terra-medium', 'gpt-56-terra-low', 'gpt-6-luna-max', 'gpt-6-luna-xhigh', 'gpt-6-luna-high', 'gpt-56-luna-max', 'gpt-56-luna-xhigh', 'gpt-56-luna-high', 'gemini-38-flash-extended-high', 'muse-spark-13']
+      'coding': ['gpt-6-astra-max', 'gpt-6-astra-xhigh', 'gpt-6-astra-medium', 'gpt-6-astra-low', 'gpt-61-sol-max', 'gpt-61-sol-low', 'gpt-56-sol-max', 'gpt-56-sol-low', 'gpt-6-luna-max', 'gpt-6-luna-xhigh', 'gpt-6-luna-high', 'gpt-56-luna-max', 'gpt-56-luna-xhigh', 'gpt-56-luna-high', 'gemini-38-flash-extended-high', 'muse-spark-13']
     };
 
     // Model constraints: which group toggles must ALL be active for a model to be visible
@@ -3748,35 +3733,29 @@
       'gpt-6-astra-high': ['reasoning'],                      // Reasoning model
       'gpt-6-astra-medium': ['reasoning', 'coding'],          // Coding-app reasoning model
       'gpt-6-astra-low': ['reasoning', 'coding'],             // Coding-app reasoning model
-      'gpt-6-sol-max': ['reasoning', 'coding'],
-      'gpt-6-sol-xhigh': ['reasoning'],
-      'gpt-6-sol-high': ['reasoning'],
-      'gpt-6-sol-medium': ['reasoning'],
-      'gpt-6-sol-low': ['reasoning', 'coding'],
-      'gpt-56-sol-max': ['reasoning', 'coding', 'legacy'],         // Legacy coding-only reasoning model
-      'gpt-56-sol-xhigh': ['reasoning', 'legacy'],                 // Legacy reasoning model
-      'gpt-56-sol-high': ['reasoning', 'legacy'],                  // Legacy reasoning model
-      'gpt-56-sol-medium': ['reasoning', 'legacy'],                // Legacy reasoning model
-      'gpt-56-sol-low': ['reasoning', 'coding', 'legacy'],         // Legacy coding-only reasoning model
-      'gpt-56-terra-max': ['reasoning', 'coding', 'legacy'],       // Legacy coding-only reasoning model
-      'gpt-56-terra-xhigh': ['reasoning', 'coding', 'legacy'],     // Legacy coding-only reasoning model
-      'gpt-56-terra-high': ['reasoning', 'coding', 'legacy'],      // Legacy coding-only reasoning model
-      'gpt-56-terra-medium': ['reasoning', 'coding', 'legacy'],    // Legacy coding-only reasoning model
-      'gpt-56-terra-low': ['reasoning', 'coding', 'legacy'],       // Legacy coding-only reasoning model
+      'gpt-61-sol-max': ['reasoning', 'coding'],
+      'gpt-61-sol-xhigh': ['reasoning'],
+      'gpt-61-sol-high': ['reasoning'],
+      'gpt-61-sol-medium': ['reasoning'],
+      'gpt-61-sol-low': ['reasoning', 'coding'],
+      'gpt-56-sol-max': ['reasoning', 'coding'],
+      'gpt-56-sol-xhigh': ['reasoning'],
+      'gpt-56-sol-high': ['reasoning'],
+      'gpt-56-sol-medium': ['reasoning'],
+      'gpt-56-sol-low': ['reasoning', 'coding'],
       'gpt-6-luna-max': ['reasoning', 'coding'],
       'gpt-6-luna-xhigh': ['reasoning', 'coding'],
       'gpt-6-luna-high': ['reasoning', 'coding'],
       'gpt-6-luna-medium': ['reasoning'],
       'gpt-6-luna-low': ['reasoning'],
-      'gpt-56-luna-max': ['reasoning', 'coding', 'legacy'],        // Legacy coding-only reasoning model
-      'gpt-56-luna-xhigh': ['reasoning', 'coding', 'legacy'],      // Legacy coding-only reasoning model
-      'gpt-56-luna-high': ['reasoning', 'coding', 'legacy'],       // Legacy coding-only reasoning model
-      'gpt-56-luna-medium': ['reasoning', 'legacy'],                // Legacy reasoning model
-      'gpt-56-luna-low': ['reasoning', 'legacy'],                   // Legacy reasoning model
-      'gpt-6-sol-instant': ['instant'],
+      'gpt-56-luna-max': ['reasoning', 'coding'],
+      'gpt-56-luna-xhigh': ['reasoning', 'coding'],
+      'gpt-56-luna-high': ['reasoning', 'coding'],
+      'gpt-56-luna-medium': ['reasoning'],
+      'gpt-56-luna-low': ['reasoning'],
       'gpt-6-luna-instant': ['instant'],
-      'gpt-56-sol-instant': ['instant', 'legacy'],       // Legacy non-reasoning model
-      'gpt-56-luna-instant': ['instant', 'legacy'],      // Legacy non-reasoning model
+      'gpt-56-sol-instant': ['instant'],
+      'gpt-56-luna-instant': ['instant'],
       'gemini-38-flash-extended-high': ['reasoning', 'coding'], // Coding-app reasoning model
       'gemini-38-flash-extended-medium': ['reasoning'], // Only needs Reasoning
       'gemini-38-flash-extended-low': ['reasoning'],    // Only needs Reasoning
@@ -3792,13 +3771,17 @@
       'claude-55-opus-high': ['claude', 'reasoning'],    // Needs both Claude AND Reasoning to be on
       'claude-55-opus-medium': ['claude', 'reasoning'],  // Needs both Claude AND Reasoning to be on
       'claude-55-opus-low': ['claude', 'reasoning'],     // Needs both Claude AND Reasoning to be on
+      'claude-55-sonnet-max': ['claude', 'reasoning'],
+      'claude-55-sonnet-extra': ['claude', 'reasoning'],
+      'claude-55-sonnet-high': ['claude', 'reasoning'],
+      'claude-55-sonnet-medium': ['claude', 'reasoning'],
+      'claude-55-sonnet-low': ['claude', 'reasoning'],
       'claude-haiku': ['claude', 'reasoning'],         // Needs both Claude AND Reasoning to be on
-      'claude-5-sonnet': ['claude', 'reasoning'],      // Needs both Claude AND Reasoning to be on
-      'claude-5-sonnet-high': ['claude', 'instant'], // Needs both Claude AND Non-reasoning to be on
       'claude-48-opus-max': ['claude', 'reasoning', 'legacy'], // Needs Claude, Reasoning, AND Legacy to be on
       'claude-haiku-nr': ['claude', 'instant'],         // Needs both Claude AND Non-reasoning to be on
       'glm-53-deep-think-max': ['other', 'reasoning'],        // Needs both Other AND Reasoning to be on
       'glm-53-flash-deep-think-max': ['other', 'reasoning'],  // Needs both Other AND Reasoning to be on
+      'grok-47-expert': ['other', 'reasoning'],              // Needs both Other AND Reasoning to be on
       'grok-46-expert': ['other', 'reasoning'],              // Needs both Other AND Reasoning to be on
       'minimax-m3-thinking': ['other', 'reasoning'],          // Needs both Other AND Reasoning to be on
       'muse-spark-13': ['other', 'reasoning', 'coding'],       // Needs Other, Reasoning, AND Coding to be on
@@ -4250,12 +4233,24 @@
       'fallback': '139, 92,  246'    // purple
     };
 
-    // Legacy-colored models that remain independent from the Legacy Models
-    // toggle; their visibility still follows their normal model groups.
-    const LEGACY_COLOR_ONLY_MODEL_IDS = new Set([
-      'gemini-31-pro',
+    // Models with legacy skin but no membership in the Legacy Models toggle.
+    const LEGACY_SKIN_MODEL_IDS = new Set([
       'claude-haiku',
       'claude-haiku-nr',
+      'gemini-31-pro',
+      'gpt-56-luna-max',
+      'gpt-56-luna-xhigh',
+      'gpt-56-luna-high',
+      'gpt-56-luna-medium',
+      'gpt-56-luna-low',
+      'gpt-56-sol-max',
+      'gpt-56-sol-xhigh',
+      'gpt-56-sol-high',
+      'gpt-56-sol-medium',
+      'gpt-56-sol-low',
+      'gpt-56-sol-instant',
+      'gpt-56-luna-instant',
+      'grok-46-expert',
       'muse-spark-11'
     ]);
 
@@ -4274,8 +4269,14 @@
       return BRAND_RGB['fallback'];
     }
 
+    function getModelLegacyType(modelId) {
+      if (modelGroups.legacy.includes(modelId)) return 'legacy';
+      if (LEGACY_SKIN_MODEL_IDS.has(modelId)) return 'legacy-skin';
+      return null;
+    }
+
     function isLegacyColorModel(modelId) {
-      return LEGACY_COLOR_ONLY_MODEL_IDS.has(modelId) || modelGroups.legacy.includes(modelId);
+      return getModelLegacyType(modelId) !== null;
     }
 
     // Generic legacy palette: preserve the brand hue, reduce chroma, and raise
@@ -4364,21 +4365,16 @@
       { modelId: 'gpt-6-astra-high', label: '⌘ GPT 6 Astra High', correct: 61.13, abstention: 21.47, hallucination: 17.40, sortOrder: -2 },
       { modelId: 'gpt-6-astra-medium', label: '⌘ GPT 6 Astra Medium', correct: 60.57, abstention: 21.08, hallucination: 18.35, sortOrder: -1 },
       { modelId: 'gpt-6-astra-low', label: '⌘ GPT 6 Astra Low', correct: 59.53, abstention: 21.49, hallucination: 18.98, sortOrder: 0 },
-      { modelId: 'gpt-6-sol-max', label: '⌘ GPT 6 Sol Max', correct: 54.48, abstention: 18.15, hallucination: 27.37, sortOrder: 0.1 },
-      { modelId: 'gpt-6-sol-xhigh', label: '⌘ GPT 6 Sol Extra High', correct: 53.85, abstention: 18.97, hallucination: 27.18, sortOrder: 0.2 },
-      { modelId: 'gpt-6-sol-high', label: '⌘ GPT 6 Sol High', correct: 53.72, abstention: 19.38, hallucination: 26.90, sortOrder: 0.3 },
-      { modelId: 'gpt-6-sol-medium', label: '⌘ GPT 6 Sol Medium', correct: 53.45, abstention: 20.12, hallucination: 26.43, sortOrder: 0.4 },
-      { modelId: 'gpt-6-sol-low', label: '⌘ GPT 6 Sol Low', correct: 51.25, abstention: 24.01, hallucination: 24.74, sortOrder: 0.5 },
+      { modelId: 'gpt-61-sol-max', label: '⌘ GPT 6.1 Sol Max', correct: 62.10, abstention: 17.33, hallucination: 20.57, sortOrder: 0.01 },
+      { modelId: 'gpt-61-sol-xhigh', label: '⌘ GPT 6.1 Sol Extra High', correct: 60.82, abstention: 19.23, hallucination: 19.95, sortOrder: 0.02 },
+      { modelId: 'gpt-61-sol-high', label: '⌘ GPT 6.1 Sol High', correct: 60.80, abstention: 19.85, hallucination: 19.35, sortOrder: 0.03 },
+      { modelId: 'gpt-61-sol-medium', label: '⌘ GPT 6.1 Sol Medium', correct: 60.40, abstention: 19.15, hallucination: 20.45, sortOrder: 0.04 },
+      { modelId: 'gpt-61-sol-low', label: '⌘ GPT 6.1 Sol Low', correct: 58.87, abstention: 19.90, hallucination: 21.23, sortOrder: 0.05 },
       { modelId: 'gpt-56-sol-max', label: '⌘ GPT 5.6 Sol Max', correct: 59.40, abstention: 3.17, hallucination: 37.43, sortOrder: 1 },
       { modelId: 'gpt-56-sol-xhigh', label: '⌘ GPT 5.6 Sol Extra High', correct: 58.82, abstention: 3.35, hallucination: 37.83, sortOrder: 2 },
       { modelId: 'gpt-56-sol-high', label: '⌘ GPT 5.6 Sol High', correct: 58.35, abstention: 3.67, hallucination: 37.98, sortOrder: 3 },
       { modelId: 'gpt-56-sol-medium', label: '⌘ GPT 5.6 Sol Medium', correct: 57.75, abstention: 3.90, hallucination: 38.35, sortOrder: 4 },
       { modelId: 'gpt-56-sol-low', label: '⌘ GPT 5.6 Sol Low', correct: 57.17, abstention: 4.53, hallucination: 38.30, sortOrder: 4.5 },
-      { modelId: 'gpt-56-terra-max', label: '⌘ GPT 5.6 Terra Max', correct: 46.80, abstention: 6.45, hallucination: 46.75, sortOrder: 5 },
-      { modelId: 'gpt-56-terra-xhigh', label: '⌘ GPT 5.6 Terra Extra High', correct: 45.52, abstention: 5.98, hallucination: 48.50, sortOrder: 6 },
-      { modelId: 'gpt-56-terra-high', label: '⌘ GPT 5.6 Terra High', correct: 45.48, abstention: 5.57, hallucination: 48.95, sortOrder: 7 },
-      { modelId: 'gpt-56-terra-medium', label: '⌘ GPT 5.6 Terra Medium', correct: 44.60, abstention: 5.67, hallucination: 49.73, sortOrder: 8 },
-      { modelId: 'gpt-56-terra-low', label: '⌘ GPT 5.6 Terra Low', correct: 43.73, abstention: 5.70, hallucination: 50.57, sortOrder: 8.5 },
       { modelId: 'gpt-6-luna-max', label: '⌘ GPT 6 Luna Max', correct: 43.78, abstention: 13.08, hallucination: 43.14, sortOrder: 8.6 },
       { modelId: 'gpt-6-luna-xhigh', label: '⌘ GPT 6 Luna Extra High', correct: 44.17, abstention: 9.83, hallucination: 46.00, sortOrder: 8.7 },
       { modelId: 'gpt-6-luna-high', label: '⌘ GPT 6 Luna High', correct: 42.80, abstention: 8.90, hallucination: 48.30, sortOrder: 8.8 },
@@ -4406,14 +4402,18 @@
       { modelId: 'claude-55-opus-high', label: '❋ Claude 5.5 Opus Thinking High', correct: 64.58, abstention: 11.47, hallucination: 23.95, sortOrder: 63.52 },
       { modelId: 'claude-55-opus-extra', label: '❋ Claude 5.5 Opus Thinking Extra', correct: 65.38, abstention: 11.89, hallucination: 22.73, sortOrder: 63.53 },
       { modelId: 'claude-55-opus-max', label: '❋ Claude 5.5 Opus Thinking Max', correct: 66.22, abstention: 13.98, hallucination: 19.80, sortOrder: 63.54 },
-      { modelId: 'claude-5-sonnet', label: '❋ Claude 5 Sonnet Thinking Max', correct: 40.05, abstention: 36.35, hallucination: 23.60, sortOrder: 66.8 },
-      { modelId: 'claude-5-sonnet-high', label: '❋ Claude 5 Sonnet High', correct: 33.80, abstention: 31.75, hallucination: 34.45, sortOrder: 67.8 },
+      { modelId: 'claude-55-sonnet-low', label: '❋ Claude 5.5 Sonnet Thinking Low', correct: 46.30, abstention: 26.76, hallucination: 26.94, sortOrder: 63.60 },
+      { modelId: 'claude-55-sonnet-medium', label: '❋ Claude 5.5 Sonnet Thinking Medium', correct: 47.17, abstention: 25.77, hallucination: 27.06, sortOrder: 63.61 },
+      { modelId: 'claude-55-sonnet-high', label: '❋ Claude 5.5 Sonnet Thinking High', correct: 51.98, abstention: 16.98, hallucination: 31.04, sortOrder: 63.62 },
+      { modelId: 'claude-55-sonnet-extra', label: '❋ Claude 5.5 Sonnet Thinking Extra', correct: 53.03, abstention: 17.44, hallucination: 29.53, sortOrder: 63.63 },
+      { modelId: 'claude-55-sonnet-max', label: '❋ Claude 5.5 Sonnet Thinking Max', correct: 53.95, abstention: 24.40, hallucination: 21.65, sortOrder: 63.64 },
       { modelId: 'claude-48-opus-max', label: '❋ Claude 4.8 Opus Thinking Max', correct: 46.60, abstention: 34.23, hallucination: 19.17, sortOrder: 89 },
       { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', correct: 18.02, abstention: 59.60, hallucination: 22.38, sortOrder: 90 },
       { modelId: 'claude-haiku-nr', label: '❋ Claude 4.5 Haiku', correct: 14.43, abstention: 63.57, hallucination: 22.00, sortOrder: 95 },
       { modelId: 'glm-53-deep-think-max', label: 'Ƶ GLM 5.3 Deep Think Max', correct: 33.85, abstention: 46.60, hallucination: 19.55, sortOrder: 96.5 },
       { modelId: 'glm-53-flash-deep-think-max', label: 'Ƶ GLM 5.3 Flash Deep Think Max', correct: 27.50, abstention: 52.47, hallucination: 20.03, sortOrder: 96.6 },
-      { modelId: 'grok-46-expert', label: 'Ø Grok 4.6 Expert', correct: 48.23, abstention: 34.02, hallucination: 17.75, sortOrder: 109.3 },
+      { modelId: 'grok-47-expert', label: 'Ø Grok 4.7 Expert', correct: 47.45, abstention: 37.13, hallucination: 15.42, sortOrder: 109.2 },
+      { modelId: 'grok-46-expert', label: 'Ø Grok 4.6 Expert', correct: 43, abstention: 43.31, hallucination: 13.69, sortOrder: 109.3 },
       { modelId: 'minimax-m3-thinking', label: '≋ MiniMax M3 Thinking', correct: 16.70, abstention: 67.95, hallucination: 15.35, sortOrder: 116.5 },
       { modelId: 'muse-spark-13', label: 'ƒ Muse Spark 1.3 Max', correct: 43.83, abstention: 37.27, hallucination: 18.90, sortOrder: 117.0 },
       { modelId: 'muse-spark-11', label: 'ƒ Muse Spark 1.1 Thinking', correct: 52.05, abstention: 23.98, hallucination: 23.97, sortOrder: 117.25 },
@@ -4926,6 +4926,19 @@
         sortOrder: -4
       },
       {
+        modelId: 'gpt-61-sol-max',
+        label: 'GPT 6.1 Sol Max',
+        borderColor: 'rgba(16, 163, 127, 0.95)',
+        backgroundColor: 'rgba(16, 163, 127, 0.95)',
+        borderWidth: 2,
+        tension: 0.3,
+        pointRadius: 6,
+        pointHoverRadius: 7,
+        pointBackgroundColor: 'rgba(16, 163, 127, 0.95)',
+        spanGaps: false,
+        sortOrder: 0.01
+      },
+      {
         modelId: 'gpt-56-sol-max',
         label: 'GPT 5.6 Sol Max',
         borderColor: 'rgba(16, 163, 127, 0.95)',
@@ -4937,19 +4950,6 @@
         pointBackgroundColor: 'rgba(16, 163, 127, 0.95)',
         spanGaps: false,
         sortOrder: 1
-      },
-      {
-        modelId: 'gpt-56-terra-max',
-        label: 'GPT 5.6 Terra Max',
-        borderColor: 'rgba(16, 163, 127, 0.8)',
-        backgroundColor: 'rgba(16, 163, 127, 0.8)',
-        borderWidth: 2,
-        tension: 0.3,
-        pointRadius: 5,
-        pointHoverRadius: 6,
-        pointBackgroundColor: 'rgba(16, 163, 127, 0.8)',
-        spanGaps: false,
-        sortOrder: 5
       },
       {
         modelId: 'gpt-56-luna-max',
@@ -4978,8 +4978,8 @@
         sortOrder: 36
       },
       {
-        modelId: 'claude-5-sonnet',
-        label: 'Claude 5 Sonnet Thinking Max',
+        modelId: 'claude-55-sonnet-max',
+        label: 'Claude 5.5 Sonnet Thinking Max',
         borderColor: 'rgba(218, 119, 87, 0.8)',
         backgroundColor: 'rgba(218, 119, 87, 0.8)',
         borderWidth: 2,
@@ -4988,7 +4988,7 @@
         pointHoverRadius: 6,
         pointBackgroundColor: 'rgba(218, 119, 87, 0.8)',
         spanGaps: false,
-        sortOrder: 66.8
+        sortOrder: 63.64
       },
       {
         modelId: 'claude-48-opus-max',
@@ -5093,21 +5093,16 @@
       { modelId: 'gpt-6-astra-high', label: '⌘ GPT 6 Astra High', score: 80, sortOrder: -2 },
       { modelId: 'gpt-6-astra-medium', label: '⌘ GPT 6 Astra Medium', score: 79.7, sortOrder: -1 },
       { modelId: 'gpt-6-astra-low', label: '⌘ GPT 6 Astra Low', score: 80, sortOrder: 0 },
-      { modelId: 'gpt-6-sol-max', label: '⌘ GPT 6 Sol Max', score: 83.7, sortOrder: 0.1 },
-      { modelId: 'gpt-6-sol-xhigh', label: '⌘ GPT 6 Sol Extra High', score: 81.3, sortOrder: 0.2 },
-      { modelId: 'gpt-6-sol-high', label: '⌘ GPT 6 Sol High', score: 83.7, sortOrder: 0.3 },
-      { modelId: 'gpt-6-sol-medium', label: '⌘ GPT 6 Sol Medium', score: 82.3, sortOrder: 0.4 },
-      { modelId: 'gpt-6-sol-low', label: '⌘ GPT 6 Sol Low', score: 79.3, sortOrder: 0.5 },
+      { modelId: 'gpt-61-sol-max', label: '⌘ GPT 6.1 Sol Max', score: 83, sortOrder: 0.01 },
+      { modelId: 'gpt-61-sol-xhigh', label: '⌘ GPT 6.1 Sol Extra High', score: 79.7, sortOrder: 0.02 },
+      { modelId: 'gpt-61-sol-high', label: '⌘ GPT 6.1 Sol High', score: 82.3, sortOrder: 0.03 },
+      { modelId: 'gpt-61-sol-medium', label: '⌘ GPT 6.1 Sol Medium', score: 83.3, sortOrder: 0.04 },
+      { modelId: 'gpt-61-sol-low', label: '⌘ GPT 6.1 Sol Low', score: 84, sortOrder: 0.05 },
       { modelId: 'gpt-56-sol-max', label: '⌘ GPT 5.6 Sol Max', score: 84, sortOrder: 1 },
       { modelId: 'gpt-56-sol-xhigh', label: '⌘ GPT 5.6 Sol Extra High', score: 82.3, sortOrder: 2 },
       { modelId: 'gpt-56-sol-high', label: '⌘ GPT 5.6 Sol High', score: 81.7, sortOrder: 3 },
       { modelId: 'gpt-56-sol-medium', label: '⌘ GPT 5.6 Sol Medium', score: 80.3, sortOrder: 4 },
       { modelId: 'gpt-56-sol-low', label: '⌘ GPT 5.6 Sol Low', score: 78, sortOrder: 4.5 },
-      { modelId: 'gpt-56-terra-max', label: '⌘ GPT 5.6 Terra Max', score: 83, sortOrder: 5 },
-      { modelId: 'gpt-56-terra-xhigh', label: '⌘ GPT 5.6 Terra Extra High', score: 79, sortOrder: 6 },
-      { modelId: 'gpt-56-terra-high', label: '⌘ GPT 5.6 Terra High', score: 77.7, sortOrder: 7 },
-      { modelId: 'gpt-56-terra-medium', label: '⌘ GPT 5.6 Terra Medium', score: 74, sortOrder: 8 },
-      { modelId: 'gpt-56-terra-low', label: '⌘ GPT 5.6 Terra Low', score: 71.3, sortOrder: 8.5 },
       { modelId: 'gpt-6-luna-max', label: '⌘ GPT 6 Luna Max', score: 83.3, sortOrder: 8.6 },
       { modelId: 'gpt-6-luna-xhigh', label: '⌘ GPT 6 Luna Extra High', score: 80, sortOrder: 8.7 },
       { modelId: 'gpt-6-luna-high', label: '⌘ GPT 6 Luna High', score: 79.3, sortOrder: 8.8 },
@@ -5118,7 +5113,6 @@
       { modelId: 'gpt-56-luna-high', label: '⌘ GPT 5.6 Luna High', score: 80.3, sortOrder: 11 },
       { modelId: 'gpt-56-luna-medium', label: '⌘ GPT 5.6 Luna Medium', score: 75, sortOrder: 12 },
       { modelId: 'gpt-56-luna-low', label: '⌘ GPT 5.6 Luna Low', score: 70, sortOrder: 12.5 },
-      { modelId: 'gpt-6-sol-instant', label: '⌘ GPT 6 Sol Instant', score: 64, sortOrder: 12.9 },
       { modelId: 'gpt-6-luna-instant', label: '⌘ GPT 6 Luna Instant', score: 39.7, sortOrder: 13.9 },
       { modelId: 'gpt-56-sol-instant', label: '⌘ GPT 5.6 Sol Instant', score: 62.3, sortOrder: 13 },
       { modelId: 'gpt-56-luna-instant', label: '⌘ GPT 5.6 Luna Instant', score: 42.7, sortOrder: 14 },
@@ -5137,14 +5131,18 @@
       { modelId: 'claude-55-opus-high', label: '❋ Claude 5.5 Opus Thinking High', score: 82.7, sortOrder: 63.52 },
       { modelId: 'claude-55-opus-extra', label: '❋ Claude 5.5 Opus Thinking Extra', score: 84.7, sortOrder: 63.53 },
       { modelId: 'claude-55-opus-max', label: '❋ Claude 5.5 Opus Thinking Max', score: 84.7, sortOrder: 63.54 },
-      { modelId: 'claude-5-sonnet', label: '❋ Claude 5 Sonnet Thinking Max', score: 82, sortOrder: 66.8 },
-      { modelId: 'claude-5-sonnet-high', label: '❋ Claude 5 Sonnet High', score: 70, sortOrder: 67.8 },
+      { modelId: 'claude-55-sonnet-low', label: '❋ Claude 5.5 Sonnet Thinking Low', score: 76, sortOrder: 63.60 },
+      { modelId: 'claude-55-sonnet-medium', label: '❋ Claude 5.5 Sonnet Thinking Medium', score: 76.3, sortOrder: 63.61 },
+      { modelId: 'claude-55-sonnet-high', label: '❋ Claude 5.5 Sonnet Thinking High', score: 78, sortOrder: 63.62 },
+      { modelId: 'claude-55-sonnet-extra', label: '❋ Claude 5.5 Sonnet Thinking Extra', score: 79.7, sortOrder: 63.63 },
+      { modelId: 'claude-55-sonnet-max', label: '❋ Claude 5.5 Sonnet Thinking Max', score: 82.7, sortOrder: 63.64 },
       { modelId: 'claude-48-opus-max', label: '❋ Claude 4.8 Opus Thinking Max', score: 77.7, sortOrder: 89 },
       { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', score: 74.3, sortOrder: 90 },
       { modelId: 'claude-haiku-nr', label: '❋ Claude 4.5 Haiku', score: 49.7, sortOrder: 95 },
       { modelId: 'glm-53-deep-think-max', label: 'Ƶ GLM 5.3 Deep Think Max', score: 79.7, sortOrder: 96.5 },
       { modelId: 'glm-53-flash-deep-think-max', label: 'Ƶ GLM 5.3 Flash Deep Think Max', score: 80, sortOrder: 96.6 },
-      { modelId: 'grok-46-expert', label: 'Ø Grok 4.6 Expert', score: 80.3, sortOrder: 109.3 },
+      { modelId: 'grok-47-expert', label: 'Ø Grok 4.7 Expert', score: 76.7, sortOrder: 109.2 },
+      { modelId: 'grok-46-expert', label: 'Ø Grok 4.6 Expert', score: 81, sortOrder: 109.3 },
       { modelId: 'minimax-m3-thinking', label: '≋ MiniMax M3 Thinking', score: 83, sortOrder: 116.5 },
       { modelId: 'muse-spark-13', label: 'ƒ Muse Spark 1.3 Max', score: 83, sortOrder: 117.0 },
       { modelId: 'muse-spark-11', label: 'ƒ Muse Spark 1.1 Thinking', score: 77.7, sortOrder: 117.25 },
@@ -5254,21 +5252,16 @@
       { modelId: 'gpt-6-astra-high', label: '⌘ GPT 6 Astra High', score: 86, sortOrder: -2 },
       { modelId: 'gpt-6-astra-medium', label: '⌘ GPT 6 Astra Medium', score: 85, sortOrder: -1 },
       { modelId: 'gpt-6-astra-low', label: '⌘ GPT 6 Astra Low', score: 85, sortOrder: 0 },
-      { modelId: 'gpt-6-sol-max', label: '⌘ GPT 6 Sol Max', score: 83, sortOrder: 0.1 },
-      { modelId: 'gpt-6-sol-xhigh', label: '⌘ GPT 6 Sol Extra High', score: 82, sortOrder: 0.2 },
-      { modelId: 'gpt-6-sol-high', label: '⌘ GPT 6 Sol High', score: 81, sortOrder: 0.3 },
-      { modelId: 'gpt-6-sol-medium', label: '⌘ GPT 6 Sol Medium', score: 81, sortOrder: 0.4 },
-      { modelId: 'gpt-6-sol-low', label: '⌘ GPT 6 Sol Low', score: 79, sortOrder: 0.5 },
+      { modelId: 'gpt-61-sol-max', label: '⌘ GPT 6.1 Sol Max', score: 86, sortOrder: 0.01 },
+      { modelId: 'gpt-61-sol-xhigh', label: '⌘ GPT 6.1 Sol Extra High', score: 85, sortOrder: 0.02 },
+      { modelId: 'gpt-61-sol-high', label: '⌘ GPT 6.1 Sol High', score: 85, sortOrder: 0.03 },
+      { modelId: 'gpt-61-sol-medium', label: '⌘ GPT 6.1 Sol Medium', score: 84, sortOrder: 0.04 },
+      { modelId: 'gpt-61-sol-low', label: '⌘ GPT 6.1 Sol Low', score: 83, sortOrder: 0.05 },
       { modelId: 'gpt-56-sol-max', label: '⌘ GPT 5.6 Sol Max', score: 83, sortOrder: 1 },
       { modelId: 'gpt-56-sol-xhigh', label: '⌘ GPT 5.6 Sol Extra High', score: 83, sortOrder: 2 },
       { modelId: 'gpt-56-sol-high', label: '⌘ GPT 5.6 Sol High', score: 82, sortOrder: 3 },
       { modelId: 'gpt-56-sol-medium', label: '⌘ GPT 5.6 Sol Medium', score: 81, sortOrder: 4 },
       { modelId: 'gpt-56-sol-low', label: '⌘ GPT 5.6 Sol Low', score: 81, sortOrder: 4.5 },
-      { modelId: 'gpt-56-terra-max', label: '⌘ GPT 5.6 Terra Max', score: 81, sortOrder: 5 },
-      { modelId: 'gpt-56-terra-xhigh', label: '⌘ GPT 5.6 Terra Extra High', score: 79, sortOrder: 6 },
-      { modelId: 'gpt-56-terra-high', label: '⌘ GPT 5.6 Terra High', score: 79, sortOrder: 7 },
-      { modelId: 'gpt-56-terra-medium', label: '⌘ GPT 5.6 Terra Medium', score: 77, sortOrder: 8 },
-      { modelId: 'gpt-56-terra-low', label: '⌘ GPT 5.6 Terra Low', score: 76, sortOrder: 8.5 },
       { modelId: 'gpt-6-luna-max', label: '⌘ GPT 6 Luna Max', score: 76, sortOrder: 8.6 },
       { modelId: 'gpt-6-luna-xhigh', label: '⌘ GPT 6 Luna Extra High', score: 75, sortOrder: 8.7 },
       { modelId: 'gpt-6-luna-high', label: '⌘ GPT 6 Luna High', score: 74, sortOrder: 8.8 },
@@ -5279,7 +5272,6 @@
       { modelId: 'gpt-56-luna-high', label: '⌘ GPT 5.6 Luna High', score: 78, sortOrder: 11 },
       { modelId: 'gpt-56-luna-medium', label: '⌘ GPT 5.6 Luna Medium', score: 76, sortOrder: 12 },
       { modelId: 'gpt-56-luna-low', label: '⌘ GPT 5.6 Luna Low', score: 74, sortOrder: 12.5 },
-      { modelId: 'gpt-6-sol-instant', label: '⌘ GPT 6 Sol Instant', score: 68, sortOrder: 12.9 },
       { modelId: 'gpt-6-luna-instant', label: '⌘ GPT 6 Luna Instant', score: 53, sortOrder: 13.9 },
       { modelId: 'gpt-56-sol-instant', label: '⌘ GPT 5.6 Sol Instant', score: 72, sortOrder: 13 },
       { modelId: 'gpt-56-luna-instant', label: '⌘ GPT 5.6 Luna Instant', score: 60, sortOrder: 14 },
@@ -5298,8 +5290,11 @@
       { modelId: 'claude-55-opus-high', label: '❋ Claude 5.5 Opus Thinking High', score: 86, sortOrder: 63.52 },
       { modelId: 'claude-55-opus-extra', label: '❋ Claude 5.5 Opus Thinking Extra', score: 87, sortOrder: 63.53 },
       { modelId: 'claude-55-opus-max', label: '❋ Claude 5.5 Opus Thinking Max', score: 88, sortOrder: 63.54 },
-      { modelId: 'claude-5-sonnet', label: '❋ Claude 5 Sonnet Thinking Max', score: 77, sortOrder: 66.8 },
-      { modelId: 'claude-5-sonnet-high', label: '❋ Claude 5 Sonnet High', score: 72, sortOrder: 67.8 },
+      { modelId: 'claude-55-sonnet-low', label: '❋ Claude 5.5 Sonnet Thinking Low (Estimated)', score: 84, sortOrder: 63.60, estimated: true },
+      { modelId: 'claude-55-sonnet-medium', label: '❋ Claude 5.5 Sonnet Thinking Medium (Estimated)', score: 85, sortOrder: 63.61, estimated: true },
+      { modelId: 'claude-55-sonnet-high', label: '❋ Claude 5.5 Sonnet Thinking High (Estimated)', score: 85, sortOrder: 63.62, estimated: true },
+      { modelId: 'claude-55-sonnet-extra', label: '❋ Claude 5.5 Sonnet Thinking Extra (Estimated)', score: 86, sortOrder: 63.63, estimated: true },
+      { modelId: 'claude-55-sonnet-max', label: '❋ Claude 5.5 Sonnet Thinking Max (Estimated)', score: 87, sortOrder: 63.64, estimated: true },
       { modelId: 'claude-48-opus-max', label: '❋ Claude 4.8 Opus Thinking Max', score: 81, sortOrder: 89 },
       { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', score: 59, sortOrder: 90 },
       { modelId: 'claude-haiku-nr', label: '❋ Claude 4.5 Haiku', score: 55, sortOrder: 95 },
@@ -5495,21 +5490,16 @@
       { modelId: 'gpt-6-astra-high', label: '⌘ GPT 6 Astra High', score: 1485, costPerTask: 2.38, sortOrder: -2 },
       { modelId: 'gpt-6-astra-medium', label: '⌘ GPT 6 Astra Medium', score: 1468, costPerTask: 1.82, sortOrder: -1 },
       { modelId: 'gpt-6-astra-low', label: '⌘ GPT 6 Astra Low', score: 1366, costPerTask: 0.85, sortOrder: 0 },
-      { modelId: 'gpt-6-sol-max', label: '⌘ GPT 6 Sol Max', score: 1487, costPerTask: 1.32, sortOrder: 0.1 },
-      { modelId: 'gpt-6-sol-xhigh', label: '⌘ GPT 6 Sol Extra High', score: 1437, costPerTask: 0.77, sortOrder: 0.2 },
-      { modelId: 'gpt-6-sol-high', label: '⌘ GPT 6 Sol High', score: 1376, costPerTask: 0.48, sortOrder: 0.3 },
-      { modelId: 'gpt-6-sol-medium', label: '⌘ GPT 6 Sol Medium', score: 1320, costPerTask: 0.24, sortOrder: 0.4 },
-      { modelId: 'gpt-6-sol-low', label: '⌘ GPT 6 Sol Low', score: 1176, costPerTask: 0.09, sortOrder: 0.5 },
+      { modelId: 'gpt-61-sol-max', label: '⌘ GPT 6.1 Sol Max', score: 1574, costPerTask: 0.89, sortOrder: 0.01 },
+      { modelId: 'gpt-61-sol-xhigh', label: '⌘ GPT 6.1 Sol Extra High', score: 1510, costPerTask: 0.56, sortOrder: 0.02 },
+      { modelId: 'gpt-61-sol-high', label: '⌘ GPT 6.1 Sol High', score: 1486, costPerTask: 0.43, sortOrder: 0.03 },
+      { modelId: 'gpt-61-sol-medium', label: '⌘ GPT 6.1 Sol Medium', score: 1433, costPerTask: 0.23, sortOrder: 0.04 },
+      { modelId: 'gpt-61-sol-low', label: '⌘ GPT 6.1 Sol Low', score: 1297, costPerTask: 0.10, sortOrder: 0.05 },
       { modelId: 'gpt-56-sol-max', label: '⌘ GPT 5.6 Sol Max', score: 1588, costPerTask: 2.81, sortOrder: 1 },
       { modelId: 'gpt-56-sol-xhigh', label: '⌘ GPT 5.6 Sol Extra High', score: 1548, costPerTask: 1.70, sortOrder: 2 },
       { modelId: 'gpt-56-sol-high', label: '⌘ GPT 5.6 Sol High', score: 1480, costPerTask: 1.11, sortOrder: 3 },
       { modelId: 'gpt-56-sol-medium', label: '⌘ GPT 5.6 Sol Medium', score: 1403, costPerTask: 0.60, sortOrder: 4 },
       { modelId: 'gpt-56-sol-low', label: '⌘ GPT 5.6 Sol Low', score: 1289, costPerTask: 0.27, sortOrder: 4.5 },
-      { modelId: 'gpt-56-terra-max', label: '⌘ GPT 5.6 Terra Max', score: 1432, costPerTask: 1.24, sortOrder: 5 },
-      { modelId: 'gpt-56-terra-xhigh', label: '⌘ GPT 5.6 Terra Extra High', score: 1428, costPerTask: 0.80, sortOrder: 6 },
-      { modelId: 'gpt-56-terra-high', label: '⌘ GPT 5.6 Terra High', score: 1363, costPerTask: 0.53, sortOrder: 7 },
-      { modelId: 'gpt-56-terra-medium', label: '⌘ GPT 5.6 Terra Medium', score: 1255, costPerTask: 0.20, sortOrder: 8 },
-      { modelId: 'gpt-56-terra-low', label: '⌘ GPT 5.6 Terra Low', score: 1096, costPerTask: 0.10, sortOrder: 8.5 },
       { modelId: 'gpt-6-luna-max', label: '⌘ GPT 6 Luna Max', score: 1367, costPerTask: 0.09, sortOrder: 8.6 },
       { modelId: 'gpt-6-luna-xhigh', label: '⌘ GPT 6 Luna Extra High', score: 1297, costPerTask: 0.04, sortOrder: 8.7 },
       { modelId: 'gpt-6-luna-high', label: '⌘ GPT 6 Luna High', score: 1290, costPerTask: 0.03, sortOrder: 8.8 },
@@ -5535,12 +5525,17 @@
       { modelId: 'claude-55-opus-high', label: '❋ Claude 5.5 Opus Thinking High', score: 1692, costPerTask: 1.54, sortOrder: 63.52 },
       { modelId: 'claude-55-opus-extra', label: '❋ Claude 5.5 Opus Thinking Extra', score: 1820, costPerTask: 4.21, sortOrder: 63.53 },
       { modelId: 'claude-55-opus-max', label: '❋ Claude 5.5 Opus Thinking Max', score: 1846, costPerTask: 8.92, sortOrder: 63.54 },
-      { modelId: 'claude-5-sonnet', label: '❋ Claude 5 Sonnet Thinking Max', score: 1449, costPerTask: 4.70, sortOrder: 66.8 },
+      { modelId: 'claude-55-sonnet-low', label: '❋ Claude 5.5 Sonnet Thinking Low', score: 1168, costPerTask: 0.23, sortOrder: 63.60 },
+      { modelId: 'claude-55-sonnet-medium', label: '❋ Claude 5.5 Sonnet Thinking Medium', score: 1293, costPerTask: 0.29, sortOrder: 63.61 },
+      { modelId: 'claude-55-sonnet-high', label: '❋ Claude 5.5 Sonnet Thinking High', score: 1517, costPerTask: 0.72, sortOrder: 63.62 },
+      { modelId: 'claude-55-sonnet-extra', label: '❋ Claude 5.5 Sonnet Thinking Extra', score: 1725, costPerTask: 2.47, sortOrder: 63.63 },
+      { modelId: 'claude-55-sonnet-max', label: '❋ Claude 5.5 Sonnet Thinking Max', score: 1844, costPerTask: 9.03, sortOrder: 63.64 },
       { modelId: 'claude-48-opus-max', label: '❋ Claude 4.8 Opus Thinking Max', score: 1438, costPerTask: 4.34, sortOrder: 89 },
       { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', score: 719, costPerTask: 0.19, sortOrder: 90 },
       { modelId: 'glm-53-deep-think-max', label: 'Ƶ GLM 5.3 Deep Think Max', score: 1646, costPerTask: 2.26, sortOrder: 96.5 },
       { modelId: 'glm-53-flash-deep-think-max', label: 'Ƶ GLM 5.3 Flash Deep Think Max', score: 1641, costPerTask: 0.30, sortOrder: 96.6 },
-      { modelId: 'grok-46-expert', label: 'Ø Grok 4.6 Expert', score: 1632, costPerTask: 2.36, sortOrder: 109.3 },
+      { modelId: 'grok-47-expert', label: 'Ø Grok 4.7 Expert', score: 1632, costPerTask: 6.43, sortOrder: 109.2 },
+      { modelId: 'grok-46-expert', label: 'Ø Grok 4.6 Expert', score: 1632, costPerTask: 3.20, sortOrder: 109.3 },
       { modelId: 'minimax-m3-thinking', label: '≋ MiniMax M3 Thinking', score: 1230, costPerTask: 0.35, sortOrder: 116.5 },
       { modelId: 'muse-spark-13', label: 'ƒ Muse Spark 1.3 Max', score: 1674, costPerTask: 1.90, sortOrder: 117.0 },
       { modelId: 'muse-spark-11', label: 'ƒ Muse Spark 1.1 Thinking', score: 1208, costPerTask: 0.29, sortOrder: 117.25 },
@@ -5912,10 +5907,10 @@
     // Shared styles and series metadata for scatter benchmark views.
     const BENCHMARK_STYLE_ANCHORS = {
       'gpt-6-astra': 'gpt-6-astra-max',
+      'gpt-61-sol': 'gpt-61-sol-max',
       'gpt-56-sol': 'gpt-56-sol-max',
-      'gpt-56-terra': 'gpt-56-terra-max',
       'gpt-56-luna': 'gpt-56-luna-max',
-      'claude-5-sonnet': 'claude-5-sonnet',
+      'claude-55-sonnet': 'claude-55-sonnet-max',
       'glm': 'glm-53-deep-think-max'
     };
 
@@ -5994,6 +5989,16 @@
         };
       }
 
+      if (modelId.startsWith('gpt-61-sol-')) {
+        const effort = modelId.split('-').pop();
+        const effortMeta = getBenchmarkEffortMeta(effort, cleanLabel);
+        return {
+          key: 'gpt-61-sol',
+          label: 'GPT 6.1 Sol',
+          pointLabel: effortMeta.label,
+          effortOrder: effortMeta.order
+        };
+      }
       for (const family of ['sol', 'luna']) {
         if (modelId.startsWith(`gpt-6-${family}-`)) {
           const effort = modelId.split('-').pop();
@@ -6018,6 +6023,17 @@
             effortOrder: effortMeta.order
           };
         }
+      }
+
+      if (modelId.startsWith('claude-55-sonnet-')) {
+        const effort = modelId.split('-').pop();
+        const effortMeta = getBenchmarkEffortMeta(effort, cleanLabel);
+        return {
+          key: 'claude-55-sonnet',
+          label: 'Claude 5.5 Sonnet',
+          pointLabel: effortMeta.label,
+          effortOrder: effortMeta.order
+        };
       }
 
       if (modelId.startsWith('claude-55-opus-')) {
@@ -6066,21 +6082,16 @@
       { modelId: 'gpt-6-astra-high', label: '⌘ GPT 6 Astra High', score: 54.0, costPerTask: 4.05, sortOrder: -2 },
       { modelId: 'gpt-6-astra-medium', label: '⌘ GPT 6 Astra Medium', score: 49.5, costPerTask: 4.43, sortOrder: -1 },
       { modelId: 'gpt-6-astra-low', label: '⌘ GPT 6 Astra Low', score: 41.9, costPerTask: 2.25, sortOrder: 0 },
-      { modelId: 'gpt-6-sol-max', label: '⌘ GPT 6 Sol Max', score: 43.9, costPerTask: 4.00, sortOrder: 0.1 },
-      { modelId: 'gpt-6-sol-xhigh', label: '⌘ GPT 6 Sol Extra High', score: 30.3, costPerTask: 1.91, sortOrder: 0.2 },
-      { modelId: 'gpt-6-sol-high', label: '⌘ GPT 6 Sol High', score: 26.3, costPerTask: 1.60, sortOrder: 0.3 },
-      { modelId: 'gpt-6-sol-medium', label: '⌘ GPT 6 Sol Medium', score: 18.7, costPerTask: 1.12, sortOrder: 0.4 },
-      { modelId: 'gpt-6-sol-low', label: '⌘ GPT 6 Sol Low', score: 9.1, costPerTask: 0.49, sortOrder: 0.5 },
+      { modelId: 'gpt-61-sol-max', label: '⌘ GPT 6.1 Sol Max', score: 56.1, costPerTask: 1.82, sortOrder: 0.01 },
+      { modelId: 'gpt-61-sol-xhigh', label: '⌘ GPT 6.1 Sol Extra High', score: 54, costPerTask: 1.03, sortOrder: 0.02 },
+      { modelId: 'gpt-61-sol-high', label: '⌘ GPT 6.1 Sol High', score: 51.5, costPerTask: 0.83, sortOrder: 0.03 },
+      { modelId: 'gpt-61-sol-medium', label: '⌘ GPT 6.1 Sol Medium', score: 48, costPerTask: 0.61, sortOrder: 0.04 },
+      { modelId: 'gpt-61-sol-low', label: '⌘ GPT 6.1 Sol Low', score: 30.8, costPerTask: 0.38, sortOrder: 0.05 },
       { modelId: 'gpt-56-sol-max', label: '⌘ GPT 5.6 Sol Max', score: 39.9, costPerTask: 8.09, sortOrder: 1 },
       { modelId: 'gpt-56-sol-xhigh', label: '⌘ GPT 5.6 Sol Extra High', score: 24.7, costPerTask: 3.46, sortOrder: 2 },
       { modelId: 'gpt-56-sol-high', label: '⌘ GPT 5.6 Sol High', score: 20.7, costPerTask: 2.22, sortOrder: 3 },
       { modelId: 'gpt-56-sol-medium', label: '⌘ GPT 5.6 Sol Medium', score: 14.6, costPerTask: 1.64, sortOrder: 4 },
       { modelId: 'gpt-56-sol-low', label: '⌘ GPT 5.6 Sol Low', score: 1.0, costPerTask: 0.52, sortOrder: 4.5 },
-      { modelId: 'gpt-56-terra-max', label: '⌘ GPT 5.6 Terra Max', score: 35.4, costPerTask: 6.39, sortOrder: 5 },
-      { modelId: 'gpt-56-terra-xhigh', label: '⌘ GPT 5.6 Terra Extra High', score: 10.1, costPerTask: 1.57, sortOrder: 6 },
-      { modelId: 'gpt-56-terra-high', label: '⌘ GPT 5.6 Terra High', score: 1.5, costPerTask: 0.63, sortOrder: 7 },
-      { modelId: 'gpt-56-terra-medium', label: '⌘ GPT 5.6 Terra Medium', score: 1.0, costPerTask: 0.34, sortOrder: 8 },
-      { modelId: 'gpt-56-terra-low', label: '⌘ GPT 5.6 Terra Low', score: 1.5, costPerTask: 0.24, sortOrder: 8.5 },
       { modelId: 'gpt-6-luna-max', label: '⌘ GPT 6 Luna Max', score: 12.6, costPerTask: 0.24, sortOrder: 8.6 },
       { modelId: 'gpt-6-luna-xhigh', label: '⌘ GPT 6 Luna Extra High', score: 8.1, costPerTask: 0.20, sortOrder: 8.7 },
       { modelId: 'gpt-6-luna-high', label: '⌘ GPT 6 Luna High', score: 4.5, costPerTask: 0.12, sortOrder: 8.8 },
@@ -6106,12 +6117,17 @@
       { modelId: 'claude-55-opus-high', label: '❋ Claude 5.5 Opus Thinking High', score: 56.5, costPerTask: 5.12, sortOrder: 63.52 },
       { modelId: 'claude-55-opus-extra', label: '❋ Claude 5.5 Opus Thinking Extra', score: 59.6, costPerTask: 8.78, sortOrder: 63.53 },
       { modelId: 'claude-55-opus-max', label: '❋ Claude 5.5 Opus Thinking Max', score: 59.6, costPerTask: 13.11, sortOrder: 63.54 },
-      { modelId: 'claude-5-sonnet', label: '❋ Claude 5 Sonnet Thinking Max', score: 14.1, costPerTask: 19.69, sortOrder: 66.8 },
+      { modelId: 'claude-55-sonnet-low', label: '❋ Claude 5.5 Sonnet Thinking Low', score: 20.7, costPerTask: 1.84, sortOrder: 63.60 },
+      { modelId: 'claude-55-sonnet-medium', label: '❋ Claude 5.5 Sonnet Thinking Medium', score: 29.8, costPerTask: 2.25, sortOrder: 63.61 },
+      { modelId: 'claude-55-sonnet-high', label: '❋ Claude 5.5 Sonnet Thinking High', score: 43.9, costPerTask: 3.06, sortOrder: 63.62 },
+      { modelId: 'claude-55-sonnet-extra', label: '❋ Claude 5.5 Sonnet Thinking Extra', score: 57.1, costPerTask: 8.87, sortOrder: 63.63 },
+      { modelId: 'claude-55-sonnet-max', label: '❋ Claude 5.5 Sonnet Thinking Max', score: 63.6, costPerTask: 18.76, sortOrder: 63.64 },
       { modelId: 'claude-48-opus-max', label: '❋ Claude 4.8 Opus Thinking Max', score: 21.7, costPerTask: 18.15, sortOrder: 89 },
       { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', score: 0.0, costPerTask: 0.81, sortOrder: 90 },
       { modelId: 'glm-53-deep-think-max', label: 'Ƶ GLM 5.3 Deep Think Max', score: 41.9, costPerTask: 8.06, sortOrder: 96.5 },
       { modelId: 'glm-53-flash-deep-think-max', label: 'Ƶ GLM 5.3 Flash Deep Think Max', score: 32.8, costPerTask: 0.79, sortOrder: 96.6 },
-      { modelId: 'grok-46-expert', label: 'Ø Grok 4.6 Expert', score: 21.2, costPerTask: 7.51, sortOrder: 109.3 },
+      { modelId: 'grok-47-expert', label: 'Ø Grok 4.7 Expert', score: 25.8, costPerTask: 14.60, sortOrder: 109.2 },
+      { modelId: 'grok-46-expert', label: 'Ø Grok 4.6 Expert', score: 17.2, costPerTask: 8.98, sortOrder: 109.3 },
       { modelId: 'minimax-m3-thinking', label: '≋ MiniMax M3 Thinking', score: 2.0, costPerTask: 3.04, sortOrder: 116.5 },
       { modelId: 'muse-spark-13', label: 'ƒ Muse Spark 1.3 Max', score: 33.3, costPerTask: 6.94, sortOrder: 117.0 },
       { modelId: 'muse-spark-11', label: 'ƒ Muse Spark 1.1 Thinking', score: 6.1, costPerTask: 8.57, sortOrder: 117.25 },
@@ -6431,15 +6447,6 @@
     const maxContextAllModels = [
       // GPT non-reasoning (instant)
       {
-        modelId: 'gpt-6-sol-instant', label: '⌘ GPT 6 Sol Instant', sortOrder: 12.9,
-        color: 'rgba(16, 163, 127, 1)',
-        segments: [
-          { value: 27000, plans: 'Free' },
-          { value: 54000, plans: 'Plus, Go' },
-          { value: 128000, plans: 'Pro' }
-        ]
-      },
-      {
         modelId: 'gpt-6-luna-instant', label: '⌘ GPT 6 Luna Instant', sortOrder: 13.9,
         color: 'rgba(16, 163, 127, 1)',
         segments: [
@@ -6508,7 +6515,7 @@
         ]
       },
       {
-        modelId: 'gpt-6-sol-max', label: '⌘ GPT 6 Sol Max', sortOrder: 0.1,
+        modelId: 'gpt-61-sol-max', label: '⌘ GPT 6.1 Sol Max', sortOrder: 0.01,
         color: 'rgba(16, 163, 127, 1)',
         segments: [
           { value: 256000, plans: 'Free, Go, Plus' },
@@ -6516,7 +6523,7 @@
         ]
       },
       {
-        modelId: 'gpt-6-sol-xhigh', label: '⌘ GPT 6 Sol Extra High', sortOrder: 0.2,
+        modelId: 'gpt-61-sol-xhigh', label: '⌘ GPT 6.1 Sol Extra High', sortOrder: 0.02,
         color: 'rgba(16, 163, 127, 1)',
         segments: [
           { value: 256000, plans: 'Free, Go, Plus' },
@@ -6524,7 +6531,7 @@
         ]
       },
       {
-        modelId: 'gpt-6-sol-high', label: '⌘ GPT 6 Sol High', sortOrder: 0.3,
+        modelId: 'gpt-61-sol-high', label: '⌘ GPT 6.1 Sol High', sortOrder: 0.03,
         color: 'rgba(16, 163, 127, 1)',
         segments: [
           { value: 256000, plans: 'Free, Go, Plus' },
@@ -6532,7 +6539,7 @@
         ]
       },
       {
-        modelId: 'gpt-6-sol-medium', label: '⌘ GPT 6 Sol Medium', sortOrder: 0.4,
+        modelId: 'gpt-61-sol-medium', label: '⌘ GPT 6.1 Sol Medium', sortOrder: 0.04,
         color: 'rgba(16, 163, 127, 1)',
         segments: [
           { value: 256000, plans: 'Free, Go, Plus' },
@@ -6540,7 +6547,7 @@
         ]
       },
       {
-        modelId: 'gpt-6-sol-low', label: '⌘ GPT 6 Sol Low', sortOrder: 0.5,
+        modelId: 'gpt-61-sol-low', label: '⌘ GPT 6.1 Sol Low', sortOrder: 0.05,
         color: 'rgba(16, 163, 127, 1)',
         segments: [
           { value: 256000, plans: 'Free, Go, Plus' },
@@ -6581,46 +6588,6 @@
       },
       {
         modelId: 'gpt-56-sol-low', label: '⌘ GPT 5.6 Sol Low', sortOrder: 4.5,
-        color: 'rgba(16, 163, 127, 1)',
-        segments: [
-          { value: 256000, plans: 'Free, Go, Plus' },
-          { value: 400000, plans: 'Pro' }
-        ]
-      },
-      {
-        modelId: 'gpt-56-terra-max', label: '⌘ GPT 5.6 Terra Max', sortOrder: 5,
-        color: 'rgba(16, 163, 127, 1)',
-        segments: [
-          { value: 256000, plans: 'Free, Go, Plus' },
-          { value: 400000, plans: 'Pro' }
-        ]
-      },
-      {
-        modelId: 'gpt-56-terra-xhigh', label: '⌘ GPT 5.6 Terra Extra High', sortOrder: 6,
-        color: 'rgba(16, 163, 127, 1)',
-        segments: [
-          { value: 256000, plans: 'Free, Go, Plus' },
-          { value: 400000, plans: 'Pro' }
-        ]
-      },
-      {
-        modelId: 'gpt-56-terra-high', label: '⌘ GPT 5.6 Terra High', sortOrder: 7,
-        color: 'rgba(16, 163, 127, 1)',
-        segments: [
-          { value: 256000, plans: 'Free, Go, Plus' },
-          { value: 400000, plans: 'Pro' }
-        ]
-      },
-      {
-        modelId: 'gpt-56-terra-medium', label: '⌘ GPT 5.6 Terra Medium', sortOrder: 8,
-        color: 'rgba(16, 163, 127, 1)',
-        segments: [
-          { value: 256000, plans: 'Free, Go, Plus' },
-          { value: 400000, plans: 'Pro' }
-        ]
-      },
-      {
-        modelId: 'gpt-56-terra-low', label: '⌘ GPT 5.6 Terra Low', sortOrder: 8.5,
         color: 'rgba(16, 163, 127, 1)',
         segments: [
           { value: 256000, plans: 'Free, Go, Plus' },
@@ -6835,7 +6802,7 @@
         ]
       },
       {
-        modelId: 'claude-5-sonnet', label: '❋ Claude 5 Sonnet Thinking Max', sortOrder: 66.8,
+        modelId: 'claude-55-sonnet-low', label: '❋ Claude 5.5 Sonnet Thinking Low', sortOrder: 63.60,
         color: 'rgba(218, 119, 87, 1)',
         segments: [
           { value: 200000, plans: 'Free' },
@@ -6843,7 +6810,31 @@
         ]
       },
       {
-        modelId: 'claude-5-sonnet-high', label: '❋ Claude 5 Sonnet High', sortOrder: 67.8,
+        modelId: 'claude-55-sonnet-medium', label: '❋ Claude 5.5 Sonnet Thinking Medium', sortOrder: 63.61,
+        color: 'rgba(218, 119, 87, 1)',
+        segments: [
+          { value: 200000, plans: 'Free' },
+          { value: 500000, plans: 'Pro, Max x5, Max x20' }
+        ]
+      },
+      {
+        modelId: 'claude-55-sonnet-high', label: '❋ Claude 5.5 Sonnet Thinking High', sortOrder: 63.62,
+        color: 'rgba(218, 119, 87, 1)',
+        segments: [
+          { value: 200000, plans: 'Free' },
+          { value: 500000, plans: 'Pro, Max x5, Max x20' }
+        ]
+      },
+      {
+        modelId: 'claude-55-sonnet-extra', label: '❋ Claude 5.5 Sonnet Thinking Extra', sortOrder: 63.63,
+        color: 'rgba(218, 119, 87, 1)',
+        segments: [
+          { value: 200000, plans: 'Free' },
+          { value: 500000, plans: 'Pro, Max x5, Max x20' }
+        ]
+      },
+      {
+        modelId: 'claude-55-sonnet-max', label: '❋ Claude 5.5 Sonnet Thinking Max', sortOrder: 63.64,
         color: 'rgba(218, 119, 87, 1)',
         segments: [
           { value: 200000, plans: 'Free' },
@@ -6880,6 +6871,11 @@
         segments: [{ value: 1000000, plans: 'All Plans' }]
       },
       // Grok
+      {
+        modelId: 'grok-47-expert', label: 'Ø Grok 4.7 Expert', sortOrder: 109.2,
+        color: 'rgba(35, 35, 175, 1)',
+        segments: [{ value: 500000, plans: 'All Plans' }]
+      },
       {
         modelId: 'grok-46-expert', label: 'Ø Grok 4.6 Expert', sortOrder: 109.3,
         color: 'rgba(35, 35, 175, 1)',
@@ -7636,7 +7632,7 @@
         modelDots.forEach(dot => {
           const modelId = dot.dataset.model;
           const shouldHide = (modelGroups.other.includes(modelId) && !showOtherModels)
-            || (modelGroups.legacy.includes(modelId) && !showLegacyModels)
+            || (getModelLegacyType(modelId) === 'legacy' && !showLegacyModels)
             || (modelGroups.coding.includes(modelId) && !showCodingModels);
           setAnimatedFilterVisibility(dot, !shouldHide, 'model-filter-hidden');
           if (!shouldHide) hasVisibleDots = true;
@@ -7942,9 +7938,9 @@
 
       // Restore USA-exclusive toggle state
       const savedUSA = safeStorageGet('usaExclusiveToggleActive');
-      if (savedUSA === 'false') {
+      const tabContent = document.getElementById('tab-specs');
+      if (!tabContent.classList.contains('usa-features-disabled') && savedUSA === 'false') {
         const usaToggle = document.querySelector('.usa-toggle .toggle-switch');
-        const tabContent = document.getElementById('tab-specs');
         if (usaToggle) {
           usaToggle.classList.remove('active');
           tabContent.classList.add('hide-usa-exclusive');
@@ -7995,7 +7991,7 @@
     style="text-align: center; padding: 2rem 1rem; margin-top: 3rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.8rem;">
     Made by <strong> u/Pasto_Shouwa</strong>
     <br>
-    <em>Last updated on <strong>27/09/2026</strong> (dd/mm/yyyy)</em>
+    <em>Last updated on <strong>29/09/2026</strong> (dd/mm/yyyy)</em>
   </footer>
 </body>
 
