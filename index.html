@@ -2200,15 +2200,14 @@
             <tr>
               <td>Reasoning model limit per day</td>
               <td>Unknown<span class="annotation" data-note="gpt-free-thinking"></span><span
-                  class="detail">(Unknown)</span><span class="detail">[GPT 5.6 Luna Low<span class="annotation"
-                    data-note="gpt-luna-low-effort"></span>]</span>
+                  class="detail">(Unknown)</span>
               </td>
             </tr>
             <tr>
               <td>Non-reasoning model limit per day</td>
               <td>
                 <!-- Previous limit: 40 (10 every 5h). Kept here in case this change needs to be reverted. -->
-                Unlimited<span class="detail">[GPT 5.6 Luna]</span>
+                Unlimited
               </td>
             </tr>
             <tr>
@@ -2267,25 +2266,20 @@
             <tr>
               <td>Reasoning model limit per day</td>
               <td>Unknown<span class="annotation" data-note="gpt-free-thinking"></span>
-                <span class="detail">[GPT 5.6 Luna Low<span class="annotation"
-                    data-note="gpt-luna-low-effort"></span>]</span>
               </td>
               <td>40<span class="detail">(10 every 5h)</span>
-                <span class="detail">[GPT 5.6 Luna Low<span class="annotation"
-                    data-note="gpt-luna-low-effort"></span>]</span>
               </td>
-              <td>428<span class="detail">(3000/week)</span><span class="detail">[GPT 5.6
-                  Sol High]</span></td>
+              <td>428<span class="detail">(3000/week)</span></td>
             </tr>
             <tr>
               <td>Non-reasoning model limit per day</td>
               <td colspan="2">
                 <!-- Previous Free limit: 40 (10 every 5h). Previous Go limit: 1280 (160 every 3h). -->
-                Unlimited<span class="detail">[GPT 5.6 Luna]</span>
+                Unlimited
               </td>
               <td>
                 <!-- Previous limit: 1280 (160 every 3h). Kept here in case this change needs to be reverted. -->
-                Unlimited<span class="detail">[GPT 5.6 Sol]</span>
+                Unlimited
               </td>
             </tr>
             <tr>
@@ -2355,15 +2349,15 @@
             <tr>
               <td>Reasoning model limit per day</td>
               <td>7+Unlimited<span class="detail">(50/week+unlimited)</span><span class="detail">[GPT 6 Astra High<span
-                    class="annotation" data-note="gpt-astra-high-effort"></span> + GPT 5.6 Sol Extra High]</span>
+                    class="annotation" data-note="gpt-astra-high-effort"></span>]</span>
               </td>
-              <td>28+Unlimited<span class="detail">(200/week+unlimited)</span><span class="detail">[GPT 6 Astra High<span
-                    class="annotation" data-note="gpt-astra-high-effort"></span> + GPT 5.6 Sol Extra High]</span>
+              <td>14+Unlimited<span class="detail">(100/week+unlimited)</span><span class="detail">[GPT 6 Astra High<span
+                    class="annotation" data-note="gpt-astra-high-effort"></span>]</span>
               </td>
             </tr>
             <tr>
               <td>Non-reasoning model limit per day</td>
-              <td colspan="2">Unlimited<span class="detail">[GPT 5.6 Sol]</span></td>
+              <td colspan="2">Unlimited</td>
             </tr>
             <tr>
               <td>Context window limit</td>
@@ -2541,26 +2535,25 @@
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
-              <div class="model-dot" data-model="gpt-56-sol-max" onclick="toggleIndividualModel('gpt-56-sol-max')">
+              <div class="model-dot" data-model="gpt-6-sol-max" onclick="toggleIndividualModel('gpt-6-sol-max')">
                 <span class="model-dot-indicator dot-gpt shape-triangle-code"></span>
-                <span class="model-dot-label">GPT 5.6 Sol Max</span>
+                <span class="model-dot-label">GPT 6 Sol Max</span>
               </div>
-              <div class="model-dot" data-model="gpt-56-sol-xhigh" onclick="toggleIndividualModel('gpt-56-sol-xhigh')">
+              <div class="model-dot" data-model="gpt-6-sol-xhigh" onclick="toggleIndividualModel('gpt-6-sol-xhigh')">
                 <span class="model-dot-indicator dot-gpt shape-star-hundred"></span>
-                <span class="model-dot-label">GPT 5.6 Sol Extra High</span>
+                <span class="model-dot-label">GPT 6 Sol Extra High</span>
               </div>
-              <div class="model-dot" data-model="gpt-56-sol-high" onclick="toggleIndividualModel('gpt-56-sol-high')">
+              <div class="model-dot" data-model="gpt-6-sol-high" onclick="toggleIndividualModel('gpt-6-sol-high')">
                 <span class="model-dot-indicator dot-gpt shape-square-twenty"></span>
-                <span class="model-dot-label">GPT 5.6 Sol High</span>
+                <span class="model-dot-label">GPT 6 Sol High</span>
               </div>
-              <div class="model-dot" data-model="gpt-56-sol-medium"
-                onclick="toggleIndividualModel('gpt-56-sol-medium')">
+              <div class="model-dot" data-model="gpt-6-sol-medium" onclick="toggleIndividualModel('gpt-6-sol-medium')">
                 <span class="model-dot-indicator dot-gpt shape-square-twenty"></span>
-                <span class="model-dot-label">GPT 5.6 Sol Medium</span>
+                <span class="model-dot-label">GPT 6 Sol Medium</span>
               </div>
-              <div class="model-dot" data-model="gpt-56-sol-low" onclick="toggleIndividualModel('gpt-56-sol-low')">
+              <div class="model-dot" data-model="gpt-6-sol-low" onclick="toggleIndividualModel('gpt-6-sol-low')">
                 <span class="model-dot-indicator dot-gpt shape-triangle-code"></span>
-                <span class="model-dot-label">GPT 5.6 Sol Low</span>
+                <span class="model-dot-label">GPT 6 Sol Low</span>
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
@@ -2577,55 +2570,19 @@
                 <span class="model-dot-label">GPT 6 Luna High</span>
               </div>
               <div class="model-dot" data-model="gpt-6-luna-medium" onclick="toggleIndividualModel('gpt-6-luna-medium')">
-                <span class="model-dot-indicator dot-gpt shape-triangle-code"></span>
+                <span class="model-dot-indicator dot-gpt shape-dot-free"></span>
                 <span class="model-dot-label">GPT 6 Luna Medium</span>
               </div>
               <div class="model-dot" data-model="gpt-6-luna-low" onclick="toggleIndividualModel('gpt-6-luna-low')">
-                <span class="model-dot-indicator dot-gpt shape-triangle-code"></span>
+                <span class="model-dot-indicator dot-gpt shape-dot-free"></span>
                 <span class="model-dot-label">GPT 6 Luna Low</span>
-              </div>
-            </div>
-            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
-              <div class="model-dot" data-model="gpt-56-luna-max"
-                onclick="toggleIndividualModel('gpt-56-luna-max')">
-                <span class="model-dot-indicator dot-gpt shape-triangle-code"></span>
-                <span class="model-dot-label">GPT 5.6 Luna Max</span>
-              </div>
-              <div class="model-dot" data-model="gpt-56-luna-xhigh"
-                onclick="toggleIndividualModel('gpt-56-luna-xhigh')">
-                <span class="model-dot-indicator dot-gpt shape-triangle-code"></span>
-                <span class="model-dot-label">GPT 5.6 Luna Extra High</span>
-              </div>
-              <div class="model-dot" data-model="gpt-56-luna-high" onclick="toggleIndividualModel('gpt-56-luna-high')">
-                <span class="model-dot-indicator dot-gpt shape-triangle-code"></span>
-                <span class="model-dot-label">GPT 5.6 Luna High</span>
-              </div>
-              <div class="model-dot" data-model="gpt-56-luna-medium"
-                onclick="toggleIndividualModel('gpt-56-luna-medium')">
-                <span class="model-dot-indicator dot-gpt"></span>
-                <span class="model-dot-label">GPT 5.6 Luna Medium</span>
-              </div>
-              <div class="model-dot" data-model="gpt-56-luna-low"
-                onclick="toggleIndividualModel('gpt-56-luna-low')">
-                <span class="model-dot-indicator dot-gpt"></span>
-                <span class="model-dot-label">GPT 5.6 Luna Low</span>
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot" data-model="gemini-38-flash-extended-high"
                 onclick="toggleIndividualModel('gemini-38-flash-extended-high')">
-                <span class="model-dot-indicator dot-gemini shape-triangle-code"></span>
-                <span class="model-dot-label">Gemini 3.8 Flash Extended High</span>
-              </div>
-              <div class="model-dot" data-model="gemini-38-flash-extended-medium"
-                onclick="toggleIndividualModel('gemini-38-flash-extended-medium')">
-                <span class="model-dot-indicator dot-gemini"></span>
-                <span class="model-dot-label">Gemini 3.8 Flash Extended Medium</span>
-              </div>
-              <div class="model-dot" data-model="gemini-38-flash-extended-low"
-                onclick="toggleIndividualModel('gemini-38-flash-extended-low')">
-                <span class="model-dot-indicator dot-gemini"></span>
-                <span class="model-dot-label">Gemini 3.8 Flash Extended Low</span>
+                <span class="model-dot-indicator dot-gemini shape-square-twenty"></span>
+                <span class="model-dot-label">Gemini 3.8 Flash Extended</span>
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
@@ -2637,7 +2594,7 @@
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot" data-model="gemini-31-pro" onclick="toggleIndividualModel('gemini-31-pro')">
-                <span class="model-dot-indicator dot-gemini-legacy"></span>
+                <span class="model-dot-indicator dot-gemini-legacy shape-square-twenty"></span>
                 <span class="model-dot-label">Gemini 3.1 Pro Extended</span>
               </div>
             </div>
@@ -2708,13 +2665,31 @@
               </div>
             </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
+              <div class="model-dot inactive" data-model="claude-55-haiku-max" onclick="toggleIndividualModel('claude-55-haiku-max')">
+                <span class="model-dot-indicator dot-claude"></span>
+                <span class="model-dot-label">Claude 5.5 Haiku Thinking Max</span>
+              </div>
+              <div class="model-dot inactive" data-model="claude-55-haiku-extra" onclick="toggleIndividualModel('claude-55-haiku-extra')">
+                <span class="model-dot-indicator dot-claude"></span>
+                <span class="model-dot-label">Claude 5.5 Haiku Thinking Extra</span>
+              </div>
+              <div class="model-dot inactive" data-model="claude-55-haiku-high" onclick="toggleIndividualModel('claude-55-haiku-high')">
+                <span class="model-dot-indicator dot-claude"></span>
+                <span class="model-dot-label">Claude 5.5 Haiku Thinking High</span>
+              </div>
+              <div class="model-dot inactive" data-model="claude-55-haiku-medium" onclick="toggleIndividualModel('claude-55-haiku-medium')">
+                <span class="model-dot-indicator dot-claude"></span>
+                <span class="model-dot-label">Claude 5.5 Haiku Thinking Medium</span>
+              </div>
+              <div class="model-dot inactive" data-model="claude-55-haiku-low" onclick="toggleIndividualModel('claude-55-haiku-low')">
+                <span class="model-dot-indicator dot-claude"></span>
+                <span class="model-dot-label">Claude 5.5 Haiku Thinking Low</span>
+              </div>
+            </div>
+            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot inactive" data-model="claude-48-opus-max" onclick="toggleIndividualModel('claude-48-opus-max')">
                 <span class="model-dot-indicator dot-claude shape-square-twenty"></span>
                 <span class="model-dot-label">Claude 4.8 Opus Thinking Max</span>
-              </div>
-              <div class="model-dot inactive" data-model="claude-haiku" onclick="toggleIndividualModel('claude-haiku')">
-                <span class="model-dot-indicator dot-claude"></span>
-                <span class="model-dot-label">Claude 4.5 Haiku Extended</span>
               </div>
             </div>
 
@@ -2806,37 +2781,7 @@
             </div>
           </div>
 
-          <!-- Non-reasoning models -->
           <div class="filter-group">
-            <div class="filter-group-header">
-              <span class="filter-group-name">Non-reasoning models</span>
-            </div>
-            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
-              <div class="model-dot" data-model="gpt-6-luna-instant"
-                onclick="toggleIndividualModel('gpt-6-luna-instant')">
-                <span class="model-dot-indicator dot-gpt shape-triangle-code"></span>
-                <span class="model-dot-label">GPT 6 Luna Instant</span>
-              </div>
-            </div>
-            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
-              <div class="model-dot" data-model="gpt-56-sol-instant"
-                onclick="toggleIndividualModel('gpt-56-sol-instant')">
-                <span class="model-dot-indicator dot-gpt"></span>
-                <span class="model-dot-label">GPT 5.6 Sol Instant</span>
-              </div>
-              <div class="model-dot" data-model="gpt-56-luna-instant"
-                onclick="toggleIndividualModel('gpt-56-luna-instant')">
-                <span class="model-dot-indicator dot-gpt"></span>
-                <span class="model-dot-label">GPT 5.6 Luna Instant</span>
-              </div>
-            </div>
-            <div class="model-dots-row" style="margin-bottom: 0.5rem;">
-              <div class="model-dot inactive" data-model="claude-haiku-nr"
-                onclick="toggleIndividualModel('claude-haiku-nr')">
-                <span class="model-dot-indicator dot-claude"></span>
-                <span class="model-dot-label">Claude 4.5 Haiku</span>
-              </div>
-            </div>
             <div class="model-dots-row" style="margin-bottom: 0.5rem;">
               <div class="model-dot inactive" data-model="kimi-k26-instant"
                 onclick="toggleIndividualModel('kimi-k26-instant')">
@@ -2882,7 +2827,7 @@
             <div class="shape-legend-item" title="Accessible on free plans">
               <span class="shape-legend-icon shape-legend-circle"></span>
             </div>
-            <div class="shape-legend-item" title="Accessible only on &#8805;20 USD plans">
+            <div class="shape-legend-item" title="Accessible only on 5-50 USD plans">
               <span class="shape-legend-icon shape-legend-square"></span>
             </div>
             <div class="shape-legend-item" title="Accessible only on &#8805;100 USD plans">
@@ -3209,10 +3154,6 @@
             <ul class="notes-list">
               <li>• Human baseline corresponds to an ELO of 1000.
               </li>
-              <li>• Values for non-reasoning models of this benchmark are really scarce. Therefore, I've decided against
-                including them or estimating their values. Reasoning models will usually perform better than their
-                non-reasoning counterparts anyways.
-              </li>
             </ul>
           </div>
         </details>
@@ -3264,10 +3205,6 @@
           </summary>
           <div class="notes-content">
             <ul class="notes-list">
-              <li>• Values for non-reasoning models of this benchmark are really scarce. Therefore, I've decided against
-                including them or estimating their values. Reasoning models will usually perform better than their
-                non-reasoning counterparts anyways.
-              </li>
               <li>• This benchmark might not represent the actual model performance in day-to-day use for most users, as it tests models on really difficult tasks.</li>
             </ul>
           </div>
@@ -3282,11 +3219,8 @@
         </summary>
         <div class="notes-content">
           <ul class="notes-list">
-            <li>• All models are presented with their respective highest settings.</li>
-            <li>• I have not been able to find consistent graphs for some variants of the models, usually the
-              non-reasoning ones.
-              I will add them immediately if I find some.
-            </li>
+            <li>• All models whose thinking effort is unknown are presented with their respective highest settings.</li>
+            <li>• Unfortunately, benchmarks for non-reasoning models are rarely found because they tend to be less reliable than reasoning models.</li>
             <li>• GPT Extra High thinking efforts are available for Plus and Pro ChatGPT users through
               the Codex app, with limits that reset weekly. It's also available on the web for Pro users.
               The Max thinking effort is only on Codex for Plus and Pro accounts.</li>
@@ -3388,7 +3322,6 @@
      */
     const FOOTNOTES = {
       'gpt-free-thinking': "Used to be 1 per day for Free and 10 for Go, but was increased. The current limit is not public, nor if it is daily or weekly.",
-      'gpt-luna-low-effort': "The thinking effort is not public. It is likely Low to reduce costs; otherwise, the only other likely configuration is GPT 5.6 Luna Medium.",
       'gpt-astra-high-effort': "The thinking effort is not public. High is assumed because it was the highest thinking effort selectable on GPT Pro when the thinking effort was possible to choose.",
       'gpt-image-unknown': "GPT Image 2.5 limits are unknown. GPT Image 1 limits were 200/day for old Pro, 50/day for Plus, 5/day for Free."
     };
@@ -3572,30 +3505,19 @@
       'gpt-61-sol-high': true,
       'gpt-61-sol-medium': true,
       'gpt-61-sol-low': false,
-      'gpt-56-sol-max': false,
-      'gpt-56-sol-xhigh': false,
-      'gpt-56-sol-high': false,
-      'gpt-56-sol-medium': false,
-      'gpt-56-sol-low': false,
+      'gpt-6-sol-max': false,
+      'gpt-6-sol-xhigh': false,
+      'gpt-6-sol-high': true,
+      'gpt-6-sol-medium': true,
+      'gpt-6-sol-low': false,
       'gpt-6-luna-max': false,
       'gpt-6-luna-xhigh': false,
       'gpt-6-luna-high': false,
       'gpt-6-luna-medium': false,
       'gpt-6-luna-low': false,
-      'gpt-56-luna-max': false,
-      'gpt-56-luna-xhigh': false,
-      'gpt-56-luna-high': false,
-      'gpt-56-luna-medium': false,
-      'gpt-56-luna-low': false,
-      'gpt-6-luna-instant': true,
-      'gpt-56-sol-instant': false,
-      'gpt-56-luna-instant': false,
       'gemini-38-flash-extended-high': false,
-      'gemini-38-flash-extended-medium': false,
-      'gemini-38-flash-extended-low': false,
       'gemini-35-flash-lite-extended': false,
       'gemini-31-pro': false,
-      'claude-haiku': false,    // Starts hidden by default
       'claude-51-fable-low': false,    // Starts hidden by default
       'claude-51-fable-medium': false, // Starts hidden by default
       'claude-51-fable-high': false,   // Starts hidden by default
@@ -3611,8 +3533,12 @@
       'claude-55-sonnet-high': false,
       'claude-55-sonnet-medium': false,
       'claude-55-sonnet-low': false,
+      'claude-55-haiku-max': false,
+      'claude-55-haiku-extra': false,
+      'claude-55-haiku-high': false,
+      'claude-55-haiku-medium': false,
+      'claude-55-haiku-low': false,
       'claude-48-opus-max': false, // Legacy model, starts hidden
-      'claude-haiku-nr': false,   // Starts hidden by default
       'glm-53-deep-think-max': false, // Starts hidden by default
       'glm-53-flash-deep-think-max': false, // Other recommended, starts hidden
       'grok-47-expert': false,       // Other recommended, starts hidden
@@ -3644,30 +3570,19 @@
       'gpt-61-sol-high': false,
       'gpt-61-sol-medium': false,
       'gpt-61-sol-low': false,
-      'gpt-56-sol-max': false,
-      'gpt-56-sol-xhigh': false,
-      'gpt-56-sol-high': false,
-      'gpt-56-sol-medium': false,
-      'gpt-56-sol-low': false,
+      'gpt-6-sol-max': false,
+      'gpt-6-sol-xhigh': false,
+      'gpt-6-sol-high': false,
+      'gpt-6-sol-medium': false,
+      'gpt-6-sol-low': false,
       'gpt-6-luna-max': false,
       'gpt-6-luna-xhigh': false,
       'gpt-6-luna-high': false,
       'gpt-6-luna-medium': false,
       'gpt-6-luna-low': false,
-      'gpt-56-luna-max': false,
-      'gpt-56-luna-xhigh': false,
-      'gpt-56-luna-high': false,
-      'gpt-56-luna-medium': false,
-      'gpt-56-luna-low': false,
-      'gpt-6-luna-instant': false,
-      'gpt-56-sol-instant': false,
-      'gpt-56-luna-instant': false,
       'gemini-38-flash-extended-high': false,
-      'gemini-38-flash-extended-medium': false,
-      'gemini-38-flash-extended-low': false,
       'gemini-35-flash-lite-extended': false,
       'gemini-31-pro': false,
-      'claude-haiku': true,    // Starts explicitly disabled
       'claude-51-fable-low': false,     // Starts enabled by default
       'claude-51-fable-medium': false,  // Starts enabled by default
       'claude-51-fable-high': false,    // Starts enabled by default
@@ -3683,8 +3598,12 @@
       'claude-55-sonnet-high': false,
       'claude-55-sonnet-medium': false,
       'claude-55-sonnet-low': false,
+      'claude-55-haiku-max': false,
+      'claude-55-haiku-extra': false,
+      'claude-55-haiku-high': false,
+      'claude-55-haiku-medium': false,
+      'claude-55-haiku-low': false,
       'claude-48-opus-max': false, // Starts enabled by default
-      'claude-haiku-nr': true,    // Starts explicitly disabled
       'glm-53-deep-think-max': false, // Starts enabled by default
       'glm-53-flash-deep-think-max': false, // Other recommended
       'grok-47-expert': false,          // Other recommended
@@ -3714,15 +3633,15 @@
 
     // Model groups for group toggles
     const modelGroups = {
-      'claude': ['claude-51-fable-low', 'claude-51-fable-medium', 'claude-51-fable-high', 'claude-51-fable-extra', 'claude-51-fable-max', 'claude-55-opus-max', 'claude-55-opus-extra', 'claude-55-opus-high', 'claude-55-opus-medium', 'claude-55-opus-low', 'claude-55-sonnet-max', 'claude-55-sonnet-extra', 'claude-55-sonnet-high', 'claude-55-sonnet-medium', 'claude-55-sonnet-low', 'claude-48-opus-max', 'claude-haiku', 'claude-haiku-nr'],
-      'reasoning': ['gpt-6-astra-max', 'gpt-6-astra-xhigh', 'gpt-6-astra-high', 'gpt-6-astra-medium', 'gpt-6-astra-low', 'gpt-61-sol-max', 'gpt-61-sol-xhigh', 'gpt-61-sol-high', 'gpt-61-sol-medium', 'gpt-61-sol-low', 'gpt-56-sol-max', 'gpt-56-sol-xhigh', 'gpt-56-sol-high', 'gpt-56-sol-medium', 'gpt-56-sol-low', 'gpt-6-luna-max', 'gpt-6-luna-xhigh', 'gpt-6-luna-high', 'gpt-6-luna-medium', 'gpt-6-luna-low', 'gpt-56-luna-max', 'gpt-56-luna-xhigh', 'gpt-56-luna-high', 'gpt-56-luna-medium', 'gpt-56-luna-low', 'gemini-38-flash-extended-high', 'gemini-38-flash-extended-medium', 'gemini-38-flash-extended-low', 'gemini-35-flash-lite-extended', 'gemini-31-pro', 'claude-51-fable-low', 'claude-51-fable-medium', 'claude-51-fable-high', 'claude-51-fable-extra', 'claude-51-fable-max', 'claude-55-opus-max', 'claude-55-opus-extra', 'claude-55-opus-high', 'claude-55-opus-medium', 'claude-55-opus-low', 'claude-55-sonnet-max', 'claude-55-sonnet-extra', 'claude-55-sonnet-high', 'claude-55-sonnet-medium', 'claude-55-sonnet-low', 'claude-48-opus-max', 'claude-haiku', 'glm-53-deep-think-max', 'glm-53-flash-deep-think-max', 'grok-47-expert', 'grok-46-expert', 'minimax-m3-thinking', 'muse-spark-13', 'muse-spark-11', 'deepseek-v41-flash-deep-think', 'mimo-v26-pro', 'mimo-v26-flash', 'qwen-38-max', 'qwen-38-omni-flash-thinking', 'kimi-k3-max', 'kimi-k26-thinking'],
-      'instant': ['gpt-56-sol-instant', 'gpt-6-luna-instant', 'gpt-56-luna-instant', 'claude-haiku-nr', 'kimi-k26-instant'],
+      'claude': ['claude-51-fable-low', 'claude-51-fable-medium', 'claude-51-fable-high', 'claude-51-fable-extra', 'claude-51-fable-max', 'claude-55-opus-max', 'claude-55-opus-extra', 'claude-55-opus-high', 'claude-55-opus-medium', 'claude-55-opus-low', 'claude-55-sonnet-max', 'claude-55-sonnet-extra', 'claude-55-sonnet-high', 'claude-55-sonnet-medium', 'claude-55-sonnet-low', 'claude-55-haiku-max', 'claude-55-haiku-extra', 'claude-55-haiku-high', 'claude-55-haiku-medium', 'claude-55-haiku-low', 'claude-48-opus-max'],
+      'reasoning': ['gpt-6-astra-max', 'gpt-6-astra-xhigh', 'gpt-6-astra-high', 'gpt-6-astra-medium', 'gpt-6-astra-low', 'gpt-61-sol-max', 'gpt-61-sol-xhigh', 'gpt-61-sol-high', 'gpt-61-sol-medium', 'gpt-61-sol-low', 'gpt-6-sol-max', 'gpt-6-sol-xhigh', 'gpt-6-sol-high', 'gpt-6-sol-medium', 'gpt-6-sol-low', 'gpt-6-luna-max', 'gpt-6-luna-xhigh', 'gpt-6-luna-high', 'gpt-6-luna-medium', 'gpt-6-luna-low', 'gemini-38-flash-extended-high', 'gemini-35-flash-lite-extended', 'gemini-31-pro', 'claude-51-fable-low', 'claude-51-fable-medium', 'claude-51-fable-high', 'claude-51-fable-extra', 'claude-51-fable-max', 'claude-55-opus-max', 'claude-55-opus-extra', 'claude-55-opus-high', 'claude-55-opus-medium', 'claude-55-opus-low', 'claude-55-sonnet-max', 'claude-55-sonnet-extra', 'claude-55-sonnet-high', 'claude-55-sonnet-medium', 'claude-55-sonnet-low', 'claude-55-haiku-max', 'claude-55-haiku-extra', 'claude-55-haiku-high', 'claude-55-haiku-medium', 'claude-55-haiku-low', 'claude-48-opus-max', 'glm-53-deep-think-max', 'glm-53-flash-deep-think-max', 'grok-47-expert', 'grok-46-expert', 'minimax-m3-thinking', 'muse-spark-13', 'muse-spark-11', 'deepseek-v41-flash-deep-think', 'mimo-v26-pro', 'mimo-v26-flash', 'qwen-38-max', 'qwen-38-omni-flash-thinking', 'kimi-k3-max', 'kimi-k26-thinking'],
+      'instant': ['kimi-k26-instant'],
       'chatgpt-pro': [],
       'other': ['glm-53-deep-think-max', 'glm-53-flash-deep-think-max', 'grok-47-expert', 'grok-46-expert', 'minimax-m3-thinking', 'muse-spark-13', 'muse-spark-11', 'deepseek-v41-flash-deep-think', 'mimo-v26-pro', 'mimo-v26-flash', 'qwen-38-max', 'qwen-38-omni-flash-thinking', 'kimi-k3-max', 'kimi-k26-thinking', 'kimi-k26-instant'],
       'legacy': [
         'claude-48-opus-max', 'kimi-k26-thinking', 'kimi-k26-instant',
       ],
-      'coding': ['gpt-6-astra-max', 'gpt-6-astra-xhigh', 'gpt-6-astra-medium', 'gpt-6-astra-low', 'gpt-61-sol-max', 'gpt-61-sol-low', 'gpt-56-sol-max', 'gpt-56-sol-low', 'gpt-6-luna-max', 'gpt-6-luna-xhigh', 'gpt-6-luna-high', 'gpt-56-luna-max', 'gpt-56-luna-xhigh', 'gpt-56-luna-high', 'gemini-38-flash-extended-high', 'muse-spark-13']
+      'coding': ['gpt-6-astra-max', 'gpt-6-astra-xhigh', 'gpt-6-astra-medium', 'gpt-6-astra-low', 'gpt-61-sol-max', 'gpt-61-sol-xhigh', 'gpt-61-sol-high', 'gpt-61-sol-medium', 'gpt-61-sol-low', 'gpt-6-sol-max', 'gpt-6-sol-low', 'gpt-6-luna-max', 'gpt-6-luna-xhigh', 'gpt-6-luna-high', 'grok-47-expert', 'muse-spark-13']
     };
 
     // Model constraints: which group toggles must ALL be active for a model to be visible
@@ -3734,31 +3653,21 @@
       'gpt-6-astra-medium': ['reasoning', 'coding'],          // Coding-app reasoning model
       'gpt-6-astra-low': ['reasoning', 'coding'],             // Coding-app reasoning model
       'gpt-61-sol-max': ['reasoning', 'coding'],
-      'gpt-61-sol-xhigh': ['reasoning'],
-      'gpt-61-sol-high': ['reasoning'],
-      'gpt-61-sol-medium': ['reasoning'],
+      'gpt-61-sol-xhigh': ['reasoning', 'coding'],
+      'gpt-61-sol-high': ['reasoning', 'coding'],
+      'gpt-61-sol-medium': ['reasoning', 'coding'],
       'gpt-61-sol-low': ['reasoning', 'coding'],
-      'gpt-56-sol-max': ['reasoning', 'coding'],
-      'gpt-56-sol-xhigh': ['reasoning'],
-      'gpt-56-sol-high': ['reasoning'],
-      'gpt-56-sol-medium': ['reasoning'],
-      'gpt-56-sol-low': ['reasoning', 'coding'],
+      'gpt-6-sol-max': ['reasoning', 'coding'],
+      'gpt-6-sol-xhigh': ['reasoning'],
+      'gpt-6-sol-high': ['reasoning'],
+      'gpt-6-sol-medium': ['reasoning'],
+      'gpt-6-sol-low': ['reasoning', 'coding'],
       'gpt-6-luna-max': ['reasoning', 'coding'],
       'gpt-6-luna-xhigh': ['reasoning', 'coding'],
       'gpt-6-luna-high': ['reasoning', 'coding'],
       'gpt-6-luna-medium': ['reasoning'],
       'gpt-6-luna-low': ['reasoning'],
-      'gpt-56-luna-max': ['reasoning', 'coding'],
-      'gpt-56-luna-xhigh': ['reasoning', 'coding'],
-      'gpt-56-luna-high': ['reasoning', 'coding'],
-      'gpt-56-luna-medium': ['reasoning'],
-      'gpt-56-luna-low': ['reasoning'],
-      'gpt-6-luna-instant': ['instant'],
-      'gpt-56-sol-instant': ['instant'],
-      'gpt-56-luna-instant': ['instant'],
-      'gemini-38-flash-extended-high': ['reasoning', 'coding'], // Coding-app reasoning model
-      'gemini-38-flash-extended-medium': ['reasoning'], // Only needs Reasoning
-      'gemini-38-flash-extended-low': ['reasoning'],    // Only needs Reasoning
+      'gemini-38-flash-extended-high': ['reasoning'], // Only needs Reasoning
       'gemini-35-flash-lite-extended': ['reasoning'],   // Only needs Reasoning
       'gemini-31-pro': ['reasoning'],                   // Only needs Reasoning
       'claude-51-fable-low': ['claude', 'reasoning'],    // Needs both Claude AND Reasoning to be on
@@ -3776,12 +3685,15 @@
       'claude-55-sonnet-high': ['claude', 'reasoning'],
       'claude-55-sonnet-medium': ['claude', 'reasoning'],
       'claude-55-sonnet-low': ['claude', 'reasoning'],
-      'claude-haiku': ['claude', 'reasoning'],         // Needs both Claude AND Reasoning to be on
+      'claude-55-haiku-max': ['claude', 'reasoning'],
+      'claude-55-haiku-extra': ['claude', 'reasoning'],
+      'claude-55-haiku-high': ['claude', 'reasoning'],
+      'claude-55-haiku-medium': ['claude', 'reasoning'],
+      'claude-55-haiku-low': ['claude', 'reasoning'],
       'claude-48-opus-max': ['claude', 'reasoning', 'legacy'], // Needs Claude, Reasoning, AND Legacy to be on
-      'claude-haiku-nr': ['claude', 'instant'],         // Needs both Claude AND Non-reasoning to be on
       'glm-53-deep-think-max': ['other', 'reasoning'],        // Needs both Other AND Reasoning to be on
       'glm-53-flash-deep-think-max': ['other', 'reasoning'],  // Needs both Other AND Reasoning to be on
-      'grok-47-expert': ['other', 'reasoning'],              // Needs both Other AND Reasoning to be on
+      'grok-47-expert': ['other', 'reasoning', 'coding'],          // Needs Other, Reasoning, AND Coding to be on
       'grok-46-expert': ['other', 'reasoning'],              // Needs both Other AND Reasoning to be on
       'minimax-m3-thinking': ['other', 'reasoning'],          // Needs both Other AND Reasoning to be on
       'muse-spark-13': ['other', 'reasoning', 'coding'],       // Needs Other, Reasoning, AND Coding to be on
@@ -4235,21 +4147,7 @@
 
     // Models with legacy skin but no membership in the Legacy Models toggle.
     const LEGACY_SKIN_MODEL_IDS = new Set([
-      'claude-haiku',
-      'claude-haiku-nr',
       'gemini-31-pro',
-      'gpt-56-luna-max',
-      'gpt-56-luna-xhigh',
-      'gpt-56-luna-high',
-      'gpt-56-luna-medium',
-      'gpt-56-luna-low',
-      'gpt-56-sol-max',
-      'gpt-56-sol-xhigh',
-      'gpt-56-sol-high',
-      'gpt-56-sol-medium',
-      'gpt-56-sol-low',
-      'gpt-56-sol-instant',
-      'gpt-56-luna-instant',
       'grok-46-expert',
       'muse-spark-11'
     ]);
@@ -4370,26 +4268,17 @@
       { modelId: 'gpt-61-sol-high', label: '⌘ GPT 6.1 Sol High', correct: 60.80, abstention: 19.85, hallucination: 19.35, sortOrder: 0.03 },
       { modelId: 'gpt-61-sol-medium', label: '⌘ GPT 6.1 Sol Medium', correct: 60.40, abstention: 19.15, hallucination: 20.45, sortOrder: 0.04 },
       { modelId: 'gpt-61-sol-low', label: '⌘ GPT 6.1 Sol Low', correct: 58.87, abstention: 19.90, hallucination: 21.23, sortOrder: 0.05 },
-      { modelId: 'gpt-56-sol-max', label: '⌘ GPT 5.6 Sol Max', correct: 59.40, abstention: 3.17, hallucination: 37.43, sortOrder: 1 },
-      { modelId: 'gpt-56-sol-xhigh', label: '⌘ GPT 5.6 Sol Extra High', correct: 58.82, abstention: 3.35, hallucination: 37.83, sortOrder: 2 },
-      { modelId: 'gpt-56-sol-high', label: '⌘ GPT 5.6 Sol High', correct: 58.35, abstention: 3.67, hallucination: 37.98, sortOrder: 3 },
-      { modelId: 'gpt-56-sol-medium', label: '⌘ GPT 5.6 Sol Medium', correct: 57.75, abstention: 3.90, hallucination: 38.35, sortOrder: 4 },
-      { modelId: 'gpt-56-sol-low', label: '⌘ GPT 5.6 Sol Low', correct: 57.17, abstention: 4.53, hallucination: 38.30, sortOrder: 4.5 },
+      { modelId: 'gpt-6-sol-max', label: '⌘ GPT 6 Sol Max', correct: 54.48, abstention: 18.15, hallucination: 27.37, sortOrder: 1 },
+      { modelId: 'gpt-6-sol-xhigh', label: '⌘ GPT 6 Sol Extra High', correct: 53.85, abstention: 18.97, hallucination: 27.18, sortOrder: 2 },
+      { modelId: 'gpt-6-sol-high', label: '⌘ GPT 6 Sol High', correct: 53.72, abstention: 19.38, hallucination: 26.90, sortOrder: 3 },
+      { modelId: 'gpt-6-sol-medium', label: '⌘ GPT 6 Sol Medium', correct: 53.45, abstention: 20.12, hallucination: 26.43, sortOrder: 4 },
+      { modelId: 'gpt-6-sol-low', label: '⌘ GPT 6 Sol Low', correct: 51.25, abstention: 24.01, hallucination: 24.74, sortOrder: 5 },
       { modelId: 'gpt-6-luna-max', label: '⌘ GPT 6 Luna Max', correct: 43.78, abstention: 13.08, hallucination: 43.14, sortOrder: 8.6 },
       { modelId: 'gpt-6-luna-xhigh', label: '⌘ GPT 6 Luna Extra High', correct: 44.17, abstention: 9.83, hallucination: 46.00, sortOrder: 8.7 },
       { modelId: 'gpt-6-luna-high', label: '⌘ GPT 6 Luna High', correct: 42.80, abstention: 8.90, hallucination: 48.30, sortOrder: 8.8 },
       { modelId: 'gpt-6-luna-medium', label: '⌘ GPT 6 Luna Medium', correct: 43.13, abstention: 8.68, hallucination: 48.19, sortOrder: 8.9 },
       { modelId: 'gpt-6-luna-low', label: '⌘ GPT 6 Luna Low', correct: 40.77, abstention: 9.30, hallucination: 49.93, sortOrder: 8.95 },
-      { modelId: 'gpt-56-luna-max', label: '⌘ GPT 5.6 Luna Max', correct: 42.73, abstention: 4.25, hallucination: 53.02, sortOrder: 9 },
-      { modelId: 'gpt-56-luna-xhigh', label: '⌘ GPT 5.6 Luna Extra High', correct: 42.45, abstention: 4.33, hallucination: 53.22, sortOrder: 10 },
-      { modelId: 'gpt-56-luna-high', label: '⌘ GPT 5.6 Luna High', correct: 41.78, abstention: 4.44, hallucination: 53.78, sortOrder: 11 },
-      { modelId: 'gpt-56-luna-medium', label: '⌘ GPT 5.6 Luna Medium', correct: 40.70, abstention: 5.41, hallucination: 53.89, sortOrder: 12 },
-      { modelId: 'gpt-56-luna-low', label: '⌘ GPT 5.6 Luna Low', correct: 39.62, abstention: 6.12, hallucination: 54.26, sortOrder: 12.5 },
-      { modelId: 'gpt-56-sol-instant', label: '⌘ GPT 5.6 Sol Instant', correct: 48.70, abstention: 3.70, hallucination: 47.60, sortOrder: 13 },
-      { modelId: 'gpt-56-luna-instant', label: '⌘ GPT 5.6 Luna Instant', correct: 28.60, abstention: 17.85, hallucination: 53.55, sortOrder: 14 },
-      { modelId: 'gemini-38-flash-extended-low', label: '✦ Gemini 3.8 Flash Extended Low', correct: 52.22, abstention: 16.91, hallucination: 30.87, sortOrder: 30 },
-      { modelId: 'gemini-38-flash-extended-medium', label: '✦ Gemini 3.8 Flash Extended Medium', correct: 52.98, abstention: 22.62, hallucination: 24.40, sortOrder: 31 },
-      { modelId: 'gemini-38-flash-extended-high', label: '✦ Gemini 3.8 Flash Extended High', correct: 54.60, abstention: 20.35, hallucination: 25.05, sortOrder: 32 },
+      { modelId: 'gemini-38-flash-extended-high', label: '✦ Gemini 3.8 Flash Extended', correct: 54.60, abstention: 20.35, hallucination: 25.05, sortOrder: 32 },
       { modelId: 'gemini-35-flash-lite-extended', label: '✦ Gemini 3.5 Flash Lite Extended', correct: 29.47, abstention: 46.30, hallucination: 24.23, sortOrder: 35.5 },
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro Extended', correct: 55.25, abstention: 22.43, hallucination: 22.32, sortOrder: 36 },
       { modelId: 'claude-51-fable-low', label: '❋ Claude 5.1 Fable Thinking Low', correct: 60.23, abstention: 13.67, hallucination: 26.10, sortOrder: 63.0 },
@@ -4407,9 +4296,12 @@
       { modelId: 'claude-55-sonnet-high', label: '❋ Claude 5.5 Sonnet Thinking High', correct: 51.98, abstention: 16.98, hallucination: 31.04, sortOrder: 63.62 },
       { modelId: 'claude-55-sonnet-extra', label: '❋ Claude 5.5 Sonnet Thinking Extra', correct: 53.03, abstention: 17.44, hallucination: 29.53, sortOrder: 63.63 },
       { modelId: 'claude-55-sonnet-max', label: '❋ Claude 5.5 Sonnet Thinking Max', correct: 53.95, abstention: 24.40, hallucination: 21.65, sortOrder: 63.64 },
+      { modelId: 'claude-55-haiku-max', label: '❋ Claude 5.5 Haiku Thinking Max', correct: 36.38, abstention: 37.90, hallucination: 25.72, sortOrder: 64.0 },
+      { modelId: 'claude-55-haiku-extra', label: '❋ Claude 5.5 Haiku Thinking Extra', correct: 34.95, abstention: 36.15, hallucination: 28.90, sortOrder: 64.1 },
+      { modelId: 'claude-55-haiku-high', label: '❋ Claude 5.5 Haiku Thinking High', correct: 34.78, abstention: 36.18, hallucination: 29.04, sortOrder: 64.2 },
+      { modelId: 'claude-55-haiku-medium', label: '❋ Claude 5.5 Haiku Thinking Medium', correct: 34.03, abstention: 36.39, hallucination: 29.58, sortOrder: 64.3 },
+      { modelId: 'claude-55-haiku-low', label: '❋ Claude 5.5 Haiku Thinking Low', correct: 33.25, abstention: 36.75, hallucination: 30.00, sortOrder: 64.4 },
       { modelId: 'claude-48-opus-max', label: '❋ Claude 4.8 Opus Thinking Max', correct: 46.60, abstention: 34.23, hallucination: 19.17, sortOrder: 89 },
-      { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', correct: 18.02, abstention: 59.60, hallucination: 22.38, sortOrder: 90 },
-      { modelId: 'claude-haiku-nr', label: '❋ Claude 4.5 Haiku', correct: 14.43, abstention: 63.57, hallucination: 22.00, sortOrder: 95 },
       { modelId: 'glm-53-deep-think-max', label: 'Ƶ GLM 5.3 Deep Think Max', correct: 33.85, abstention: 46.60, hallucination: 19.55, sortOrder: 96.5 },
       { modelId: 'glm-53-flash-deep-think-max', label: 'Ƶ GLM 5.3 Flash Deep Think Max', correct: 27.50, abstention: 52.47, hallucination: 20.03, sortOrder: 96.6 },
       { modelId: 'grok-47-expert', label: 'Ø Grok 4.7 Expert', correct: 47.45, abstention: 37.13, hallucination: 15.42, sortOrder: 109.2 },
@@ -4939,8 +4831,8 @@
         sortOrder: 0.01
       },
       {
-        modelId: 'gpt-56-sol-max',
-        label: 'GPT 5.6 Sol Max',
+        modelId: 'gpt-6-sol-max',
+        label: 'GPT 6 Sol Max',
         borderColor: 'rgba(16, 163, 127, 0.95)',
         backgroundColor: 'rgba(16, 163, 127, 0.95)',
         borderWidth: 2,
@@ -4950,19 +4842,6 @@
         pointBackgroundColor: 'rgba(16, 163, 127, 0.95)',
         spanGaps: false,
         sortOrder: 1
-      },
-      {
-        modelId: 'gpt-56-luna-max',
-        label: 'GPT 5.6 Luna Max',
-        borderColor: 'rgba(16, 163, 127, 0.65)',
-        backgroundColor: 'rgba(16, 163, 127, 0.65)',
-        borderWidth: 2,
-        tension: 0.3,
-        pointRadius: 6,
-        pointHoverRadius: 7,
-        pointBackgroundColor: 'rgba(16, 163, 127, 0.65)',
-        spanGaps: false,
-        sortOrder: 9
       },
       {
         modelId: 'gemini-31-pro',
@@ -4991,6 +4870,19 @@
         sortOrder: 63.64
       },
       {
+        modelId: 'claude-55-haiku-max',
+        label: 'Claude 5.5 Haiku Thinking Max',
+        borderColor: 'rgba(218, 119, 87, 0.8)',
+        backgroundColor: 'rgba(218, 119, 87, 0.8)',
+        borderWidth: 2,
+        tension: 0.3,
+        pointRadius: 5,
+        pointHoverRadius: 6,
+        pointBackgroundColor: 'rgba(218, 119, 87, 0.8)',
+        spanGaps: false,
+        sortOrder: 64.0
+      },
+      {
         modelId: 'claude-48-opus-max',
         label: 'Claude 4.8 Opus Thinking Max',
         borderColor: 'rgba(218, 119, 87, 0.7)',
@@ -5002,33 +4894,6 @@
         pointBackgroundColor: 'rgba(218, 119, 87, 0.7)',
         spanGaps: false,
         sortOrder: 89
-      },
-      {
-        modelId: 'claude-haiku',
-        label: 'Claude 4.5 Haiku Extended',
-        borderColor: 'rgba(218, 119, 87, 0.6)',
-        backgroundColor: 'rgba(218, 119, 87, 0.6)',
-        borderWidth: 2,
-        tension: 0.3,
-        pointRadius: 4,
-        pointHoverRadius: 5,
-        pointBackgroundColor: 'rgba(218, 119, 87, 0.6)',
-        spanGaps: false,
-        sortOrder: 90
-      },
-      {
-        modelId: 'claude-haiku-nr',
-        label: 'Claude 4.5 Haiku',
-        borderColor: 'rgba(218, 119, 87, 0.5)',
-        backgroundColor: 'rgba(218, 119, 87, 0.5)',
-        borderWidth: 2,
-        borderDash: [5, 5],
-        tension: 0.3,
-        pointRadius: 4,
-        pointHoverRadius: 5,
-        pointBackgroundColor: 'rgba(218, 119, 87, 0.5)',
-        spanGaps: false,
-        sortOrder: 95
       },
       {
         modelId: 'minimax-m3-thinking',
@@ -5098,27 +4963,17 @@
       { modelId: 'gpt-61-sol-high', label: '⌘ GPT 6.1 Sol High', score: 82.3, sortOrder: 0.03 },
       { modelId: 'gpt-61-sol-medium', label: '⌘ GPT 6.1 Sol Medium', score: 83.3, sortOrder: 0.04 },
       { modelId: 'gpt-61-sol-low', label: '⌘ GPT 6.1 Sol Low', score: 84, sortOrder: 0.05 },
-      { modelId: 'gpt-56-sol-max', label: '⌘ GPT 5.6 Sol Max', score: 84, sortOrder: 1 },
-      { modelId: 'gpt-56-sol-xhigh', label: '⌘ GPT 5.6 Sol Extra High', score: 82.3, sortOrder: 2 },
-      { modelId: 'gpt-56-sol-high', label: '⌘ GPT 5.6 Sol High', score: 81.7, sortOrder: 3 },
-      { modelId: 'gpt-56-sol-medium', label: '⌘ GPT 5.6 Sol Medium', score: 80.3, sortOrder: 4 },
-      { modelId: 'gpt-56-sol-low', label: '⌘ GPT 5.6 Sol Low', score: 78, sortOrder: 4.5 },
+      { modelId: 'gpt-6-sol-max', label: '⌘ GPT 6 Sol Max', score: 83.7, sortOrder: 1 },
+      { modelId: 'gpt-6-sol-xhigh', label: '⌘ GPT 6 Sol Extra High', score: 81.3, sortOrder: 2 },
+      { modelId: 'gpt-6-sol-high', label: '⌘ GPT 6 Sol High', score: 83.7, sortOrder: 3 },
+      { modelId: 'gpt-6-sol-medium', label: '⌘ GPT 6 Sol Medium', score: 82.3, sortOrder: 4 },
+      { modelId: 'gpt-6-sol-low', label: '⌘ GPT 6 Sol Low', score: 79.3, sortOrder: 5 },
       { modelId: 'gpt-6-luna-max', label: '⌘ GPT 6 Luna Max', score: 83.3, sortOrder: 8.6 },
       { modelId: 'gpt-6-luna-xhigh', label: '⌘ GPT 6 Luna Extra High', score: 80, sortOrder: 8.7 },
       { modelId: 'gpt-6-luna-high', label: '⌘ GPT 6 Luna High', score: 79.3, sortOrder: 8.8 },
       { modelId: 'gpt-6-luna-medium', label: '⌘ GPT 6 Luna Medium', score: 78.3, sortOrder: 8.9 },
       { modelId: 'gpt-6-luna-low', label: '⌘ GPT 6 Luna Low', score: 74, sortOrder: 8.95 },
-      { modelId: 'gpt-56-luna-max', label: '⌘ GPT 5.6 Luna Max', score: 83.7, sortOrder: 9 },
-      { modelId: 'gpt-56-luna-xhigh', label: '⌘ GPT 5.6 Luna Extra High', score: 81.7, sortOrder: 10 },
-      { modelId: 'gpt-56-luna-high', label: '⌘ GPT 5.6 Luna High', score: 80.3, sortOrder: 11 },
-      { modelId: 'gpt-56-luna-medium', label: '⌘ GPT 5.6 Luna Medium', score: 75, sortOrder: 12 },
-      { modelId: 'gpt-56-luna-low', label: '⌘ GPT 5.6 Luna Low', score: 70, sortOrder: 12.5 },
-      { modelId: 'gpt-6-luna-instant', label: '⌘ GPT 6 Luna Instant', score: 39.7, sortOrder: 13.9 },
-      { modelId: 'gpt-56-sol-instant', label: '⌘ GPT 5.6 Sol Instant', score: 62.3, sortOrder: 13 },
-      { modelId: 'gpt-56-luna-instant', label: '⌘ GPT 5.6 Luna Instant', score: 42.7, sortOrder: 14 },
-      { modelId: 'gemini-38-flash-extended-low', label: '✦ Gemini 3.8 Flash Extended Low', score: 80.7, sortOrder: 30 },
-      { modelId: 'gemini-38-flash-extended-medium', label: '✦ Gemini 3.8 Flash Extended Medium', score: 84, sortOrder: 31 },
-      { modelId: 'gemini-38-flash-extended-high', label: '✦ Gemini 3.8 Flash Extended High', score: 81.3, sortOrder: 32 },
+      { modelId: 'gemini-38-flash-extended-high', label: '✦ Gemini 3.8 Flash Extended', score: 81.3, sortOrder: 32 },
       { modelId: 'gemini-35-flash-lite-extended', label: '✦ Gemini 3.5 Flash Lite Extended', score: 76, sortOrder: 35.5 },
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro Extended', score: 82, sortOrder: 36 },
       { modelId: 'claude-51-fable-low', label: '❋ Claude 5.1 Fable Thinking Low', score: 82.3, sortOrder: 63.0 },
@@ -5136,9 +4991,12 @@
       { modelId: 'claude-55-sonnet-high', label: '❋ Claude 5.5 Sonnet Thinking High', score: 78, sortOrder: 63.62 },
       { modelId: 'claude-55-sonnet-extra', label: '❋ Claude 5.5 Sonnet Thinking Extra', score: 79.7, sortOrder: 63.63 },
       { modelId: 'claude-55-sonnet-max', label: '❋ Claude 5.5 Sonnet Thinking Max', score: 82.7, sortOrder: 63.64 },
+      { modelId: 'claude-55-haiku-max', label: '❋ Claude 5.5 Haiku Thinking Max', score: 82.7, sortOrder: 64.0 },
+      { modelId: 'claude-55-haiku-extra', label: '❋ Claude 5.5 Haiku Thinking Extra', score: 78.3, sortOrder: 64.1 },
+      { modelId: 'claude-55-haiku-high', label: '❋ Claude 5.5 Haiku Thinking High', score: 77.3, sortOrder: 64.2 },
+      { modelId: 'claude-55-haiku-medium', label: '❋ Claude 5.5 Haiku Thinking Medium', score: 77.3, sortOrder: 64.3 },
+      { modelId: 'claude-55-haiku-low', label: '❋ Claude 5.5 Haiku Thinking Low', score: 72, sortOrder: 64.4 },
       { modelId: 'claude-48-opus-max', label: '❋ Claude 4.8 Opus Thinking Max', score: 77.7, sortOrder: 89 },
-      { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', score: 74.3, sortOrder: 90 },
-      { modelId: 'claude-haiku-nr', label: '❋ Claude 4.5 Haiku', score: 49.7, sortOrder: 95 },
       { modelId: 'glm-53-deep-think-max', label: 'Ƶ GLM 5.3 Deep Think Max', score: 79.7, sortOrder: 96.5 },
       { modelId: 'glm-53-flash-deep-think-max', label: 'Ƶ GLM 5.3 Flash Deep Think Max', score: 80, sortOrder: 96.6 },
       { modelId: 'grok-47-expert', label: 'Ø Grok 4.7 Expert', score: 76.7, sortOrder: 109.2 },
@@ -5257,27 +5115,17 @@
       { modelId: 'gpt-61-sol-high', label: '⌘ GPT 6.1 Sol High', score: 85, sortOrder: 0.03 },
       { modelId: 'gpt-61-sol-medium', label: '⌘ GPT 6.1 Sol Medium', score: 84, sortOrder: 0.04 },
       { modelId: 'gpt-61-sol-low', label: '⌘ GPT 6.1 Sol Low', score: 83, sortOrder: 0.05 },
-      { modelId: 'gpt-56-sol-max', label: '⌘ GPT 5.6 Sol Max', score: 83, sortOrder: 1 },
-      { modelId: 'gpt-56-sol-xhigh', label: '⌘ GPT 5.6 Sol Extra High', score: 83, sortOrder: 2 },
-      { modelId: 'gpt-56-sol-high', label: '⌘ GPT 5.6 Sol High', score: 82, sortOrder: 3 },
-      { modelId: 'gpt-56-sol-medium', label: '⌘ GPT 5.6 Sol Medium', score: 81, sortOrder: 4 },
-      { modelId: 'gpt-56-sol-low', label: '⌘ GPT 5.6 Sol Low', score: 81, sortOrder: 4.5 },
+      { modelId: 'gpt-6-sol-max', label: '⌘ GPT 6 Sol Max', score: 83, sortOrder: 1 },
+      { modelId: 'gpt-6-sol-xhigh', label: '⌘ GPT 6 Sol Extra High', score: 82, sortOrder: 2 },
+      { modelId: 'gpt-6-sol-high', label: '⌘ GPT 6 Sol High', score: 81, sortOrder: 3 },
+      { modelId: 'gpt-6-sol-medium', label: '⌘ GPT 6 Sol Medium', score: 81, sortOrder: 4 },
+      { modelId: 'gpt-6-sol-low', label: '⌘ GPT 6 Sol Low', score: 79, sortOrder: 5 },
       { modelId: 'gpt-6-luna-max', label: '⌘ GPT 6 Luna Max', score: 76, sortOrder: 8.6 },
       { modelId: 'gpt-6-luna-xhigh', label: '⌘ GPT 6 Luna Extra High', score: 75, sortOrder: 8.7 },
       { modelId: 'gpt-6-luna-high', label: '⌘ GPT 6 Luna High', score: 74, sortOrder: 8.8 },
       { modelId: 'gpt-6-luna-medium', label: '⌘ GPT 6 Luna Medium', score: 73, sortOrder: 8.9 },
       { modelId: 'gpt-6-luna-low', label: '⌘ GPT 6 Luna Low', score: 70, sortOrder: 8.95 },
-      { modelId: 'gpt-56-luna-max', label: '⌘ GPT 5.6 Luna Max', score: 79, sortOrder: 9 },
-      { modelId: 'gpt-56-luna-xhigh', label: '⌘ GPT 5.6 Luna Extra High', score: 79, sortOrder: 10 },
-      { modelId: 'gpt-56-luna-high', label: '⌘ GPT 5.6 Luna High', score: 78, sortOrder: 11 },
-      { modelId: 'gpt-56-luna-medium', label: '⌘ GPT 5.6 Luna Medium', score: 76, sortOrder: 12 },
-      { modelId: 'gpt-56-luna-low', label: '⌘ GPT 5.6 Luna Low', score: 74, sortOrder: 12.5 },
-      { modelId: 'gpt-6-luna-instant', label: '⌘ GPT 6 Luna Instant', score: 53, sortOrder: 13.9 },
-      { modelId: 'gpt-56-sol-instant', label: '⌘ GPT 5.6 Sol Instant', score: 72, sortOrder: 13 },
-      { modelId: 'gpt-56-luna-instant', label: '⌘ GPT 5.6 Luna Instant', score: 60, sortOrder: 14 },
-      { modelId: 'gemini-38-flash-extended-low', label: '✦ Gemini 3.8 Flash Extended Low', score: 85, sortOrder: 30 },
-      { modelId: 'gemini-38-flash-extended-medium', label: '✦ Gemini 3.8 Flash Extended Medium', score: 84, sortOrder: 31 },
-      { modelId: 'gemini-38-flash-extended-high', label: '✦ Gemini 3.8 Flash Extended High', score: 86, sortOrder: 32 },
+      { modelId: 'gemini-38-flash-extended-high', label: '✦ Gemini 3.8 Flash Extended', score: 86, sortOrder: 32 },
       { modelId: 'gemini-35-flash-lite-extended', label: '✦ Gemini 3.5 Flash Lite Extended', score: 79, sortOrder: 35.5 },
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro Extended', score: 82, sortOrder: 36 },
       { modelId: 'claude-51-fable-low', label: '❋ Claude 5.1 Fable Thinking Low (Estimated)', score: 81, sortOrder: 63.0, estimated: true },
@@ -5295,9 +5143,12 @@
       { modelId: 'claude-55-sonnet-high', label: '❋ Claude 5.5 Sonnet Thinking High (Estimated)', score: 85, sortOrder: 63.62, estimated: true },
       { modelId: 'claude-55-sonnet-extra', label: '❋ Claude 5.5 Sonnet Thinking Extra (Estimated)', score: 86, sortOrder: 63.63, estimated: true },
       { modelId: 'claude-55-sonnet-max', label: '❋ Claude 5.5 Sonnet Thinking Max (Estimated)', score: 87, sortOrder: 63.64, estimated: true },
+      { modelId: 'claude-55-haiku-max', label: '❋ Claude 5.5 Haiku Thinking Max (Estimated)', score: 82, sortOrder: 64.0, estimated: true },
+      { modelId: 'claude-55-haiku-extra', label: '❋ Claude 5.5 Haiku Thinking Extra (Estimated)', score: 81, sortOrder: 64.1, estimated: true },
+      { modelId: 'claude-55-haiku-high', label: '❋ Claude 5.5 Haiku Thinking High (Estimated)', score: 79, sortOrder: 64.2, estimated: true },
+      { modelId: 'claude-55-haiku-medium', label: '❋ Claude 5.5 Haiku Thinking Medium (Estimated)', score: 77, sortOrder: 64.3, estimated: true },
+      { modelId: 'claude-55-haiku-low', label: '❋ Claude 5.5 Haiku Thinking Low (Estimated)', score: 75, sortOrder: 64.4, estimated: true },
       { modelId: 'claude-48-opus-max', label: '❋ Claude 4.8 Opus Thinking Max', score: 81, sortOrder: 89 },
-      { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', score: 59, sortOrder: 90 },
-      { modelId: 'claude-haiku-nr', label: '❋ Claude 4.5 Haiku', score: 55, sortOrder: 95 },
       { modelId: 'glm-53-deep-think-max', label: 'Ƶ GLM 5.3 Deep Think Max (Estimated)', score: 81, sortOrder: 96.5, estimated: true },
       { modelId: 'glm-53-flash-deep-think-max', label: 'Ƶ GLM 5.3 Flash Deep Think Max (Estimated)', score: 81, sortOrder: 96.6, estimated: true },
       { modelId: 'grok-46-expert', label: 'Ø Grok 4.6 Expert (Estimated)', score: 80, sortOrder: 109.3, estimated: true },
@@ -5495,24 +5346,17 @@
       { modelId: 'gpt-61-sol-high', label: '⌘ GPT 6.1 Sol High', score: 1486, costPerTask: 0.43, sortOrder: 0.03 },
       { modelId: 'gpt-61-sol-medium', label: '⌘ GPT 6.1 Sol Medium', score: 1433, costPerTask: 0.23, sortOrder: 0.04 },
       { modelId: 'gpt-61-sol-low', label: '⌘ GPT 6.1 Sol Low', score: 1297, costPerTask: 0.10, sortOrder: 0.05 },
-      { modelId: 'gpt-56-sol-max', label: '⌘ GPT 5.6 Sol Max', score: 1588, costPerTask: 2.81, sortOrder: 1 },
-      { modelId: 'gpt-56-sol-xhigh', label: '⌘ GPT 5.6 Sol Extra High', score: 1548, costPerTask: 1.70, sortOrder: 2 },
-      { modelId: 'gpt-56-sol-high', label: '⌘ GPT 5.6 Sol High', score: 1480, costPerTask: 1.11, sortOrder: 3 },
-      { modelId: 'gpt-56-sol-medium', label: '⌘ GPT 5.6 Sol Medium', score: 1403, costPerTask: 0.60, sortOrder: 4 },
-      { modelId: 'gpt-56-sol-low', label: '⌘ GPT 5.6 Sol Low', score: 1289, costPerTask: 0.27, sortOrder: 4.5 },
+      { modelId: 'gpt-6-sol-max', label: '⌘ GPT 6 Sol Max', score: 1487, costPerTask: 1.32, sortOrder: 1 },
+      { modelId: 'gpt-6-sol-xhigh', label: '⌘ GPT 6 Sol Extra High', score: 1437, costPerTask: 0.77, sortOrder: 2 },
+      { modelId: 'gpt-6-sol-high', label: '⌘ GPT 6 Sol High', score: 1376, costPerTask: 0.48, sortOrder: 3 },
+      { modelId: 'gpt-6-sol-medium', label: '⌘ GPT 6 Sol Medium', score: 1320, costPerTask: 0.24, sortOrder: 4 },
+      { modelId: 'gpt-6-sol-low', label: '⌘ GPT 6 Sol Low', score: 1176, costPerTask: 0.09, sortOrder: 5 },
       { modelId: 'gpt-6-luna-max', label: '⌘ GPT 6 Luna Max', score: 1367, costPerTask: 0.09, sortOrder: 8.6 },
       { modelId: 'gpt-6-luna-xhigh', label: '⌘ GPT 6 Luna Extra High', score: 1297, costPerTask: 0.04, sortOrder: 8.7 },
       { modelId: 'gpt-6-luna-high', label: '⌘ GPT 6 Luna High', score: 1290, costPerTask: 0.03, sortOrder: 8.8 },
       { modelId: 'gpt-6-luna-medium', label: '⌘ GPT 6 Luna Medium', score: 1218, costPerTask: 0.02, sortOrder: 8.9 },
       { modelId: 'gpt-6-luna-low', label: '⌘ GPT 6 Luna Low', score: 992, costPerTaskUpperBound: 0.01, sortOrder: 8.95 },
-      { modelId: 'gpt-56-luna-max', label: '⌘ GPT 5.6 Luna Max', score: 1443, costPerTask: 0.11, sortOrder: 9 },
-      { modelId: 'gpt-56-luna-xhigh', label: '⌘ GPT 5.6 Luna Extra High', score: 1384, costPerTask: 0.07, sortOrder: 10 },
-      { modelId: 'gpt-56-luna-high', label: '⌘ GPT 5.6 Luna High', score: 1319, costPerTask: 0.04, sortOrder: 11 },
-      { modelId: 'gpt-56-luna-medium', label: '⌘ GPT 5.6 Luna Medium', score: 1112, costPerTask: 0.01, sortOrder: 12 },
-      { modelId: 'gpt-56-luna-low', label: '⌘ GPT 5.6 Luna Low', score: 981, costPerTask: 0.01, sortOrder: 12.5 },
-      { modelId: 'gemini-38-flash-extended-low', label: '✦ Gemini 3.8 Flash Extended Low', score: 1294, costPerTask: 0.53, sortOrder: 30 },
-      { modelId: 'gemini-38-flash-extended-medium', label: '✦ Gemini 3.8 Flash Extended Medium', score: 1409, costPerTask: 1.24, sortOrder: 31 },
-      { modelId: 'gemini-38-flash-extended-high', label: '✦ Gemini 3.8 Flash Extended High', score: 1412, costPerTask: 1.69, sortOrder: 32 },
+      { modelId: 'gemini-38-flash-extended-high', label: '✦ Gemini 3.8 Flash Extended', score: 1412, costPerTask: 1.69, sortOrder: 32 },
       { modelId: 'gemini-35-flash-lite-extended', label: '✦ Gemini 3.5 Flash Lite Extended', score: 970, costPerTask: 0.10, sortOrder: 35.5 },
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro Extended', score: 776, costPerTask: 0.27, sortOrder: 36 },
       { modelId: 'claude-51-fable-low', label: '❋ Claude 5.1 Fable Thinking Low', score: 1450, costPerTask: 1.43, sortOrder: 63.0 },
@@ -5530,8 +5374,12 @@
       { modelId: 'claude-55-sonnet-high', label: '❋ Claude 5.5 Sonnet Thinking High', score: 1517, costPerTask: 0.72, sortOrder: 63.62 },
       { modelId: 'claude-55-sonnet-extra', label: '❋ Claude 5.5 Sonnet Thinking Extra', score: 1725, costPerTask: 2.47, sortOrder: 63.63 },
       { modelId: 'claude-55-sonnet-max', label: '❋ Claude 5.5 Sonnet Thinking Max', score: 1844, costPerTask: 9.03, sortOrder: 63.64 },
+      { modelId: 'claude-55-haiku-max', label: '❋ Claude 5.5 Haiku Thinking Max', score: 1620, costPerTaskLowerBound: 0.22, sortOrder: 64.0 },
+      { modelId: 'claude-55-haiku-extra', label: '❋ Claude 5.5 Haiku Thinking Extra', score: 1511, costPerTaskLowerBound: 0.09, sortOrder: 64.1 },
+      { modelId: 'claude-55-haiku-high', label: '❋ Claude 5.5 Haiku Thinking High', score: 1420, costPerTaskLowerBound: 0.04, sortOrder: 64.2 },
+      { modelId: 'claude-55-haiku-medium', label: '❋ Claude 5.5 Haiku Thinking Medium', score: 1277, costPerTaskLowerBound: 0.02, sortOrder: 64.3 },
+      { modelId: 'claude-55-haiku-low', label: '❋ Claude 5.5 Haiku Thinking Low', score: 1125, costPerTaskLowerBound: 0.01, sortOrder: 64.4 },
       { modelId: 'claude-48-opus-max', label: '❋ Claude 4.8 Opus Thinking Max', score: 1438, costPerTask: 4.34, sortOrder: 89 },
-      { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', score: 719, costPerTask: 0.19, sortOrder: 90 },
       { modelId: 'glm-53-deep-think-max', label: 'Ƶ GLM 5.3 Deep Think Max', score: 1646, costPerTask: 2.26, sortOrder: 96.5 },
       { modelId: 'glm-53-flash-deep-think-max', label: 'Ƶ GLM 5.3 Flash Deep Think Max', score: 1641, costPerTask: 0.30, sortOrder: 96.6 },
       { modelId: 'grok-47-expert', label: 'Ø Grok 4.7 Expert', score: 1632, costPerTask: 6.43, sortOrder: 109.2 },
@@ -5591,7 +5439,9 @@
     const GDPVAL2_UNKNOWN_COST_MODEL_IDS = new Set();
 
     function getGdpval2CostCoordinate(model) {
-      return typeof model.costPerTask === 'number' ? model.costPerTask : model.costPerTaskUpperBound;
+      if (typeof model.costPerTask === 'number') return model.costPerTask;
+      if (typeof model.costPerTaskUpperBound === 'number') return model.costPerTaskUpperBound;
+      return model.costPerTaskLowerBound;
     }
 
     function getGdpval2PricedModels(includeAll = false) {
@@ -5678,6 +5528,7 @@
           estimated: model.estimated === true,
           priceEstimated: model.priceEstimated === true,
           priceUpperBound: typeof model.costPerTaskUpperBound === 'number',
+          priceLowerBound: typeof model.costPerTaskLowerBound === 'number',
           style
         });
       });
@@ -5864,9 +5715,11 @@
                     `Performance: ${formatGdpval2RelativeScore(context.raw.y)}${context.raw.estimated ? ' (Estimated)' : ''}`,
                     context.raw.unknownCost
                       ? 'Average price per task: Unknown'
-                      : context.raw.priceUpperBound
-                        ? `Average price per task: <US$${context.raw.x.toFixed(2)}`
-                        : `Average price per task: US$${context.raw.x.toFixed(2)}${context.raw.priceEstimated ? ' (Estimated)' : ''}`
+                      : context.raw.priceLowerBound
+                        ? `Average price per task: ≥US$${context.raw.x.toFixed(2)}`
+                        : context.raw.priceUpperBound
+                          ? `Average price per task: <US$${context.raw.x.toFixed(2)}`
+                          : `Average price per task: US$${context.raw.x.toFixed(2)}${context.raw.priceEstimated ? ' (Estimated)' : ''}`
                   ];
                   return lines;
                 }
@@ -5908,9 +5761,9 @@
     const BENCHMARK_STYLE_ANCHORS = {
       'gpt-6-astra': 'gpt-6-astra-max',
       'gpt-61-sol': 'gpt-61-sol-max',
-      'gpt-56-sol': 'gpt-56-sol-max',
-      'gpt-56-luna': 'gpt-56-luna-max',
+      'gpt-6-sol': 'gpt-6-sol-max',
       'claude-55-sonnet': 'claude-55-sonnet-max',
+      'claude-55-haiku': 'claude-55-haiku-max',
       'glm': 'glm-53-deep-think-max'
     };
 
@@ -6012,18 +5865,6 @@
         }
       }
 
-      for (const family of ['sol', 'terra', 'luna']) {
-        if (modelId.startsWith(`gpt-56-${family}-`)) {
-          const effort = modelId.split('-').pop();
-          const effortMeta = getBenchmarkEffortMeta(effort, cleanLabel);
-          return {
-            key: `gpt-56-${family}`,
-            label: `GPT 5.6 ${family.charAt(0).toUpperCase() + family.slice(1)}`,
-            pointLabel: effortMeta.label,
-            effortOrder: effortMeta.order
-          };
-        }
-      }
 
       if (modelId.startsWith('claude-55-sonnet-')) {
         const effort = modelId.split('-').pop();
@@ -6031,6 +5872,16 @@
         return {
           key: 'claude-55-sonnet',
           label: 'Claude 5.5 Sonnet',
+          pointLabel: effortMeta.label,
+          effortOrder: effortMeta.order
+        };
+      }
+      if (modelId.startsWith('claude-55-haiku-')) {
+        const effort = modelId.split('-').pop();
+        const effortMeta = getBenchmarkEffortMeta(effort, cleanLabel);
+        return {
+          key: 'claude-55-haiku',
+          label: 'Claude 5.5 Haiku',
           pointLabel: effortMeta.label,
           effortOrder: effortMeta.order
         };
@@ -6058,14 +5909,12 @@
         };
       }
 
-      if (modelId.startsWith('gemini-38-flash-extended-')) {
-        const effort = modelId.split('-').pop();
-        const effortMeta = getBenchmarkEffortMeta(effort, cleanLabel);
+      if (modelId === 'gemini-38-flash-extended-high') {
         return {
           key: 'gemini-38-flash-extended',
           label: 'Gemini 3.8 Flash Extended',
-          pointLabel: effortMeta.label,
-          effortOrder: effortMeta.order
+          pointLabel: '',
+          effortOrder: 0
         };
       }
 
@@ -6087,24 +5936,17 @@
       { modelId: 'gpt-61-sol-high', label: '⌘ GPT 6.1 Sol High', score: 51.5, costPerTask: 0.83, sortOrder: 0.03 },
       { modelId: 'gpt-61-sol-medium', label: '⌘ GPT 6.1 Sol Medium', score: 48, costPerTask: 0.61, sortOrder: 0.04 },
       { modelId: 'gpt-61-sol-low', label: '⌘ GPT 6.1 Sol Low', score: 30.8, costPerTask: 0.38, sortOrder: 0.05 },
-      { modelId: 'gpt-56-sol-max', label: '⌘ GPT 5.6 Sol Max', score: 39.9, costPerTask: 8.09, sortOrder: 1 },
-      { modelId: 'gpt-56-sol-xhigh', label: '⌘ GPT 5.6 Sol Extra High', score: 24.7, costPerTask: 3.46, sortOrder: 2 },
-      { modelId: 'gpt-56-sol-high', label: '⌘ GPT 5.6 Sol High', score: 20.7, costPerTask: 2.22, sortOrder: 3 },
-      { modelId: 'gpt-56-sol-medium', label: '⌘ GPT 5.6 Sol Medium', score: 14.6, costPerTask: 1.64, sortOrder: 4 },
-      { modelId: 'gpt-56-sol-low', label: '⌘ GPT 5.6 Sol Low', score: 1.0, costPerTask: 0.52, sortOrder: 4.5 },
+      { modelId: 'gpt-6-sol-max', label: '⌘ GPT 6 Sol Max', score: 43.9, costPerTask: 4.00, sortOrder: 1 },
+      { modelId: 'gpt-6-sol-xhigh', label: '⌘ GPT 6 Sol Extra High', score: 30.3, costPerTask: 1.91, sortOrder: 2 },
+      { modelId: 'gpt-6-sol-high', label: '⌘ GPT 6 Sol High', score: 26.3, costPerTask: 1.60, sortOrder: 3 },
+      { modelId: 'gpt-6-sol-medium', label: '⌘ GPT 6 Sol Medium', score: 18.7, costPerTask: 1.12, sortOrder: 4 },
+      { modelId: 'gpt-6-sol-low', label: '⌘ GPT 6 Sol Low', score: 9.1, costPerTask: 0.49, sortOrder: 5 },
       { modelId: 'gpt-6-luna-max', label: '⌘ GPT 6 Luna Max', score: 12.6, costPerTask: 0.24, sortOrder: 8.6 },
       { modelId: 'gpt-6-luna-xhigh', label: '⌘ GPT 6 Luna Extra High', score: 8.1, costPerTask: 0.20, sortOrder: 8.7 },
       { modelId: 'gpt-6-luna-high', label: '⌘ GPT 6 Luna High', score: 4.5, costPerTask: 0.12, sortOrder: 8.8 },
       { modelId: 'gpt-6-luna-medium', label: '⌘ GPT 6 Luna Medium', score: 2.5, costPerTask: 0.07, sortOrder: 8.9 },
       { modelId: 'gpt-6-luna-low', label: '⌘ GPT 6 Luna Low', score: 0, costPerTask: 0.01, sortOrder: 8.95 },
-      { modelId: 'gpt-56-luna-max', label: '⌘ GPT 5.6 Luna Max', score: 11.6, costPerTask: 0.85, sortOrder: 9 },
-      { modelId: 'gpt-56-luna-xhigh', label: '⌘ GPT 5.6 Luna Extra High', score: 3.5, costPerTask: 0.30, sortOrder: 10 },
-      { modelId: 'gpt-56-luna-high', label: '⌘ GPT 5.6 Luna High', score: 2.5, costPerTask: 0.11, sortOrder: 11 },
-      { modelId: 'gpt-56-luna-medium', label: '⌘ GPT 5.6 Luna Medium', score: 0.5, costPerTask: 0.03, sortOrder: 12 },
-      { modelId: 'gpt-56-luna-low', label: '⌘ GPT 5.6 Luna Low', score: 0.0, costPerTask: 0.01, sortOrder: 12.5 },
-      { modelId: 'gemini-38-flash-extended-low', label: '✦ Gemini 3.8 Flash Extended Low', score: 10.1, costPerTask: 5.38, sortOrder: 30 },
-      { modelId: 'gemini-38-flash-extended-medium', label: '✦ Gemini 3.8 Flash Extended Medium', score: 19.7, costPerTask: 4.61, sortOrder: 31 },
-      { modelId: 'gemini-38-flash-extended-high', label: '✦ Gemini 3.8 Flash Extended High', score: 19.7, costPerTask: 5.84, sortOrder: 32 },
+      { modelId: 'gemini-38-flash-extended-high', label: '✦ Gemini 3.8 Flash Extended', score: 19.7, costPerTask: 5.84, sortOrder: 32 },
       { modelId: 'gemini-35-flash-lite-extended', label: '✦ Gemini 3.5 Flash Lite Extended', score: 1.0, costPerTask: 0.71, sortOrder: 35.5 },
       { modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro Extended', score: 4.0, costPerTask: 4.15, sortOrder: 36 },
       { modelId: 'claude-51-fable-low', label: '❋ Claude 5.1 Fable Thinking Low', score: 40.4, costPerTask: 7.32, sortOrder: 63.0 },
@@ -6122,8 +5964,12 @@
       { modelId: 'claude-55-sonnet-high', label: '❋ Claude 5.5 Sonnet Thinking High', score: 43.9, costPerTask: 3.06, sortOrder: 63.62 },
       { modelId: 'claude-55-sonnet-extra', label: '❋ Claude 5.5 Sonnet Thinking Extra', score: 57.1, costPerTask: 8.87, sortOrder: 63.63 },
       { modelId: 'claude-55-sonnet-max', label: '❋ Claude 5.5 Sonnet Thinking Max', score: 63.6, costPerTask: 18.76, sortOrder: 63.64 },
+      { modelId: 'claude-55-haiku-max', label: '❋ Claude 5.5 Haiku Thinking Max', score: 32.8, costPerTaskLowerBound: 0.65, sortOrder: 64.0 },
+      { modelId: 'claude-55-haiku-extra', label: '❋ Claude 5.5 Haiku Thinking Extra', score: 29.3, costPerTaskLowerBound: 0.46, sortOrder: 64.1 },
+      { modelId: 'claude-55-haiku-high', label: '❋ Claude 5.5 Haiku Thinking High', score: 21.7, costPerTaskLowerBound: 0.33, sortOrder: 64.2 },
+      { modelId: 'claude-55-haiku-medium', label: '❋ Claude 5.5 Haiku Thinking Medium', score: 15.2, costPerTaskLowerBound: 0.19, sortOrder: 64.3 },
+      { modelId: 'claude-55-haiku-low', label: '❋ Claude 5.5 Haiku Thinking Low', score: 12.6, costPerTaskLowerBound: 0.12, sortOrder: 64.4 },
       { modelId: 'claude-48-opus-max', label: '❋ Claude 4.8 Opus Thinking Max', score: 21.7, costPerTask: 18.15, sortOrder: 89 },
-      { modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', score: 0.0, costPerTask: 0.81, sortOrder: 90 },
       { modelId: 'glm-53-deep-think-max', label: 'Ƶ GLM 5.3 Deep Think Max', score: 41.9, costPerTask: 8.06, sortOrder: 96.5 },
       { modelId: 'glm-53-flash-deep-think-max', label: 'Ƶ GLM 5.3 Flash Deep Think Max', score: 32.8, costPerTask: 0.79, sortOrder: 96.6 },
       { modelId: 'grok-47-expert', label: 'Ø Grok 4.7 Expert', score: 25.8, costPerTask: 14.60, sortOrder: 109.2 },
@@ -6158,15 +6004,19 @@
       return { labels, data, backgroundColors, hoverBackgroundColors, borderColors };
     }
 
+    function getTerminalBenchV40CostCoordinate(model) {
+      return typeof model.costPerTask === 'number' ? model.costPerTask : model.costPerTaskLowerBound;
+    }
+
     function getTerminalBenchV40PricedModels(includeAll = false) {
       return terminalBenchV40AllModels
-        .filter(model => typeof model.costPerTask === 'number')
+        .filter(model => Number.isFinite(getTerminalBenchV40CostCoordinate(model)))
         .filter(model => includeAll || modelVisibility[model.modelId] === true);
     }
 
     function getTerminalBenchV40ReferenceLineMax() {
-      const visiblePrices = getTerminalBenchV40PricedModels().map(model => model.costPerTask);
-      const fallbackPrices = getTerminalBenchV40PricedModels(true).map(model => model.costPerTask);
+      const visiblePrices = getTerminalBenchV40PricedModels().map(getTerminalBenchV40CostCoordinate);
+      const fallbackPrices = getTerminalBenchV40PricedModels(true).map(getTerminalBenchV40CostCoordinate);
       return getPriceReferenceAxisMax(visiblePrices, fallbackPrices);
     }
 
@@ -6181,7 +6031,7 @@
 
         const style = getBenchmarkPointStyle(model.modelId);
         groups.get(series.key).points.push({
-          x: model.costPerTask,
+          x: getTerminalBenchV40CostCoordinate(model),
           y: model.score,
           modelId: model.modelId,
           modelLabel: model.label.replace(/^\S+\s+/, ''),
@@ -6190,6 +6040,7 @@
           sortOrder: model.sortOrder,
           estimated: model.estimated === true,
           priceEstimated: model.priceEstimated === true,
+          priceLowerBound: typeof model.costPerTaskLowerBound === 'number',
           style
         });
       });
@@ -6364,7 +6215,9 @@
                 title: items => items[0]?.raw?.modelLabel || '',
                 label: context => [
                   `Performance: ${context.raw.y}%${context.raw.estimated ? ' (Estimated)' : ''}`,
-                  `Price per solved task: US$${context.raw.x.toFixed(2)}${context.raw.priceEstimated ? ' (Estimated)' : ''}`
+                  context.raw.priceLowerBound
+                    ? `Price per solved task: ≥US$${context.raw.x.toFixed(2)}`
+                    : `Price per solved task: US$${context.raw.x.toFixed(2)}${context.raw.priceEstimated ? ' (Estimated)' : ''}`
                 ]
               }
             }
@@ -6446,33 +6299,6 @@
 
     const maxContextAllModels = [
       // GPT non-reasoning (instant)
-      {
-        modelId: 'gpt-6-luna-instant', label: '⌘ GPT 6 Luna Instant', sortOrder: 13.9,
-        color: 'rgba(16, 163, 127, 1)',
-        segments: [
-          { value: 27000, plans: 'Free' },
-          { value: 54000, plans: 'Plus, Go' },
-          { value: 128000, plans: 'Pro' }
-        ]
-      },
-      {
-        modelId: 'gpt-56-sol-instant', label: '⌘ GPT 5.6 Sol Instant', sortOrder: 13,
-        color: 'rgba(16, 163, 127, 1)',
-        segments: [
-          { value: 27000, plans: 'Free' },
-          { value: 54000, plans: 'Plus, Go' },
-          { value: 128000, plans: 'Pro' }
-        ]
-      },
-      {
-        modelId: 'gpt-56-luna-instant', label: '⌘ GPT 5.6 Luna Instant', sortOrder: 14,
-        color: 'rgba(16, 163, 127, 1)',
-        segments: [
-          { value: 27000, plans: 'Free' },
-          { value: 54000, plans: 'Plus, Go' },
-          { value: 128000, plans: 'Pro' }
-        ]
-      },
       // GPT reasoning models (use the same tier structure)
       {
         modelId: 'gpt-6-astra-max', label: '⌘ GPT 6 Astra Max', sortOrder: -4,
@@ -6555,7 +6381,7 @@
         ]
       },
       {
-        modelId: 'gpt-56-sol-max', label: '⌘ GPT 5.6 Sol Max', sortOrder: 1,
+        modelId: 'gpt-6-sol-max', label: '⌘ GPT 6 Sol Max', sortOrder: 1,
         color: 'rgba(16, 163, 127, 1)',
         segments: [
           { value: 256000, plans: 'Free, Go, Plus' },
@@ -6563,7 +6389,7 @@
         ]
       },
       {
-        modelId: 'gpt-56-sol-xhigh', label: '⌘ GPT 5.6 Sol Extra High', sortOrder: 2,
+        modelId: 'gpt-6-sol-xhigh', label: '⌘ GPT 6 Sol Extra High', sortOrder: 2,
         color: 'rgba(16, 163, 127, 1)',
         segments: [
           { value: 256000, plans: 'Free, Go, Plus' },
@@ -6571,7 +6397,7 @@
         ]
       },
       {
-        modelId: 'gpt-56-sol-high', label: '⌘ GPT 5.6 Sol High', sortOrder: 3,
+        modelId: 'gpt-6-sol-high', label: '⌘ GPT 6 Sol High', sortOrder: 3,
         color: 'rgba(16, 163, 127, 1)',
         segments: [
           { value: 256000, plans: 'Free, Go, Plus' },
@@ -6579,7 +6405,7 @@
         ]
       },
       {
-        modelId: 'gpt-56-sol-medium', label: '⌘ GPT 5.6 Sol Medium', sortOrder: 4,
+        modelId: 'gpt-6-sol-medium', label: '⌘ GPT 6 Sol Medium', sortOrder: 4,
         color: 'rgba(16, 163, 127, 1)',
         segments: [
           { value: 256000, plans: 'Free, Go, Plus' },
@@ -6587,7 +6413,7 @@
         ]
       },
       {
-        modelId: 'gpt-56-sol-low', label: '⌘ GPT 5.6 Sol Low', sortOrder: 4.5,
+        modelId: 'gpt-6-sol-low', label: '⌘ GPT 6 Sol Low', sortOrder: 5,
         color: 'rgba(16, 163, 127, 1)',
         segments: [
           { value: 256000, plans: 'Free, Go, Plus' },
@@ -6634,46 +6460,6 @@
           { value: 400000, plans: 'Pro' }
         ]
       },
-      {
-        modelId: 'gpt-56-luna-max', label: '⌘ GPT 5.6 Luna Max', sortOrder: 9,
-        color: 'rgba(16, 163, 127, 1)',
-        segments: [
-          { value: 256000, plans: 'Free, Go, Plus' },
-          { value: 400000, plans: 'Pro' }
-        ]
-      },
-      {
-        modelId: 'gpt-56-luna-xhigh', label: '⌘ GPT 5.6 Luna Extra High', sortOrder: 10,
-        color: 'rgba(16, 163, 127, 1)',
-        segments: [
-          { value: 256000, plans: 'Free, Go, Plus' },
-          { value: 400000, plans: 'Pro' }
-        ]
-      },
-      {
-        modelId: 'gpt-56-luna-high', label: '⌘ GPT 5.6 Luna High', sortOrder: 11,
-        color: 'rgba(16, 163, 127, 1)',
-        segments: [
-          { value: 256000, plans: 'Free, Go, Plus' },
-          { value: 400000, plans: 'Pro' }
-        ]
-      },
-      {
-        modelId: 'gpt-56-luna-medium', label: '⌘ GPT 5.6 Luna Medium', sortOrder: 12,
-        color: 'rgba(16, 163, 127, 1)',
-        segments: [
-          { value: 256000, plans: 'Free, Go, Plus' },
-          { value: 400000, plans: 'Pro' }
-        ]
-      },
-      {
-        modelId: 'gpt-56-luna-low', label: '⌘ GPT 5.6 Luna Low', sortOrder: 12.5,
-        color: 'rgba(16, 163, 127, 1)',
-        segments: [
-          { value: 256000, plans: 'Free, Go, Plus' },
-          { value: 400000, plans: 'Pro' }
-        ]
-      },
       // Gemini
       {
         modelId: 'gemini-31-pro', label: '✦ Gemini 3.1 Pro Extended', sortOrder: 36,
@@ -6685,25 +6471,7 @@
         ]
       },
       {
-        modelId: 'gemini-38-flash-extended-low', label: '✦ Gemini 3.8 Flash Extended Low', sortOrder: 30,
-        color: 'rgba(238, 73, 82, 1)',
-        segments: [
-          { value: 32000, plans: 'Free' },
-          { value: 128000, plans: 'Plus' },
-          { value: 1000000, plans: 'Pro, Ultra' }
-        ]
-      },
-      {
-        modelId: 'gemini-38-flash-extended-medium', label: '✦ Gemini 3.8 Flash Extended Medium', sortOrder: 31,
-        color: 'rgba(238, 73, 82, 1)',
-        segments: [
-          { value: 32000, plans: 'Free' },
-          { value: 128000, plans: 'Plus' },
-          { value: 1000000, plans: 'Pro, Ultra' }
-        ]
-      },
-      {
-        modelId: 'gemini-38-flash-extended-high', label: '✦ Gemini 3.8 Flash Extended High', sortOrder: 32,
+        modelId: 'gemini-38-flash-extended-high', label: '✦ Gemini 3.8 Flash Extended', sortOrder: 32,
         color: 'rgba(238, 73, 82, 1)',
         segments: [
           { value: 32000, plans: 'Free' },
@@ -6842,7 +6610,7 @@
         ]
       },
       {
-        modelId: 'claude-48-opus-max', label: '❋ Claude 4.8 Opus Thinking Max', sortOrder: 89,
+        modelId: 'claude-55-haiku-max', label: '❋ Claude 5.5 Haiku Thinking Max', sortOrder: 64.0,
         color: 'rgba(218, 119, 87, 1)',
         segments: [
           { value: 200000, plans: 'Free' },
@@ -6850,14 +6618,44 @@
         ]
       },
       {
-        modelId: 'claude-haiku', label: '❋ Claude 4.5 Haiku Extended', sortOrder: 90,
+        modelId: 'claude-55-haiku-extra', label: '❋ Claude 5.5 Haiku Thinking Extra', sortOrder: 64.1,
         color: 'rgba(218, 119, 87, 1)',
-        segments: [{ value: 200000, plans: 'All Plans' }]
+        segments: [
+          { value: 200000, plans: 'Free' },
+          { value: 500000, plans: 'Pro, Max x5, Max x20' }
+        ]
       },
       {
-        modelId: 'claude-haiku-nr', label: '❋ Claude 4.5 Haiku', sortOrder: 95,
+        modelId: 'claude-55-haiku-high', label: '❋ Claude 5.5 Haiku Thinking High', sortOrder: 64.2,
         color: 'rgba(218, 119, 87, 1)',
-        segments: [{ value: 200000, plans: 'All Plans' }]
+        segments: [
+          { value: 200000, plans: 'Free' },
+          { value: 500000, plans: 'Pro, Max x5, Max x20' }
+        ]
+      },
+      {
+        modelId: 'claude-55-haiku-medium', label: '❋ Claude 5.5 Haiku Thinking Medium', sortOrder: 64.3,
+        color: 'rgba(218, 119, 87, 1)',
+        segments: [
+          { value: 200000, plans: 'Free' },
+          { value: 500000, plans: 'Pro, Max x5, Max x20' }
+        ]
+      },
+      {
+        modelId: 'claude-55-haiku-low', label: '❋ Claude 5.5 Haiku Thinking Low', sortOrder: 64.4,
+        color: 'rgba(218, 119, 87, 1)',
+        segments: [
+          { value: 200000, plans: 'Free' },
+          { value: 500000, plans: 'Pro, Max x5, Max x20' }
+        ]
+      },
+      {
+        modelId: 'claude-48-opus-max', label: '❋ Claude 4.8 Opus Thinking Max', sortOrder: 89,
+        color: 'rgba(218, 119, 87, 1)',
+        segments: [
+          { value: 200000, plans: 'Free' },
+          { value: 500000, plans: 'Pro, Max x5, Max x20' }
+        ]
       },
       // GLM
       {
@@ -7066,7 +6864,11 @@
     function buildTerminalBenchV40ExportRows(includeAll) {
       return getBenchmarkExportItems(terminalBenchV40AllModels, includeAll).map(model => {
         const estimated = isEstimatedBenchmarkEntry(model);
-        const cost = typeof model.costPerTask === 'number' ? `US$${model.costPerTask.toFixed(2)}` : 'N/A';
+        const cost = typeof model.costPerTask === 'number'
+          ? `US$${model.costPerTask.toFixed(2)}`
+          : typeof model.costPerTaskLowerBound === 'number'
+            ? `≥US$${model.costPerTaskLowerBound.toFixed(2)}`
+            : 'N/A';
         return [
           cleanMarkdownLabel(model.label),
           formatMarkdownValue(model.score, 'percent', estimated),
@@ -7081,9 +6883,11 @@
         const estimated = isEstimatedBenchmarkEntry(model);
         const cost = typeof model.costPerTask === 'number'
           ? `US$${model.costPerTask.toFixed(2)}`
-          : typeof model.costPerTaskUpperBound === 'number'
-            ? `<US$${model.costPerTaskUpperBound.toFixed(2)}`
-            : 'N/A';
+          : typeof model.costPerTaskLowerBound === 'number'
+            ? `≥US$${model.costPerTaskLowerBound.toFixed(2)}`
+            : typeof model.costPerTaskUpperBound === 'number'
+              ? `<US$${model.costPerTaskUpperBound.toFixed(2)}`
+              : 'N/A';
         return [
           cleanMarkdownLabel(model.label),
           formatMarkdownValue(model.score, 'score', estimated),
@@ -7991,7 +7795,7 @@
     style="text-align: center; padding: 2rem 1rem; margin-top: 3rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.8rem;">
     Made by <strong> u/Pasto_Shouwa</strong>
     <br>
-    <em>Last updated on <strong>29/09/2026</strong> (dd/mm/yyyy)</em>
+    <em>Last updated on <strong>08/10/2026</strong> (dd/mm/yyyy)</em>
   </footer>
 </body>
 
